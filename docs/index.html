@@ -18,10 +18,10 @@
   <div class="header-tools">
     <span class="version">v0.1.0</span>
     <label class="sr-label" for="theme">Тема оформления</label>
-    <select id="theme" class="theme-select" aria-label="Тема оформления"><option value="auto">Авто</option><option value="light">Светлая</option><option value="dark">Тёмная · Desktop</option><option value="ios-dark">Тёмная · iOS</option></select>
+    <select id="theme" class="tg-select theme-select" aria-label="Тема оформления"><option value="auto">Авто</option><option value="light">Светлая</option><option value="dark">Тёмная · Desktop</option><option value="ios-dark">Тёмная · iOS</option></select>
   </div>
 </header>
-<nav class="mobile-navigation" aria-label="Навигация по каталогу"><label for="section-select">Раздел</label><select id="section-select" aria-label="Раздел каталога"><option value="overview">Обзор</option><option value="tokens">Основа и темы</option><option value="buttons">Кнопки</option><option value="icons">Иконки</option><option value="forms">Формы</option><option value="surfaces">Карточки и списки</option><option value="navigation">Навигация</option><option value="feedback">Обратная связь</option><option value="avatars">Аватары и бейджи</option><option value="layout">Компоновка</option><option value="effects">Эффекты</option><option value="start">Подключение</option></select></nav>
+<nav class="mobile-navigation" aria-label="Навигация по каталогу"><label for="section-select">Раздел</label><select class="tg-select" id="section-select" aria-label="Раздел каталога"><option value="overview">Обзор</option><option value="tokens">Основа и темы</option><option value="buttons">Кнопки</option><option value="icons">Иконки</option><option value="forms">Формы</option><option value="surfaces">Карточки и списки</option><option value="navigation">Навигация</option><option value="feedback">Обратная связь</option><option value="avatars">Аватары и бейджи</option><option value="layout">Компоновка</option><option value="effects">Эффекты</option><option value="start">Подключение</option></select></nav>
 <div class="site-layout">
 <aside class="sidebar">
   <div class="sidebar-label">Библиотека</div>
@@ -68,13 +68,17 @@
 
 <section id="tokens" class="catalog-section">
   <div class="section-heading"><div><h2>Баланс начинается с деталей</h2><p>Семантические цвета, шаг отступов 4 px и адаптивные размеры.</p></div><label class="accent-control">Акцент<select class="tg-select" aria-label="Акцентный цвет"><option value="blue">Исходный</option><option value="green">Зелёный</option><option value="violet">Фиолетовый</option></select></label></div>
-  <div class="token-grid">
-    <div class="color-token"><div style="background:var(--bg-color)"></div><strong>Фон</strong><code>--bg-color</code></div>
-    <div class="color-token"><div style="background:var(--section-bg-color)"></div><strong>Поверхность</strong><code>--section-bg-color</code></div>
-    <div class="color-token"><div style="background:var(--secondary-bg-color)"></div><strong>Вторичный</strong><code>--secondary-bg-color</code></div>
-    <div class="color-token"><div style="background:var(--button-color)"></div><strong>Акцент</strong><code>--button-color</code></div>
-    <div class="color-token"><div style="background:var(--text-color)"></div><strong>Текст</strong><code>--text-color</code></div>
-    <div class="color-token"><div style="background:var(--destructive-text-color)"></div><strong>Ошибка</strong><code>--destructive-text-color</code></div>
+  <div class="palette-table-wrap">
+    <table class="palette-table">
+      <caption class="tg-sr-only">Четыре цвета и три градации каждого</caption>
+      <thead><tr><th scope="col">Цвет</th><th scope="col">Исходный</th><th scope="col">Градация 2</th><th scope="col">Градация 3</th></tr></thead>
+      <tbody>
+        <tr><th scope="row">Фон</th><td><div class="palette-swatch" style="background:var(--background-main)" aria-hidden="true"></div><code>--background-main</code></td><td><div class="palette-swatch" style="background:var(--background-panel)" aria-hidden="true"></div><code>--background-panel</code></td><td><div class="palette-swatch" style="background:var(--background-muted)" aria-hidden="true"></div><code>--background-muted</code></td></tr>
+        <tr><th scope="row">Акцент</th><td><div class="palette-swatch" style="background:var(--accent-main)" aria-hidden="true"></div><code>--accent-main</code></td><td><div class="palette-swatch" style="background:var(--accent-strong)" aria-hidden="true"></div><code>--accent-strong</code></td><td><div class="palette-swatch" style="background:var(--accent-soft)" aria-hidden="true"></div><code>--accent-soft</code></td></tr>
+        <tr><th scope="row">Текст</th><td><div class="palette-swatch" style="background:var(--text-main)" aria-hidden="true"></div><code>--text-main</code></td><td><div class="palette-swatch" style="background:var(--text-secondary)" aria-hidden="true"></div><code>--text-secondary</code></td><td><div class="palette-swatch" style="background:var(--text-muted)" aria-hidden="true"></div><code>--text-muted</code></td></tr>
+        <tr><th scope="row">Ошибка</th><td><div class="palette-swatch" style="background:var(--danger-main)" aria-hidden="true"></div><code>--danger-main</code></td><td><div class="palette-swatch" style="background:var(--danger-strong)" aria-hidden="true"></div><code>--danger-strong</code></td><td><div class="palette-swatch" style="background:var(--danger-soft)" aria-hidden="true"></div><code>--danger-soft</code></td></tr>
+      </tbody>
+    </table>
   </div>
   <div class="foundation-grid"><div class="foundation-card"><span class="mini-label">Типографика</span><div class="type-specimen">Aa Бб 123</div><div class="tg-row tg-text-muted tg-text-sm"><span>System UI</span><span>400 / 500 / 600</span></div></div><div class="foundation-card"><span class="mini-label">Отступы</span><div class="spacing-scale" aria-label="Отступы 4, 8, 12, 16, 20, 24 пикселя"><span style="--size:4">4</span><span style="--size:8">8</span><span style="--size:12">12</span><span style="--size:16">16</span><span style="--size:20">20</span><span style="--size:24">24</span></div><div class="tg-text-muted tg-text-sm">Один ритм для всех компонентов</div></div><div class="foundation-card"><span class="mini-label">Радиусы</span><div class="radius-scale"><span style="border-radius:8px">8</span><span style="border-radius:12px">12</span><span style="border-radius:16px">16</span><span style="border-radius:999px">∞</span></div><div class="tg-text-muted tg-text-sm">От поля ввода до кнопки</div></div></div>
 </section>

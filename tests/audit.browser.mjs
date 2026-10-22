@@ -23,6 +23,8 @@ try {
   <span id="avatar" class="tg-avatar" data-pressed="true"><span class="tg-avatar__initials">АБ</span></span>
   <label class="tg-upload">Выбрать файл<input type="file" class="tg-sr-only"></label>
   <div class="tg-progress tg-progress--striped"><span class="tg-progress__bar" style="--progress:50%"></span></div>
+  <progress id="native-progress" class="tg-progress" max="100" value="50">50%</progress>
+  <div id="plain-progress" class="tg-progress"><span style="--progress:50%" class="tg-progress__bar"></span></div>
   <span class="tg-spinner tg-spinner--lg"></span>
   <div class="tg-ios-spacer"></div>
   <div class="tg-toast tg-toast--show" dir="rtl">Сохранено</div>
@@ -32,12 +34,12 @@ try {
     return [getComputedStyle(document.querySelector(selector)).getPropertyValue(property),getComputedStyle(expected).getPropertyValue(property)];
   },{selector,property,reference});
   const probes=[
-    ['body','background-color','background:color-mix(in srgb,var(--bg-color) 97%,white)','body background formula'],
-    ['#card','background-color','background:var(--section-bg-color)','opaque card surface'],
-    ['#card','border-top-color','border:1px solid color-mix(in srgb,var(--section-separator-color) 50%,transparent)','subtle source border'],
+    ['body','background-color','background:var(--background-main)','body background formula'],
+    ['#card','background-color','background:var(--section-color)','source panel surface'],
+    ['#card','border-top-color','border:1px solid var(--border-color)','subtle RGBA border'],
     ['#card','box-shadow','box-shadow:none','flat cards reserve elevation for overlays'],
-    ['#input','background-color','background:color-mix(in srgb,var(--secondary-bg-color) 99%,var(--text-color) 1%)','source input surface'],
-    ['#header','background-color','background:color-mix(in srgb,var(--header-bg-color) 18%,transparent)','secondary header transparency'],
+    ['#input','background-color','background:var(--background-muted)','source input surface'],
+    ['#header','background-color','background:var(--background-muted)','secondary header transparency'],
   ];
   for (const theme of ['light','dark','ios-dark']) {
     await page.evaluate(theme=>document.documentElement.dataset.theme=theme,theme);
@@ -62,8 +64,10 @@ try {
   check('file upload is a styled control',await page.locator('.tg-upload').evaluate(el=>getComputedStyle(el).display)==='flex');
   await page.evaluate(()=>document.documentElement.style.setProperty('--ios-h','2rem'));
   check('iOS spacer consumes the integration height',await page.locator('.tg-ios-spacer').evaluate(el=>getComputedStyle(el).height)==='32px');
-  const stripe=await page.locator('.tg-progress__bar').evaluate(el=>({blur:getComputedStyle(el,'::after').filter,animation:getComputedStyle(el,'::after').animationName,height:getComputedStyle(el.parentElement).height}));
-  check('progress stripes stay crisp rather than bleaching the fill',stripe.blur==='blur(0px)'&&stripe.height==='14px',stripe);
+  const stripe=await page.locator('.tg-progress--striped .tg-progress__bar').evaluate(el=>({blur:getComputedStyle(el,'::after').filter,animation:getComputedStyle(el,'::after').animationName,height:getComputedStyle(el.parentElement).height}));
+  check('progress stripes keep the accepted soft blur',stripe.blur==='blur(3px)',stripe);
+  const progressHeights = await page.locator('.tg-progress').evaluateAll(elements => elements.map(el => el.getBoundingClientRect().height));
+  check('native, plain and striped progress share one height', new Set(progressHeights).size === 1 && progressHeights[0] > 0, progressHeights);
   check('stripes stop under reduced motion',stripe.animation==='none',stripe);
   check('large spinner follows the semantic progress accent', await page.locator('.tg-spinner--lg').evaluate(el => {
     const probe = document.createElement('span');

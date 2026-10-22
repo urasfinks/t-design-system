@@ -102,7 +102,7 @@
 
   .tg-glass {
     --blur: 15px;
-    background: color-mix(in srgb, var(--bg-body) 90%, transparent);
+    background: var(--background-panel);
     border-radius: var(--radius-lg);
     -webkit-tap-highlight-color: transparent;
 
@@ -112,7 +112,7 @@
 
     &--backdrop {
       --blur: 25px;
-      background: color-mix(in srgb, var(--bg-body) 75%, transparent);
+      background: var(--background-main);
     }
 
     & .tg-header {

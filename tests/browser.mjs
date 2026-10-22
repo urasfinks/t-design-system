@@ -15,7 +15,7 @@ const check = (label, condition) => { assert.ok(condition, label); checks++; con
 const style = (selector, property) => page.locator(selector).evaluate((el, p) => getComputedStyle(el).getPropertyValue(p).trim(), property);
 const bodyColor = value => page.evaluate(value => {
   const reference = document.createElement('div');
-  reference.style.background = `color-mix(in srgb, ${value} 97%, white)`;
+  reference.style.background = value;
   document.body.append(reference);
   const color = getComputedStyle(reference).backgroundColor;
   reference.remove();
@@ -52,8 +52,8 @@ try {
   await page.setContent(`<style>${css}</style><button id="button" class="tg-btn tg-btn--primary">Кнопка</button><button id="disabled" class="tg-btn tg-btn--primary" disabled>Нет</button><div class="tg-card tg-p-0" id="card">Карточка</div><input class="tg-input" aria-label="Поле"><div class="tg-progress"><span class="tg-progress__bar"></span></div>`);
   for (const [name, mode] of [['light', 'light'], ['desktopDark', 'dark'], ['iosDark', 'ios-dark']]) {
     await page.evaluate(theme => { document.documentElement.dataset.theme = theme; }, mode);
-    const actual = await page.evaluate(keys => Object.fromEntries(keys.map(key => [key, getComputedStyle(document.documentElement).getPropertyValue(`--${key.replaceAll('_', '-')}`).trim().toLowerCase()])), Object.keys(palettes[name]));
-    check(`all 17 ${name} tokens match source main.ts exactly`, JSON.stringify(actual) === JSON.stringify(palettes[name]));
+    const actual = await page.evaluate(keys => Object.fromEntries(keys.map(key => [key, getComputedStyle(document.documentElement).getPropertyValue(`--${key.replaceAll('_', '-')}`).trim().toLowerCase()])), ['bg_color', 'button_color', 'text_color', 'destructive_text_color']);
+    check(`four ${name} source colors match the original palette`, Object.entries(actual).every(([key, value]) => value === palettes[name][key]));
   }
   await page.evaluate(() => { delete document.documentElement.dataset.theme; });
   check('light theme works without Telegram', await style('body', 'background-color') === await bodyColor('#f5f5f5'));
@@ -121,12 +121,26 @@ try {
   const traversal = await page.request.get('http://127.0.0.1:4174/docs/%2e%2e%2fpackage.json');
   check('HTTP server blocks encoded traversal', traversal.status() === 404);
   await page.getByLabel('Тема оформления').selectOption('dark');
-  check('catalog theme control', await style('body', 'background-color') === 'rgb(24, 34, 45)');
+  check('catalog theme control', await style('body', 'background-color') === await bodyColor('#18222d'));
   await page.getByLabel('Тема оформления').selectOption('ios-dark');
-  check('catalog exposes iOS dark palette', await style('body', 'background-color') === 'rgb(44, 44, 46)');
+  check('catalog exposes iOS dark palette', await style('body', 'background-color') === await bodyColor('#000000'));
   await page.getByLabel('Тема оформления').selectOption('light');
   for (const theme of ['light', 'dark', 'ios-dark']) {
     await page.getByLabel('Тема оформления').selectOption(theme);
+    const surfaces = await page.evaluate(() => {
+      const panel = document.querySelector('#forms .example-panel');
+      const input = panel.querySelector('.tg-input');
+      const reference = document.createElement('div');
+      document.body.append(reference);
+      reference.style.background = 'var(--background-panel)';
+      const panelMatches = getComputedStyle(panel).backgroundColor === getComputedStyle(reference).backgroundColor;
+      reference.style.background = 'var(--background-muted)';
+      const inputMatches = getComputedStyle(input).backgroundColor === getComputedStyle(reference).backgroundColor;
+      reference.remove();
+      return { panelMatches, inputMatches, body: getComputedStyle(panel.querySelector('.example-body')).backgroundColor };
+    });
+    check(`${theme}: catalog panels and inputs follow the source materials`, surfaces.panelMatches && surfaces.inputMatches);
+    check(`${theme}: example body does not add an inverted inset surface`, surfaces.body === 'rgba(0, 0, 0, 0)');
     const loadingText = await page.evaluate(measureContrast, { selector: '.loader-demo-stage .tg-text-sm' });
     check(`${theme}: real catalog loading text contrast ≥ 4.5`, loadingText.ratio >= 4.5);
   }

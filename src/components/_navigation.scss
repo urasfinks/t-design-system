@@ -61,7 +61,7 @@
 
     @media (hover: hover) {
       &:where(:not(:disabled, [aria-disabled='true'], [aria-selected='true'])):hover {
-        background: color-mix(in srgb, var(--section-bg-color) 50%, transparent);
+        background: var(--background-panel);
         color: var(--text-color);
       }
     }

@@ -1,23 +1,9 @@
-// One registry for public semantic names and their internal palette keys.
-// This module emits no CSS until bindings() is included.
+// Only these four colors are palette inputs, including Telegram overrides.
 $semantic: (
-  button-color: button,
-  section-bg-color: section-bg,
-  destructive-text-color: destructive-text,
-  secondary-bg-color: secondary-bg,
-  header-bg-color: header-bg,
-  bottom-bar-bg-color: bottom-bar-bg,
-  text-color: text,
-  accent-text-color: accent-text,
-  button-text-color: button-text,
-  link-color: link,
   bg-color: bg,
-  hint-color: hint,
-  section-header-text-color: section-header-text,
-  subtitle-text-color: subtitle-text,
-  section-separator-color: section-separator,
-  highlight-bg-color: highlight-bg,
-  highlight-ficus-color: highlight-ficus,
+  button-color: button,
+  text-color: text,
+  destructive-text-color: destructive-text,
 );
 
 @mixin bindings($source: palette) {
@@ -26,8 +12,7 @@ $semantic: (
       --#{$name}: var(--tds-#{$key});
     } @else if $source == legacy {
       --#{$name}: var(--tg-#{$name}, var(--tds-#{$key}));
-    } @else if $source == native and $name != highlight-bg-color and $name != highlight-ficus-color {
-      // Highlights belong to the project palette, not Telegram ThemeParams.
+    } @else if $source == native {
       --#{$name}: var(--tg-theme-#{$name}, var(--tg-#{$name}, var(--tds-#{$key})));
     }
   }

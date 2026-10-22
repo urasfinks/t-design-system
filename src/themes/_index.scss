@@ -1,65 +1,38 @@
 @use '../tokens';
 @use 'colors';
-// Exact palettes from ai-splitter-ng/src/main.ts: colorSchema.
+// Four source colors per theme; all other roles are derived in tokens.
 @mixin light {
   color-scheme: light;
-  --tds-button: #2481cc;
-  --tds-section-bg: #ffffff;
-  --tds-destructive-text: #ff3b30;
-  --tds-secondary-bg: #efeff3;
-  --tds-header-bg: #f1f1f1;
-  --tds-bottom-bar-bg: #e4e4e4;
-  --tds-text: #000000;
-  --tds-accent-text: #2481cc;
-  --tds-button-text: #ffffff;
-  --tds-link: #2481cc;
+  --select-arrow: var(--select-arrow-light);
   --tds-bg: #f5f5f5;
-  --tds-hint: #888888;
-  --tds-section-header-text: #6d6d71;
-  --tds-subtitle-text: #999999;
-  --tds-section-separator: #dddddd;
-  --tds-highlight-bg: #ffffff;
-  --tds-highlight-ficus: #dddddd;
+  --tds-button: #2481cc;
+  --tds-text: #000000;
+  --tds-destructive-text: #ff3b30;
+  --background-panel-weight: 0%;
+  --background-muted-weight: 98%;
+  --background-muted-target: #000;
 }
 @mixin desktopDark {
   color-scheme: dark;
-  --tds-button: #2ea6ff;
-  --tds-section-bg: #18222d;
-  --tds-destructive-text: #ef5b5b;
-  --tds-secondary-bg: #131415;
-  --tds-header-bg: #131415;
-  --tds-bottom-bar-bg: #213040;
-  --tds-text: #ffffff;
-  --tds-accent-text: #2ea6ff;
-  --tds-button-text: #ffffff;
-  --tds-link: #62bcf9;
+  --select-arrow: var(--select-arrow-dark);
   --tds-bg: #18222d;
-  --tds-hint: #b1c3d5;
-  --tds-section-header-text: #b1c3d5;
-  --tds-subtitle-text: #b1c3d5;
-  --tds-section-separator: #213040;
-  --tds-highlight-bg: #18222d;
-  --tds-highlight-ficus: #2b3f54;
+  --tds-button: #2ea6ff;
+  --tds-text: #ffffff;
+  --tds-destructive-text: #ef5b5b;
+  --background-panel-weight: 100%;
+  --background-muted-weight: 75%;
+  --background-muted-target: #000;
 }
 @mixin iosDark {
   color-scheme: dark;
-  --tds-header-bg: #1a1a1a;
-  --tds-accent-text: #3e88f7;
+  --select-arrow: var(--select-arrow-dark);
   --tds-bg: #000000;
-  --tds-bottom-bar-bg: #1d1d1d;
-  --tds-secondary-bg: #1c1c1d;
-  --tds-section-separator: #4a4a4a;
-  --tds-hint: #98989e;
-  --tds-section-header-text: #8d8e93;
-  --tds-subtitle-text: #98989e;
   --tds-button: #3e88f7;
-  --tds-section-bg: #2c2c2e;
-  --tds-destructive-text: #eb5545;
   --tds-text: #ffffff;
-  --tds-link: #3e88f7;
-  --tds-button-text: #ffffff;
-  --tds-highlight-bg: #2c2c2e;
-  --tds-highlight-ficus: #4a4a4a;
+  --tds-destructive-text: #eb5545;
+  --background-panel-weight: 83%;
+  --background-muted-weight: 89%;
+  --background-muted-target: #fff;
 }
 @layer tds.themes {
   :root {

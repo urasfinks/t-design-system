@@ -53,7 +53,7 @@
   .tg-progress {
     display: block;
     inline-size: 100%;
-    block-size: .625rem;
+    block-size: .825rem;
     appearance: none;
     border: 0;
     border-radius: var(--radius-pill);
@@ -87,8 +87,6 @@
     }
 
     &--striped {
-      block-size: .875rem;
-
       & .tg-progress__bar {
         position: relative;
         overflow: hidden;

@@ -9,6 +9,9 @@
     gap: var(--space-2);
     flex: 0 0 auto;
     max-inline-size: 100%;
+    block-size: var(--control-h);
+    min-block-size: var(--control-h);
+    padding-block: 0;
     border: 1px solid transparent;
     background: var(--surface-muted);
     color: var(--text-color);
@@ -30,7 +33,7 @@
 
     @media (hover: hover) {
       &:where(:not(:disabled, [aria-disabled='true'])):hover {
-        background: color-mix(in srgb, var(--secondary-bg-color) 90%, var(--text-color));
+        background: var(--background-panel);
       }
     }
 
@@ -40,8 +43,7 @@
   }
 
   .tg-btn {
-    min-block-size: var(--control-h);
-    padding: var(--space-2) var(--space-4);
+    padding-inline: var(--space-4);
     border-radius: var(--radius-control);
 
     &--secondary { background: var(--surface-muted); border: var(--border); }
@@ -52,13 +54,13 @@
 
       @media (hover: hover) {
         &:where(:not(:disabled, [aria-disabled='true'])):hover {
-          background: color-mix(in srgb, var(--action-danger-bg) 90%, #000);
+          background: var(--danger-strong);
         }
       }
     }
 
     &--sm { padding-inline: var(--space-3); font-size: var(--fs-sm); }
-    &--lg { min-block-size: calc(var(--control-h) + .5rem); padding-inline: var(--space-6); }
+    &--lg { padding-inline: var(--space-6); }
     &-box { inline-size: var(--control-h); padding-inline: 0; }
 
     @for $i from 0 through 3 {
@@ -68,8 +70,7 @@
 
   .tg-icon-btn {
     min-inline-size: var(--control-h);
-    min-block-size: var(--control-h);
-    padding: var(--space-2);
+    padding-inline: var(--space-2);
     border: var(--border);
     border-radius: var(--radius-control);
   }
@@ -90,8 +91,7 @@
   }
 
   .tg-chip {
-    min-block-size: var(--control-h);
-    padding: var(--space-2) var(--space-3);
+    padding-inline: var(--space-3);
     border: var(--border);
     border-radius: var(--radius-pill);
     font-size: var(--fs-sm);

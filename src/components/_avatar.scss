@@ -20,7 +20,7 @@
     }
 
     &[aria-checked='true'] {
-      border-color: var(--button-color);
+      border-color: var(--accent-main);
     }
 
     &-size {
@@ -115,7 +115,7 @@
     vertical-align: middle;
 
     &--primary {
-      background: color-mix(in srgb, var(--button-color) 12%, var(--surface-bg));
+      background: var(--accent-soft);
       color: var(--text-link);
     }
 
@@ -125,7 +125,7 @@
     }
 
     &--destructive {
-      background: color-mix(in srgb, var(--destructive-text-color) 10%, var(--surface-bg));
+      background: var(--danger-soft);
       color: var(--text-danger);
     }
   }
