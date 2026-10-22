@@ -16,9 +16,8 @@ The signature is the system itself: live components, clear examples, readable co
   panels use 24 px padding; sections get 64 px separation on desktop.
 - Cards use 16 px corners. Buttons and fields share 12 px corners; inset controls
   use 8 px. Pills are reserved for chips, badges and switches.
-- Source color variables remain exact. Derived semantic roles provide readable
-  secondary text, links, destructive text and action fills. Components consume
-  these roles rather than inventing their own contrast adjustments.
+- Four source color variables remain exact. Each family has two derived variants;
+  components consume the twelve shared palette roles.
 - Field borders are quiet at rest. Switches use their own filled track without
   an idle outline. Focus and invalid states remain distinct. Under
   `prefers-contrast: more`, field and switch boundaries use the stronger
@@ -100,3 +99,22 @@ focus remains separate. The default avatar still supports accent selection.
 
 These references guide generic components, not a copy of the receipt application
 or a requirement to reproduce its data, business logic or every visual decision.
+
+## Four-color palette
+
+The current palette has four original inputs per theme: background, accent, text,
+and danger. Each has exactly three reusable variants, displayed as twelve samples
+in the foundations table. Only eight derived palette declarations may contain
+`color-mix()`, all in tokens. Components and catalog styles use aliases only.
+Borders and shadows may use neutral RGBA transparency.
+
+Preserve the reference app's material relationships through theme-specific mixing
+weights: white panels on a light-gray page, blue-gray Desktop Dark, gray iOS panels
+on black. Do not reintroduce independent header, hint, section or secondary colors;
+their old public names alias the twelve palette values. Telegram can override the
+four source colors; it cannot expand the palette through secondary roles.
+
+Main colors stay original. Focused fields use the active field background and
+a main-accent border with a 4px soft-accent outer ring. Invalid focused fields
+use danger-main for the border and danger-soft for the outer ring. Buttons keep saturated strong fills and white text, and all action
+variants share `--control-h`. File progress keeps its accepted 3px stripe blur.

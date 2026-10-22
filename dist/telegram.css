@@ -2,23 +2,10 @@
 @layer tds.reset, tds.tokens, tds.themes, tds.base, tds.components, tds.utilities, tds.visibility;
 @layer tds.themes {
   :root {
-    --button-color: var(--tg-button-color, var(--tds-button));
-    --section-bg-color: var(--tg-section-bg-color, var(--tds-section-bg));
-    --destructive-text-color: var(--tg-destructive-text-color, var(--tds-destructive-text));
-    --secondary-bg-color: var(--tg-secondary-bg-color, var(--tds-secondary-bg));
-    --header-bg-color: var(--tg-header-bg-color, var(--tds-header-bg));
-    --bottom-bar-bg-color: var(--tg-bottom-bar-bg-color, var(--tds-bottom-bar-bg));
-    --text-color: var(--tg-text-color, var(--tds-text));
-    --accent-text-color: var(--tg-accent-text-color, var(--tds-accent-text));
-    --button-text-color: var(--tg-button-text-color, var(--tds-button-text));
-    --link-color: var(--tg-link-color, var(--tds-link));
     --bg-color: var(--tg-bg-color, var(--tds-bg));
-    --hint-color: var(--tg-hint-color, var(--tds-hint));
-    --section-header-text-color: var(--tg-section-header-text-color, var(--tds-section-header-text));
-    --subtitle-text-color: var(--tg-subtitle-text-color, var(--tds-subtitle-text));
-    --section-separator-color: var(--tg-section-separator-color, var(--tds-section-separator));
-    --highlight-bg-color: var(--tg-highlight-bg-color, var(--tds-highlight-bg));
-    --highlight-ficus-color: var(--tg-highlight-ficus-color, var(--tds-highlight-ficus));
+    --button-color: var(--tg-button-color, var(--tds-button));
+    --text-color: var(--tg-text-color, var(--tds-text));
+    --destructive-text-color: var(--tg-destructive-text-color, var(--tds-destructive-text));
     --safe-area-bottom: max(env(safe-area-inset-bottom, 0px), var(--tg-content-safe-area-inset-bottom, 0px));
     --ios-h: var(--tg-ios-h, 0px);
   }
@@ -26,20 +13,9 @@
     --ios-h: var(--tg-ios-h, .8rem);
   }
   :root[data-telegram-theme=native] {
-    --button-color: var(--tg-theme-button-color, var(--tg-button-color, var(--tds-button)));
-    --section-bg-color: var(--tg-theme-section-bg-color, var(--tg-section-bg-color, var(--tds-section-bg)));
-    --destructive-text-color: var(--tg-theme-destructive-text-color, var(--tg-destructive-text-color, var(--tds-destructive-text)));
-    --secondary-bg-color: var(--tg-theme-secondary-bg-color, var(--tg-secondary-bg-color, var(--tds-secondary-bg)));
-    --header-bg-color: var(--tg-theme-header-bg-color, var(--tg-header-bg-color, var(--tds-header-bg)));
-    --bottom-bar-bg-color: var(--tg-theme-bottom-bar-bg-color, var(--tg-bottom-bar-bg-color, var(--tds-bottom-bar-bg)));
-    --text-color: var(--tg-theme-text-color, var(--tg-text-color, var(--tds-text)));
-    --accent-text-color: var(--tg-theme-accent-text-color, var(--tg-accent-text-color, var(--tds-accent-text)));
-    --button-text-color: var(--tg-theme-button-text-color, var(--tg-button-text-color, var(--tds-button-text)));
-    --link-color: var(--tg-theme-link-color, var(--tg-link-color, var(--tds-link)));
     --bg-color: var(--tg-theme-bg-color, var(--tg-bg-color, var(--tds-bg)));
-    --hint-color: var(--tg-theme-hint-color, var(--tg-hint-color, var(--tds-hint)));
-    --section-header-text-color: var(--tg-theme-section-header-text-color, var(--tg-section-header-text-color, var(--tds-section-header-text)));
-    --subtitle-text-color: var(--tg-theme-subtitle-text-color, var(--tg-subtitle-text-color, var(--tds-subtitle-text)));
-    --section-separator-color: var(--tg-theme-section-separator-color, var(--tg-section-separator-color, var(--tds-section-separator)));
+    --button-color: var(--tg-theme-button-color, var(--tg-button-color, var(--tds-button)));
+    --text-color: var(--tg-theme-text-color, var(--tg-text-color, var(--tds-text)));
+    --destructive-text-color: var(--tg-theme-destructive-text-color, var(--tg-destructive-text-color, var(--tds-destructive-text)));
   }
 }

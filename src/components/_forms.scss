@@ -38,14 +38,26 @@
       background-color: var(--field-bg-hover);
     }
 
-    &:focus-visible {
-      outline: 2px solid var(--text-link);
-      outline-offset: 2px;
-      border-color: var(--text-link);
+    &:focus {
+      outline: none;
+      background-color: var(--field-bg-hover);
+      border-color: var(--accent-main);
+      box-shadow: var(--focus);
+    }
+
+    @media (forced-colors: active) {
+      &:focus {
+        outline: 2px solid Highlight;
+        outline-offset: 2px;
+      }
     }
 
     &[aria-invalid='true'] {
       border-color: var(--text-danger);
+
+      &:focus {
+        box-shadow: 0 0 0 .25rem var(--danger-soft);
+      }
     }
 
     &:disabled {
@@ -68,16 +80,105 @@
     background: var(--section-bg-color);
   }
 
-  .tg-select {
-    padding-inline-end: var(--space-4);
+  .tg-select:not([multiple]):is(:not([size]), [size='1']) {
+    appearance: none;
+    padding-inline-end: var(--space-10);
+    background-image: var(--select-arrow);
+    background-repeat: no-repeat;
+    background-size: 1.25rem 1.25rem;
+    background-position: right var(--space-3) center;
+    text-overflow: ellipsis;
+    cursor: pointer;
+
+    &:dir(rtl) {
+      background-position: left var(--space-3) center;
+    }
+
+    &:disabled {
+      cursor: not-allowed;
+    }
+
+    @media (forced-colors: active) {
+      appearance: auto;
+      background-image: none;
+      padding-inline-end: var(--space-3);
+    }
   }
 
   .tg-check, .tg-radio {
-    inline-size: 1.2rem;
-    block-size: 1.2rem;
+    appearance: none;
+    display: inline-grid;
+    place-content: center;
+    flex: 0 0 var(--choice-size);
+    inline-size: var(--choice-size);
+    block-size: var(--choice-size);
     margin: 0;
-    accent-color: var(--button-color);
+    border: var(--border-field);
+    background-color: var(--field-bg);
+    accent-color: var(--accent-main);
+    vertical-align: middle;
     cursor: pointer;
+
+    &:not(:checked):not(:indeterminate) {
+      border-color: transparent;
+    }
+
+    &:checked, &.tg-check:indeterminate {
+      background-color: var(--accent-main);
+      border-color: var(--accent-main);
+    }
+
+    &:disabled {
+      opacity: .5;
+      cursor: not-allowed;
+    }
+  }
+
+  .tg-check {
+    border-radius: calc(var(--choice-size) / 4);
+
+    &:checked::before {
+      content: '';
+      inline-size: calc(var(--choice-size) * .25);
+      block-size: calc(var(--choice-size) * .45);
+      border: solid var(--button-text-color);
+      border-width: 0 2px 2px 0;
+      transform: translateY(-1px) rotate(45deg);
+    }
+
+    &:indeterminate::before {
+      content: '';
+      inline-size: calc(var(--choice-size) * .5);
+      block-size: 2px;
+      background: var(--button-text-color);
+    }
+  }
+
+  .tg-radio {
+    border-radius: 50%;
+
+    &:checked::before {
+      content: '';
+      inline-size: calc(var(--choice-size) * .42);
+      block-size: calc(var(--choice-size) * .42);
+      border-radius: inherit;
+      background: var(--button-text-color);
+    }
+  }
+
+  @media (forced-colors: active) {
+    .tg-check, .tg-radio {
+      appearance: auto;
+
+      &, &:checked, &.tg-check:indeterminate {
+        border: revert;
+        background-color: revert;
+      }
+
+      &::before, &:checked::before, &:indeterminate::before {
+        content: none;
+      }
+    }
   }
 
   .tg-choice {
@@ -89,8 +190,8 @@
   }
 
   .tg-switch {
-    --w: clamp(3rem, 2.8rem + 1vw, 3.25rem);
-    --h: clamp(1.75rem, 1.6rem + .6vw, 2rem);
+    --w: calc(var(--h) * 1.75);
+    --h: calc(var(--choice-size) + .125rem);
     position: relative;
     display: inline-flex;
     align-items: center;
@@ -117,6 +218,10 @@
       transition: background-color var(--duration) var(--ease), border-color var(--duration) var(--ease);
     }
 
+    &:not([aria-checked='true'], .tg-switch--on)::before {
+      border-color: transparent;
+    }
+
     &__knob {
       position: absolute;
       inset-inline-start: .125rem;
@@ -131,7 +236,7 @@
     }
 
     &:is([aria-checked='true'], .tg-switch--on)::before {
-      background: var(--action-bg);
+      background: var(--accent-main);
       border-color: var(--switch-border-color);
     }
 
