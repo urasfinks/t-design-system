@@ -28,10 +28,10 @@ try {
         for (const avatar of avatars) {
           assert.equal(avatar.width, rootSize * 2.25);
           assert.equal(avatar.height, avatar.width);
-          assert.equal(avatar.border, rootSize / 4);
+          assert.equal(avatar.border, rootSize * .1875);
           assert.ok(Math.abs(avatar.dx) <= .5 && Math.abs(avatar.dy) <= .5, `${theme}/${direction}: label off-center ${JSON.stringify(avatar)}`);
         }
-        assert.equal(Math.abs(avatars[1].x - avatars[0].x), rootSize * 1.5);
+        assert.equal(Math.abs(avatars[1].x - avatars[0].x), rootSize * 1.75);
       }
     }
   }
