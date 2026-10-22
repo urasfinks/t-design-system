@@ -272,7 +272,7 @@
   }
 }
 @layer tds.components {
-  .tg-btn, .tg-icon-btn, .tg-chip {
+  :is(.tg-btn, .tg-icon-btn, .tg-chip) {
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -292,21 +292,23 @@
     overflow-wrap: anywhere;
     transition: background var(--duration), box-shadow var(--duration), transform var(--duration-fast);
   }
+  :is(.tg-btn, .tg-icon-btn, .tg-chip) svg {
+    inline-size: 1.25em;
+    block-size: 1.25em;
+    flex-shrink: 0;
+  }
+  @media (hover: hover) {
+    :is(.tg-btn, .tg-icon-btn, .tg-chip):where(:not(:disabled, [aria-disabled=true])):hover {
+      background: color-mix(in srgb, var(--secondary-bg-color) 90%, var(--text-color));
+    }
+  }
+  :is(.tg-btn, .tg-icon-btn, .tg-chip):where(:not(:disabled, [aria-disabled=true])):is(:active, [data-pressed=true]) {
+    transform: scale(0.98);
+  }
   .tg-btn {
     min-block-size: var(--control-h);
     padding: var(--space-2) var(--space-4);
     border-radius: var(--radius-pill);
-  }
-  .tg-icon-btn {
-    min-inline-size: var(--control-h);
-    min-block-size: var(--control-h);
-    padding: var(--space-2);
-    border: var(--border);
-    border-radius: var(--radius-sm);
-  }
-  .tg-btn--primary, .tg-icon-btn--primary {
-    background: var(--button-color);
-    color: var(--button-text-color);
   }
   .tg-btn--secondary {
     background: var(--secondary-bg-color);
@@ -320,8 +322,12 @@
     background: var(--destructive-text-color);
     color: var(--button-text-color);
   }
+  @media (hover: hover) {
+    .tg-btn--destructive:where(:not(:disabled, [aria-disabled=true])):hover {
+      background: color-mix(in srgb, var(--destructive-text-color) 88%, var(--text-color));
+    }
+  }
   .tg-btn--sm {
-    min-block-size: var(--control-h);
     padding-inline: var(--space-3);
     font-size: var(--fs-sm);
   }
@@ -345,24 +351,36 @@
   .tg-btn-s3 {
     padding-inline: var(--space-3);
   }
-  .tg-btn svg, .tg-icon-btn svg, .tg-chip svg {
-    inline-size: 1.25em;
-    block-size: 1.25em;
-    flex-shrink: 0;
+  .tg-icon-btn {
+    min-inline-size: var(--control-h);
+    min-block-size: var(--control-h);
+    padding: var(--space-2);
+    border: var(--border);
+    border-radius: var(--radius-sm);
+  }
+  .tg-btn--primary, .tg-icon-btn--primary {
+    background: var(--button-color);
+    color: var(--button-text-color);
   }
   @media (hover: hover) {
-    :is(.tg-btn, .tg-icon-btn, .tg-chip):where(:not(:disabled, [aria-disabled=true])):hover {
-      background: color-mix(in srgb, var(--secondary-bg-color) 90%, var(--text-color));
-    }
-    :is(.tg-btn--primary, .tg-icon-btn--primary):where(:not(:disabled, [aria-disabled=true])):hover {
+    .tg-btn--primary:where(:not(:disabled, [aria-disabled=true])):hover, .tg-icon-btn--primary:where(:not(:disabled, [aria-disabled=true])):hover {
       background: color-mix(in srgb, var(--button-color) 88%, var(--text-color));
     }
-    .tg-btn--destructive:where(:not(:disabled, [aria-disabled=true])):hover {
-      background: color-mix(in srgb, var(--destructive-text-color) 88%, var(--text-color));
-    }
   }
-  :is(.tg-btn, .tg-icon-btn, .tg-chip):where(:not(:disabled, [aria-disabled=true])):is(:active, [data-pressed=true]) {
-    transform: scale(0.98);
+  .tg-chip {
+    min-block-size: var(--control-h);
+    padding: var(--space-2) var(--space-3);
+    border: var(--border);
+    border-radius: var(--radius-pill);
+    font-size: var(--fs-sm);
+  }
+  .tg-chip[aria-checked=true] {
+    background: var(--button-color);
+    color: var(--button-text-color);
+    border-color: transparent;
+  }
+  .tg-chip[aria-checked=true]:where(:not(:disabled, [aria-disabled=true])):hover {
+    background: color-mix(in srgb, var(--button-color) 88%, var(--text-color));
   }
 }
 @layer tds.components {
@@ -380,7 +398,10 @@
     font-size: var(--fs-sm);
     color: var(--hint-color);
   }
-  .tg-input, .tg-select, .tg-textarea {
+  .tg-help--error {
+    color: var(--destructive-text-color);
+  }
+  :is(.tg-input, .tg-select, .tg-textarea) {
     inline-size: 100%;
     min-inline-size: 0;
     min-block-size: var(--control-h);
@@ -393,14 +414,6 @@
     line-height: 1.5;
     transition: box-shadow var(--duration), border-color var(--duration), background-color var(--duration);
   }
-  .tg-textarea {
-    min-block-size: calc(var(--control-h) * 2.5);
-    resize: vertical;
-  }
-  .tg-input::placeholder, .tg-textarea::placeholder {
-    color: var(--hint-color);
-    opacity: 1;
-  }
   :is(.tg-input, .tg-select, .tg-textarea):where(:not(:disabled, [readonly])):hover {
     background-color: var(--field-bg-hover);
   }
@@ -412,12 +425,17 @@
   :is(.tg-input, .tg-select, .tg-textarea)[aria-invalid=true] {
     border-color: var(--destructive-text-color);
   }
-  .tg-help--error {
-    color: var(--destructive-text-color);
-  }
   :is(.tg-input, .tg-select, .tg-textarea):disabled {
     opacity: 0.5;
     cursor: not-allowed;
+  }
+  .tg-textarea {
+    min-block-size: calc(var(--control-h) * 2.5);
+    resize: vertical;
+  }
+  .tg-input::placeholder, .tg-textarea::placeholder {
+    color: var(--hint-color);
+    opacity: 1;
   }
   :is(.tg-input, .tg-textarea)[readonly] {
     background: var(--section-bg-color);
@@ -650,6 +668,24 @@
     overflow-x: auto;
     scrollbar-width: thin;
   }
+  .tg-tabs-s2 {
+    gap: var(--space-2);
+  }
+  .tg-tabs-s2 > .tg-tab {
+    padding-inline: var(--space-2);
+  }
+  .tg-tabs-s1 {
+    gap: var(--space-1);
+  }
+  .tg-tabs-s1 > .tg-tab {
+    padding-inline: var(--space-1);
+  }
+  .tg-tabs-s0 {
+    gap: 0;
+  }
+  .tg-tabs-s0 > .tg-tab {
+    padding-inline: 0;
+  }
   .tg-tab {
     flex: 1 0 auto;
     min-block-size: var(--control-h);
@@ -663,32 +699,12 @@
     cursor: pointer;
     transition: background var(--duration), color var(--duration);
   }
-  .tg-tab:where(:not(:disabled, [aria-disabled=true])):hover {
+  .tg-tab:where(:not(:disabled, [aria-disabled=true])):hover, .tg-tab[aria-selected=true] {
     background: var(--section-bg-color);
     color: var(--text-color);
   }
   .tg-tab[aria-selected=true] {
-    background: var(--section-bg-color);
-    color: var(--text-color);
     box-shadow: var(--shadow-soft);
-  }
-  .tg-tabs-s2 {
-    gap: var(--space-2);
-  }
-  .tg-tabs-s1 {
-    gap: var(--space-1);
-  }
-  .tg-tabs-s0 {
-    gap: 0;
-  }
-  .tg-tabs-s2 > .tg-tab {
-    padding-inline: var(--space-2);
-  }
-  .tg-tabs-s1 > .tg-tab {
-    padding-inline: var(--space-1);
-  }
-  .tg-tabs-s0 > .tg-tab {
-    padding-inline: 0;
   }
   .tg-tab:focus-visible {
     outline-offset: -3px;
@@ -754,21 +770,6 @@
   .tg-dot:is([aria-current=true], [aria-current=page])::after {
     background: var(--link-color);
   }
-  .tg-chip {
-    min-block-size: var(--control-h);
-    padding: var(--space-2) var(--space-3);
-    border: var(--border);
-    border-radius: var(--radius-pill);
-    font-size: var(--fs-sm);
-  }
-  .tg-chip[aria-checked=true] {
-    background: var(--button-color);
-    color: var(--button-text-color);
-    border-color: transparent;
-  }
-  .tg-chip[aria-checked=true]:where(:not(:disabled, [aria-disabled=true])):hover {
-    background: color-mix(in srgb, var(--button-color) 88%, var(--text-color));
-  }
 }
 @layer tds.components {
   .tg-avatar {
@@ -785,9 +786,6 @@
     background: transparent;
     vertical-align: middle;
     transition: border-color var(--duration), transform var(--duration-fast);
-  }
-  button.tg-avatar {
-    cursor: pointer;
   }
   .tg-avatar:where(:not(:disabled, [aria-disabled=true])):is(:active, [data-pressed=true]) {
     transform: scale(0.96);
@@ -838,6 +836,17 @@
     border-color: var(--border-color);
     border-style: dashed;
   }
+  .tg-avatar > .tg-badge {
+    position: absolute;
+    inset-block-start: -0.5rem;
+    inset-inline-end: -0.55rem;
+    border: 1px solid var(--section-bg-color-transparent);
+    box-shadow: var(--shadow-soft);
+    pointer-events: none;
+  }
+  button.tg-avatar {
+    cursor: pointer;
+  }
   .tg-badge {
     display: inline-flex;
     align-items: center;
@@ -852,14 +861,6 @@
     font-weight: var(--fw-semibold);
     line-height: 1.25;
     vertical-align: middle;
-  }
-  .tg-avatar > .tg-badge {
-    position: absolute;
-    inset-block-start: -0.5rem;
-    inset-inline-end: -0.55rem;
-    border: 1px solid var(--section-bg-color-transparent);
-    box-shadow: var(--shadow-soft);
-    pointer-events: none;
   }
   .tg-badge--primary {
     background: var(--button-color-transparent);
@@ -956,16 +957,16 @@
     animation: tg-spin 0.8s linear infinite;
     vertical-align: middle;
   }
-  @keyframes tg-spin {
-    to {
-      transform: rotate(1turn);
-    }
-  }
   .tg-spinner--lg {
     inline-size: 4rem;
     block-size: 4rem;
     border: 6px solid rgba(255, 255, 255, 0.2);
     border-block-start-color: var(--spinner-color);
+  }
+  @keyframes tg-spin {
+    to {
+      transform: rotate(1turn);
+    }
   }
   .tg-toast {
     position: fixed;
@@ -1117,18 +1118,17 @@
     block-size: 0;
     animation: tg-ripple-wave var(--ripple-duration) ease-out forwards;
   }
-  .tg-ripple__ring {
+  .tg-ripple__ring, .tg-ripple__wash {
     inset: 0;
     border-radius: inherit;
-    box-shadow: inset 0 0 0 var(--ring-width) var(--ripple-border-color, var(--ripple-color));
     opacity: 0;
+  }
+  .tg-ripple__ring {
+    box-shadow: inset 0 0 0 var(--ring-width) var(--ripple-border-color, var(--ripple-color));
     animation: tg-ripple-ring var(--ring-duration) ease-out forwards;
   }
   .tg-ripple__wash {
-    inset: 0;
-    border-radius: inherit;
     background: var(--ripple-hover-color, var(--ripple-color));
-    opacity: 0;
     animation: tg-ripple-wash var(--wash-duration) ease-out forwards;
   }
   @keyframes tg-ripple-wave {
@@ -1177,12 +1177,6 @@
     border-radius: var(--radius-lg);
     -webkit-tap-highlight-color: transparent;
   }
-  @supports (backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px)) {
-    .tg-glass {
-      backdrop-filter: blur(var(--blur)) saturate(120%);
-      -webkit-backdrop-filter: blur(var(--blur)) saturate(120%);
-    }
-  }
   .tg-glass > * {
     isolation: isolate;
   }
@@ -1192,6 +1186,12 @@
   }
   .tg-glass .tg-header {
     background-color: transparent;
+  }
+  @supports (backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px)) {
+    .tg-glass {
+      backdrop-filter: blur(var(--blur)) saturate(120%);
+      -webkit-backdrop-filter: blur(var(--blur)) saturate(120%);
+    }
   }
   .tg-overlay {
     position: fixed;
@@ -1399,7 +1399,7 @@
   .tg-mb-0 {
     margin-block-end: 0;
   }
-  .tg-gap-1 {
+  .tg-gap-1, .tg-gap-space-1 {
     gap: var(--space-1);
   }
   .tg-p-1 {
@@ -1411,7 +1411,7 @@
   .tg-mb-1 {
     margin-block-end: var(--space-1);
   }
-  .tg-gap-2 {
+  .tg-gap-2, .tg-gap-space-2 {
     gap: var(--space-2);
   }
   .tg-p-2 {
@@ -1423,7 +1423,7 @@
   .tg-mb-2 {
     margin-block-end: var(--space-2);
   }
-  .tg-gap-3 {
+  .tg-gap-3, .tg-gap-space-3 {
     gap: var(--space-3);
   }
   .tg-p-3 {
@@ -1470,14 +1470,5 @@
   }
   .tg-mb-6 {
     margin-block-end: var(--space-6);
-  }
-  .tg-gap-space-1 {
-    gap: var(--space-1);
-  }
-  .tg-gap-space-2 {
-    gap: var(--space-2);
-  }
-  .tg-gap-space-3 {
-    gap: var(--space-3);
   }
 }
