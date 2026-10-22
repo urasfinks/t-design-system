@@ -21,13 +21,17 @@ try {
         const value = getComputedStyle(probe).color; probe.remove(); return value;
       };
       return [
-        resolve(theme === 'dark' ? 'background-panel' : 'background-main') === resolve('bg-color'),
+        resolve('background-main') === resolve('bg-color'),
         resolve('accent-main') === resolve('button-color'),
         resolve('text-main') === resolve('text-color'),
         resolve('danger-main') === resolve('destructive-text-color'),
       ];
     }, theme);
     assert.ok(colors.every(Boolean), `${theme}: all main colors must remain original`);
+    if (theme === 'dark') {
+      const exact = await page.locator('.palette-table tbody tr').first().locator('.palette-swatch').evaluateAll(elements => elements.map(el => getComputedStyle(el).backgroundColor));
+      assert.deepEqual(exact, ['rgb(21, 30, 39)', 'rgb(33, 45, 59)', 'rgb(29, 39, 51)']);
+    }
     if (theme !== 'light') {
       const tones = await page.evaluate(() => {
         const canvas = document.createElement('canvas'); canvas.width = canvas.height = 1;
@@ -39,7 +43,7 @@ try {
           return r * .2126 + g * .7152 + b * .0722;
         });
       });
-      assert.ok(theme === 'dark' ? tones[2] < tones[1] && tones[1] < tones[0] : tones[0] < tones[1] && tones[1] < tones[2], `${theme}: background roles have the requested brightness order`);
+      assert.ok(tones[0] < tones[1] && tones[1] < tones[2], `${theme}: main < muted < panel brightness`);
     }
     for (const width of [320, 390, 1440]) {
       await page.setViewportSize({ width, height: 900 });

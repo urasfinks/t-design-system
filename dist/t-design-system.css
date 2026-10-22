@@ -62,7 +62,8 @@
     --background-main: var(--bg-color);
     --background-raised: color-mix(in srgb, var(--bg-color) var(--background-panel-weight), #fff);
     --background-panel: var(--background-raised);
-    --background-muted: color-mix(in srgb, var(--bg-color) var(--background-muted-weight), var(--background-muted-target));
+    --background-muted-derived: color-mix(in srgb, var(--bg-color) var(--background-muted-weight), var(--background-muted-target));
+    --background-muted: var(--background-muted-derived);
     --text-main: var(--text-color);
     --text-secondary: color-mix(in srgb, var(--text-main) 70%, var(--background-panel));
     --text-muted: color-mix(in srgb, var(--text-main) 55%, var(--background-panel));
@@ -136,6 +137,7 @@
     --tds-destructive-text: #ff3b30;
     --background-main: var(--bg-color);
     --background-panel: var(--background-raised);
+    --background-muted: var(--background-muted-derived);
     --background-panel-weight: 0%;
     --background-muted-weight: 98%;
     --background-muted-target: #000;
@@ -148,12 +150,13 @@
     :root:not([data-theme]) {
       color-scheme: dark;
       --select-arrow: var(--select-arrow-dark);
-      --tds-bg: #18222d;
+      --tds-bg: #151e27;
       --tds-button: #2ea6ff;
       --tds-text: #ffffff;
       --tds-destructive-text: #ef5b5b;
-      --background-main: var(--background-raised);
-      --background-panel: var(--bg-color);
+      --background-main: var(--bg-color);
+      --background-panel: #212d3b;
+      --background-muted: #1d2733;
       --background-panel-weight: 83%;
       --background-muted-weight: 89%;
       --background-muted-target: #fff;
@@ -167,6 +170,7 @@
       --tds-destructive-text: #eb5545;
       --background-main: var(--bg-color);
       --background-panel: var(--background-raised);
+      --background-muted: var(--background-muted-derived);
       --background-panel-weight: 83%;
       --background-muted-weight: 89%;
       --background-muted-target: #fff;
@@ -175,12 +179,13 @@
   :root[data-theme=dark] {
     color-scheme: dark;
     --select-arrow: var(--select-arrow-dark);
-    --tds-bg: #18222d;
+    --tds-bg: #151e27;
     --tds-button: #2ea6ff;
     --tds-text: #ffffff;
     --tds-destructive-text: #ef5b5b;
-    --background-main: var(--background-raised);
-    --background-panel: var(--bg-color);
+    --background-main: var(--bg-color);
+    --background-panel: #212d3b;
+    --background-muted: #1d2733;
     --background-panel-weight: 83%;
     --background-muted-weight: 89%;
     --background-muted-target: #fff;
@@ -195,6 +200,7 @@
     --tds-destructive-text: #eb5545;
     --background-main: var(--bg-color);
     --background-panel: var(--background-raised);
+    --background-muted: var(--background-muted-derived);
     --background-panel-weight: 83%;
     --background-muted-weight: 89%;
     --background-muted-target: #fff;
@@ -208,6 +214,7 @@
     --tds-destructive-text: #ff3b30;
     --background-main: var(--bg-color);
     --background-panel: var(--background-raised);
+    --background-muted: var(--background-muted-derived);
     --background-panel-weight: 0%;
     --background-muted-weight: 98%;
     --background-muted-target: #000;
