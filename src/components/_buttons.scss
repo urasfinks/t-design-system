@@ -1,6 +1,8 @@
 @use '../base';
+
 @layer tds.components {
-  .tg-btn, .tg-icon-btn, .tg-chip {
+  // Shared control foundation; variants below only describe their differences.
+  :is(.tg-btn, .tg-icon-btn, .tg-chip) {
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -19,12 +21,51 @@
     vertical-align: middle;
     overflow-wrap: anywhere;
     transition: background var(--duration), box-shadow var(--duration), transform var(--duration-fast);
+
+    svg {
+      inline-size: 1.25em;
+      block-size: 1.25em;
+      flex-shrink: 0;
+    }
+
+    @media (hover: hover) {
+      &:where(:not(:disabled, [aria-disabled='true'])):hover {
+        background: color-mix(in srgb, var(--secondary-bg-color) 90%, var(--text-color));
+      }
+    }
+
+    &:where(:not(:disabled, [aria-disabled='true'])):is(:active, [data-pressed='true']) {
+      transform: scale(.98);
+    }
   }
+
   .tg-btn {
     min-block-size: var(--control-h);
     padding: var(--space-2) var(--space-4);
     border-radius: var(--radius-pill);
+
+    &--secondary { background: var(--secondary-bg-color); border: var(--border); }
+    &--ghost { background: transparent; border: var(--border); }
+    &--destructive {
+      background: var(--destructive-text-color);
+      color: var(--button-text-color);
+
+      @media (hover: hover) {
+        &:where(:not(:disabled, [aria-disabled='true'])):hover {
+          background: color-mix(in srgb, var(--destructive-text-color) 88%, var(--text-color));
+        }
+      }
+    }
+
+    &--sm { padding-inline: var(--space-3); font-size: var(--fs-sm); }
+    &--lg { min-block-size: calc(var(--control-h) + .5rem); padding-inline: var(--space-6); }
+    &-box { inline-size: var(--control-h); padding-inline: 0; }
+
+    @for $i from 0 through 3 {
+      &-s#{$i} { padding-inline: if($i == 0, 0, var(--space-#{$i})); }
+    }
   }
+
   .tg-icon-btn {
     min-inline-size: var(--control-h);
     min-block-size: var(--control-h);
@@ -32,31 +73,33 @@
     border: var(--border);
     border-radius: var(--radius-sm);
   }
+
   .tg-btn--primary, .tg-icon-btn--primary {
     background: var(--button-color);
     color: var(--button-text-color);
-  }
-  .tg-btn--secondary { background: var(--secondary-bg-color); border: var(--border); }
-  .tg-btn--ghost { background: transparent; border: var(--border); }
-  .tg-btn--destructive { background: var(--destructive-text-color); color: var(--button-text-color); }
-  .tg-btn--sm { min-block-size: var(--control-h); padding-inline: var(--space-3); font-size: var(--fs-sm); }
-  .tg-btn--lg { min-block-size: calc(var(--control-h) + .5rem); padding-inline: var(--space-6); }
-  .tg-btn-box { inline-size: var(--control-h); padding-inline: 0; }
-  .tg-btn-s0 { padding-inline: 0; }
-  .tg-btn-s1 { padding-inline: var(--space-1); }
-  .tg-btn-s2 { padding-inline: var(--space-2); }
-  .tg-btn-s3 { padding-inline: var(--space-3); }
-  .tg-btn svg, .tg-icon-btn svg, .tg-chip svg { inline-size: 1.25em; block-size: 1.25em; flex-shrink: 0; }
-  @media (hover: hover) {
-    :is(.tg-btn, .tg-icon-btn, .tg-chip):where(:not(:disabled, [aria-disabled='true'])):hover {
-      background: color-mix(in srgb, var(--secondary-bg-color) 90%, var(--text-color));
-    }
-    :is(.tg-btn--primary, .tg-icon-btn--primary):where(:not(:disabled, [aria-disabled='true'])):hover {
-      background: color-mix(in srgb, var(--button-color) 88%, var(--text-color));
-    }
-    .tg-btn--destructive:where(:not(:disabled, [aria-disabled='true'])):hover {
-      background: color-mix(in srgb, var(--destructive-text-color) 88%, var(--text-color));
+
+    @media (hover: hover) {
+      &:where(:not(:disabled, [aria-disabled='true'])):hover {
+        background: color-mix(in srgb, var(--button-color) 88%, var(--text-color));
+      }
     }
   }
-  :is(.tg-btn, .tg-icon-btn, .tg-chip):where(:not(:disabled, [aria-disabled='true'])):is(:active, [data-pressed='true']) { transform: scale(.98); }
+
+  .tg-chip {
+    min-block-size: var(--control-h);
+    padding: var(--space-2) var(--space-3);
+    border: var(--border);
+    border-radius: var(--radius-pill);
+    font-size: var(--fs-sm);
+
+    &[aria-checked='true'] {
+      background: var(--button-color);
+      color: var(--button-text-color);
+      border-color: transparent;
+
+      &:where(:not(:disabled, [aria-disabled='true'])):hover {
+        background: color-mix(in srgb, var(--button-color) 88%, var(--text-color));
+      }
+    }
+  }
 }

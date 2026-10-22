@@ -30,10 +30,13 @@
   @for $i from 0 through 6 {
     $value: 0;
     @if $i > 0 { $value: var(--space-#{$i}); }
-    .tg-gap-#{$i} { gap: $value; }
+    @if $i >= 1 and $i <= 3 {
+      .tg-gap-#{$i}, .tg-gap-space-#{$i} { gap: $value; }
+    } @else {
+      .tg-gap-#{$i} { gap: $value; }
+    }
     .tg-p-#{$i} { padding: $value; }
     .tg-mt-#{$i} { margin-block-start: $value; }
     .tg-mb-#{$i} { margin-block-end: $value; }
   }
-  @for $i from 1 through 3 { .tg-gap-space-#{$i} { gap: var(--space-#{$i}); } }
 }

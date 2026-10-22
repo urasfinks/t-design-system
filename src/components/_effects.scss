@@ -11,91 +11,210 @@
     isolation: isolate;
     overflow: hidden;
     -webkit-tap-highlight-color: transparent;
+
+    &--dark {
+      --ripple-color: rgb(255 255 255 / .25);
+    }
+
+    &--light {
+      --ripple-color: rgb(0 0 0 / .25);
+    }
+
+    &--inline {
+      display: inline-flex;
+      border-radius: var(--radius-pill);
+    }
+
+    &__wave, &__ring, &__wash {
+      position: absolute;
+      pointer-events: none;
+      z-index: -1;
+    }
+
+    &__wave {
+      border-radius: 50%;
+      background: var(--ripple-color);
+      transform: translate(-50%, -50%);
+      inline-size: 0;
+      block-size: 0;
+      animation: tg-ripple-wave var(--ripple-duration) ease-out forwards;
+    }
+
+    &__ring, &__wash {
+      inset: 0;
+      border-radius: inherit;
+      opacity: 0;
+    }
+
+    &__ring {
+      box-shadow: inset 0 0 0 var(--ring-width) var(--ripple-border-color, var(--ripple-color));
+      animation: tg-ripple-ring var(--ring-duration) ease-out forwards;
+    }
+
+    &__wash {
+      background: var(--ripple-hover-color, var(--ripple-color));
+      animation: tg-ripple-wash var(--wash-duration) ease-out forwards;
+    }
   }
-  .tg-ripple--dark { --ripple-color: rgb(255 255 255 / .25); }
-  .tg-ripple--light { --ripple-color: rgb(0 0 0 / .25); }
-  .tg-ripple--inline { display: inline-flex; border-radius: var(--radius-pill); }
-  .tg-ripple__wave, .tg-ripple__ring, .tg-ripple__wash {
-    position: absolute;
-    pointer-events: none;
-    z-index: -1;
-  }
-  .tg-ripple__wave {
-    border-radius: 50%;
-    background: var(--ripple-color);
-    transform: translate(-50%, -50%);
-    inline-size: 0;
-    block-size: 0;
-    animation: tg-ripple-wave var(--ripple-duration) ease-out forwards;
-  }
-  .tg-ripple__ring {
-    inset: 0;
-    border-radius: inherit;
-    box-shadow: inset 0 0 0 var(--ring-width) var(--ripple-border-color, var(--ripple-color));
-    opacity: 0;
-    animation: tg-ripple-ring var(--ring-duration) ease-out forwards;
-  }
-  .tg-ripple__wash {
-    inset: 0;
-    border-radius: inherit;
-    background: var(--ripple-hover-color, var(--ripple-color));
-    opacity: 0;
-    animation: tg-ripple-wash var(--wash-duration) ease-out forwards;
-  }
+
   @keyframes tg-ripple-wave {
-    from { inline-size: 0; block-size: 0; opacity: .6; }
-    to { inline-size: var(--ripple-size, 0px); block-size: var(--ripple-size, 0px); opacity: 0; }
+    from {
+      inline-size: 0;
+      block-size: 0;
+      opacity: .6;
+    }
+    to {
+      inline-size: var(--ripple-size, 0px);
+      block-size: var(--ripple-size, 0px);
+      opacity: 0;
+    }
   }
+
   @keyframes tg-ripple-ring {
-    0% { opacity: 0; filter: blur(4px); }
-    10%, 60% { opacity: 1; filter: blur(0); }
-    100% { opacity: 0; filter: blur(4px); }
+    0% {
+      opacity: 0;
+      filter: blur(4px);
+    }
+    10%, 60% {
+      opacity: 1;
+      filter: blur(0);
+    }
+    100% {
+      opacity: 0;
+      filter: blur(4px);
+    }
   }
+
   @keyframes tg-ripple-wash {
-    0% { opacity: 0; transform: scale(.96); }
-    40% { opacity: .6; transform: scale(1); }
-    100% { opacity: 0; transform: scale(1.02); }
+    0% {
+      opacity: 0;
+      transform: scale(.96);
+    }
+    40% {
+      opacity: .6;
+      transform: scale(1);
+    }
+    100% {
+      opacity: 0;
+      transform: scale(1.02);
+    }
   }
+
   .tg-glass {
     --blur: 15px;
     background: color-mix(in srgb, var(--bg-body) 90%, transparent);
     border-radius: var(--radius-lg);
     -webkit-tap-highlight-color: transparent;
+
+    & > * {
+      isolation: isolate;
+    }
+
+    &--backdrop {
+      --blur: 25px;
+      background: color-mix(in srgb, var(--bg-body) 75%, transparent);
+    }
+
+    & .tg-header {
+      background-color: transparent;
+    }
   }
+
   @supports ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
-    .tg-glass { backdrop-filter: blur(var(--blur)) saturate(120%); -webkit-backdrop-filter: blur(var(--blur)) saturate(120%); }
+    .tg-glass {
+      backdrop-filter: blur(var(--blur)) saturate(120%);
+      -webkit-backdrop-filter: blur(var(--blur)) saturate(120%);
+    }
   }
-  .tg-glass > * { isolation: isolate; }
-  .tg-glass--backdrop { --blur: 25px; background: color-mix(in srgb, var(--bg-body) 75%, transparent); }
-  .tg-glass .tg-header { background-color: transparent; }
-  .tg-overlay { position: fixed; inset: 0; z-index: var(--z-overlay); display: grid; place-items: center; background: rgb(0 0 0 / .35); }
-  .tg-overlay--absolute { position: absolute; }
-  .tg-fade-in { animation: tg-effect-in 350ms ease both; }
-  .tg-fade-out { animation: tg-effect-out 350ms ease both; }
-  @keyframes tg-effect-in { from { opacity: 0; transform: scale(.96); } to { opacity: 1; transform: scale(1); } }
-  @keyframes tg-effect-out { from { opacity: 1; transform: scale(1); } to { opacity: 0; transform: scale(.96); visibility: hidden; } }
+
+  .tg-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: var(--z-overlay);
+    display: grid;
+    place-items: center;
+    background: rgb(0 0 0 / .35);
+
+    &--absolute {
+      position: absolute;
+    }
+  }
+
+  .tg-fade-in {
+    animation: tg-effect-in 350ms ease both;
+  }
+
+  .tg-fade-out {
+    animation: tg-effect-out 350ms ease both;
+  }
+
+  @keyframes tg-effect-in {
+    from {
+      opacity: 0;
+      transform: scale(.96);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+
+  @keyframes tg-effect-out {
+    from {
+      opacity: 1;
+      transform: scale(1);
+    }
+    to {
+      opacity: 0;
+      transform: scale(.96);
+      visibility: hidden;
+    }
+  }
+
   .tg-transition {
     opacity: 1;
     transform: scale(1);
     transform-origin: center;
     visibility: visible;
     transition: opacity 300ms ease, transform 300ms ease, visibility 0s;
+
+    &:is(.is-hidden, [aria-hidden='true']) {
+      opacity: 0;
+      transform: scale(0);
+      pointer-events: none;
+      visibility: hidden;
+      transition: opacity 300ms ease, transform 300ms ease, visibility 0s linear 300ms;
+    }
   }
-  .tg-transition:is(.is-hidden, [aria-hidden='true']) {
-    opacity: 0;
-    transform: scale(0);
-    pointer-events: none;
-    visibility: hidden;
-    transition: opacity 300ms ease, transform 300ms ease, visibility 0s linear 300ms;
-  }
+
   @media (prefers-reduced-motion: no-preference) {
-    .tg-glass { animation: tg-glass-in 160ms ease-out both; }
-    @keyframes tg-glass-in { from { opacity: 0; } to { opacity: 1; } }
+    .tg-glass {
+      animation: tg-glass-in 160ms ease-out both;
+    }
+
+    @keyframes tg-glass-in {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
   }
+
   @media (prefers-reduced-motion: reduce) {
-    .tg-ripple__wave, .tg-ripple__ring, .tg-ripple__wash { display: none; animation: none; }
-    .tg-glass, .tg-fade-in, .tg-fade-out { animation: none; }
-    .tg-fade-out { opacity: 0; visibility: hidden; }
-    .tg-transition, .tg-transition:is(.is-hidden, [aria-hidden='true']) { transition: none; }
+    .tg-ripple__wave, .tg-ripple__ring, .tg-ripple__wash {
+      display: none;
+      animation: none;
+    }
+
+    .tg-glass, .tg-fade-in, .tg-fade-out {
+      animation: none;
+    }
+
+    .tg-fade-out {
+      opacity: 0;
+      visibility: hidden;
+    }
+
+    .tg-transition, .tg-transition:is(.is-hidden, [aria-hidden='true']) {
+      transition: none;
+    }
   }
 }

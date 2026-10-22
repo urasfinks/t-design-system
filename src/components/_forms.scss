@@ -1,9 +1,27 @@
 @use '../base';
 @layer tds.components {
-  .tg-field { display: grid; gap: var(--space-2); min-inline-size: 0; }
-  .tg-label { font-size: var(--fs-sm); font-weight: var(--fw-medium); }
-  .tg-help { margin: 0; font-size: var(--fs-sm); color: var(--hint-color); }
-  .tg-input, .tg-select, .tg-textarea {
+  .tg-field {
+    display: grid;
+    gap: var(--space-2);
+    min-inline-size: 0;
+  }
+
+  .tg-label {
+    font-size: var(--fs-sm);
+    font-weight: var(--fw-medium);
+  }
+
+  .tg-help {
+    margin: 0;
+    font-size: var(--fs-sm);
+    color: var(--hint-color);
+
+    &--error {
+      color: var(--destructive-text-color);
+    }
+  }
+
+  :is(.tg-input, .tg-select, .tg-textarea) {
     inline-size: 100%;
     min-inline-size: 0;
     min-block-size: var(--control-h);
@@ -15,22 +33,61 @@
     font-size: max(1rem, var(--fs));
     line-height: 1.5;
     transition: box-shadow var(--duration), border-color var(--duration), background-color var(--duration);
+
+    &:where(:not(:disabled, [readonly])):hover {
+      background-color: var(--field-bg-hover);
+    }
+
+    &:focus-visible {
+      outline: 2px solid var(--link-color);
+      outline-offset: 2px;
+      border-color: var(--link-color);
+    }
+
+    &[aria-invalid='true'] {
+      border-color: var(--destructive-text-color);
+    }
+
+    &:disabled {
+      opacity: .5;
+      cursor: not-allowed;
+    }
   }
-  .tg-textarea { min-block-size: calc(var(--control-h) * 2.5); resize: vertical; }
-  .tg-input::placeholder, .tg-textarea::placeholder { color: var(--hint-color); opacity: 1; }
-  :is(.tg-input, .tg-select, .tg-textarea):where(:not(:disabled, [readonly])):hover { background-color: var(--field-bg-hover); }
-  :is(.tg-input, .tg-select, .tg-textarea):focus-visible {
-    outline: 2px solid var(--link-color);
-    outline-offset: 2px;
-    border-color: var(--link-color);
+
+  .tg-textarea {
+    min-block-size: calc(var(--control-h) * 2.5);
+    resize: vertical;
   }
-  :is(.tg-input, .tg-select, .tg-textarea)[aria-invalid='true'] { border-color: var(--destructive-text-color); }
-  .tg-help--error { color: var(--destructive-text-color); }
-  :is(.tg-input, .tg-select, .tg-textarea):disabled { opacity: .5; cursor: not-allowed; }
-  :is(.tg-input, .tg-textarea)[readonly] { background: var(--section-bg-color); }
-  .tg-select { padding-inline-end: var(--space-4); }
-  .tg-check, .tg-radio { inline-size: 1.2rem; block-size: 1.2rem; margin: 0; accent-color: var(--button-color); cursor: pointer; }
-  .tg-choice { display: inline-flex; gap: var(--space-3); align-items: center; min-block-size: var(--control-h); cursor: pointer; }
+
+  .tg-input::placeholder, .tg-textarea::placeholder {
+    color: var(--hint-color);
+    opacity: 1;
+  }
+
+  :is(.tg-input, .tg-textarea)[readonly] {
+    background: var(--section-bg-color);
+  }
+
+  .tg-select {
+    padding-inline-end: var(--space-4);
+  }
+
+  .tg-check, .tg-radio {
+    inline-size: 1.2rem;
+    block-size: 1.2rem;
+    margin: 0;
+    accent-color: var(--button-color);
+    cursor: pointer;
+  }
+
+  .tg-choice {
+    display: inline-flex;
+    gap: var(--space-3);
+    align-items: center;
+    min-block-size: var(--control-h);
+    cursor: pointer;
+  }
+
   .tg-switch {
     --w: clamp(3rem, 2.8rem + 1vw, 3.25rem);
     --h: clamp(1.75rem, 1.6rem + .6vw, 2rem);
@@ -47,31 +104,46 @@
     background: transparent;
     cursor: pointer;
     isolation: isolate;
+
+    &::before {
+      content: '';
+      position: absolute;
+      inset-inline: 0;
+      block-size: var(--h);
+      z-index: -1;
+      border: var(--border);
+      border-radius: inherit;
+      background: var(--secondary-bg-color);
+      transition: background var(--duration);
+    }
+
+    &__knob {
+      position: absolute;
+      inset-inline-start: .125rem;
+      inset-block-start: 50%;
+      transform: translateY(-50%);
+      inline-size: calc(var(--h) - .25rem);
+      block-size: calc(var(--h) - .25rem);
+      border-radius: 50%;
+      background: var(--switch-knob-color);
+      box-shadow: 0 1px 3px #0003;
+      transition: inset-inline-start var(--duration) var(--ease);
+    }
+
+    &:is([aria-checked='true'], .tg-switch--on)::before {
+      background: var(--button-color);
+      border-color: transparent;
+    }
+
+    &:is([aria-checked='true'], .tg-switch--on) .tg-switch__knob {
+      inset-inline-start: calc(var(--w) - var(--h) + .125rem);
+    }
   }
-  .tg-switch::before {
-    content: '';
-    position: absolute;
-    inset-inline: 0;
-    block-size: var(--h);
-    z-index: -1;
-    border: var(--border);
-    border-radius: inherit;
-    background: var(--secondary-bg-color);
-    transition: background var(--duration);
+
+  .tg-component-size {
+    inline-size: 3.25rem;
+    min-block-size: var(--control-h);
+    display: inline-flex;
+    align-items: center;
   }
-  .tg-switch__knob {
-    position: absolute;
-    inset-inline-start: .125rem;
-    inset-block-start: 50%;
-    transform: translateY(-50%);
-    inline-size: calc(var(--h) - .25rem);
-    block-size: calc(var(--h) - .25rem);
-    border-radius: 50%;
-    background: var(--switch-knob-color);
-    box-shadow: 0 1px 3px #0003;
-    transition: inset-inline-start var(--duration) var(--ease);
-  }
-  .tg-switch:is([aria-checked='true'], .tg-switch--on)::before { background: var(--button-color); border-color: transparent; }
-  .tg-switch:is([aria-checked='true'], .tg-switch--on) .tg-switch__knob { inset-inline-start: calc(var(--w) - var(--h) + .125rem); }
-  .tg-component-size { inline-size: 3.25rem; min-block-size: var(--control-h); display: inline-flex; align-items: center; }
 }
