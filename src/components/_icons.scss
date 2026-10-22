@@ -1,0 +1,18 @@
+@use '../base';
+@layer tds.components {
+  .tg-icon {
+    display: inline-block;
+    inline-size: var(--icon-size);
+    block-size: var(--icon-size);
+    flex: 0 0 auto;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: var(--icon-stroke);
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    vertical-align: middle;
+
+    &--sm { --icon-size: 1rem; }
+    &--lg { --icon-size: 1.5rem; }
+  }
+}
