@@ -163,7 +163,7 @@ Safari/iOS 16.2+. Старые WebView не входят в целевую по�
 | --- | --- |
 | Читаемый текст | `--text-secondary`, `--text-link`, `--text-danger` — производные от исходного цвета и `--text-color` |
 | Действия | `--action-bg`, `--action-hover-bg`, `--action-danger-bg` — заливки под `--button-text-color` |
-| Данные | `--progress-color` — различимое заполнение progress, по умолчанию `--text-link` |
+| Данные | `--progress-color` — насыщенное заполнение из акцента темы; `--progress-track-color` — нейтральная дорожка; `--progress-stripe-color` — спокойные полосы анимации |
 | Поверхности | `--surface-bg`, `--surface-muted` — непрозрачные поверхности и тихий фон |
 | Границы контролов | `--field-border-color`, `--border-field` — спокойные границы полей; `--control-border-color`, `--border-control` — усиленные границы |
 | Switch | `--switch-track-color`, `--switch-border-color` — отдельные дорожка и обводка |

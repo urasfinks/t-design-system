@@ -26,7 +26,8 @@
     --icon-stroke: 2;
     --switch-knob-color: #fff;
     --avatar-initials-color: var(--text-color);
-    --spinner-color: #4cafef;
+    --spinner-color: var(--progress-color);
+    --spinner-track-color: color-mix(in srgb, var(--spinner-color) 18%, transparent);
     --space-1: .25rem;
     --space-2: .5rem;
     --space-3: .75rem;
@@ -46,7 +47,8 @@
     --progress-duration: 1s;
     --progress-stripe-speed: 1s;
     --progress-stripe-size: 1.5rem;
-    --progress-stripe-blur: .375rem;
+    --progress-stripe-blur: 0px;
+    --progress-stripe-color: rgb(255 255 255 / .06);
     --safe-area-bottom: env(safe-area-inset-bottom, 0px);
     --ios-h: 0px;
     --border-color: var(--section-separator-color);
@@ -67,7 +69,8 @@
     --section-bg-color-transparent: color-mix(in srgb, var(--section-bg-color) 50%, transparent);
     --text-secondary: color-mix(in srgb, var(--hint-color) 70%, var(--text-color));
     --text-link: color-mix(in srgb, var(--link-color) 64%, var(--text-color));
-    --progress-color: var(--text-link);
+    --progress-color: var(--button-color);
+    --progress-track-color: light-dark(var(--secondary-bg-color), color-mix(in srgb, var(--secondary-bg-color) 60%, #000));
     --text-danger: color-mix(in srgb, var(--destructive-text-color) 76%, var(--text-color));
     --action-bg: color-mix(in srgb, var(--button-color) 72%, #000);
     --action-hover-bg: color-mix(in srgb, var(--action-bg) 90%, #000);
@@ -1004,12 +1007,12 @@
     appearance: none;
     border: 0;
     border-radius: var(--radius-pill);
-    background: var(--section-separator-color);
+    background: var(--progress-track-color);
     overflow: hidden;
     color: var(--progress-color);
   }
   .tg-progress::-webkit-progress-bar {
-    background: var(--section-separator-color);
+    background: var(--progress-track-color);
     border-radius: inherit;
   }
   .tg-progress::-webkit-progress-value {
@@ -1041,7 +1044,7 @@
     position: absolute;
     inset: calc(var(--progress-stripe-blur) * -1.5);
     pointer-events: none;
-    background: repeating-linear-gradient(45deg, rgba(255, 255, 255, 0.3490196078) 0 10px, transparent 10px var(--progress-stripe-size));
+    background: repeating-linear-gradient(45deg, var(--progress-stripe-color) 0 10px, transparent 10px var(--progress-stripe-size));
     background-size: var(--progress-stripe-size) var(--progress-stripe-size);
     filter: blur(var(--progress-stripe-blur));
     animation: tg-stripes var(--progress-stripe-speed) linear infinite;
@@ -1064,7 +1067,7 @@
   .tg-spinner--lg {
     inline-size: 4rem;
     block-size: 4rem;
-    border: 6px solid rgba(255, 255, 255, 0.2);
+    border: 6px solid var(--spinner-track-color);
     border-block-start-color: var(--spinner-color);
   }
   @keyframes tg-spin {
