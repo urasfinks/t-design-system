@@ -1,8 +1,11 @@
 @use '../base';
+// Intrinsic content may shrink; component minimum touch targets take precedence.
+@layer tds.base {
+  :where(.tg-row > *, .tg-col > *) { min-inline-size: 0; }
+}
 @layer tds.utilities {
   .tg-container { inline-size: 100%; max-inline-size: 72rem; margin-inline: auto; padding: var(--space-4); }
   .tg-row { display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-3); }
-  .tg-row > *, .tg-col > * { min-inline-size: 0; }
   .tg-col { display: flex; flex-direction: column; gap: var(--space-3); }
   .tg-row-valign-top { align-items: flex-start; }
   .tg-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 18rem), 1fr)); gap: var(--space-4); }
@@ -14,10 +17,10 @@
   .tg-grow { flex: 1 1 0%; }
   .tg-w-full { inline-size: 100%; }
   .tg-h-full { min-block-size: 100vh; min-block-size: 100dvh; display: flex; flex-direction: column; }
-  .tg-text-muted { color: var(--hint-color); }
+  .tg-text-muted { color: var(--text-secondary); }
   .tg-text { color: var(--text-color); }
-  .tg-text-accent { color: var(--accent-text-color); }
-  .tg-text-destructive { color: var(--destructive-text-color); }
+  .tg-text-accent { color: var(--text-link); }
+  .tg-text-destructive { color: var(--text-danger); }
   .tg-text-sm { font-size: var(--fs-sm); }
   .tg-text-center { text-align: center; }
   .tg-card-shadow { box-shadow: var(--shadow-soft); }

@@ -19,10 +19,12 @@
     color: inherit;
   }
   :where(.tg-btn, .tg-icon-btn, .tg-tab, .tg-tabbar__item, .tg-switch, .tg-chip, .tg-avatar, .tg-check, .tg-radio, .tg-link, .tg-dot):focus-visible {
-    outline: 2px solid var(--link-color);
+    outline: 2px solid var(--text-link);
     outline-offset: 3px;
   }
-  .tg-link { color: var(--link-color); text-underline-offset: .2em; }
+  ::selection { background: var(--action-bg); color: var(--button-text-color); }
+  :where(input, textarea) { caret-color: var(--text-link); }
+  .tg-link { color: var(--text-link); text-underline-offset: .2em; }
   button:where([class*='tg-']) { -webkit-user-select: none; user-select: none; }
   button.tg-avatar img { -webkit-user-drag: none; pointer-events: none; }
   .tg-link:hover { text-decoration-thickness: 2px; }

@@ -1,5 +1,6 @@
 import assert from 'node:assert/strict';
 import { chromium, webkit } from 'playwright';
+import { measureContrast } from './helpers/contrast.mjs';
 import { readFile, mkdir } from 'node:fs/promises';
 import { spawn } from 'node:child_process';
 import { compileString } from 'sass';
@@ -15,6 +16,14 @@ const style = (selector, property) => page.locator(selector).evaluate((el, p) =>
 const bodyColor = value => page.evaluate(value => {
   const reference = document.createElement('div');
   reference.style.background = `color-mix(in srgb, ${value} 97%, white)`;
+  document.body.append(reference);
+  const color = getComputedStyle(reference).backgroundColor;
+  reference.remove();
+  return color;
+}, value);
+const actionColor = value => page.evaluate(value => {
+  const reference = document.createElement('div');
+  reference.style.background = `color-mix(in srgb, ${value} 72%, #000)`;
   document.body.append(reference);
   const color = getComputedStyle(reference).backgroundColor;
   reference.remove();
@@ -72,16 +81,16 @@ try {
     document.documentElement.style.setProperty('--tg-button-color', '#115522');
     document.documentElement.style.setProperty('--tg-theme-button-color', '#2244aa');
   });
-  check('legacy project palette takes precedence over SDK colors', await style('#button', 'background-color') === 'rgb(17, 85, 34)');
+  check('legacy project palette takes precedence over SDK colors', await style('#button', 'background-color') === await actionColor('#115522'));
   await page.evaluate(() => document.documentElement.style.removeProperty('--tg-button-color'));
-  check('SDK colors do not replace source palette by default', await style('#button', 'background-color') === 'rgb(46, 166, 255)');
+  check('SDK colors do not replace source palette by default', await style('#button', 'background-color') === await actionColor('#2ea6ff'));
   await page.evaluate(() => document.documentElement.dataset.telegramTheme = 'native');
-  check('native Telegram colors are opt-in', await style('#button', 'background-color') === 'rgb(34, 68, 170)');
+  check('native Telegram colors are opt-in', await style('#button', 'background-color') === await actionColor('#2244aa'));
   await page.evaluate(() => document.documentElement.style.setProperty('--tg-button-color', '#115522'));
   await page.evaluate(() => document.documentElement.style.removeProperty('--tg-theme-button-color'));
-  check('legacy Telegram variable is supported', await style('#button', 'background-color') === 'rgb(17, 85, 34)');
+  check('legacy Telegram variable is supported', await style('#button', 'background-color') === await actionColor('#115522'));
   await page.addStyleTag({ content: ':root { --button-color: #663399; } .tg-btn { border-radius: 3px; }' });
-  check('application custom properties override framework', await style('#button', 'background-color') === 'rgb(102, 51, 153)');
+  check('application custom properties override framework', await style('#button', 'background-color') === await actionColor('#663399'));
   check('application CSS overrides layered component', await style('#button', 'border-radius') === '3px');
   const before = await style('#disabled', 'background-color');
   await page.locator('#disabled').hover();
@@ -109,7 +118,15 @@ try {
   await page.getByLabel('Тема оформления').selectOption('ios-dark');
   check('catalog exposes iOS dark palette', await style('body', 'background-color') === 'rgb(44, 44, 46)');
   await page.getByLabel('Тема оформления').selectOption('light');
+  for (const theme of ['light', 'dark', 'ios-dark']) {
+    await page.getByLabel('Тема оформления').selectOption(theme);
+    const loadingText = await page.evaluate(measureContrast, { selector: '.loader-demo-stage .tg-text-sm' });
+    check(`${theme}: real catalog loading text contrast ≥ 4.5`, loadingText.ratio >= 4.5);
+  }
+  await page.getByLabel('Тема оформления').selectOption('light');
   check('primary link keeps button text color', await style('.hero-actions .tg-btn', 'color') === 'rgb(255, 255, 255)');
+  await page.evaluate(() => scrollTo({ top: document.querySelector('.loader-demo-stage').getBoundingClientRect().top + scrollY - 20, behavior: 'instant' }));
+  check('local loading overlay stays below the sticky header', await page.evaluate(() => !!document.elementFromPoint(innerWidth - 100, 36)?.closest('.site-header')));
   await page.locator('#demo-file').setInputFiles({ name: 'preview.png', mimeType: 'image/png', buffer: Buffer.from('iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8/x8AAwMCAO+jBv8AAAAASUVORK5CYII=', 'base64') });
   check('file control shows local filename and preview', await page.locator('#demo-upload-preview').isVisible() && (await page.locator('#demo-upload-status').textContent()).includes('preview.png'));
   await page.locator('#demo-file').setInputFiles([]);
@@ -137,7 +154,7 @@ try {
   await page.getByRole('button', { name: 'Уведомление сверху' }).click();
   check('top snackbar is visible', await page.locator('#demo-snackbar').evaluate(el => getComputedStyle(el).visibility === 'visible'));
   await page.getByLabel('Акцентный цвет').selectOption('green');
-  check('catalog accent customizes components', await style('#primary-demo', 'background-color') === 'rgb(24, 116, 91)');
+  check('catalog accent customizes components', await style('#primary-demo', 'background-color') === await actionColor('#18745b'));
   await page.getByLabel('Акцентный цвет').selectOption('blue');
   await page.locator('#demo-toast').waitFor({ state: 'hidden' });
   await page.locator('#demo-snackbar').waitFor({ state: 'hidden' });
@@ -145,6 +162,19 @@ try {
     await page.setViewportSize({ width, height: 1000 });
     check(`catalog has no horizontal overflow at ${width}px`, await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth));
   }
+  await page.setViewportSize({ width: 390, height: 844 });
+  check('mobile section menu is visible', await page.getByLabel('Раздел каталога').isVisible());
+  await page.getByLabel('Раздел каталога').selectOption('forms');
+  check('mobile section menu navigates to the requested section', new URL(page.url()).hash === '#forms');
+  await page.getByLabel('Раздел каталога').focus();
+  await page.locator('#buttons').evaluate(el => el.scrollIntoView({ behavior: 'instant', block: 'start' }));
+  await page.waitForFunction(() => document.querySelector('.nav-link.is-active')?.hash === '#buttons');
+  check('mobile menu follows scrolling even after it had focus', await page.getByLabel('Раздел каталога').inputValue() === 'buttons');
+  await page.getByLabel('Раздел каталога').selectOption('forms');
+  check('section navigation scrolls even when the hash is unchanged', await page.locator('#forms').evaluate(el => el.getBoundingClientRect().top < innerHeight));
+  await page.evaluate(() => document.documentElement.style.fontSize = '200%');
+  check('catalog supports 200% text without page overflow', await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth));
+  await page.evaluate(() => document.documentElement.style.removeProperty('font-size'));
   await page.setViewportSize({ width: 360, height: 800 });
   await mkdir('artifacts', { recursive: true });
   await page.screenshot({ path: 'artifacts/catalog-mobile.png', fullPage: true });

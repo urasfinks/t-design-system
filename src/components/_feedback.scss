@@ -3,20 +3,21 @@
   .tg-notice {
     padding: var(--space-3) var(--space-4);
     border: var(--border);
-    border-inline-start: 3px solid var(--link-color);
+    color: var(--text-color);
     border-radius: var(--radius);
     background: var(--section-bg-color);
     overflow-wrap: anywhere;
 
     &--accent {
-      background: var(--accent-text-color);
+      background: var(--action-bg);
       color: var(--button-text-color);
       border-color: transparent;
       border-radius: var(--radius-lg);
     }
 
     &--destructive {
-      border-inline-start-color: var(--destructive-text-color);
+      color: var(--text-danger);
+      border-color: currentColor;
     }
   }
 
@@ -29,7 +30,7 @@
     border-radius: var(--radius-pill);
     background: var(--section-separator-color);
     overflow: hidden;
-    color: var(--button-color);
+    color: var(--progress-color);
 
     &::-webkit-progress-bar {
       background: var(--section-separator-color);
@@ -37,13 +38,13 @@
     }
 
     &::-webkit-progress-value {
-      background: var(--button-color);
+      background: var(--progress-color);
       border-radius: inherit;
       transition: width var(--progress-duration);
     }
 
     &::-moz-progress-bar {
-      background: var(--button-color);
+      background: var(--progress-color);
       border-radius: inherit;
     }
 
@@ -51,7 +52,7 @@
       display: block;
       inline-size: clamp(0%, var(--progress, 0%), 100%);
       block-size: 100%;
-      background: var(--button-color);
+      background: var(--progress-color);
       border-radius: inherit;
       transition: inline-size var(--progress-duration);
     }
@@ -121,7 +122,7 @@
     border-radius: var(--radius);
     background: var(--section-bg-color);
     color: var(--text-color);
-    box-shadow: var(--shadow-elev);
+    box-shadow: var(--shadow-overlay);
     opacity: 0;
     visibility: hidden;
     transform: translateY(.5rem);
@@ -169,11 +170,11 @@
     border-radius: var(--radius-lg);
     background: var(--section-bg-color);
     color: var(--text-color);
-    box-shadow: var(--shadow-elev);
+    box-shadow: var(--shadow-overlay);
     overflow: auto;
 
     &::backdrop {
-      background: #08142180;
+      background: var(--overlay-bg);
       backdrop-filter: blur(4px);
     }
 

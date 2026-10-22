@@ -23,7 +23,7 @@
     }
 
     &:focus-within {
-      outline: 2px solid var(--link-color);
+      outline: 2px solid var(--text-link);
       outline-offset: 3px;
     }
 
@@ -57,7 +57,7 @@
 
     &__status {
       margin: var(--space-2) 0 0;
-      color: var(--hint-color);
+      color: var(--text-secondary);
       font-size: var(--fs-xs);
       text-align: end;
       overflow-wrap: anywhere;

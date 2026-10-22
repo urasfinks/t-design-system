@@ -33,9 +33,9 @@ try {
   },{selector,property,reference});
   const probes=[
     ['body','background-color','background:color-mix(in srgb,var(--bg-color) 97%,white)','body background formula'],
-    ['#card','background-color','background:color-mix(in srgb,var(--section-bg-color) 97%,transparent)','translucent card surface'],
+    ['#card','background-color','background:var(--section-bg-color)','opaque card surface'],
     ['#card','border-top-color','border:1px solid color-mix(in srgb,var(--section-separator-color) 50%,transparent)','subtle source border'],
-    ['#card','box-shadow','box-shadow:0 .5rem 2rem color-mix(in srgb,var(--header-bg-color) 25%,transparent)','source soft shadow'],
+    ['#card','box-shadow','box-shadow:none','flat cards reserve elevation for overlays'],
     ['#input','background-color','background:color-mix(in srgb,var(--secondary-bg-color) 99%,var(--text-color) 1%)','source input surface'],
     ['#header','background-color','background:color-mix(in srgb,var(--header-bg-color) 18%,transparent)','secondary header transparency'],
   ];

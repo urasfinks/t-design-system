@@ -78,9 +78,22 @@ for (const example of document.querySelectorAll('[data-example]')) {
   example.closest('.example-panel').append(details);
 }
 const links = [...document.querySelectorAll('.nav-link')];
+const sectionSelect = document.querySelector('#section-select');
+sectionSelect.addEventListener('change', () => {
+  location.hash = sectionSelect.value;
+  // Assigning an unchanged hash doesn't scroll. A committed selection always should.
+  document.getElementById(sectionSelect.value).scrollIntoView({ behavior: 'instant', block: 'start' });
+});
+function syncSectionMenu() {
+  const id = location.hash.slice(1);
+  if ([...sectionSelect.options].some(option => option.value === id)) sectionSelect.value = id;
+}
+syncSectionMenu();
+addEventListener('hashchange', syncSectionMenu);
 if ('IntersectionObserver' in window) {
   const observer = new IntersectionObserver(entries => {
     for (const entry of entries) if (entry.isIntersecting) {
+      sectionSelect.value = entry.target.id;
       for (const link of links) {
         const active = link.hash === `#${entry.target.id}`;
         link.classList.toggle('is-active', active);

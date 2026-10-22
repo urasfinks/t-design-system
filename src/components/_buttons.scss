@@ -10,7 +10,7 @@
     flex: 0 0 auto;
     max-inline-size: 100%;
     border: 1px solid transparent;
-    background: var(--secondary-bg-color);
+    background: var(--surface-muted);
     color: var(--text-color);
     font-size: var(--fs);
     font-weight: var(--fw-medium);
@@ -20,7 +20,7 @@
     cursor: pointer;
     vertical-align: middle;
     overflow-wrap: anywhere;
-    transition: background var(--duration), box-shadow var(--duration), transform var(--duration-fast);
+    transition: background-color var(--duration) var(--ease), color var(--duration) var(--ease), border-color var(--duration) var(--ease), transform var(--duration-fast) var(--ease);
 
     svg {
       inline-size: 1.25em;
@@ -42,17 +42,17 @@
   .tg-btn {
     min-block-size: var(--control-h);
     padding: var(--space-2) var(--space-4);
-    border-radius: var(--radius-pill);
+    border-radius: var(--radius-control);
 
-    &--secondary { background: var(--secondary-bg-color); border: var(--border); }
-    &--ghost { background: transparent; border: var(--border); }
+    &--secondary { background: var(--surface-muted); border: var(--border); }
+    &--ghost { background: transparent; color: var(--text-link); }
     &--destructive {
-      background: var(--destructive-text-color);
+      background: var(--action-danger-bg);
       color: var(--button-text-color);
 
       @media (hover: hover) {
         &:where(:not(:disabled, [aria-disabled='true'])):hover {
-          background: color-mix(in srgb, var(--destructive-text-color) 88%, var(--text-color));
+          background: color-mix(in srgb, var(--action-danger-bg) 90%, #000);
         }
       }
     }
@@ -71,16 +71,16 @@
     min-block-size: var(--control-h);
     padding: var(--space-2);
     border: var(--border);
-    border-radius: var(--radius-sm);
+    border-radius: var(--radius-control);
   }
 
   .tg-btn--primary, .tg-icon-btn--primary {
-    background: var(--button-color);
+    background: var(--action-bg);
     color: var(--button-text-color);
 
     @media (hover: hover) {
       &:where(:not(:disabled, [aria-disabled='true'])):hover {
-        background: color-mix(in srgb, var(--button-color) 88%, var(--text-color));
+        background: var(--action-hover-bg);
       }
     }
   }
@@ -93,12 +93,12 @@
     font-size: var(--fs-sm);
 
     &[aria-checked='true'] {
-      background: var(--button-color);
+      background: var(--action-bg);
       color: var(--button-text-color);
       border-color: transparent;
 
       &:where(:not(:disabled, [aria-disabled='true'])):hover {
-        background: color-mix(in srgb, var(--button-color) 88%, var(--text-color));
+        background: var(--action-hover-bg);
       }
     }
   }
