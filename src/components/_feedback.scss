@@ -57,12 +57,12 @@
     appearance: none;
     border: 0;
     border-radius: var(--radius-pill);
-    background: var(--section-separator-color);
+    background: var(--progress-track-color);
     overflow: hidden;
     color: var(--progress-color);
 
     &::-webkit-progress-bar {
-      background: var(--section-separator-color);
+      background: var(--progress-track-color);
       border-radius: inherit;
     }
 
@@ -99,7 +99,7 @@
         position: absolute;
         inset: calc(var(--progress-stripe-blur) * -1.5);
         pointer-events: none;
-        background: repeating-linear-gradient(45deg, #ffffff59 0 10px, transparent 10px var(--progress-stripe-size));
+        background: repeating-linear-gradient(45deg, var(--progress-stripe-color) 0 10px, transparent 10px var(--progress-stripe-size));
         background-size: var(--progress-stripe-size) var(--progress-stripe-size);
         filter: blur(var(--progress-stripe-blur));
         animation: tg-stripes var(--progress-stripe-speed) linear infinite;
@@ -126,7 +126,7 @@
     &--lg {
       inline-size: 4rem;
       block-size: 4rem;
-      border: 6px solid rgb(255 255 255 / .2);
+      border: 6px solid var(--spinner-track-color);
       border-block-start-color: var(--spinner-color);
     }
   }

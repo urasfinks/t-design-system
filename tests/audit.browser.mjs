@@ -63,9 +63,14 @@ try {
   await page.evaluate(()=>document.documentElement.style.setProperty('--ios-h','2rem'));
   check('iOS spacer consumes the integration height',await page.locator('.tg-ios-spacer').evaluate(el=>getComputedStyle(el).height)==='32px');
   const stripe=await page.locator('.tg-progress__bar').evaluate(el=>({blur:getComputedStyle(el,'::after').filter,animation:getComputedStyle(el,'::after').animationName,height:getComputedStyle(el.parentElement).height}));
-  check('source blurred progress stripe retained',stripe.blur==='blur(6px)'&&stripe.height==='14px',stripe);
+  check('progress stripes stay crisp rather than bleaching the fill',stripe.blur==='blur(0px)'&&stripe.height==='14px',stripe);
   check('stripes stop under reduced motion',stripe.animation==='none',stripe);
-  check('large spinner retains the source blue accent', await page.locator('.tg-spinner--lg').evaluate(el => getComputedStyle(el).borderTopColor) === 'rgb(76, 175, 239)');
+  check('large spinner follows the semantic progress accent', await page.locator('.tg-spinner--lg').evaluate(el => {
+    const probe = document.createElement('span');
+    probe.style.color = 'var(--progress-color)'; el.append(probe);
+    const matches = getComputedStyle(el).borderTopColor === getComputedStyle(probe).color;
+    probe.remove(); return matches;
+  }));
   assert.deepEqual(failures,[],`${failures.length} of ${checks} audit checks failed`);
   console.log(`${checks} audit checks passed.`);
 } finally {await browser.close();}
