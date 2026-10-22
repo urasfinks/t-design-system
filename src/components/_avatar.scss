@@ -102,8 +102,8 @@
     vertical-align: middle;
 
     &--primary {
-      background: var(--button-color-transparent);
-      color: var(--button-text-color);
+      background: color-mix(in srgb, var(--button-color) 12%, var(--surface-bg));
+      color: var(--text-link);
     }
 
     &--secondary {
@@ -112,8 +112,8 @@
     }
 
     &--destructive {
-      background: var(--destructive-text-color-transparent);
-      color: var(--button-text-color);
+      background: color-mix(in srgb, var(--destructive-text-color) 10%, var(--surface-bg));
+      color: var(--text-danger);
     }
   }
 }

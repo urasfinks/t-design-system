@@ -7,7 +7,7 @@
     max-inline-size: 100%;
     padding: var(--space-1);
     border: var(--border);
-    border-radius: var(--radius-pill);
+    border-radius: var(--radius-control);
     background: var(--secondary-bg-color);
     overflow-x: auto;
     scrollbar-width: thin;
@@ -42,22 +42,28 @@
     min-block-size: var(--control-h);
     padding: var(--space-2) var(--space-4);
     border: 0;
-    border-radius: var(--radius-pill);
+    border-radius: var(--radius-inset);
     background: transparent;
-    color: var(--hint-color);
+    color: var(--text-secondary);
     font-size: var(--fs-sm);
     font-weight: var(--fw-medium);
     cursor: pointer;
     transition: background var(--duration), color var(--duration);
 
-    &:where(:not(:disabled, [aria-disabled='true'])):hover,
     &[aria-selected='true'] {
       background: var(--section-bg-color);
       color: var(--text-color);
     }
 
     &[aria-selected='true'] {
-      box-shadow: var(--shadow-soft);
+      box-shadow: var(--shadow-control);
+    }
+
+    @media (hover: hover) {
+      &:where(:not(:disabled, [aria-disabled='true'], [aria-selected='true'])):hover {
+        background: color-mix(in srgb, var(--section-bg-color) 50%, transparent);
+        color: var(--text-color);
+      }
     }
 
     &:focus-visible {
@@ -86,7 +92,7 @@
       border: 0;
       border-radius: var(--radius-sm);
       background: transparent;
-      color: var(--hint-color);
+      color: var(--text-secondary);
       font-size: var(--fs-xs);
       text-decoration: none;
       text-align: center;
@@ -94,7 +100,7 @@
       cursor: pointer;
 
       &[aria-current='page'] {
-        color: var(--link-color);
+        color: var(--text-link);
         background: var(--secondary-bg-color);
       }
     }
@@ -117,7 +123,7 @@
     border: 0;
     border-radius: 50%;
     background: transparent;
-    color: var(--link-color);
+    color: var(--text-link);
     cursor: pointer;
 
     &::after {
@@ -129,7 +135,7 @@
     }
 
     &:is([aria-current='true'], [aria-current='page'])::after {
-      background: var(--link-color);
+      background: var(--text-link);
     }
   }
 }

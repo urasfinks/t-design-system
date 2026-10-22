@@ -4,7 +4,7 @@
   :root {
     --fs-xs: clamp(.75rem, .7rem + .2vw, .8125rem);
     --fs-sm: clamp(.8125rem, .78rem + .25vw, .875rem);
-    --fs: clamp(.9375rem, .9rem + .3vw, 1rem);
+    --fs: 1rem;
     --fs-lg: clamp(1rem, .98rem + .35vw, 1.125rem);
     --fw-regular: 400;
     --fw-medium: 500;
@@ -15,13 +15,15 @@
     --radius: .75rem;
     --radius-lg: 1rem;
     --radius-pill: 9999px;
+    --radius-control: var(--radius);
+    --radius-inset: calc(var(--radius-control) - var(--space-1));
     --control-h: clamp(2.75rem, 2.6rem + .8vw, 3rem);
     --chip-h: clamp(2rem, 1.9rem + .5vw, 2.25rem);
     --icon-btn-prep: clamp(2.25rem, 2.1rem + .6vw, 2.5rem);
     --icon-btn: calc(var(--icon-btn-prep) + .25rem);
     --icon-avatar: calc(var(--icon-btn-prep) + 1.5rem);
     --switch-knob-color: #fff;
-    --avatar-initials-color: #fff;
+    --avatar-initials-color: var(--text-color);
     --spinner-color: #4cafef;
     --space-1: .25rem;
     --space-2: .5rem;
@@ -30,9 +32,12 @@
     --space-5: 1.25rem;
     --space-6: 1.5rem;
     --space-8: 2rem;
+    --space-10: 2.5rem;
+    --space-12: 3rem;
+    --space-16: 4rem;
     --duration-fast: 120ms;
     --duration: 180ms;
-    --ease: cubic-bezier(.2, .7, .3, 1);
+    --ease: cubic-bezier(.23, 1, .32, 1);
     --z-sticky: 20;
     --z-overlay: 100;
     --z-toast: 120;
@@ -58,6 +63,31 @@
     --button-color-transparent: color-mix(in srgb, var(--button-color) 93%, transparent);
     --destructive-text-color-transparent: color-mix(in srgb, var(--destructive-text-color) 93%, transparent);
     --section-bg-color-transparent: color-mix(in srgb, var(--section-bg-color) 50%, transparent);
+    --text-secondary: color-mix(in srgb, var(--hint-color) 70%, var(--text-color));
+    --text-link: color-mix(in srgb, var(--link-color) 64%, var(--text-color));
+    --progress-color: var(--text-link);
+    --text-danger: color-mix(in srgb, var(--destructive-text-color) 76%, var(--text-color));
+    --action-bg: color-mix(in srgb, var(--button-color) 72%, #000);
+    --action-hover-bg: color-mix(in srgb, var(--action-bg) 90%, #000);
+    --action-danger-bg: color-mix(in srgb, var(--destructive-text-color) 72%, #000);
+    --control-border-color: color-mix(in srgb, var(--section-separator-color) 56%, var(--text-color));
+    --border-control: 1px solid var(--control-border-color);
+    --field-border-color: var(--section-separator-color);
+    --border-field: 1px solid var(--field-border-color);
+    --switch-track-color: var(--section-separator-color);
+    --switch-border-color: transparent;
+    --surface-bg: var(--section-bg-color);
+    --surface-muted: var(--secondary-bg-color);
+    --overlay-bg: rgb(0 0 0 / .66);
+    --overlay-text: #fff;
+    --shadow-control: 0 1px 3px rgb(0 0 0 / .12);
+    --shadow-overlay: 0 .75rem 3rem rgb(0 0 0 / .2);
+  }
+  @media (prefers-contrast: more) {
+    :root {
+      --field-border-color: var(--control-border-color);
+      --switch-border-color: var(--control-border-color);
+    }
   }
 }
 @layer tds.themes {
@@ -229,11 +259,18 @@
     color: inherit;
   }
   :where(.tg-btn, .tg-icon-btn, .tg-tab, .tg-tabbar__item, .tg-switch, .tg-chip, .tg-avatar, .tg-check, .tg-radio, .tg-link, .tg-dot):focus-visible {
-    outline: 2px solid var(--link-color);
+    outline: 2px solid var(--text-link);
     outline-offset: 3px;
   }
+  ::selection {
+    background: var(--action-bg);
+    color: var(--button-text-color);
+  }
+  :where(input, textarea) {
+    caret-color: var(--text-link);
+  }
   .tg-link {
-    color: var(--link-color);
+    color: var(--text-link);
     text-underline-offset: 0.2em;
   }
   button:where([class*=tg-]) {
@@ -280,7 +317,7 @@
     flex: 0 0 auto;
     max-inline-size: 100%;
     border: 1px solid transparent;
-    background: var(--secondary-bg-color);
+    background: var(--surface-muted);
     color: var(--text-color);
     font-size: var(--fs);
     font-weight: var(--fw-medium);
@@ -290,7 +327,7 @@
     cursor: pointer;
     vertical-align: middle;
     overflow-wrap: anywhere;
-    transition: background var(--duration), box-shadow var(--duration), transform var(--duration-fast);
+    transition: background-color var(--duration) var(--ease), color var(--duration) var(--ease), border-color var(--duration) var(--ease), transform var(--duration-fast) var(--ease);
   }
   :is(.tg-btn, .tg-icon-btn, .tg-chip) svg {
     inline-size: 1.25em;
@@ -308,23 +345,23 @@
   .tg-btn {
     min-block-size: var(--control-h);
     padding: var(--space-2) var(--space-4);
-    border-radius: var(--radius-pill);
+    border-radius: var(--radius-control);
   }
   .tg-btn--secondary {
-    background: var(--secondary-bg-color);
+    background: var(--surface-muted);
     border: var(--border);
   }
   .tg-btn--ghost {
     background: transparent;
-    border: var(--border);
+    color: var(--text-link);
   }
   .tg-btn--destructive {
-    background: var(--destructive-text-color);
+    background: var(--action-danger-bg);
     color: var(--button-text-color);
   }
   @media (hover: hover) {
     .tg-btn--destructive:where(:not(:disabled, [aria-disabled=true])):hover {
-      background: color-mix(in srgb, var(--destructive-text-color) 88%, var(--text-color));
+      background: color-mix(in srgb, var(--action-danger-bg) 90%, #000);
     }
   }
   .tg-btn--sm {
@@ -356,15 +393,15 @@
     min-block-size: var(--control-h);
     padding: var(--space-2);
     border: var(--border);
-    border-radius: var(--radius-sm);
+    border-radius: var(--radius-control);
   }
   .tg-btn--primary, .tg-icon-btn--primary {
-    background: var(--button-color);
+    background: var(--action-bg);
     color: var(--button-text-color);
   }
   @media (hover: hover) {
     .tg-btn--primary:where(:not(:disabled, [aria-disabled=true])):hover, .tg-icon-btn--primary:where(:not(:disabled, [aria-disabled=true])):hover {
-      background: color-mix(in srgb, var(--button-color) 88%, var(--text-color));
+      background: var(--action-hover-bg);
     }
   }
   .tg-chip {
@@ -375,12 +412,12 @@
     font-size: var(--fs-sm);
   }
   .tg-chip[aria-checked=true] {
-    background: var(--button-color);
+    background: var(--action-bg);
     color: var(--button-text-color);
     border-color: transparent;
   }
   .tg-chip[aria-checked=true]:where(:not(:disabled, [aria-disabled=true])):hover {
-    background: color-mix(in srgb, var(--button-color) 88%, var(--text-color));
+    background: var(--action-hover-bg);
   }
 }
 @layer tds.components {
@@ -396,34 +433,34 @@
   .tg-help {
     margin: 0;
     font-size: var(--fs-sm);
-    color: var(--hint-color);
+    color: var(--text-secondary);
   }
   .tg-help--error {
-    color: var(--destructive-text-color);
+    color: var(--text-danger);
   }
   :is(.tg-input, .tg-select, .tg-textarea) {
     inline-size: 100%;
     min-inline-size: 0;
     min-block-size: var(--control-h);
     padding: var(--space-2) var(--space-3);
-    border: var(--border);
-    border-radius: var(--radius);
+    border: var(--border-field);
+    border-radius: var(--radius-control);
     background-color: var(--field-bg);
     color: var(--text-color);
     font-size: max(1rem, var(--fs));
     line-height: 1.5;
-    transition: box-shadow var(--duration), border-color var(--duration), background-color var(--duration);
+    transition: box-shadow var(--duration) var(--ease), border-color var(--duration) var(--ease), background-color var(--duration) var(--ease);
   }
   :is(.tg-input, .tg-select, .tg-textarea):where(:not(:disabled, [readonly])):hover {
     background-color: var(--field-bg-hover);
   }
   :is(.tg-input, .tg-select, .tg-textarea):focus-visible {
-    outline: 2px solid var(--link-color);
+    outline: 2px solid var(--text-link);
     outline-offset: 2px;
-    border-color: var(--link-color);
+    border-color: var(--text-link);
   }
   :is(.tg-input, .tg-select, .tg-textarea)[aria-invalid=true] {
-    border-color: var(--destructive-text-color);
+    border-color: var(--text-danger);
   }
   :is(.tg-input, .tg-select, .tg-textarea):disabled {
     opacity: 0.5;
@@ -434,7 +471,7 @@
     resize: vertical;
   }
   .tg-input::placeholder, .tg-textarea::placeholder {
-    color: var(--hint-color);
+    color: var(--text-secondary);
     opacity: 1;
   }
   :is(.tg-input, .tg-textarea)[readonly] {
@@ -480,10 +517,10 @@
     inset-inline: 0;
     block-size: var(--h);
     z-index: -1;
-    border: var(--border);
+    border: 1px solid var(--switch-border-color);
     border-radius: inherit;
-    background: var(--secondary-bg-color);
-    transition: background var(--duration);
+    background: var(--switch-track-color);
+    transition: background-color var(--duration) var(--ease), border-color var(--duration) var(--ease);
   }
   .tg-switch__knob {
     position: absolute;
@@ -498,8 +535,8 @@
     transition: inset-inline-start var(--duration) var(--ease);
   }
   .tg-switch:is([aria-checked=true], .tg-switch--on)::before {
-    background: var(--button-color);
-    border-color: transparent;
+    background: var(--action-bg);
+    border-color: var(--switch-border-color);
   }
   .tg-switch:is([aria-checked=true], .tg-switch--on) .tg-switch__knob {
     inset-inline-start: calc(var(--w) - var(--h) + 0.125rem);
@@ -534,7 +571,7 @@
     border-radius: var(--radius-lg);
   }
   .tg-upload:focus-within {
-    outline: 2px solid var(--link-color);
+    outline: 2px solid var(--text-link);
     outline-offset: 3px;
   }
   .tg-upload--disabled, .tg-upload[aria-disabled=true] {
@@ -563,7 +600,7 @@
   }
   .tg-upload__status {
     margin: var(--space-2) 0 0;
-    color: var(--hint-color);
+    color: var(--text-secondary);
     font-size: var(--fs-xs);
     text-align: end;
     overflow-wrap: anywhere;
@@ -574,12 +611,11 @@
     min-inline-size: 0;
     border: var(--border);
     border-radius: var(--radius-lg);
-    background: var(--section-color);
+    background: var(--surface-bg);
     overflow-wrap: anywhere;
   }
   .tg-card {
     padding: var(--space-4);
-    box-shadow: var(--shadow-soft);
   }
   .tg-list {
     overflow: clip;
@@ -612,7 +648,7 @@
   }
   .tg-list-item__subtitle {
     font-size: var(--fs-sm);
-    color: var(--subtitle-text-color);
+    color: var(--text-secondary);
   }
   .tg-header, .tg-header-secondary {
     display: flex;
@@ -636,7 +672,7 @@
   .tg-header__subtitle {
     margin: 0;
     font-size: var(--fs-sm);
-    color: var(--hint-color);
+    color: var(--text-secondary);
   }
   .tg-section__title {
     padding: var(--space-2);
@@ -663,7 +699,7 @@
     max-inline-size: 100%;
     padding: var(--space-1);
     border: var(--border);
-    border-radius: var(--radius-pill);
+    border-radius: var(--radius-control);
     background: var(--secondary-bg-color);
     overflow-x: auto;
     scrollbar-width: thin;
@@ -691,20 +727,26 @@
     min-block-size: var(--control-h);
     padding: var(--space-2) var(--space-4);
     border: 0;
-    border-radius: var(--radius-pill);
+    border-radius: var(--radius-inset);
     background: transparent;
-    color: var(--hint-color);
+    color: var(--text-secondary);
     font-size: var(--fs-sm);
     font-weight: var(--fw-medium);
     cursor: pointer;
     transition: background var(--duration), color var(--duration);
   }
-  .tg-tab:where(:not(:disabled, [aria-disabled=true])):hover, .tg-tab[aria-selected=true] {
+  .tg-tab[aria-selected=true] {
     background: var(--section-bg-color);
     color: var(--text-color);
   }
   .tg-tab[aria-selected=true] {
-    box-shadow: var(--shadow-soft);
+    box-shadow: var(--shadow-control);
+  }
+  @media (hover: hover) {
+    .tg-tab:where(:not(:disabled, [aria-disabled=true], [aria-selected=true])):hover {
+      background: color-mix(in srgb, var(--section-bg-color) 50%, transparent);
+      color: var(--text-color);
+    }
   }
   .tg-tab:focus-visible {
     outline-offset: -3px;
@@ -730,7 +772,7 @@
     border: 0;
     border-radius: var(--radius-sm);
     background: transparent;
-    color: var(--hint-color);
+    color: var(--text-secondary);
     font-size: var(--fs-xs);
     text-decoration: none;
     text-align: center;
@@ -738,7 +780,7 @@
     cursor: pointer;
   }
   .tg-tabbar__item[aria-current=page] {
-    color: var(--link-color);
+    color: var(--text-link);
     background: var(--secondary-bg-color);
   }
   .tg-pagination {
@@ -757,7 +799,7 @@
     border: 0;
     border-radius: 50%;
     background: transparent;
-    color: var(--link-color);
+    color: var(--text-link);
     cursor: pointer;
   }
   .tg-dot::after {
@@ -768,7 +810,7 @@
     background: var(--section-separator-color);
   }
   .tg-dot:is([aria-current=true], [aria-current=page])::after {
-    background: var(--link-color);
+    background: var(--text-link);
   }
 }
 @layer tds.components {
@@ -863,35 +905,36 @@
     vertical-align: middle;
   }
   .tg-badge--primary {
-    background: var(--button-color-transparent);
-    color: var(--button-text-color);
+    background: color-mix(in srgb, var(--button-color) 12%, var(--surface-bg));
+    color: var(--text-link);
   }
   .tg-badge--secondary {
     background: var(--secondary-bg-color-transparent);
     color: var(--text-color);
   }
   .tg-badge--destructive {
-    background: var(--destructive-text-color-transparent);
-    color: var(--button-text-color);
+    background: color-mix(in srgb, var(--destructive-text-color) 10%, var(--surface-bg));
+    color: var(--text-danger);
   }
 }
 @layer tds.components {
   .tg-notice {
     padding: var(--space-3) var(--space-4);
     border: var(--border);
-    border-inline-start: 3px solid var(--link-color);
+    color: var(--text-color);
     border-radius: var(--radius);
     background: var(--section-bg-color);
     overflow-wrap: anywhere;
   }
   .tg-notice--accent {
-    background: var(--accent-text-color);
+    background: var(--action-bg);
     color: var(--button-text-color);
     border-color: transparent;
     border-radius: var(--radius-lg);
   }
   .tg-notice--destructive {
-    border-inline-start-color: var(--destructive-text-color);
+    color: var(--text-danger);
+    border-color: currentColor;
   }
   .tg-progress {
     display: block;
@@ -902,26 +945,26 @@
     border-radius: var(--radius-pill);
     background: var(--section-separator-color);
     overflow: hidden;
-    color: var(--button-color);
+    color: var(--progress-color);
   }
   .tg-progress::-webkit-progress-bar {
     background: var(--section-separator-color);
     border-radius: inherit;
   }
   .tg-progress::-webkit-progress-value {
-    background: var(--button-color);
+    background: var(--progress-color);
     border-radius: inherit;
     transition: width var(--progress-duration);
   }
   .tg-progress::-moz-progress-bar {
-    background: var(--button-color);
+    background: var(--progress-color);
     border-radius: inherit;
   }
   .tg-progress__bar {
     display: block;
     inline-size: clamp(0%, var(--progress, 0%), 100%);
     block-size: 100%;
-    background: var(--button-color);
+    background: var(--progress-color);
     border-radius: inherit;
     transition: inline-size var(--progress-duration);
   }
@@ -982,7 +1025,7 @@
     border-radius: var(--radius);
     background: var(--section-bg-color);
     color: var(--text-color);
-    box-shadow: var(--shadow-elev);
+    box-shadow: var(--shadow-overlay);
     opacity: 0;
     visibility: hidden;
     transform: translateY(0.5rem);
@@ -1025,11 +1068,11 @@
     border-radius: var(--radius-lg);
     background: var(--section-bg-color);
     color: var(--text-color);
-    box-shadow: var(--shadow-elev);
+    box-shadow: var(--shadow-overlay);
     overflow: auto;
   }
   dialog.tg-modal::backdrop {
-    background: rgba(8, 20, 33, 0.5019607843);
+    background: var(--overlay-bg);
     backdrop-filter: blur(4px);
   }
   dialog.tg-modal[open] {
@@ -1199,7 +1242,8 @@
     z-index: var(--z-overlay);
     display: grid;
     place-items: center;
-    background: rgba(0, 0, 0, 0.35);
+    background: var(--overlay-bg);
+    color: var(--overlay-text);
   }
   .tg-overlay--absolute {
     position: absolute;
@@ -1236,14 +1280,14 @@
     transform: scale(1);
     transform-origin: center;
     visibility: visible;
-    transition: opacity 300ms ease, transform 300ms ease, visibility 0s;
+    transition: opacity var(--duration) var(--ease), transform var(--duration) var(--ease), visibility 0s;
   }
   .tg-transition:is(.is-hidden, [aria-hidden=true]) {
     opacity: 0;
-    transform: scale(0);
+    transform: scale(0.96);
     pointer-events: none;
     visibility: hidden;
-    transition: opacity 300ms ease, transform 300ms ease, visibility 0s linear 300ms;
+    transition: opacity var(--duration) var(--ease), transform var(--duration) var(--ease), visibility 0s linear var(--duration);
   }
   @media (prefers-reduced-motion: no-preference) {
     .tg-glass {
@@ -1275,6 +1319,11 @@
     }
   }
 }
+@layer tds.base {
+  :where(.tg-row > *, .tg-col > *) {
+    min-inline-size: 0;
+  }
+}
 @layer tds.utilities {
   .tg-container {
     inline-size: 100%;
@@ -1287,9 +1336,6 @@
     flex-wrap: wrap;
     align-items: center;
     gap: var(--space-3);
-  }
-  .tg-row > *, .tg-col > * {
-    min-inline-size: 0;
   }
   .tg-col {
     display: flex;
@@ -1336,16 +1382,16 @@
     flex-direction: column;
   }
   .tg-text-muted {
-    color: var(--hint-color);
+    color: var(--text-secondary);
   }
   .tg-text {
     color: var(--text-color);
   }
   .tg-text-accent {
-    color: var(--accent-text-color);
+    color: var(--text-link);
   }
   .tg-text-destructive {
-    color: var(--destructive-text-color);
+    color: var(--text-danger);
   }
   .tg-text-sm {
     font-size: var(--fs-sm);

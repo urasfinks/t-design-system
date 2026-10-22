@@ -133,7 +133,8 @@
     z-index: var(--z-overlay);
     display: grid;
     place-items: center;
-    background: rgb(0 0 0 / .35);
+    background: var(--overlay-bg);
+    color: var(--overlay-text);
 
     &--absolute {
       position: absolute;
@@ -176,14 +177,14 @@
     transform: scale(1);
     transform-origin: center;
     visibility: visible;
-    transition: opacity 300ms ease, transform 300ms ease, visibility 0s;
+    transition: opacity var(--duration) var(--ease), transform var(--duration) var(--ease), visibility 0s;
 
     &:is(.is-hidden, [aria-hidden='true']) {
       opacity: 0;
-      transform: scale(0);
+      transform: scale(.96);
       pointer-events: none;
       visibility: hidden;
-      transition: opacity 300ms ease, transform 300ms ease, visibility 0s linear 300ms;
+      transition: opacity var(--duration) var(--ease), transform var(--duration) var(--ease), visibility 0s linear var(--duration);
     }
   }
 

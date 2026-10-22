@@ -3,7 +3,7 @@
   :root {
     --fs-xs: clamp(.75rem, .7rem + .2vw, .8125rem);
     --fs-sm: clamp(.8125rem, .78rem + .25vw, .875rem);
-    --fs: clamp(.9375rem, .9rem + .3vw, 1rem);
+    --fs: 1rem;
     --fs-lg: clamp(1rem, .98rem + .35vw, 1.125rem);
     --fw-regular: 400;
     --fw-medium: 500;
@@ -14,13 +14,15 @@
     --radius: .75rem;
     --radius-lg: 1rem;
     --radius-pill: 9999px;
+    --radius-control: var(--radius);
+    --radius-inset: calc(var(--radius-control) - var(--space-1));
     --control-h: clamp(2.75rem, 2.6rem + .8vw, 3rem);
     --chip-h: clamp(2rem, 1.9rem + .5vw, 2.25rem);
     --icon-btn-prep: clamp(2.25rem, 2.1rem + .6vw, 2.5rem);
     --icon-btn: calc(var(--icon-btn-prep) + .25rem);
     --icon-avatar: calc(var(--icon-btn-prep) + 1.5rem);
     --switch-knob-color: #fff;
-    --avatar-initials-color: #fff;
+    --avatar-initials-color: var(--text-color);
     --spinner-color: #4cafef;
     --space-1: .25rem;
     --space-2: .5rem;
@@ -29,9 +31,12 @@
     --space-5: 1.25rem;
     --space-6: 1.5rem;
     --space-8: 2rem;
+    --space-10: 2.5rem;
+    --space-12: 3rem;
+    --space-16: 4rem;
     --duration-fast: 120ms;
     --duration: 180ms;
-    --ease: cubic-bezier(.2, .7, .3, 1);
+    --ease: cubic-bezier(.23, 1, .32, 1);
     --z-sticky: 20;
     --z-overlay: 100;
     --z-toast: 120;
@@ -57,5 +62,32 @@
     --button-color-transparent: color-mix(in srgb, var(--button-color) 93%, transparent);
     --destructive-text-color-transparent: color-mix(in srgb, var(--destructive-text-color) 93%, transparent);
     --section-bg-color-transparent: color-mix(in srgb, var(--section-bg-color) 50%, transparent);
+    // Accessible roles sit above the unchanged source/Telegram palettes.
+    --text-secondary: color-mix(in srgb, var(--hint-color) 70%, var(--text-color));
+    --text-link: color-mix(in srgb, var(--link-color) 64%, var(--text-color));
+    --progress-color: var(--text-link);
+    --text-danger: color-mix(in srgb, var(--destructive-text-color) 76%, var(--text-color));
+    --action-bg: color-mix(in srgb, var(--button-color) 72%, #000);
+    --action-hover-bg: color-mix(in srgb, var(--action-bg) 90%, #000);
+    --action-danger-bg: color-mix(in srgb, var(--destructive-text-color) 72%, #000);
+    --control-border-color: color-mix(in srgb, var(--section-separator-color) 56%, var(--text-color));
+    --border-control: 1px solid var(--control-border-color);
+    // Quiet resting controls; the stronger boundary is reserved for contrast preferences.
+    --field-border-color: var(--section-separator-color);
+    --border-field: 1px solid var(--field-border-color);
+    --switch-track-color: var(--section-separator-color);
+    --switch-border-color: transparent;
+    --surface-bg: var(--section-bg-color);
+    --surface-muted: var(--secondary-bg-color);
+    --overlay-bg: rgb(0 0 0 / .66);
+    --overlay-text: #fff;
+    --shadow-control: 0 1px 3px rgb(0 0 0 / .12);
+    --shadow-overlay: 0 .75rem 3rem rgb(0 0 0 / .2);
+  }
+  @media (prefers-contrast: more) {
+    :root {
+      --field-border-color: var(--control-border-color);
+      --switch-border-color: var(--control-border-color);
+    }
   }
 }

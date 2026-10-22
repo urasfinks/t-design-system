@@ -14,10 +14,10 @@
   .tg-help {
     margin: 0;
     font-size: var(--fs-sm);
-    color: var(--hint-color);
+    color: var(--text-secondary);
 
     &--error {
-      color: var(--destructive-text-color);
+      color: var(--text-danger);
     }
   }
 
@@ -26,26 +26,26 @@
     min-inline-size: 0;
     min-block-size: var(--control-h);
     padding: var(--space-2) var(--space-3);
-    border: var(--border);
-    border-radius: var(--radius);
+    border: var(--border-field);
+    border-radius: var(--radius-control);
     background-color: var(--field-bg);
     color: var(--text-color);
     font-size: max(1rem, var(--fs));
     line-height: 1.5;
-    transition: box-shadow var(--duration), border-color var(--duration), background-color var(--duration);
+    transition: box-shadow var(--duration) var(--ease), border-color var(--duration) var(--ease), background-color var(--duration) var(--ease);
 
     &:where(:not(:disabled, [readonly])):hover {
       background-color: var(--field-bg-hover);
     }
 
     &:focus-visible {
-      outline: 2px solid var(--link-color);
+      outline: 2px solid var(--text-link);
       outline-offset: 2px;
-      border-color: var(--link-color);
+      border-color: var(--text-link);
     }
 
     &[aria-invalid='true'] {
-      border-color: var(--destructive-text-color);
+      border-color: var(--text-danger);
     }
 
     &:disabled {
@@ -60,7 +60,7 @@
   }
 
   .tg-input::placeholder, .tg-textarea::placeholder {
-    color: var(--hint-color);
+    color: var(--text-secondary);
     opacity: 1;
   }
 
@@ -111,10 +111,10 @@
       inset-inline: 0;
       block-size: var(--h);
       z-index: -1;
-      border: var(--border);
+      border: 1px solid var(--switch-border-color);
       border-radius: inherit;
-      background: var(--secondary-bg-color);
-      transition: background var(--duration);
+      background: var(--switch-track-color);
+      transition: background-color var(--duration) var(--ease), border-color var(--duration) var(--ease);
     }
 
     &__knob {
@@ -131,8 +131,8 @@
     }
 
     &:is([aria-checked='true'], .tg-switch--on)::before {
-      background: var(--button-color);
-      border-color: transparent;
+      background: var(--action-bg);
+      border-color: var(--switch-border-color);
     }
 
     &:is([aria-checked='true'], .tg-switch--on) .tg-switch__knob {
