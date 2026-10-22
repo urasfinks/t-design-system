@@ -22,6 +22,8 @@
     --icon-btn-prep: clamp(2.25rem, 2.1rem + .6vw, 2.5rem);
     --icon-btn: calc(var(--icon-btn-prep) + .25rem);
     --icon-avatar: calc(var(--icon-btn-prep) + 1.5rem);
+    --icon-size: 1.25rem;
+    --icon-stroke: 2;
     --switch-knob-color: #fff;
     --avatar-initials-color: var(--text-color);
     --spinner-color: #4cafef;
@@ -310,6 +312,26 @@
   }
 }
 @layer tds.components {
+  .tg-icon {
+    display: inline-block;
+    inline-size: var(--icon-size);
+    block-size: var(--icon-size);
+    flex: 0 0 auto;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: var(--icon-stroke);
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    vertical-align: middle;
+  }
+  .tg-icon--sm {
+    --icon-size: 1rem;
+  }
+  .tg-icon--lg {
+    --icon-size: 1.5rem;
+  }
+}
+@layer tds.components {
   :is(.tg-btn, .tg-icon-btn, .tg-chip) {
     display: inline-flex;
     align-items: center;
@@ -330,7 +352,7 @@
     overflow-wrap: anywhere;
     transition: background-color var(--duration) var(--ease), color var(--duration) var(--ease), border-color var(--duration) var(--ease), transform var(--duration-fast) var(--ease);
   }
-  :is(.tg-btn, .tg-icon-btn, .tg-chip) svg {
+  :is(.tg-btn, .tg-icon-btn, .tg-chip) svg:not(.tg-icon) {
     inline-size: 1.25em;
     block-size: 1.25em;
     flex-shrink: 0;
@@ -395,6 +417,9 @@
     padding: var(--space-2);
     border: var(--border);
     border-radius: var(--radius-control);
+  }
+  .tg-btn--pill, .tg-icon-btn--pill {
+    border-radius: var(--radius-pill);
   }
   .tg-btn--primary, .tg-icon-btn--primary {
     background: var(--action-bg);
@@ -868,6 +893,15 @@
     font-weight: var(--fw-semibold);
     text-transform: uppercase;
   }
+  .tg-avatar--outlined {
+    border-color: var(--border-color);
+  }
+  .tg-avatar--outlined > .tg-avatar__initials {
+    font-weight: 400;
+  }
+  .tg-avatar--outlined[aria-checked=true] {
+    border-color: var(--avatar-selection-ring-color, var(--control-border-color));
+  }
   .tg-avatar-initials > .tg-avatar__clip {
     display: flex;
     align-items: center;
@@ -897,6 +931,7 @@
     min-inline-size: 1.5rem;
     min-block-size: 1.5rem;
     padding: 0.125rem 0.5rem;
+    border: var(--border);
     border-radius: var(--radius-pill);
     background: var(--secondary-bg-color);
     color: var(--text-color);
