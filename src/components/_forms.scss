@@ -119,7 +119,7 @@
     vertical-align: middle;
     cursor: pointer;
 
-    &:not(:checked):not(:indeterminate) {
+    &:not(:checked) {
       border-color: transparent;
     }
 
@@ -170,7 +170,7 @@
     .tg-check, .tg-radio {
       appearance: auto;
 
-      &, &:checked, &.tg-check:indeterminate {
+      &, &:not(:checked), &:checked, &.tg-check:indeterminate {
         border: revert;
         background-color: revert;
       }

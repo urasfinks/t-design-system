@@ -60,8 +60,9 @@
     --border-transparent: 1px solid var(--border-subtle-color);
     // Exactly four families, each with its source and two derived variants.
     --background-main: var(--bg-color);
-    --background-panel: color-mix(in srgb, var(--background-main) var(--background-panel-weight), #fff);
-    --background-muted: color-mix(in srgb, var(--background-main) var(--background-muted-weight), var(--background-muted-target));
+    --background-raised: color-mix(in srgb, var(--bg-color) var(--background-panel-weight), #fff);
+    --background-panel: var(--background-raised);
+    --background-muted: color-mix(in srgb, var(--bg-color) var(--background-muted-weight), var(--background-muted-target));
     --text-main: var(--text-color);
     --text-secondary: color-mix(in srgb, var(--text-main) 70%, var(--background-panel));
     --text-muted: color-mix(in srgb, var(--text-main) 55%, var(--background-panel));

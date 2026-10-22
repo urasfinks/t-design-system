@@ -14,20 +14,33 @@ try {
   assert.equal(await page.locator('.palette-swatch').count(), 12);
   for (const theme of ['light', 'dark', 'ios-dark']) {
     await page.evaluate(theme => document.documentElement.dataset.theme = theme, theme);
-    const colors = await page.evaluate(() => {
+    const colors = await page.evaluate(theme => {
       const resolve = token => {
         const probe = document.createElement('span');
         probe.style.color = `var(--${token})`; document.body.append(probe);
         const value = getComputedStyle(probe).color; probe.remove(); return value;
       };
       return [
-        resolve('background-main') === resolve('bg-color'),
+        resolve(theme === 'dark' ? 'background-panel' : 'background-main') === resolve('bg-color'),
         resolve('accent-main') === resolve('button-color'),
         resolve('text-main') === resolve('text-color'),
         resolve('danger-main') === resolve('destructive-text-color'),
       ];
-    });
+    }, theme);
     assert.ok(colors.every(Boolean), `${theme}: all main colors must remain original`);
+    if (theme !== 'light') {
+      const tones = await page.evaluate(() => {
+        const canvas = document.createElement('canvas'); canvas.width = canvas.height = 1;
+        const context = canvas.getContext('2d', { willReadFrequently: true });
+        return ['background-main', 'background-muted', 'background-panel'].map(token => {
+          const sample = document.querySelector(`[style="background:var(--${token})"]`);
+          context.fillStyle = getComputedStyle(sample).backgroundColor; context.fillRect(0, 0, 1, 1);
+          const [r, g, b] = context.getImageData(0, 0, 1, 1).data;
+          return r * .2126 + g * .7152 + b * .0722;
+        });
+      });
+      assert.ok(theme === 'dark' ? tones[2] < tones[1] && tones[1] < tones[0] : tones[0] < tones[1] && tones[1] < tones[2], `${theme}: background roles have the requested brightness order`);
+    }
     for (const width of [320, 390, 1440]) {
       await page.setViewportSize({ width, height: 900 });
       assert.ok(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth), `${theme}: table overflow at ${width}px`);

@@ -37,7 +37,7 @@ test('distribution includes all stylesheets and module exports compile independe
 
 test('color mixing is confined to the eight derived palette variants', async () => {
   const source = await readFile('src/tokens/_index.scss', 'utf8');
-  const allowed = new Set(['background-panel', 'background-muted', 'accent-strong', 'accent-soft', 'text-secondary', 'text-muted', 'danger-strong', 'danger-soft']);
+  const allowed = new Set(['background-raised', 'background-muted', 'accent-strong', 'accent-soft', 'text-secondary', 'text-muted', 'danger-strong', 'danger-soft']);
   const mixed = [...source.matchAll(/--([\w-]+):[^;]*color-mix\(/g)].map(match => match[1]);
   assert.deepEqual(new Set(mixed), allowed);
   const components = await import('node:fs/promises').then(fs => fs.readdir('src/components'));

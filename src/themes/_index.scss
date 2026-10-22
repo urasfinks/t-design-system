@@ -8,6 +8,8 @@
   --tds-button: #2481cc;
   --tds-text: #000000;
   --tds-destructive-text: #ff3b30;
+  --background-main: var(--bg-color);
+  --background-panel: var(--background-raised);
   --background-panel-weight: 0%;
   --background-muted-weight: 98%;
   --background-muted-target: #000;
@@ -19,9 +21,11 @@
   --tds-button: #2ea6ff;
   --tds-text: #ffffff;
   --tds-destructive-text: #ef5b5b;
-  --background-panel-weight: 100%;
-  --background-muted-weight: 75%;
-  --background-muted-target: #000;
+  --background-main: var(--background-raised);
+  --background-panel: var(--bg-color);
+  --background-panel-weight: 83%;
+  --background-muted-weight: 89%;
+  --background-muted-target: #fff;
 }
 @mixin iosDark {
   color-scheme: dark;
@@ -30,6 +34,8 @@
   --tds-button: #3e88f7;
   --tds-text: #ffffff;
   --tds-destructive-text: #eb5545;
+  --background-main: var(--bg-color);
+  --background-panel: var(--background-raised);
   --background-panel-weight: 83%;
   --background-muted-weight: 89%;
   --background-muted-target: #fff;
