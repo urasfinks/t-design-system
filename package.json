@@ -17,7 +17,8 @@
     "./scss/themes": "./src/themes/_index.scss",
     "./scss/base": "./src/base/_index.scss",
     "./scss/utilities": "./src/utilities/_index.scss",
-    "./scss/components/*": "./src/components/_*.scss"
+    "./scss/components/*": "./src/components/_*.scss",
+    "./telegram/js": "./dist/telegram.js"
   },
   "files": [
     "dist",
@@ -27,7 +28,7 @@
   "scripts": {
     "build": "node scripts/build.mjs",
     "dev": "npm run build && node scripts/serve.mjs",
-    "test": "npm run build && node --test tests/framework.test.mjs",
+    "test": "npm run build && node --test tests/*.test.mjs",
     "test:browser": "node tests/browser.mjs",
     "prepack": "npm run build"
   },

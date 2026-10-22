@@ -3,7 +3,7 @@ const themeSelect = document.querySelector('#theme');
 let storage;
 try { storage = localStorage; } catch { /* The file preview can disable storage. */ }
 const savedTheme = storage?.getItem('tds-theme');
-if (['auto', 'light', 'dark'].includes(savedTheme)) themeSelect.value = savedTheme;
+if (['auto', 'light', 'dark', 'ios-dark'].includes(savedTheme)) themeSelect.value = savedTheme;
 function applyTheme(value) {
   if (value === 'auto') delete root.dataset.theme;
   else root.dataset.theme = value;

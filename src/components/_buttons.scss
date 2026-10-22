@@ -38,7 +38,7 @@
   }
   .tg-btn--secondary { background: var(--secondary-bg-color); border: var(--border); }
   .tg-btn--ghost { background: transparent; border: var(--border); }
-  .tg-btn--destructive { background: var(--destructive-text-color); color: var(--section-bg-color); }
+  .tg-btn--destructive { background: var(--destructive-text-color); color: var(--button-text-color); }
   .tg-btn--sm { min-block-size: var(--control-h); padding-inline: var(--space-3); font-size: var(--fs-sm); }
   .tg-btn--lg { min-block-size: calc(var(--control-h) + .5rem); padding-inline: var(--space-6); }
   .tg-btn-box { inline-size: var(--control-h); padding-inline: 0; }

@@ -1,5 +1,5 @@
 import { compileAsync } from 'sass';
-import { mkdir, writeFile } from 'node:fs/promises';
+import { mkdir, writeFile, copyFile } from 'node:fs/promises';
 import { fileURLToPath } from 'node:url';
 const root = new URL('../', import.meta.url);
 await mkdir(new URL('dist/', root), { recursive: true });
@@ -11,3 +11,6 @@ for (const [input, name] of [['index', 't-design-system'], ['telegram', 'telegra
     console.log(`Built dist/${file} (${Buffer.byteLength(result.css)} bytes)`);
   }
 }
+
+await copyFile(new URL('src/telegram.mjs', root), new URL('dist/telegram.js', root));
+console.log('Built dist/telegram.js (optional theme bridge)');
