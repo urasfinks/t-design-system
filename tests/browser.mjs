@@ -111,6 +111,7 @@ try {
   page.on('pageerror', error => errors.push(error.message));
   const response = await page.goto('http://127.0.0.1:4174/docs/');
   check('component catalog is served', response.status() === 200);
+  check('glass example has a neutral flat backdrop', await style('.glass-demo-stage', 'background-image') === 'none');
   const traversal = await page.request.get('http://127.0.0.1:4174/docs/%2e%2e%2fpackage.json');
   check('HTTP server blocks encoded traversal', traversal.status() === 404);
   await page.getByLabel('Тема оформления').selectOption('dark');
