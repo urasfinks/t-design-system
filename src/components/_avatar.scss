@@ -1,0 +1,30 @@
+@use '../base';
+@layer tds.components {
+  .tg-avatar {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex: 0 0 auto;
+    inline-size: var(--icon-avatar);
+    block-size: var(--icon-avatar);
+    padding: var(--space-1);
+    border: 2px solid transparent;
+    border-radius: 50%;
+    background: transparent;
+    vertical-align: middle;
+  }
+  button.tg-avatar { cursor: pointer; }
+  .tg-avatar[aria-checked='true'] { border-color: var(--button-color); }
+  .tg-avatar-size { min-block-size: var(--icon-avatar); display: inline-flex; align-items: center; justify-content: center; }
+  .tg-avatar__clip { display: block; inline-size: 100%; block-size: 100%; border-radius: inherit; overflow: hidden; }
+  .tg-avatar__clip img { display: block; inline-size: 100%; block-size: 100%; object-fit: cover; }
+  .tg-avatar__initials { display: flex; align-items: center; justify-content: center; inline-size: 100%; block-size: 100%; border-radius: inherit; background: var(--secondary-bg-color); color: var(--text-color); font-size: var(--fs-lg); font-weight: var(--fw-semibold); text-transform: uppercase; }
+  .tg-avatar-initials > .tg-avatar__clip { display: flex; align-items: center; justify-content: center; border: 1px dashed var(--border-color); font-weight: var(--fw-semibold); }
+  .tg-avatar-undefined[aria-checked='true'], .tg-avatar-initials[aria-checked='true'] { border-color: var(--border-color); border-style: dashed; }
+  .tg-badge { display: inline-flex; align-items: center; justify-content: center; min-inline-size: 1.5rem; min-block-size: 1.5rem; padding: .125rem .5rem; border-radius: var(--radius-pill); background: var(--secondary-bg-color); color: var(--text-color); font-size: var(--fs-xs); font-weight: var(--fw-semibold); line-height: 1.25; vertical-align: middle; }
+  .tg-avatar > .tg-badge { position: absolute; inset-block-start: -.125rem; inset-inline-end: -.25rem; box-shadow: 0 0 0 2px var(--section-bg-color); pointer-events: none; }
+  .tg-badge--primary { background: var(--button-color); color: var(--button-text-color); }
+  .tg-badge--secondary { background: var(--secondary-bg-color); color: var(--text-color); }
+  .tg-badge--destructive { background: var(--destructive-text-color); color: var(--section-bg-color); }
+}

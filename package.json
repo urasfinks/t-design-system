@@ -1,0 +1,41 @@
+{
+  "name": "t-design-system",
+  "version": "0.1.0",
+  "description": "A layered CSS framework for the web and Telegram Mini Apps",
+  "type": "module",
+  "private": true,
+  "style": "./dist/t-design-system.css",
+  "sass": "./src/index.scss",
+  "exports": {
+    ".": "./dist/t-design-system.css",
+    "./css": "./dist/t-design-system.css",
+    "./css/min": "./dist/t-design-system.min.css",
+    "./telegram": "./dist/telegram.css",
+    "./telegram/min": "./dist/telegram.min.css",
+    "./scss": "./src/index.scss",
+    "./scss/tokens": "./src/tokens/_index.scss",
+    "./scss/themes": "./src/themes/_index.scss",
+    "./scss/base": "./src/base/_index.scss",
+    "./scss/utilities": "./src/utilities/_index.scss",
+    "./scss/components/*": "./src/components/_*.scss"
+  },
+  "files": [
+    "dist",
+    "src",
+    "README.md"
+  ],
+  "scripts": {
+    "build": "node scripts/build.mjs",
+    "dev": "npm run build && node scripts/serve.mjs",
+    "test": "npm run build && node --test tests/framework.test.mjs",
+    "test:browser": "node tests/browser.mjs",
+    "prepack": "npm run build"
+  },
+  "devDependencies": {
+    "sass": "1.93.2",
+    "playwright": "1.62.1"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}
