@@ -1014,17 +1014,20 @@
     line-height: 1.25;
     vertical-align: middle;
   }
+  .tg-badge--primary, .tg-badge--secondary, .tg-badge--destructive {
+    border: 0;
+  }
   .tg-badge--primary {
-    background: var(--accent-soft);
-    color: var(--text-link);
+    background: light-dark(var(--accent-soft), var(--accent-strong));
+    color: light-dark(var(--accent-strong), var(--text-main));
   }
   .tg-badge--secondary {
     background: var(--secondary-bg-color-transparent);
-    color: var(--text-color);
+    color: var(--text-main);
   }
   .tg-badge--destructive {
-    background: var(--danger-soft);
-    color: var(--text-danger);
+    background: light-dark(var(--danger-soft), var(--danger-strong));
+    color: light-dark(var(--danger-strong), var(--text-main));
   }
 }
 @layer tds.components {
