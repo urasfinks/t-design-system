@@ -63,6 +63,10 @@
     cursor: pointer;
   }
   .tg-tabbar__item[aria-current='page'] { color: var(--link-color); background: var(--secondary-bg-color); }
+  .tg-pagination { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: var(--space-1); }
+  .tg-dot { display: grid; place-items: center; min-inline-size: var(--control-h); min-block-size: var(--control-h); padding: var(--space-2); border: 0; border-radius: 50%; background: transparent; color: var(--link-color); cursor: pointer; }
+  .tg-dot::after { content: ''; inline-size: .625rem; block-size: .625rem; border-radius: 50%; background: var(--section-separator-color); }
+  .tg-dot:is([aria-current='true'], [aria-current='page'])::after { background: var(--link-color); }
   .tg-chip { min-block-size: var(--control-h); padding: var(--space-2) var(--space-3); border: var(--border); border-radius: var(--radius-pill); font-size: var(--fs-sm); }
   .tg-chip[aria-checked='true'] { background: var(--button-color); color: var(--button-text-color); border-color: transparent; }
   .tg-chip[aria-checked='true']:where(:not(:disabled, [aria-disabled='true'])):hover { background: color-mix(in srgb, var(--button-color) 88%, var(--text-color)); }

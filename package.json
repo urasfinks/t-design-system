@@ -18,18 +18,20 @@
     "./scss/base": "./src/base/_index.scss",
     "./scss/utilities": "./src/utilities/_index.scss",
     "./scss/components/*": "./src/components/_*.scss",
-    "./telegram/js": "./dist/telegram.js"
+    "./telegram/js": "./dist/telegram.js",
+    "./effects/js": "./dist/effects.js"
   },
   "files": [
     "dist",
     "src",
-    "README.md"
+    "README.md",
+    "docs/source-audit.md"
   ],
   "scripts": {
     "build": "node scripts/build.mjs",
     "dev": "npm run build && node scripts/serve.mjs",
     "test": "npm run build && node --test tests/*.test.mjs",
-    "test:browser": "node tests/browser.mjs",
+    "test:browser": "npm run build && node scripts/test-browser.mjs",
     "prepack": "npm run build"
   },
   "devDependencies": {

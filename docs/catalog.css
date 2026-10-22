@@ -122,3 +122,11 @@ pre { max-width: 100%; overflow: auto; font: 11px/1.8 ui-monospace, SFMono-Regul
   .example-body { padding: 20px; } .example-meta { padding: 12px 18px; } .form-grid, .surface-grid, .install-grid { grid-template-columns: 1fr; } .example-body.tg-row { gap: 12px; } .form-grid { gap: 20px; } .choice-row { align-items: start; } .tg-tabs { gap: 2px; } .tg-tab { padding-inline: 12px; } .example-code summary { padding-inline: 18px; } pre { font-size: 10px; padding: 16px; } .site-footer { align-items: start; flex-direction: column; gap: 14px; margin-top: 40px; }
 }
 @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+
+.glass-demo-stage { padding: 2.5rem; background: repeating-linear-gradient(135deg, var(--button-color) 0 30px, var(--secondary-bg-color) 30px 60px); }
+.glass-demo-stage .tg-glass { max-inline-size: 28rem; margin-inline: auto; }
+.glass-demo-stage .tg-badge { align-self: flex-start; }
+@media (max-width: 640px) { .glass-demo-stage { padding: 1.25rem; } }
+
+.loader-demo-stage { position: relative; min-block-size: 12rem; }
+.loader-demo-stage .tg-spinner { align-self: center; }

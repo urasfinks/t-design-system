@@ -1,0 +1,103 @@
+# Аудит переноса из ai-splitter-ng
+
+22 октября 2026 года. Источник: проект `ai-splitter-ng`.
+Проверены глобальный `styles.scss`, `main.ts`, все стили компонентов, шаблоны и
+связанные UI-обработчики. Исходный проект не изменяется.
+
+## Что восстановлено
+
+- Все 51 значение трёх палитр `light`, `desktopDark`, `iosDark`.
+- Исходные производные цвета: фон страницы 97%/white, карточки 97%/transparent,
+  поле 99% secondary/1% text; прозрачность границ 50% и 25%; геометрия/цвет теней.
+- Полупрозрачный secondary header, пунктирные разделители, прозрачные стыки карточек.
+- Белая ручка switch, логическое положение для RTL и вложенных направлений.
+- Оформление аватаров/инициалов, полупрозрачные бейджи и эффект нажатия.
+- Размытые полосы progress: 14px, blur 6px, регулируемые тайминги и размер паттерна.
+- Универсальные file label, preview, статус и actions без Angular upload-сервиса.
+- Ripple: волна, кольцо, заливка; 500/600/700ms; необязательный DOM-помощник.
+- Glass/backdrop, подложки, большой spinner, fade-in/out и transition.
+- Верхний snackbar, accent notice, точечные индикаторы страниц, iOS spacer.
+- Запрет выделения текста кнопок и перетаскивания аватаров.
+
+## Соответствие общих классов
+
+Все 71 исходное имя `.tg-*` присутствуют в основном CSS. Точное совпадение имени
+не означает копирование ошибок или всех деталей поведения: адаптации перечислены
+ниже. Непредфиксированные классы переводятся по этой таблице.
+
+| Исходные классы | Фреймворк / решение |
+| --- | --- |
+| `overlay-blur` | `tg-glass` |
+| `backdrop-blur` | `tg-glass tg-glass--backdrop` |
+| `without-border` | `tg-no-border` |
+| `ios-extra` | `tg-ios-spacer` |
+| `h100`, `w100` | `tg-h-full`, `tg-w-full` |
+| `btn-dark`, `ripple-dark` | `tg-ripple tg-ripple--dark` |
+| `btn-light`, `ripple-light` | `tg-ripple tg-ripple--light` |
+| `ripple__wave`, `ripple__ring`, `ripple__wash` | `tg-ripple__wave`, `tg-ripple__ring`, `tg-ripple__wash`, создаваемые `initRipple` |
+| `text-flash` | `tg-ripple tg-ripple--inline` |
+| `cost`, `hint-color` | `tg-text-muted` |
+| `text-color`, `warning` | `tg-text`, `tg-text-destructive` |
+| `add-image`, `add-image-2`, контекстный `icon` | `tg-upload`, `tg-upload--dashed`, `tg-upload__icon` |
+| `thumb`, `actions`, `progress-text` из upload-компонента | `tg-upload__preview`, `tg-upload__actions`, `tg-upload__status` |
+| `progress`, `progress__bar` из progress-компонента | `tg-progress tg-progress--striped`, `tg-progress__bar` |
+| `spinner` | `tg-spinner tg-spinner--lg` |
+| `overlay`, `overlay-2` | `tg-overlay`, `tg-overlay--absolute` |
+| `no-select`, `no-events` | `tg-no-select`, `tg-no-events` |
+| `dot`, `active` в индикаторах слайдера | `tg-pagination`, `tg-dot[aria-current="page"]` |
+| `transition-ot`, `is-hidden` | `tg-transition`, тот же `.is-hidden` внутри компонента |
+| `fade-in`, `fade-out` из popup CSS | `tg-fade-in`, `tg-fade-out` |
+| `notice-block` | `tg-notice tg-notice--accent` |
+| `snackbar-container`, `snackbar-hide` | `tg-snackbar`, включение/снятие `tg-snackbar--show` |
+| `popup-header`, `popup-footer`, `scroll-area` | `tg-modal__header`, `tg-modal__footer`, нативный скролл dialog; CDK-контракт не переносится |
+| `cdk-overlay-pane`, `popup-panel`, `fixed-my-on-open` | Интеграция Angular/CDK остаётся приложению; доступна альтернатива native dialog/sheet |
+| `ng-component` | Angular host plumbing, в CSS-пакет не входит |
+| `swal`, `swal-backdrop-blur` | Неиспользуемые legacy-правила, без глобальных алиасов; вместо blur доступен glass |
+| `highlight-clone`, `show-slider`, `feather-users-many`, `feather-users-one` | Сценарий подсказок и разделения счёта; остаётся приложению |
+
+## Осознанные адаптации
+
+- Минимальный touch target 44px, поля не меньше 16px, перенос длинных подписей.
+- Контейнер ограничен 72rem, сетка/компоновка используют логические свойства.
+- Нативный `dialog` вместо произвольного overlay с атрибутом `open`.
+- Семантический `hidden` имеет последний CSS-слой и не проигрывает display утилит.
+- Ссылки, произвольные поля и сторонние страницы не получают весь UI-стиль без класса.
+- Бейдж отдельно от аватара работает в потоке; внутри аватара — в углу.
+- Невалидное исходное `aria-checked="undefined"` не становится публичным ARIA API:
+  используйте валидные состояния и нейтральный вариант `tg-avatar-undefined`.
+- Кнопки страниц показывают CSS-состояние; бизнес-слайдер, таймлайн обучения,
+  клонирование подсвеченных элементов и вызовы `Util.wave` из сценария подсказок
+  не переносятся. Помощник ripple предоставляет самостоятельный отклик на клики.
+- SDK-цвета Telegram включаются явно (`data-telegram-theme="native"`), по умолчанию
+  сохраняется выбор собственных палитр исходного приложения.
+
+## Найденные ошибки, которые исправлены
+
+- RTL-toast выходил за экран; длинный непрерывный текст не переносился.
+- RTL-switch учитывал любого предка `dir=rtl` вместо фактического направления.
+- Стрелки табов в RTL шли в противоположную визуальную сторону.
+- Dev-сервер допускал encoded traversal из docs/dist в файлы репозитория.
+- Пример Angular ошибочно называл extensionless Sass @import CSS-импортом;
+  заменён на конкретный глобальный styles-массив в angular.json.
+- Браузерные тесты могли зависнуть при раннем падении сервера: теперь readiness
+  ожидается сразу, с обработкой error/exit и ограничением времени.
+
+## Проверки
+
+- Unit: CSS/SCSS-контракт, независимые модули, themeChanged bridge и resolver сервера,
+  включая traversal, ошибочные URL и symlink за пределы публичного каталога.
+- Браузеры: Chromium и WebKit; все три палитры, производные поверхности и состояния,
+  RTL, reduced-motion, геометрия/очистка ripple, file preview, snackbar, dialog,
+  индикаторы страниц и отсутствие переполнения на 320/360/768/1440px.
+- Локальный npm-архив устанавливается отдельно; CSS/Sass и обе JS-точки входа
+  проверяются из установленного пакета.
+
+Проверка локального SDK выполняется на тестовом объекте Telegram и CSS-переменных.
+Реальный клиент Telegram на iOS/Android в этой среде не запускался. Точная палитра
+исходного проекта сохранена; её контрастные характеристики не изменялись.
+
+
+Результат текущего прогона: 12 unit-проверок; по 47 проверок витрины и 34 проверки
+визуального контракта/RTL в Chromium и WebKit, плюс отдельные проверки жизненного
+цикла эффектов. Проверено быстрое завершение при занятом порте и фактический
+ответ 404 на обход каталога в перезапущенном dev-сервере.

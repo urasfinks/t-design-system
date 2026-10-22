@@ -20,6 +20,9 @@
     --icon-btn-prep: clamp(2.25rem, 2.1rem + .6vw, 2.5rem);
     --icon-btn: calc(var(--icon-btn-prep) + .25rem);
     --icon-avatar: calc(var(--icon-btn-prep) + 1.5rem);
+    --switch-knob-color: #fff;
+    --avatar-initials-color: #fff;
+    --spinner-color: #4cafef;
     --space-1: .25rem;
     --space-2: .5rem;
     --space-3: .75rem;
@@ -33,19 +36,23 @@
     --z-sticky: 20;
     --z-overlay: 100;
     --z-toast: 120;
+    --progress-duration: 1s;
+    --progress-stripe-speed: 1s;
+    --progress-stripe-size: 1.5rem;
+    --progress-stripe-blur: .375rem;
     --safe-area-bottom: env(safe-area-inset-bottom, 0px);
     --ios-h: 0px;
     --border-color: var(--section-separator-color);
-    --border: 1px solid var(--border-color);
-    --border-transparent: 1px solid color-mix(in srgb, var(--border-color) 50%, transparent);
+    --border: 1px solid color-mix(in srgb, var(--border-color) 50%, transparent);
+    --border-transparent: 1px solid color-mix(in srgb, var(--border-color) 25%, transparent);
     --border-active: 1px solid var(--accent-text-color);
-    --focus: 0 0 0 .2rem color-mix(in srgb, var(--link-color) 25%, transparent);
-    --shadow-soft: 0 .25rem 1.25rem color-mix(in srgb, var(--text-color) 5%, transparent);
-    --shadow-elev: 0 .75rem 2.5rem color-mix(in srgb, var(--text-color) 12%, transparent);
-    --bg-body: var(--bg-color);
-    --section-color: var(--section-bg-color);
-    --section-color2: var(--secondary-bg-color);
-    --field-bg: var(--secondary-bg-color);
+    --focus: 0 0 0 .25rem color-mix(in srgb, var(--link-color) 25%, transparent);
+    --shadow-soft: 0 .5rem 2rem color-mix(in srgb, var(--header-bg-color) 25%, transparent);
+    --shadow-elev: 0 .5rem 2rem color-mix(in srgb, var(--header-bg-color) 1%, transparent);
+    --bg-body: color-mix(in srgb, var(--bg-color) 97%, white);
+    --section-color: color-mix(in srgb, var(--section-bg-color) 97%, transparent);
+    --section-color2: color-mix(in srgb, var(--bg-color) 70%, white);
+    --field-bg: color-mix(in srgb, var(--secondary-bg-color) 99%, var(--text-color) 1%);
     --field-bg-hover: color-mix(in srgb, var(--secondary-bg-color) 96%, var(--text-color));
     --secondary-bg-color-transparent: color-mix(in srgb, var(--secondary-bg-color) 93%, transparent);
     --button-color-transparent: color-mix(in srgb, var(--button-color) 93%, transparent);
@@ -216,18 +223,26 @@
     -webkit-tap-highlight-color: transparent;
   }
   :where(.tg-btn, .tg-icon-btn, .tg-input, .tg-select, .tg-textarea, .tg-tab,
-  .tg-tabbar__item, .tg-switch, .tg-chip, .tg-avatar) {
+  .tg-tabbar__item, .tg-switch, .tg-chip, .tg-avatar, .tg-dot) {
     font: inherit;
     letter-spacing: inherit;
     color: inherit;
   }
-  :where(.tg-btn, .tg-icon-btn, .tg-tab, .tg-tabbar__item, .tg-switch, .tg-chip, .tg-avatar, .tg-check, .tg-radio, .tg-link):focus-visible {
+  :where(.tg-btn, .tg-icon-btn, .tg-tab, .tg-tabbar__item, .tg-switch, .tg-chip, .tg-avatar, .tg-check, .tg-radio, .tg-link, .tg-dot):focus-visible {
     outline: 2px solid var(--link-color);
     outline-offset: 3px;
   }
   .tg-link {
     color: var(--link-color);
     text-underline-offset: 0.2em;
+  }
+  button:where([class*=tg-]) {
+    -webkit-user-select: none;
+    user-select: none;
+  }
+  button.tg-avatar img {
+    -webkit-user-drag: none;
+    pointer-events: none;
   }
   .tg-link:hover {
     text-decoration-thickness: 2px;
@@ -236,6 +251,7 @@
     :where([class*=tg-], [class*=tg-]::before, [class*=tg-]::after) {
       --duration: 0s;
       --duration-fast: 0s;
+      --progress-duration: 0s;
       animation-duration: 0.01ms;
       animation-iteration-count: 1;
       transition-duration: 0s;
@@ -249,7 +265,7 @@
   }
 }
 @layer tds.components {
-  :is(.tg-btn, .tg-icon-btn, .tg-chip, .tg-switch, .tg-tab, .tg-tabbar__item, .tg-avatar):is(:disabled, [aria-disabled=true]) {
+  :is(.tg-btn, .tg-icon-btn, .tg-chip, .tg-switch, .tg-tab, .tg-tabbar__item, .tg-avatar, .tg-dot):is(:disabled, [aria-disabled=true]) {
     opacity: 0.45;
     cursor: not-allowed;
     transform: none;
@@ -452,28 +468,87 @@
     transition: background var(--duration);
   }
   .tg-switch__knob {
+    position: absolute;
+    inset-inline-start: 0.125rem;
+    inset-block-start: 50%;
+    transform: translateY(-50%);
     inline-size: calc(var(--h) - 0.25rem);
     block-size: calc(var(--h) - 0.25rem);
     border-radius: 50%;
-    background: var(--section-bg-color);
+    background: var(--switch-knob-color);
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
-    transition: transform var(--duration) var(--ease);
+    transition: inset-inline-start var(--duration) var(--ease);
   }
   .tg-switch:is([aria-checked=true], .tg-switch--on)::before {
     background: var(--button-color);
     border-color: transparent;
   }
   .tg-switch:is([aria-checked=true], .tg-switch--on) .tg-switch__knob {
-    transform: translateX(calc(var(--w) - var(--h)));
-  }
-  [dir=rtl] .tg-switch:is([aria-checked=true], .tg-switch--on) .tg-switch__knob {
-    transform: translateX(calc(var(--h) - var(--w)));
+    inset-inline-start: calc(var(--w) - var(--h) + 0.125rem);
   }
   .tg-component-size {
     inline-size: 3.25rem;
     min-block-size: var(--control-h);
     display: inline-flex;
     align-items: center;
+  }
+}
+@layer tds.components {
+  .tg-upload {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-3);
+    position: relative;
+    min-inline-size: 0;
+    min-block-size: 6rem;
+    padding: var(--space-4);
+    border: var(--border);
+    border-radius: var(--radius);
+    background: var(--secondary-bg-color);
+    color: var(--text-color);
+    text-align: center;
+    overflow-wrap: anywhere;
+    cursor: pointer;
+  }
+  .tg-upload--dashed {
+    border: 0.2rem dashed var(--section-separator-color);
+    border-radius: var(--radius-lg);
+  }
+  .tg-upload:focus-within {
+    outline: 2px solid var(--link-color);
+    outline-offset: 3px;
+  }
+  .tg-upload--disabled, .tg-upload[aria-disabled=true] {
+    opacity: 0.45;
+    cursor: not-allowed;
+  }
+  .tg-upload__icon {
+    inline-size: 2rem;
+    block-size: 2rem;
+    flex-shrink: 0;
+  }
+  .tg-upload__preview {
+    display: block;
+    inline-size: 10rem;
+    max-inline-size: 100%;
+    block-size: 10rem;
+    object-fit: cover;
+    border-radius: var(--radius);
+  }
+  .tg-upload__actions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--space-2);
+    margin-block-start: var(--space-2);
+  }
+  .tg-upload__status {
+    margin: var(--space-2) 0 0;
+    color: var(--hint-color);
+    font-size: var(--fs-xs);
+    text-align: end;
+    overflow-wrap: anywhere;
   }
 }
 @layer tds.components {
@@ -500,6 +575,7 @@
   .tg-list-item--wrap {
     display: flex;
     flex-wrap: wrap;
+    align-items: stretch;
     gap: var(--space-3);
   }
   .tg-list-item--wrap > * {
@@ -507,6 +583,7 @@
   }
   .tg-list-item-break {
     flex: 0 0 100%;
+    margin-block-start: var(--space-3);
   }
   .tg-list-item-border-dashed {
     border-block-start-style: dashed;
@@ -529,7 +606,8 @@
     background: var(--header-bg-color);
   }
   .tg-header-secondary {
-    background: var(--secondary-bg-color);
+    background: color-mix(in srgb, var(--header-bg-color) 18%, transparent);
+    border: var(--border-transparent);
   }
   .tg-header__title {
     margin: 0;
@@ -552,7 +630,7 @@
     inline-size: 100%;
     block-size: 0;
     border: 0;
-    border-block-start: var(--border);
+    border-block-start: 1px dashed var(--section-separator-color);
     margin-block: var(--space-3);
   }
   .tg-divider-transparent {
@@ -647,6 +725,35 @@
     color: var(--link-color);
     background: var(--secondary-bg-color);
   }
+  .tg-pagination {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-1);
+  }
+  .tg-dot {
+    display: grid;
+    place-items: center;
+    min-inline-size: var(--control-h);
+    min-block-size: var(--control-h);
+    padding: var(--space-2);
+    border: 0;
+    border-radius: 50%;
+    background: transparent;
+    color: var(--link-color);
+    cursor: pointer;
+  }
+  .tg-dot::after {
+    content: "";
+    inline-size: 0.625rem;
+    block-size: 0.625rem;
+    border-radius: 50%;
+    background: var(--section-separator-color);
+  }
+  .tg-dot:is([aria-current=true], [aria-current=page])::after {
+    background: var(--link-color);
+  }
   .tg-chip {
     min-block-size: var(--control-h);
     padding: var(--space-2) var(--space-3);
@@ -677,9 +784,13 @@
     border-radius: 50%;
     background: transparent;
     vertical-align: middle;
+    transition: border-color var(--duration), transform var(--duration-fast);
   }
   button.tg-avatar {
     cursor: pointer;
+  }
+  .tg-avatar:where(:not(:disabled, [aria-disabled=true])):is(:active, [data-pressed=true]) {
+    transform: scale(0.96);
   }
   .tg-avatar[aria-checked=true] {
     border-color: var(--button-color);
@@ -710,9 +821,9 @@
     inline-size: 100%;
     block-size: 100%;
     border-radius: inherit;
-    background: var(--secondary-bg-color);
-    color: var(--text-color);
-    font-size: var(--fs-lg);
+    background: var(--section-separator-color);
+    color: var(--avatar-initials-color);
+    font-size: calc(var(--icon-avatar) / 3.5);
     font-weight: var(--fw-semibold);
     text-transform: uppercase;
   }
@@ -720,7 +831,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    border: 1px dashed var(--border-color);
+    border: 2px dashed var(--border-color);
     font-weight: var(--fw-semibold);
   }
   .tg-avatar-undefined[aria-checked=true], .tg-avatar-initials[aria-checked=true] {
@@ -744,21 +855,22 @@
   }
   .tg-avatar > .tg-badge {
     position: absolute;
-    inset-block-start: -0.125rem;
-    inset-inline-end: -0.25rem;
-    box-shadow: 0 0 0 2px var(--section-bg-color);
+    inset-block-start: -0.5rem;
+    inset-inline-end: -0.55rem;
+    border: 1px solid var(--section-bg-color-transparent);
+    box-shadow: var(--shadow-soft);
     pointer-events: none;
   }
   .tg-badge--primary {
-    background: var(--button-color);
+    background: var(--button-color-transparent);
     color: var(--button-text-color);
   }
   .tg-badge--secondary {
-    background: var(--secondary-bg-color);
+    background: var(--secondary-bg-color-transparent);
     color: var(--text-color);
   }
   .tg-badge--destructive {
-    background: var(--destructive-text-color);
+    background: var(--destructive-text-color-transparent);
     color: var(--button-text-color);
   }
 }
@@ -770,6 +882,12 @@
     border-radius: var(--radius);
     background: var(--section-bg-color);
     overflow-wrap: anywhere;
+  }
+  .tg-notice--accent {
+    background: var(--accent-text-color);
+    color: var(--button-text-color);
+    border-color: transparent;
+    border-radius: var(--radius-lg);
   }
   .tg-notice--destructive {
     border-inline-start-color: var(--destructive-text-color);
@@ -792,7 +910,7 @@
   .tg-progress::-webkit-progress-value {
     background: var(--button-color);
     border-radius: inherit;
-    transition: width var(--duration);
+    transition: width var(--progress-duration);
   }
   .tg-progress::-moz-progress-bar {
     background: var(--button-color);
@@ -804,16 +922,28 @@
     block-size: 100%;
     background: var(--button-color);
     border-radius: inherit;
-    transition: inline-size var(--duration);
+    transition: inline-size var(--progress-duration);
+  }
+  .tg-progress--striped {
+    block-size: 0.875rem;
   }
   .tg-progress--striped .tg-progress__bar {
-    background-image: repeating-linear-gradient(45deg, transparent 0 8px, rgba(255, 255, 255, 0.1882352941) 8px 16px);
-    background-size: 24px 24px;
-    animation: tg-stripes 1s linear infinite;
+    position: relative;
+    overflow: hidden;
+  }
+  .tg-progress--striped .tg-progress__bar::after {
+    content: "";
+    position: absolute;
+    inset: calc(var(--progress-stripe-blur) * -1.5);
+    pointer-events: none;
+    background: repeating-linear-gradient(45deg, rgba(255, 255, 255, 0.3490196078) 0 10px, transparent 10px var(--progress-stripe-size));
+    background-size: var(--progress-stripe-size) var(--progress-stripe-size);
+    filter: blur(var(--progress-stripe-blur));
+    animation: tg-stripes var(--progress-stripe-speed) linear infinite;
   }
   @keyframes tg-stripes {
     to {
-      background-position: 24px 0;
+      background-position: calc(var(--progress-stripe-size) * -1) 0;
     }
   }
   .tg-spinner {
@@ -831,12 +961,20 @@
       transform: rotate(1turn);
     }
   }
+  .tg-spinner--lg {
+    inline-size: 4rem;
+    block-size: 4rem;
+    border: 6px solid rgba(255, 255, 255, 0.2);
+    border-block-start-color: var(--spinner-color);
+  }
   .tg-toast {
     position: fixed;
-    inset-inline-start: 50%;
+    inset-inline: var(--space-4);
+    margin-inline: auto;
     inset-block-end: calc(var(--space-5) + var(--safe-area-bottom));
     z-index: var(--z-toast);
-    inline-size: max-content;
+    inline-size: fit-content;
+    overflow-wrap: anywhere;
     max-inline-size: calc(100% - var(--space-8));
     padding: var(--space-3) var(--space-5);
     border: var(--border);
@@ -846,15 +984,37 @@
     box-shadow: var(--shadow-elev);
     opacity: 0;
     visibility: hidden;
-    transform: translateX(-50%) translateY(0.5rem);
+    transform: translateY(0.5rem);
     pointer-events: none;
     transition: opacity var(--duration), transform var(--duration), visibility var(--duration);
   }
   .tg-toast--show {
     opacity: 1;
     visibility: visible;
-    transform: translateX(-50%);
+    transform: none;
     pointer-events: auto;
+  }
+  .tg-snackbar {
+    position: fixed;
+    inset-block-start: env(safe-area-inset-top, 0px);
+    inset-inline: 0;
+    z-index: var(--z-toast);
+    padding: var(--space-3);
+    visibility: hidden;
+    opacity: 0;
+    transform: translateY(-100%);
+    transition: opacity var(--duration), transform var(--duration), visibility var(--duration);
+    pointer-events: none;
+  }
+  .tg-snackbar--show {
+    visibility: visible;
+    opacity: 1;
+    transform: none;
+  }
+  .tg-snackbar__content {
+    max-inline-size: 40rem;
+    margin-inline: auto;
+    overflow-wrap: anywhere;
   }
   dialog.tg-modal {
     inline-size: min(40rem, 100% - var(--space-8));
@@ -914,11 +1074,204 @@
     }
   }
   @media (prefers-reduced-motion: reduce) {
-    .tg-progress--striped .tg-progress__bar, .tg-spinner {
+    .tg-progress--striped .tg-progress__bar::after, .tg-spinner {
       animation: none;
     }
     dialog.tg-modal[open] {
       animation: none;
+    }
+  }
+}
+@layer tds.components {
+  .tg-ripple {
+    --ripple-duration: 500ms;
+    --ring-duration: 600ms;
+    --wash-duration: 700ms;
+    --ring-width: 1px;
+    --ripple-color: rgb(255 255 255 / .25);
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+    -webkit-tap-highlight-color: transparent;
+  }
+  .tg-ripple--dark {
+    --ripple-color: rgb(255 255 255 / .25);
+  }
+  .tg-ripple--light {
+    --ripple-color: rgb(0 0 0 / .25);
+  }
+  .tg-ripple--inline {
+    display: inline-flex;
+    border-radius: var(--radius-pill);
+  }
+  .tg-ripple__wave, .tg-ripple__ring, .tg-ripple__wash {
+    position: absolute;
+    pointer-events: none;
+    z-index: -1;
+  }
+  .tg-ripple__wave {
+    border-radius: 50%;
+    background: var(--ripple-color);
+    transform: translate(-50%, -50%);
+    inline-size: 0;
+    block-size: 0;
+    animation: tg-ripple-wave var(--ripple-duration) ease-out forwards;
+  }
+  .tg-ripple__ring {
+    inset: 0;
+    border-radius: inherit;
+    box-shadow: inset 0 0 0 var(--ring-width) var(--ripple-border-color, var(--ripple-color));
+    opacity: 0;
+    animation: tg-ripple-ring var(--ring-duration) ease-out forwards;
+  }
+  .tg-ripple__wash {
+    inset: 0;
+    border-radius: inherit;
+    background: var(--ripple-hover-color, var(--ripple-color));
+    opacity: 0;
+    animation: tg-ripple-wash var(--wash-duration) ease-out forwards;
+  }
+  @keyframes tg-ripple-wave {
+    from {
+      inline-size: 0;
+      block-size: 0;
+      opacity: 0.6;
+    }
+    to {
+      inline-size: var(--ripple-size, 0px);
+      block-size: var(--ripple-size, 0px);
+      opacity: 0;
+    }
+  }
+  @keyframes tg-ripple-ring {
+    0% {
+      opacity: 0;
+      filter: blur(4px);
+    }
+    10%, 60% {
+      opacity: 1;
+      filter: blur(0);
+    }
+    100% {
+      opacity: 0;
+      filter: blur(4px);
+    }
+  }
+  @keyframes tg-ripple-wash {
+    0% {
+      opacity: 0;
+      transform: scale(0.96);
+    }
+    40% {
+      opacity: 0.6;
+      transform: scale(1);
+    }
+    100% {
+      opacity: 0;
+      transform: scale(1.02);
+    }
+  }
+  .tg-glass {
+    --blur: 15px;
+    background: color-mix(in srgb, var(--bg-body) 90%, transparent);
+    border-radius: var(--radius-lg);
+    -webkit-tap-highlight-color: transparent;
+  }
+  @supports (backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px)) {
+    .tg-glass {
+      backdrop-filter: blur(var(--blur)) saturate(120%);
+      -webkit-backdrop-filter: blur(var(--blur)) saturate(120%);
+    }
+  }
+  .tg-glass > * {
+    isolation: isolate;
+  }
+  .tg-glass--backdrop {
+    --blur: 25px;
+    background: color-mix(in srgb, var(--bg-body) 75%, transparent);
+  }
+  .tg-glass .tg-header {
+    background-color: transparent;
+  }
+  .tg-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: var(--z-overlay);
+    display: grid;
+    place-items: center;
+    background: rgba(0, 0, 0, 0.35);
+  }
+  .tg-overlay--absolute {
+    position: absolute;
+  }
+  .tg-fade-in {
+    animation: tg-effect-in 350ms ease both;
+  }
+  .tg-fade-out {
+    animation: tg-effect-out 350ms ease both;
+  }
+  @keyframes tg-effect-in {
+    from {
+      opacity: 0;
+      transform: scale(0.96);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+  @keyframes tg-effect-out {
+    from {
+      opacity: 1;
+      transform: scale(1);
+    }
+    to {
+      opacity: 0;
+      transform: scale(0.96);
+      visibility: hidden;
+    }
+  }
+  .tg-transition {
+    opacity: 1;
+    transform: scale(1);
+    transform-origin: center;
+    visibility: visible;
+    transition: opacity 300ms ease, transform 300ms ease, visibility 0s;
+  }
+  .tg-transition:is(.is-hidden, [aria-hidden=true]) {
+    opacity: 0;
+    transform: scale(0);
+    pointer-events: none;
+    visibility: hidden;
+    transition: opacity 300ms ease, transform 300ms ease, visibility 0s linear 300ms;
+  }
+  @media (prefers-reduced-motion: no-preference) {
+    .tg-glass {
+      animation: tg-glass-in 160ms ease-out both;
+    }
+    @keyframes tg-glass-in {
+      from {
+        opacity: 0;
+      }
+      to {
+        opacity: 1;
+      }
+    }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .tg-ripple__wave, .tg-ripple__ring, .tg-ripple__wash {
+      display: none;
+      animation: none;
+    }
+    .tg-glass, .tg-fade-in, .tg-fade-out {
+      animation: none;
+    }
+    .tg-fade-out {
+      opacity: 0;
+      visibility: hidden;
+    }
+    .tg-transition, .tg-transition:is(.is-hidden, [aria-hidden=true]) {
+      transition: none;
     }
   }
 }
@@ -954,6 +1307,22 @@
   .tg-section {
     margin-block: var(--space-5);
   }
+  .tg-ios-spacer {
+    inline-size: 100%;
+    block-size: var(--ios-h);
+    flex-shrink: 0;
+  }
+  .tg-no-select {
+    -webkit-user-select: none;
+    user-select: none;
+    -webkit-touch-callout: none;
+  }
+  .tg-no-select :is(img, svg) {
+    -webkit-user-drag: none;
+  }
+  .tg-no-events {
+    pointer-events: none;
+  }
   .tg-grow {
     flex: 1 1 0%;
   }
@@ -968,6 +1337,9 @@
   }
   .tg-text-muted {
     color: var(--hint-color);
+  }
+  .tg-text {
+    color: var(--text-color);
   }
   .tg-text-accent {
     color: var(--accent-text-color);
@@ -994,10 +1366,12 @@
   .tg-no-radius-top {
     border-start-start-radius: 0;
     border-start-end-radius: 0;
+    border-block-start-color: transparent;
   }
   .tg-no-radius-bottom {
     border-end-start-radius: 0;
     border-end-end-radius: 0;
+    border-block-end-color: transparent;
   }
   .tg-no-border {
     border: 0;

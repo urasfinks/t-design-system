@@ -13,21 +13,24 @@
     -webkit-tap-highlight-color: transparent;
   }
   :where(.tg-btn, .tg-icon-btn, .tg-input, .tg-select, .tg-textarea, .tg-tab,
-    .tg-tabbar__item, .tg-switch, .tg-chip, .tg-avatar) {
+    .tg-tabbar__item, .tg-switch, .tg-chip, .tg-avatar, .tg-dot) {
     font: inherit;
     letter-spacing: inherit;
     color: inherit;
   }
-  :where(.tg-btn, .tg-icon-btn, .tg-tab, .tg-tabbar__item, .tg-switch, .tg-chip, .tg-avatar, .tg-check, .tg-radio, .tg-link):focus-visible {
+  :where(.tg-btn, .tg-icon-btn, .tg-tab, .tg-tabbar__item, .tg-switch, .tg-chip, .tg-avatar, .tg-check, .tg-radio, .tg-link, .tg-dot):focus-visible {
     outline: 2px solid var(--link-color);
     outline-offset: 3px;
   }
   .tg-link { color: var(--link-color); text-underline-offset: .2em; }
+  button:where([class*='tg-']) { -webkit-user-select: none; user-select: none; }
+  button.tg-avatar img { -webkit-user-drag: none; pointer-events: none; }
   .tg-link:hover { text-decoration-thickness: 2px; }
   @media (prefers-reduced-motion: reduce) {
     :where([class*='tg-'], [class*='tg-']::before, [class*='tg-']::after) {
       --duration: 0s;
       --duration-fast: 0s;
+      --progress-duration: 0s;
       animation-duration: .01ms;
       animation-iteration-count: 1;
       transition-duration: 0s;
@@ -42,7 +45,7 @@
 }
 
 @layer tds.components {
-  :is(.tg-btn, .tg-icon-btn, .tg-chip, .tg-switch, .tg-tab, .tg-tabbar__item, .tg-avatar):is(:disabled, [aria-disabled='true']) {
+  :is(.tg-btn, .tg-icon-btn, .tg-chip, .tg-switch, .tg-tab, .tg-tabbar__item, .tg-avatar, .tg-dot):is(:disabled, [aria-disabled='true']) {
     opacity: .45;
     cursor: not-allowed;
     transform: none;
