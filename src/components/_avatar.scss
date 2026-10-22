@@ -26,5 +26,5 @@
   .tg-avatar > .tg-badge { position: absolute; inset-block-start: -.125rem; inset-inline-end: -.25rem; box-shadow: 0 0 0 2px var(--section-bg-color); pointer-events: none; }
   .tg-badge--primary { background: var(--button-color); color: var(--button-text-color); }
   .tg-badge--secondary { background: var(--secondary-bg-color); color: var(--text-color); }
-  .tg-badge--destructive { background: var(--destructive-text-color); color: var(--section-bg-color); }
+  .tg-badge--destructive { background: var(--destructive-text-color); color: var(--button-text-color); }
 }

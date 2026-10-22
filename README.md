@@ -30,7 +30,8 @@ npm run dev
 </article>
 ```
 
-В `dist/` лежат обычная и минифицированная версии основного файла и адаптера Telegram.
+В `dist/` лежат обычная и минифицированная версии основного файла и адаптера Telegram,
+а также необязательный модуль `telegram.js` для синхронизации темы с SDK.
 Шрифты — системные; сетевые запросы к шрифтовым сервисам отсутствуют.
 
 Пакет предназначен для локального использования (`private: true`). Чтобы получить
@@ -101,14 +102,27 @@ Safari/iOS 16.2+. Старые WebView не входят в целевую по�
 <html lang="ru" data-theme="dark">
 ```
 
-Значения `light` и `dark` переопределяют выбор ОС. Для автоматического режима удалите
-`data-theme`. Вложенные независимые темы в первой версии не поддерживаются.
+Палитры перенесены без изменения 51 исходного значения из `colorSchema` в
+`ai-splitter-ng/src/main.ts`, включая `highlight_bg_color` и `highlight_ficus_color`.
+
+| `data-theme` | Исходная палитра | Фон / кнопка |
+| --- | --- | --- |
+| `light` | `light` | `#f5f5f5` / `#2481cc` |
+| `dark` | `desktopDark` | `#18222d` / `#2ea6ff` |
+| `ios-dark` | `iosDark` | `#000000` / `#3e88f7` |
+
+Явный выбор переопределяет ОС. Для автоматического режима удалите `data-theme`.
+Атрибут `data-platform="ios"` на html выбирает iOS-палитру в автоматическом тёмном
+режиме и при `data-theme="dark"`; светлая тема остаётся той же. `ios-dark` всегда
+выбирает iOS-палитру независимо от платформы. JS-помощник определяет платформу
+через SDK и user agent; CSS самостоятельно не определяет устройство.
+Вложенные независимые темы в первой версии не поддерживаются.
 
 | Группа | Публичные переменные |
 | --- | --- |
 | Цвета | `--bg-color`, `--text-color`, `--hint-color`, `--link-color`, `--button-color`, `--button-text-color` |
 | Поверхности | `--section-bg-color`, `--secondary-bg-color`, `--header-bg-color`, `--bottom-bar-bg-color` |
-| Семантика | `--accent-text-color`, `--destructive-text-color`, `--subtitle-text-color`, `--section-header-text-color`, `--section-separator-color` |
+| Семантика | `--accent-text-color`, `--destructive-text-color`, `--subtitle-text-color`, `--section-header-text-color`, `--section-separator-color`, `--highlight-bg-color`, `--highlight-ficus-color` |
 | Шрифты | `--font-family`, `--fs-xs`, `--fs-sm`, `--fs`, `--fs-lg`, `--fw-regular`, `--fw-medium`, `--fw-semibold` |
 | Ритм | `--space-1` … `--space-6`, `--space-8` (4, 8, 12, 16, 20, 24, 32 px при 1rem = 16px) |
 | Геометрия | `--radius-xs`, `--radius-sm`, `--radius`, `--radius-lg`, `--radius-pill`, `--control-h`, `--icon-avatar` |
@@ -130,26 +144,54 @@ Safari/iOS 16.2+. Старые WebView не входят в целевую по�
 <link rel="stylesheet" href="/styles/telegram.min.css">
 ```
 
-SDK приложения задаёт официальные `--tg-theme-*` переменные и обновляет их при смене
-темы. Адаптер использует их, затем старые `--tg-*` имена из ai-splitter, затем
-самостоятельную палитру фреймворка. Без SDK интерфейс остаётся оформленным.
-Частичная тема Telegram дополняется резервной палитрой текущего режима.
+По умолчанию используются **палитры исходного приложения**, а не цвета из
+`Telegram.WebApp.themeParams`. Адаптер читает старые `--tg-*` переменные,
+которые устанавливает исходный `applyTheme()`, затем резервные значения
+выбранной палитры. Переменные SDK `--tg-theme-*` не подменяют эти цвета.
 
-Пример без Telegram:
+Чтобы автоматически повторить логику `applyFromTelegram()`:
 
-```css
-:root {
-  --tg-theme-button-color: #2678b6;
-  --tg-theme-button-text-color: #fff;
-}
+```js
+import { initTelegramTheme } from 't-design-system/telegram/js';
+
+const stopThemeSync = initTelegramTheme(window.Telegram?.WebApp);
+// При уничтожении приложения / размонтировании интеграции:
+// stopThemeSync();
 ```
 
-Для резервной тёмной палитры и нативных контролов синхронизируйте `data-theme` с
-`Telegram.WebApp.colorScheme` при запуске и событии `themeChanged`. Адаптер не
-подключает SDK, не вызывает API и не управляет событиями. Цвета заданы в отдельном
-CSS-слое темы; ваши переопределения вне слоёв сохраняют приоритет.
+Для HTML без сборщика модуль можно импортировать по пути:
 
-Документация переменных: [Telegram ThemeParams](https://core.telegram.org/bots/webapps#themeparams).
+```html
+<script type="module">
+  import { initTelegramTheme } from '/styles/telegram.js';
+  initTelegramTheme(window.Telegram?.WebApp);
+</script>
+```
+
+SDK Telegram должен быть подключён до вызова помощника. Он подписывается на
+`themeChanged`, вызывает `ready()` и сразу применяет тему: `light` до готовности
+параметров SDK, `dark` для тёмной Desktop, `ios-dark` для тёмной iOS.
+Платформа iOS определяется по `tg.platform` либо `iPad|iPhone|iPod` в user agent,
+как в исходном проекте. Устанавливается прежний `--tg-ios-h` (0.8rem для iOS
+с готовой темой, иначе 0rem). Обработчик не копирует цвета SDK и не скрывает страницу.
+
+Возвращаемая функция отключает подписку; последняя выбранная тема сохраняется.
+Повторные инициализации должны сопровождаться вызовом предыдущей функции очистки.
+Без Telegram помощник ничего не меняет: CSS продолжает работать самостоятельно.
+Для обычного сайта JavaScript не требуется.
+
+Если нужны именно **цвета пользователя Telegram**, включить отдельный режим:
+
+```html
+<html lang="ru" data-telegram-theme="native">
+```
+
+В этом режиме порядок резервирования: официальные `--tg-theme-*` → старые
+`--tg-*` → выбранная палитра проекта. Отсутствующие цвета SDK дополняются текущей
+палитрой. Удаление `data-telegram-theme` возвращает исходные цвета приложения.
+Ваш CSS вне слоёв имеет приоритет в обоих режимах.
+
+Документация SDK: [Telegram ThemeParams](https://core.telegram.org/bots/webapps#themeparams).
 
 ## SCSS по модулям
 
@@ -264,8 +306,8 @@ CSS-слое темы; ваши переопределения вне слоёв
 | Overlay с `.tg-modal` и атрибутом `open` | Нативный `<dialog class="tg-modal">` с `showModal()` |
 
 Ripple, подсветка элементов счёта, CDK-overlay, стили маршрутов и Angular-компоненты
-остаются в приложении. Цвета самостоятельных тем нормализованы для читаемости;
-адаптер Telegram сохраняет цвета, которые передаёт SDK.
+остаются в приложении. Палитры `light`, `desktopDark`, `iosDark` сохранены дословно;
+использование цветов SDK Telegram включается только через явный режим `native`.
 Исходный проект не изменяется. Лицензия для распространения кода должна быть
 определена владельцем отдельно; новая лицензия в этот пакет не добавлялась.
 
