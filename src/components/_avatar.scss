@@ -59,6 +59,18 @@
       text-transform: uppercase;
     }
 
+    &--outlined {
+      border-color: var(--border-color);
+
+      & > .tg-avatar__initials {
+        font-weight: 400;
+      }
+
+      &[aria-checked='true'] {
+        border-color: var(--avatar-selection-ring-color, var(--control-border-color));
+      }
+    }
+
     &-initials > .tg-avatar__clip {
       display: flex;
       align-items: center;
@@ -93,6 +105,7 @@
     min-inline-size: 1.5rem;
     min-block-size: 1.5rem;
     padding: .125rem .5rem;
+    border: var(--border);
     border-radius: var(--radius-pill);
     background: var(--secondary-bg-color);
     color: var(--text-color);

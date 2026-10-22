@@ -19,7 +19,8 @@
     "./scss/utilities": "./src/utilities/_index.scss",
     "./scss/components/*": "./src/components/_*.scss",
     "./telegram/js": "./dist/telegram.js",
-    "./effects/js": "./dist/effects.js"
+    "./effects/js": "./dist/effects.js",
+    "./icons": "./dist/icons.svg"
   },
   "files": [
     "dist",

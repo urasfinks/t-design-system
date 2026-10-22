@@ -22,7 +22,7 @@
     overflow-wrap: anywhere;
     transition: background-color var(--duration) var(--ease), color var(--duration) var(--ease), border-color var(--duration) var(--ease), transform var(--duration-fast) var(--ease);
 
-    svg {
+    svg:not(.tg-icon) {
       inline-size: 1.25em;
       block-size: 1.25em;
       flex-shrink: 0;
@@ -72,6 +72,10 @@
     padding: var(--space-2);
     border: var(--border);
     border-radius: var(--radius-control);
+  }
+
+  .tg-btn--pill, .tg-icon-btn--pill {
+    border-radius: var(--radius-pill);
   }
 
   .tg-btn--primary, .tg-icon-btn--primary {

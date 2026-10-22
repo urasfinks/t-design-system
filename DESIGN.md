@@ -63,3 +63,40 @@ text and controls across all three themes and accent overrides; 320–1440 px
 layouts, keyboard focus, reduced motion, long labels and 200% text. Review actual
 screenshots before completion. Independent critics review visuals, accessibility
 and CSS/API compatibility, followed by a reconciliation pass.
+
+
+## Reference and icon direction
+
+The user supplied a dark receipt-list reference from ai-splitter-ng. Use its quiet
+surface hierarchy, compact rows, soft separators and restrained accent as evidence,
+not as a pixel-perfect target or a claim that the original is ideal. Preserve the
+improvements to feedback, form states and accessibility already accepted.
+
+Icons use one official Feather subset (v4.29.2, MIT), also identified in the source
+application. The catalog uses local SVG symbols rather than hand-redrawn glyphs;
+24×24 geometry, stroke 2, round caps/joins, 16/20/24px roles. Feather is a web icon
+choice, not an assertion that these are Apple's SF Symbols. Capsule action buttons
+are available as explicit modifiers, alongside the current default geometry.
+
+The second reference shows a detailed list inside a dark rounded section, with
+item text and amounts on a shared row, quiet dashed separators, participant
+avatars with rings and numeric overlays, compact capsule icon actions, totals
+and a separate participant section. Treat these as composition evidence:
+
+- Separate sections through surface and spacing, with restrained borders.
+- Distinguish primary actions through the accent; keep supporting actions tonal.
+- Keep names, quantities and amounts aligned; use tabular numerals for amounts.
+- Let avatar rings express selection and badges carry quantities, without
+  turning every status into a bright filled label.
+- Keep touch targets generous even when visible icon controls look compact.
+
+The reference's framing is intentional: keep a fine border around count capsules.
+Quantity overlays use the secondary badge rather than the accent status badge.
+`tg-avatar--outlined` keeps the filled initials circle and a single neutral outer
+ring across the existing padding gap, matching the source reference. Selection
+strengthens this outer ring
+(`--avatar-selection-ring-color`, defaulting to `--control-border-color`). Keyboard
+focus remains separate. The default avatar still supports accent selection.
+
+These references guide generic components, not a copy of the receipt application
+or a requirement to reproduce its data, business logic or every visual decision.

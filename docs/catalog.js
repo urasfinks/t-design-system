@@ -138,3 +138,6 @@ for (const button of document.querySelectorAll('.tg-pagination .tg-dot')) {
     document.querySelector('#demo-page-status').textContent = `Страница ${index} из 3`;
   });
 }
+
+// The refresh icon has a real refresh action; all demo state is recreated on load.
+document.querySelector('#reload-examples').addEventListener('click', () => location.reload());
