@@ -36,9 +36,11 @@ try {
     }
     const switchBackground = await page.getByRole('switch').evaluate(el => ({
       track: getComputedStyle(el, '::before').backgroundColor,
+      border: getComputedStyle(el, '::before').borderTopColor,
       input: getComputedStyle(document.querySelector('.tg-input')).backgroundColor,
     }));
     assert.equal(switchBackground.track, switchBackground.input, `${theme}: idle switch matches input background`);
+    assert.equal(switchBackground.border, 'rgba(0, 0, 0, 0)');
     const toggle = page.getByRole('switch');
     await toggle.evaluate(el => el.setAttribute('aria-checked', 'true'));
     const active = await toggle.evaluate(el => {
@@ -46,6 +48,7 @@ try {
       probe.style.color = 'var(--accent-main)'; document.body.append(probe);
       const accent = getComputedStyle(probe).color; probe.remove();
       return { accent, track: getComputedStyle(el, '::before').backgroundColor,
+        border: getComputedStyle(el, '::before').borderTopColor,
         radio: getComputedStyle(document.querySelector('.tg-radio:checked')).backgroundColor };
     });
     assert.equal(active.track, active.accent, `${theme}: checked switch uses main accent`);
@@ -55,12 +58,16 @@ try {
     await page.getByLabel('Первый', { exact: true }).check();
     const idle = await radio.evaluate(el => ({
       appearance: getComputedStyle(el).appearance,
+      border: getComputedStyle(el).borderTopColor,
       background: getComputedStyle(el).backgroundColor,
       inputBackground: getComputedStyle(document.querySelector('.tg-input')).backgroundColor,
     }));
     assert.equal(idle.appearance, 'none', `${theme}: radio has a themed idle surface`);
+    assert.equal(idle.border, 'rgba(0, 0, 0, 0)');
     assert.equal(idle.background, idle.inputBackground, `${theme}: idle radio matches input background`);
     const checkbox = page.getByLabel('Запомнить', { exact: true });
+    await checkbox.uncheck();
+    assert.equal(await checkbox.evaluate(el => getComputedStyle(el).borderTopColor), 'rgba(0, 0, 0, 0)');
     await checkbox.check();
     assert.ok(await checkbox.isChecked());
     assert.equal(await checkbox.evaluate(el => getComputedStyle(el, '::before').content), '""');
