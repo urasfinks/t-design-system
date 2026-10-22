@@ -60,15 +60,18 @@
     transition: background var(--duration);
   }
   .tg-switch__knob {
+    position: absolute;
+    inset-inline-start: .125rem;
+    inset-block-start: 50%;
+    transform: translateY(-50%);
     inline-size: calc(var(--h) - .25rem);
     block-size: calc(var(--h) - .25rem);
     border-radius: 50%;
-    background: var(--section-bg-color);
+    background: var(--switch-knob-color);
     box-shadow: 0 1px 3px #0003;
-    transition: transform var(--duration) var(--ease);
+    transition: inset-inline-start var(--duration) var(--ease);
   }
   .tg-switch:is([aria-checked='true'], .tg-switch--on)::before { background: var(--button-color); border-color: transparent; }
-  .tg-switch:is([aria-checked='true'], .tg-switch--on) .tg-switch__knob { transform: translateX(calc(var(--w) - var(--h))); }
-  [dir='rtl'] .tg-switch:is([aria-checked='true'], .tg-switch--on) .tg-switch__knob { transform: translateX(calc(var(--h) - var(--w))); }
+  .tg-switch:is([aria-checked='true'], .tg-switch--on) .tg-switch__knob { inset-inline-start: calc(var(--w) - var(--h) + .125rem); }
   .tg-component-size { inline-size: 3.25rem; min-block-size: var(--control-h); display: inline-flex; align-items: center; }
 }

@@ -14,3 +14,6 @@ for (const [input, name] of [['index', 't-design-system'], ['telegram', 'telegra
 
 await copyFile(new URL('src/telegram.mjs', root), new URL('dist/telegram.js', root));
 console.log('Built dist/telegram.js (optional theme bridge)');
+
+await copyFile(new URL('src/effects.mjs', root), new URL('dist/effects.js', root));
+console.log('Built dist/effects.js (optional ripple helper)');

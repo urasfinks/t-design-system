@@ -1,3 +1,6 @@
+import { initRipple } from '../dist/effects.js';
+initRipple();
+
 const root = document.documentElement;
 const themeSelect = document.querySelector('#theme');
 let storage;
@@ -38,8 +41,9 @@ for (const [index, tab] of tabs.entries()) {
   tab.addEventListener('click', () => selectTab(tab));
   tab.addEventListener('keydown', event => {
     let next;
-    if (event.key === 'ArrowRight') next = (index + 1) % tabs.length;
-    if (event.key === 'ArrowLeft') next = (index - 1 + tabs.length) % tabs.length;
+    const direction = getComputedStyle(tab.parentElement).direction === 'rtl' ? -1 : 1;
+    if (event.key === 'ArrowRight') next = (index + direction + tabs.length) % tabs.length;
+    if (event.key === 'ArrowLeft') next = (index - direction + tabs.length) % tabs.length;
     if (event.key === 'Home') next = 0;
     if (event.key === 'End') next = tabs.length - 1;
     if (next !== undefined) { event.preventDefault(); selectTab(tabs[next], true); }
@@ -86,4 +90,38 @@ if ('IntersectionObserver' in window) {
     }
   }, { rootMargin: '-100px 0px -60% 0px', threshold: 0 });
   for (const section of document.querySelectorAll('main > section')) observer.observe(section);
+}
+
+const upload = document.querySelector('#demo-file');
+const uploadPreview = document.querySelector('#demo-upload-preview');
+const uploadStatus = document.querySelector('#demo-upload-status');
+let previewURL;
+upload.addEventListener('change', () => {
+  if (previewURL) URL.revokeObjectURL(previewURL);
+  previewURL = undefined;
+  uploadPreview.hidden = true;
+  uploadPreview.removeAttribute('src');
+  const file = upload.files[0];
+  if (!file) { uploadStatus.textContent = 'Файл не выбран'; return; }
+  if (!file.type.startsWith('image/')) { uploadStatus.textContent = 'Выберите изображение'; return; }
+  previewURL = URL.createObjectURL(file);
+  uploadPreview.src = previewURL;
+  uploadPreview.hidden = false;
+  uploadStatus.textContent = `Выбран файл: ${file.name}`;
+});
+const snackbar = document.querySelector('#demo-snackbar');
+let snackbarTimer;
+document.querySelector('#show-snackbar').addEventListener('click', () => {
+  clearTimeout(snackbarTimer);
+  snackbar.querySelector('.tg-snackbar__content').textContent = 'Готово: уведомление в верхней части экрана';
+  snackbar.classList.add('tg-snackbar--show');
+  snackbarTimer = setTimeout(() => snackbar.classList.remove('tg-snackbar--show'), 3200);
+});
+
+for (const button of document.querySelectorAll('.tg-pagination .tg-dot')) {
+  button.addEventListener('click', () => {
+    for (const sibling of button.parentElement.querySelectorAll('.tg-dot')) sibling.setAttribute('aria-current', sibling === button ? 'page' : 'false');
+    const index = [...button.parentElement.children].indexOf(button) + 1;
+    document.querySelector('#demo-page-status').textContent = `Страница ${index} из 3`;
+  });
 }

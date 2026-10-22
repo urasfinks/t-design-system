@@ -12,8 +12,9 @@ npm run dev
 ```
 
 Открыть [локальную витрину](http://127.0.0.1:4173/docs/).
-Она также открывается напрямую из `docs/index.html` после сборки. Сервис слушает
-только localhost и отдаёт только `docs/` и `dist/`. После изменения SCSS выполнить
+Для интерактивных примеров используется локальный сервер: ES-модули витрины
+не предназначены для открытия через file://. Сервис слушает только localhost
+и отдаёт только файлы внутри `docs/` и `dist/`. После изменения SCSS выполнить
 `npm run build` и обновить страницу.
 
 ## Подключить готовый CSS
@@ -31,7 +32,8 @@ npm run dev
 ```
 
 В `dist/` лежат обычная и минифицированная версии основного файла и адаптера Telegram,
-а также необязательный модуль `telegram.js` для синхронизации темы с SDK.
+а также необязательные модули `telegram.js` для синхронизации темы с SDK
+и `effects.js` для эффекта нажатия.
 Шрифты — системные; сетевые запросы к шрифтовым сервисам отсутствуют.
 
 Пакет предназначен для локального использования (`private: true`). Чтобы получить
@@ -51,15 +53,31 @@ import 't-design-system/css';
 import 't-design-system/css/min';
 ```
 
-Для Angular добавить в глобальный `src/styles.scss` (не в инкапсулированные стили компонента):
+Для Angular добавить готовый файл в глобальный массив `styles` в `angular.json`:
 
-```scss
-@import 't-design-system/css';
+```json
+{
+  "projects": {
+    "your-app": {
+      "architect": {
+        "build": {
+          "options": {
+            "styles": [
+              "node_modules/t-design-system/dist/t-design-system.css",
+              "src/styles.scss"
+            ]
+          }
+        }
+      }
+    }
+  }
+}
 ```
 
-Это CSS-импорт, не устаревший Sass-импорт исходных модулей. Если сборщик не разрешает
-экспорт пакета, добавить `node_modules/t-design-system/dist/t-design-system.css`
-в массив `styles` в `angular.json`. Не подключать оба способа одновременно.
+Вставьте путь в существующий массив, сохранив остальные настройки приложения.
+`src/styles.scss` после фреймворка содержит ваши переопределения. Стили должны
+быть глобальными, а не инкапсулированными стилями компонента. Для SCSS-модулей
+используйте описанный ниже `@use`, не extensionless Sass `@import`.
 
 ## Каскад
 
@@ -232,9 +250,12 @@ SDK Telegram должен быть подключён до вызова помо
 | Нижняя панель | `.tg-tabbar`, `.tg-tabbar__item` | `aria-current="page"` |
 | Аватар | `.tg-avatar`, `.tg-avatar__clip`, `.tg-avatar__initials` | Выбор кнопкой с `role="checkbox"`, `aria-checked` |
 | Бейдж | `.tg-badge`, `--primary`, `--secondary`, `--destructive` | Внутри аватара размещается в углу, отдельно — в потоке |
-| Сообщение | `.tg-notice`, `--destructive` | Для динамических сообщений приложение задаёт live region |
+| Сообщение | `.tg-notice`, `--destructive`, `--accent` | Для динамических сообщений приложение задаёт live region |
 | Прогресс | `.tg-progress`, `.tg-progress__bar`, `--striped` | Нативный `value/max` или `--progress:42%` с `role="progressbar"` |
-| Индикатор | `.tg-spinner` | Декоративный: `aria-hidden="true"`; состояние загрузки на родителе |
+| Индикатор | `.tg-spinner`, `--lg` | Декоративный: `aria-hidden="true"`; состояние загрузки на родителе |
+| Верхнее уведомление | `.tg-snackbar`, `--show`, `__content` | Приложение управляет текстом и видимостью |
+| Загрузка файла | `.tg-upload`, `--dashed`, `--disabled`, `__preview`, `__actions`, `__status` | Нативный `input[type=file]`, label и локальный preview |
+| Индикаторы страниц | `.tg-pagination`, `.tg-dot` | `aria-current="page"`; переключение данных реализует приложение |
 | Toast | `.tg-toast`, `.tg-toast--show` | Постоянный контейнер `role="status"`, обновляемый текст |
 | Диалог | `dialog.tg-modal`, `--sheet`, `__sheet`, `__header`, `__footer` | Нативные `showModal()` и `close()` |
 
@@ -280,7 +301,9 @@ SDK Telegram должен быть подключён до вызова помо
 - `.tg-gap-0` … `.tg-gap-6`, `.tg-p-0` … `.tg-p-6`, `.tg-mt-0` … `.tg-mt-6`, `.tg-mb-0` … `.tg-mb-6`.
 - `.tg-text-muted`, `.tg-text-accent`, `.tg-text-destructive`, `.tg-text-sm`, `.tg-text-center`.
 - `.tg-card-shadow`, `.tg-card-shadow-none`, `.tg-card-border-radius`, `.tg-no-border`.
-- `.tg-no-radius-top`, `.tg-no-radius-bottom`, `.tg-sr-only`.
+- `.tg-no-radius-top`, `.tg-no-radius-bottom` убирают также стыкующуюся границу.
+- `.tg-ios-spacer` потребляет `--ios-h` из Telegram-адаптера.
+- `.tg-sr-only`, `.tg-no-select`, `.tg-no-events`, `.tg-text`.
 
 Отступы и выравнивание используют логические CSS-свойства. Переключатель учитывает
 `dir="rtl"` на предке.
@@ -300,23 +323,76 @@ SDK Telegram должен быть подключён до вызова помо
 | `.w100`, `.h100` | `.tg-w-full`, `.tg-h-full` |
 | `.hint-color`, `.text-destructive` | `.tg-text-muted`, `.tg-text-destructive` |
 | `.without-border` | `.tg-no-border` |
-| `.notice-block` | `.tg-notice` |
-| `.spinner` | `.tg-spinner` |
+| `.notice-block` | `.tg-notice tg-notice--accent` |
+| `.spinner` | `.tg-spinner tg-spinner--lg` |
 | `.progress`, `.progress__bar` | `.tg-progress`, `.tg-progress__bar` |
+| `.overlay-blur` / `.backdrop-blur` | `.tg-glass` / `.tg-glass tg-glass--backdrop` |
+| `.btn-dark`, `.btn-light` | `.tg-ripple tg-ripple--dark`, `.tg-ripple tg-ripple--light` |
+| `.add-image`, `.add-image-2`, `.thumb` | `.tg-upload`, `.tg-upload--dashed`, `.tg-upload__preview` |
+| `.ios-extra` | `.tg-ios-spacer` |
+| `.overlay`, `.overlay-2` | `.tg-overlay`, `.tg-overlay--absolute` |
+| `.snackbar-container`, `.snackbar-hide` | `.tg-snackbar`, добавление/удаление `.tg-snackbar--show` |
+| `.fade-in`, `.fade-out`, `.transition-ot` | `.tg-fade-in`, `.tg-fade-out`, `.tg-transition` |
+| `.dot.active` | `.tg-dot[aria-current="page"]` |
 | Overlay с `.tg-modal` и атрибутом `open` | Нативный `<dialog class="tg-modal">` с `showModal()` |
 
-Ripple, подсветка элементов счёта, CDK-overlay, стили маршрутов и Angular-компоненты
-остаются в приложении. Палитры `light`, `desktopDark`, `iosDark` сохранены дословно;
+Бизнес-подсветка элементов счёта, CDK-overlay, стили маршрутов и Angular-компоненты
+остаются в приложении. Все общие `.tg-*` имена сохранены; классы без префикса
+переносятся по таблице, а не добавляются глобальными алиасами. Палитры `light`, `desktopDark`, `iosDark` сохранены дословно;
 использование цветов SDK Telegram включается только через явный режим `native`.
 Исходный проект не изменяется. Лицензия для распространения кода должна быть
 определена владельцем отдельно; новая лицензия в этот пакет не добавлялась.
+
+## Эффекты и поверхности
+
+CSS эффектов включён в основной файл; выборочный SCSS — `components/effects`.
+Они работают с теми же темами и не требуют Angular.
+
+```html
+<button class="tg-btn tg-btn--primary tg-ripple tg-ripple--dark">Нажать</button>
+<div class="tg-card tg-glass">Полупрозрачная панель</div>
+```
+
+```js
+import { initRipple } from 't-design-system/effects/js';
+const stopRipple = initRipple(); // по умолчанию document
+// Можно ограничить одним контейнером: initRipple(container).
+// При размонтировании:
+// stopRipple();
+```
+
+`tg-ripple--dark` — светлая волна на тёмной поверхности, `--light` — тёмная на
+светлой. Вариант `--inline` подходит для текстового фрагмента. `initRipple`
+делегирует клики, включая клавиатурную активацию кнопки, не меняет обработчики
+действий приложения. Disabled и reduced-motion не создают волну. Узлы эффекта
+удаляются после анимации с резервным таймером; cleanup удаляет подписку и волны.
+Повторно инициализировать один контейнер следует после вызова предыдущего cleanup.
+Тайминги исходника: `--ripple-duration:500ms`, `--ring-duration:600ms`,
+`--wash-duration:700ms`. Наличие `effects.js` не обязательно для остальных компонентов.
+
+`.tg-glass` использует blur 15px, `.tg-glass--backdrop` — 25px; без поддержки
+backdrop-filter остаётся полупрозрачная поверхность. `.tg-overlay` создаёт
+полноэкранную подложку; `--absolute` ограничивает её позиционированным контейнером.
+`.tg-fade-in`, `.tg-fade-out` и `.tg-transition` переносят исходные появления и
+скрытия. У transition скрытое состояние — `.is-hidden` или `aria-hidden="true"`.
+При удалении контента из навигации используйте также `hidden`/`inert` по состоянию
+приложения; CSS-эффект не управляет жизненным циклом и фокусом.
+
+Загрузка файла — оформление нативного поля. Реальный upload, проверку размера
+и работу с сервером реализует приложение. Для отключённого блока задайте
+`.tg-upload--disabled` и `disabled` на вложенном input. Витрина показывает только
+локальный preview и не отправляет файлы.
+
+Производные цвета фонов, прозрачность границ и формулы теней восстановлены из
+исходного `styles.scss`. Полный состав переноса и осознанные исключения описаны
+в [отчёте аудита](docs/source-audit.md) в репозитории.
 
 ## Проверки
 
 ```sh
 npm test                         # сборка и контракт CSS/SCSS
 npx playwright install chromium webkit  # один раз, если браузеры не установлены
-npm run test:browser              # темы, каскад, состояния, размеры, каталог
+npm run test:browser              # каталог + аудит исходных стилей + эффекты
 npm run test:browser -- --webkit  # те же проверки в WebKit
 npm pack --dry-run                # состав архива
 npm pack                         # локальный архив для установки

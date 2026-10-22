@@ -1,22 +1,37 @@
 @use '../base';
 @layer tds.components {
   .tg-notice { padding: var(--space-3) var(--space-4); border: var(--border); border-inline-start: 3px solid var(--link-color); border-radius: var(--radius); background: var(--section-bg-color); overflow-wrap: anywhere; }
+  .tg-notice--accent { background: var(--accent-text-color); color: var(--button-text-color); border-color: transparent; border-radius: var(--radius-lg); }
   .tg-notice--destructive { border-inline-start-color: var(--destructive-text-color); }
   .tg-progress { display: block; inline-size: 100%; block-size: .625rem; appearance: none; border: 0; border-radius: var(--radius-pill); background: var(--section-separator-color); overflow: hidden; color: var(--button-color); }
   .tg-progress::-webkit-progress-bar { background: var(--section-separator-color); border-radius: inherit; }
-  .tg-progress::-webkit-progress-value { background: var(--button-color); border-radius: inherit; transition: width var(--duration); }
+  .tg-progress::-webkit-progress-value { background: var(--button-color); border-radius: inherit; transition: width var(--progress-duration); }
   .tg-progress::-moz-progress-bar { background: var(--button-color); border-radius: inherit; }
-  .tg-progress__bar { display: block; inline-size: clamp(0%, var(--progress, 0%), 100%); block-size: 100%; background: var(--button-color); border-radius: inherit; transition: inline-size var(--duration); }
-  .tg-progress--striped .tg-progress__bar { background-image: repeating-linear-gradient(45deg, transparent 0 8px, #ffffff30 8px 16px); background-size: 24px 24px; animation: tg-stripes 1s linear infinite; }
-  @keyframes tg-stripes { to { background-position: 24px 0; } }
+  .tg-progress__bar { display: block; inline-size: clamp(0%, var(--progress, 0%), 100%); block-size: 100%; background: var(--button-color); border-radius: inherit; transition: inline-size var(--progress-duration); }
+  .tg-progress--striped { block-size: .875rem; }
+  .tg-progress--striped .tg-progress__bar { position: relative; overflow: hidden; }
+  .tg-progress--striped .tg-progress__bar::after {
+    content: '';
+    position: absolute;
+    inset: calc(var(--progress-stripe-blur) * -1.5);
+    pointer-events: none;
+    background: repeating-linear-gradient(45deg, #ffffff59 0 10px, transparent 10px var(--progress-stripe-size));
+    background-size: var(--progress-stripe-size) var(--progress-stripe-size);
+    filter: blur(var(--progress-stripe-blur));
+    animation: tg-stripes var(--progress-stripe-speed) linear infinite;
+  }
+  @keyframes tg-stripes { to { background-position: calc(var(--progress-stripe-size) * -1) 0; } }
   .tg-spinner { display: inline-block; inline-size: 1.25em; block-size: 1.25em; border: 2px solid currentColor; border-inline-end-color: transparent; border-radius: 50%; animation: tg-spin .8s linear infinite; vertical-align: middle; }
   @keyframes tg-spin { to { transform: rotate(1turn); } }
+  .tg-spinner--lg { inline-size: 4rem; block-size: 4rem; border: 6px solid rgb(255 255 255 / .2); border-block-start-color: var(--spinner-color); }
   .tg-toast {
     position: fixed;
-    inset-inline-start: 50%;
+    inset-inline: var(--space-4);
+    margin-inline: auto;
     inset-block-end: calc(var(--space-5) + var(--safe-area-bottom));
     z-index: var(--z-toast);
-    inline-size: max-content;
+    inline-size: fit-content;
+    overflow-wrap: anywhere;
     max-inline-size: calc(100% - var(--space-8));
     padding: var(--space-3) var(--space-5);
     border: var(--border);
@@ -26,11 +41,25 @@
     box-shadow: var(--shadow-elev);
     opacity: 0;
     visibility: hidden;
-    transform: translateX(-50%) translateY(.5rem);
+    transform: translateY(.5rem);
     pointer-events: none;
     transition: opacity var(--duration), transform var(--duration), visibility var(--duration);
   }
-  .tg-toast--show { opacity: 1; visibility: visible; transform: translateX(-50%); pointer-events: auto; }
+  .tg-toast--show { opacity: 1; visibility: visible; transform: none; pointer-events: auto; }
+  .tg-snackbar {
+    position: fixed;
+    inset-block-start: env(safe-area-inset-top, 0px);
+    inset-inline: 0;
+    z-index: var(--z-toast);
+    padding: var(--space-3);
+    visibility: hidden;
+    opacity: 0;
+    transform: translateY(-100%);
+    transition: opacity var(--duration), transform var(--duration), visibility var(--duration);
+    pointer-events: none;
+  }
+  .tg-snackbar--show { visibility: visible; opacity: 1; transform: none; }
+  .tg-snackbar__content { max-inline-size: 40rem; margin-inline: auto; overflow-wrap: anywhere; }
   dialog.tg-modal {
     inline-size: min(40rem, calc(100% - var(--space-8)));
     max-block-size: calc(100dvh - var(--space-8));
@@ -53,7 +82,7 @@
     .tg-modal--sheet .tg-modal__sheet { padding-block-end: calc(var(--space-5) + var(--safe-area-bottom)); }
   }
   @media (prefers-reduced-motion: reduce) {
-    .tg-progress--striped .tg-progress__bar, .tg-spinner { animation: none; }
+    .tg-progress--striped .tg-progress__bar::after, .tg-spinner { animation: none; }
     dialog.tg-modal[open] { animation: none; }
   }
 }

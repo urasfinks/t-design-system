@@ -2,7 +2,6 @@ import assert from 'node:assert/strict';
 import { chromium, webkit } from 'playwright';
 import { readFile, mkdir } from 'node:fs/promises';
 import { spawn } from 'node:child_process';
-import { once } from 'node:events';
 import { compileString } from 'sass';
 const css = await readFile('dist/t-design-system.css', 'utf8');
 const adapter = await readFile('dist/telegram.css', 'utf8');
@@ -13,9 +12,33 @@ const page = await browser.newPage({ viewport: { width: 1440, height: 1000 } });
 let checks = 0;
 const check = (label, condition) => { assert.ok(condition, label); checks++; console.log(`✓ ${label}`); };
 const style = (selector, property) => page.locator(selector).evaluate((el, p) => getComputedStyle(el).getPropertyValue(p).trim(), property);
+const bodyColor = value => page.evaluate(value => {
+  const reference = document.createElement('div');
+  reference.style.background = `color-mix(in srgb, ${value} 97%, white)`;
+  document.body.append(reference);
+  const color = getComputedStyle(reference).backgroundColor;
+  reference.remove();
+  return color;
+}, value);
 const server = spawn(process.execPath, ['scripts/serve.mjs'], { env: { ...process.env, PORT: '4174' }, stdio: ['ignore', 'pipe', 'inherit'] });
-const ready = once(server.stdout, 'data');
+const ready = new Promise((resolve, reject) => {
+  const finish = error => {
+    clearTimeout(timer);
+    server.stdout.off('data', onData);
+    server.off('exit', onExit);
+    server.off('error', onError);
+    if (error) reject(error); else resolve();
+  };
+  const onData = () => finish();
+  const onExit = code => finish(new Error(`Catalog server exited before ready (${code})`));
+  const onError = error => finish(error);
+  const timer = setTimeout(() => finish(new Error('Catalog server startup timed out')), 5000);
+  server.stdout.once('data', onData);
+  server.once('exit', onExit);
+  server.once('error', onError);
+});
 try {
+  await ready;
   await page.emulateMedia({ colorScheme: 'light', reducedMotion: 'reduce' });
   await page.setContent(`<style>${css}</style><button id="button" class="tg-btn tg-btn--primary">Кнопка</button><button id="disabled" class="tg-btn tg-btn--primary" disabled>Нет</button><div class="tg-card tg-p-0" id="card">Карточка</div><input class="tg-input" aria-label="Поле"><div class="tg-progress"><span class="tg-progress__bar"></span></div>`);
   for (const [name, mode] of [['light', 'light'], ['desktopDark', 'dark'], ['iosDark', 'ios-dark']]) {
@@ -24,27 +47,27 @@ try {
     check(`all 17 ${name} tokens match source main.ts exactly`, JSON.stringify(actual) === JSON.stringify(palettes[name]));
   }
   await page.evaluate(() => { delete document.documentElement.dataset.theme; });
-  check('light theme works without Telegram', await style('body', 'background-color') === 'rgb(245, 245, 245)');
+  check('light theme works without Telegram', await style('body', 'background-color') === await bodyColor('#f5f5f5'));
   check('controls have at least 44px touch target', Number.parseFloat(await style('#button', 'min-height')) >= 44);
   check('utilities override component padding', await style('#card', 'padding') === '0px');
   await page.emulateMedia({ colorScheme: 'dark' });
-  check('system dark theme', await style('body', 'background-color') === 'rgb(24, 34, 45)');
+  check('system dark theme', await style('body', 'background-color') === await bodyColor('#18222d'));
   await page.evaluate(() => document.documentElement.dataset.theme = 'light');
-  check('explicit light overrides dark OS', await style('body', 'background-color') === 'rgb(245, 245, 245)');
+  check('explicit light overrides dark OS', await style('body', 'background-color') === await bodyColor('#f5f5f5'));
   await page.emulateMedia({ colorScheme: 'light' });
   await page.evaluate(() => document.documentElement.dataset.theme = 'dark');
-  check('explicit dark overrides light OS', await style('body', 'background-color') === 'rgb(24, 34, 45)');
+  check('explicit dark overrides light OS', await style('body', 'background-color') === await bodyColor('#18222d'));
   await page.evaluate(() => document.documentElement.dataset.platform = 'ios');
-  check('dark mode selects iOS palette on iOS platform', await style('body', 'background-color') === 'rgb(0, 0, 0)');
+  check('dark mode selects iOS palette on iOS platform', await style('body', 'background-color') === await bodyColor('#000000'));
   await page.evaluate(() => { delete document.documentElement.dataset.theme; });
   await page.emulateMedia({ colorScheme: 'dark' });
-  check('automatic dark mode respects iOS platform', await style('body', 'background-color') === 'rgb(0, 0, 0)');
+  check('automatic dark mode respects iOS platform', await style('body', 'background-color') === await bodyColor('#000000'));
   await page.evaluate(() => document.documentElement.dataset.theme = 'light');
-  check('explicit light remains light on iOS', await style('body', 'background-color') === 'rgb(245, 245, 245)');
+  check('explicit light remains light on iOS', await style('body', 'background-color') === await bodyColor('#f5f5f5'));
   await page.evaluate(() => { delete document.documentElement.dataset.platform; document.documentElement.dataset.theme = 'dark'; });
   await page.emulateMedia({ colorScheme: 'light' });
   await page.addStyleTag({ content: adapter });
-  check('Telegram adapter fallback keeps dark palette', await style('body', 'background-color') === 'rgb(24, 34, 45)');
+  check('Telegram adapter fallback keeps dark palette', await style('body', 'background-color') === await bodyColor('#18222d'));
   await page.evaluate(() => {
     document.documentElement.style.setProperty('--tg-button-color', '#115522');
     document.documentElement.style.setProperty('--tg-theme-button-color', '#2244aa');
@@ -74,34 +97,51 @@ try {
   await page.setContent(`<style>${forms}</style><button class="tg-switch" disabled role="switch" aria-checked="false"><span class="tg-switch__knob"></span></button>`);
   check('standalone forms module styles disabled switches', Number(await style('.tg-switch', 'opacity')) < 1 && await style('.tg-switch', 'cursor') === 'not-allowed');
 
-  await Promise.race([ready, once(server, 'exit').then(([code]) => { throw new Error(`Server exited ${code}`); })]);
+
   const errors = [];
   page.on('pageerror', error => errors.push(error.message));
   const response = await page.goto('http://127.0.0.1:4174/docs/');
   check('component catalog is served', response.status() === 200);
+  const traversal = await page.request.get('http://127.0.0.1:4174/docs/%2e%2e%2fpackage.json');
+  check('HTTP server blocks encoded traversal', traversal.status() === 404);
   await page.getByLabel('Тема оформления').selectOption('dark');
   check('catalog theme control', await style('body', 'background-color') === 'rgb(24, 34, 45)');
   await page.getByLabel('Тема оформления').selectOption('ios-dark');
   check('catalog exposes iOS dark palette', await style('body', 'background-color') === 'rgb(44, 44, 46)');
   await page.getByLabel('Тема оформления').selectOption('light');
   check('primary link keeps button text color', await style('.hero-actions .tg-btn', 'color') === 'rgb(255, 255, 255)');
+  await page.locator('#demo-file').setInputFiles({ name: 'preview.png', mimeType: 'image/png', buffer: Buffer.from('iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8/x8AAwMCAO+jBv8AAAAASUVORK5CYII=', 'base64') });
+  check('file control shows local filename and preview', await page.locator('#demo-upload-preview').isVisible() && (await page.locator('#demo-upload-status').textContent()).includes('preview.png'));
+  await page.locator('#demo-file').setInputFiles([]);
+  check('clearing file resets the preview', !await page.locator('#demo-upload-preview').isVisible());
   await page.getByRole('switch', { name: 'Уведомления' }).click();
   check('catalog switch changes state', await page.getByRole('switch', { name: 'Уведомления' }).getAttribute('aria-checked') === 'true');
   await page.getByRole('tab', { name: 'Настройки' }).click();
   check('tab reveals matching panel', await page.getByRole('tabpanel', { name: 'Настройки' }).isVisible());
   await page.keyboard.press('Home');
   check('tabs support keyboard navigation', await page.getByRole('tab', { name: 'Обзор' }).getAttribute('aria-selected') === 'true');
+  await page.evaluate(() => document.documentElement.dir = 'rtl');
+  await page.keyboard.press('ArrowRight');
+  check('tab arrows respect RTL visual order', await page.getByRole('tab', { name: 'Настройки' }).getAttribute('aria-selected') === 'true');
+  await page.evaluate(() => document.documentElement.removeAttribute('dir'));
+  await page.getByRole('tab', { name: 'Обзор' }).click();
+  await page.getByRole('button', { name: 'Страница 2' }).click();
+  check('pagination exposes current page', await page.getByRole('button', { name: 'Страница 2' }).getAttribute('aria-current') === 'page');
+  await page.getByRole('button', { name: 'Страница 1' }).click();
   await page.getByRole('button', { name: 'Открыть диалог' }).click();
   check('native dialog opens', await page.getByRole('dialog').isVisible());
   await page.keyboard.press('Escape');
   check('Escape closes dialog', !await page.getByRole('dialog').isVisible());
   await page.getByRole('button', { name: 'Показать уведомление' }).click();
   check('toast is visible', await page.locator('#demo-toast').evaluate(el => getComputedStyle(el).visibility === 'visible'));
+  await page.getByRole('button', { name: 'Уведомление сверху' }).click();
+  check('top snackbar is visible', await page.locator('#demo-snackbar').evaluate(el => getComputedStyle(el).visibility === 'visible'));
   await page.getByLabel('Акцентный цвет').selectOption('green');
   check('catalog accent customizes components', await style('#primary-demo', 'background-color') === 'rgb(24, 116, 91)');
   await page.getByLabel('Акцентный цвет').selectOption('blue');
   await page.locator('#demo-toast').waitFor({ state: 'hidden' });
-  for (const width of [360, 768, 1440]) {
+  await page.locator('#demo-snackbar').waitFor({ state: 'hidden' });
+  for (const width of [320, 360, 768, 1440]) {
     await page.setViewportSize({ width, height: 1000 });
     check(`catalog has no horizontal overflow at ${width}px`, await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth));
   }
