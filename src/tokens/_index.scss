@@ -1,0 +1,54 @@
+@use '../layers';
+@layer tds.tokens {
+  :root {
+    --fs-xs: clamp(.75rem, .7rem + .2vw, .8125rem);
+    --fs-sm: clamp(.8125rem, .78rem + .25vw, .875rem);
+    --fs: clamp(.9375rem, .9rem + .3vw, 1rem);
+    --fs-lg: clamp(1rem, .98rem + .35vw, 1.125rem);
+    --fw-regular: 400;
+    --fw-medium: 500;
+    --fw-semibold: 600;
+    --font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    --radius-xs: .5rem;
+    --radius-sm: .625rem;
+    --radius: .75rem;
+    --radius-lg: 1rem;
+    --radius-pill: 9999px;
+    --control-h: clamp(2.75rem, 2.6rem + .8vw, 3rem);
+    --chip-h: clamp(2rem, 1.9rem + .5vw, 2.25rem);
+    --icon-btn-prep: clamp(2.25rem, 2.1rem + .6vw, 2.5rem);
+    --icon-btn: calc(var(--icon-btn-prep) + .25rem);
+    --icon-avatar: calc(var(--icon-btn-prep) + 1.5rem);
+    --space-1: .25rem;
+    --space-2: .5rem;
+    --space-3: .75rem;
+    --space-4: 1rem;
+    --space-5: 1.25rem;
+    --space-6: 1.5rem;
+    --space-8: 2rem;
+    --duration-fast: 120ms;
+    --duration: 180ms;
+    --ease: cubic-bezier(.2, .7, .3, 1);
+    --z-sticky: 20;
+    --z-overlay: 100;
+    --z-toast: 120;
+    --safe-area-bottom: env(safe-area-inset-bottom, 0px);
+    --ios-h: 0px;
+    --border-color: var(--section-separator-color);
+    --border: 1px solid var(--border-color);
+    --border-transparent: 1px solid color-mix(in srgb, var(--border-color) 50%, transparent);
+    --border-active: 1px solid var(--accent-text-color);
+    --focus: 0 0 0 .2rem color-mix(in srgb, var(--link-color) 25%, transparent);
+    --shadow-soft: 0 .25rem 1.25rem color-mix(in srgb, var(--text-color) 5%, transparent);
+    --shadow-elev: 0 .75rem 2.5rem color-mix(in srgb, var(--text-color) 12%, transparent);
+    --bg-body: var(--bg-color);
+    --section-color: var(--section-bg-color);
+    --section-color2: var(--secondary-bg-color);
+    --field-bg: var(--secondary-bg-color);
+    --field-bg-hover: color-mix(in srgb, var(--secondary-bg-color) 96%, var(--text-color));
+    --secondary-bg-color-transparent: color-mix(in srgb, var(--secondary-bg-color) 93%, transparent);
+    --button-color-transparent: color-mix(in srgb, var(--button-color) 93%, transparent);
+    --destructive-text-color-transparent: color-mix(in srgb, var(--destructive-text-color) 93%, transparent);
+    --section-bg-color-transparent: color-mix(in srgb, var(--section-bg-color) 50%, transparent);
+  }
+}

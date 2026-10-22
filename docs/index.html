@@ -1,0 +1,183 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light dark">
+  <meta name="description" content="t-design-system — CSS-фреймворк для веба и Telegram Mini Apps. Компоненты, темы и примеры.">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%232369cb'/%3E%3Ctext x='23' y='47' fill='white' font-family='sans-serif' font-size='48' font-weight='600'%3Et%3C/text%3E%3C/svg%3E">
+  <link rel="stylesheet" href="../dist/t-design-system.css">
+  <link rel="stylesheet" href="catalog.css">
+  <script src="catalog.js" defer></script>
+  <title>t-design-system — Компоненты</title>
+</head>
+<body>
+<a class="skip-link" href="#content">К содержимому</a>
+<header class="site-header">
+  <a class="brand" href="#overview" aria-label="t-design-system, начало"><span class="brand-mark">t<span>·</span></span><span>t-design-system</span></a>
+  <div class="header-tools">
+    <span class="version">v0.1.0</span>
+    <label class="sr-label" for="theme">Тема оформления</label>
+    <select id="theme" class="theme-select" aria-label="Тема оформления"><option value="auto">Авто</option><option value="light">Светлая</option><option value="dark">Тёмная</option></select>
+  </div>
+</header>
+<div class="site-layout">
+<aside class="sidebar">
+  <div class="sidebar-label">БИБЛИОТЕКА</div>
+  <nav aria-label="Разделы компонентов">
+    <a href="#overview" class="nav-link is-active"><span>Обзор</span><span>01</span></a>
+    <a href="#tokens" class="nav-link"><span>Основа и темы</span><span>02</span></a>
+    <a href="#buttons" class="nav-link"><span>Кнопки</span><span>03</span></a>
+    <a href="#forms" class="nav-link"><span>Формы</span><span>04</span></a>
+    <a href="#surfaces" class="nav-link"><span>Карточки и списки</span><span>05</span></a>
+    <a href="#navigation" class="nav-link"><span>Навигация</span><span>06</span></a>
+    <a href="#feedback" class="nav-link"><span>Обратная связь</span><span>07</span></a>
+    <a href="#avatars" class="nav-link"><span>Аватары и бейджи</span><span>08</span></a>
+    <a href="#layout" class="nav-link"><span>Компоновка</span><span>09</span></a>
+    <a href="#start" class="nav-link"><span>Подключение</span><span>10</span></a>
+  </nav>
+  <div class="sidebar-note"><span class="status-dot"></span> Веб + Telegram<br><span>Один CSS. Ваш интерфейс.</span></div>
+</aside>
+<main id="content">
+<section id="overview" class="hero">
+  <div class="hero-copy"><div class="eyebrow"><span class="status-dot"></span> СИСТЕМА, КОТОРАЯ УЖЕ ЗНАКОМА</div>
+  <h1>Один язык<br>для <span>интерфейсов.</span></h1>
+  <p class="hero-description">Мягкие поверхности, точные отступы и спокойная типографика. Стили вашего проекта — теперь в самостоятельном CSS-фреймворке.</p>
+  <div class="hero-actions"><a href="#buttons" class="tg-btn tg-btn--primary">Смотреть компоненты <span aria-hidden="true">↗</span></a><a href="#start" class="quiet-link">Подключить <span aria-hidden="true">→</span></a></div>
+  <div class="hero-meta"><span>Без JS-зависимостей</span><span>Две темы</span><span>Гибкий каскад</span></div>
+  </div>
+  <div class="preview-stage">
+    <div class="preview-label"><span class="tiny-squares" aria-hidden="true">▦</span> СОБРАНО ИЗ КОМПОНЕНТОВ</div>
+    <article class="app-preview tg-card">
+      <div class="preview-top"><span class="preview-icon" aria-hidden="true">✳</span><span class="tg-badge">Пространство</span></div>
+      <h2>Всё на своих местах</h2><p class="tg-text-muted tg-text-sm">Небольшие детали. Цельный интерфейс.</p>
+      <div class="tg-list tg-mt-5">
+        <div class="tg-list-item tg-row"><span class="preview-item-icon" aria-hidden="true">▤</span><div class="tg-grow"><div class="tg-list-item__title">Ваши проекты</div><div class="tg-list-item__subtitle">Всё важное — рядом</div></div><span class="tg-badge tg-badge--primary">8</span></div>
+        <div class="tg-list-item tg-row"><span class="preview-item-icon" aria-hidden="true">◷</span><div class="tg-grow"><div class="tg-list-item__title">Последние изменения</div><div class="tg-list-item__subtitle">Сегодня, 12:30</div></div><span aria-hidden="true">↗</span></div>
+      </div>
+      <div class="preview-bottom"><div class="avatar-stack" aria-label="3 участника"><span class="mini-avatar">А</span><span class="mini-avatar">М</span><span class="mini-avatar">+1</span></div><span class="tg-text-sm tg-text-muted">Вместе удобнее</span></div>
+      <a class="tg-btn tg-btn--primary tg-w-full" href="#forms">Настроить профиль <span aria-hidden="true">→</span></a>
+    </article>
+    <div class="preview-caption"><span class="status-dot"></span> Адаптируется к вашей теме</div>
+  </div>
+</section>
+<div class="feature-strip"><div><strong>01 / Токены</strong><span>Вся система в переменных</span></div><div><strong>02 / Компоненты</strong><span>Готовые блоки и состояния</span></div><div><strong>03 / Каскад</strong><span>Понятный порядок слоёв</span></div></div>
+
+<section id="tokens" class="catalog-section">
+  <div class="section-heading"><div><div class="eyebrow">02 / ОСНОВА</div><h2>Баланс начинается с деталей</h2><p>Семантические цвета, шаг отступов 4 px и адаптивные размеры.</p></div><label class="accent-control">Акцент<select class="tg-select" aria-label="Акцентный цвет"><option value="blue">Синий</option><option value="green">Зелёный</option><option value="violet">Фиолетовый</option></select></label></div>
+  <div class="token-grid">
+    <div class="color-token"><div style="background:var(--bg-color)"></div><strong>Фон</strong><code>--bg-color</code></div>
+    <div class="color-token"><div style="background:var(--section-bg-color)"></div><strong>Поверхность</strong><code>--section-bg-color</code></div>
+    <div class="color-token"><div style="background:var(--secondary-bg-color)"></div><strong>Вторичный</strong><code>--secondary-bg-color</code></div>
+    <div class="color-token"><div style="background:var(--button-color)"></div><strong>Акцент</strong><code>--button-color</code></div>
+    <div class="color-token"><div style="background:var(--text-color)"></div><strong>Текст</strong><code>--text-color</code></div>
+    <div class="color-token"><div style="background:var(--destructive-text-color)"></div><strong>Ошибка</strong><code>--destructive-text-color</code></div>
+  </div>
+  <div class="foundation-grid"><div class="foundation-card"><span class="mini-label">ТИПОГРАФИКА</span><div class="type-specimen">Aa Бб 123</div><div class="tg-row tg-text-muted tg-text-sm"><span>System UI</span><span>400 / 500 / 600</span></div></div><div class="foundation-card"><span class="mini-label">ОТСТУПЫ</span><div class="spacing-scale" aria-label="Отступы 4, 8, 12, 16, 20, 24 пикселя"><span style="--size:4">4</span><span style="--size:8">8</span><span style="--size:12">12</span><span style="--size:16">16</span><span style="--size:20">20</span><span style="--size:24">24</span></div><div class="tg-text-muted tg-text-sm">Один ритм для всех компонентов</div></div><div class="foundation-card"><span class="mini-label">РАДИУСЫ</span><div class="radius-scale"><span style="border-radius:8px">8</span><span style="border-radius:12px">12</span><span style="border-radius:16px">16</span><span style="border-radius:999px">∞</span></div><div class="tg-text-muted tg-text-sm">От поля ввода до кнопки</div></div></div>
+</section>
+
+<section id="buttons" class="catalog-section">
+  <div class="section-heading"><div><div class="eyebrow">03 / ДЕЙСТВИЯ</div><h2>Кнопки с ясной иерархией</h2><p>Основное действие, вторичные варианты и состояния.</p></div><span class="class-tag">.tg-btn</span></div>
+  <div class="example-panel"><div class="example-meta"><span>Варианты</span><span>01 — 05</span></div><div class="example-body tg-row" data-example>
+<button id="primary-demo" class="tg-btn tg-btn--primary">Основная <span aria-hidden="true">→</span></button>
+<button class="tg-btn tg-btn--secondary">Вторичная</button>
+<button class="tg-btn tg-btn--ghost">Прозрачная</button>
+<button class="tg-btn tg-btn--destructive">Удалить</button>
+<button class="tg-icon-btn" aria-label="Добавить"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></button>
+  </div></div>
+  <div class="example-panel"><div class="example-meta"><span>Размеры и состояния</span><span>Touch ≥ 44 px</span></div><div class="example-body tg-row" data-example>
+<button class="tg-btn tg-btn--primary tg-btn--sm">Компактная</button>
+<button class="tg-btn tg-btn--primary">Обычная</button>
+<button class="tg-btn tg-btn--primary tg-btn--lg">Крупная</button>
+<button class="tg-btn tg-btn--primary" disabled>Недоступна</button>
+<button class="tg-btn tg-btn--secondary" disabled aria-busy="true"><span class="tg-spinner" aria-hidden="true"></span> Сохранение</button>
+  </div></div>
+</section>
+
+<section id="forms" class="catalog-section">
+  <div class="section-heading"><div><div class="eyebrow">04 / ВВОД</div><h2>Место для ваших данных</h2><p>Подписи, подсказки, валидация и заметный фокус.</p></div><span class="class-tag">.tg-field</span></div>
+  <div class="example-panel"><div class="example-body form-grid" data-example>
+<div class="tg-field"><label class="tg-label" for="demo-name">Имя</label><input class="tg-input" id="demo-name" placeholder="Как к вам обращаться?" autocomplete="given-name"><p class="tg-help">Будет видно участникам команды.</p></div>
+<div class="tg-field"><label class="tg-label" for="demo-role">Роль в команде</label><select class="tg-select" id="demo-role"><option>Дизайнер</option><option>Разработчик</option><option>Менеджер</option></select><p class="tg-help">Можно изменить в любой момент.</p></div>
+<div class="tg-field"><label class="tg-label" for="demo-email">Электронная почта</label><input class="tg-input" id="demo-email" type="email" value="mail@" aria-invalid="true" aria-describedby="email-error"><p id="email-error" class="tg-help tg-help--error">Укажите адрес целиком, например name@mail.ru.</p></div>
+<div class="tg-field"><label class="tg-label" for="demo-disabled">Идентификатор</label><input class="tg-input" id="demo-disabled" value="Будет создан автоматически" disabled><p class="tg-help">Пример недоступного поля.</p></div>
+<div class="tg-field form-wide"><label class="tg-label" for="demo-bio">О себе</label><textarea class="tg-textarea" id="demo-bio" placeholder="Несколько слов о том, чем вы занимаетесь…" rows="3"></textarea></div>
+  </div></div>
+  <div class="example-panel"><div class="example-meta"><span>Выбор и переключение</span><span>Нативный ввод + ARIA</span></div><div class="example-body tg-row choice-row" data-example>
+<label class="tg-choice"><input class="tg-check" type="checkbox" checked> Запомнить выбор</label>
+<fieldset class="radio-group"><legend class="tg-sr-only">План</legend><label class="tg-choice"><input class="tg-radio" type="radio" name="plan" checked> Личный</label><label class="tg-choice"><input class="tg-radio" type="radio" name="plan"> Командный</label></fieldset>
+<div class="tg-row"><span id="notifications-label">Уведомления</span><button class="tg-switch" role="switch" aria-checked="false" aria-labelledby="notifications-label"><span class="tg-switch__knob"></span></button></div>
+  </div></div>
+</section>
+
+<section id="surfaces" class="catalog-section">
+  <div class="section-heading"><div><div class="eyebrow">05 / ПОВЕРХНОСТИ</div><h2>Собирайте из простых блоков</h2><p>Карточки и списки, которые держат структуру.</p></div><span class="class-tag">.tg-card · .tg-list</span></div>
+  <div class="example-panel"><div class="example-body surface-grid" data-example>
+<article class="tg-card tg-col"><span class="tg-badge tg-badge--primary card-status">Новый проект</span><h3 class="tg-header__title">Пространство для идей</h3><p class="tg-header__subtitle">Объединяйте задачи, заметки и людей в одном месте.</p><hr class="tg-divider"><div class="tg-row"><span class="tg-avatar"><span class="tg-avatar__initials">АК</span></span><div><div class="tg-list-item__title">Александр</div><div class="tg-list-item__subtitle">Владелец проекта</div></div></div></article>
+<div><div class="tg-section__title">Настройки пространства</div><div class="tg-list"><div class="tg-list-item tg-row"><div class="tg-grow"><div class="tg-list-item__title">Общие настройки</div><div class="tg-list-item__subtitle">Название и описание</div></div><span aria-hidden="true">↗</span></div><div class="tg-list-item tg-row"><div class="tg-grow"><div class="tg-list-item__title">Участники</div><div class="tg-list-item__subtitle">Приглашения и доступ</div></div><span class="tg-badge">12</span></div><div class="tg-list-item"><div class="tg-list-item__title tg-text-destructive">Архив пространства</div><div class="tg-list-item__subtitle">Завершённые проекты</div></div></div></div>
+  </div></div>
+</section>
+
+<section id="navigation" class="catalog-section">
+  <div class="section-heading"><div><div class="eyebrow">06 / НАВИГАЦИЯ</div><h2>Понятно, где вы находитесь</h2><p>Табы, фильтры и нижняя навигация для небольших экранов.</p></div><span class="class-tag">.tg-tabs · .tg-chip</span></div>
+  <div class="example-panel"><div class="example-body tg-col" data-example>
+<div class="tg-tabs" role="tablist" aria-label="Пример разделов"><button id="tab-overview" class="tg-tab" role="tab" aria-selected="true" aria-controls="panel-overview">Обзор</button><button id="tab-activity" class="tg-tab" role="tab" aria-selected="false" aria-controls="panel-activity" tabindex="-1">Активность</button><button id="tab-settings" class="tg-tab" role="tab" aria-selected="false" aria-controls="panel-settings" tabindex="-1">Настройки</button></div>
+<div class="tab-panel" id="panel-overview" role="tabpanel" aria-labelledby="tab-overview" tabindex="0">Здесь начинается ваш проект. Все основные данные собраны в одном месте.</div>
+<div class="tab-panel" id="panel-activity" role="tabpanel" aria-labelledby="tab-activity" tabindex="0" hidden>Последнее изменение — сегодня. История команды всегда под рукой.</div>
+<div class="tab-panel" id="panel-settings" role="tabpanel" aria-labelledby="tab-settings" tabindex="0" hidden>Управляйте названием, уведомлениями и доступом к проекту.</div>
+<div class="tg-row" role="group" aria-label="Фильтры"><button class="tg-chip" role="checkbox" aria-checked="true">Дизайн</button><button class="tg-chip" role="checkbox" aria-checked="false">Разработка</button><button class="tg-chip" role="checkbox" aria-checked="false">Аналитика</button><button class="tg-chip" disabled>Скоро</button></div>
+<nav class="tg-tabbar demo-tabbar" aria-label="Пример нижней навигации"><a class="tg-tabbar__item" aria-current="page" href="#overview"><span aria-hidden="true">▦</span>Обзор</a><a class="tg-tabbar__item" href="#surfaces"><span aria-hidden="true">▤</span>Проекты</a><a class="tg-tabbar__item" href="#forms"><span aria-hidden="true">◉</span>Профиль</a></nav>
+  </div></div>
+</section>
+
+<section id="feedback" class="catalog-section">
+  <div class="section-heading"><div><div class="eyebrow">07 / СОСТОЯНИЯ</div><h2>Каждое действие получает ответ</h2><p>Прогресс, сообщения и диалоги без лишнего шума.</p></div><span class="class-tag">.tg-notice · .tg-modal</span></div>
+  <div class="example-panel"><div class="example-body tg-col" data-example>
+<div class="tg-notice"><strong>Всё готово к работе</strong><div class="tg-text-sm tg-text-muted">Изменения сохранены. Можно продолжать.</div></div>
+<div class="tg-notice tg-notice--destructive"><strong>Не удалось загрузить файл</strong><div class="tg-text-sm tg-text-muted">Проверьте соединение и попробуйте ещё раз.</div></div>
+<div class="tg-field"><label class="tg-label" for="upload-progress">Загрузка файлов · 64%</label><progress id="upload-progress" class="tg-progress" max="100" value="64">64%</progress></div>
+<div class="tg-progress tg-progress--striped" role="progressbar" aria-label="Обработка" aria-valuenow="42" aria-valuemin="0" aria-valuemax="100"><span class="tg-progress__bar" style="--progress:42%"></span></div>
+<div class="tg-row tg-mt-3"><button class="tg-btn tg-btn--secondary" id="show-toast">Показать уведомление</button><button class="tg-btn tg-btn--primary" id="open-dialog">Открыть диалог</button></div>
+  </div></div>
+</section>
+
+<section id="avatars" class="catalog-section">
+  <div class="section-heading"><div><div class="eyebrow">08 / ЛЮДИ И МЕТКИ</div><h2>Небольшие, но важные</h2><p>Инициалы, выбор участника и компактные статусы.</p></div><span class="class-tag">.tg-avatar · .tg-badge</span></div>
+  <div class="example-panel"><div class="example-body tg-row" data-example>
+<span class="tg-avatar"><span class="tg-avatar__initials">МК</span></span>
+<button class="tg-avatar" role="checkbox" aria-checked="true" aria-label="Выбрать Александра"><span class="tg-avatar__initials" aria-hidden="true">АК</span></button>
+<span class="tg-avatar"><span class="tg-avatar__initials">ИП</span><span class="tg-badge tg-badge--primary" aria-label="3 уведомления">3</span></span>
+<span class="tg-avatar tg-avatar-initials"><span class="tg-avatar__clip" aria-label="Ещё 5 участников">+5</span></span>
+<span class="tg-badge tg-badge--primary">Активен</span><span class="tg-badge tg-badge--secondary">Черновик</span><span class="tg-badge tg-badge--destructive">Требует внимания</span>
+  </div></div>
+</section>
+
+<section id="layout" class="catalog-section">
+  <div class="section-heading"><div><div class="eyebrow">09 / КОМПОНОВКА</div><h2>Тот же ритм в любом масштабе</h2><p>Автоматическая сетка, строки, колонки и утилиты отступов.</p></div><span class="class-tag">.tg-grid · .tg-row</span></div>
+  <div class="example-panel"><div class="example-body" data-example><div class="tg-grid"><div class="layout-cell">Блок 01</div><div class="layout-cell">Блок 02</div><div class="layout-cell">Блок 03</div></div></div></div>
+</section>
+
+<section id="start" class="catalog-section start-section">
+  <div class="section-heading"><div><div class="eyebrow">10 / БЫСТРЫЙ СТАРТ</div><h2>Один файл — и можно собирать</h2><p>Подключите CSS. Добавьте разметку. Настройте под себя.</p></div></div>
+  <div class="install-grid"><div><span class="mini-label">ОБЫЧНЫЙ HTML</span><pre><code>&lt;link rel="stylesheet"
+  href="t-design-system.min.css"&gt;
+
+&lt;button class="tg-btn tg-btn--primary"&gt;
+  Начать
+&lt;/button&gt;</code></pre></div><div><span class="mini-label">ВАШИ НАСТРОЙКИ</span><pre><code>:root {
+  --button-color: #18745b;
+  --button-text-color: #fff;
+  --radius: .75rem;
+  --space-4: 1rem;
+}</code></pre></div></div>
+  <div class="cascade-map" aria-label="Порядок CSS-слоёв"><span>reset</span><b>→</b><span>tokens</span><b>→</b><span>themes</span><b>→</b><span>base</span><b>→</b><span>components</span><b>→</b><span>utilities</span><b>→</b><span>visibility</span></div>
+  <p class="tg-text-sm tg-text-muted">Ваш CSS вне слоёв имеет приоритет. Для Telegram подключите <code>telegram.css</code> после основного файла. Подробности, SCSS-модули и интеграция Angular — в README.</p>
+  <div class="download-row"><a class="tg-btn tg-btn--primary" href="../dist/t-design-system.min.css" download>Скачать CSS <span aria-hidden="true">↓</span></a><a class="tg-btn tg-btn--ghost" href="../dist/telegram.min.css" download>Адаптер Telegram <span aria-hidden="true">↓</span></a></div>
+</section>
+<footer class="site-footer"><a class="brand" href="#overview"><span class="brand-mark small">t<span>·</span></span> t-design-system</a><span>Основан на ai-splitter · v0.1.0</span></footer>
+</main>
+</div>
+<div class="tg-toast" id="demo-toast" role="status" aria-live="polite" aria-atomic="true"></div>
+<dialog class="tg-modal tg-modal--sheet" id="demo-dialog" aria-labelledby="dialog-title" aria-describedby="dialog-description"><div class="tg-modal__sheet"><div class="tg-modal__header"><div><span class="mini-label">НОВОЕ ПРОСТРАНСТВО</span><h2 id="dialog-title" class="tg-header__title tg-mt-2">Для следующей большой идеи</h2></div><button class="tg-icon-btn" id="close-dialog" aria-label="Закрыть диалог">×</button></div><p id="dialog-description" class="tg-text-muted">Это нативный dialog: фокус остаётся внутри, а Escape закрывает окно.</p><form method="dialog"><div class="tg-field"><label class="tg-label" for="project-name">Название пространства</label><input class="tg-input" id="project-name" placeholder="Например, новый проект" autofocus></div><div class="tg-modal__footer"><button class="tg-btn tg-btn--ghost" value="cancel">Отмена</button><button class="tg-btn tg-btn--primary" value="create">Создать пространство</button></div></form></div></dialog>
+</body>
+</html>
