@@ -16,8 +16,37 @@
     }
 
     &--destructive {
-      color: var(--text-danger);
-      border-color: currentColor;
+      background: var(--notice-danger-bg);
+      color: var(--text-color);
+      border-color: transparent;
+
+      .tg-notice__icon { color: var(--text-danger); }
+    }
+
+    &--with-icon {
+      display: flex;
+      align-items: flex-start;
+      gap: var(--space-3);
+    }
+
+    &__icon {
+      inline-size: 1.25rem;
+      block-size: 1.25rem;
+      flex: 0 0 auto;
+      margin-block-start: .125rem;
+    }
+
+    &__content {
+      min-inline-size: 0;
+    }
+
+    &__title {
+      display: block;
+      font-weight: var(--fw-semibold);
+    }
+
+    &__content > :not(:first-child) {
+      margin-block-start: var(--space-1);
     }
   }
 

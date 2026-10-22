@@ -31,6 +31,9 @@ The signature is the system itself: live components, clear examples, readable co
   hover capability. Keyboard focus stays visible; reduced motion removes movement.
 - Motion uses the shared easing, 120 ms press feedback and 180 ms state changes.
   Avoid entrance choreography and scaling hidden content to zero.
+- Error notices use a quiet tinted surface, a small semantic icon and primary
+  text, without a red outline. Descriptions retain a clear recovery step.
+  The material demo has a flat neutral backdrop; no decorative blue gradient.
 
 ## Catalog
 

@@ -29,11 +29,24 @@ try {
     <div class="tg-progress"><span class="tg-progress__bar" style="--progress:50%"></span></div>
     <button class="tg-switch" role="switch" aria-label="Уведомления" aria-checked="false"><span class="tg-switch__knob"></span></button>
     <div class="tg-transition is-hidden">Скрытая панель</div>
+    <div class="tg-notice tg-notice--destructive tg-notice--with-icon"><svg class="tg-notice__icon" aria-hidden="true"></svg><div class="tg-notice__content"><strong class="tg-notice__title">Не удалось загрузить файл</strong><div class="tg-text-sm tg-text-muted">Проверьте соединение и попробуйте ещё раз.</div></div></div>
   </div>`);
   // Resolve modern CSS colors through canvas, then composite alpha through ancestors.
   const texts = ['.tg-text-muted', '.tg-help--error', '.tg-link', '.tg-btn--primary', '.tg-btn--destructive', '.tg-badge--primary', '.tg-badge--destructive', '.tg-avatar__initials'];
   for (const theme of ['light', 'dark', 'ios-dark']) {
     await page.evaluate(theme => document.documentElement.dataset.theme = theme, theme);
+    const notice = await page.locator('.tg-notice--destructive').evaluate(el => {
+      const style = getComputedStyle(el);
+      return { border: style.borderTopColor, title: getComputedStyle(el.querySelector('strong')).color, foreground: getComputedStyle(document.body).color };
+    });
+    check(`${theme}: error notice has no colored frame`, notice.border === 'rgba(0, 0, 0, 0)', notice);
+    check(`${theme}: error notice uses the primary text color`, notice.title === notice.foreground, notice);
+    const noticeIcon = await page.evaluate(measureContrast, { selector: '.tg-notice__icon' });
+    check(`${theme}: error icon contrast ≥ 3`, noticeIcon.ratio >= 3, noticeIcon);
+    for (const selector of ['.tg-notice__title', '.tg-notice__content .tg-text-muted']) {
+      const value = await page.evaluate(measureContrast, { selector });
+      check(`${theme}: ${selector} contrast ≥ 4.5`, value.ratio >= 4.5, value);
+    }
     for (const selector of texts) {
       const value = await page.evaluate(measureContrast, { selector });
       check(`${theme}: ${selector} contrast ≥ 4.5`, value.ratio >= 4.5, value);

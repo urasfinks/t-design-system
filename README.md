@@ -189,6 +189,13 @@ Safari/iOS 16.2+. Старые WebView не входят в целевую по�
 контрастом границ, а не гарантия WCAG AA для пустого кастомного поля. При произвольной палитре
 проверяйте свои пары цветов; при необходимости переопределяйте роли на `:root`.
 
+Сообщение `.tg-notice--destructive` использует мягкую `--notice-danger-bg`,
+основной цвет текста и прозрачную границу. Для варианта с иконкой добавьте
+`.tg-notice--with-icon`, SVG `.tg-notice__icon` с `aria-hidden="true"` и обёртку
+`.tg-notice__content`; заголовок — `.tg-notice__title`. Смысл ошибки передаётся
+текстом и формой иконки, а не одной красной заливкой. Старый вариант разметки
+без иконки продолжает работать.
+
 ## Telegram Mini Apps
 
 После основного файла подключить адаптер:
@@ -312,7 +319,7 @@ SDK Telegram должен быть подключён до вызова помо
 | Нижняя панель | `.tg-tabbar`, `.tg-tabbar__item` | `aria-current="page"` |
 | Аватар | `.tg-avatar`, `.tg-avatar__clip`, `.tg-avatar__initials` | Выбор кнопкой с `role="checkbox"`, `aria-checked` |
 | Бейдж | `.tg-badge`, `--primary`, `--secondary`, `--destructive` | Внутри аватара размещается в углу, отдельно — в потоке |
-| Сообщение | `.tg-notice`, `--destructive`, `--accent` | Для динамических сообщений приложение задаёт live region |
+| Сообщение | `.tg-notice`, `--destructive`, `--accent`, `--with-icon` | Для динамических сообщений приложение задаёт live region |
 | Прогресс | `.tg-progress`, `.tg-progress__bar`, `--striped` | Нативный `value/max` или `--progress:42%` с `role="progressbar"` |
 | Индикатор | `.tg-spinner`, `--lg` | Декоративный: `aria-hidden="true"`; состояние загрузки на родителе |
 | Верхнее уведомление | `.tg-snackbar`, `--show`, `__content` | Приложение управляет текстом и видимостью |

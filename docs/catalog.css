@@ -117,7 +117,7 @@ pre { max-width: 100%; overflow: auto; font: var(--catalog-caption)/1.7 ui-monos
 .site-footer { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: var(--space-5); margin-top: var(--space-16); padding-block: var(--space-6) var(--space-8); border-top: var(--border); }
 .site-footer .brand { font-size: var(--catalog-body); }
 .site-footer > span { font-size: var(--catalog-caption); color: var(--text-secondary); }
-.glass-demo-stage { padding: var(--space-10); background: linear-gradient(115deg, var(--button-color), var(--secondary-bg-color)); } /* taste-skill-ignore: material demo needs a changing backdrop to show transparency */
+.glass-demo-stage { padding: var(--space-10); background: var(--surface-muted); }
 .glass-demo-stage .tg-glass { max-inline-size: 28rem; margin-inline: auto; }
 .glass-demo-stage .tg-header { padding: 0; }
 .glass-demo-stage .tg-badge { align-self: flex-start; }

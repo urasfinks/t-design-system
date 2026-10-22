@@ -77,6 +77,7 @@
     --border-field: 1px solid var(--field-border-color);
     --switch-track-color: var(--section-separator-color);
     --switch-border-color: transparent;
+    --notice-danger-bg: color-mix(in srgb, var(--destructive-text-color) 4%, var(--surface-bg));
     --surface-bg: var(--section-bg-color);
     --surface-muted: var(--secondary-bg-color);
     --overlay-bg: rgb(0 0 0 / .66);
