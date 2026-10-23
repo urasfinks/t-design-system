@@ -16,8 +16,9 @@ The signature is the system itself: live components, clear examples, readable co
   panels use 24 px padding; sections get 64 px separation on desktop.
 - Cards use 16 px corners. Buttons and fields share 12 px corners; inset controls
   use 8 px. Pills are reserved for chips, badges and switches.
-- Four source color variables remain exact. Each family has two derived variants;
-  components consume the twelve shared palette roles.
+- Four input colors define each theme. Each family exposes three shared roles;
+  components consume these twelve palette values. Desktop Dark uses the adjusted
+  page background #151e27 and fixed panel/muted colors #212d3b / #1d2733.
 - Field borders are quiet at rest. Switches use their own filled track without
   an idle outline. Focus and invalid states remain distinct. Under
   `prefers-contrast: more`, field and switch boundaries use the stronger
@@ -90,9 +91,12 @@ and a separate participant section. Treat these as composition evidence:
 - Keep touch targets generous even when visible icon controls look compact.
 
 The reference's framing is intentional: keep a fine border around count capsules.
-Quantity overlays use the secondary badge rather than the accent status badge.
+Standalone base badges keep a fine border. Primary, secondary and destructive
+badge modifiers remove it; direct avatar badge children add their own surface
+border and shadow. Quantity overlays use the secondary badge.
 `tg-avatar--outlined` keeps the filled initials circle and a single neutral outer
-ring across the existing padding gap, matching the source reference. Selection
+2px ring across the existing padding gap, matching the source reference. Direct
+initials use font-weight 400 in this variant. Selection
 strengthens this outer ring
 (`--avatar-selection-ring-color`, defaulting to `--control-border-color`). Keyboard
 focus remains separate. The default avatar still supports accent selection.
@@ -102,7 +106,7 @@ or a requirement to reproduce its data, business logic or every visual decision.
 
 ## Four-color palette
 
-The current palette has four original inputs per theme: background, accent, text,
+The current palette has four inputs per theme: background, accent, text,
 and danger. Each has exactly three reusable variants, displayed as twelve samples
 in the foundations table. Only eight derived palette declarations may contain
 `color-mix()`, all in tokens. Components and catalog styles use aliases only.
@@ -114,7 +118,15 @@ on black. Do not reintroduce independent header, hint, section or secondary colo
 their old public names alias the twelve palette values. Telegram can override the
 four source colors; it cannot expand the palette through secondary roles.
 
-Main colors stay original. Focused fields use the active field background and
+Main roles alias the current input colors. Desktop Dark fixes its panel and muted
+roles independently of the background input; custom themes must override those
+roles explicitly. Light and iOS Dark derive both surfaces from the background.
+Focused fields use the active field background and
 a main-accent border with a 4px soft-accent outer ring. Invalid focused fields
 use danger-main for the border and danger-soft for the outer ring. Buttons keep saturated strong fills and white text, and all action
 variants share `--control-h`. File progress keeps its accepted 3px stripe blur.
+
+Primary and destructive badges use soft backgrounds with strong text in Light,
+and strong backgrounds with main text in dark themes through `light-dark()`.
+The stylesheets require browsers with `@layer`, `color-mix()` and `light-dark()` support.
+Catalog-only `.avatar-stack` / `.mini-avatar` styles are not public components.
