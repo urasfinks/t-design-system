@@ -181,6 +181,22 @@
 <p id="demo-page-status" class="tg-help tg-text-center" role="status">Страница 1 из 3</p>
 
   </div></div>
+  <h3>Нижняя раскрывающаяся панель</h3>
+  <p>Постоянный итог внизу экрана, детали раскрываются вверх. Заголовок остаётся видимым при прокрутке. Список, форма и длинный заказ в примере используют один компонент.</p>
+  <div class="example-panel"><iframe class="composition-preview" src="bottom-panel.html" title="Нижняя панель с заменяемым содержимым" loading="lazy"></iframe></div>
+  <p><a class="quiet-link" href="bottom-panel.html" target="_blank" rel="noopener">Открыть пример на весь экран ↗</a></p>
+  <details class="code-details"><summary>HTML компонента</summary><pre><code>&lt;details class="tg-bottom-panel"&gt;
+  &lt;summary class="tg-bottom-panel__header"&gt;
+    Мои заказы · 2 400 ₽
+    &lt;svg class="tg-icon tg-bottom-panel__chevron" aria-hidden="true"&gt;
+      &lt;use href="dist/icons/chevron-up.svg#chevron-up"&gt;&lt;/use&gt;
+    &lt;/svg&gt;
+  &lt;/summary&gt;
+  &lt;div class="tg-bottom-panel__content"&gt;
+    Любые списки, формы и кнопки вашего приложения.
+  &lt;/div&gt;
+&lt;/details&gt;</code></pre></details>
+  <p class="tg-text-sm tg-text-muted">Работает без JavaScript. Добавьте странице нижний отступ под свёрнутую панель. Ширина, высота и отступ от низа меняются через CSS-переменные; вариант для Angular описан в README.</p>
 </section>
 
 <section id="feedback" class="catalog-section">

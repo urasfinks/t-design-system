@@ -644,3 +644,84 @@ Layout helpers: `tg-block`, `tg-contents`, `tg-nowrap` (flex wrapping),
 Composer and page custom properties must inherit from a shared ancestor. The
 styles target modern browsers with `:has()` support, as used by modal scroll lock
 and page scroll padding.
+
+## Нижняя раскрывающаяся панель
+
+`tg-bottom-panel` закрепляет сводку у нижнего края экрана и раскрывает содержимое
+вверх, как «Мои заказы» в ai-splitter-ng. Это немодальная панель: она не затемняет
+страницу и не перехватывает фокус. Заголовок остаётся видимым при прокрутке панели.
+
+[Живой пример](docs/bottom-panel.html) позволяет заменить заказ формой доставки
+или длинным списком. В каталоге пример находится в разделе «Навигация».
+
+```html
+<details class="tg-bottom-panel">
+  <summary class="tg-bottom-panel__header">
+    <span>Итого с меня:</span>
+    <strong class="tg-ms-auto">2 400 ₽</strong>
+    <svg class="tg-icon tg-bottom-panel__chevron" viewBox="0 0 24 24" aria-hidden="true">
+      <use href="dist/icons/chevron-up.svg#chevron-up"></use>
+    </svg>
+  </summary>
+  <div class="tg-bottom-panel__content">
+    <!-- Любая разметка: список, форма, итог, кнопки -->
+    <p>Паста с грибами — 1 200 ₽</p>
+    <p>Овощи на гриле — 800 ₽</p>
+    <p>Лимонад — 400 ₽</p>
+  </div>
+</details>
+```
+
+Нативные `details`/`summary` переключаются мышью, Enter и Space без JS. Атрибут
+`open` задаёт начальное раскрытие; событие `toggle` позволяет следить за состоянием.
+Не помещайте дополнительные кнопки или поля внутрь `summary`: используйте блок
+с отдельной кнопкой, если заголовку нужны независимые действия.
+
+| API | Назначение |
+| --- | --- |
+| `.tg-bottom-panel` | Закреплённая поверхность с ограниченной высотой и прокруткой |
+| `__header` | Постоянно видимый заголовок: `summary` или `button` |
+| `__content` | Произвольное содержимое с отступами и верхним разделителем |
+| `__chevron` | Необязательная стрелка: поворот при `open` или `aria-expanded="true"` |
+| `--bottom-panel-max-height` | Максимальная высота; по умолчанию `85dvh` |
+| `--bottom-panel-width` | Ширина; по умолчанию `100%`, ограничена экраном и центрирована |
+| `--bottom-panel-offset` | Отступ от низа; по умолчанию `0px` |
+
+Переменные задавайте на самой панели, например
+`style="--bottom-panel-width: 48rem; --bottom-panel-max-height: 70dvh"`.
+Панель учитывает `--safe-area-bottom` и использует слой `--z-sticky`.
+Размещайте её у корня приложения: предки с `transform`, `filter` или `contain`
+могут изменить область фиксации. Добавьте странице `padding-bottom` под высоту
+свёрнутой панели, например `calc(6rem + var(--safe-area-bottom))`; увеличьте его
+для многострочного заголовка. Раскрытая панель перекрывает нижнюю часть страницы.
+Высота ограничена экраном; длинное содержимое прокручивается под заголовком.
+
+### Управление из Angular
+
+Компонент не зависит от Angular: заголовок и тело полностью задаёт приложение.
+В классе standalone-компонента создайте `expanded = signal(false)`
+(`import { signal } from '@angular/core'`). В шаблоне:
+
+```html
+<section class="tg-bottom-panel" aria-label="Мои заказы">
+  <button type="button" class="tg-bottom-panel__header"
+          [attr.aria-expanded]="expanded()" aria-controls="my-orders-content"
+          (click)="expanded.set(!expanded())">
+    <span>Итого с меня:</span>
+    <strong class="tg-ms-auto">{{ total() }}</strong>
+    <svg class="tg-icon tg-bottom-panel__chevron" viewBox="0 0 24 24" aria-hidden="true">
+      <use href="assets/icons/chevron-up.svg#chevron-up"></use>
+    </svg>
+  </button>
+  <div id="my-orders-content" class="tg-bottom-panel__content" [hidden]="!expanded()">
+    <!-- Ваш шаблон заказа или другой контент -->
+    <ng-content></ng-content>
+  </div>
+</section>
+```
+
+`total()` здесь — сигнал или метод приложения с итоговой суммой. Для нескольких
+панелей задавайте уникальные пары `id`/`aria-controls`. `hidden` скрывает также
+интерактивные элементы от клавиатуры. Перед программным сворачиванием верните
+фокус на кнопку, если он находится внутри тела панели. Жесты перетаскивания и
+автоматическое закрытие по Escape не входят в CSS-компонент.
