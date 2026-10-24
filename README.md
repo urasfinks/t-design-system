@@ -390,7 +390,15 @@ SDK-параметры для hint, section и других вторичных �
 Для неактивного действия предпочтителен `<button disabled>`: `aria-disabled`
 сам по себе не блокирует клики и требует обработчика приложения.
 
-Базовый `.tg-badge` имеет тонкую рамку. Модификаторы `--primary`, `--secondary`
+**Правило плашек:** информационные подписи, категории и статусы оформляются без
+окантовки. Бордюр у плашки обозначает, что с ней можно взаимодействовать. Например,
+«Пространство» и «Новый проект» используют `tg-badge tg-badge--primary` без рамки.
+Для других информационных плашек выбирайте `--secondary` или `--destructive`
+по смыслу. Интерактивный элемент оформляйте семантической кнопкой или ссылкой:
+одна рамка не добавляет поведения, клавиатурной доступности или роли.
+
+Базовый `.tg-badge` имеет тонкую рамку; не используйте его без модификатора для
+неинтерактивной информационной плашки. Модификаторы `--primary`, `--secondary`
 и `--destructive` убирают её; у `--secondary` нейтральная заливка и основной
 цвет текста. Прямой дочерний бейдж внутри `.tg-avatar` получает собственную
 рамку, тень и положение над верхним краем со стороны конца строки; в RTL
@@ -556,3 +564,78 @@ Checkbox и radio используют `--choice-size: 1.5rem` (24px при ба
 16px). Дорожка switch на `.125rem` выше (26px) для визуального выравнивания.
 У switch ширина пропорциональна высоте,
 а область нажатия остаётся высотой `--control-h`.
+
+## Screen compositions
+
+Живой пример и русское описание: [раздел «Композиции»](docs/index.html#compositions).
+[Полный экран без CSS приложения](docs/compositions.html) показывает все композиции
+вместе; [JavaScript примера](docs/compositions-demo.js) отвечает только за поведение.
+Откройте через `npm run dev` → `http://127.0.0.1:4173/docs/#compositions`.
+
+The main stylesheet includes reusable page and discussion compositions. They use
+existing palette, typography and geometry tokens; consumers do not need CSS.
+
+```html
+<div class="tg-page-shell">
+  <header class="tg-page-header">
+    <div class="tg-container tg-container--reading tg-row">
+      <a class="tg-brand tg-header__title" href="/">Product</a>
+      <span class="tg-ms-auto tg-text-sm tg-text-muted">Demo</span>
+    </div>
+  </header>
+  <main class="tg-container tg-container--reading tg-page-content">
+    <!-- cards, toolbars, comments -->
+  </main>
+  <footer class="tg-composer">
+    <div class="tg-container tg-container--reading tg-composer__inner tg-col">
+      <form class="tg-composer__form">
+        <div class="tg-composer__input">
+          <textarea class="tg-textarea tg-composer__textarea" rows="1"
+                    aria-label="Message"></textarea>
+          <button class="tg-icon-btn tg-icon-btn--primary" aria-label="Send">…</button>
+        </div>
+      </form>
+      <div class="tg-composer__caption tg-text-sm tg-text-muted">Help text</div>
+    </div>
+  </footer>
+</div>
+```
+
+- `tg-container--reading` limits the existing container to `--layout-reading-width`
+  (48rem). `tg-page-content` reserves room for the composer and adds desktop spacing.
+- A host may measure the composer with ResizeObserver and set
+  `--tg-composer-height` on the page shell or root. Set `--tg-keyboard-inset` to
+  the visual viewport's bottom inset when supporting virtual keyboards. Missing
+  measurements use a 10rem reserved size and zero keyboard inset. TDS owns styling;
+  the host owns listeners, cleanup, textarea autosize and focus management.
+- Container block padding accepts `--tg-container-padding-start` and
+  `--tg-container-padding-end`; both default to `--space-4`. Page/composer
+  compositions supply these properties so utility cascade does not erase spacing.
+- `tg-composer__textarea` is a single-line, vertically growing textarea capped at
+  `--composer-input-max-size`. Its default minimum is the standard control height.
+  Ordinary `tg-textarea` behavior is unchanged.
+- `tg-composer__caption` and a direct `tg-avatar-size` child of the form hide on
+  mobile. `tg-reply-preview` provides the accent rule and a row for a reply target;
+  use `tg-grow` and `tg-truncate` for its excerpt.
+- `tg-comment` contains the avatar and `tg-comment__body`. The body contains
+  `tg-comment__meta`, `tg-comment__recipient`, `tg-comment__text` and
+  `tg-comment__actions`. On mobile the avatar stays beside metadata and content
+  spans the full width. `tg-thread` indents replies with a separator. Use standard
+  row/spacing/text utilities within those slots. Do not add `tg-row` to the comment
+  root or composer form/input: those compositions already provide their layout.
+- `tg-toolbar` is a wrapping row with spaced ends; `tg-toolbar--responsive` stretches
+  items on mobile. `tg-toolbar--compact` uses the smallest spacing.
+  `tg-tabs--responsive` makes tabs full-width on mobile; use on `tg-tabs`.
+- `tg-source-link` composes a list link with leading/trailing icons.
+- `tg-media` wraps an image and caption; direct images fit within
+  `--media-max-size` (55dvh) without cropping. Combine with `tg-col tg-gap-3`.
+- Native open `dialog.tg-modal` locks body scrolling. The host still calls
+  `showModal()`/`close()` and handles dismissal.
+
+Layout helpers: `tg-block`, `tg-contents`, `tg-nowrap` (flex wrapping),
+`tg-text-nowrap`, `tg-truncate`, `tg-ms-auto`, `tg-justify-center`,
+`tg-justify-between`, `tg-align-center`, `tg-hide-mobile` (up to 36rem).
+
+Composer and page custom properties must inherit from a shared ancestor. The
+styles target modern browsers with `:has()` support, as used by modal scroll lock
+and page scroll padding.

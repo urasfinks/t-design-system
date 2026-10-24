@@ -2,6 +2,10 @@
 @layer tds.reset, tds.tokens, tds.themes, tds.base, tds.components, tds.utilities, tds.visibility;
 @layer tds.tokens {
   :root {
+    --layout-reading-width: 48rem;
+    --composer-reserved-size: 10rem;
+    --composer-input-max-size: calc(var(--space-16) * 2);
+    --media-max-size: 55dvh;
     --fs-xs: clamp(.75rem, .7rem + .2vw, .8125rem);
     --fs-sm: clamp(.8125rem, .78rem + .25vw, .875rem);
     --fs: 1rem;
@@ -1464,7 +1468,8 @@
     inline-size: 100%;
     max-inline-size: 72rem;
     margin-inline: auto;
-    padding: var(--space-4);
+    padding-inline: var(--space-4);
+    padding-block: var(--tg-container-padding-start, var(--space-4)) var(--tg-container-padding-end, var(--space-4));
   }
   .tg-row {
     display: flex;
@@ -1651,5 +1656,204 @@
   }
   .tg-mb-6 {
     margin-block-end: var(--space-6);
+  }
+}
+@layer tds.components {
+  .tg-page-shell {
+    display: block;
+  }
+  .tg-page-header {
+    padding-block-start: max(env(safe-area-inset-top, 0px), var(--tg-content-safe-area-inset-top, 0px));
+    border-block-end: var(--border);
+  }
+  .tg-page-content {
+    --tg-container-padding-end: calc(var(--tg-composer-height, var(--composer-reserved-size)) + var(--space-6));
+  }
+  .tg-brand {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-3);
+    text-decoration: none;
+    white-space: nowrap;
+  }
+  .tg-toolbar {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-3);
+  }
+  .tg-toolbar--compact {
+    gap: var(--space-1);
+  }
+  .tg-source-link {
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: center;
+    gap: var(--space-3);
+    color: var(--text-color);
+    text-decoration: none;
+  }
+  .tg-composer {
+    position: fixed;
+    z-index: var(--z-sticky);
+    inset-inline: 0;
+    inset-block-end: var(--tg-keyboard-inset, 0px);
+    background: var(--section-bg-color);
+    border-block-start: var(--border);
+    padding-block-end: var(--safe-area-bottom);
+  }
+  .tg-composer__form, .tg-composer__input {
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: flex-end;
+    gap: var(--space-3);
+  }
+  .tg-composer__input {
+    flex: 1 1 0%;
+    min-inline-size: 0;
+  }
+  .tg-composer__textarea {
+    flex: 1 1 0%;
+    min-block-size: var(--control-h);
+    resize: none;
+    max-block-size: var(--composer-input-max-size);
+  }
+  .tg-composer__caption {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-3);
+  }
+  .tg-reply-preview {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    flex-wrap: nowrap;
+    border-inline-start: var(--border-active);
+    padding-inline-start: var(--space-3);
+  }
+  .tg-reply-preview > * {
+    min-inline-size: 0;
+  }
+  .tg-comment {
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: flex-start;
+    gap: var(--space-3);
+    scroll-margin-block: var(--space-6) calc(var(--tg-composer-height, var(--composer-reserved-size)) + var(--space-6));
+  }
+  .tg-comment__body {
+    flex: 1 1 0%;
+    min-inline-size: 0;
+  }
+  .tg-comment__text {
+    white-space: pre-wrap;
+    overflow-wrap: anywhere;
+  }
+  .tg-thread {
+    margin-inline-start: calc(var(--icon-avatar) + var(--space-3));
+    padding-inline-start: var(--space-4);
+    border-inline-start: var(--border);
+  }
+  .tg-media {
+    margin-inline: 0;
+  }
+  .tg-media > img {
+    display: block;
+    inline-size: 100%;
+    max-block-size: var(--media-max-size);
+    object-fit: contain;
+  }
+  @media (min-width: 48rem) {
+    .tg-page-content {
+      --tg-container-padding-start: var(--space-8);
+    }
+  }
+  @media (max-width: 36rem) {
+    .tg-composer__inner {
+      --tg-container-padding-start: var(--space-3);
+      --tg-container-padding-end: var(--space-3);
+    }
+    .tg-composer__caption, .tg-composer__form > .tg-avatar-size {
+      display: none;
+    }
+    .tg-toolbar--responsive {
+      align-items: stretch;
+    }
+    .tg-tabs--responsive {
+      inline-size: 100%;
+    }
+    .tg-tabs--responsive .tg-tab {
+      justify-content: center;
+    }
+    .tg-comment {
+      display: grid;
+      grid-template-columns: var(--icon-avatar) minmax(0, 1fr);
+      gap: var(--space-1) var(--space-3);
+    }
+    .tg-comment__body {
+      display: contents;
+    }
+    .tg-comment__meta {
+      grid-column: 2;
+      grid-row: 1;
+      align-self: center;
+    }
+    .tg-comment__text, .tg-comment__actions, .tg-comment__recipient {
+      grid-column: 1/-1;
+    }
+    .tg-thread {
+      margin-inline-start: var(--space-3);
+      padding-inline-start: var(--space-2);
+    }
+  }
+}
+@layer tds.base {
+  :where(html:has(.tg-composer)) {
+    scroll-padding-bottom: calc(var(--tg-composer-height, var(--composer-reserved-size)) + var(--space-6));
+  }
+  :where(body:has(dialog.tg-modal[open])) {
+    overflow: hidden;
+  }
+}
+@layer tds.utilities {
+  .tg-container.tg-container--reading {
+    max-inline-size: var(--layout-reading-width);
+  }
+  .tg-block {
+    display: block;
+  }
+  .tg-contents {
+    display: contents;
+  }
+  .tg-nowrap {
+    flex-wrap: nowrap;
+  }
+  .tg-text-nowrap {
+    white-space: nowrap;
+  }
+  .tg-truncate {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+  .tg-ms-auto {
+    margin-inline-start: auto;
+  }
+  .tg-justify-center {
+    justify-content: center;
+  }
+  .tg-align-center {
+    align-items: center;
+  }
+  .tg-justify-between {
+    justify-content: space-between;
+  }
+  @media (max-width: 36rem) {
+    .tg-hide-mobile {
+      display: none;
+    }
   }
 }

@@ -220,3 +220,6 @@ pre { max-width: 100%; overflow: auto; font: var(--catalog-caption)/1.7 ui-monos
   .palette-table th, .palette-table td { padding: var(--space-2) var(--space-1); }
   .palette-table th:first-child { inline-size: 19%; }
 }
+
+/* Isolate a real viewport so fixed TDS components need no demo overrides. */
+.composition-preview { display: block; inline-size: 100%; block-size: calc(var(--space-16) * 10); border: 0; }

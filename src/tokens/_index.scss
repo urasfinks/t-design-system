@@ -1,6 +1,10 @@
 @use '../layers';
 @layer tds.tokens {
   :root {
+    --layout-reading-width: 48rem;
+    --composer-reserved-size: 10rem;
+    --composer-input-max-size: calc(var(--space-16) * 2);
+    --media-max-size: 55dvh;
     --fs-xs: clamp(.75rem, .7rem + .2vw, .8125rem);
     --fs-sm: clamp(.8125rem, .78rem + .25vw, .875rem);
     --fs: 1rem;

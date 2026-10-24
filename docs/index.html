@@ -21,7 +21,7 @@
     <select id="theme" class="tg-select theme-select" aria-label="Тема оформления"><option value="auto">Авто</option><option value="light">Светлая</option><option value="dark">Тёмная · Desktop</option><option value="ios-dark">Тёмная · iOS</option></select>
   </div>
 </header>
-<nav class="mobile-navigation" aria-label="Навигация по каталогу"><label for="section-select">Раздел</label><select class="tg-select" id="section-select" aria-label="Раздел каталога"><option value="overview">Обзор</option><option value="tokens">Основа и темы</option><option value="buttons">Кнопки</option><option value="icons">Иконки</option><option value="forms">Формы</option><option value="surfaces">Карточки и списки</option><option value="navigation">Навигация</option><option value="feedback">Обратная связь</option><option value="avatars">Аватары и бейджи</option><option value="layout">Компоновка</option><option value="effects">Эффекты</option><option value="start">Подключение</option></select></nav>
+<nav class="mobile-navigation" aria-label="Навигация по каталогу"><label for="section-select">Раздел</label><select class="tg-select" id="section-select" aria-label="Раздел каталога"><option value="overview">Обзор</option><option value="tokens">Основа и темы</option><option value="buttons">Кнопки</option><option value="icons">Иконки</option><option value="forms">Формы</option><option value="surfaces">Карточки и списки</option><option value="navigation">Навигация</option><option value="feedback">Обратная связь</option><option value="avatars">Аватары и бейджи</option><option value="layout">Компоновка</option><option value="compositions">Композиции</option><option value="effects">Эффекты</option><option value="start">Подключение</option></select></nav>
 <div class="site-layout">
 <aside class="sidebar">
   <div class="sidebar-label">Библиотека</div>
@@ -36,6 +36,7 @@
     <a href="#feedback" class="nav-link"><span>Обратная связь</span></a>
     <a href="#avatars" class="nav-link"><span>Аватары и бейджи</span></a>
     <a href="#layout" class="nav-link"><span>Компоновка</span></a>
+    <a href="#compositions" class="nav-link"><span>Композиции</span></a>
     <a href="#effects" class="nav-link"><span>Эффекты</span></a>
     <a href="#start" class="nav-link"><span>Подключение</span></a>
   </nav>
@@ -52,7 +53,7 @@
   <div class="preview-stage">
     <div class="preview-label">Пример интерфейса · из компонентов ниже</div>
     <article class="app-preview tg-card" data-ui aria-label="Пример интерфейса">
-      <div class="preview-top"><span class="preview-icon"><svg viewBox="0 0 24 24" class="tg-icon" aria-hidden="true"><use href="../dist/icons.svg#grid"></use></svg></span><span class="tg-badge">Пространство</span></div>
+      <div class="preview-top"><span class="preview-icon"><svg viewBox="0 0 24 24" class="tg-icon" aria-hidden="true"><use href="../dist/icons.svg#grid"></use></svg></span><span class="tg-badge tg-badge--primary">Пространство</span></div>
       <h2>Всё на своих местах</h2><p class="tg-text-muted tg-text-sm">Небольшие детали. Цельный интерфейс.</p>
       <div class="tg-list tg-mt-5">
         <div class="tg-list-item tg-row"><span class="preview-item-icon"><svg viewBox="0 0 24 24" class="tg-icon" aria-hidden="true"><use href="../dist/icons.svg#folder"></use></svg></span><div class="tg-grow"><div class="tg-list-item__title">Ваши проекты</div><div class="tg-list-item__subtitle">Всё важное — рядом</div></div><span class="tg-badge tg-badge--primary">8</span></div>
@@ -119,7 +120,18 @@
 <div class="icon-swatch"><svg viewBox="0 0 24 24" class="tg-icon tg-icon--lg" aria-hidden="true"><use href="../dist/icons.svg#alert-circle"></use></svg><code>alert-circle</code></div>
 <div class="icon-swatch"><svg viewBox="0 0 24 24" class="tg-icon tg-icon--lg" aria-hidden="true"><use href="../dist/icons.svg#trash-2"></use></svg><code>trash-2</code></div>
 <div class="icon-swatch"><svg viewBox="0 0 24 24" class="tg-icon tg-icon--lg" aria-hidden="true"><use href="../dist/icons.svg#rotate-cw"></use></svg><code>rotate-cw</code></div>
-<div class="icon-swatch"><svg viewBox="0 0 24 24" class="tg-icon tg-icon--lg" aria-hidden="true"><use href="../dist/icons.svg#file-text"></use></svg><code>file-text</code></div></div>
+<div class="icon-swatch"><svg viewBox="0 0 24 24" class="tg-icon tg-icon--lg" aria-hidden="true"><use href="../dist/icons.svg#file-text"></use></svg><code>file-text</code></div><div class="icon-swatch"><svg viewBox="0 0 24 24" class="tg-icon tg-icon--lg" aria-hidden="true"><use href="../dist/icons.svg#message-circle"></use></svg><code>message-circle</code></div>
+<div class="icon-swatch"><svg viewBox="0 0 24 24" class="tg-icon tg-icon--lg" aria-hidden="true"><use href="../dist/icons.svg#message-square"></use></svg><code>message-square</code></div>
+<div class="icon-swatch"><svg viewBox="0 0 24 24" class="tg-icon tg-icon--lg" aria-hidden="true"><use href="../dist/icons.svg#heart"></use></svg><code>heart</code></div>
+<div class="icon-swatch"><svg viewBox="0 0 24 24" class="tg-icon tg-icon--lg" aria-hidden="true"><use href="../dist/icons.svg#image"></use></svg><code>image</code></div>
+<div class="icon-swatch"><svg viewBox="0 0 24 24" class="tg-icon tg-icon--lg" aria-hidden="true"><use href="../dist/icons.svg#link"></use></svg><code>link</code></div>
+<div class="icon-swatch"><svg viewBox="0 0 24 24" class="tg-icon tg-icon--lg" aria-hidden="true"><use href="../dist/icons.svg#chevron-down"></use></svg><code>chevron-down</code></div>
+<div class="icon-swatch"><svg viewBox="0 0 24 24" class="tg-icon tg-icon--lg" aria-hidden="true"><use href="../dist/icons.svg#chevron-up"></use></svg><code>chevron-up</code></div>
+<div class="icon-swatch"><svg viewBox="0 0 24 24" class="tg-icon tg-icon--lg" aria-hidden="true"><use href="../dist/icons.svg#arrow-up"></use></svg><code>arrow-up</code></div>
+<div class="icon-swatch"><svg viewBox="0 0 24 24" class="tg-icon tg-icon--lg" aria-hidden="true"><use href="../dist/icons.svg#arrow-left"></use></svg><code>arrow-left</code></div>
+<div class="icon-swatch"><svg viewBox="0 0 24 24" class="tg-icon tg-icon--lg" aria-hidden="true"><use href="../dist/icons.svg#corner-down-right"></use></svg><code>corner-down-right</code></div>
+<div class="icon-swatch"><svg viewBox="0 0 24 24" class="tg-icon tg-icon--lg" aria-hidden="true"><use href="../dist/icons.svg#external-link"></use></svg><code>external-link</code></div>
+</div>
   <div class="example-panel"><div class="example-meta"><span>Текст и символ дополняют друг друга</span><span>Локальный SVG-спрайт · без JavaScript</span></div><div class="example-body tg-row" data-ui data-example>
 <button class="tg-btn tg-btn--secondary tg-btn--pill" id="reload-examples"><svg viewBox="0 0 24 24" class="tg-icon" aria-hidden="true"><use href="../dist/icons.svg#rotate-cw"></use></svg> Обновить примеры</button>
 <a class="tg-btn tg-btn--primary tg-btn--pill" href="#forms">Добавить <svg viewBox="0 0 24 24" class="tg-icon" aria-hidden="true"><use href="../dist/icons.svg#file-text"></use></svg></a>
@@ -198,6 +210,72 @@
   <div class="section-heading"><div><h2>Тот же ритм в любом масштабе</h2><p>Автоматическая сетка, строки, колонки и утилиты отступов.</p></div><code class="class-tag">.tg-grid · .tg-row</code></div>
   <div class="example-panel"><div class="example-body" data-ui data-example><div class="tg-grid"><div class="layout-cell">Блок 01</div><div class="layout-cell">Блок 02</div><div class="layout-cell">Блок 03</div></div></div></div>
 </section>
+
+<section id="compositions" class="catalog-section">
+  <div class="section-heading"><div><h2>Готовые композиции экранов</h2><p>Каркас страницы, комментарии и панель ввода. В примере нет собственного CSS: оформление полностью задаёт TDS.</p></div><code class="class-tag">.tg-page-shell · .tg-comment · .tg-composer</code></div>
+  <div class="tg-row"><a class="tg-btn tg-btn--primary" href="compositions.html" target="_blank" rel="noopener">Открыть полный пример <svg class="tg-icon" viewBox="0 0 24 24" aria-hidden="true"><use href="../dist/icons.svg#arrow-up-right"></use></svg></a><span class="tg-text-sm tg-text-muted">Попробуйте ответ, отправку сообщения и просмотр медиа.</span></div>
+  <div class="example-panel"><div class="example-meta"><span>Живой экран</span><span>Тема и акцент синхронизированы с каталогом</span></div><iframe class="composition-preview" id="composition-preview" src="compositions.html" title="Интерактивный пример композиций TDS"></iframe></div>
+  <div class="example-panel"><div class="example-body tg-col">
+    <h3 class="tg-header__title">Что входит в TDS</h3>
+    <dl class="tg-col">
+      <div><dt><code>tg-page-shell · tg-page-header · tg-page-content</code></dt><dd class="tg-mt-1 tg-text-sm tg-text-muted">Шапка с safe area и область контента с резервом под composer. Узкая колонка: tg-container tg-container--reading.</dd></div>
+      <div><dt><code>tg-toolbar · tg-toolbar--responsive</code></dt><dd class="tg-mt-1 tg-text-sm tg-text-muted">Панель с действиями по краям. На мобильном элементы растягиваются; tg-tabs--responsive занимает всю ширину.</dd></div>
+      <div><dt><code>tg-comment · tg-thread</code></dt><dd class="tg-mt-1 tg-text-sm tg-text-muted">Аватар, метаданные, текст и действия. На телефоне текст на всю ширину, вложенные ответы с компактным отступом.</dd></div>
+      <div><dt><code>tg-composer · tg-reply-preview</code></dt><dd class="tg-mt-1 tg-text-sm tg-text-muted">Закреплённая панель, растущее поле, кнопка отправки, подпись и обрезаемая цитата ответа.</dd></div>
+      <div><dt><code>tg-media · tg-source-link</code></dt><dd class="tg-mt-1 tg-text-sm tg-text-muted">Изображение без обрезки в пределах окна и строка ссылки на источник. Используют существующий tg-modal.</dd></div>
+    </dl>
+    <h3 class="tg-header__title">Граница CSS и поведения</h3>
+    <p class="tg-mt-0 tg-mb-0">TDS определяет размеры, цвета, отступы и адаптивность. Приложение хранит данные, отправляет сообщения и управляет фокусом. JavaScript измеряет высоту composer и клавиатуры через <code>--tg-composer-height</code> и <code>--tg-keyboard-inset</code>, а также подстраивает высоту textarea.</p>
+    <p class="tg-text-sm tg-text-muted tg-mt-0 tg-mb-0">Токены: <code>--layout-reading-width</code> (48rem), <code>--composer-reserved-size</code> (10rem), <code>--composer-input-max-size</code> (2 × space-16), <code>--media-max-size</code> (55dvh). Типографика и существующие контролы не переопределяются.</p>
+    <p class="tg-text-sm tg-mt-0 tg-mb-0"><a class="tg-link" href="compositions-demo.js">JavaScript примера</a> · Слоты и ограничения интеграции описаны в README → Screen compositions.</p>
+  </div></div>
+  <details class="example-code"><summary>HTML композиции</summary><pre><code>&lt;div class="tg-page-shell"&gt;
+  &lt;header class="tg-page-header"&gt;
+    &lt;div class="tg-container tg-container--reading tg-row"&gt;
+      &lt;a class="tg-brand tg-header__title tg-text" href="#demo-content"&gt;&lt;svg class="tg-icon" viewBox="0 0 24 24" aria-hidden="true"&gt;&lt;use href="../dist/icons.svg#message-square"&gt;&lt;/use&gt;&lt;/svg&gt;Обсуждение&lt;/a&gt;
+      &lt;label class="tg-ms-auto" id="demo-theme-control"&gt;Тема примера&lt;select id="demo-theme" class="tg-select" aria-label="Тема примера"&gt;&lt;option value="auto"&gt;Авто&lt;/option&gt;&lt;option value="light"&gt;Светлая&lt;/option&gt;&lt;option value="dark"&gt;Тёмная&lt;/option&gt;&lt;option value="ios-dark"&gt;Тёмная iOS&lt;/option&gt;&lt;/select&gt;&lt;/label&gt;
+      &lt;span class="tg-badge tg-ms-auto"&gt;Демо TDS&lt;/span&gt;
+    &lt;/div&gt;
+  &lt;/header&gt;
+  &lt;main class="tg-container tg-container--reading tg-page-content" id="demo-content"&gt;
+    &lt;section class="tg-card tg-col" aria-labelledby="demo-title"&gt;
+      &lt;h1 class="tg-header__title" id="demo-title"&gt;Готовый экран без CSS приложения&lt;/h1&gt;
+      &lt;p class="tg-mt-0 tg-mb-0"&gt;Шапка, контейнер, комментарии и панель ввода используют публичные классы TDS. Измените ширину окна или тему.&lt;/p&gt;
+      &lt;div class="tg-toolbar tg-toolbar--responsive"&gt;&lt;span class="tg-text-sm tg-text-muted"&gt;Адаптивная панель действий&lt;/span&gt;&lt;button class="tg-btn tg-btn--secondary" id="demo-open-media"&gt;&lt;svg class="tg-icon" viewBox="0 0 24 24" aria-hidden="true"&gt;&lt;use href="../dist/icons.svg#image"&gt;&lt;/use&gt;&lt;/svg&gt;Открыть медиа&lt;/button&gt;&lt;/div&gt;
+    &lt;/section&gt;
+    &lt;section class="tg-mt-5" aria-labelledby="demo-comments-title"&gt;
+      &lt;h2 class="tg-header__title tg-mb-3" id="demo-comments-title"&gt;Комментарии&lt;/h2&gt;
+      &lt;div class="tg-list" id="demo-messages"&gt;
+        &lt;div class="tg-list-item"&gt;
+          &lt;article class="tg-comment"&gt;
+            &lt;span class="tg-avatar" aria-hidden="true"&gt;&lt;span class="tg-avatar__initials"&gt;АК&lt;/span&gt;&lt;/span&gt;
+            &lt;div class="tg-comment__body"&gt;
+              &lt;header class="tg-comment__meta tg-row tg-gap-2"&gt;&lt;span class="tg-list-item__title"&gt;Анна&lt;/span&gt;&lt;span class="tg-text-sm tg-text-muted"&gt;сейчас&lt;/span&gt;&lt;/header&gt;
+              &lt;p class="tg-comment__text tg-mt-2 tg-mb-2" id="demo-original"&gt;На телефоне текст занимает всю ширину, а имя остаётся рядом с аватаром. Ответьте на этот комментарий, чтобы увидеть цитату в панели ввода.&lt;/p&gt;
+              &lt;div class="tg-comment__actions tg-row tg-gap-1"&gt;&lt;button class="tg-btn tg-btn--ghost tg-btn--sm" id="demo-reply" aria-label="Ответить Анне"&gt;Ответить&lt;/button&gt;&lt;button class="tg-btn tg-btn--ghost tg-btn--sm" id="demo-toggle-replies" aria-controls="demo-replies" aria-expanded="false"&gt;Показать ответы&lt;/button&gt;&lt;/div&gt;
+            &lt;/div&gt;
+          &lt;/article&gt;
+          &lt;div class="tg-thread tg-mt-3" id="demo-replies" hidden&gt;
+            &lt;article class="tg-comment"&gt;&lt;span class="tg-avatar" aria-hidden="true"&gt;&lt;span class="tg-avatar__initials"&gt;М&lt;/span&gt;&lt;/span&gt;&lt;div class="tg-comment__body"&gt;&lt;header class="tg-comment__meta"&gt;&lt;span class="tg-list-item__title"&gt;Максим&lt;/span&gt;&lt;/header&gt;&lt;p class="tg-comment__text tg-mt-2 tg-mb-0"&gt;Вложенные ответы тоже адаптируются к ширине экрана.&lt;/p&gt;&lt;/div&gt;&lt;/article&gt;
+          &lt;/div&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+    &lt;/section&gt;
+  &lt;/main&gt;
+  &lt;footer class="tg-composer" id="demo-composer"&gt;
+    &lt;div class="tg-container tg-container--reading tg-composer__inner tg-col tg-gap-2"&gt;
+      &lt;div class="tg-reply-preview tg-text-sm" id="demo-reply-preview" hidden&gt;&lt;svg class="tg-icon" viewBox="0 0 24 24" aria-hidden="true"&gt;&lt;use href="../dist/icons.svg#corner-down-right"&gt;&lt;/use&gt;&lt;/svg&gt;&lt;div class="tg-grow"&gt;&lt;span class="tg-text-accent"&gt;Ответ для Анны&lt;/span&gt;&lt;p class="tg-truncate tg-text-muted tg-mt-1 tg-mb-0" id="demo-excerpt"&gt;&lt;/p&gt;&lt;/div&gt;&lt;button class="tg-icon-btn" id="demo-cancel-reply" aria-label="Отменить ответ"&gt;&lt;svg class="tg-icon" viewBox="0 0 24 24" aria-hidden="true"&gt;&lt;use href="../dist/icons.svg#x"&gt;&lt;/use&gt;&lt;/svg&gt;&lt;/button&gt;&lt;/div&gt;
+      &lt;form class="tg-composer__form" id="demo-message-form"&gt;
+        &lt;span class="tg-avatar-size" aria-hidden="true"&gt;&lt;span class="tg-avatar"&gt;&lt;span class="tg-avatar__initials"&gt;В&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+        &lt;div class="tg-composer__input"&gt;&lt;textarea class="tg-textarea tg-composer__textarea" id="demo-message" rows="1" maxlength="2000" placeholder="Написать сообщение…" aria-label="Текст сообщения"&gt;&lt;/textarea&gt;&lt;button class="tg-icon-btn tg-icon-btn--primary" id="demo-send" aria-label="Отправить сообщение" disabled&gt;&lt;svg class="tg-icon" viewBox="0 0 24 24" aria-hidden="true"&gt;&lt;use href="../dist/icons.svg#arrow-up"&gt;&lt;/use&gt;&lt;/svg&gt;&lt;/button&gt;&lt;/div&gt;
+      &lt;/form&gt;
+      &lt;div class="tg-composer__caption tg-text-sm tg-text-muted"&gt;&lt;span&gt;Сообщения существуют только в этом примере&lt;/span&gt;&lt;span&gt;Ctrl / ⌘ + Enter&lt;/span&gt;&lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/footer&gt;
+&lt;/div&gt;
+</code></pre></details>
+</section>
+
 
 <section id="effects" class="catalog-section">
   <div class="section-heading"><div><h2>Те самые ощущения</h2><p>Волна нажатия, полупрозрачные поверхности и мягкое появление из исходного проекта.</p></div><code class="class-tag">.tg-ripple · .tg-glass</code></div>
