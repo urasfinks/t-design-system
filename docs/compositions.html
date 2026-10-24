@@ -12,7 +12,7 @@
 <div class="tg-page-shell">
   <header class="tg-page-header">
     <div class="tg-container tg-container--reading tg-row">
-      <a class="tg-brand tg-header__title tg-text" href="#demo-content"><svg class="tg-icon" viewBox="0 0 24 24" aria-hidden="true"><use href="../dist/icons.svg#message-square"></use></svg>Обсуждение</a>
+      <a class="tg-brand tg-header__title tg-text" href="#demo-content"><svg class="tg-icon" viewBox="0 0 24 24" aria-hidden="true"><use href="../dist/icons/message-square.svg#message-square"></use></svg>Обсуждение</a>
       <label class="tg-ms-auto" id="demo-theme-control">Тема примера<select id="demo-theme" class="tg-select" aria-label="Тема примера"><option value="auto">Авто</option><option value="light">Светлая</option><option value="dark">Тёмная</option><option value="ios-dark">Тёмная iOS</option></select></label>
       <span class="tg-badge tg-ms-auto">Демо TDS</span>
     </div>
@@ -21,7 +21,7 @@
     <section class="tg-card tg-col" aria-labelledby="demo-title">
       <h1 class="tg-header__title" id="demo-title">Готовый экран без CSS приложения</h1>
       <p class="tg-mt-0 tg-mb-0">Шапка, контейнер, комментарии и панель ввода используют публичные классы TDS. Измените ширину окна или тему.</p>
-      <div class="tg-toolbar tg-toolbar--responsive"><span class="tg-text-sm tg-text-muted">Адаптивная панель действий</span><button class="tg-btn tg-btn--secondary" id="demo-open-media"><svg class="tg-icon" viewBox="0 0 24 24" aria-hidden="true"><use href="../dist/icons.svg#image"></use></svg>Открыть медиа</button></div>
+      <div class="tg-toolbar tg-toolbar--responsive"><span class="tg-text-sm tg-text-muted">Адаптивная панель действий</span><button class="tg-btn tg-btn--secondary" id="demo-open-media"><svg class="tg-icon" viewBox="0 0 24 24" aria-hidden="true"><use href="../dist/icons/image.svg#image"></use></svg>Открыть медиа</button></div>
     </section>
     <section class="tg-mt-5" aria-labelledby="demo-comments-title">
       <h2 class="tg-header__title tg-mb-3" id="demo-comments-title">Комментарии</h2>
@@ -44,16 +44,16 @@
   </main>
   <footer class="tg-composer" id="demo-composer">
     <div class="tg-container tg-container--reading tg-composer__inner tg-col tg-gap-2">
-      <div class="tg-reply-preview tg-text-sm" id="demo-reply-preview" hidden><svg class="tg-icon" viewBox="0 0 24 24" aria-hidden="true"><use href="../dist/icons.svg#corner-down-right"></use></svg><div class="tg-grow"><span class="tg-text-accent">Ответ для Анны</span><p class="tg-truncate tg-text-muted tg-mt-1 tg-mb-0" id="demo-excerpt"></p></div><button class="tg-icon-btn" id="demo-cancel-reply" aria-label="Отменить ответ"><svg class="tg-icon" viewBox="0 0 24 24" aria-hidden="true"><use href="../dist/icons.svg#x"></use></svg></button></div>
+      <div class="tg-reply-preview tg-text-sm" id="demo-reply-preview" hidden><svg class="tg-icon" viewBox="0 0 24 24" aria-hidden="true"><use href="../dist/icons/corner-down-right.svg#corner-down-right"></use></svg><div class="tg-grow"><span class="tg-text-accent">Ответ для Анны</span><p class="tg-truncate tg-text-muted tg-mt-1 tg-mb-0" id="demo-excerpt"></p></div><button class="tg-icon-btn" id="demo-cancel-reply" aria-label="Отменить ответ"><svg class="tg-icon" viewBox="0 0 24 24" aria-hidden="true"><use href="../dist/icons/x.svg#x"></use></svg></button></div>
       <form class="tg-composer__form" id="demo-message-form">
         <span class="tg-avatar-size" aria-hidden="true"><span class="tg-avatar"><span class="tg-avatar__initials">В</span></span></span>
-        <div class="tg-composer__input"><textarea class="tg-textarea tg-composer__textarea" id="demo-message" rows="1" maxlength="2000" placeholder="Написать сообщение…" aria-label="Текст сообщения"></textarea><button class="tg-icon-btn tg-icon-btn--primary" id="demo-send" aria-label="Отправить сообщение" disabled><svg class="tg-icon" viewBox="0 0 24 24" aria-hidden="true"><use href="../dist/icons.svg#arrow-up"></use></svg></button></div>
+        <div class="tg-composer__input"><textarea class="tg-textarea tg-composer__textarea" id="demo-message" rows="1" maxlength="2000" placeholder="Написать сообщение…" aria-label="Текст сообщения"></textarea><button class="tg-icon-btn tg-icon-btn--primary" id="demo-send" aria-label="Отправить сообщение" disabled><svg class="tg-icon" viewBox="0 0 24 24" aria-hidden="true"><use href="../dist/icons/arrow-up.svg#arrow-up"></use></svg></button></div>
       </form>
       <div class="tg-composer__caption tg-text-sm tg-text-muted"><span>Сообщения существуют только в этом примере</span><span>Ctrl / ⌘ + Enter</span></div>
     </div>
   </footer>
 </div>
 <p class="tg-sr-only" role="status" id="demo-status"></p>
-<dialog class="tg-modal" id="demo-media" aria-labelledby="demo-media-title"><div class="tg-modal__sheet"><header class="tg-modal__header"><h2 class="tg-header__title" id="demo-media-title">Медиа без обрезки</h2><button class="tg-icon-btn" id="demo-close-media" aria-label="Закрыть медиа"><svg class="tg-icon" viewBox="0 0 24 24" aria-hidden="true"><use href="../dist/icons.svg#x"></use></svg></button></header><figure class="tg-media tg-col"><img src="composition-media.svg" alt="Условный пейзаж: горы, солнце и вода" width="1200" height="800"><figcaption class="tg-text-sm tg-text-muted">tg-media сохраняет пропорции и ограничивает высоту изображения размером окна.</figcaption></figure></div></dialog>
+<dialog class="tg-modal" id="demo-media" aria-labelledby="demo-media-title"><div class="tg-modal__sheet"><header class="tg-modal__header"><h2 class="tg-header__title" id="demo-media-title">Медиа без обрезки</h2><button class="tg-icon-btn" id="demo-close-media" aria-label="Закрыть медиа"><svg class="tg-icon" viewBox="0 0 24 24" aria-hidden="true"><use href="../dist/icons/x.svg#x"></use></svg></button></header><figure class="tg-media tg-col"><img src="composition-media.svg" alt="Условный пейзаж: горы, солнце и вода" width="1200" height="800"><figcaption class="tg-text-sm tg-text-muted">tg-media сохраняет пропорции и ограничивает высоту изображения размером окна.</figcaption></figure></div></dialog>
 </body>
 </html>

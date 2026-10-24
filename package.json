@@ -20,7 +20,7 @@
     "./scss/components/*": "./src/components/_*.scss",
     "./telegram/js": "./dist/telegram.js",
     "./effects/js": "./dist/effects.js",
-    "./icons": "./dist/icons.svg"
+    "./icons/*": "./dist/icons/*.svg"
   },
   "files": [
     "dist",
@@ -36,8 +36,9 @@
     "prepack": "npm run build"
   },
   "devDependencies": {
-    "sass": "1.93.2",
-    "playwright": "1.62.1"
+    "feather-icons": "4.29.2",
+    "playwright": "1.62.1",
+    "sass": "1.93.2"
   },
   "engines": {
     "node": ">=20"

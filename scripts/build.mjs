@@ -1,5 +1,5 @@
 import { compileAsync } from 'sass';
-import { mkdir, writeFile, copyFile, readdir, readFile } from 'node:fs/promises';
+import { mkdir, writeFile, copyFile, readdir, readFile, rm } from 'node:fs/promises';
 import { fileURLToPath } from 'node:url';
 const root = new URL('../', import.meta.url);
 await mkdir(new URL('dist/', root), { recursive: true });
@@ -18,15 +18,17 @@ console.log('Built dist/telegram.js (optional theme bridge)');
 await copyFile(new URL('src/effects.mjs', root), new URL('dist/effects.js', root));
 console.log('Built dist/effects.js (optional ripple helper)');
 
-// Vendor only the chosen Feather glyphs; no icon runtime or network at build time.
-const iconRoot = new URL('src/icons/', root);
-const symbols = [];
-for (const file of (await readdir(iconRoot)).filter(file => file.endsWith('.svg')).sort()) {
-  const svg = await readFile(new URL(file, iconRoot), 'utf8');
-  const body = svg.match(/<svg\b[^>]*>([\s\S]*?)<\/svg>/)?.[1];
-  if (!body) throw new Error(`Invalid icon: ${file}`);
-  symbols.push(`<symbol id="${file.slice(0, -4)}" viewBox="0 0 24 24">${body.trim()}</symbol>`);
+// Ship independent SVG assets from the pinned upstream package, never a sprite.
+const featherRoot = new URL('../node_modules/feather-icons/', import.meta.url);
+const iconRoot = new URL('dist/icons/', root);
+await mkdir(iconRoot, { recursive: true });
+await rm(new URL('dist/icons.svg', root), { force: true });
+const iconFiles = (await readdir(new URL('dist/icons/', featherRoot))).filter(file => file.endsWith('.svg')).sort();
+for (const file of iconFiles) {
+  const name = file.slice(0, -4);
+  const svg = await readFile(new URL('dist/icons/' + file, featherRoot), 'utf8');
+  // A root id allows external <use> to inherit currentColor without inline JS.
+  await writeFile(new URL(file, iconRoot), svg.replace('<svg ', '<svg id="' + name + '" '));
 }
-await writeFile(new URL('dist/icons.svg', root), `<svg xmlns="http://www.w3.org/2000/svg">\n${symbols.join('\n')}\n</svg>\n`);
-await copyFile(new URL('LICENSE', iconRoot), new URL('dist/icons-LICENSE.txt', root));
-console.log(`Built dist/icons.svg (${symbols.length} Feather icons, MIT)`);
+await copyFile(new URL('LICENSE', featherRoot), new URL('dist/icons-LICENSE.txt', root));
+console.log('Built dist/icons/ (' + iconFiles.length + ' independent Feather SVG files, MIT)');

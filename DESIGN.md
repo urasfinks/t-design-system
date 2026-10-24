@@ -72,8 +72,10 @@ surface hierarchy, compact rows, soft separators and restrained accent as eviden
 not as a pixel-perfect target or a claim that the original is ideal. Preserve the
 improvements to feedback, form states and accessibility already accepted.
 
-Icons use one official Feather subset (v4.29.2, MIT), also identified in the source
-application. The catalog uses local SVG symbols rather than hand-redrawn glyphs;
+Icons come from the pinned feather-icons npm dependency (v4.29.2, MIT).
+The build exposes every icon as an individual SVG in dist/icons/. No combined
+sprite is shipped; browsers request only the icons used on a page. The catalog
+uses external SVG references with inherited currentColor rather than hand-redrawn glyphs;
 24×24 geometry, stroke 2, round caps/joins, 16/20/24px roles. Feather is a web icon
 choice, not an assertion that these are Apple's SF Symbols. Capsule action buttons
 are available as explicit modifiers, alongside the current default geometry.
@@ -90,10 +92,14 @@ and a separate participant section. Treat these as composition evidence:
   turning every status into a bright filled label.
 - Keep touch targets generous even when visible icon controls look compact.
 
-The reference's framing is intentional: keep a fine border around count capsules.
-Standalone base badges keep a fine border. Primary, secondary and destructive
-badge modifiers remove it; direct avatar badge children add their own surface
-border and shadow. Quantity overlays use the secondary badge.
+Informational badge labels, categories and statuses have no outline: use primary,
+secondary or destructive modifiers. In badge compositions, an outline signals
+interaction; use a semantic button/link for the actual action. The “Пространство”
+label uses the neutral secondary modifier; “Новый проект” uses the accent primary
+modifier. Both are borderless.
+Standalone base badges retain their outlined API for interactive use. Direct avatar
+badge children retain a surface-separation border and shadow for overlapping
+geometry. Quantity overlays use the secondary badge.
 `tg-avatar--outlined` keeps the filled initials circle and a single neutral outer
 2px ring across the existing padding gap, matching the source reference. Direct
 initials use font-weight 400 in this variant. Selection

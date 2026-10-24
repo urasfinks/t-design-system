@@ -111,10 +111,10 @@ try {
   page.on('pageerror', error => errors.push(error.message));
   const response = await page.goto('http://127.0.0.1:4174/docs/');
   check('component catalog is served', response.status() === 200);
-  const iconSprite = await page.request.get('http://127.0.0.1:4174/dist/icons.svg');
-  check('local icon sprite is served', iconSprite.status() === 200 && iconSprite.headers()['content-type'].includes('image/svg+xml'));
+  const iconSprite = await page.request.get('http://127.0.0.1:4174/dist/icons/heart.svg');
+  check('individual icon asset is served', iconSprite.status() === 200 && iconSprite.headers()['content-type'].includes('image/svg+xml'));
   await page.waitForFunction(() => [...document.querySelectorAll('svg.tg-icon')].filter(el => el.getClientRects().length).every(el => el.getBBox().width > 0));
-  check('visible catalog icons render from the shared sprite', await page.locator('.icon-gallery svg use').count() === 28);
+  check('visible catalog icons render from individual SVG files', await page.locator('.icon-gallery svg use').count() === 28);
   const iconStyle = await page.locator('#primary-demo .tg-icon').evaluate(el => ({ size: getComputedStyle(el).width, stroke: getComputedStyle(el).strokeWidth, caps: getComputedStyle(el).strokeLinecap }));
   check('button icons use shared 20px size and 2-unit round stroke', iconStyle.size === '20px' && iconStyle.stroke === '2px' && iconStyle.caps === 'round');
   check('glass example has a neutral flat backdrop', await style('.glass-demo-stage', 'background-image') === 'none');
