@@ -11,7 +11,7 @@ test('importing the server exposes its resolver without listening', () => {
 });
 
 test('public HTML, CSS and JavaScript assets resolve', async () => {
-  for (const path of ['/docs/index.html', '/docs/catalog.js', '/dist/t-design-system.css', '/dist/telegram.js']) {
+  for (const path of ['/docs/index.html', '/docs/catalog.js', '/dist/t-design-system.css', '/dist/telegram.js', '/dist/ui.js', '/dist/icons.json', '/docs/icon-browser.js']) {
     assert.equal(await resolvePublicPath(path), await realpath(new URL(`..${path}`, import.meta.url)));
   }
   assert.equal(await resolvePublicPath('/'), await resolvePublicPath('/docs/index.html'));

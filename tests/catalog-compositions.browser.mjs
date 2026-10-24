@@ -11,7 +11,8 @@ try {
   const errors = []; page.on('pageerror', error => errors.push(error.message));
   await page.goto('http://127.0.0.1:4177/docs/#compositions');
   assert.equal(await page.locator('#compositions').count(), 1, 'catalog exposes compositions');
-  assert.equal(await page.locator('.icon-gallery svg use').count(), 28, 'new icons are discoverable');
+  await page.waitForFunction(() => document.querySelectorAll('.icon-gallery svg use').length === 287);
+  assert.equal(await page.locator('.icon-gallery svg use').count(), 287, 'all Feather icons are discoverable');
   assert.equal(await page.locator('.nav-link[href="#compositions"]').count(), 1);
   assert.equal(await page.locator('#section-select option[value="compositions"]').count(), 1);
   const frame = page.frameLocator('#composition-preview');

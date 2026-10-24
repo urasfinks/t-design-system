@@ -1,4 +1,5 @@
 import { compileAsync } from 'sass';
+import feather from 'feather-icons';
 import { mkdir, writeFile, copyFile, readdir, readFile, rm } from 'node:fs/promises';
 import { fileURLToPath } from 'node:url';
 const root = new URL('../', import.meta.url);
@@ -18,6 +19,10 @@ console.log('Built dist/telegram.js (optional theme bridge)');
 await copyFile(new URL('src/effects.mjs', root), new URL('dist/effects.js', root));
 console.log('Built dist/effects.js (optional ripple helper)');
 
+const ui = await readFile(new URL('src/ui.mjs', root), 'utf8');
+await writeFile(new URL('dist/ui.js', root), ui.replaceAll("'./effects.mjs'", "'./effects.js'"));
+console.log('Built dist/ui.js (standard button feedback)');
+
 // Ship independent SVG assets from the pinned upstream package, never a sprite.
 const featherRoot = new URL('../node_modules/feather-icons/', import.meta.url);
 const iconRoot = new URL('dist/icons/', root);
@@ -32,3 +37,7 @@ for (const file of iconFiles) {
 }
 await copyFile(new URL('LICENSE', featherRoot), new URL('dist/icons-LICENSE.txt', root));
 console.log('Built dist/icons/ (' + iconFiles.length + ' independent Feather SVG files, MIT)');
+
+const manifest = iconFiles.map(file => ({ name: file.slice(0, -4), tags: feather.icons[file.slice(0, -4)].tags })).sort((a, b) => a.name < b.name ? -1 : a.name > b.name ? 1 : 0);
+await writeFile(new URL('dist/icons.json', root), JSON.stringify(manifest, null, 2) + '\n');
+console.log('Built dist/icons.json (searchable Feather metadata)');

@@ -20,3 +20,17 @@ test('individual SVG assets resolve every catalog reference and ship their licen
 
   assert.match(await readFile('dist/icons-LICENSE.txt', 'utf8'), /Permission is hereby granted/);
 });
+
+test('manifest includes every shipped Feather icon and its upstream search tags', async () => {
+  const manifest = JSON.parse(await readFile('dist/icons.json', 'utf8'));
+  assert.equal(manifest.length, 287);
+  assert.deepEqual(manifest.map(icon => icon.name), Object.keys(feather.icons).sort());
+  for (const icon of manifest) assert.deepEqual(icon.tags, feather.icons[icon.name].tags);
+});
+
+
+test('distributed UI entry imports its shipped effects module', async () => {
+  const source = await readFile('dist/ui.js', 'utf8');
+  assert.match(source, /['"]\.\/effects\.js['"]/);
+  assert.doesNotMatch(source, /effects\.mjs/);
+});

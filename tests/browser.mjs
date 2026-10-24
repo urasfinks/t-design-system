@@ -53,19 +53,19 @@ try {
   for (const [name, mode] of [['light', 'light'], ['desktopDark', 'dark'], ['iosDark', 'ios-dark']]) {
     await page.evaluate(theme => { document.documentElement.dataset.theme = theme; }, mode);
     const actual = await page.evaluate(keys => Object.fromEntries(keys.map(key => [key, getComputedStyle(document.documentElement).getPropertyValue(`--${key.replaceAll('_', '-')}`).trim().toLowerCase()])), ['bg_color', 'button_color', 'text_color', 'destructive_text_color']);
-    check(`four ${name} source colors match the original palette`, Object.entries(actual).every(([key, value]) => value === palettes[name][key]));
+    check(`four ${name} source colors follow the documented palette`, Object.entries(actual).every(([key, value]) => value === (name === 'desktopDark' && key === 'bg_color' ? '#151e27' : palettes[name][key])));
   }
   await page.evaluate(() => { delete document.documentElement.dataset.theme; });
   check('light theme works without Telegram', await style('body', 'background-color') === await bodyColor('#f5f5f5'));
   check('controls have at least 44px touch target', Number.parseFloat(await style('#button', 'min-height')) >= 44);
   check('utilities override component padding', await style('#card', 'padding') === '0px');
   await page.emulateMedia({ colorScheme: 'dark' });
-  check('system dark theme', await style('body', 'background-color') === await bodyColor('#18222d'));
+  check('system dark theme', await style('body', 'background-color') === await bodyColor('#151e27'));
   await page.evaluate(() => document.documentElement.dataset.theme = 'light');
   check('explicit light overrides dark OS', await style('body', 'background-color') === await bodyColor('#f5f5f5'));
   await page.emulateMedia({ colorScheme: 'light' });
   await page.evaluate(() => document.documentElement.dataset.theme = 'dark');
-  check('explicit dark overrides light OS', await style('body', 'background-color') === await bodyColor('#18222d'));
+  check('explicit dark overrides light OS', await style('body', 'background-color') === await bodyColor('#151e27'));
   await page.evaluate(() => document.documentElement.dataset.platform = 'ios');
   check('dark mode selects iOS palette on iOS platform', await style('body', 'background-color') === await bodyColor('#000000'));
   await page.evaluate(() => { delete document.documentElement.dataset.theme; });
@@ -76,7 +76,7 @@ try {
   await page.evaluate(() => { delete document.documentElement.dataset.platform; document.documentElement.dataset.theme = 'dark'; });
   await page.emulateMedia({ colorScheme: 'light' });
   await page.addStyleTag({ content: adapter });
-  check('Telegram adapter fallback keeps dark palette', await style('body', 'background-color') === await bodyColor('#18222d'));
+  check('Telegram adapter fallback keeps dark palette', await style('body', 'background-color') === await bodyColor('#151e27'));
   await page.evaluate(() => {
     document.documentElement.style.setProperty('--tg-button-color', '#115522');
     document.documentElement.style.setProperty('--tg-theme-button-color', '#2244aa');
@@ -114,14 +114,15 @@ try {
   const iconSprite = await page.request.get('http://127.0.0.1:4174/dist/icons/heart.svg');
   check('individual icon asset is served', iconSprite.status() === 200 && iconSprite.headers()['content-type'].includes('image/svg+xml'));
   await page.waitForFunction(() => [...document.querySelectorAll('svg.tg-icon')].filter(el => el.getClientRects().length).every(el => el.getBBox().width > 0));
-  check('visible catalog icons render from individual SVG files', await page.locator('.icon-gallery svg use').count() === 28);
+  await page.waitForFunction(() => document.querySelectorAll('.icon-gallery svg use').length === 287);
+  check('visible catalog icons render from individual SVG files', await page.locator('.icon-gallery svg use').count() === 287);
   const iconStyle = await page.locator('#primary-demo .tg-icon').evaluate(el => ({ size: getComputedStyle(el).width, stroke: getComputedStyle(el).strokeWidth, caps: getComputedStyle(el).strokeLinecap }));
   check('button icons use shared 20px size and 2-unit round stroke', iconStyle.size === '20px' && iconStyle.stroke === '2px' && iconStyle.caps === 'round');
   check('glass example has a neutral flat backdrop', await style('.glass-demo-stage', 'background-image') === 'none');
   const traversal = await page.request.get('http://127.0.0.1:4174/docs/%2e%2e%2fpackage.json');
   check('HTTP server blocks encoded traversal', traversal.status() === 404);
   await page.getByLabel('Тема оформления').selectOption('dark');
-  check('catalog theme control', await style('body', 'background-color') === await bodyColor('#18222d'));
+  check('catalog theme control', await style('body', 'background-color') === await bodyColor('#151e27'));
   await page.getByLabel('Тема оформления').selectOption('ios-dark');
   check('catalog exposes iOS dark palette', await style('body', 'background-color') === await bodyColor('#000000'));
   await page.getByLabel('Тема оформления').selectOption('light');

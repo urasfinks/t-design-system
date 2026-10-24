@@ -1,3 +1,4 @@
+import '../dist/ui.js';
 // Demo behavior only. All presentation comes from TDS.
 const root = document.documentElement;
 const theme = document.querySelector('#demo-theme');

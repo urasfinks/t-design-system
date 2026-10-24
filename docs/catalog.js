@@ -1,5 +1,5 @@
-import { initRipple } from '../dist/effects.js';
-initRipple();
+import '../dist/ui.js';
+import './icon-browser.js';
 
 const root = document.documentElement;
 const themeSelect = document.querySelector('#theme');
@@ -141,3 +141,19 @@ for (const button of document.querySelectorAll('.tg-pagination .tg-dot')) {
 
 // The refresh icon has a real refresh action; all demo state is recreated on load.
 document.querySelector('#reload-examples').addEventListener('click', () => location.reload());
+
+const range = document.querySelector('#demo-range');
+range.addEventListener('input', () => document.querySelector('#range-output').value = `${range.value}%`);
+for (const link of document.querySelectorAll('.tg-error-summary a')) {
+  link.addEventListener('click', () => document.querySelector(link.hash)?.focus());
+}
+const transitionToggle = document.querySelector('#transition-toggle');
+transitionToggle.addEventListener('click', () => {
+  const expanded = transitionToggle.getAttribute('aria-expanded') !== 'true';
+  transitionToggle.setAttribute('aria-expanded', String(expanded));
+  transitionToggle.textContent = expanded ? 'Скрыть описание' : 'Показать описание';
+  const content = document.querySelector('#transition-demo');
+  content.classList.toggle('is-hidden', !expanded);
+  content.inert = !expanded;
+  content.setAttribute('aria-hidden', String(!expanded));
+});

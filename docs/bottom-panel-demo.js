@@ -1,3 +1,4 @@
+import '../dist/ui.js';
 const root = document.documentElement;
 const theme = document.querySelector('#panel-theme');
 theme.addEventListener('change', () => root.dataset.theme = theme.value);

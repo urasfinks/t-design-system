@@ -104,10 +104,10 @@
     --button-color-transparent: var(--accent-strong);
     --destructive-text-color-transparent: var(--danger-strong);
     --section-bg-color-transparent: var(--background-panel);
-    --text-link: var(--accent-main);
-    --progress-color: var(--accent-main);
+    --text-link: light-dark(var(--accent-strong), var(--text-main));
+    --progress-color: light-dark(var(--accent-strong), var(--text-main));
     --progress-track-color: var(--background-muted);
-    --text-danger: var(--danger-main);
+    --text-danger: light-dark(var(--danger-strong), var(--text-main));
     --action-bg: var(--accent-strong);
     --action-hover-bg: var(--accent-strong);
     --action-danger-bg: var(--danger-strong);

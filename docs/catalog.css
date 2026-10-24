@@ -45,42 +45,6 @@ h1 > span { color: var(--text-link); }
 .hero-actions { display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-5); margin-top: var(--space-6); }
 .quiet-link { color: var(--text-link); font-size: var(--catalog-body); text-decoration: none; font-weight: 500; min-height: 2.75rem; display: inline-flex; align-items: center; gap: var(--space-2); }
 .hero-meta { display: flex; flex-wrap: wrap; gap: var(--space-2) var(--space-4); margin-top: var(--space-6); font-size: var(--catalog-caption); color: var(--text-secondary); }
-.preview-stage { padding: var(--space-6); border-radius: var(--radius-lg); background: var(--surface-muted); }
-.preview-label { font-size: var(--catalog-caption); color: var(--text-secondary); margin-bottom: var(--space-5); }
-.app-preview { max-width: 25rem; margin-inline: auto; padding: var(--space-5); border: 0; }
-.preview-top { display: flex; align-items: center; justify-content: space-between; margin-bottom: var(--space-5); }
-.preview-icon { color: var(--text-link); display: inline-flex; }
-.preview-icon .tg-icon { width: 1.5rem; height: 1.5rem; }
-.app-preview h2 { font-size: 1.375rem; font-weight: 600; margin: 0 0 var(--space-2); letter-spacing: -.025em; }
-.app-preview > p { margin: 0; }
-.app-preview .tg-list { border: 0; border-radius: 0; }
-.app-preview .tg-list-item { padding-inline: 0; flex-wrap: nowrap; }
-.app-preview .tg-list-item__title { font-weight: 500; }
-.preview-item-icon { color: var(--text-secondary); }
-.preview-bottom { display: flex; flex-wrap: wrap; justify-content: space-between; gap: var(--space-3); align-items: center; padding-block: var(--space-5); }
-.preview-bottom > span { font-size: var(--catalog-caption); }
-.avatar-stack { display: flex; align-items: center; }
-.mini-avatar {
-  display: inline-grid;
-  place-items: center;
-  flex: 0 0 auto;
-  inline-size: 2.25rem;
-  block-size: 2.25rem;
-  padding: 0;
-  border: .1875rem solid var(--surface-bg);
-  border-radius: 50%;
-  background: var(--surface-muted);
-  color: var(--text-secondary);
-  font-size: var(--catalog-caption);
-  font-weight: 500;
-  line-height: 1;
-  text-align: center;
-  font-variant-numeric: tabular-nums;
-}
-.mini-avatar + .mini-avatar { margin-inline-start: -.5rem; }
-.mini-avatar:first-child { background: var(--accent-soft); color: light-dark(var(--accent-strong), var(--text-main)); }
-.mini-avatar__label { display: block; text-box: trim-both cap alphabetic; }
-.preview-caption { text-align: center; font-size: var(--catalog-caption); color: var(--text-secondary); margin-top: var(--space-5); }
 .feature-strip { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); border-block: var(--border); padding-block: var(--space-6); gap: var(--space-6); }
 .feature-strip > div { display: grid; gap: var(--space-1); }
 .feature-strip strong { font-size: var(--catalog-body); font-weight: 600; }
@@ -120,9 +84,6 @@ pre { max-width: 100%; overflow: auto; font: var(--catalog-caption)/1.7 ui-monos
 .surface-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--space-6); align-items: stretch; }
 .card-status { align-self: start; }
 .tab-panel { padding: var(--space-4); color: var(--text-secondary); }
-.demo-tabbar { position: static; border: var(--border); border-radius: var(--radius-control); }
-.demo-tabbar .tg-icon { width: 1.5rem; height: 1.5rem; }
-.layout-cell { min-height: 6rem; display: grid; place-items: center; border: 1px dashed var(--control-border-color); border-radius: var(--radius); background: var(--surface-bg); font-size: var(--catalog-body); color: var(--text-secondary); }
 .install-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--space-6); }
 .install-grid > div { min-width: 0; }
 .install-grid pre { border-radius: var(--radius); margin-top: var(--space-3); min-height: 13rem; }
@@ -136,7 +97,6 @@ pre { max-width: 100%; overflow: auto; font: var(--catalog-caption)/1.7 ui-monos
 .site-footer > span { font-size: var(--catalog-caption); color: var(--text-secondary); }
 .glass-demo-stage { padding: var(--space-10); background: var(--surface-muted); }
 .glass-demo-stage .tg-glass { max-inline-size: 28rem; margin-inline: auto; }
-.glass-demo-stage .tg-header { padding: 0; }
 .glass-demo-stage .tg-badge { align-self: flex-start; }
 .loader-demo-stage { position: relative; isolation: isolate; min-block-size: 12rem; }
 .loader-demo-stage .tg-spinner { align-self: center; }
@@ -150,7 +110,6 @@ pre { max-width: 100%; overflow: auto; font: var(--catalog-caption)/1.7 ui-monos
   .hero { gap: var(--space-6); }
   h1 { font-size: 2.5rem; }
   .hero-actions { gap: var(--space-3); }
-  .preview-stage { padding: var(--space-4); }
   .foundation-grid { grid-template-columns: 1fr; gap: 0; }
   .token-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--space-5); }
 }
@@ -179,9 +138,6 @@ pre { max-width: 100%; overflow: auto; font: var(--catalog-caption)/1.7 ui-monos
   h1 { font-size: clamp(2rem, 8.5vw, 3rem); }
   .hero-description { max-width: 42ch; }
   .hero-actions { gap: var(--space-4); }
-  .hero-actions .tg-btn { font-size: var(--fs-sm); }
-  .preview-stage { padding: var(--space-5); }
-  .app-preview { max-width: none; padding: var(--space-5); }
   .feature-strip { grid-template-columns: 1fr; gap: var(--space-4); }
   .feature-strip > div { grid-template-columns: minmax(0, .9fr) minmax(0, 1.4fr); gap: var(--space-3); align-items: baseline; }
   .catalog-section { padding-top: var(--space-12); }
@@ -193,20 +149,15 @@ pre { max-width: 100%; overflow: auto; font: var(--catalog-caption)/1.7 ui-monos
   .example-body { padding: var(--space-5); }
   .example-meta, .example-code summary { padding-inline: var(--space-5); }
   .glass-demo-stage { padding: var(--space-5); }
-  .tg-tabs { gap: var(--space-1); }
-  .tg-tab { padding-inline: var(--space-3); }
   pre { padding: var(--space-5); }
 }
 @media (max-width: 380px) {
-  .preview-stage, .app-preview { padding: var(--space-4); }
   .brand { font-size: .8125rem; }
   .theme-select { max-width: 7rem; }
 }
 @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
 
 .icon-gallery { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 9rem), 1fr)); gap: var(--space-3); }
-.icon-swatch { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: var(--space-3); min-height: 7rem; padding: var(--space-4); border-radius: var(--radius); background: var(--surface-muted); }
-.icon-swatch code { font-size: var(--catalog-caption); color: var(--text-secondary); overflow-wrap: anywhere; }
 
 .palette-table-wrap { margin-block: var(--space-6); }
 .palette-table { inline-size: 100%; table-layout: fixed; border-collapse: collapse; font-size: var(--catalog-body); }
@@ -223,3 +174,19 @@ pre { max-width: 100%; overflow: auto; font: var(--catalog-caption)/1.7 ui-monos
 
 /* Isolate a real viewport so fixed TDS components need no demo overrides. */
 .composition-preview { display: block; inline-size: 100%; block-size: calc(var(--space-16) * 10); border: 0; }
+
+/* The catalog arranges public components; it does not reskin them. */
+.catalog-guide { padding: var(--space-6); background: var(--surface-bg); border-radius: var(--radius-lg); min-inline-size: 0; }
+.catalog-guide h2 { margin: 0; font-size: var(--fs-lg); }
+.catalog-guide .tg-source-link { padding-block: var(--space-3); }
+.icon-browser-controls { display: flex; flex-wrap: wrap; gap: var(--space-3); align-items: end; }
+.icon-browser-controls .icon-search-field { flex: 1 1 18rem; min-inline-size: 0; }
+.icon-browser-controls .icon-size-field { flex: 0 1 7rem; }
+#icon-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 7rem), 1fr)); gap: var(--space-2); max-block-size: 28rem; overflow-y: auto; padding: var(--space-1); }
+#icon-grid .icon-swatch { flex-direction: column; block-size: auto; min-block-size: 6rem; padding: var(--space-3); font-size: var(--fs-sm); font-weight: var(--fw-regular); }
+#icon-grid .icon-swatch[aria-pressed='true'] { background: var(--accent-soft); border-color: var(--accent-main); }
+#icon-grid .icon-swatch span { overflow-wrap: anywhere; }
+#icon-markup { white-space: pre-wrap; overflow-wrap: anywhere; }
+@media (max-width: 36rem) {
+  .icon-browser-controls .icon-search-field { flex-basis: 100%; }
+}

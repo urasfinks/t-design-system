@@ -44,9 +44,9 @@ try {
     }
   }
   await page.locator('.tg-bottom-panel').evaluate(el => {
-    el.style.setProperty('--bottom-panel-width', '300px');
-    el.style.setProperty('--bottom-panel-max-height', '300px');
-    el.style.setProperty('--bottom-panel-offset', '20px');
+    el.parentElement.style.setProperty('--bottom-panel-width', '300px');
+    el.parentElement.style.setProperty('--bottom-panel-max-height', '300px');
+    el.parentElement.style.setProperty('--bottom-panel-offset', '20px');
   });
   const custom = await page.locator('.tg-bottom-panel').boundingBox();
   assert.equal(Math.round(custom.width), 300);

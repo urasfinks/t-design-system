@@ -2,7 +2,8 @@
 
 CSS-фреймворк на основе визуальной системы **ai-splitter-ng**: мягкие поверхности,
 адаптивная типографика, отступы с шагом 4 px и компоненты с префиксом `.tg-*`.
-Работает в обычном HTML, Angular и Telegram Mini Apps. JavaScript для работы CSS не нужен.
+Работает в обычном HTML, Angular и Telegram Mini Apps. JavaScript для работы CSS и нативных контролов не нужен.
+Стандартная волна всех кнопок подключается одним модулем `ui.js`.
 
 ## Посмотреть
 
@@ -32,8 +33,10 @@ npm run dev
 ```
 
 В `dist/` лежат обычная и минифицированная версии основного файла и адаптера Telegram,
-а также необязательные модули `telegram.js` для синхронизации темы с SDK
-и `effects.js` для эффекта нажатия.
+а также `ui.js` и `effects.js` для стандартного отклика кнопок,
+и необязательный `telegram.js` для синхронизации темы с SDK.
+Для полной интерактивности скопируйте оба файла `ui.js`/`effects.js` рядом и
+добавьте `<script type="module" src="/styles/ui.js"></script>`. Сам CSS работает без JS.
 Шрифты — системные; сетевые запросы к шрифтовым сервисам отсутствуют.
 
 Пакет предназначен для локального использования (`private: true`). Чтобы получить
@@ -51,6 +54,8 @@ npm install /path/to/t-design-system-0.1.0.tgz
 import 't-design-system/css';
 // Или минифицированный файл:
 import 't-design-system/css/min';
+// Один раз в браузерной точке входа: стандартная волна всех кнопок.
+import 't-design-system/ui/js';
 ```
 
 Для Angular добавить готовый файл в глобальный массив `styles` в `angular.json`:
@@ -497,32 +502,51 @@ SDK-параметры для hint, section и других вторичных �
 Исходный проект не изменяется. Лицензия для распространения кода должна быть
 определена владельцем отдельно; новая лицензия в этот пакет не добавлялась.
 
-## Эффекты и поверхности
+## Стандартный отклик и поверхности
 
 CSS эффектов включён в основной файл; выборочный SCSS — `components/effects`.
-Они работают с теми же темами и не требуют Angular.
+Волна от точки нажатия — стандарт всех кнопочных контролов TDS, включая кнопки
+с иконкой, tabs, chips, pagination, switch, интерактивные аватары и заголовки
+раскрывающихся панелей. Статичные аватары, badges и текстовые ссылки не анимируются.
 
 ```html
-<button class="tg-btn tg-btn--primary tg-ripple tg-ripple--dark">Нажать</button>
-<div class="tg-card tg-glass">Полупрозрачная панель</div>
+<script type="module" src="/styles/ui.js"></script>
+<button class="tg-btn tg-btn--primary">Нажать</button>
 ```
+
+`ui.js` импортирует соседний `effects.js` и автоматически инициализирует document.
+В Angular импортируйте `t-design-system/ui/js` в браузерной точке входа один раз.
+Динамически добавленные кнопки также получают отклик; отдельный класс для волны
+каждой кнопке не нужен. Для SSR модуль безопасен: при отсутствии document он
+не создаёт подписок. При гидратации инициализируйте UI в браузере.
+
+Если область должна иметь собственный жизненный цикл, используйте низкоуровневый
+API вместо автоматического подключения:
 
 ```js
 import { initRipple } from 't-design-system/effects/js';
-const stopRipple = initRipple(); // по умолчанию document
-// Можно ограничить одним контейнером: initRipple(container).
-// При размонтировании:
-// stopRipple();
+const stopRipple = initRipple(container); // без аргумента — document
+// При размонтировании контейнера:
+stopRipple();
 ```
 
-`tg-ripple--dark` — светлая волна на тёмной поверхности, `--light` — тёмная на
-светлой. Вариант `--inline` подходит для текстового фрагмента. `initRipple`
-делегирует клики, включая клавиатурную активацию кнопки, не меняет обработчики
-действий приложения. Disabled и reduced-motion не создают волну. Узлы эффекта
-удаляются после анимации с резервным таймером; cleanup удаляет подписку и волны.
-Повторно инициализировать один контейнер следует после вызова предыдущего cleanup.
-Тайминги исходника: `--ripple-duration:500ms`, `--ring-duration:600ms`,
-`--wash-duration:700ms`. Наличие `effects.js` не обязательно для остальных компонентов.
+`initRipple` теперь охватывает стандартные кнопочные классы и старый `.tg-ripple`.
+Повторная инициализация одного корня не создаёт дубли; возвращается общий cleanup.
+Областью должен владеть один жизненный цикл: вызов cleanup отключает её целиком.
+Вложенные области не создают две волны на одно событие. Runtime не меняет действия,
+submit, ссылки и нативное раскрытие. Pointer press запускает волну сразу; click
+не дублирует её. При клавиатурной активации волна идёт из центра.
+Disabled, aria-disabled и disabled fieldset исключаются. При reduced motion волны
+нет, а спокойный отклик заливкой сохраняется. Узлы удаляются после анимации или
+по резервному таймеру; cleanup удаляет все созданные узлы. Фокус и badge аватара
+не обрезаются контейнером ради эффекта.
+
+Токены настройки: `--ripple-color` (по умолчанию currentColor),
+`--ripple-duration` (500ms), `--ring-duration` (600ms), `--wash-duration` (700ms).
+Координаты и размеры волн — локальные измерения runtime, остальные параметры
+наследуют CSS-каскад. Старые `.tg-ripple--dark`, `--light`, `--inline` остаются
+совместимыми вариантами для нестандартных поверхностей; они не требуются кнопкам.
+Без JS оформление и базовые состояния нажатия работают через CSS.
 
 `.tg-glass` использует blur 15px, `.tg-glass--backdrop` — 25px; без поддержки
 backdrop-filter остаётся полупрозрачная поверхность. `.tg-overlay` создаёт
@@ -725,3 +749,137 @@ and page scroll padding.
 интерактивные элементы от клавиатуры. Перед программным сворачиванием верните
 фокус на кнопку, если он находится внутри тела панели. Жесты перетаскивания и
 автоматическое закрытие по Escape не входят в CSS-компонент.
+
+
+## Общий стандарт компонентов
+
+[Критерии компонента](docs/component-standard.md) дополняют этот README.
+Вся система каскадируется: tokens → themes → base → components → utilities →
+visibility. Каждый SCSS-модуль включает нужную базу; нет `!important` и отдельной
+палитры для новых компонентов. Утилиты имеют приоритет над компонентами, обычный
+CSS приложения вне слоёв может переопределять их. Нативный `hidden` сохраняет
+приоритет над display. Локальные custom properties предназначены для настройки
+экземпляра и измерений, а не для обхода общих ролей.
+
+Витрина показывает компоненты и состояния; её CSS отвечает за раскладку документа.
+Примеры не служат альтернативной реализацией компонентов. Список Feather берётся
+из той же зависимости, что и SVG, поэтому галерея не отстаёт от поставки.
+
+Для читаемости роли `--text-link`, `--text-danger` и `--progress-color` используют
+существующие strong-варианты в светлой теме и `--text-main` в тёмных. Так смена
+акцента не делает ссылки и прогресс незаметными. Новые оттенки не добавляются;
+исходные `--accent-main`/`--danger-main` сохраняются для выделения контролов и рамок
+ошибок. Для выключенного switch граница остаётся тихой по умолчанию и усиливается
+при `prefers-contrast: more` через общий `--switch-border-color`.
+
+### Новые паттерны
+
+Все классы ниже входят в основной CSS; выборочный SCSS — `components/patterns`.
+Тексты и содержимое задаёт приложение. Новый код не требует Angular.
+
+| Компонент | Классы | Когда применять |
+| --- | --- | --- |
+| Поиск | `tg-search`, `__icon`, `__input`, `__clear` | Поиск по данным; фильтрацию выполняет приложение |
+| Пустое состояние | `tg-empty`, `__title`, `__description`, `__icon`, `__action` | Данных пока нет или фильтр ничего не нашёл |
+| Раскрытие | `details.tg-disclosure`, `summary.__trigger`, `__content` | Дополнительные сведения внутри страницы |
+| Skeleton | `tg-skeleton`, `--text`, `--circle` | Начальная загрузка без известного процента; статичен, без лишней анимации |
+| Таблица | `tg-table-wrap`, `table.tg-table` | Сравнение строк с общими столбцами |
+| Путь | `nav.tg-breadcrumbs` с `ol` | Иерархия страниц; последний пункт `aria-current="page"` |
+| Сводка | `dl.tg-summary`, `__row` | Свойства одного объекта; каждая строка содержит `dt`/`dd` |
+| Группа полей | `fieldset.tg-fieldset` с `legend` | Связанные нативные поля с общим названием |
+| Сводка ошибок | `tg-error-summary`, `__title` | Ошибки после проверки формы, ссылки к полям |
+| Диапазон | `input.tg-range[type=range]` | Нативный диапазон с label, min/max/step |
+
+```html
+<form role="search" aria-label="Поиск заказов">
+  <label class="tg-label" for="orders-search">Найти заказ</label>
+  <div class="tg-search">
+    <input class="tg-search__input" id="orders-search" type="search">
+    <button type="reset" class="tg-icon-btn tg-search__clear" aria-label="Очистить поиск">
+      <svg class="tg-icon" viewBox="0 0 24 24" aria-hidden="true">
+        <use href="dist/icons/x.svg#x"></use>
+      </svg>
+    </button>
+  </div>
+</form>
+
+<details class="tg-disclosure">
+  <summary class="tg-disclosure__trigger">Условия доставки</summary>
+  <div class="tg-disclosure__content">Ваше содержимое</div>
+</details>
+
+<dl class="tg-summary">
+  <div class="tg-summary__row"><dt>Итого</dt><dd>2 400 ₽</dd></div>
+</dl>
+```
+
+Для контролируемого поиска синхронизируйте reset и состояние приложения.
+Скрывайте декоративные skeleton через `aria-hidden="true"`, ставьте `aria-busy`
+на обновляемую область и снимайте после загрузки; отдельный status сообщает ход
+загрузки. Минимальная ширина таблицы настраивается через `--table-min-width` (по умолчанию 32rem).
+Таблице нужны `caption`, заголовки `th scope`, а прокручиваемой оболочке —
+доступное название и `tabindex="0"`. Сводке ошибок задайте `tabindex="-1"`, переводите
+на неё фокус после неуспешной проверки; сообщения у полей связывайте через
+`aria-describedby` и `aria-invalid`. Компонент оформляет ошибки, не валидирует форму.
+
+### Полная галерея Feather
+
+В разделе «Иконки» доступны все 287 иконок feather-icons 4.29.2: поиск по именам
+и тегам (а также распространённым русским названиям), размеры 16/20/24, выбор и
+копирование SVG. Если Clipboard API недоступен, разметка выделяется для ручного
+копирования. `dist/icons.json` содержит `{name, tags}` для собственного каталога;
+экспорт — `t-design-system/icons.json`. SVG остаются отдельными файлами.
+
+Компонентная модель сопоставлена с официальными каталогами
+[Carbon](https://www.carbondesignsystem.com/building-blocks/core/components/overview/components)
+и [GOV.UK](https://design-system.service.gov.uk/components/). Используются общие
+паттерны и нативная семантика; визуальный контракт TDS сохраняется.
+Сложные combobox, календарь, tree и редактируемая data grid в этот набор не входят.
+
+
+Дополнительная минимальная разметка паттернов (полные живые примеры — в каталоге):
+
+```html
+<div class="tg-empty">
+  <h2 class="tg-empty__title">Ничего не найдено</h2>
+  <p class="tg-empty__description">Измените условия поиска.</p>
+</div>
+
+<div aria-busy="true" aria-label="Данные загружаются">
+  <span class="tg-skeleton tg-skeleton--text" aria-hidden="true"></span>
+</div>
+
+<div class="tg-table-wrap" role="region" aria-label="Заказы" tabindex="0">
+  <table class="tg-table">
+    <caption>Заказы</caption>
+    <thead><tr><th scope="col">Номер</th><th scope="col">Сумма</th></tr></thead>
+    <tbody><tr><th scope="row">123</th><td>2 400 ₽</td></tr></tbody>
+  </table>
+</div>
+
+<nav class="tg-breadcrumbs" aria-label="Путь">
+  <ol><li><a href="/">Главная</a></li><li aria-current="page">Заказы</li></ol>
+</nav>
+
+<fieldset class="tg-fieldset">
+  <legend>Чаевые</legend>
+  <label for="tips">Процент</label>
+  <input class="tg-range" type="range" id="tips" min="0" max="30" step="5" value="10">
+</fieldset>
+
+<section class="tg-error-summary" tabindex="-1" aria-labelledby="error-title">
+  <h2 class="tg-error-summary__title" id="error-title">Проверьте данные</h2>
+  <ul><li><a href="#contact-email">Укажите полный адрес почты</a></li></ul>
+</section>
+<label class="tg-label" for="contact-email">Почта</label>
+<input class="tg-input" id="contact-email" type="email"
+       aria-invalid="true" aria-describedby="contact-error">
+<p class="tg-help tg-help--error" id="contact-error">Укажите полный адрес почты.</p>
+```
+
+Поиск поддерживает `disabled`, `readonly`, `aria-invalid="true"`; общий фон и
+кольцо фокуса принадлежат оболочке. Для композиции с кнопками/иконками при
+выборочном SCSS подключите также `components/buttons` и `components/icons`.
+В галерее иконок Tab входит на одну ячейку, стрелки/Home/End перемещают фокус,
+Enter/Space выбирают иконку, следующий Tab выходит из галереи. Размеры
+16/20/24 — при базовых 16px; rem сохраняет масштабирование текста.

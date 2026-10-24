@@ -135,4 +135,25 @@ variants share `--control-h`. File progress keeps its accepted 3px stripe blur.
 Primary and destructive badges use soft backgrounds with strong text in Light,
 and strong backgrounds with main text in dark themes through `light-dark()`.
 The stylesheets require browsers with `@layer`, `color-mix()` and `light-dark()` support.
-Catalog-only `.avatar-stack` / `.mini-avatar` styles are not public components.
+The redundant overview specimen and its private miniature avatars were retired; examples use public components.
+
+
+## Component and catalog standard
+
+README is the public contract; docs/component-standard.md defines acceptance criteria.
+New patterns use the same component layer, tokens, geometry and theme roles.
+All button-like controls receive standard delegated ripple through ui.js. CSS-only
+controls remain functional. Pointer presses originate at the pointer; keyboard
+activation starts in the center. Disabled controls do not animate; reduced motion
+removes waves and scaling while retaining a quiet fill response.
+
+The catalog groups each component once. Buttons own shape/state examples; icons
+provide the complete build-generated Feather search. Real compositions replace
+numbered layout placeholders. Native disclosure, search, empty, skeleton, table,
+breadcrumbs, summary list, fieldset, error summary and range close practical gaps.
+No new colors or catalog-only versions of these components are introduced.
+
+Accessible text/progress roles reuse strong variants in Light and text-main in dark
+themes, without adding palette variants. Main accent/danger remain available for
+control selection and invalid borders. Increased-contrast off-switch boundaries
+consume the same switch-border-color token as the on state.

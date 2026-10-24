@@ -1,15 +1,11 @@
 @layer tds.components {
   .tg-bottom-panel {
-    --bottom-panel-max-height: 85dvh;
-    --bottom-panel-width: 100%;
-    --bottom-panel-offset: 0px;
-
     position: fixed;
     inset-inline: 0;
-    inset-block-end: var(--bottom-panel-offset);
+    inset-block-end: var(--bottom-panel-offset, 0px);
     z-index: var(--z-sticky);
-    inline-size: min(100%, var(--bottom-panel-width));
-    max-block-size: min(var(--bottom-panel-max-height), calc(100dvh - var(--bottom-panel-offset)));
+    inline-size: min(100%, var(--bottom-panel-width, 100%));
+    max-block-size: min(var(--bottom-panel-max-height, 85dvh), calc(100dvh - var(--bottom-panel-offset, 0px)));
     margin-inline: auto;
     padding-block-end: var(--safe-area-bottom);
     overflow: auto;

@@ -20,13 +20,17 @@
     "./scss/components/*": "./src/components/_*.scss",
     "./telegram/js": "./dist/telegram.js",
     "./effects/js": "./dist/effects.js",
+    "./ui/js": "./dist/ui.js",
+    "./icons.json": "./dist/icons.json",
     "./icons/*": "./dist/icons/*.svg"
   },
   "files": [
     "dist",
     "src",
     "README.md",
-    "docs/source-audit.md"
+    "docs/source-audit.md",
+    "docs/component-standard.md",
+    "DESIGN.md"
   ],
   "scripts": {
     "build": "node scripts/build.mjs",
