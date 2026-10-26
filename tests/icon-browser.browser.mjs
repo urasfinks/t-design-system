@@ -1,0 +1,80 @@
+import assert from 'node:assert/strict';
+import { createServer } from 'node:http';
+import { readFile } from 'node:fs/promises';
+import { chromium, webkit } from 'playwright';
+const server = createServer(async (req, res) => {
+  try {
+    const path = req.url === '/' ? 'docs/icon-browser.html' : req.url.slice(1);
+    res.setHeader('Content-Type', path.endsWith('.js') ? 'text/javascript' : path.endsWith('.json') ? 'application/json' : path.endsWith('.css') ? 'text/css' : path.endsWith('.svg') ? 'image/svg+xml' : 'text/html');
+    res.end(await readFile(path));
+  } catch { res.writeHead(404).end(); }
+});
+await new Promise(resolve => server.listen(0, '127.0.0.1', resolve));
+const browser = await (process.argv.includes('--webkit') ? webkit : chromium).launch();
+try {
+  const page = await browser.newPage();
+  const catalog = process.argv.includes('--catalog');
+  await page.goto(`http://127.0.0.1:${server.address().port}/${catalog ? 'docs/index.html#icons' : ''}`);
+  if (catalog) await page.locator('[data-icon-browser]').scrollIntoViewIfNeeded();
+  else {
+    await page.addStyleTag({content: await readFile('dist/t-design-system.css', 'utf8')});
+    await page.addStyleTag({content: await readFile('docs/catalog.css', 'utf8')});
+  }
+  await page.waitForSelector('.icon-swatch');
+  assert.equal(await page.locator('.icon-swatch').count(), 287);
+  assert.equal(await page.locator('.icon-swatch[tabindex="0"]').count(), 1);
+  await page.locator('.icon-swatch[tabindex="0"]').focus();
+  await page.keyboard.press('Home');
+  assert.equal(await page.locator('.icon-swatch').first().evaluate(el => el === document.activeElement), true);
+  await page.keyboard.press('ArrowRight');
+  assert.equal(await page.locator('.icon-swatch').nth(1).evaluate(el => el === document.activeElement), true);
+  await page.keyboard.press('Home');
+  const columns = await page.locator('.icon-swatch').evaluateAll(buttons => buttons.filter(button => Math.abs(button.getBoundingClientRect().top - buttons[0].getBoundingClientRect().top) < 1).length);
+  await page.keyboard.press('ArrowDown');
+  assert.equal(await page.locator('.icon-swatch').nth(columns).evaluate(el => el === document.activeElement), true);
+  await page.keyboard.press('ArrowUp');
+  assert.equal(await page.locator('.icon-swatch').first().evaluate(el => el === document.activeElement), true);
+  await page.keyboard.press('ArrowLeft');
+  assert.equal(await page.locator('.icon-swatch').first().evaluate(el => el === document.activeElement), true);
+  await page.keyboard.press('End');
+  assert.equal(await page.locator('.icon-swatch').last().evaluate(el => el === document.activeElement), true);
+  await page.keyboard.press('Tab');
+  assert.equal(await page.locator('#icon-markup').evaluate(el => el === document.activeElement), true);
+  await page.locator('[data-icon-browser]').evaluate(el => el.style.setProperty('--icon-size', '2rem'));
+  assert.equal(await page.locator('.icon-swatch svg').first().evaluate(el => getComputedStyle(el).width), '32px');
+  await page.locator('#icon-size').selectOption('16');
+  assert.equal(await page.locator('.icon-swatch svg').first().evaluate(el => getComputedStyle(el).width), '16px');
+  await page.locator('#icon-size').selectOption('20');
+  assert.equal(await page.locator('.icon-swatch svg').first().evaluate(el => getComputedStyle(el).width), '32px');
+  await page.locator('[data-icon-browser]').evaluate(el => el.style.removeProperty('--icon-size'));
+  await page.locator('#icon-search').fill('  HOUSE  ');
+  assert.ok(await page.locator('.icon-swatch').count() > 0);
+  await page.getByRole('button', {name: 'home', exact: true}).click();
+  assert.match(await page.locator('#icon-markup').textContent(), /home.svg#home/);
+  await page.locator('#icon-size').selectOption('24');
+  assert.match(await page.locator('#icon-markup').textContent(), /width="24"/);
+  assert.equal(await page.locator('.icon-swatch svg').first().evaluate(el => getComputedStyle(el).width), '24px');
+  assert.equal(await page.locator('.icon-swatch svg').first().getAttribute('viewBox'), '0 0 24 24');
+  assert.match(await page.locator('#icon-markup').textContent(), /tg-icon--lg/);
+  assert.doesNotMatch(await page.locator('#icon-markup').textContent(), /style=/);
+  assert.equal(await page.locator('.icon-swatch.tg-btn--stacked').count(), await page.locator('.icon-swatch').count());
+  await page.evaluate(() => document.documentElement.style.fontSize = '32px');
+  assert.equal(await page.locator('.icon-swatch svg').first().evaluate(el => getComputedStyle(el).width), '48px');
+  await page.evaluate(() => document.documentElement.style.fontSize = '16px');
+  await page.locator('#icon-search').fill('no-such-icon-123');
+  assert.equal(await page.locator('.icon-swatch').count(), 0);
+  assert.equal(await page.locator('#icon-empty').isVisible(), true);
+  await page.locator('#icon-reset').click();
+  assert.equal(await page.locator('.icon-swatch').count(), 287);
+  assert.equal(await page.locator('#icon-search').evaluate(el => el === document.activeElement), true);
+  assert.equal(await page.locator('.icon-swatch[tabindex="0"]').count(), 1);
+  await page.evaluate(() => Object.defineProperty(navigator, 'clipboard', {configurable: true, value: {writeText: async text => { window.copiedIcon = text; }}}));
+  await page.locator('#icon-copy').click();
+  assert.match(await page.locator('#icon-copy-status').textContent(), /скопирована/);
+  assert.match(await page.evaluate(() => window.copiedIcon), /home.svg#home/);
+  await page.evaluate(() => Object.defineProperty(navigator, 'clipboard', {value: {writeText: async () => { throw Error('denied'); }}}));
+  await page.locator('#icon-copy').click();
+  assert.match(await page.locator('#icon-copy-status').textContent(), /select|выдел/i);
+  assert.ok(await page.evaluate(() => getSelection().toString().includes('home.svg#home')));
+  console.log('Icon browser: all icons, tags, selection, size, empty/reset and clipboard fallback passed.');
+} finally { await browser.close(); await new Promise(resolve => server.close(resolve)); }

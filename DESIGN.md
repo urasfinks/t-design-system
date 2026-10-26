@@ -130,7 +130,7 @@ roles explicitly. Light and iOS Dark derive both surfaces from the background.
 Focused fields use the active field background and
 a main-accent border with a 4px soft-accent outer ring. Invalid focused fields
 use danger-main for the border and danger-soft for the outer ring. Buttons keep saturated strong fills and white text, and all action
-variants share `--control-h`. File progress keeps its accepted 3px stripe blur.
+variants share a minimum `--control-h`; multiline labels grow naturally. File progress keeps its accepted 3px stripe blur.
 
 Primary and destructive badges use soft backgrounds with strong text in Light,
 and strong backgrounds with main text in dark themes through `light-dark()`.
@@ -153,7 +153,17 @@ numbered layout placeholders. Native disclosure, search, empty, skeleton, table,
 breadcrumbs, summary list, fieldset, error summary and range close practical gaps.
 No new colors or catalog-only versions of these components are introduced.
 
-Accessible text/progress roles reuse strong variants in Light and text-main in dark
+Accessible text/progress roles reuse strong variants in Light and tinted soft variants in dark
 themes, without adding palette variants. Main accent/danger remain available for
 control selection and invalid borders. Increased-contrast off-switch boundaries
 consume the same switch-border-color token as the on state.
+
+
+Explicit `.tg-scope` and named theme boundaries rebind derived custom properties;
+ordinary descendants inherit computed roles. Boundaries reset derived aliases, so
+ancestor alias overrides must be repeated there. Named themes paint their own page
+background; a plain scope does not. Theme foreground/background changes are synchronous
+through `--control-color-duration`; press scale and disabled opacity are shared tokens.
+Error notices and error summaries share one surface implementation. Bottom panels use
+muted chrome around raised content. Compact media toolbar actions use the public small
+button variant; media images retain intrinsic aspect ratio inside both size constraints.

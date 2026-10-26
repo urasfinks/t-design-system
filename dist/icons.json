@@ -1,0 +1,1927 @@
+[
+  {
+    "name": "activity",
+    "tags": [
+      "pulse",
+      "health",
+      "action",
+      "motion"
+    ]
+  },
+  {
+    "name": "airplay",
+    "tags": [
+      "stream",
+      "cast",
+      "mirroring"
+    ]
+  },
+  {
+    "name": "alert-circle",
+    "tags": [
+      "warning",
+      "alert",
+      "danger"
+    ]
+  },
+  {
+    "name": "alert-octagon",
+    "tags": [
+      "warning",
+      "alert",
+      "danger"
+    ]
+  },
+  {
+    "name": "alert-triangle",
+    "tags": [
+      "warning",
+      "alert",
+      "danger"
+    ]
+  },
+  {
+    "name": "align-center",
+    "tags": [
+      "text alignment",
+      "center"
+    ]
+  },
+  {
+    "name": "align-justify",
+    "tags": [
+      "text alignment",
+      "justified"
+    ]
+  },
+  {
+    "name": "align-left",
+    "tags": [
+      "text alignment",
+      "left"
+    ]
+  },
+  {
+    "name": "align-right",
+    "tags": [
+      "text alignment",
+      "right"
+    ]
+  },
+  {
+    "name": "anchor",
+    "tags": []
+  },
+  {
+    "name": "aperture",
+    "tags": [
+      "camera",
+      "photo"
+    ]
+  },
+  {
+    "name": "archive",
+    "tags": [
+      "index",
+      "box"
+    ]
+  },
+  {
+    "name": "arrow-down",
+    "tags": []
+  },
+  {
+    "name": "arrow-down-circle",
+    "tags": []
+  },
+  {
+    "name": "arrow-down-left",
+    "tags": []
+  },
+  {
+    "name": "arrow-down-right",
+    "tags": []
+  },
+  {
+    "name": "arrow-left",
+    "tags": []
+  },
+  {
+    "name": "arrow-left-circle",
+    "tags": []
+  },
+  {
+    "name": "arrow-right",
+    "tags": []
+  },
+  {
+    "name": "arrow-right-circle",
+    "tags": []
+  },
+  {
+    "name": "arrow-up",
+    "tags": []
+  },
+  {
+    "name": "arrow-up-circle",
+    "tags": []
+  },
+  {
+    "name": "arrow-up-left",
+    "tags": []
+  },
+  {
+    "name": "arrow-up-right",
+    "tags": []
+  },
+  {
+    "name": "at-sign",
+    "tags": [
+      "mention",
+      "at",
+      "email",
+      "message"
+    ]
+  },
+  {
+    "name": "award",
+    "tags": [
+      "achievement",
+      "badge"
+    ]
+  },
+  {
+    "name": "bar-chart",
+    "tags": [
+      "statistics",
+      "diagram",
+      "graph"
+    ]
+  },
+  {
+    "name": "bar-chart-2",
+    "tags": [
+      "statistics",
+      "diagram",
+      "graph"
+    ]
+  },
+  {
+    "name": "battery",
+    "tags": [
+      "power",
+      "electricity"
+    ]
+  },
+  {
+    "name": "battery-charging",
+    "tags": [
+      "power",
+      "electricity"
+    ]
+  },
+  {
+    "name": "bell",
+    "tags": [
+      "alarm",
+      "notification",
+      "sound"
+    ]
+  },
+  {
+    "name": "bell-off",
+    "tags": [
+      "alarm",
+      "notification",
+      "silent"
+    ]
+  },
+  {
+    "name": "bluetooth",
+    "tags": [
+      "wireless"
+    ]
+  },
+  {
+    "name": "bold",
+    "tags": []
+  },
+  {
+    "name": "book",
+    "tags": [
+      "read",
+      "dictionary",
+      "booklet",
+      "magazine",
+      "library"
+    ]
+  },
+  {
+    "name": "book-open",
+    "tags": [
+      "read",
+      "library"
+    ]
+  },
+  {
+    "name": "bookmark",
+    "tags": [
+      "read",
+      "clip",
+      "marker",
+      "tag"
+    ]
+  },
+  {
+    "name": "box",
+    "tags": [
+      "cube"
+    ]
+  },
+  {
+    "name": "briefcase",
+    "tags": [
+      "work",
+      "bag",
+      "baggage",
+      "folder"
+    ]
+  },
+  {
+    "name": "calendar",
+    "tags": [
+      "date"
+    ]
+  },
+  {
+    "name": "camera",
+    "tags": [
+      "photo"
+    ]
+  },
+  {
+    "name": "camera-off",
+    "tags": []
+  },
+  {
+    "name": "cast",
+    "tags": [
+      "chromecast",
+      "airplay"
+    ]
+  },
+  {
+    "name": "check",
+    "tags": []
+  },
+  {
+    "name": "check-circle",
+    "tags": []
+  },
+  {
+    "name": "check-square",
+    "tags": []
+  },
+  {
+    "name": "chevron-down",
+    "tags": [
+      "expand"
+    ]
+  },
+  {
+    "name": "chevron-left",
+    "tags": []
+  },
+  {
+    "name": "chevron-right",
+    "tags": []
+  },
+  {
+    "name": "chevron-up",
+    "tags": [
+      "collapse"
+    ]
+  },
+  {
+    "name": "chevrons-down",
+    "tags": []
+  },
+  {
+    "name": "chevrons-left",
+    "tags": []
+  },
+  {
+    "name": "chevrons-right",
+    "tags": []
+  },
+  {
+    "name": "chevrons-up",
+    "tags": []
+  },
+  {
+    "name": "chrome",
+    "tags": []
+  },
+  {
+    "name": "circle",
+    "tags": [
+      "off",
+      "zero",
+      "record"
+    ]
+  },
+  {
+    "name": "clipboard",
+    "tags": [
+      "copy"
+    ]
+  },
+  {
+    "name": "clock",
+    "tags": [
+      "time",
+      "watch",
+      "alarm"
+    ]
+  },
+  {
+    "name": "cloud",
+    "tags": [
+      "weather"
+    ]
+  },
+  {
+    "name": "cloud-drizzle",
+    "tags": [
+      "weather",
+      "shower"
+    ]
+  },
+  {
+    "name": "cloud-lightning",
+    "tags": [
+      "weather",
+      "bolt"
+    ]
+  },
+  {
+    "name": "cloud-off",
+    "tags": []
+  },
+  {
+    "name": "cloud-rain",
+    "tags": [
+      "weather"
+    ]
+  },
+  {
+    "name": "cloud-snow",
+    "tags": [
+      "weather",
+      "blizzard"
+    ]
+  },
+  {
+    "name": "code",
+    "tags": [
+      "source",
+      "programming"
+    ]
+  },
+  {
+    "name": "codepen",
+    "tags": [
+      "logo"
+    ]
+  },
+  {
+    "name": "codesandbox",
+    "tags": [
+      "logo"
+    ]
+  },
+  {
+    "name": "coffee",
+    "tags": [
+      "drink",
+      "cup",
+      "mug",
+      "tea",
+      "cafe",
+      "hot",
+      "beverage"
+    ]
+  },
+  {
+    "name": "columns",
+    "tags": [
+      "layout"
+    ]
+  },
+  {
+    "name": "command",
+    "tags": [
+      "keyboard",
+      "cmd",
+      "terminal",
+      "prompt"
+    ]
+  },
+  {
+    "name": "compass",
+    "tags": [
+      "navigation",
+      "safari",
+      "travel",
+      "direction"
+    ]
+  },
+  {
+    "name": "copy",
+    "tags": [
+      "clone",
+      "duplicate"
+    ]
+  },
+  {
+    "name": "corner-down-left",
+    "tags": [
+      "arrow",
+      "return"
+    ]
+  },
+  {
+    "name": "corner-down-right",
+    "tags": [
+      "arrow"
+    ]
+  },
+  {
+    "name": "corner-left-down",
+    "tags": [
+      "arrow"
+    ]
+  },
+  {
+    "name": "corner-left-up",
+    "tags": [
+      "arrow"
+    ]
+  },
+  {
+    "name": "corner-right-down",
+    "tags": [
+      "arrow"
+    ]
+  },
+  {
+    "name": "corner-right-up",
+    "tags": [
+      "arrow"
+    ]
+  },
+  {
+    "name": "corner-up-left",
+    "tags": [
+      "arrow"
+    ]
+  },
+  {
+    "name": "corner-up-right",
+    "tags": [
+      "arrow"
+    ]
+  },
+  {
+    "name": "cpu",
+    "tags": [
+      "processor",
+      "technology"
+    ]
+  },
+  {
+    "name": "credit-card",
+    "tags": [
+      "purchase",
+      "payment",
+      "cc"
+    ]
+  },
+  {
+    "name": "crop",
+    "tags": [
+      "photo",
+      "image"
+    ]
+  },
+  {
+    "name": "crosshair",
+    "tags": [
+      "aim",
+      "target"
+    ]
+  },
+  {
+    "name": "database",
+    "tags": [
+      "storage",
+      "memory"
+    ]
+  },
+  {
+    "name": "delete",
+    "tags": [
+      "remove"
+    ]
+  },
+  {
+    "name": "disc",
+    "tags": [
+      "album",
+      "cd",
+      "dvd",
+      "music"
+    ]
+  },
+  {
+    "name": "divide",
+    "tags": []
+  },
+  {
+    "name": "divide-circle",
+    "tags": []
+  },
+  {
+    "name": "divide-square",
+    "tags": []
+  },
+  {
+    "name": "dollar-sign",
+    "tags": [
+      "currency",
+      "money",
+      "payment"
+    ]
+  },
+  {
+    "name": "download",
+    "tags": []
+  },
+  {
+    "name": "download-cloud",
+    "tags": []
+  },
+  {
+    "name": "dribbble",
+    "tags": []
+  },
+  {
+    "name": "droplet",
+    "tags": [
+      "water"
+    ]
+  },
+  {
+    "name": "edit",
+    "tags": [
+      "pencil",
+      "change"
+    ]
+  },
+  {
+    "name": "edit-2",
+    "tags": [
+      "pencil",
+      "change"
+    ]
+  },
+  {
+    "name": "edit-3",
+    "tags": [
+      "pencil",
+      "change"
+    ]
+  },
+  {
+    "name": "external-link",
+    "tags": [
+      "outbound"
+    ]
+  },
+  {
+    "name": "eye",
+    "tags": [
+      "view",
+      "watch"
+    ]
+  },
+  {
+    "name": "eye-off",
+    "tags": [
+      "view",
+      "watch",
+      "hide",
+      "hidden"
+    ]
+  },
+  {
+    "name": "facebook",
+    "tags": [
+      "logo",
+      "social"
+    ]
+  },
+  {
+    "name": "fast-forward",
+    "tags": [
+      "music"
+    ]
+  },
+  {
+    "name": "feather",
+    "tags": []
+  },
+  {
+    "name": "figma",
+    "tags": [
+      "logo",
+      "design",
+      "tool"
+    ]
+  },
+  {
+    "name": "file",
+    "tags": []
+  },
+  {
+    "name": "file-minus",
+    "tags": [
+      "delete",
+      "remove",
+      "erase"
+    ]
+  },
+  {
+    "name": "file-plus",
+    "tags": [
+      "add",
+      "create",
+      "new"
+    ]
+  },
+  {
+    "name": "file-text",
+    "tags": [
+      "data",
+      "txt",
+      "pdf"
+    ]
+  },
+  {
+    "name": "film",
+    "tags": [
+      "movie",
+      "video"
+    ]
+  },
+  {
+    "name": "filter",
+    "tags": [
+      "funnel",
+      "hopper"
+    ]
+  },
+  {
+    "name": "flag",
+    "tags": [
+      "report"
+    ]
+  },
+  {
+    "name": "folder",
+    "tags": [
+      "directory"
+    ]
+  },
+  {
+    "name": "folder-minus",
+    "tags": [
+      "directory"
+    ]
+  },
+  {
+    "name": "folder-plus",
+    "tags": [
+      "directory"
+    ]
+  },
+  {
+    "name": "framer",
+    "tags": [
+      "logo",
+      "design",
+      "tool"
+    ]
+  },
+  {
+    "name": "frown",
+    "tags": [
+      "emoji",
+      "face",
+      "bad",
+      "sad",
+      "emotion"
+    ]
+  },
+  {
+    "name": "gift",
+    "tags": [
+      "present",
+      "box",
+      "birthday",
+      "party"
+    ]
+  },
+  {
+    "name": "git-branch",
+    "tags": [
+      "code",
+      "version control"
+    ]
+  },
+  {
+    "name": "git-commit",
+    "tags": [
+      "code",
+      "version control"
+    ]
+  },
+  {
+    "name": "git-merge",
+    "tags": [
+      "code",
+      "version control"
+    ]
+  },
+  {
+    "name": "git-pull-request",
+    "tags": [
+      "code",
+      "version control"
+    ]
+  },
+  {
+    "name": "github",
+    "tags": [
+      "logo",
+      "version control"
+    ]
+  },
+  {
+    "name": "gitlab",
+    "tags": [
+      "logo",
+      "version control"
+    ]
+  },
+  {
+    "name": "globe",
+    "tags": [
+      "world",
+      "browser",
+      "language",
+      "translate"
+    ]
+  },
+  {
+    "name": "grid",
+    "tags": []
+  },
+  {
+    "name": "hard-drive",
+    "tags": [
+      "computer",
+      "server",
+      "memory",
+      "data"
+    ]
+  },
+  {
+    "name": "hash",
+    "tags": [
+      "hashtag",
+      "number",
+      "pound"
+    ]
+  },
+  {
+    "name": "headphones",
+    "tags": [
+      "music",
+      "audio",
+      "sound"
+    ]
+  },
+  {
+    "name": "heart",
+    "tags": [
+      "like",
+      "love",
+      "emotion"
+    ]
+  },
+  {
+    "name": "help-circle",
+    "tags": [
+      "question mark"
+    ]
+  },
+  {
+    "name": "hexagon",
+    "tags": [
+      "shape",
+      "node.js",
+      "logo"
+    ]
+  },
+  {
+    "name": "home",
+    "tags": [
+      "house",
+      "living"
+    ]
+  },
+  {
+    "name": "image",
+    "tags": [
+      "picture"
+    ]
+  },
+  {
+    "name": "inbox",
+    "tags": [
+      "email"
+    ]
+  },
+  {
+    "name": "info",
+    "tags": []
+  },
+  {
+    "name": "instagram",
+    "tags": [
+      "logo",
+      "camera"
+    ]
+  },
+  {
+    "name": "italic",
+    "tags": []
+  },
+  {
+    "name": "key",
+    "tags": [
+      "password",
+      "login",
+      "authentication",
+      "secure"
+    ]
+  },
+  {
+    "name": "layers",
+    "tags": [
+      "stack"
+    ]
+  },
+  {
+    "name": "layout",
+    "tags": [
+      "window",
+      "webpage"
+    ]
+  },
+  {
+    "name": "life-buoy",
+    "tags": [
+      "help",
+      "life ring",
+      "support"
+    ]
+  },
+  {
+    "name": "link",
+    "tags": [
+      "chain",
+      "url"
+    ]
+  },
+  {
+    "name": "link-2",
+    "tags": [
+      "chain",
+      "url"
+    ]
+  },
+  {
+    "name": "linkedin",
+    "tags": [
+      "logo",
+      "social media"
+    ]
+  },
+  {
+    "name": "list",
+    "tags": [
+      "options"
+    ]
+  },
+  {
+    "name": "loader",
+    "tags": []
+  },
+  {
+    "name": "lock",
+    "tags": [
+      "security",
+      "password",
+      "secure"
+    ]
+  },
+  {
+    "name": "log-in",
+    "tags": [
+      "sign in",
+      "arrow",
+      "enter"
+    ]
+  },
+  {
+    "name": "log-out",
+    "tags": [
+      "sign out",
+      "arrow",
+      "exit"
+    ]
+  },
+  {
+    "name": "mail",
+    "tags": [
+      "email",
+      "message"
+    ]
+  },
+  {
+    "name": "map",
+    "tags": [
+      "location",
+      "navigation",
+      "travel"
+    ]
+  },
+  {
+    "name": "map-pin",
+    "tags": [
+      "location",
+      "navigation",
+      "travel",
+      "marker"
+    ]
+  },
+  {
+    "name": "maximize",
+    "tags": [
+      "fullscreen"
+    ]
+  },
+  {
+    "name": "maximize-2",
+    "tags": [
+      "fullscreen",
+      "arrows",
+      "expand"
+    ]
+  },
+  {
+    "name": "meh",
+    "tags": [
+      "emoji",
+      "face",
+      "neutral",
+      "emotion"
+    ]
+  },
+  {
+    "name": "menu",
+    "tags": [
+      "bars",
+      "navigation",
+      "hamburger"
+    ]
+  },
+  {
+    "name": "message-circle",
+    "tags": [
+      "comment",
+      "chat"
+    ]
+  },
+  {
+    "name": "message-square",
+    "tags": [
+      "comment",
+      "chat"
+    ]
+  },
+  {
+    "name": "mic",
+    "tags": [
+      "record",
+      "sound",
+      "listen"
+    ]
+  },
+  {
+    "name": "mic-off",
+    "tags": [
+      "record",
+      "sound",
+      "mute"
+    ]
+  },
+  {
+    "name": "minimize",
+    "tags": [
+      "exit fullscreen",
+      "close"
+    ]
+  },
+  {
+    "name": "minimize-2",
+    "tags": [
+      "exit fullscreen",
+      "arrows",
+      "close"
+    ]
+  },
+  {
+    "name": "minus",
+    "tags": [
+      "subtract"
+    ]
+  },
+  {
+    "name": "minus-circle",
+    "tags": []
+  },
+  {
+    "name": "minus-square",
+    "tags": []
+  },
+  {
+    "name": "monitor",
+    "tags": [
+      "tv",
+      "screen",
+      "display"
+    ]
+  },
+  {
+    "name": "moon",
+    "tags": [
+      "dark",
+      "night"
+    ]
+  },
+  {
+    "name": "more-horizontal",
+    "tags": [
+      "ellipsis"
+    ]
+  },
+  {
+    "name": "more-vertical",
+    "tags": [
+      "ellipsis"
+    ]
+  },
+  {
+    "name": "mouse-pointer",
+    "tags": [
+      "arrow",
+      "cursor"
+    ]
+  },
+  {
+    "name": "move",
+    "tags": [
+      "arrows"
+    ]
+  },
+  {
+    "name": "music",
+    "tags": [
+      "note"
+    ]
+  },
+  {
+    "name": "navigation",
+    "tags": [
+      "location",
+      "travel"
+    ]
+  },
+  {
+    "name": "navigation-2",
+    "tags": [
+      "location",
+      "travel"
+    ]
+  },
+  {
+    "name": "octagon",
+    "tags": [
+      "stop"
+    ]
+  },
+  {
+    "name": "package",
+    "tags": [
+      "box",
+      "container"
+    ]
+  },
+  {
+    "name": "paperclip",
+    "tags": [
+      "attachment"
+    ]
+  },
+  {
+    "name": "pause",
+    "tags": [
+      "music",
+      "stop"
+    ]
+  },
+  {
+    "name": "pause-circle",
+    "tags": [
+      "music",
+      "audio",
+      "stop"
+    ]
+  },
+  {
+    "name": "pen-tool",
+    "tags": [
+      "vector",
+      "drawing"
+    ]
+  },
+  {
+    "name": "percent",
+    "tags": [
+      "discount"
+    ]
+  },
+  {
+    "name": "phone",
+    "tags": [
+      "call"
+    ]
+  },
+  {
+    "name": "phone-call",
+    "tags": [
+      "ring"
+    ]
+  },
+  {
+    "name": "phone-forwarded",
+    "tags": [
+      "call"
+    ]
+  },
+  {
+    "name": "phone-incoming",
+    "tags": [
+      "call"
+    ]
+  },
+  {
+    "name": "phone-missed",
+    "tags": [
+      "call"
+    ]
+  },
+  {
+    "name": "phone-off",
+    "tags": [
+      "call",
+      "mute"
+    ]
+  },
+  {
+    "name": "phone-outgoing",
+    "tags": [
+      "call"
+    ]
+  },
+  {
+    "name": "pie-chart",
+    "tags": [
+      "statistics",
+      "diagram"
+    ]
+  },
+  {
+    "name": "play",
+    "tags": [
+      "music",
+      "start"
+    ]
+  },
+  {
+    "name": "play-circle",
+    "tags": [
+      "music",
+      "start"
+    ]
+  },
+  {
+    "name": "plus",
+    "tags": [
+      "add",
+      "new"
+    ]
+  },
+  {
+    "name": "plus-circle",
+    "tags": [
+      "add",
+      "new"
+    ]
+  },
+  {
+    "name": "plus-square",
+    "tags": [
+      "add",
+      "new"
+    ]
+  },
+  {
+    "name": "pocket",
+    "tags": [
+      "logo",
+      "save"
+    ]
+  },
+  {
+    "name": "power",
+    "tags": [
+      "on",
+      "off"
+    ]
+  },
+  {
+    "name": "printer",
+    "tags": [
+      "fax",
+      "office",
+      "device"
+    ]
+  },
+  {
+    "name": "radio",
+    "tags": [
+      "signal"
+    ]
+  },
+  {
+    "name": "refresh-ccw",
+    "tags": [
+      "arrows"
+    ]
+  },
+  {
+    "name": "refresh-cw",
+    "tags": [
+      "synchronise",
+      "arrows"
+    ]
+  },
+  {
+    "name": "repeat",
+    "tags": [
+      "loop",
+      "arrows"
+    ]
+  },
+  {
+    "name": "rewind",
+    "tags": [
+      "music"
+    ]
+  },
+  {
+    "name": "rotate-ccw",
+    "tags": [
+      "arrow"
+    ]
+  },
+  {
+    "name": "rotate-cw",
+    "tags": [
+      "arrow"
+    ]
+  },
+  {
+    "name": "rss",
+    "tags": [
+      "feed",
+      "subscribe"
+    ]
+  },
+  {
+    "name": "save",
+    "tags": [
+      "floppy disk"
+    ]
+  },
+  {
+    "name": "scissors",
+    "tags": [
+      "cut"
+    ]
+  },
+  {
+    "name": "search",
+    "tags": [
+      "find",
+      "magnifier",
+      "magnifying glass"
+    ]
+  },
+  {
+    "name": "send",
+    "tags": [
+      "message",
+      "mail",
+      "email",
+      "paper airplane",
+      "paper aeroplane"
+    ]
+  },
+  {
+    "name": "server",
+    "tags": []
+  },
+  {
+    "name": "settings",
+    "tags": [
+      "cog",
+      "edit",
+      "gear",
+      "preferences"
+    ]
+  },
+  {
+    "name": "share",
+    "tags": []
+  },
+  {
+    "name": "share-2",
+    "tags": [
+      "network",
+      "connections"
+    ]
+  },
+  {
+    "name": "shield",
+    "tags": [
+      "security",
+      "secure"
+    ]
+  },
+  {
+    "name": "shield-off",
+    "tags": [
+      "security",
+      "insecure"
+    ]
+  },
+  {
+    "name": "shopping-bag",
+    "tags": [
+      "ecommerce",
+      "cart",
+      "purchase",
+      "store"
+    ]
+  },
+  {
+    "name": "shopping-cart",
+    "tags": [
+      "ecommerce",
+      "cart",
+      "purchase",
+      "store"
+    ]
+  },
+  {
+    "name": "shuffle",
+    "tags": [
+      "music"
+    ]
+  },
+  {
+    "name": "sidebar",
+    "tags": []
+  },
+  {
+    "name": "skip-back",
+    "tags": [
+      "music"
+    ]
+  },
+  {
+    "name": "skip-forward",
+    "tags": [
+      "music"
+    ]
+  },
+  {
+    "name": "slack",
+    "tags": [
+      "logo"
+    ]
+  },
+  {
+    "name": "slash",
+    "tags": [
+      "ban",
+      "no"
+    ]
+  },
+  {
+    "name": "sliders",
+    "tags": [
+      "settings",
+      "controls"
+    ]
+  },
+  {
+    "name": "smartphone",
+    "tags": [
+      "cellphone",
+      "device"
+    ]
+  },
+  {
+    "name": "smile",
+    "tags": [
+      "emoji",
+      "face",
+      "happy",
+      "good",
+      "emotion"
+    ]
+  },
+  {
+    "name": "speaker",
+    "tags": [
+      "audio",
+      "music"
+    ]
+  },
+  {
+    "name": "square",
+    "tags": []
+  },
+  {
+    "name": "star",
+    "tags": [
+      "bookmark",
+      "favorite",
+      "like"
+    ]
+  },
+  {
+    "name": "stop-circle",
+    "tags": [
+      "media",
+      "music"
+    ]
+  },
+  {
+    "name": "sun",
+    "tags": [
+      "brightness",
+      "weather",
+      "light"
+    ]
+  },
+  {
+    "name": "sunrise",
+    "tags": [
+      "weather",
+      "time",
+      "morning",
+      "day"
+    ]
+  },
+  {
+    "name": "sunset",
+    "tags": [
+      "weather",
+      "time",
+      "evening",
+      "night"
+    ]
+  },
+  {
+    "name": "table",
+    "tags": []
+  },
+  {
+    "name": "tablet",
+    "tags": [
+      "device"
+    ]
+  },
+  {
+    "name": "tag",
+    "tags": [
+      "label"
+    ]
+  },
+  {
+    "name": "target",
+    "tags": [
+      "logo",
+      "bullseye"
+    ]
+  },
+  {
+    "name": "terminal",
+    "tags": [
+      "code",
+      "command line",
+      "prompt"
+    ]
+  },
+  {
+    "name": "thermometer",
+    "tags": [
+      "temperature",
+      "celsius",
+      "fahrenheit",
+      "weather"
+    ]
+  },
+  {
+    "name": "thumbs-down",
+    "tags": [
+      "dislike",
+      "bad",
+      "emotion"
+    ]
+  },
+  {
+    "name": "thumbs-up",
+    "tags": [
+      "like",
+      "good",
+      "emotion"
+    ]
+  },
+  {
+    "name": "toggle-left",
+    "tags": [
+      "on",
+      "off",
+      "switch"
+    ]
+  },
+  {
+    "name": "toggle-right",
+    "tags": [
+      "on",
+      "off",
+      "switch"
+    ]
+  },
+  {
+    "name": "tool",
+    "tags": [
+      "settings",
+      "spanner"
+    ]
+  },
+  {
+    "name": "trash",
+    "tags": [
+      "garbage",
+      "delete",
+      "remove",
+      "bin"
+    ]
+  },
+  {
+    "name": "trash-2",
+    "tags": [
+      "garbage",
+      "delete",
+      "remove",
+      "bin"
+    ]
+  },
+  {
+    "name": "trello",
+    "tags": []
+  },
+  {
+    "name": "trending-down",
+    "tags": []
+  },
+  {
+    "name": "trending-up",
+    "tags": []
+  },
+  {
+    "name": "triangle",
+    "tags": [
+      "delta"
+    ]
+  },
+  {
+    "name": "truck",
+    "tags": [
+      "delivery",
+      "van",
+      "shipping",
+      "transport",
+      "lorry"
+    ]
+  },
+  {
+    "name": "tv",
+    "tags": [
+      "television",
+      "stream"
+    ]
+  },
+  {
+    "name": "twitch",
+    "tags": [
+      "logo"
+    ]
+  },
+  {
+    "name": "twitter",
+    "tags": [
+      "logo",
+      "social"
+    ]
+  },
+  {
+    "name": "type",
+    "tags": [
+      "text"
+    ]
+  },
+  {
+    "name": "umbrella",
+    "tags": [
+      "rain",
+      "weather"
+    ]
+  },
+  {
+    "name": "underline",
+    "tags": []
+  },
+  {
+    "name": "unlock",
+    "tags": [
+      "security"
+    ]
+  },
+  {
+    "name": "upload",
+    "tags": []
+  },
+  {
+    "name": "upload-cloud",
+    "tags": []
+  },
+  {
+    "name": "user",
+    "tags": [
+      "person",
+      "account"
+    ]
+  },
+  {
+    "name": "user-check",
+    "tags": [
+      "followed",
+      "subscribed"
+    ]
+  },
+  {
+    "name": "user-minus",
+    "tags": [
+      "delete",
+      "remove",
+      "unfollow",
+      "unsubscribe"
+    ]
+  },
+  {
+    "name": "user-plus",
+    "tags": [
+      "new",
+      "add",
+      "create",
+      "follow",
+      "subscribe"
+    ]
+  },
+  {
+    "name": "user-x",
+    "tags": [
+      "delete",
+      "remove",
+      "unfollow",
+      "unsubscribe",
+      "unavailable"
+    ]
+  },
+  {
+    "name": "users",
+    "tags": [
+      "group"
+    ]
+  },
+  {
+    "name": "video",
+    "tags": [
+      "camera",
+      "movie",
+      "film"
+    ]
+  },
+  {
+    "name": "video-off",
+    "tags": [
+      "camera",
+      "movie",
+      "film"
+    ]
+  },
+  {
+    "name": "voicemail",
+    "tags": [
+      "phone"
+    ]
+  },
+  {
+    "name": "volume",
+    "tags": [
+      "music",
+      "sound",
+      "mute"
+    ]
+  },
+  {
+    "name": "volume-1",
+    "tags": [
+      "music",
+      "sound"
+    ]
+  },
+  {
+    "name": "volume-2",
+    "tags": [
+      "music",
+      "sound"
+    ]
+  },
+  {
+    "name": "volume-x",
+    "tags": [
+      "music",
+      "sound",
+      "mute"
+    ]
+  },
+  {
+    "name": "watch",
+    "tags": [
+      "clock",
+      "time"
+    ]
+  },
+  {
+    "name": "wifi",
+    "tags": [
+      "connection",
+      "signal",
+      "wireless"
+    ]
+  },
+  {
+    "name": "wifi-off",
+    "tags": [
+      "disabled"
+    ]
+  },
+  {
+    "name": "wind",
+    "tags": [
+      "weather",
+      "air"
+    ]
+  },
+  {
+    "name": "x",
+    "tags": [
+      "cancel",
+      "close",
+      "delete",
+      "remove",
+      "times",
+      "clear"
+    ]
+  },
+  {
+    "name": "x-circle",
+    "tags": [
+      "cancel",
+      "close",
+      "delete",
+      "remove",
+      "times",
+      "clear"
+    ]
+  },
+  {
+    "name": "x-octagon",
+    "tags": [
+      "delete",
+      "stop",
+      "alert",
+      "warning",
+      "times",
+      "clear"
+    ]
+  },
+  {
+    "name": "x-square",
+    "tags": [
+      "cancel",
+      "close",
+      "delete",
+      "remove",
+      "times",
+      "clear"
+    ]
+  },
+  {
+    "name": "youtube",
+    "tags": [
+      "logo",
+      "video",
+      "play"
+    ]
+  },
+  {
+    "name": "zap",
+    "tags": [
+      "flash",
+      "camera",
+      "lightning"
+    ]
+  },
+  {
+    "name": "zap-off",
+    "tags": [
+      "flash",
+      "camera",
+      "lightning"
+    ]
+  },
+  {
+    "name": "zoom-in",
+    "tags": [
+      "magnifying glass"
+    ]
+  },
+  {
+    "name": "zoom-out",
+    "tags": [
+      "magnifying glass"
+    ]
+  }
+]

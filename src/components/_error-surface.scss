@@ -1,0 +1,40 @@
+// Shared declarations only; importing this module emits no CSS.
+@mixin surface {
+  padding: var(--space-3) var(--space-4);
+  border: 1px solid transparent;
+  border-radius: var(--radius);
+  background: var(--notice-danger-bg);
+  color: var(--text-color);
+  overflow-wrap: anywhere;
+}
+
+@mixin layout {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-3);
+}
+
+@mixin icon {
+  inline-size: 1.25rem;
+  block-size: 1.25rem;
+  flex: 0 0 auto;
+  margin-block-start: .125rem;
+}
+
+@mixin content {
+  min-inline-size: 0;
+  > :not(:first-child) {
+    margin-block-start: var(--space-1);
+    font-size: var(--fs-sm);
+    color: var(--text-secondary);
+  }
+}
+
+@mixin title {
+  display: block;
+  margin: 0;
+  font-size: inherit;
+  font-weight: var(--fw-semibold);
+  line-height: inherit;
+  color: inherit;
+}

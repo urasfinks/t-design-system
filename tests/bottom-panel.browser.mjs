@@ -58,6 +58,16 @@ try {
   assert.equal(await page.locator('input').isVisible(), true);
   await page.goto('http://127.0.0.1:4181/docs/bottom-panel.html');
   await page.locator('summary').click();
+  for (const theme of ['light', 'dark', 'ios-dark']) {
+    await page.locator('#panel-theme').selectOption(theme);
+    const surfaces = await page.locator('.tg-bottom-panel').evaluate(el => ({
+      panel: getComputedStyle(el).backgroundColor,
+      header: getComputedStyle(el.querySelector('summary')).backgroundColor,
+      list: getComputedStyle(el.querySelector('.tg-list')).backgroundColor,
+    }));
+    assert.notEqual(surfaces.panel, surfaces.list, `${theme}: panel and nested list must have distinct surfaces`);
+    assert.equal(surfaces.header, surfaces.panel);
+  }
   await page.locator('#panel-example').selectOption('form');
   await page.getByRole('textbox', { name: 'Адрес' }).fill('Тверская, 1');
   assert.equal(await page.locator('#panel-label').textContent(), 'Доставка');

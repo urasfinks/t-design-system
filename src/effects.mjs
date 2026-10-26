@@ -1,6 +1,6 @@
 const registrations = new WeakMap();
 const handledEvents = new WeakSet();
-const controls = '.tg-ripple, .tg-btn, .tg-icon-btn, .tg-chip, .tg-tab, .tg-tabbar__item, .tg-dot, button.tg-avatar, .tg-switch, button.tg-badge, .tg-disclosure > summary, .tg-disclosure__summary, .tg-bottom-panel__header, button[class*="tg-"]';
+const controls = '.tg-ripple, .tg-btn, .tg-icon-btn, .tg-chip, .tg-tab, .tg-tabbar__item, .tg-dot, button.tg-avatar, .tg-switch, button.tg-badge, a.tg-badge[href], .tg-disclosure > summary, .tg-disclosure__summary, .tg-bottom-panel__header, button[class*="tg-"]';
 
 /** Delegated TDS button ripple, including legacy .tg-ripple hosts. Dispose on unmount. */
 export function initRipple(root = globalThis.document) {

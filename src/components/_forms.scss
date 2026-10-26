@@ -32,7 +32,7 @@
     color: var(--text-color);
     font-size: max(1rem, var(--fs));
     line-height: 1.5;
-    transition: box-shadow var(--duration) var(--ease), border-color var(--duration) var(--ease), background-color var(--duration) var(--ease);
+    transition: box-shadow var(--duration) var(--ease), border-color var(--duration) var(--ease), background-color var(--control-color-duration) var(--ease);
 
     &:where(:not(:disabled, [readonly])):hover {
       background-color: var(--field-bg-hover);
@@ -61,7 +61,7 @@
     }
 
     &:disabled {
-      opacity: .5;
+      opacity: var(--disabled-opacity);
       cursor: not-allowed;
     }
   }
@@ -129,7 +129,7 @@
     }
 
     &:disabled {
-      opacity: .5;
+      opacity: var(--disabled-opacity);
       cursor: not-allowed;
     }
   }
@@ -215,7 +215,7 @@
       border: 1px solid var(--switch-border-color);
       border-radius: inherit;
       background: var(--switch-track-color);
-      transition: background-color var(--duration) var(--ease), border-color var(--duration) var(--ease);
+      transition: background-color var(--control-color-duration) var(--ease), border-color var(--duration) var(--ease);
     }
 
     &:not([aria-checked='true'], .tg-switch--on)::before {

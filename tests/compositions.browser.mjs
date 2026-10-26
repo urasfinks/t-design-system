@@ -36,7 +36,7 @@ try {
     assert.equal(state.containerWidth, Math.min(width, 768), 'reading container width');
     assert.equal(state.overflow, false, `no overflow at ${width}px`);
     assert.ok(await page.locator('.tg-reply-preview > button').evaluate(el => el.getBoundingClientRect().right <= innerWidth), 'long reply keeps cancel button on screen');
-    assert.equal(state.commentDisplay, width <= 576 ? 'grid' : 'flex');
+    assert.equal(state.commentDisplay, 'flex');
     assert.ok(state.imageHeight <= 495, 'media fits viewport');
     assert.equal(state.whitespace, 'pre-wrap');
     assert.ok(state.contentPadding >= 160, 'content reserves composer space');

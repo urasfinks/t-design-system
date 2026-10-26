@@ -48,19 +48,16 @@
     font-size: var(--fs-sm);
     font-weight: var(--fw-medium);
     cursor: pointer;
-    transition: background var(--duration), color var(--duration);
+    transition: background-color var(--control-color-duration) var(--ease), color var(--control-color-duration) var(--ease);
 
     &[aria-selected='true'] {
       background: var(--section-bg-color);
       color: var(--text-color);
-    }
-
-    &[aria-selected='true'] {
       box-shadow: var(--shadow-control);
     }
 
     @media (hover: hover) {
-      &:where(:not(:disabled, [aria-disabled='true'], [aria-selected='true'])):hover {
+      &:where(:not(:disabled, [disabled], [aria-disabled='true'], [disabled] *, [aria-disabled='true'] *, [aria-selected='true'])):hover {
         background: var(--background-panel);
         color: var(--text-color);
       }

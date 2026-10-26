@@ -60,7 +60,7 @@ try {
   await page.locator('.tg-toast').evaluate(el=>el.textContent='x'.repeat(300));
   const overflow=await page.locator('.tg-toast').evaluate(el=>({scroll:el.scrollWidth,client:el.clientWidth}));
   check('unbroken toast content wraps',overflow.scroll<=overflow.client+1,overflow);
-  check('avatar retains press feedback',await page.locator('#avatar').evaluate(el=>getComputedStyle(el).transform)==='matrix(0.96, 0, 0, 0.96, 0, 0)');
+  check('avatar retains press feedback',await page.locator('#avatar').evaluate(el => { const style = getComputedStyle(el); return new DOMMatrixReadOnly(style.transform).a === parseFloat(style.getPropertyValue('--control-press-scale')); }));
   check('file upload is a styled control',await page.locator('.tg-upload').evaluate(el=>getComputedStyle(el).display)==='flex');
   await page.evaluate(()=>document.documentElement.style.setProperty('--ios-h','2rem'));
   check('iOS spacer consumes the integration height',await page.locator('.tg-ios-spacer').evaluate(el=>getComputedStyle(el).height)==='32px');

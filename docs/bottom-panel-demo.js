@@ -15,7 +15,7 @@ if (parentRoot) {
   function syncTheme() {
     if (parentRoot.dataset.theme) root.dataset.theme = parentRoot.dataset.theme;
     else delete root.dataset.theme;
-    for (const name of ['--button-color', '--button-text-color', '--link-color', '--accent-text-color']) {
+    for (const name of ['--button-color', '--text-color', '--bg-color', '--destructive-text-color']) {
       const value = parentRoot.style.getPropertyValue(name);
       if (value) root.style.setProperty(name, value);
       else root.style.removeProperty(name);

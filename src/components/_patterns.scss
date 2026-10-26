@@ -1,0 +1,174 @@
+@use '../base';
+@use 'error-surface';
+
+@layer tds.components {
+  .tg-search {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    min-inline-size: 0;
+    padding-inline: var(--space-3) var(--space-1);
+    border: var(--border-field);
+    border-radius: var(--radius-control);
+    background: var(--field-bg);
+
+    &:focus-within { border-color: var(--accent-main); box-shadow: var(--focus); }
+    &:has(.tg-search__input[readonly]) { background: var(--section-bg-color); }
+    &:has(.tg-search__input:disabled) { opacity: var(--disabled-opacity); cursor: not-allowed; }
+    &:has(.tg-search__input[aria-invalid='true']) {
+      border-color: var(--danger-main);
+      &:focus-within { box-shadow: 0 0 0 .25rem var(--danger-soft); }
+    }
+
+    // The wrapper owns the surface and focus ring, including when tg-input is composed.
+    .tg-search__input {
+      &, &:hover, &:focus, &[readonly], &[aria-invalid='true']:focus {
+        border: 0;
+        background: transparent;
+        box-shadow: none;
+      }
+      &:disabled { opacity: 1; cursor: not-allowed; }
+    }
+    &__icon { flex: 0 0 auto; color: var(--text-secondary); }
+    &__input {
+      flex: 1 1 0%;
+      inline-size: 100%;
+      min-inline-size: 0;
+      min-block-size: var(--control-h);
+      padding: var(--space-2) 0;
+      border: 0;
+      border-radius: 0;
+      background: transparent;
+      color: var(--text-color);
+      font: inherit;
+      font-size: max(1rem, var(--fs));
+      &:focus { outline: none; box-shadow: none; background: transparent; }
+      &::-webkit-search-cancel-button { appearance: none; }
+    }
+    &__clear { flex: 0 0 auto; min-inline-size: var(--control-h); min-block-size: var(--control-h); }
+  }
+
+  .tg-empty {
+    display: grid;
+    justify-items: center;
+    gap: var(--space-3);
+    padding: var(--space-8) var(--space-4);
+    text-align: center;
+    overflow-wrap: anywhere;
+    &__title { margin: 0; font-size: var(--fs-lg); font-weight: var(--fw-semibold); }
+    &__description { max-inline-size: var(--layout-reading-width); margin: 0; color: var(--text-secondary); }
+    &__icon { color: var(--text-secondary); }
+    &__action { margin-block-start: var(--space-2); }
+  }
+
+  .tg-disclosure {
+    min-inline-size: 0;
+    border: var(--border);
+    border-radius: var(--radius);
+    background: var(--surface-bg);
+    &__trigger {
+      min-block-size: var(--control-h);
+      padding: var(--space-3) var(--space-4);
+      font-weight: var(--fw-medium);
+      cursor: pointer;
+      overflow-wrap: anywhere;
+      &::marker { color: var(--text-secondary); }
+    }
+    &__content { padding: 0 var(--space-4) var(--space-4); overflow-wrap: anywhere; }
+  }
+
+  .tg-skeleton {
+    display: block;
+    inline-size: 100%;
+    block-size: var(--control-h);
+    border-radius: var(--radius-sm);
+    background: var(--background-muted);
+    &--text { block-size: 1em; border-radius: var(--radius-xs); }
+    &--circle { inline-size: var(--control-h); aspect-ratio: 1; border-radius: 50%; }
+  }
+
+  .tg-table-wrap {
+    min-inline-size: 0;
+    max-inline-size: 100%;
+    overflow-x: auto;
+    border: var(--border);
+    border-radius: var(--radius);
+    background: var(--surface-bg);
+  }
+  .tg-table {
+    inline-size: 100%;
+    min-inline-size: var(--table-min-width, 32rem);
+    border-collapse: collapse;
+    background: var(--surface-bg);
+    color: var(--text-color);
+    text-align: start;
+    caption { padding: var(--space-3) var(--space-4); text-align: start; color: var(--text-secondary); }
+    :is(th, td) { padding: var(--space-3) var(--space-4); text-align: start; border-block-end: var(--border); vertical-align: top; }
+    th { font-weight: var(--fw-semibold); }
+    thead th { background: var(--surface-muted); }
+    :is(thead, tbody, tfoot):last-child > tr:last-child > :is(th, td) { border-block-end: 0; }
+    tfoot :is(th, td) { border-block-start: var(--border); font-weight: var(--fw-semibold); }
+  }
+
+  .tg-breadcrumbs {
+    min-inline-size: 0;
+    ol { display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-2); margin: 0; padding: 0; list-style: none; }
+    li { display: flex; align-items: center; min-inline-size: 0; gap: var(--space-2); overflow-wrap: anywhere; }
+    li + li::before { content: '/'; color: var(--text-secondary); }
+    a { display: inline-flex; align-items: center; min-block-size: var(--control-h); color: var(--text-link); text-underline-offset: .2em; }
+    [aria-current='page'] { color: var(--text-secondary); }
+  }
+
+  .tg-summary {
+    margin: 0;
+    min-inline-size: 0;
+    &__row { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 2fr); gap: var(--space-4); padding-block: var(--space-3); border-block-end: var(--border); }
+    dt { color: var(--text-secondary); }
+    dd { margin: 0; }
+    :is(dt, dd) { min-inline-size: 0; overflow-wrap: anywhere; }
+  }
+
+  .tg-fieldset {
+    min-inline-size: 0;
+    margin: 0;
+    padding: var(--space-4);
+    border: var(--border);
+    border-radius: var(--radius);
+    legend { padding-inline: var(--space-2); font-weight: var(--fw-semibold); overflow-wrap: anywhere; max-inline-size: 100%; }
+  }
+
+  .tg-error-summary {
+    @include error-surface.surface;
+    &:has(> .tg-error-summary__icon) { @include error-surface.layout; }
+    &__icon { @include error-surface.icon; color: var(--text-danger); }
+    &__content { @include error-surface.content; }
+    &__title { @include error-surface.title; }
+    ul { margin: 0; padding: 0; list-style: none; font-size: var(--fs-sm); color: var(--text-secondary); }
+    > ul { margin-block-start: var(--space-1); }
+    a { color: inherit; text-underline-offset: .2em; }
+  }
+
+  input[type='range'].tg-range {
+    display: block;
+    inline-size: 100%;
+    min-inline-size: 0;
+    min-block-size: var(--control-h);
+    margin: 0;
+    accent-color: var(--accent-main);
+    cursor: pointer;
+    &:disabled { cursor: not-allowed; opacity: var(--disabled-opacity); }
+  }
+
+  :is(.tg-disclosure__trigger, .tg-table-wrap, .tg-breadcrumbs a, .tg-error-summary, .tg-error-summary a, .tg-range):focus-visible {
+    outline: 2px solid var(--text-link);
+    outline-offset: 3px;
+  }
+  @media (forced-colors: active) {
+    .tg-search:focus-within { outline: 2px solid Highlight; outline-offset: 2px; }
+    .tg-skeleton { border: 1px solid CanvasText; }
+  }
+  @media (max-width: 36rem) {
+    .tg-summary__row { grid-template-columns: minmax(0, 1fr); gap: var(--space-1); }
+  }
+
+}

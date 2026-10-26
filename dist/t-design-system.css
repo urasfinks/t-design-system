@@ -1,10 +1,9 @@
 /* t-design-system v0.1.0 */
 @layer tds.reset, tds.tokens, tds.themes, tds.base, tds.components, tds.utilities, tds.visibility;
 @layer tds.tokens {
-  :root {
+  :where(:root) {
     --layout-reading-width: 48rem;
     --composer-reserved-size: 10rem;
-    --composer-input-max-size: calc(var(--space-16) * 2);
     --media-max-size: 55dvh;
     --fs-xs: clamp(.75rem, .7rem + .2vw, .8125rem);
     --fs-sm: clamp(.8125rem, .78rem + .25vw, .875rem);
@@ -19,23 +18,15 @@
     --radius: .75rem;
     --radius-lg: 1rem;
     --radius-pill: 9999px;
-    --radius-control: var(--radius);
-    --radius-inset: calc(var(--radius-control) - var(--space-1));
     --control-h: clamp(2.75rem, 2.6rem + .8vw, 3rem);
     --choice-size: 1.5rem;
     --chip-h: clamp(2rem, 1.9rem + .5vw, 2.25rem);
     --icon-btn-prep: clamp(2.25rem, 2.1rem + .6vw, 2.5rem);
-    --icon-btn: calc(var(--icon-btn-prep) + .25rem);
-    --icon-avatar: calc(var(--icon-btn-prep) + 1.5rem);
     --icon-size: 1.25rem;
     --icon-stroke: 2;
     --select-arrow-light: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-opacity='.65' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
     --select-arrow-dark: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23fff' stroke-opacity='.7' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
-    --select-arrow: var(--select-arrow-light);
     --switch-knob-color: #fff;
-    --avatar-initials-color: var(--text-color);
-    --spinner-color: var(--progress-color);
-    --spinner-track-color: var(--accent-soft);
     --space-1: .25rem;
     --space-2: .5rem;
     --space-3: .75rem;
@@ -46,6 +37,7 @@
     --space-10: 2.5rem;
     --space-12: 3rem;
     --space-16: 4rem;
+    --control-color-duration: 0s;
     --duration-fast: 120ms;
     --duration: 180ms;
     --ease: cubic-bezier(.23, 1, .32, 1);
@@ -61,22 +53,41 @@
     --ios-h: 0px;
     --border-color: light-dark(rgba(0, 0, 0, .08), rgba(255, 255, 255, .08));
     --border-subtle-color: light-dark(rgba(0, 0, 0, .04), rgba(255, 255, 255, .04));
+    --button-text-color: #fff;
+    --control-border-color: light-dark(rgba(0, 0, 0, .5), rgba(255, 255, 255, .5));
+    --switch-border-color: transparent;
+    --overlay-bg: rgb(0 0 0 / .66);
+    --overlay-text: #fff;
+    --shadow-control: 0 1px 3px rgb(0 0 0 / .12);
+    --shadow-overlay: 0 .75rem 3rem rgb(0 0 0 / .2);
+    --control-press-scale: .98;
+    --disabled-opacity: .5;
+    --control-font-size: var(--fs);
+    --composer-input-max-size: calc(var(--space-16) * 2);
+    --radius-control: var(--radius);
+    --radius-inset: calc(var(--radius-control) - var(--space-1));
+    --icon-btn: calc(var(--icon-btn-prep) + .25rem);
+    --icon-avatar: calc(var(--icon-btn-prep) + 1.5rem);
+    --select-arrow: var(--tds-select-arrow, var(--select-arrow-light));
+    --avatar-initials-color: var(--text-color);
+    --spinner-color: var(--progress-color);
+    --spinner-track-color: var(--accent-soft);
     --border: 1px solid var(--border-color);
     --border-transparent: 1px solid var(--border-subtle-color);
     --background-main: var(--bg-color);
     --background-raised: color-mix(in srgb, var(--bg-color) var(--background-panel-weight), #fff);
-    --background-panel: var(--background-raised);
+    --background-panel: var(--tds-panel-fixed, var(--background-raised));
     --background-muted-derived: color-mix(in srgb, var(--bg-color) var(--background-muted-weight), var(--background-muted-target));
-    --background-muted: var(--background-muted-derived);
+    --background-muted: var(--tds-muted-fixed, var(--background-muted-derived));
     --text-main: var(--text-color);
     --text-secondary: color-mix(in srgb, var(--text-main) 70%, var(--background-panel));
     --text-muted: color-mix(in srgb, var(--text-main) 55%, var(--background-panel));
     --accent-main: var(--button-color);
     --accent-strong: color-mix(in srgb, var(--accent-main) 72%, #000);
-    --accent-soft: color-mix(in srgb, var(--accent-main) 12%, var(--surface-bg));
+    --accent-soft: light-dark(color-mix(in srgb, var(--accent-main) 12%, var(--surface-bg)), color-mix(in srgb, var(--accent-main) 60%, var(--text-main)));
     --danger-main: var(--destructive-text-color);
     --danger-strong: color-mix(in srgb, var(--danger-main) 72%, #000);
-    --danger-soft: color-mix(in srgb, var(--danger-main) 10%, var(--surface-bg));
+    --danger-soft: light-dark(color-mix(in srgb, var(--danger-main) 10%, var(--surface-bg)), color-mix(in srgb, var(--danger-main) 50%, var(--text-main)));
     --border-active: 1px solid var(--accent-main);
     --focus: 0 0 0 .25rem var(--accent-soft);
     --section-bg-color: var(--background-panel);
@@ -89,7 +100,6 @@
     --section-header-text-color: var(--text-secondary);
     --accent-text-color: var(--accent-main);
     --link-color: var(--accent-main);
-    --button-text-color: #fff;
     --highlight-bg-color: var(--background-panel);
     --highlight-ficus-color: var(--background-muted);
     --shadow-soft: var(--shadow-overlay);
@@ -103,45 +113,115 @@
     --button-color-transparent: var(--accent-strong);
     --destructive-text-color-transparent: var(--danger-strong);
     --section-bg-color-transparent: var(--background-panel);
-    --text-link: light-dark(var(--accent-strong), var(--text-main));
-    --progress-color: light-dark(var(--accent-strong), var(--text-main));
+    --text-link: light-dark(var(--accent-strong), var(--accent-soft));
+    --progress-color: light-dark(var(--accent-strong), var(--accent-soft));
     --progress-track-color: var(--background-muted);
-    --text-danger: light-dark(var(--danger-strong), var(--text-main));
+    --text-danger: light-dark(var(--danger-strong), var(--danger-soft));
     --action-bg: var(--accent-strong);
     --action-hover-bg: var(--accent-strong);
     --action-danger-bg: var(--danger-strong);
-    --control-border-color: light-dark(rgba(0, 0, 0, .5), rgba(255, 255, 255, .5));
     --border-control: 1px solid var(--control-border-color);
     --field-border-color: var(--border-color);
     --border-field: 1px solid var(--field-border-color);
     --switch-track-color: var(--field-bg);
-    --switch-border-color: transparent;
-    --notice-danger-bg: var(--danger-soft);
+    --notice-danger-bg: light-dark(var(--danger-soft), var(--background-muted));
     --surface-bg: var(--section-color);
     --surface-muted: var(--secondary-bg-color);
-    --overlay-bg: rgb(0 0 0 / .66);
-    --overlay-text: #fff;
-    --shadow-control: 0 1px 3px rgb(0 0 0 / .12);
-    --shadow-overlay: 0 .75rem 3rem rgb(0 0 0 / .2);
+    --control-selected-bg: light-dark(var(--accent-soft), var(--background-muted));
+    --control-selected-color: var(--text-link);
+  }
+  :where(.tg-scope, [data-theme=light], [data-theme=dark], [data-theme=ios-dark]) {
+    --control-font-size: var(--fs);
+    --composer-input-max-size: calc(var(--space-16) * 2);
+    --radius-control: var(--radius);
+    --radius-inset: calc(var(--radius-control) - var(--space-1));
+    --icon-btn: calc(var(--icon-btn-prep) + .25rem);
+    --icon-avatar: calc(var(--icon-btn-prep) + 1.5rem);
+    --select-arrow: var(--tds-select-arrow, var(--select-arrow-light));
+    --avatar-initials-color: var(--text-color);
+    --spinner-color: var(--progress-color);
+    --spinner-track-color: var(--accent-soft);
+    --border: 1px solid var(--border-color);
+    --border-transparent: 1px solid var(--border-subtle-color);
+    --background-main: var(--bg-color);
+    --background-raised: color-mix(in srgb, var(--bg-color) var(--background-panel-weight), #fff);
+    --background-panel: var(--tds-panel-fixed, var(--background-raised));
+    --background-muted-derived: color-mix(in srgb, var(--bg-color) var(--background-muted-weight), var(--background-muted-target));
+    --background-muted: var(--tds-muted-fixed, var(--background-muted-derived));
+    --text-main: var(--text-color);
+    --text-secondary: color-mix(in srgb, var(--text-main) 70%, var(--background-panel));
+    --text-muted: color-mix(in srgb, var(--text-main) 55%, var(--background-panel));
+    --accent-main: var(--button-color);
+    --accent-strong: color-mix(in srgb, var(--accent-main) 72%, #000);
+    --accent-soft: light-dark(color-mix(in srgb, var(--accent-main) 12%, var(--surface-bg)), color-mix(in srgb, var(--accent-main) 60%, var(--text-main)));
+    --danger-main: var(--destructive-text-color);
+    --danger-strong: color-mix(in srgb, var(--danger-main) 72%, #000);
+    --danger-soft: light-dark(color-mix(in srgb, var(--danger-main) 10%, var(--surface-bg)), color-mix(in srgb, var(--danger-main) 50%, var(--text-main)));
+    --border-active: 1px solid var(--accent-main);
+    --focus: 0 0 0 .25rem var(--accent-soft);
+    --section-bg-color: var(--background-panel);
+    --secondary-bg-color: var(--background-muted);
+    --header-bg-color: var(--background-muted);
+    --bottom-bar-bg-color: var(--background-muted);
+    --section-separator-color: var(--border-color);
+    --hint-color: var(--text-muted);
+    --subtitle-text-color: var(--text-secondary);
+    --section-header-text-color: var(--text-secondary);
+    --accent-text-color: var(--accent-main);
+    --link-color: var(--accent-main);
+    --highlight-bg-color: var(--background-panel);
+    --highlight-ficus-color: var(--background-muted);
+    --shadow-soft: var(--shadow-overlay);
+    --shadow-elev: var(--shadow-control);
+    --bg-body: var(--background-main);
+    --section-color: var(--background-panel);
+    --section-color2: var(--background-muted);
+    --field-bg: var(--background-muted);
+    --field-bg-hover: var(--background-panel);
+    --secondary-bg-color-transparent: var(--background-muted);
+    --button-color-transparent: var(--accent-strong);
+    --destructive-text-color-transparent: var(--danger-strong);
+    --section-bg-color-transparent: var(--background-panel);
+    --text-link: light-dark(var(--accent-strong), var(--accent-soft));
+    --progress-color: light-dark(var(--accent-strong), var(--accent-soft));
+    --progress-track-color: var(--background-muted);
+    --text-danger: light-dark(var(--danger-strong), var(--danger-soft));
+    --action-bg: var(--accent-strong);
+    --action-hover-bg: var(--accent-strong);
+    --action-danger-bg: var(--danger-strong);
+    --border-control: 1px solid var(--control-border-color);
+    --field-border-color: var(--border-color);
+    --border-field: 1px solid var(--field-border-color);
+    --switch-track-color: var(--field-bg);
+    --notice-danger-bg: light-dark(var(--danger-soft), var(--background-muted));
+    --surface-bg: var(--section-color);
+    --surface-muted: var(--secondary-bg-color);
+    --control-selected-bg: light-dark(var(--accent-soft), var(--background-muted));
+    --control-selected-color: var(--text-link);
   }
   @media (prefers-contrast: more) {
-    :root {
+    :where(:root, .tg-scope, [data-theme=light], [data-theme=dark], [data-theme=ios-dark]) {
       --field-border-color: var(--control-border-color);
       --switch-border-color: var(--control-border-color);
     }
   }
 }
 @layer tds.themes {
-  :root {
+  :where([data-theme=light], [data-theme=dark], [data-theme=ios-dark]) {
+    --bg-color: var(--tds-bg);
+    --button-color: var(--tds-button);
+    --text-color: var(--tds-text);
+    --destructive-text-color: var(--tds-destructive-text);
+  }
+  :where(:root) {
     color-scheme: light;
-    --select-arrow: var(--select-arrow-light);
+    --tds-select-arrow: var(--select-arrow-light);
     --tds-bg: #f5f5f5;
     --tds-button: #2481cc;
     --tds-text: #000000;
     --tds-destructive-text: #ff3b30;
-    --background-main: var(--bg-color);
-    --background-panel: var(--background-raised);
-    --background-muted: var(--background-muted-derived);
+    --tds-panel-fixed: initial;
+    --tds-muted-fixed: initial;
     --background-panel-weight: 0%;
     --background-muted-weight: 98%;
     --background-muted-target: #000;
@@ -153,72 +233,67 @@
   @media (prefers-color-scheme: dark) {
     :root:not([data-theme]) {
       color-scheme: dark;
-      --select-arrow: var(--select-arrow-dark);
+      --tds-select-arrow: var(--select-arrow-dark);
       --tds-bg: #151e27;
       --tds-button: #2ea6ff;
       --tds-text: #ffffff;
       --tds-destructive-text: #ef5b5b;
-      --background-main: var(--bg-color);
-      --background-panel: #212d3b;
-      --background-muted: #1d2733;
+      --tds-panel-fixed: #212d3b;
+      --tds-muted-fixed: #1d2733;
       --background-panel-weight: 83%;
       --background-muted-weight: 89%;
       --background-muted-target: #fff;
     }
     :root:not([data-theme])[data-platform=ios] {
       color-scheme: dark;
-      --select-arrow: var(--select-arrow-dark);
+      --tds-select-arrow: var(--select-arrow-dark);
       --tds-bg: #000000;
       --tds-button: #3e88f7;
       --tds-text: #ffffff;
       --tds-destructive-text: #eb5545;
-      --background-main: var(--bg-color);
-      --background-panel: var(--background-raised);
-      --background-muted: var(--background-muted-derived);
+      --tds-panel-fixed: initial;
+      --tds-muted-fixed: initial;
       --background-panel-weight: 83%;
       --background-muted-weight: 89%;
       --background-muted-target: #fff;
     }
   }
-  :root[data-theme=dark] {
+  :where([data-theme=dark]) {
     color-scheme: dark;
-    --select-arrow: var(--select-arrow-dark);
+    --tds-select-arrow: var(--select-arrow-dark);
     --tds-bg: #151e27;
     --tds-button: #2ea6ff;
     --tds-text: #ffffff;
     --tds-destructive-text: #ef5b5b;
-    --background-main: var(--bg-color);
-    --background-panel: #212d3b;
-    --background-muted: #1d2733;
+    --tds-panel-fixed: #212d3b;
+    --tds-muted-fixed: #1d2733;
     --background-panel-weight: 83%;
     --background-muted-weight: 89%;
     --background-muted-target: #fff;
   }
-  :root[data-theme=dark][data-platform=ios],
-  :root[data-theme=ios-dark] {
+  :where([data-theme=dark][data-platform=ios]),
+  :where([data-theme=ios-dark]) {
     color-scheme: dark;
-    --select-arrow: var(--select-arrow-dark);
+    --tds-select-arrow: var(--select-arrow-dark);
     --tds-bg: #000000;
     --tds-button: #3e88f7;
     --tds-text: #ffffff;
     --tds-destructive-text: #eb5545;
-    --background-main: var(--bg-color);
-    --background-panel: var(--background-raised);
-    --background-muted: var(--background-muted-derived);
+    --tds-panel-fixed: initial;
+    --tds-muted-fixed: initial;
     --background-panel-weight: 83%;
     --background-muted-weight: 89%;
     --background-muted-target: #fff;
   }
-  :root[data-theme=light] {
+  :where([data-theme=light]) {
     color-scheme: light;
-    --select-arrow: var(--select-arrow-light);
+    --tds-select-arrow: var(--select-arrow-light);
     --tds-bg: #f5f5f5;
     --tds-button: #2481cc;
     --tds-text: #000000;
     --tds-destructive-text: #ff3b30;
-    --background-main: var(--bg-color);
-    --background-panel: var(--background-raised);
-    --background-muted: var(--background-muted-derived);
+    --tds-panel-fixed: initial;
+    --tds-muted-fixed: initial;
     --background-panel-weight: 0%;
     --background-muted-weight: 98%;
     --background-muted-target: #000;
@@ -239,6 +314,11 @@
 @layer tds.base {
   :where(body) {
     background: var(--bg-body);
+  }
+  :where([data-theme=light], [data-theme=dark], [data-theme=ios-dark]) {
+    background: var(--background-main);
+  }
+  :where(body, .tg-scope, [data-theme=light], [data-theme=dark], [data-theme=ios-dark]) {
     color: var(--text-color);
     font: var(--fs)/1.5 var(--font-family);
     -webkit-font-smoothing: antialiased;
@@ -250,7 +330,7 @@
     letter-spacing: inherit;
     color: inherit;
   }
-  :where(.tg-btn, .tg-icon-btn, .tg-tab, .tg-tabbar__item, .tg-switch, .tg-chip, .tg-avatar, .tg-check, .tg-radio, .tg-link, .tg-dot):focus-visible {
+  :where(.tg-btn, .tg-icon-btn, .tg-tab, .tg-tabbar__item, .tg-switch, .tg-chip, .tg-avatar, .tg-check, .tg-radio, .tg-link, .tg-dot, button.tg-badge, a.tg-badge[href]):focus-visible {
     outline: 2px solid var(--text-link);
     outline-offset: 3px;
   }
@@ -295,7 +375,7 @@
 }
 @layer tds.components {
   :is(.tg-btn, .tg-icon-btn, .tg-chip, .tg-switch, .tg-tab, .tg-tabbar__item, .tg-avatar, .tg-dot):is(:disabled, [aria-disabled=true]) {
-    opacity: 0.45;
+    opacity: var(--disabled-opacity);
     cursor: not-allowed;
     transform: none;
   }
@@ -328,13 +408,13 @@
     gap: var(--space-2);
     flex: 0 0 auto;
     max-inline-size: 100%;
-    block-size: var(--control-h);
+    block-size: auto;
     min-block-size: var(--control-h);
-    padding-block: 0;
+    padding-block: var(--space-2);
     border: 1px solid transparent;
     background: var(--surface-muted);
     color: var(--text-color);
-    font-size: var(--fs);
+    font-size: var(--control-font-size, var(--fs));
     font-weight: var(--fw-medium);
     line-height: 1.3;
     text-align: center;
@@ -342,7 +422,7 @@
     cursor: pointer;
     vertical-align: middle;
     overflow-wrap: anywhere;
-    transition: background-color var(--duration) var(--ease), color var(--duration) var(--ease), border-color var(--duration) var(--ease), transform var(--duration-fast) var(--ease);
+    transition: background-color var(--control-color-duration) var(--ease), color var(--control-color-duration) var(--ease), border-color var(--duration) var(--ease), transform var(--duration-fast) var(--ease);
   }
   :is(.tg-btn, .tg-icon-btn, .tg-chip) svg:not(.tg-icon) {
     inline-size: 1.25em;
@@ -350,12 +430,12 @@
     flex-shrink: 0;
   }
   @media (hover: hover) {
-    :is(.tg-btn, .tg-icon-btn, .tg-chip):where(:not(:disabled, [aria-disabled=true])):hover {
+    :is(.tg-btn, .tg-icon-btn, .tg-chip):where(:not(:disabled, [disabled], [aria-disabled=true], [disabled] *, [aria-disabled=true] *)):hover {
       background: var(--background-panel);
     }
   }
-  :is(.tg-btn, .tg-icon-btn, .tg-chip):where(:not(:disabled, [aria-disabled=true])):is(:active, [data-pressed=true]) {
-    transform: scale(0.98);
+  :is(.tg-btn, .tg-icon-btn, .tg-chip):where(:not(:disabled, [disabled], [aria-disabled=true], [disabled] *, [aria-disabled=true] *)):is(:active, [data-pressed=true]) {
+    transform: scale(var(--control-press-scale, 0.98));
   }
   .tg-btn {
     padding-inline: var(--space-4);
@@ -374,9 +454,21 @@
     color: var(--button-text-color);
   }
   @media (hover: hover) {
-    .tg-btn--destructive:where(:not(:disabled, [aria-disabled=true])):hover {
+    .tg-btn--destructive:where(:not(:disabled, [disabled], [aria-disabled=true], [disabled] *, [aria-disabled=true] *)):hover {
       background: var(--danger-strong);
     }
+  }
+  .tg-btn--stacked {
+    flex-direction: column;
+    min-block-size: calc(var(--control-h) * 2);
+    padding: var(--space-3);
+    font-size: var(--fs-sm);
+    font-weight: var(--fw-regular);
+  }
+  .tg-btn:where(:not(.tg-btn--primary, .tg-btn--destructive))[aria-pressed=true] {
+    background: var(--control-selected-bg, var(--surface-muted));
+    color: var(--control-selected-color, var(--text-link));
+    border-color: var(--accent-main);
   }
   .tg-btn--sm {
     padding-inline: var(--space-3);
@@ -415,7 +507,7 @@
     color: var(--button-text-color);
   }
   @media (hover: hover) {
-    .tg-btn--primary:where(:not(:disabled, [aria-disabled=true])):hover, .tg-icon-btn--primary:where(:not(:disabled, [aria-disabled=true])):hover {
+    .tg-btn--primary:where(:not(:disabled, [disabled], [aria-disabled=true], [disabled] *, [aria-disabled=true] *)):hover, .tg-icon-btn--primary:where(:not(:disabled, [disabled], [aria-disabled=true], [disabled] *, [aria-disabled=true] *)):hover {
       background: var(--action-hover-bg);
     }
   }
@@ -430,7 +522,7 @@
     color: var(--button-text-color);
     border-color: transparent;
   }
-  .tg-chip[aria-checked=true]:where(:not(:disabled, [aria-disabled=true])):hover {
+  .tg-chip[aria-checked=true]:where(:not(:disabled, [disabled], [aria-disabled=true], [disabled] *, [aria-disabled=true] *)):hover {
     background: var(--action-hover-bg);
   }
 }
@@ -463,7 +555,7 @@
     color: var(--text-color);
     font-size: max(1rem, var(--fs));
     line-height: 1.5;
-    transition: box-shadow var(--duration) var(--ease), border-color var(--duration) var(--ease), background-color var(--duration) var(--ease);
+    transition: box-shadow var(--duration) var(--ease), border-color var(--duration) var(--ease), background-color var(--control-color-duration) var(--ease);
   }
   :is(.tg-input, .tg-select, .tg-textarea):where(:not(:disabled, [readonly])):hover {
     background-color: var(--field-bg-hover);
@@ -487,7 +579,7 @@
     box-shadow: 0 0 0 0.25rem var(--danger-soft);
   }
   :is(.tg-input, .tg-select, .tg-textarea):disabled {
-    opacity: 0.5;
+    opacity: var(--disabled-opacity);
     cursor: not-allowed;
   }
   .tg-textarea {
@@ -546,7 +638,7 @@
     border-color: var(--accent-main);
   }
   .tg-check:disabled, .tg-radio:disabled {
-    opacity: 0.5;
+    opacity: var(--disabled-opacity);
     cursor: not-allowed;
   }
   .tg-check {
@@ -621,7 +713,7 @@
     border: 1px solid var(--switch-border-color);
     border-radius: inherit;
     background: var(--switch-track-color);
-    transition: background-color var(--duration) var(--ease), border-color var(--duration) var(--ease);
+    transition: background-color var(--control-color-duration) var(--ease), border-color var(--duration) var(--ease);
   }
   .tg-switch:not([aria-checked=true], .tg-switch--on)::before {
     border-color: var(--switch-border-color);
@@ -679,7 +771,7 @@
     outline-offset: 3px;
   }
   .tg-upload--disabled, .tg-upload[aria-disabled=true] {
-    opacity: 0.45;
+    opacity: var(--disabled-opacity);
     cursor: not-allowed;
   }
   .tg-upload__icon {
@@ -837,17 +929,15 @@
     font-size: var(--fs-sm);
     font-weight: var(--fw-medium);
     cursor: pointer;
-    transition: background var(--duration), color var(--duration);
+    transition: background-color var(--control-color-duration) var(--ease), color var(--control-color-duration) var(--ease);
   }
   .tg-tab[aria-selected=true] {
     background: var(--section-bg-color);
     color: var(--text-color);
-  }
-  .tg-tab[aria-selected=true] {
     box-shadow: var(--shadow-control);
   }
   @media (hover: hover) {
-    .tg-tab:where(:not(:disabled, [aria-disabled=true], [aria-selected=true])):hover {
+    .tg-tab:where(:not(:disabled, [disabled], [aria-disabled=true], [disabled] *, [aria-disabled=true] *, [aria-selected=true])):hover {
       background: var(--background-panel);
       color: var(--text-color);
     }
@@ -931,10 +1021,10 @@
     border-radius: 50%;
     background: transparent;
     vertical-align: middle;
-    transition: border-color var(--duration), transform var(--duration-fast);
+    transition: border-color var(--duration) var(--ease), transform var(--duration-fast) var(--ease);
   }
-  .tg-avatar:where(:not(:disabled, [aria-disabled=true])):is(:active, [data-pressed=true]) {
-    transform: scale(0.96);
+  .tg-avatar:where(:not(:disabled, [disabled], [aria-disabled=true], [disabled] *, [aria-disabled=true] *)):is(:active, [data-pressed=true]) {
+    transform: scale(var(--control-press-scale, 0.98));
   }
   .tg-avatar[aria-checked=true] {
     border-color: var(--accent-main);
@@ -1002,6 +1092,13 @@
   button.tg-avatar {
     cursor: pointer;
   }
+  :is(button, a[href]).tg-badge {
+    min-inline-size: var(--control-h);
+    min-block-size: var(--control-h);
+    font-size: var(--fs-sm);
+    text-decoration: none;
+    cursor: pointer;
+  }
   .tg-badge {
     display: inline-flex;
     align-items: center;
@@ -1050,9 +1147,12 @@
     border-radius: var(--radius-lg);
   }
   .tg-notice--destructive {
+    padding: var(--space-3) var(--space-4);
+    border: 1px solid transparent;
+    border-radius: var(--radius);
     background: var(--notice-danger-bg);
     color: var(--text-color);
-    border-color: transparent;
+    overflow-wrap: anywhere;
   }
   .tg-notice--destructive .tg-notice__icon {
     color: var(--text-danger);
@@ -1071,12 +1171,18 @@
   .tg-notice__content {
     min-inline-size: 0;
   }
-  .tg-notice__title {
-    display: block;
-    font-weight: var(--fw-semibold);
-  }
   .tg-notice__content > :not(:first-child) {
     margin-block-start: var(--space-1);
+    font-size: var(--fs-sm);
+    color: var(--text-secondary);
+  }
+  .tg-notice__title {
+    display: block;
+    margin: 0;
+    font-size: inherit;
+    font-weight: var(--fw-semibold);
+    line-height: inherit;
+    color: inherit;
   }
   .tg-progress {
     display: block;
@@ -1247,6 +1353,7 @@
   @media (max-width: 36rem) {
     dialog.tg-modal--sheet {
       inline-size: 100%;
+      max-inline-size: 100%;
       max-block-size: 90dvh;
       margin: auto 0 0;
       border-end-start-radius: 0;
@@ -1279,7 +1386,7 @@
 }
 @layer tds.components {
   :where(.tg-btn, .tg-icon-btn, .tg-chip, .tg-tab, .tg-tabbar__item, .tg-dot,
-  button.tg-avatar, .tg-switch, button.tg-badge, .tg-disclosure > summary,
+  button.tg-avatar, .tg-switch, button.tg-badge, a.tg-badge[href], .tg-disclosure > summary,
   .tg-disclosure__summary, .tg-bottom-panel__header, button[class*=tg-]) {
     position: relative;
     isolation: isolate;
@@ -1483,17 +1590,17 @@
   }
   @media (prefers-reduced-motion: reduce) {
     :is(.tg-btn, .tg-icon-btn, .tg-chip, .tg-tab, .tg-tabbar__item, .tg-dot,
-    button.tg-avatar, .tg-switch, button.tg-badge, .tg-disclosure > summary,
+    button.tg-avatar, .tg-switch, button.tg-badge, a.tg-badge[href], .tg-disclosure > summary,
     .tg-disclosure__summary, .tg-bottom-panel__header, button[class*=tg-], .tg-ripple):is(:active, [data-pressed=true]) {
       transform: none;
     }
     :is(.tg-btn, .tg-icon-btn, .tg-chip, .tg-tab, .tg-tabbar__item, .tg-dot,
-    button.tg-avatar, .tg-switch, button.tg-badge, .tg-disclosure > summary,
+    button.tg-avatar, .tg-switch, button.tg-badge, a.tg-badge[href], .tg-disclosure > summary,
     .tg-disclosure__summary, .tg-bottom-panel__header, button[class*=tg-], .tg-ripple):is(:active, [data-pressed=true]):where(:not(:disabled, [disabled], [aria-disabled=true], [disabled] *, [aria-disabled=true] *)) {
       filter: brightness(var(--ripple-press-brightness, 0.92));
     }
     :is(.tg-btn, .tg-icon-btn, .tg-chip, .tg-tab, .tg-tabbar__item, .tg-dot,
-    button.tg-avatar, .tg-switch, button.tg-badge, .tg-disclosure > summary,
+    button.tg-avatar, .tg-switch, button.tg-badge, a.tg-badge[href], .tg-disclosure > summary,
     .tg-disclosure__summary, .tg-bottom-panel__header, button[class*=tg-], .tg-ripple):is(:active, [data-pressed=true]):where(:not(:disabled, [disabled], [aria-disabled=true], [disabled] *, [aria-disabled=true] *)):where(:not(.tg-dot))::after {
       content: "";
       position: absolute;
@@ -1733,6 +1840,9 @@
   .tg-toolbar--compact {
     gap: var(--space-1);
   }
+  .tg-source-link > * {
+    min-inline-size: 0;
+  }
   .tg-source-link {
     display: flex;
     flex-wrap: nowrap;
@@ -1809,8 +1919,11 @@
   }
   .tg-media > img {
     display: block;
-    inline-size: 100%;
+    inline-size: auto;
+    max-inline-size: 100%;
+    block-size: auto;
     max-block-size: var(--media-max-size);
+    margin-inline: auto;
     object-fit: contain;
   }
   @media (min-width: 48rem) {
@@ -1836,20 +1949,19 @@
       justify-content: center;
     }
     .tg-comment {
-      display: grid;
-      grid-template-columns: var(--icon-avatar) minmax(0, 1fr);
+      flex-wrap: wrap;
       gap: var(--space-1) var(--space-3);
     }
     .tg-comment__body {
       display: contents;
     }
     .tg-comment__meta {
-      grid-column: 2;
-      grid-row: 1;
+      flex: 1 1 7rem;
+      min-inline-size: 0;
       align-self: center;
     }
     .tg-comment__text, .tg-comment__actions, .tg-comment__recipient {
-      grid-column: 1/-1;
+      flex: 1 0 100%;
     }
     .tg-thread {
       margin-inline-start: var(--space-3);
@@ -1920,7 +2032,7 @@
     border-block-end: 0;
     border-start-start-radius: var(--radius-lg);
     border-start-end-radius: var(--radius-lg);
-    background: var(--section-bg-color);
+    background: var(--bottom-bar-bg-color);
     color: var(--text-color);
     box-shadow: var(--shadow-overlay);
   }
@@ -1935,7 +2047,7 @@
     min-block-size: var(--control-h);
     padding: var(--space-4);
     border: 0;
-    background: var(--section-bg-color);
+    background: var(--bottom-bar-bg-color);
     color: inherit;
     font: inherit;
     text-align: start;
@@ -1990,7 +2102,7 @@
     background: var(--section-bg-color);
   }
   .tg-search:has(.tg-search__input:disabled) {
-    opacity: 0.5;
+    opacity: var(--disabled-opacity);
     cursor: not-allowed;
   }
   .tg-search:has(.tg-search__input[aria-invalid=true]) {
@@ -2110,6 +2222,8 @@
     inline-size: 100%;
     min-inline-size: var(--table-min-width, 32rem);
     border-collapse: collapse;
+    background: var(--surface-bg);
+    color: var(--text-color);
     text-align: start;
   }
   .tg-table caption {
@@ -2129,8 +2243,12 @@
   .tg-table thead th {
     background: var(--surface-muted);
   }
-  .tg-table tbody tr:last-child td {
+  .tg-table :is(thead, tbody, tfoot):last-child > tr:last-child > :is(th, td) {
     border-block-end: 0;
+  }
+  .tg-table tfoot :is(th, td) {
+    border-block-start: var(--border);
+    font-weight: var(--fw-semibold);
   }
   .tg-breadcrumbs {
     min-inline-size: 0;
@@ -2200,26 +2318,53 @@
     max-inline-size: 100%;
   }
   .tg-error-summary {
-    padding: var(--space-4);
-    border: 0;
+    padding: var(--space-3) var(--space-4);
+    border: 1px solid transparent;
     border-radius: var(--radius);
-    background: var(--danger-soft);
+    background: var(--notice-danger-bg);
+    color: var(--text-color);
     overflow-wrap: anywhere;
   }
+  .tg-error-summary:has(> .tg-error-summary__icon) {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--space-3);
+  }
+  .tg-error-summary__icon {
+    inline-size: 1.25rem;
+    block-size: 1.25rem;
+    flex: 0 0 auto;
+    margin-block-start: 0.125rem;
+    color: var(--text-danger);
+  }
+  .tg-error-summary__content {
+    min-inline-size: 0;
+  }
+  .tg-error-summary__content > :not(:first-child) {
+    margin-block-start: var(--space-1);
+    font-size: var(--fs-sm);
+    color: var(--text-secondary);
+  }
   .tg-error-summary__title {
-    margin: 0 0 var(--space-2);
-    font-size: var(--fs-lg);
+    display: block;
+    margin: 0;
+    font-size: inherit;
     font-weight: var(--fw-semibold);
+    line-height: inherit;
+    color: inherit;
   }
   .tg-error-summary ul {
     margin: 0;
-    padding-inline-start: var(--space-5);
+    padding: 0;
+    list-style: none;
+    font-size: var(--fs-sm);
+    color: var(--text-secondary);
+  }
+  .tg-error-summary > ul {
+    margin-block-start: var(--space-1);
   }
   .tg-error-summary a {
-    display: inline-flex;
-    align-items: center;
-    min-block-size: var(--control-h);
-    color: var(--text-danger);
+    color: inherit;
     text-underline-offset: 0.2em;
   }
   input[type=range].tg-range {
@@ -2233,7 +2378,7 @@
   }
   input[type=range].tg-range:disabled {
     cursor: not-allowed;
-    opacity: 0.5;
+    opacity: var(--disabled-opacity);
   }
   :is(.tg-disclosure__trigger, .tg-table-wrap, .tg-breadcrumbs a, .tg-error-summary, .tg-error-summary a, .tg-range):focus-visible {
     outline: 2px solid var(--text-link);

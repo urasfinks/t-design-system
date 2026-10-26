@@ -1,0 +1,16 @@
+<div data-icon-browser data-manifest-url="../dist/icons.json">
+  <div class="icon-browser-controls">
+    <label for="icon-search">Поиск иконок</label>
+    <div class="tg-search"><input class="tg-search__input" id="icon-search" type="search" placeholder="Название или тег: home, arrow, mail" autocomplete="off"></div>
+    <label for="icon-size">Размер</label>
+    <select class="tg-select" id="icon-size"><option value="16">16 px</option><option value="20" selected>20 px</option><option value="24">24 px</option></select>
+    <button class="tg-btn tg-btn--secondary" id="icon-reset" type="button">Сбросить</button>
+  </div>
+  <p id="icon-count" role="status" aria-live="polite"></p>
+  <div class="icon-grid" id="icon-grid" aria-label="Иконки Feather"></div>
+  <div class="tg-empty" id="icon-empty" hidden><h3 class="tg-empty__title">Иконки не найдены</h3><p class="tg-empty__description">Попробуйте другой запрос.</p></div>
+  <pre class="code-block"><code id="icon-markup" tabindex="0" aria-label="Разметка выбранной иконки"></code></pre>
+  <button class="tg-btn tg-btn--secondary" id="icon-copy" type="button">Скопировать разметку</button>
+  <span id="icon-copy-status" role="status" aria-live="polite"></span>
+</div>
+<script type="module" src="/docs/icon-browser.js"></script>

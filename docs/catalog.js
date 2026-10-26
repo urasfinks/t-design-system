@@ -17,12 +17,10 @@ themeSelect.addEventListener('change', () => applyTheme(themeSelect.value));
 const accents = { green: '#18745b', violet: '#7151c7' };
 document.querySelector('[aria-label="Акцентный цвет"]').addEventListener('change', event => {
   const color = accents[event.target.value];
-  for (const property of ['--button-color', '--link-color', '--accent-text-color']) {
+  for (const property of ['--button-color']) {
     if (color) root.style.setProperty(property, color);
     else root.style.removeProperty(property);
   }
-  if (color) root.style.setProperty('--button-text-color', '#ffffff');
-  else root.style.removeProperty('--button-text-color');
 });
 for (const control of document.querySelectorAll('button[role="switch"], button[role="checkbox"]')) {
   control.addEventListener('click', () => control.setAttribute('aria-checked', String(control.getAttribute('aria-checked') !== 'true')));

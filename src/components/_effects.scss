@@ -16,7 +16,7 @@
 @layer tds.components {
   // Keep clipping local to the effect so focus outlines and avatar badges survive.
   :where(.tg-btn, .tg-icon-btn, .tg-chip, .tg-tab, .tg-tabbar__item, .tg-dot,
-    button.tg-avatar, .tg-switch, button.tg-badge, .tg-disclosure > summary,
+    button.tg-avatar, .tg-switch, button.tg-badge, a.tg-badge[href], .tg-disclosure > summary,
     .tg-disclosure__summary, .tg-bottom-panel__header, button[class*='tg-']) {
     position: relative;
     isolation: isolate;
@@ -252,7 +252,7 @@
   }
   @media (prefers-reduced-motion: reduce) {
     :is(.tg-btn, .tg-icon-btn, .tg-chip, .tg-tab, .tg-tabbar__item, .tg-dot,
-      button.tg-avatar, .tg-switch, button.tg-badge, .tg-disclosure > summary,
+      button.tg-avatar, .tg-switch, button.tg-badge, a.tg-badge[href], .tg-disclosure > summary,
       .tg-disclosure__summary, .tg-bottom-panel__header, button[class*='tg-'], .tg-ripple):is(:active, [data-pressed='true']) {
       transform: none;
 

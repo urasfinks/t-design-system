@@ -74,7 +74,21 @@
       </tbody>
     </table>
   </div>
-  <div class="foundation-grid"><div class="foundation-card"><span class="mini-label">Типографика</span><div class="type-specimen">Aa Бб 123</div><div class="tg-row tg-text-muted tg-text-sm"><span>System UI</span><span>400 / 500 / 600</span></div></div><div class="foundation-card"><span class="mini-label">Отступы</span><div class="spacing-scale" aria-label="Отступы 4, 8, 12, 16, 20, 24 пикселя"><span style="--size:4">4</span><span style="--size:8">8</span><span style="--size:12">12</span><span style="--size:16">16</span><span style="--size:20">20</span><span style="--size:24">24</span></div><div class="tg-text-muted tg-text-sm">Один ритм для всех компонентов</div></div><div class="foundation-card"><span class="mini-label">Радиусы</span><div class="radius-scale"><span style="border-radius:8px">8</span><span style="border-radius:12px">12</span><span style="border-radius:16px">16</span><span style="border-radius:999px">∞</span></div><div class="tg-text-muted tg-text-sm">От поля ввода до кнопки</div></div></div>
+  <div class="foundation-grid"><div class="foundation-card"><span class="mini-label">Типографика</span><div class="type-specimen">Aa Бб 123</div><div class="tg-row tg-text-muted tg-text-sm"><span>System UI</span><span>400 / 500 / 600</span></div></div><div class="foundation-card"><span class="mini-label">Отступы</span><div class="spacing-scale" aria-label="Отступы 4, 8, 12, 16, 20, 24 пикселя"><span style="--size:4">4</span><span style="--size:8">8</span><span style="--size:12">12</span><span style="--size:16">16</span><span style="--size:20">20</span><span style="--size:24">24</span></div><div class="tg-text-muted tg-text-sm">Один ритм для всех компонентов</div></div><div class="foundation-card"><span class="mini-label">Радиусы</span><div class="radius-scale"><span style="border-radius:var(--radius-inset)">8</span><span style="border-radius:var(--radius-control)">12</span><span style="border-radius:var(--radius-lg)">16</span><span style="border-radius:var(--radius-pill)">∞</span></div><div class="tg-text-muted tg-text-sm">От поля ввода до кнопки</div></div></div>
+  <h3>Каскад в действии</h3>
+  <p>Параметры области пересчитывают зависимые роли. Вложенная тема оформляет только свой блок; утилиты и CSS приложения сохраняют приоритет.</p>
+  <div class="example-panel"><div class="example-body surface-grid" data-ui data-example>
+    <article class="tg-card tg-scope tg-col" style="--button-color:#18745b; --radius:1.25rem; --control-h:3.25rem">
+      <h4 class="tg-header__title">Область параметров</h4><p class="tg-text-sm tg-text-muted">Общий зелёный акцент, увеличенный контрол и радиус 20px.</p>
+      <label class="tg-field">Название<input class="tg-input" placeholder="Название заказа"></label>
+      <div class="tg-row"><button class="tg-btn tg-btn--primary">Сохранить</button><button class="tg-btn tg-btn--ghost">Подробнее</button></div>
+    </article>
+    <article class="tg-card tg-col" data-theme="dark" style="--button-color:#7151c7">
+      <h4 class="tg-header__title">Вложенная тема</h4><p class="tg-text-sm tg-text-muted">Самостоятельная тёмная область внутри любой темы каталога.</p>
+      <label class="tg-field">Комментарий<input class="tg-input" placeholder="Комментарий к заказу"></label>
+      <div class="tg-row"><button class="tg-btn tg-btn--primary">Сохранить</button><button class="tg-btn tg-btn--ghost">Подробнее</button></div>
+    </article>
+  </div></div>
 </section>
 
 <section id="buttons" class="catalog-section">
@@ -141,7 +155,7 @@
 <fieldset class="tg-fieldset"><legend>Условия заказа</legend><div class="tg-field"><label class="tg-label" for="demo-range">Чаевые: <output id="range-output" for="demo-range">10%</output></label><input class="tg-range" id="demo-range" type="range" min="0" max="30" step="5" value="10"></div><label class="tg-choice"><input class="tg-check" type="checkbox"> Получить копию чека</label></fieldset>
 </div></div>
 <div class="example-panel"><div class="example-body tg-col" data-ui data-example>
-<div class="tg-error-summary" id="demo-error-summary" tabindex="-1" aria-labelledby="errors-title"><h3 class="tg-error-summary__title" id="errors-title">Проверьте данные</h3><ul><li><a href="#demo-contact-email">Укажите полный адрес электронной почты</a></li></ul></div><div class="tg-field"><label class="tg-label" for="demo-contact-email">Почта для чека</label><input class="tg-input" type="email" id="demo-contact-email" value="mail@" aria-invalid="true" aria-describedby="contact-error"><p class="tg-help tg-help--error" id="contact-error">Например, name@mail.ru</p></div>
+<div class="tg-error-summary" id="demo-error-summary" tabindex="-1" aria-labelledby="errors-title"><svg class="tg-icon tg-error-summary__icon" viewBox="0 0 24 24" aria-hidden="true"><use href="../dist/icons/alert-circle.svg#alert-circle"></use></svg><div class="tg-error-summary__content"><h3 class="tg-error-summary__title" id="errors-title">Проверьте данные</h3><ul><li><a href="#demo-contact-email">Укажите полный адрес электронной почты</a></li></ul></div></div><div class="tg-field"><label class="tg-label" for="demo-contact-email">Почта для чека</label><input class="tg-input" type="email" id="demo-contact-email" value="mail@" aria-invalid="true" aria-describedby="contact-error"><p class="tg-help tg-help--error" id="contact-error">Например, name@mail.ru</p></div>
 </div></div>
 <p class="tg-text-sm tg-text-muted">Сводку ошибок показывают после проверки формы и переводят на неё фокус. Ссылки ведут к полям; сообщение рядом с полем остаётся доступным через aria-describedby.</p></section>
 
@@ -259,7 +273,7 @@
     &lt;section class="tg-card tg-col" aria-labelledby="demo-title"&gt;
       &lt;h1 class="tg-header__title" id="demo-title"&gt;Готовый экран без CSS приложения&lt;/h1&gt;
       &lt;p class="tg-mt-0 tg-mb-0"&gt;Шапка, контейнер, комментарии и панель ввода используют публичные классы TDS. Измените ширину окна или тему.&lt;/p&gt;
-      &lt;div class="tg-toolbar tg-toolbar--responsive"&gt;&lt;span class="tg-text-sm tg-text-muted"&gt;Адаптивная панель действий&lt;/span&gt;&lt;button class="tg-btn tg-btn--secondary" id="demo-open-media"&gt;&lt;svg class="tg-icon" viewBox="0 0 24 24" aria-hidden="true"&gt;&lt;use href="../dist/icons/image.svg#image"&gt;&lt;/use&gt;&lt;/svg&gt;Открыть медиа&lt;/button&gt;&lt;/div&gt;
+      &lt;div class="tg-toolbar tg-toolbar--responsive"&gt;&lt;span class="tg-text-sm tg-text-muted"&gt;Адаптивная панель действий&lt;/span&gt;&lt;button class="tg-btn tg-btn--secondary tg-btn--sm" id="demo-open-media"&gt;&lt;svg class="tg-icon" viewBox="0 0 24 24" aria-hidden="true"&gt;&lt;use href="../dist/icons/image.svg#image"&gt;&lt;/use&gt;&lt;/svg&gt;Открыть медиа&lt;/button&gt;&lt;/div&gt;
     &lt;/section&gt;
     &lt;section class="tg-mt-5" aria-labelledby="demo-comments-title"&gt;
       &lt;h2 class="tg-header__title tg-mb-3" id="demo-comments-title"&gt;Комментарии&lt;/h2&gt;

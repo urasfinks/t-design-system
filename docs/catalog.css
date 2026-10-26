@@ -23,7 +23,7 @@ p { text-wrap: pretty; }
 .brand-mark.small { width: 1.75rem; height: 1.75rem; font-size: 1.5rem; }
 .header-tools { display: flex; align-items: center; gap: var(--space-6); }
 .version { font-size: var(--catalog-caption); color: var(--text-secondary); }
-.theme-select { inline-size: auto; padding-inline-start: var(--space-2); font: inherit; font-size: var(--catalog-body); min-height: 2.75rem; max-width: 100%; border: 0; border-radius: var(--radius-xs); background-color: var(--surface-bg); color: var(--text-color); cursor: pointer; }
+.theme-select { inline-size: auto; max-inline-size: 100%; }
 .sr-label { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); }
 .skip-link { position: fixed; left: 1rem; top: -100px; z-index: 1000; background: var(--action-bg); color: var(--button-text-color); padding: var(--space-3) var(--space-5); border-radius: var(--radius-control); }
 .skip-link:focus { top: var(--space-3); }
@@ -120,7 +120,7 @@ pre { max-width: 100%; overflow: auto; font: var(--catalog-caption)/1.7 ui-monos
   .sidebar { display: none; }
   .mobile-navigation { display: flex; align-items: center; gap: var(--space-3); padding: var(--space-2) var(--catalog-gutter); border-bottom: var(--border); position: sticky; top: var(--catalog-header); z-index: 40; background: var(--surface-bg); }
   .mobile-navigation label { font-size: var(--catalog-caption); color: var(--text-secondary); }
-  .mobile-navigation select { min-width: 0; flex: 1; min-height: 2.75rem; padding-inline-start: var(--space-2); font: var(--catalog-body) var(--font-family); color: var(--text-color); border: 0; background-color: var(--surface-bg); }
+  .mobile-navigation select { min-inline-size: 0; flex: 1; }
   .hero { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); padding-block: var(--space-12); }
   h1 { font-size: clamp(2rem, 5vw, 3rem); }
 }
@@ -133,7 +133,7 @@ pre { max-width: 100%; overflow: auto; font: var(--catalog-caption)/1.7 ui-monos
   .brand-mark { width: 1.75rem; height: 1.75rem; font-size: 1.5rem; }
   .header-tools { gap: var(--space-2); min-width: 0; }
   .version { display: none; }
-  .theme-select { font-size: .75rem; max-width: 8rem; }
+  .theme-select { max-inline-size: 12rem; }
   .hero { grid-template-columns: minmax(0, 1fr); gap: var(--space-8); padding-block: var(--space-8); }
   h1 { font-size: clamp(2rem, 8.5vw, 3rem); }
   .hero-description { max-width: 42ch; }
@@ -153,7 +153,7 @@ pre { max-width: 100%; overflow: auto; font: var(--catalog-caption)/1.7 ui-monos
 }
 @media (max-width: 380px) {
   .brand { font-size: .8125rem; }
-  .theme-select { max-width: 7rem; }
+  .theme-select { max-inline-size: 11rem; }
 }
 @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
 
@@ -178,15 +178,11 @@ pre { max-width: 100%; overflow: auto; font: var(--catalog-caption)/1.7 ui-monos
 /* The catalog arranges public components; it does not reskin them. */
 .catalog-guide { padding: var(--space-6); background: var(--surface-bg); border-radius: var(--radius-lg); min-inline-size: 0; }
 .catalog-guide h2 { margin: 0; font-size: var(--fs-lg); }
-.catalog-guide .tg-source-link { padding-block: var(--space-3); }
 .icon-browser-controls { display: flex; flex-wrap: wrap; gap: var(--space-3); align-items: end; }
 .icon-browser-controls .icon-search-field { flex: 1 1 18rem; min-inline-size: 0; }
 .icon-browser-controls .icon-size-field { flex: 0 1 7rem; }
-#icon-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 7rem), 1fr)); gap: var(--space-2); max-block-size: 28rem; overflow-y: auto; padding: var(--space-1); }
-#icon-grid .icon-swatch { flex-direction: column; block-size: auto; min-block-size: 6rem; padding: var(--space-3); font-size: var(--fs-sm); font-weight: var(--fw-regular); }
-#icon-grid .icon-swatch[aria-pressed='true'] { background: var(--accent-soft); border-color: var(--accent-main); }
-#icon-grid .icon-swatch span { overflow-wrap: anywhere; }
-#icon-markup { white-space: pre-wrap; overflow-wrap: anywhere; }
+.icon-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 7rem), 1fr)); gap: var(--space-2); max-block-size: 28rem; overflow-y: auto; padding: var(--space-1); }
+.code-block code { white-space: pre-wrap; overflow-wrap: anywhere; }
 @media (max-width: 36rem) {
   .icon-browser-controls .icon-search-field { flex-basis: 100%; }
 }
