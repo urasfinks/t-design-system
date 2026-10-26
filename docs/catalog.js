@@ -1,5 +1,5 @@
-import '../dist/ui.js';
-import './icon-browser.js';
+import { initRipple } from '../dist/effects.js';
+initRipple();
 
 const root = document.documentElement;
 const themeSelect = document.querySelector('#theme');
@@ -17,10 +17,12 @@ themeSelect.addEventListener('change', () => applyTheme(themeSelect.value));
 const accents = { green: '#18745b', violet: '#7151c7' };
 document.querySelector('[aria-label="Акцентный цвет"]').addEventListener('change', event => {
   const color = accents[event.target.value];
-  for (const property of ['--button-color']) {
+  for (const property of ['--button-color', '--link-color', '--accent-text-color']) {
     if (color) root.style.setProperty(property, color);
     else root.style.removeProperty(property);
   }
+  if (color) root.style.setProperty('--button-text-color', '#ffffff');
+  else root.style.removeProperty('--button-text-color');
 });
 for (const control of document.querySelectorAll('button[role="switch"], button[role="checkbox"]')) {
   control.addEventListener('click', () => control.setAttribute('aria-checked', String(control.getAttribute('aria-checked') !== 'true')));
@@ -140,6 +142,7 @@ for (const button of document.querySelectorAll('.tg-pagination .tg-dot')) {
 // The refresh icon has a real refresh action; all demo state is recreated on load.
 document.querySelector('#reload-examples').addEventListener('click', () => location.reload());
 
+import './icon-browser.js';
 const range = document.querySelector('#demo-range');
 range.addEventListener('input', () => document.querySelector('#range-output').value = `${range.value}%`);
 for (const link of document.querySelectorAll('.tg-error-summary a')) {

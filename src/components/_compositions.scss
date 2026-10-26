@@ -13,7 +13,6 @@
   .tg-brand { display: inline-flex; align-items: center; gap: var(--space-3); text-decoration: none; white-space: nowrap; }
   .tg-toolbar { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: var(--space-3); }
   .tg-toolbar--compact { gap: var(--space-1); }
-  .tg-source-link > * { min-inline-size: 0; }
   .tg-source-link { display: flex; flex-wrap: nowrap; align-items: center; gap: var(--space-3); color: var(--text-color); text-decoration: none; }
 
   .tg-composer {
@@ -54,7 +53,7 @@
   }
   .tg-media {
     margin-inline: 0;
-    & > img { display: block; inline-size: auto; max-inline-size: 100%; block-size: auto; max-block-size: var(--media-max-size); margin-inline: auto; object-fit: contain; }
+    & > img { display: block; inline-size: 100%; max-block-size: var(--media-max-size); object-fit: contain; }
   }
   @media (min-width: 48rem) {
     .tg-page-content { --tg-container-padding-start: var(--space-8); }
@@ -66,11 +65,12 @@
     .tg-tabs--responsive { inline-size: 100%; }
     .tg-tabs--responsive .tg-tab { justify-content: center; }
     .tg-comment {
-      flex-wrap: wrap;
+      display: grid;
+      grid-template-columns: var(--icon-avatar) minmax(0, 1fr);
       gap: var(--space-1) var(--space-3);
       &__body { display: contents; }
-      &__meta { flex: 1 1 7rem; min-inline-size: 0; align-self: center; }
-      &__text, &__actions, &__recipient { flex: 1 0 100%; }
+      &__meta { grid-column: 2; grid-row: 1; align-self: center; }
+      &__text, &__actions, &__recipient { grid-column: 1 / -1; }
     }
     .tg-thread { margin-inline-start: var(--space-3); padding-inline-start: var(--space-2); }
   }

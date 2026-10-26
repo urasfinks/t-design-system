@@ -21,7 +21,7 @@
     <select id="theme" class="tg-select theme-select" aria-label="Тема оформления"><option value="auto">Авто</option><option value="light">Светлая</option><option value="dark">Тёмная · Desktop</option><option value="ios-dark">Тёмная · iOS</option></select>
   </div>
 </header>
-<nav class="mobile-navigation" aria-label="Навигация по каталогу"><label for="section-select">Раздел</label><select class="tg-select" id="section-select" aria-label="Раздел каталога"><option value="overview">Обзор</option><option value="tokens">Основа и темы</option><option value="buttons">Кнопки</option><option value="icons">Иконки</option><option value="forms">Формы</option><option value="surfaces">Карточки и списки</option><option value="navigation">Навигация</option><option value="feedback">Обратная связь</option><option value="avatars">Аватары и бейджи</option><option value="data">Данные и сводки</option><option value="compositions">Композиции</option><option value="effects">Материалы и переходы</option><option value="start">Подключение</option></select></nav>
+<nav class="mobile-navigation" aria-label="Навигация по каталогу"><label for="section-select">Раздел</label><select class="tg-select" id="section-select" aria-label="Раздел каталога"><option value="overview">Обзор</option><option value="tokens">Основа и темы</option><option value="buttons">Кнопки</option><option value="icons">Иконки</option><option value="forms">Формы</option><option value="surfaces">Карточки и списки</option><option value="navigation">Навигация</option><option value="feedback">Обратная связь</option><option value="avatars">Аватары и бейджи</option><option value="data">Данные и сводки</option><option value="layout">Компоновка</option><option value="compositions">Композиции</option><option value="effects">Эффекты</option><option value="start">Подключение</option></select></nav>
 <div class="site-layout">
 <aside class="sidebar">
   <div class="sidebar-label">Библиотека</div>
@@ -36,8 +36,9 @@
     <a href="#feedback" class="nav-link"><span>Обратная связь</span></a>
     <a href="#avatars" class="nav-link"><span>Аватары и бейджи</span></a>
     <a href="#data" class="nav-link"><span>Данные и сводки</span></a>
+    <a href="#layout" class="nav-link"><span>Компоновка</span></a>
     <a href="#compositions" class="nav-link"><span>Композиции</span></a>
-    <a href="#effects" class="nav-link"><span>Материалы и переходы</span></a>
+    <a href="#effects" class="nav-link"><span>Эффекты</span></a>
     <a href="#start" class="nav-link"><span>Подключение</span></a>
   </nav>
   <div class="sidebar-note"><span class="status-dot"></span> Веб + Telegram<br><span>Один CSS. Ваш интерфейс.</span></div>
@@ -45,17 +46,24 @@
 <main id="content">
 <section id="overview" class="hero">
   <div class="hero-copy">
-  <h1>Компоненты<br>для интерфейсов.</h1>
-  <p class="hero-description">CSS-фреймворк для веба, Angular и Telegram Mini Apps. Живые примеры, общие токены и доступная разметка.</p>
+  <h1>Один язык<br>для интерфейсов.</h1>
+  <p class="hero-description">Мягкие поверхности, точные отступы и спокойная типографика. Стили вашего проекта — теперь в самостоятельном CSS-фреймворке.</p>
   <div class="hero-actions"><a href="#buttons" class="tg-btn tg-btn--primary">Смотреть компоненты <svg viewBox="0 0 24 24" class="tg-icon" aria-hidden="true"><use href="../dist/icons/arrow-up-right.svg#arrow-up-right"></use></svg></a><a href="#start" class="quiet-link">Подключить <svg viewBox="0 0 24 24" class="tg-icon" aria-hidden="true"><use href="../dist/icons/arrow-right.svg#arrow-right"></use></svg></a></div>
-  <div class="hero-meta"><span>CSS без зависимостей</span><span>Три палитры</span><span>Гибкий каскад</span></div>
+  <div class="hero-meta"><span>Без JS-зависимостей</span><span>Три палитры</span><span>Гибкий каскад</span></div>
   </div>
-  <div class="catalog-guide tg-col">
-    <h2>От компонента к экрану</h2>
-    <p>Выберите примитив, проверьте его состояния и скопируйте разметку. Темы и акцент применяются ко всем примерам.</p>
-    <a class="tg-source-link" href="#icons"><svg class="tg-icon " viewBox="0 0 24 24" aria-hidden="true"><use href="../dist/icons/search.svg#search"></use></svg><span class="tg-grow">Найти иконку Feather</span><svg class="tg-icon " viewBox="0 0 24 24" aria-hidden="true"><use href="../dist/icons/arrow-right.svg#arrow-right"></use></svg></a>
-    <a class="tg-source-link" href="compositions.html"><svg class="tg-icon " viewBox="0 0 24 24" aria-hidden="true"><use href="../dist/icons/message-square.svg#message-square"></use></svg><span class="tg-grow">Собрать экран обсуждения</span><svg class="tg-icon " viewBox="0 0 24 24" aria-hidden="true"><use href="../dist/icons/arrow-up-right.svg#arrow-up-right"></use></svg></a>
-    <a class="tg-source-link" href="bottom-panel.html"><svg class="tg-icon " viewBox="0 0 24 24" aria-hidden="true"><use href="../dist/icons/shopping-bag.svg#shopping-bag"></use></svg><span class="tg-grow">Посмотреть раскрывающуюся панель</span><svg class="tg-icon " viewBox="0 0 24 24" aria-hidden="true"><use href="../dist/icons/arrow-up-right.svg#arrow-up-right"></use></svg></a>
+  <div class="preview-stage">
+    <div class="preview-label">Пример интерфейса · из компонентов ниже</div>
+    <article class="app-preview tg-card" data-ui aria-label="Пример интерфейса">
+      <div class="preview-top"><span class="preview-icon"><svg viewBox="0 0 24 24" class="tg-icon" aria-hidden="true"><use href="../dist/icons/grid.svg#grid"></use></svg></span><span class="tg-badge tg-badge--secondary">Пространство</span></div>
+      <h2>Всё на своих местах</h2><p class="tg-text-muted tg-text-sm">Небольшие детали. Цельный интерфейс.</p>
+      <div class="tg-list tg-mt-5">
+        <div class="tg-list-item tg-row"><span class="preview-item-icon"><svg viewBox="0 0 24 24" class="tg-icon" aria-hidden="true"><use href="../dist/icons/folder.svg#folder"></use></svg></span><div class="tg-grow"><div class="tg-list-item__title">Ваши проекты</div><div class="tg-list-item__subtitle">Всё важное — рядом</div></div><span class="tg-badge tg-badge--primary">8</span></div>
+        <div class="tg-list-item tg-row"><span class="preview-item-icon"><svg viewBox="0 0 24 24" class="tg-icon" aria-hidden="true"><use href="../dist/icons/clock.svg#clock"></use></svg></span><div class="tg-grow"><div class="tg-list-item__title">Последние изменения</div><div class="tg-list-item__subtitle">Сегодня, 12:30</div></div><svg viewBox="0 0 24 24" class="tg-icon" aria-hidden="true"><use href="../dist/icons/arrow-up-right.svg#arrow-up-right"></use></svg></div>
+      </div>
+      <div class="preview-bottom"><div class="avatar-stack" aria-label="3 участника"><span class="mini-avatar"><span class="mini-avatar__label">А</span></span><span class="mini-avatar"><span class="mini-avatar__label">М</span></span><span class="mini-avatar"><span class="mini-avatar__label">+1</span></span></div><span class="tg-text-sm tg-text-muted">Вместе удобнее</span></div>
+      <a class="tg-btn tg-btn--primary tg-w-full" href="#forms">Настроить профиль <svg viewBox="0 0 24 24" class="tg-icon" aria-hidden="true"><use href="../dist/icons/arrow-right.svg#arrow-right"></use></svg></a>
+    </article>
+    <div class="preview-caption"><span class="status-dot"></span> Адаптируется к вашей теме</div>
   </div>
 </section>
 <div class="feature-strip"><div><strong>Токены</strong><span>Вся система в переменных</span></div><div><strong>Компоненты</strong><span>Готовые блоки и состояния</span></div><div><strong>Каскад</strong><span>Понятный порядок слоёв</span></div></div>
@@ -74,25 +82,11 @@
       </tbody>
     </table>
   </div>
-  <div class="foundation-grid"><div class="foundation-card"><span class="mini-label">Типографика</span><div class="type-specimen">Aa Бб 123</div><div class="tg-row tg-text-muted tg-text-sm"><span>System UI</span><span>400 / 500 / 600</span></div></div><div class="foundation-card"><span class="mini-label">Отступы</span><div class="spacing-scale" aria-label="Отступы 4, 8, 12, 16, 20, 24 пикселя"><span style="--size:4">4</span><span style="--size:8">8</span><span style="--size:12">12</span><span style="--size:16">16</span><span style="--size:20">20</span><span style="--size:24">24</span></div><div class="tg-text-muted tg-text-sm">Один ритм для всех компонентов</div></div><div class="foundation-card"><span class="mini-label">Радиусы</span><div class="radius-scale"><span style="border-radius:var(--radius-inset)">8</span><span style="border-radius:var(--radius-control)">12</span><span style="border-radius:var(--radius-lg)">16</span><span style="border-radius:var(--radius-pill)">∞</span></div><div class="tg-text-muted tg-text-sm">От поля ввода до кнопки</div></div></div>
-  <h3>Каскад в действии</h3>
-  <p>Параметры области пересчитывают зависимые роли. Вложенная тема оформляет только свой блок; утилиты и CSS приложения сохраняют приоритет.</p>
-  <div class="example-panel"><div class="example-body surface-grid" data-ui data-example>
-    <article class="tg-card tg-scope tg-col" style="--button-color:#18745b; --radius:1.25rem; --control-h:3.25rem">
-      <h4 class="tg-header__title">Область параметров</h4><p class="tg-text-sm tg-text-muted">Общий зелёный акцент, увеличенный контрол и радиус 20px.</p>
-      <label class="tg-field">Название<input class="tg-input" placeholder="Название заказа"></label>
-      <div class="tg-row"><button class="tg-btn tg-btn--primary">Сохранить</button><button class="tg-btn tg-btn--ghost">Подробнее</button></div>
-    </article>
-    <article class="tg-card tg-col" data-theme="dark" style="--button-color:#7151c7">
-      <h4 class="tg-header__title">Вложенная тема</h4><p class="tg-text-sm tg-text-muted">Самостоятельная тёмная область внутри любой темы каталога.</p>
-      <label class="tg-field">Комментарий<input class="tg-input" placeholder="Комментарий к заказу"></label>
-      <div class="tg-row"><button class="tg-btn tg-btn--primary">Сохранить</button><button class="tg-btn tg-btn--ghost">Подробнее</button></div>
-    </article>
-  </div></div>
+  <div class="foundation-grid"><div class="foundation-card"><span class="mini-label">Типографика</span><div class="type-specimen">Aa Бб 123</div><div class="tg-row tg-text-muted tg-text-sm"><span>System UI</span><span>400 / 500 / 600</span></div></div><div class="foundation-card"><span class="mini-label">Отступы</span><div class="spacing-scale" aria-label="Отступы 4, 8, 12, 16, 20, 24 пикселя"><span style="--size:4">4</span><span style="--size:8">8</span><span style="--size:12">12</span><span style="--size:16">16</span><span style="--size:20">20</span><span style="--size:24">24</span></div><div class="tg-text-muted tg-text-sm">Один ритм для всех компонентов</div></div><div class="foundation-card"><span class="mini-label">Радиусы</span><div class="radius-scale"><span style="border-radius:8px">8</span><span style="border-radius:12px">12</span><span style="border-radius:16px">16</span><span style="border-radius:999px">∞</span></div><div class="tg-text-muted tg-text-sm">От поля ввода до кнопки</div></div></div>
 </section>
 
 <section id="buttons" class="catalog-section">
-  <div class="section-heading"><div><h2>Кнопки</h2><p>Основное действие, вторичные варианты и состояния.</p></div><code class="class-tag">.tg-btn</code></div>
+  <div class="section-heading"><div><h2>Кнопки с ясной иерархией</h2><p>Основное действие, вторичные варианты и состояния.</p></div><code class="class-tag">.tg-btn</code></div>
   <div class="example-panel"><div class="example-meta"><span>Варианты</span><span>Пять вариантов</span></div><div class="example-body tg-row" data-ui data-example>
 <button id="primary-demo" class="tg-btn tg-btn--primary">Основная <svg viewBox="0 0 24 24" class="tg-icon" aria-hidden="true"><use href="../dist/icons/arrow-right.svg#arrow-right"></use></svg></button>
 <button class="tg-btn tg-btn--secondary">Вторичная</button>
@@ -107,12 +101,6 @@
 <button class="tg-btn tg-btn--primary" disabled>Недоступна</button>
 <button class="tg-btn tg-btn--secondary" disabled aria-busy="true"><span class="tg-spinner" aria-hidden="true"></span> Сохранение</button>
   </div></div>
-  <div class="example-panel"><div class="example-meta"><span>Текст и символ дополняют друг друга</span><span>Отдельные SVG · загрузка по необходимости</span></div><div class="example-body tg-row" data-ui data-example>
-<button class="tg-btn tg-btn--secondary tg-btn--pill" id="reload-examples"><svg viewBox="0 0 24 24" class="tg-icon" aria-hidden="true"><use href="../dist/icons/rotate-cw.svg#rotate-cw"></use></svg> Обновить примеры</button>
-<a class="tg-btn tg-btn--primary tg-btn--pill" href="#forms">Добавить <svg viewBox="0 0 24 24" class="tg-icon" aria-hidden="true"><use href="../dist/icons/file-text.svg#file-text"></use></svg></a>
-<button class="tg-icon-btn tg-icon-btn--pill" aria-label="Пример кнопки удаления" disabled><svg viewBox="0 0 24 24" class="tg-icon" aria-hidden="true"><use href="../dist/icons/trash-2.svg#trash-2"></use></svg></button>
-  </div></div>
-<p>Волна нажатия — стандарт всех кнопочных контролов. Подключите <code>ui.js</code> один раз: дополнительные классы для каждой кнопки не нужны. При reduced motion сохраняется спокойный отклик заливкой.</p>
 </section>
 
 <section id="icons" class="catalog-section"><div class="section-heading"><div><h2>Иконки Feather</h2><p>Все 287 иконок. Поиск по имени и тегам, три размера и готовая разметка. Каждый SVG загружается отдельно.</p></div><code class="class-tag">.tg-icon · .tg-search</code></div><div class="example-panel"><div class="example-body" data-ui><div data-icon-browser data-manifest-url="../dist/icons.json">
@@ -130,10 +118,15 @@
   <button class="tg-btn tg-btn--secondary" id="icon-copy" type="button">Скопировать разметку</button>
   <span id="icon-copy-status" role="status" aria-live="polite"></span>
 </div>
-</div></div><p class="tg-text-sm tg-text-muted">Выберите иконку, чтобы скопировать SVG. Для самостоятельной кнопки задайте aria-label на кнопке, а декоративную иконку скройте через aria-hidden. Feather 4.29.2 · MIT.</p></section>
+</div></div><p class="tg-text-sm tg-text-muted">Выберите иконку, чтобы скопировать SVG. Для самостоятельной кнопки задайте aria-label на кнопке, а декоративную иконку скройте через aria-hidden. Feather 4.29.2 · MIT.</p><div class="example-panel"><div class="example-meta"><span>Текст и символ дополняют друг друга</span><span>Отдельные SVG · загрузка по необходимости</span></div><div class="example-body tg-row" data-ui data-example>
+<button class="tg-btn tg-btn--secondary tg-btn--pill" id="reload-examples"><svg viewBox="0 0 24 24" class="tg-icon" aria-hidden="true"><use href="../dist/icons/rotate-cw.svg#rotate-cw"></use></svg> Обновить примеры</button>
+<a class="tg-btn tg-btn--primary tg-btn--pill" href="#forms">Добавить <svg viewBox="0 0 24 24" class="tg-icon" aria-hidden="true"><use href="../dist/icons/file-text.svg#file-text"></use></svg></a>
+<button class="tg-icon-btn tg-icon-btn--pill" aria-label="Пример кнопки удаления" disabled><svg viewBox="0 0 24 24" class="tg-icon" aria-hidden="true"><use href="../dist/icons/trash-2.svg#trash-2"></use></svg></button>
+  </div></div>
+</section>
 
 <section id="forms" class="catalog-section">
-  <div class="section-heading"><div><h2>Формы и ввод</h2><p>Подписи, подсказки, валидация и заметный фокус.</p></div><code class="class-tag">.tg-field</code></div>
+  <div class="section-heading"><div><h2>Место для ваших данных</h2><p>Подписи, подсказки, валидация и заметный фокус.</p></div><code class="class-tag">.tg-field</code></div>
   <div class="example-panel"><div class="example-body form-grid" data-ui data-example>
 <div class="tg-field"><label class="tg-label" for="demo-name">Имя</label><input class="tg-input" id="demo-name" placeholder="Как к вам обращаться?" autocomplete="given-name" aria-describedby="name-help"><p id="name-help" class="tg-help">Будет видно участникам команды.</p></div>
 <div class="tg-field"><label class="tg-label" for="demo-role">Роль в команде</label><select class="tg-select" id="demo-role" aria-describedby="role-help"><option>Дизайнер</option><option>Разработчик</option><option>Менеджер</option></select><p id="role-help" class="tg-help">Можно изменить в любой момент.</p></div>
@@ -157,10 +150,11 @@
 <div class="example-panel"><div class="example-body tg-col" data-ui data-example>
 <div class="tg-error-summary" id="demo-error-summary" tabindex="-1" aria-labelledby="errors-title"><svg class="tg-icon tg-error-summary__icon" viewBox="0 0 24 24" aria-hidden="true"><use href="../dist/icons/alert-circle.svg#alert-circle"></use></svg><div class="tg-error-summary__content"><h3 class="tg-error-summary__title" id="errors-title">Проверьте данные</h3><ul><li><a href="#demo-contact-email">Укажите полный адрес электронной почты</a></li></ul></div></div><div class="tg-field"><label class="tg-label" for="demo-contact-email">Почта для чека</label><input class="tg-input" type="email" id="demo-contact-email" value="mail@" aria-invalid="true" aria-describedby="contact-error"><p class="tg-help tg-help--error" id="contact-error">Например, name@mail.ru</p></div>
 </div></div>
-<p class="tg-text-sm tg-text-muted">Сводку ошибок показывают после проверки формы и переводят на неё фокус. Ссылки ведут к полям; сообщение рядом с полем остаётся доступным через aria-describedby.</p></section>
+<p class="tg-text-sm tg-text-muted">Сводку ошибок показывают после проверки формы и переводят на неё фокус. Ссылки ведут к полям; сообщение рядом с полем остаётся доступным через aria-describedby.</p>
+</section>
 
 <section id="surfaces" class="catalog-section">
-  <div class="section-heading"><div><h2>Поверхности и раскрытие</h2><p>Карточки и списки, которые держат структуру.</p></div><code class="class-tag">.tg-card · .tg-list</code></div>
+  <div class="section-heading"><div><h2>Собирайте из простых блоков</h2><p>Карточки и списки, которые держат структуру.</p></div><code class="class-tag">.tg-card · .tg-list</code></div>
   <div class="example-panel"><div class="example-body surface-grid" data-ui data-example>
 <article class="tg-card tg-col"><span class="tg-badge tg-badge--primary card-status">Новый проект</span><h3 class="tg-header__title">Пространство для идей</h3><p class="tg-header__subtitle">Объединяйте задачи, заметки и людей в одном месте.</p><hr class="tg-divider"><!-- taste-skill-ignore: public divider component demonstration --><div class="tg-row"><span class="tg-avatar"><span class="tg-avatar__initials">АК</span></span><div><div class="tg-list-item__title">Александр</div><div class="tg-list-item__subtitle">Владелец проекта</div></div></div></article>
 <div><div class="tg-section__title">Настройки пространства</div><div class="tg-list"><div class="tg-list-item tg-row"><div class="tg-grow"><div class="tg-list-item__title">Общие настройки</div><div class="tg-list-item__subtitle">Название и описание</div></div><svg viewBox="0 0 24 24" class="tg-icon" aria-hidden="true"><use href="../dist/icons/arrow-up-right.svg#arrow-up-right"></use></svg></div><div class="tg-list-item tg-row"><div class="tg-grow"><div class="tg-list-item__title">Участники</div><div class="tg-list-item__subtitle">Приглашения и доступ</div></div><span class="tg-badge">12</span></div><div class="tg-list-item"><div class="tg-list-item__title tg-text-destructive">Архив пространства</div><div class="tg-list-item__subtitle">Завершённые проекты</div></div></div></div>
@@ -187,17 +181,18 @@
   &lt;/div&gt;
 &lt;/details&gt;</code></pre></details>
   <p class="tg-text-sm tg-text-muted">Работает без JavaScript. Добавьте странице нижний отступ под свёрнутую панель. Ширина, высота и отступ от низа меняются через CSS-переменные; вариант для Angular описан в README.</p>
+
 </section>
 
 <section id="navigation" class="catalog-section">
-  <div class="section-heading"><div><h2>Навигация</h2><p>Табы, фильтры и нижняя навигация для небольших экранов.</p></div><code class="class-tag">.tg-tabs · .tg-chip</code></div>
+  <div class="section-heading"><div><h2>Понятно, где вы находитесь</h2><p>Табы, фильтры и нижняя навигация для небольших экранов.</p></div><code class="class-tag">.tg-tabs · .tg-chip</code></div>
   <div class="example-panel"><div class="example-body tg-col" data-ui data-example>
 <div class="tg-tabs" role="tablist" aria-label="Пример разделов"><button id="tab-overview" class="tg-tab" role="tab" aria-selected="true" aria-controls="panel-overview">Обзор</button><button id="tab-activity" class="tg-tab" role="tab" aria-selected="false" aria-controls="panel-activity" tabindex="-1">Активность</button><button id="tab-settings" class="tg-tab" role="tab" aria-selected="false" aria-controls="panel-settings" tabindex="-1">Настройки</button></div>
 <div class="tab-panel" id="panel-overview" role="tabpanel" aria-labelledby="tab-overview" tabindex="0">Здесь начинается ваш проект. Все основные данные собраны в одном месте.</div>
 <div class="tab-panel" id="panel-activity" role="tabpanel" aria-labelledby="tab-activity" tabindex="0" hidden>Последнее изменение — сегодня. История команды всегда под рукой.</div>
 <div class="tab-panel" id="panel-settings" role="tabpanel" aria-labelledby="tab-settings" tabindex="0" hidden>Управляйте названием, уведомлениями и доступом к проекту.</div>
 <div class="tg-row" role="group" aria-label="Фильтры"><button class="tg-chip" role="checkbox" aria-checked="true">Дизайн</button><button class="tg-chip" role="checkbox" aria-checked="false">Разработка</button><button class="tg-chip" role="checkbox" aria-checked="false">Аналитика</button><button class="tg-chip" disabled>Скоро</button></div>
-<nav class="tg-tabbar demo-tabbar" aria-label="Пример нижней навигации"><a class="tg-tabbar__item" aria-current="page" href="#overview"><svg viewBox="0 0 24 24" class="tg-icon tg-icon--lg" aria-hidden="true"><use href="../dist/icons/layout.svg#layout"></use></svg>Обзор</a><a class="tg-tabbar__item" href="#surfaces"><svg viewBox="0 0 24 24" class="tg-icon tg-icon--lg" aria-hidden="true"><use href="../dist/icons/folder.svg#folder"></use></svg>Проекты</a><a class="tg-tabbar__item" href="#forms"><svg viewBox="0 0 24 24" class="tg-icon tg-icon--lg" aria-hidden="true"><use href="../dist/icons/user.svg#user"></use></svg>Профиль</a></nav>
+<nav class="tg-tabbar demo-tabbar" aria-label="Пример нижней навигации"><a class="tg-tabbar__item" aria-current="page" href="#overview"><svg viewBox="0 0 24 24" class="tg-icon" aria-hidden="true"><use href="../dist/icons/layout.svg#layout"></use></svg>Обзор</a><a class="tg-tabbar__item" href="#surfaces"><svg viewBox="0 0 24 24" class="tg-icon" aria-hidden="true"><use href="../dist/icons/folder.svg#folder"></use></svg>Проекты</a><a class="tg-tabbar__item" href="#forms"><svg viewBox="0 0 24 24" class="tg-icon" aria-hidden="true"><use href="../dist/icons/user.svg#user"></use></svg>Профиль</a></nav>
 <nav class="tg-pagination" aria-label="Страницы примера"><button class="tg-dot" aria-label="Страница 1" aria-current="page"></button><button class="tg-dot" aria-label="Страница 2" aria-current="false"></button><button class="tg-dot" aria-label="Страница 3" aria-current="false"></button></nav>
 <p id="demo-page-status" class="tg-help tg-text-center" role="status">Страница 1 из 3</p>
 
@@ -205,10 +200,11 @@
 <div class="example-panel"><div class="example-body tg-col" data-ui data-example>
 <nav class="tg-breadcrumbs" aria-label="Путь к заказу"><ol><li><a href="#overview">Каталог</a></li><li><a href="#surfaces">Поверхности</a></li><li><span aria-current="page">Нижняя панель</span></li></ol></nav>
 </div></div>
+
 </section>
 
 <section id="feedback" class="catalog-section">
-  <div class="section-heading"><div><h2>Обратная связь</h2><p>Прогресс, сообщения и диалоги без лишнего шума.</p></div><code class="class-tag">.tg-notice · .tg-modal</code></div>
+  <div class="section-heading"><div><h2>Каждое действие получает ответ</h2><p>Прогресс, сообщения и диалоги без лишнего шума.</p></div><code class="class-tag">.tg-notice · .tg-modal</code></div>
   <div class="example-panel"><div class="example-body tg-col" data-ui data-example>
 <div class="tg-notice"><strong>Всё готово к работе</strong><div class="tg-text-sm tg-text-muted">Изменения сохранены. Можно продолжать.</div></div>
 <div class="tg-notice tg-notice--accent"><strong>Команда на связи</strong><div class="tg-text-sm">Акцентное сообщение в стиле исходного приложения.</div></div>
@@ -220,10 +216,11 @@
 <div class="example-panel"><div class="example-body tg-col" data-ui data-example>
 <div role="status"><span class="tg-sr-only">Загружаем данные заказа</span><div class="tg-row" aria-hidden="true"><span class="tg-skeleton tg-skeleton--circle"></span><div class="tg-grow tg-col"><span class="tg-skeleton tg-skeleton--text"></span><span class="tg-skeleton tg-skeleton--text" style="inline-size:60%"></span></div></div></div>
 </div></div>
-<p class="tg-text-sm tg-text-muted">Skeleton обозначает начальную загрузку без известного прогресса. Для реальных данных поставьте aria-busy="true" на обновляемую область и снимите после загрузки. Для выполнения действия используйте spinner или progress выше.</p></section>
+<p class="tg-text-sm tg-text-muted">Skeleton обозначает начальную загрузку без известного прогресса. Для реальных данных поставьте aria-busy="true" на обновляемую область и снимите после загрузки. Для выполнения действия используйте spinner или progress выше.</p>
+</section>
 
 <section id="avatars" class="catalog-section">
-  <div class="section-heading"><div><h2>Аватары и бейджи</h2><p>Инициалы, выбор участника и компактные статусы.</p></div><code class="class-tag">.tg-avatar · .tg-badge</code></div>
+  <div class="section-heading"><div><h2>Небольшие, но важные</h2><p>Инициалы, выбор участника и компактные статусы.</p></div><code class="class-tag">.tg-avatar · .tg-badge</code></div>
   <div class="example-panel"><div class="example-body tg-row" data-ui data-example>
 <span class="tg-avatar"><span class="tg-avatar__initials">МК</span></span>
 <button class="tg-avatar tg-avatar--outlined" role="checkbox" aria-checked="false" aria-label="Выбрать Александра"><span class="tg-avatar__initials" aria-hidden="true">АК</span></button>
@@ -231,6 +228,11 @@
 <span class="tg-avatar tg-avatar-initials"><span class="tg-avatar__clip" aria-label="Ещё 5 участников">+5</span></span>
 <span class="tg-badge tg-badge--primary">Активен</span><span class="tg-badge tg-badge--secondary">Черновик</span><span class="tg-badge tg-badge--destructive">Требует внимания</span>
   </div></div>
+</section>
+
+<section id="layout" class="catalog-section">
+  <div class="section-heading"><div><h2>Тот же ритм в любом масштабе</h2><p>Автоматическая сетка, строки, колонки и утилиты отступов.</p></div><code class="class-tag">.tg-grid · .tg-row</code></div>
+  <div class="example-panel"><div class="example-body" data-ui data-example><div class="tg-grid"><div class="layout-cell">Блок 01</div><div class="layout-cell">Блок 02</div><div class="layout-cell">Блок 03</div></div></div></div>
 </section>
 
 <section id="data" class="catalog-section">
@@ -273,7 +275,7 @@
     &lt;section class="tg-card tg-col" aria-labelledby="demo-title"&gt;
       &lt;h1 class="tg-header__title" id="demo-title"&gt;Готовый экран без CSS приложения&lt;/h1&gt;
       &lt;p class="tg-mt-0 tg-mb-0"&gt;Шапка, контейнер, комментарии и панель ввода используют публичные классы TDS. Измените ширину окна или тему.&lt;/p&gt;
-      &lt;div class="tg-toolbar tg-toolbar--responsive"&gt;&lt;span class="tg-text-sm tg-text-muted"&gt;Адаптивная панель действий&lt;/span&gt;&lt;button class="tg-btn tg-btn--secondary tg-btn--sm" id="demo-open-media"&gt;&lt;svg class="tg-icon" viewBox="0 0 24 24" aria-hidden="true"&gt;&lt;use href="../dist/icons/image.svg#image"&gt;&lt;/use&gt;&lt;/svg&gt;Открыть медиа&lt;/button&gt;&lt;/div&gt;
+      &lt;div class="tg-toolbar tg-toolbar--responsive"&gt;&lt;span class="tg-text-sm tg-text-muted"&gt;Адаптивная панель действий&lt;/span&gt;&lt;button class="tg-btn tg-btn--secondary" id="demo-open-media"&gt;&lt;svg class="tg-icon" viewBox="0 0 24 24" aria-hidden="true"&gt;&lt;use href="../dist/icons/image.svg#image"&gt;&lt;/use&gt;&lt;/svg&gt;Открыть медиа&lt;/button&gt;&lt;/div&gt;
     &lt;/section&gt;
     &lt;section class="tg-mt-5" aria-labelledby="demo-comments-title"&gt;
       &lt;h2 class="tg-header__title tg-mb-3" id="demo-comments-title"&gt;Комментарии&lt;/h2&gt;
@@ -310,9 +312,13 @@
 
 
 <section id="effects" class="catalog-section">
-  <div class="section-heading"><div><h2>Материалы и переходы</h2><p>Полупрозрачная поверхность, локальная подложка и управляемое появление.</p></div><code class="class-tag">.tg-glass · .tg-transition</code></div>
+  <div class="section-heading"><div><h2>Те самые ощущения</h2><p>Волна нажатия, полупрозрачные поверхности и мягкое появление из исходного проекта.</p></div><code class="class-tag">.tg-ripple · .tg-glass</code></div>
+  <div class="example-panel"><div class="example-meta"><span>Отклик на нажатие</span><span>Учитывает reduced motion</span></div><div class="example-body tg-row" data-ui data-example>
+<button id="ripple-demo" class="tg-btn tg-btn--primary tg-ripple tg-ripple--dark">Нажми здесь</button>
+<button class="tg-btn tg-btn--secondary tg-ripple tg-ripple--light">Светлая поверхность</button>
+  </div></div>
   <div class="example-panel"><div class="example-body glass-demo-stage" data-ui data-example>
-<article class="tg-card tg-glass tg-col"><div class="tg-header tg-p-0"><h3 class="tg-header__title">Лёгкая поверхность</h3></div><p class="tg-header__subtitle">Фон просвечивает сквозь панель. Размытие и насыщенность повторяют исходные настройки.</p><span class="tg-badge tg-badge--secondary">backdrop-filter · 15px</span></article>
+<article class="tg-card tg-glass tg-col"><div class="tg-header"><h3 class="tg-header__title">Лёгкая поверхность</h3></div><p class="tg-header__subtitle">Фон просвечивает сквозь панель. Размытие и насыщенность повторяют исходные настройки.</p><span class="tg-badge tg-badge--secondary">backdrop-filter · 15px</span></article>
   </div></div>
   <div class="example-panel"><div class="example-meta"><span>Подложка и загрузка</span><span>Локальный контейнер</span></div><div class="example-body loader-demo-stage" data-ui data-example>
 <div class="tg-overlay tg-overlay--absolute"><div class="tg-col tg-text-center" role="status"><span class="tg-spinner tg-spinner--lg" aria-hidden="true"></span><span class="tg-text-sm">Идёт обработка</span></div></div>
@@ -320,14 +326,13 @@
 <div class="example-panel"><div class="example-body tg-col" data-ui data-example>
 <button type="button" class="tg-btn tg-btn--secondary" id="transition-toggle" aria-expanded="true" aria-controls="transition-demo">Скрыть описание</button><div class="tg-transition" id="transition-demo"><p>Переход подходит для дополнительной информации. При скрытии контент исключается из взаимодействия.</p></div>
 </div></div>
+
 </section>
 
 <section id="start" class="catalog-section start-section">
-  <div class="section-heading"><div><h2>Подключение</h2><p>Подключите CSS. Добавьте разметку. Настройте под себя.</p></div></div>
+  <div class="section-heading"><div><h2>Один файл — и можно собирать</h2><p>Подключите CSS. Добавьте разметку. Настройте под себя.</p></div></div>
   <div class="install-grid"><div><span class="mini-label">Обычный HTML</span><pre><code>&lt;link rel="stylesheet"
   href="t-design-system.min.css"&gt;
-
-&lt;script type="module" src="ui.js"&gt;&lt;/script&gt;
 
 &lt;button class="tg-btn tg-btn--primary"&gt;
   Начать
@@ -338,7 +343,7 @@
   --space-4: 1rem;
 }</code></pre></div></div>
   <div class="cascade-map" aria-label="Порядок CSS-слоёв"><span>reset</span><b>→</b><span>tokens</span><b>→</b><span>themes</span><b>→</b><span>base</span><b>→</b><span>components</span><b>→</b><span>utilities</span><b>→</b><span>visibility</span></div>
-  <p class="tg-text-sm tg-text-muted">Ваш CSS вне слоёв имеет приоритет. Для стандартной волны положите <code>ui.js</code> и <code>effects.js</code> рядом и подключите <code>ui.js</code> один раз. CSS и нативные контролы работают самостоятельно. Для Telegram подключите <code>telegram.css</code> после основного файла. Подробности, SCSS-модули и интеграция Angular — в README.</p>
+  <p class="tg-text-sm tg-text-muted">Ваш CSS вне слоёв имеет приоритет. Для Telegram подключите <code>telegram.css</code> после основного файла. Подробности, SCSS-модули и интеграция Angular — в README.</p>
   <div class="download-row"><a class="tg-btn tg-btn--primary" href="../dist/t-design-system.min.css" download>Скачать CSS <svg viewBox="0 0 24 24" class="tg-icon" aria-hidden="true"><use href="../dist/icons/arrow-down.svg#arrow-down"></use></svg></a><a class="tg-btn tg-btn--ghost" href="../dist/telegram.min.css" download>Адаптер Telegram <svg viewBox="0 0 24 24" class="tg-icon" aria-hidden="true"><use href="../dist/icons/arrow-down.svg#arrow-down"></use></svg></a></div>
 </section>
 <footer class="site-footer"><a class="brand" href="#overview"><span class="brand-mark small">t<span>·</span></span> t-design-system</a><span>Основан на ai-splitter · v0.1.0</span></footer>

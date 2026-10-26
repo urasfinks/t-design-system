@@ -130,40 +130,19 @@ roles explicitly. Light and iOS Dark derive both surfaces from the background.
 Focused fields use the active field background and
 a main-accent border with a 4px soft-accent outer ring. Invalid focused fields
 use danger-main for the border and danger-soft for the outer ring. Buttons keep saturated strong fills and white text, and all action
-variants share a minimum `--control-h`; multiline labels grow naturally. File progress keeps its accepted 3px stripe blur.
+variants share `--control-h`. File progress keeps its accepted 3px stripe blur.
 
 Primary and destructive badges use soft backgrounds with strong text in Light,
 and strong backgrounds with main text in dark themes through `light-dark()`.
 The stylesheets require browsers with `@layer`, `color-mix()` and `light-dark()` support.
-The redundant overview specimen and its private miniature avatars were retired; examples use public components.
+Catalog-only `.avatar-stack` / `.mini-avatar` styles are not public components.
 
 
-## Component and catalog standard
+## Additive compatibility contract
 
-README is the public contract; docs/component-standard.md defines acceptance criteria.
-New patterns use the same component layer, tokens, geometry and theme roles.
-All button-like controls receive standard delegated ripple through ui.js. CSS-only
-controls remain functional. Pointer presses originate at the pointer; keyboard
-activation starts in the center. Disabled controls do not animate; reduced motion
-removes waves and scaling while retaining a quiet fill response.
-
-The catalog groups each component once. Buttons own shape/state examples; icons
-provide the complete build-generated Feather search. Real compositions replace
-numbered layout placeholders. Native disclosure, search, empty, skeleton, table,
-breadcrumbs, summary list, fieldset, error summary and range close practical gaps.
-No new colors or catalog-only versions of these components are introduced.
-
-Accessible text/progress roles reuse strong variants in Light and tinted soft variants in dark
-themes, without adding palette variants. Main accent/danger remain available for
-control selection and invalid borders. Increased-contrast off-switch boundaries
-consume the same switch-border-color token as the on state.
-
-
-Explicit `.tg-scope` and named theme boundaries rebind derived custom properties;
-ordinary descendants inherit computed roles. Boundaries reset derived aliases, so
-ancestor alias overrides must be repeated there. Named themes paint their own page
-background; a plain scope does not. Theme foreground/background changes are synchronous
-through `--control-color-duration`; press scale and disabled opacity are shared tokens.
-Error notices and error summaries share one surface implementation. Bottom panels use
-muted chrome around raised content. Compact media toolbar actions use the public small
-button variant; media images retain intrinsic aspect ratio inside both size constraints.
+The core source files are frozen at 678b61e1. New components live in separate modules:
+patterns, bottom-panel, and opt-in extensions. The original catalog preview and avatar
+stack remain intact. One root accent applies to all examples; alternative colors replace
+it globally. Ripple remains opt-in. Nested palette boundaries and the later component
+rebalance are intentionally excluded. Baseline tests enforce source equality and rendered
+compatibility; new components must pass their own responsive and interaction checks.

@@ -1,0 +1,21 @@
+// Opt-in additions to the frozen 678b61e component set.
+@use '../base';
+@layer tds.components {
+  .tg-btn--stacked {
+    flex-direction: column;
+    block-size: auto;
+    min-block-size: calc(var(--control-h) * 2);
+    padding: var(--space-3);
+    font-size: var(--fs-sm);
+    font-weight: var(--fw-regular);
+    &[aria-pressed='true'] { background: var(--accent-soft); color: var(--text-link); border-color: var(--accent-main); }
+  }
+  :is(button, a[href]).tg-badge {
+    min-inline-size: var(--control-h);
+    min-block-size: var(--control-h);
+    font-size: var(--fs-sm);
+    text-decoration: none;
+    cursor: pointer;
+    &:focus-visible { outline: 2px solid var(--text-link); outline-offset: 3px; }
+  }
+}

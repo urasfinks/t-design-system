@@ -1,80 +1,9 @@
 @use '../layers';
-
-// Rebind only at explicit boundaries; never on every element.
-@mixin derived {
-  --control-font-size: var(--fs);
-  --composer-input-max-size: calc(var(--space-16) * 2);
-  --radius-control: var(--radius);
-  --radius-inset: calc(var(--radius-control) - var(--space-1));
-  --icon-btn: calc(var(--icon-btn-prep) + .25rem);
-  --icon-avatar: calc(var(--icon-btn-prep) + 1.5rem);
-  --select-arrow: var(--tds-select-arrow, var(--select-arrow-light));
-  --avatar-initials-color: var(--text-color);
-  --spinner-color: var(--progress-color);
-  --spinner-track-color: var(--accent-soft);
-  --border: 1px solid var(--border-color);
-  --border-transparent: 1px solid var(--border-subtle-color);
-  --background-main: var(--bg-color);
-  --background-raised: color-mix(in srgb, var(--bg-color) var(--background-panel-weight), #fff);
-  --background-panel: var(--tds-panel-fixed, var(--background-raised));
-  --background-muted-derived: color-mix(in srgb, var(--bg-color) var(--background-muted-weight), var(--background-muted-target));
-  --background-muted: var(--tds-muted-fixed, var(--background-muted-derived));
-  --text-main: var(--text-color);
-  --text-secondary: color-mix(in srgb, var(--text-main) 70%, var(--background-panel));
-  --text-muted: color-mix(in srgb, var(--text-main) 55%, var(--background-panel));
-  --accent-main: var(--button-color);
-  --accent-strong: color-mix(in srgb, var(--accent-main) 72%, #000);
-  --accent-soft: light-dark(color-mix(in srgb, var(--accent-main) 12%, var(--surface-bg)), color-mix(in srgb, var(--accent-main) 60%, var(--text-main)));
-  --danger-main: var(--destructive-text-color);
-  --danger-strong: color-mix(in srgb, var(--danger-main) 72%, #000);
-  --danger-soft: light-dark(color-mix(in srgb, var(--danger-main) 10%, var(--surface-bg)), color-mix(in srgb, var(--danger-main) 50%, var(--text-main)));
-  --border-active: 1px solid var(--accent-main);
-  --focus: 0 0 0 .25rem var(--accent-soft);
-  --section-bg-color: var(--background-panel);
-  --secondary-bg-color: var(--background-muted);
-  --header-bg-color: var(--background-muted);
-  --bottom-bar-bg-color: var(--background-muted);
-  --section-separator-color: var(--border-color);
-  --hint-color: var(--text-muted);
-  --subtitle-text-color: var(--text-secondary);
-  --section-header-text-color: var(--text-secondary);
-  --accent-text-color: var(--accent-main);
-  --link-color: var(--accent-main);
-  --highlight-bg-color: var(--background-panel);
-  --highlight-ficus-color: var(--background-muted);
-  --shadow-soft: var(--shadow-overlay);
-  --shadow-elev: var(--shadow-control);
-  --bg-body: var(--background-main);
-  --section-color: var(--background-panel);
-  --section-color2: var(--background-muted);
-  --field-bg: var(--background-muted);
-  --field-bg-hover: var(--background-panel);
-  --secondary-bg-color-transparent: var(--background-muted);
-  --button-color-transparent: var(--accent-strong);
-  --destructive-text-color-transparent: var(--danger-strong);
-  --section-bg-color-transparent: var(--background-panel);
-  --text-link: light-dark(var(--accent-strong), var(--accent-soft));
-  --progress-color: light-dark(var(--accent-strong), var(--accent-soft));
-  --progress-track-color: var(--background-muted);
-  --text-danger: light-dark(var(--danger-strong), var(--danger-soft));
-  --action-bg: var(--accent-strong);
-  --action-hover-bg: var(--accent-strong);
-  --action-danger-bg: var(--danger-strong);
-  --border-control: 1px solid var(--control-border-color);
-  --field-border-color: var(--border-color);
-  --border-field: 1px solid var(--field-border-color);
-  --switch-track-color: var(--field-bg);
-  --notice-danger-bg: light-dark(var(--danger-soft), var(--background-muted));
-  --surface-bg: var(--section-color);
-  --surface-muted: var(--secondary-bg-color);
-  --control-selected-bg: light-dark(var(--accent-soft), var(--background-muted));
-  --control-selected-color: var(--text-link);
-}
-
 @layer tds.tokens {
-  :where(:root) {
+  :root {
     --layout-reading-width: 48rem;
     --composer-reserved-size: 10rem;
+    --composer-input-max-size: calc(var(--space-16) * 2);
     --media-max-size: 55dvh;
     --fs-xs: clamp(.75rem, .7rem + .2vw, .8125rem);
     --fs-sm: clamp(.8125rem, .78rem + .25vw, .875rem);
@@ -89,15 +18,23 @@
     --radius: .75rem;
     --radius-lg: 1rem;
     --radius-pill: 9999px;
+    --radius-control: var(--radius);
+    --radius-inset: calc(var(--radius-control) - var(--space-1));
     --control-h: clamp(2.75rem, 2.6rem + .8vw, 3rem);
     --choice-size: 1.5rem;
     --chip-h: clamp(2rem, 1.9rem + .5vw, 2.25rem);
     --icon-btn-prep: clamp(2.25rem, 2.1rem + .6vw, 2.5rem);
+    --icon-btn: calc(var(--icon-btn-prep) + .25rem);
+    --icon-avatar: calc(var(--icon-btn-prep) + 1.5rem);
     --icon-size: 1.25rem;
     --icon-stroke: 2;
     --select-arrow-light: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-opacity='.65' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
     --select-arrow-dark: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23fff' stroke-opacity='.7' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
+    --select-arrow: var(--select-arrow-light);
     --switch-knob-color: #fff;
+    --avatar-initials-color: var(--text-color);
+    --spinner-color: var(--progress-color);
+    --spinner-track-color: var(--accent-soft);
     --space-1: .25rem;
     --space-2: .5rem;
     --space-3: .75rem;
@@ -108,7 +45,6 @@
     --space-10: 2.5rem;
     --space-12: 3rem;
     --space-16: 4rem;
-    --control-color-duration: 0s;
     --duration-fast: 120ms;
     --duration: 180ms;
     --ease: cubic-bezier(.23, 1, .32, 1);
@@ -124,24 +60,74 @@
     --ios-h: 0px;
     --border-color: light-dark(rgba(0, 0, 0, .08), rgba(255, 255, 255, .08));
     --border-subtle-color: light-dark(rgba(0, 0, 0, .04), rgba(255, 255, 255, .04));
+    --border: 1px solid var(--border-color);
+    --border-transparent: 1px solid var(--border-subtle-color);
+    // Exactly four families, each with its source and two derived variants.
+    --background-main: var(--bg-color);
+    --background-raised: color-mix(in srgb, var(--bg-color) var(--background-panel-weight), #fff);
+    --background-panel: var(--background-raised);
+    --background-muted-derived: color-mix(in srgb, var(--bg-color) var(--background-muted-weight), var(--background-muted-target));
+    --background-muted: var(--background-muted-derived);
+    --text-main: var(--text-color);
+    --text-secondary: color-mix(in srgb, var(--text-main) 70%, var(--background-panel));
+    --text-muted: color-mix(in srgb, var(--text-main) 55%, var(--background-panel));
+    --accent-main: var(--button-color);
+    --accent-strong: color-mix(in srgb, var(--accent-main) 72%, #000);
+    --accent-soft: color-mix(in srgb, var(--accent-main) 12%, var(--surface-bg));
+    --danger-main: var(--destructive-text-color);
+    --danger-strong: color-mix(in srgb, var(--danger-main) 72%, #000);
+    --danger-soft: color-mix(in srgb, var(--danger-main) 10%, var(--surface-bg));
+    --border-active: 1px solid var(--accent-main);
+    --focus: 0 0 0 .25rem var(--accent-soft);
+    // Compatibility names are aliases, never additional shades.
+    --section-bg-color: var(--background-panel);
+    --secondary-bg-color: var(--background-muted);
+    --header-bg-color: var(--background-muted);
+    --bottom-bar-bg-color: var(--background-muted);
+    --section-separator-color: var(--border-color);
+    --hint-color: var(--text-muted);
+    --subtitle-text-color: var(--text-secondary);
+    --section-header-text-color: var(--text-secondary);
+    --accent-text-color: var(--accent-main);
+    --link-color: var(--accent-main);
     --button-text-color: #fff;
+    --highlight-bg-color: var(--background-panel);
+    --highlight-ficus-color: var(--background-muted);
+    --shadow-soft: var(--shadow-overlay);
+    --shadow-elev: var(--shadow-control);
+    --bg-body: var(--background-main);
+    --section-color: var(--background-panel);
+    --section-color2: var(--background-muted);
+    --field-bg: var(--background-muted);
+    --field-bg-hover: var(--background-panel);
+    --secondary-bg-color-transparent: var(--background-muted);
+    --button-color-transparent: var(--accent-strong);
+    --destructive-text-color-transparent: var(--danger-strong);
+    --section-bg-color-transparent: var(--background-panel);
+    --text-link: var(--accent-main);
+    --progress-color: var(--accent-main);
+    --progress-track-color: var(--background-muted);
+    --text-danger: var(--danger-main);
+    --action-bg: var(--accent-strong);
+    --action-hover-bg: var(--accent-strong);
+    --action-danger-bg: var(--danger-strong);
     --control-border-color: light-dark(rgba(0, 0, 0, .5), rgba(255, 255, 255, .5));
+    --border-control: 1px solid var(--control-border-color);
     // Quiet resting controls; the stronger boundary is reserved for contrast preferences.
+    --field-border-color: var(--border-color);
+    --border-field: 1px solid var(--field-border-color);
+    --switch-track-color: var(--field-bg);
     --switch-border-color: transparent;
+    --notice-danger-bg: var(--danger-soft);
+    --surface-bg: var(--section-color);
+    --surface-muted: var(--secondary-bg-color);
     --overlay-bg: rgb(0 0 0 / .66);
     --overlay-text: #fff;
     --shadow-control: 0 1px 3px rgb(0 0 0 / .12);
     --shadow-overlay: 0 .75rem 3rem rgb(0 0 0 / .2);
-    --control-press-scale: .98;
-    --disabled-opacity: .5;
-    @include derived;
-  }
-
-  :where(.tg-scope, [data-theme='light'], [data-theme='dark'], [data-theme='ios-dark']) {
-    @include derived;
   }
   @media (prefers-contrast: more) {
-    :where(:root, .tg-scope, [data-theme='light'], [data-theme='dark'], [data-theme='ios-dark']) {
+    :root {
       --field-border-color: var(--control-border-color);
       --switch-border-color: var(--control-border-color);
     }

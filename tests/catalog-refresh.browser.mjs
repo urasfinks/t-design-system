@@ -22,7 +22,7 @@ try {
   assert.equal(await page.locator('#transition-demo').isVisible(), false);
   await page.locator('#transition-toggle').click();
   assert.equal(await page.locator('#transition-demo').isVisible(), true);
-  assert.equal(await page.locator('#effects .tg-ripple').count(), 0, 'ripple is standard, no duplicated effects-only examples');
+  assert.equal(await page.locator('#effects .tg-ripple').count(), 2, 'original opt-in ripple examples remain available');
   await page.locator('#demo-error-summary a').click();
   assert.equal(await page.locator('#demo-contact-email').evaluate(el => el === document.activeElement), true);
   await mkdir('artifacts/catalog-refresh', { recursive: true });
@@ -39,6 +39,22 @@ try {
   await page.locator('.nav-link[href="#icons"]').click();
   await page.locator('.nav-link[href="#icons"][aria-current="location"]').waitFor();
   await page.screenshot({ path: 'artifacts/catalog-refresh/icons.png' });
+  // Alternative accents replace the shared root accent, including embedded examples.
+  const frames = ['#composition-preview', 'iframe[src="bottom-panel.html"]'];
+  for (const accent of ['green', 'violet', 'blue']) {
+    await page.getByLabel('Акцентный цвет').selectOption(accent);
+    const expected = await page.locator('html').evaluate(el => getComputedStyle(el).getPropertyValue('--accent-main').trim());
+    assert.equal(await page.locator('[style*="--button-color:"]:not(html)').count(), 0);
+    for (const selector of frames) {
+      const frame = page.frameLocator(selector);
+      await page.locator(selector).evaluate(el => el.scrollIntoView());
+      await frame.locator('html').waitFor({ state: 'attached' });
+      await page.waitForFunction(({ selector, expected }) => {
+        const root = document.querySelector(selector).contentDocument?.documentElement;
+        return root && getComputedStyle(root).getPropertyValue('--accent-main').trim() === expected;
+      }, { selector, expected });
+    }
+  }
   assert.deepEqual(errors, []);
   console.log('Refreshed catalog: native interaction, errors, transitions, responsive tables and themes passed.');
 } finally { await browser?.close(); server.kill(); }

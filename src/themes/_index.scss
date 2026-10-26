@@ -3,48 +3,48 @@
 // Four source colors per theme; all other roles are derived in tokens.
 @mixin light {
   color-scheme: light;
-  --tds-select-arrow: var(--select-arrow-light);
+  --select-arrow: var(--select-arrow-light);
   --tds-bg: #f5f5f5;
   --tds-button: #2481cc;
   --tds-text: #000000;
   --tds-destructive-text: #ff3b30;
-  --tds-panel-fixed: initial;
-  --tds-muted-fixed: initial;
+  --background-main: var(--bg-color);
+  --background-panel: var(--background-raised);
+  --background-muted: var(--background-muted-derived);
   --background-panel-weight: 0%;
   --background-muted-weight: 98%;
   --background-muted-target: #000;
 }
 @mixin desktopDark {
   color-scheme: dark;
-  --tds-select-arrow: var(--select-arrow-dark);
+  --select-arrow: var(--select-arrow-dark);
   --tds-bg: #151e27;
   --tds-button: #2ea6ff;
   --tds-text: #ffffff;
   --tds-destructive-text: #ef5b5b;
-  --tds-panel-fixed: #212d3b;
-  --tds-muted-fixed: #1d2733;
+  --background-main: var(--bg-color);
+  --background-panel: #212d3b;
+  --background-muted: #1d2733;
   --background-panel-weight: 83%;
   --background-muted-weight: 89%;
   --background-muted-target: #fff;
 }
 @mixin iosDark {
   color-scheme: dark;
-  --tds-select-arrow: var(--select-arrow-dark);
+  --select-arrow: var(--select-arrow-dark);
   --tds-bg: #000000;
   --tds-button: #3e88f7;
   --tds-text: #ffffff;
   --tds-destructive-text: #eb5545;
-  --tds-panel-fixed: initial;
-  --tds-muted-fixed: initial;
+  --background-main: var(--bg-color);
+  --background-panel: var(--background-raised);
+  --background-muted: var(--background-muted-derived);
   --background-panel-weight: 83%;
   --background-muted-weight: 89%;
   --background-muted-target: #fff;
 }
 @layer tds.themes {
-  :where([data-theme='light'], [data-theme='dark'], [data-theme='ios-dark']) {
-    @include colors.bindings;
-  }
-  :where(:root) {
+  :root {
     @include light;
     @include colors.bindings;
   }
@@ -52,8 +52,8 @@
     :root:not([data-theme]) { @include desktopDark; }
     :root:not([data-theme])[data-platform='ios'] { @include iosDark; }
   }
-  :where([data-theme='dark']) { @include desktopDark; }
-  :where([data-theme='dark'][data-platform='ios']),
-  :where([data-theme='ios-dark']) { @include iosDark; }
-  :where([data-theme='light']) { @include light; }
+  :root[data-theme='dark'] { @include desktopDark; }
+  :root[data-theme='dark'][data-platform='ios'],
+  :root[data-theme='ios-dark'] { @include iosDark; }
+  :root[data-theme='light'] { @include light; }
 }

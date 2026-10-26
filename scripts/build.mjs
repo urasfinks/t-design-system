@@ -21,7 +21,7 @@ console.log('Built dist/effects.js (optional ripple helper)');
 
 const ui = await readFile(new URL('src/ui.mjs', root), 'utf8');
 await writeFile(new URL('dist/ui.js', root), ui.replaceAll("'./effects.mjs'", "'./effects.js'"));
-console.log('Built dist/ui.js (standard button feedback)');
+console.log('Built dist/ui.js (optional ripple entry)');
 
 // Ship independent SVG assets from the pinned upstream package, never a sprite.
 const featherRoot = new URL('../node_modules/feather-icons/', import.meta.url);

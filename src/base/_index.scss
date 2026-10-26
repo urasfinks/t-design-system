@@ -5,9 +5,8 @@
   :where(body) { margin: 0; }
 }
 @layer tds.base {
-  :where(body) { background: var(--bg-body); }
-  :where([data-theme='light'], [data-theme='dark'], [data-theme='ios-dark']) { background: var(--background-main); }
-  :where(body, .tg-scope, [data-theme='light'], [data-theme='dark'], [data-theme='ios-dark']) {
+  :where(body) {
+    background: var(--bg-body);
     color: var(--text-color);
     font: var(--fs) / 1.5 var(--font-family);
     -webkit-font-smoothing: antialiased;
@@ -19,7 +18,7 @@
     letter-spacing: inherit;
     color: inherit;
   }
-  :where(.tg-btn, .tg-icon-btn, .tg-tab, .tg-tabbar__item, .tg-switch, .tg-chip, .tg-avatar, .tg-check, .tg-radio, .tg-link, .tg-dot, button.tg-badge, a.tg-badge[href]):focus-visible {
+  :where(.tg-btn, .tg-icon-btn, .tg-tab, .tg-tabbar__item, .tg-switch, .tg-chip, .tg-avatar, .tg-check, .tg-radio, .tg-link, .tg-dot):focus-visible {
     outline: 2px solid var(--text-link);
     outline-offset: 3px;
   }
@@ -49,7 +48,7 @@
 
 @layer tds.components {
   :is(.tg-btn, .tg-icon-btn, .tg-chip, .tg-switch, .tg-tab, .tg-tabbar__item, .tg-avatar, .tg-dot):is(:disabled, [aria-disabled='true']) {
-    opacity: var(--disabled-opacity);
+    opacity: .45;
     cursor: not-allowed;
     transform: none;
   }

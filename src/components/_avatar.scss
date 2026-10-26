@@ -13,10 +13,10 @@
     border-radius: 50%;
     background: transparent;
     vertical-align: middle;
-    transition: border-color var(--duration) var(--ease), transform var(--duration-fast) var(--ease);
+    transition: border-color var(--duration), transform var(--duration-fast);
 
-    &:where(:not(:disabled, [disabled], [aria-disabled='true'], [disabled] *, [aria-disabled='true'] *)):is(:active, [data-pressed='true']) {
-      transform: scale(var(--control-press-scale, .98));
+    &:where(:not(:disabled, [aria-disabled='true'])):is(:active, [data-pressed='true']) {
+      transform: scale(.96);
     }
 
     &[aria-checked='true'] {
@@ -95,14 +95,6 @@
   }
 
   button.tg-avatar {
-    cursor: pointer;
-  }
-
-  :is(button, a[href]).tg-badge {
-    min-inline-size: var(--control-h);
-    min-block-size: var(--control-h);
-    font-size: var(--fs-sm);
-    text-decoration: none;
     cursor: pointer;
   }
 

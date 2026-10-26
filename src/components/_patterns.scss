@@ -14,7 +14,7 @@
 
     &:focus-within { border-color: var(--accent-main); box-shadow: var(--focus); }
     &:has(.tg-search__input[readonly]) { background: var(--section-bg-color); }
-    &:has(.tg-search__input:disabled) { opacity: var(--disabled-opacity); cursor: not-allowed; }
+    &:has(.tg-search__input:disabled) { opacity: var(--disabled-opacity, .5); cursor: not-allowed; }
     &:has(.tg-search__input[aria-invalid='true']) {
       border-color: var(--danger-main);
       &:focus-within { box-shadow: 0 0 0 .25rem var(--danger-soft); }
@@ -156,7 +156,7 @@
     margin: 0;
     accent-color: var(--accent-main);
     cursor: pointer;
-    &:disabled { cursor: not-allowed; opacity: var(--disabled-opacity); }
+    &:disabled { cursor: not-allowed; opacity: var(--disabled-opacity, .5); }
   }
 
   :is(.tg-disclosure__trigger, .tg-table-wrap, .tg-breadcrumbs a, .tg-error-summary, .tg-error-summary a, .tg-range):focus-visible {

@@ -1,29 +1,11 @@
 @use '../base';
 
-@layer tds.tokens {
-  :root {
-    --ripple-color: currentColor;
-    --ripple-opacity: .18;
-    --ripple-ring-opacity: .2;
-    --ripple-wash-opacity: .08;
+@layer tds.components {
+  .tg-ripple {
     --ripple-duration: 500ms;
     --ring-duration: 600ms;
     --wash-duration: 700ms;
     --ring-width: 1px;
-  }
-}
-
-@layer tds.components {
-  // Keep clipping local to the effect so focus outlines and avatar badges survive.
-  :where(.tg-btn, .tg-icon-btn, .tg-chip, .tg-tab, .tg-tabbar__item, .tg-dot,
-    button.tg-avatar, .tg-switch, button.tg-badge, a.tg-badge[href], .tg-disclosure > summary,
-    .tg-disclosure__summary, .tg-bottom-panel__header, button[class*='tg-']) {
-    position: relative;
-    isolation: isolate;
-    -webkit-tap-highlight-color: transparent;
-  }
-
-  .tg-ripple {
     --ripple-color: rgb(255 255 255 / .25);
     position: relative;
     isolation: isolate;
@@ -43,15 +25,6 @@
       border-radius: var(--radius-pill);
     }
 
-    &__layer {
-      position: absolute;
-      inset: 0;
-      overflow: clip;
-      border-radius: inherit;
-      pointer-events: none;
-      z-index: -1;
-    }
-
     &__wave, &__ring, &__wash {
       position: absolute;
       pointer-events: none;
@@ -59,11 +32,6 @@
     }
 
     &__wave {
-      clip-path: inset(
-        max(0px, calc(50% - var(--ripple-y, 0px)))
-        max(0px, calc(50% + var(--ripple-x, 0px) - var(--ripple-host-width, 0px)))
-        max(0px, calc(50% + var(--ripple-y, 0px) - var(--ripple-host-height, 0px)))
-        max(0px, calc(50% - var(--ripple-x, 0px))) round var(--ripple-radius, 0px));
       border-radius: 50%;
       background: var(--ripple-color);
       transform: translate(-50%, -50%);
@@ -93,7 +61,7 @@
     from {
       inline-size: 0;
       block-size: 0;
-      opacity: var(--ripple-opacity, .6);
+      opacity: .6;
     }
     to {
       inline-size: var(--ripple-size, 0px);
@@ -108,7 +76,7 @@
       filter: blur(4px);
     }
     10%, 60% {
-      opacity: var(--ripple-ring-opacity, 1);
+      opacity: 1;
       filter: blur(0);
     }
     100% {
@@ -123,7 +91,7 @@
       transform: scale(.96);
     }
     40% {
-      opacity: var(--ripple-wash-opacity, .6);
+      opacity: .6;
       transform: scale(1);
     }
     100% {
@@ -250,27 +218,4 @@
       transition: none;
     }
   }
-  @media (prefers-reduced-motion: reduce) {
-    :is(.tg-btn, .tg-icon-btn, .tg-chip, .tg-tab, .tg-tabbar__item, .tg-dot,
-      button.tg-avatar, .tg-switch, button.tg-badge, a.tg-badge[href], .tg-disclosure > summary,
-      .tg-disclosure__summary, .tg-bottom-panel__header, button[class*='tg-'], .tg-ripple):is(:active, [data-pressed='true']) {
-      transform: none;
-
-      &:where(:not(:disabled, [disabled], [aria-disabled='true'], [disabled] *, [aria-disabled='true'] *)) {
-        filter: brightness(var(--ripple-press-brightness, .92));
-
-        // Pagination owns ::after for its visible dot; retain that shape.
-        &:where(:not(.tg-dot))::after {
-          content: '';
-          position: absolute;
-          inset: 0;
-          border-radius: inherit;
-          background: var(--ripple-press-color, currentColor);
-          opacity: var(--ripple-press-opacity, .12);
-          pointer-events: none;
-        }
-      }
-    }
-  }
-
 }

@@ -1,5 +1,4 @@
 @use '../base';
-@use 'error-surface';
 @layer tds.components {
   .tg-notice {
     padding: var(--space-3) var(--space-4);
@@ -17,25 +16,37 @@
     }
 
     &--destructive {
-      @include error-surface.surface;
+      background: var(--notice-danger-bg);
+      color: var(--text-color);
+      border-color: transparent;
 
       .tg-notice__icon { color: var(--text-danger); }
     }
 
     &--with-icon {
-      @include error-surface.layout;
+      display: flex;
+      align-items: flex-start;
+      gap: var(--space-3);
     }
 
     &__icon {
-      @include error-surface.icon;
+      inline-size: 1.25rem;
+      block-size: 1.25rem;
+      flex: 0 0 auto;
+      margin-block-start: .125rem;
     }
 
     &__content {
-      @include error-surface.content;
+      min-inline-size: 0;
     }
 
     &__title {
-      @include error-surface.title;
+      display: block;
+      font-weight: var(--fw-semibold);
+    }
+
+    &__content > :not(:first-child) {
+      margin-block-start: var(--space-1);
     }
   }
 
@@ -235,7 +246,6 @@
   @media (max-width: 36rem) {
     dialog.tg-modal--sheet {
       inline-size: 100%;
-      max-inline-size: 100%;
       max-block-size: 90dvh;
       margin: auto 0 0;
       border-end-start-radius: 0;

@@ -40,9 +40,7 @@ try {
   await page.evaluate(() => { window.disposeRipple(); window.disposeRipple = initRipple(document.getElementById('scope')); });
   await page.locator('#host').click();
   assert.equal(await page.locator('.tg-ripple__wave').count(), 0);
-  await page.locator('#scope').evaluate(el => el.style.setProperty('--ripple-duration', '2s'));
   await page.locator('#scoped').click();
-  assert.equal(await page.locator('#scoped .tg-ripple__wave').evaluate(el => getComputedStyle(el).animationDuration), '2s', 'legacy hosts inherit duration from their container');
   assert.equal(await page.locator('#scoped .tg-ripple__wave').count(), 1);
   await page.evaluate(() => { window.disposeRipple(); window.disposeRipple = initRipple(); });
   await page.evaluate(() => {

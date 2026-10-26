@@ -28,7 +28,7 @@
     }
 
     &--disabled, &[aria-disabled='true'] {
-      opacity: var(--disabled-opacity);
+      opacity: .45;
       cursor: not-allowed;
     }
 

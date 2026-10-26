@@ -9,13 +9,13 @@
     gap: var(--space-2);
     flex: 0 0 auto;
     max-inline-size: 100%;
-    block-size: auto;
+    block-size: var(--control-h);
     min-block-size: var(--control-h);
-    padding-block: var(--space-2);
+    padding-block: 0;
     border: 1px solid transparent;
     background: var(--surface-muted);
     color: var(--text-color);
-    font-size: var(--control-font-size, var(--fs));
+    font-size: var(--fs);
     font-weight: var(--fw-medium);
     line-height: 1.3;
     text-align: center;
@@ -23,7 +23,7 @@
     cursor: pointer;
     vertical-align: middle;
     overflow-wrap: anywhere;
-    transition: background-color var(--control-color-duration) var(--ease), color var(--control-color-duration) var(--ease), border-color var(--duration) var(--ease), transform var(--duration-fast) var(--ease);
+    transition: background-color var(--duration) var(--ease), color var(--duration) var(--ease), border-color var(--duration) var(--ease), transform var(--duration-fast) var(--ease);
 
     svg:not(.tg-icon) {
       inline-size: 1.25em;
@@ -32,13 +32,13 @@
     }
 
     @media (hover: hover) {
-      &:where(:not(:disabled, [disabled], [aria-disabled='true'], [disabled] *, [aria-disabled='true'] *)):hover {
+      &:where(:not(:disabled, [aria-disabled='true'])):hover {
         background: var(--background-panel);
       }
     }
 
-    &:where(:not(:disabled, [disabled], [aria-disabled='true'], [disabled] *, [aria-disabled='true'] *)):is(:active, [data-pressed='true']) {
-      transform: scale(var(--control-press-scale, .98));
+    &:where(:not(:disabled, [aria-disabled='true'])):is(:active, [data-pressed='true']) {
+      transform: scale(.98);
     }
   }
 
@@ -53,24 +53,10 @@
       color: var(--button-text-color);
 
       @media (hover: hover) {
-        &:where(:not(:disabled, [disabled], [aria-disabled='true'], [disabled] *, [aria-disabled='true'] *)):hover {
+        &:where(:not(:disabled, [aria-disabled='true'])):hover {
           background: var(--danger-strong);
         }
       }
-    }
-
-    &--stacked {
-      flex-direction: column;
-      min-block-size: calc(var(--control-h) * 2);
-      padding: var(--space-3);
-      font-size: var(--fs-sm);
-      font-weight: var(--fw-regular);
-    }
-
-    &:where(:not(.tg-btn--primary, .tg-btn--destructive))[aria-pressed='true'] {
-      background: var(--control-selected-bg, var(--surface-muted));
-      color: var(--control-selected-color, var(--text-link));
-      border-color: var(--accent-main);
     }
 
     &--sm { padding-inline: var(--space-3); font-size: var(--fs-sm); }
@@ -98,7 +84,7 @@
     color: var(--button-text-color);
 
     @media (hover: hover) {
-      &:where(:not(:disabled, [disabled], [aria-disabled='true'], [disabled] *, [aria-disabled='true'] *)):hover {
+      &:where(:not(:disabled, [aria-disabled='true'])):hover {
         background: var(--action-hover-bg);
       }
     }
@@ -115,7 +101,7 @@
       color: var(--button-text-color);
       border-color: transparent;
 
-      &:where(:not(:disabled, [disabled], [aria-disabled='true'], [disabled] *, [aria-disabled='true'] *)):hover {
+      &:where(:not(:disabled, [aria-disabled='true'])):hover {
         background: var(--action-hover-bg);
       }
     }
