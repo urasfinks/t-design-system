@@ -24,12 +24,24 @@ export async function resolvePublicPath(pathname) {
 if (process.argv[1] && resolve(process.argv[1]) === fileURLToPath(import.meta.url)) {
   const server = createServer(async (req, res) => {
     try {
-      const path = await resolvePublicPath(new URL(req.url, 'http://localhost').pathname);
+      const pathname = new URL(req.url, 'http://localhost').pathname;
+      if (pathname === '/') { res.writeHead(302, { Location: '/docs/' }).end(); return; }
+      const path = await resolvePublicPath(pathname);
       if (!path) { res.writeHead(404).end('Not found'); return; }
       const body = await readFile(path);
       res.writeHead(200, { 'Content-Type': types[extname(path)] || 'application/octet-stream', 'Cache-Control': 'no-store' }).end(body);
     } catch { res.writeHead(404).end('Not found'); }
   });
-  const port = Number(process.env.PORT || 4173);
-  server.listen(port, '127.0.0.1', () => console.log(`Catalog: http://127.0.0.1:${port}/docs/`));
+  const args = process.argv.slice(2);
+  let port = Number(process.env.PORT || 4173);
+  let host = process.env.HOST || '127.0.0.1';
+  for (let index = 0; index < args.length; index++) {
+    const [flag, inlineValue] = args[index].split('=', 2);
+    if (flag === '--port' || flag === '--host') {
+      const value = inlineValue ?? args[++index];
+      if (flag === '--port') port = Number(value);
+      else host = value;
+    }
+  }
+  server.listen(port, host, () => console.log(`Catalog: http://${host}:${server.address().port}/docs/`));
 }

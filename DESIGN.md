@@ -121,9 +121,10 @@ or a requirement to reproduce its data, business logic or every visual decision.
 ## Four-color palette
 
 The current palette has four inputs per theme: background, accent, text,
-and danger. Each has exactly three reusable variants, displayed as twelve samples
-in the foundations table. Only eight derived palette declarations may contain
-`color-mix()`, all in tokens. Components and catalog styles use aliases only.
+and danger. Surface, state and readable foreground roles are derived from these
+inputs. Only ten derived palette declarations may contain `color-mix()`, all in
+tokens. Components and catalog styles use aliases only. Readable accent and danger
+foregrounds are theme-aware; saturated action fills remain unchanged.
 Borders and shadows may use neutral RGBA transparency.
 
 Preserve the reference app's material relationships through theme-specific mixing

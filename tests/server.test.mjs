@@ -4,6 +4,7 @@ import { mkdtemp, mkdir, copyFile, writeFile, symlink, rm, realpath } from 'node
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { pathToFileURL } from 'node:url';
+import { spawn } from 'node:child_process';
 import { resolvePublicPath } from '../scripts/serve.mjs';
 
 test('importing the server exposes its resolver without listening', () => {
@@ -51,4 +52,34 @@ test('symlinks must remain inside their public directory', async () => {
     assert.equal(await fixtureResolve('/docs/inside.html'), await realpath(join(fixture, 'docs/index.html')));
     for (const path of ['/docs/outside.txt', '/docs/prefix.txt', '/docs/cross.css']) assert.equal(await fixtureResolve(path), null);
   } finally { await rm(fixture, { recursive: true, force: true }); }
+});
+
+test('CLI host and port override the development server defaults', async () => {
+  const child = spawn(process.execPath, ['scripts/serve.mjs', '--host', '0.0.0.0', '--port', '0'], {
+    env: { ...process.env, PORT: '43987' }, stdio: ['ignore', 'pipe', 'pipe'],
+  });
+  let output = '';
+  child.stdout.on('data', chunk => { output += chunk; });
+  try {
+    await new Promise((resolve, reject) => {
+      const timer = setTimeout(() => reject(new Error(`Server did not start: ${output}`)), 5000);
+      child.stdout.on('data', () => {
+        if (output.includes('Catalog:')) { clearTimeout(timer); resolve(); }
+      });
+      child.once('error', reject);
+      child.once('exit', code => { clearTimeout(timer); reject(new Error(`Server exited ${code}: ${output}`)); });
+    });
+    assert.match(output, /0\.0\.0\.0:\d+/);
+    assert.doesNotMatch(output, /43987/);
+    const { port } = output.match(/:(?<port>\d+)\/docs\//).groups;
+    const response = await fetch(`http://127.0.0.1:${port}/`, { redirect: 'manual' });
+    assert.equal(response.status, 302);
+    assert.equal(response.headers.get('location'), '/docs/');
+  } finally {
+    if (child.exitCode === null) {
+      const exited = new Promise(resolve => child.once('exit', resolve));
+      child.kill('SIGTERM');
+      await exited;
+    }
+  }
 });

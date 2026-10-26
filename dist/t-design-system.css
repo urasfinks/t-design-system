@@ -76,9 +76,11 @@
     --accent-main: var(--button-color);
     --accent-strong: color-mix(in srgb, var(--accent-main) 72%, #000);
     --accent-soft: color-mix(in srgb, var(--accent-main) 12%, var(--surface-bg));
+    --accent-readable: light-dark(color-mix(in srgb, var(--accent-main) 72%, #000), color-mix(in srgb, var(--accent-main) 65%, #fff));
     --danger-main: var(--destructive-text-color);
     --danger-strong: color-mix(in srgb, var(--danger-main) 72%, #000);
     --danger-soft: color-mix(in srgb, var(--danger-main) 10%, var(--surface-bg));
+    --danger-readable: light-dark(color-mix(in srgb, var(--danger-main) 72%, #000), color-mix(in srgb, var(--danger-main) 65%, #fff));
     --border-active: 1px solid var(--accent-main);
     --focus: 0 0 0 .25rem var(--accent-soft);
     --section-bg-color: var(--background-panel);
@@ -105,10 +107,10 @@
     --button-color-transparent: var(--accent-strong);
     --destructive-text-color-transparent: var(--danger-strong);
     --section-bg-color-transparent: var(--background-panel);
-    --text-link: var(--accent-main);
-    --progress-color: var(--accent-main);
+    --text-link: var(--accent-readable);
+    --progress-color: var(--accent-readable);
     --progress-track-color: var(--background-muted);
-    --text-danger: var(--danger-main);
+    --text-danger: var(--danger-readable);
     --action-bg: var(--accent-strong);
     --action-hover-bg: var(--accent-strong);
     --action-danger-bg: var(--danger-strong);
@@ -534,7 +536,7 @@
     }
   }
   :is(.tg-input, .tg-select, .tg-textarea)[aria-invalid=true] {
-    border-color: var(--text-danger);
+    border-color: var(--danger-main);
   }
   :is(.tg-input, .tg-select, .tg-textarea)[aria-invalid=true]:focus {
     box-shadow: 0 0 0 0.25rem var(--danger-soft);
@@ -682,7 +684,7 @@
     transition: background-color var(--duration) var(--ease), border-color var(--duration) var(--ease);
   }
   .tg-switch:not([aria-checked=true], .tg-switch--on)::before {
-    border-color: transparent;
+    border-color: var(--switch-border-color);
   }
   .tg-switch__knob {
     position: absolute;
