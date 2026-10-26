@@ -1,6 +1,13 @@
 // Additions and explicitly requested refinements to the frozen 678b61e core.
 @use '../base';
 @layer tds.components {
+  // Keep the label and icon inside their padding even in a narrow container.
+  .tg-btn {
+    min-inline-size: min-content;
+    block-size: auto;
+    padding-block: var(--space-2);
+  }
+
   // Balance the one-line message within the shared control height.
   .tg-composer__textarea {
     padding-block: max(0px, calc((var(--control-h) - 1lh - 2px) / 2));

@@ -2275,6 +2275,11 @@
   }
 }
 @layer tds.components {
+  .tg-btn {
+    min-inline-size: min-content;
+    block-size: auto;
+    padding-block: var(--space-2);
+  }
   .tg-composer__textarea {
     padding-block: max(0px, (var(--control-h) - 1lh - 2px) / 2);
   }

@@ -3,7 +3,10 @@ import { execFileSync } from 'node:child_process';
 import { readFile, mkdir } from 'node:fs/promises';
 import { chromium, webkit } from 'playwright';
 const original = path => execFileSync('git', ['show', `678b61e:${path}`], { encoding: 'utf8' });
-const baseline = original('dist/t-design-system.css') + original('docs/catalog.css');
+// Apply the requested button spacing correction to the reference as well;
+// all other component styles and hero pixels must still match the frozen core.
+const buttonSpacing = '@layer tds.components { .tg-btn { min-inline-size: min-content; block-size: auto; padding-block: var(--space-2); } }';
+const baseline = original('dist/t-design-system.css') + buttonSpacing + original('docs/catalog.css');
 const restored = await readFile('dist/t-design-system.css', 'utf8') + await readFile('docs/catalog.css', 'utf8');
 // Exercise the entire original catalog against both stylesheets, without scripts/network.
 const html = original('docs/index.html').replace(/<script\b[\s\S]*?<\/script>/g, '').replace(/<link\b[^>]*>/g, '').replace(/<iframe\b[\s\S]*?<\/iframe>/g, '').replace(/<use\b[^>]*><\/use>/g, '');
