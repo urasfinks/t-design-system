@@ -54,6 +54,17 @@ try {
       assert.equal(hover.filter, ['ghost', 'icon-ghost', 'clear'].includes(id) ? 'none' : `brightness(${theme === 'light' ? '0.92' : '1.15'})`, `${theme}/${id}: shared hover mechanism`);
       assert.deepEqual([hover.width, hover.height, hover.border], [idle.width, idle.height, idle.border], `${id}: stable geometry`);
       if (['ghost', 'icon-ghost', 'clear'].includes(id)) {
+        if (id === 'clear') {
+          const textColor = await button.evaluate(el => {
+            const probe = document.createElement('span');
+            probe.style.color = 'var(--text-color)';
+            el.append(probe);
+            const color = getComputedStyle(probe).color;
+            probe.remove();
+            return color;
+          });
+          assert.equal(hover.color, textColor, `${theme}: clear hover uses the main text color`);
+        }
         if (id !== 'ghost') assert.equal(idle.border, '0px');
         assert.equal(idle.background, 'rgba(0, 0, 0, 0)');
         assert.equal(hover.background, idle.background, 'clear hover changes icon only');

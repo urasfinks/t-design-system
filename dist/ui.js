@@ -12,6 +12,29 @@ export function initUI(root = globalThis.document) {
   const view = doc?.defaultView;
   if (!view) return () => {};
   const stopLegacy = initRipple(root);
+  const ranges = 'input[type="range"].tg-range';
+  const updateRange = el => {
+    const min = Number(el.min || 0);
+    const max = Number(el.max || 100);
+    const progress = max > min ? Math.min(100, Math.max(0, (el.valueAsNumber - min) / (max - min) * 100)) : 0;
+    el.style.setProperty('--range-progress', `${progress}%`);
+  };
+  const syncRanges = () => {
+    if (root.matches?.(ranges)) updateRange(root);
+    root.querySelectorAll(ranges).forEach(updateRange);
+  };
+  const rangeInput = event => { if (event.target?.matches(ranges)) updateRange(event.target); };
+  let resetTimer;
+  const resetRanges = () => {
+    view.clearTimeout(resetTimer);
+    resetTimer = view.setTimeout(syncRanges, 0);
+  };
+  syncRanges();
+  const rangeObserver = new view.MutationObserver(syncRanges);
+  rangeObserver.observe(root, { childList: true, subtree: true, attributes: true, attributeFilter: ['min', 'max', 'value', 'class', 'type'] });
+  root.addEventListener('input', rangeInput);
+  root.addEventListener('change', rangeInput);
+  root.addEventListener('reset', resetRanges);
   const active = new Map();
   const remove = node => {
     const entry = active.get(node);
@@ -68,6 +91,11 @@ export function initUI(root = globalThis.document) {
   };
   root.addEventListener('click', click);
   const cleanup = () => {
+    rangeObserver.disconnect();
+    view.clearTimeout(resetTimer);
+    root.removeEventListener('input', rangeInput);
+    root.removeEventListener('change', rangeInput);
+    root.removeEventListener('reset', resetRanges);
     root.removeEventListener('click', click);
     stopLegacy();
     for (const node of active.keys()) remove(node);

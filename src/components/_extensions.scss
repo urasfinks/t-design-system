@@ -1,5 +1,13 @@
 // Additions and explicitly requested refinements to the frozen 678b61e core.
 @use '../base';
+
+@layer tds.themes {
+  :root[data-theme='light'] { --background-muted-weight: 94%; }
+  @media (prefers-color-scheme: light) {
+    :root:not([data-theme]) { --background-muted-weight: 94%; }
+  }
+}
+
 @layer tds.components {
   // Keep the label and icon inside their padding even in a narrow container.
   .tg-btn {

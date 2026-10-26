@@ -2243,12 +2243,49 @@
   }
   input[type=range].tg-range {
     display: block;
+    border: 0;
+    appearance: none;
+    background: transparent;
     inline-size: 100%;
     min-inline-size: 0;
     min-block-size: var(--control-h);
     margin: 0;
     accent-color: var(--accent-main);
     cursor: pointer;
+  }
+  input[type=range].tg-range::-webkit-slider-runnable-track {
+    block-size: 6px;
+    border: 0;
+    border-radius: var(--radius-pill);
+    background: linear-gradient(to right, var(--accent-main) var(--range-progress, 50%), var(--background-muted) var(--range-progress, 50%));
+  }
+  input[type=range].tg-range::-webkit-slider-thumb {
+    appearance: none;
+    inline-size: 16px;
+    block-size: 16px;
+    margin-block-start: -5px;
+    border: 0;
+    border-radius: 50%;
+    background: var(--accent-main);
+  }
+  input[type=range].tg-range::-moz-range-track {
+    block-size: 6px;
+    border: 0;
+    border-radius: var(--radius-pill);
+    background: var(--background-muted);
+  }
+  input[type=range].tg-range::-moz-range-thumb {
+    inline-size: 16px;
+    block-size: 16px;
+    border: 0;
+    border-radius: 50%;
+    background: var(--accent-main);
+  }
+  input[type=range].tg-range::-moz-range-progress {
+    block-size: 6px;
+    border: 0;
+    border-radius: var(--radius-pill);
+    background: var(--accent-main);
   }
   input[type=range].tg-range:disabled {
     cursor: not-allowed;
@@ -2271,6 +2308,16 @@
     .tg-summary__row {
       grid-template-columns: minmax(0, 1fr);
       gap: var(--space-1);
+    }
+  }
+}
+@layer tds.themes {
+  :root[data-theme=light] {
+    --background-muted-weight: 94%;
+  }
+  @media (prefers-color-scheme: light) {
+    :root:not([data-theme]) {
+      --background-muted-weight: 94%;
     }
   }
 }
