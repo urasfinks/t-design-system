@@ -33,6 +33,11 @@ try {
     assert.equal(await clear.evaluate(el => getComputedStyle(el).backgroundColor), 'rgba(0, 0, 0, 0)');
     await clear.hover();
     assert.equal(await clear.evaluate(el => getComputedStyle(el).backgroundColor), 'rgba(0, 0, 0, 0)');
+    assert.equal(await clear.evaluate(el => getComputedStyle(el).filter), 'none');
+    assert.ok(await clear.evaluate(el => {
+      const search = el.closest('.tg-search');
+      return Math.abs(search.getBoundingClientRect().right - parseFloat(getComputedStyle(search).borderRightWidth) - el.getBoundingClientRect().right) <= .5;
+    }), 'clear button reaches the search field inner edge');
     await clear.focus();
     assert.notEqual(await clear.evaluate(el => getComputedStyle(el).outlineStyle), 'none');
     await page.locator('#icon-search').fill('home');

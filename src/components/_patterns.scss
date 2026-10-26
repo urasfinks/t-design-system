@@ -7,7 +7,7 @@
     align-items: center;
     gap: var(--space-2);
     min-inline-size: 0;
-    padding-inline: var(--space-3) var(--space-1);
+    padding-inline: var(--space-3) 0;
     border: var(--border-field);
     border-radius: var(--radius-control);
     background: var(--field-bg);
@@ -51,7 +51,7 @@
       min-block-size: var(--control-h);
       border: 0;
       background: transparent;
-      &:hover { background: transparent; }
+      color: var(--text-secondary);
     }
   }
 

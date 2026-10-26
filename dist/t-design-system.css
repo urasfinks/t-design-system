@@ -1960,7 +1960,7 @@
     align-items: center;
     gap: var(--space-2);
     min-inline-size: 0;
-    padding-inline: var(--space-3) var(--space-1);
+    padding-inline: var(--space-3) 0;
     border: var(--border-field);
     border-radius: var(--radius-control);
     background: var(--field-bg);
@@ -2022,9 +2022,7 @@
     min-block-size: var(--control-h);
     border: 0;
     background: transparent;
-  }
-  .tg-search__clear:hover {
-    background: transparent;
+    color: var(--text-secondary);
   }
   .tg-empty {
     display: grid;
@@ -2287,9 +2285,6 @@
     border: 0;
     background: transparent;
   }
-  .tg-icon-btn--ghost:hover {
-    background: transparent;
-  }
   .tg-btn--stacked {
     flex-direction: column;
     block-size: auto;
@@ -2342,5 +2337,89 @@
   .tg-feedback-layer > .tg-ripple__wash {
     background: var(--ripple-hover-color, var(--ripple-color, currentColor));
     animation: tg-ripple-wash var(--wash-duration, 700ms) ease-out forwards;
+  }
+}
+@layer tds.tokens {
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme]) {
+      --control-hover-brightness: 1.15;
+    }
+  }
+  :root:is([data-theme=dark], [data-theme=ios-dark]) {
+    --control-hover-brightness: 1.15;
+  }
+}
+@layer tds.components {
+  :where(:is(button[class*=tg-], .tg-btn, .tg-icon-btn, .tg-chip, .tg-tab, .tg-dot, .tg-switch, .tg-tabbar__item, a.tg-badge[href], .tg-disclosure__trigger, .tg-bottom-panel__header, .tg-bottom-panel__trigger)) {
+    --control-idle-bg: transparent;
+    --control-hover-bg: var(--surface-muted);
+  }
+  :is(button[class*=tg-], .tg-btn, .tg-icon-btn, .tg-chip, .tg-tab, .tg-dot, .tg-switch, .tg-tabbar__item, a.tg-badge[href], .tg-disclosure__trigger, .tg-bottom-panel__header, .tg-bottom-panel__trigger) {
+    transition: background-color var(--duration) var(--ease), color var(--duration) var(--ease), border-color var(--duration) var(--ease), transform var(--duration-fast) var(--ease), filter var(--duration-fast) var(--ease);
+  }
+  :is(.tg-btn, .tg-icon-btn, .tg-chip, .tg-badge) {
+    --control-idle-bg: var(--surface-muted);
+    --control-hover-bg: var(--control-idle-bg);
+  }
+  :is(.tg-btn--primary, .tg-icon-btn--primary, .tg-chip[aria-checked=true]) {
+    --control-idle-bg: var(--action-bg);
+  }
+  .tg-btn--destructive {
+    --control-idle-bg: var(--action-danger-bg);
+  }
+  :is(.tg-btn--ghost, .tg-icon-btn--ghost, .tg-search__clear) {
+    --control-idle-bg: transparent;
+    --control-hover-bg: var(--surface-muted);
+  }
+  .tg-search__clear {
+    --control-hover-bg: transparent;
+    --control-hover-filter: none;
+  }
+  .tg-btn--stacked[aria-pressed=true] {
+    --control-idle-bg: var(--accent-soft);
+  }
+  .tg-tab[aria-selected=true] {
+    --control-idle-bg: var(--section-bg-color);
+    --control-hover-bg: var(--control-idle-bg);
+  }
+  .tg-tabbar__item[aria-current=page] {
+    --control-idle-bg: var(--secondary-bg-color);
+    --control-hover-bg: var(--control-idle-bg);
+  }
+  :is(.tg-bottom-panel__header, .tg-bottom-panel__trigger) {
+    --control-idle-bg: var(--surface-bg);
+    --control-hover-bg: var(--control-idle-bg);
+  }
+  .tg-switch {
+    --control-hover-bg: transparent;
+  }
+  .tg-badge--primary {
+    --control-idle-bg: light-dark(var(--accent-soft), var(--accent-strong));
+  }
+  .tg-badge--destructive {
+    --control-idle-bg: light-dark(var(--danger-soft), var(--danger-strong));
+  }
+  @media (hover: hover) {
+    :is(button[class*=tg-], .tg-btn, .tg-icon-btn, .tg-chip, .tg-tab, .tg-dot, .tg-switch, .tg-tabbar__item, a.tg-badge[href], .tg-disclosure__trigger, .tg-bottom-panel__header, .tg-bottom-panel__trigger):not([inert]):where(:not(:disabled, [disabled], [aria-disabled=true], [disabled] *, [aria-disabled=true] *, [inert] *)):hover {
+      background-color: var(--control-hover-bg);
+      filter: var(--control-hover-filter, brightness(var(--control-hover-brightness, 0.92)));
+      cursor: pointer;
+    }
+    .tg-search__clear:where(:not(:disabled, [disabled], [aria-disabled=true], [disabled] *, [aria-disabled=true] *)):hover {
+      color: var(--text-color);
+    }
+    .tg-tab:where(:not([aria-selected=true])):is(:disabled, [disabled], [aria-disabled=true], [disabled] *, [aria-disabled=true] *):hover {
+      color: var(--text-secondary);
+    }
+    :is(button[class*=tg-], .tg-btn, .tg-icon-btn, .tg-chip, .tg-tab, .tg-dot, .tg-switch, .tg-tabbar__item, a.tg-badge[href], .tg-disclosure__trigger, .tg-bottom-panel__header, .tg-bottom-panel__trigger):is(:disabled, [disabled], [aria-disabled=true], [disabled] *, [aria-disabled=true] *):hover {
+      background-color: var(--control-idle-bg);
+      filter: none;
+      cursor: not-allowed;
+    }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    :is(button[class*=tg-], .tg-btn, .tg-icon-btn, .tg-chip, .tg-tab, .tg-dot, .tg-switch, .tg-tabbar__item, a.tg-badge[href], .tg-disclosure__trigger, .tg-bottom-panel__header, .tg-bottom-panel__trigger) {
+      transition: none;
+    }
   }
 }
