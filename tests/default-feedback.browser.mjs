@@ -8,6 +8,15 @@ try {
   const page = await browser.newPage({ reducedMotion: 'no-preference' });
   await page.goto('http://127.0.0.1:4195/docs/');
   await page.evaluate(() => document.documentElement.style.setProperty('--ripple-duration', '10s'));
+  const toggle = page.getByRole('switch', { name: 'Уведомления' });
+  await toggle.locator('.tg-switch__knob').click();
+  assert.equal(await toggle.getAttribute('aria-checked'), 'true', 'switch still toggles with the pointer');
+  assert.equal(await toggle.locator('.tg-feedback-layer').count(), 0, 'switch has no button ripple');
+  await toggle.focus();
+  await page.keyboard.press('Space');
+  assert.equal(await toggle.getAttribute('aria-checked'), 'false', 'switch still toggles with the keyboard');
+  assert.equal(await toggle.locator('.tg-feedback-layer').count(), 0, 'keyboard switch activation has no button ripple');
+  assert.notEqual(await toggle.evaluate(el => getComputedStyle(el).outlineStyle), 'none', 'switch keeps visible keyboard focus');
   await page.locator('#primary-demo').click();
   assert.equal(await page.locator('#primary-demo .tg-feedback-layer .tg-ripple__wave').count(), 1, 'ordinary button has the standard effect without opt-in class');
   assert.equal(await page.locator('#primary-demo .tg-ripple__wave').evaluate(el => getComputedStyle(el).animationName), 'tg-ripple-wave');

@@ -42,6 +42,11 @@ try {
       const idle = await button.evaluate(inspect);
       await button.hover();
       const hover = await button.evaluate(inspect);
+      if (id === 'switch') {
+        assert.deepEqual(hover, idle, `${theme}: switch has no button hover effect`);
+        checks++;
+        continue;
+      }
       assert.notDeepEqual([hover.background, hover.color, hover.filter], [idle.background, idle.color, idle.filter], `${theme}/${id}: visible hover response`);
       if (['primary', 'secondary', 'destructive', 'icon', 'chip', 'chip-selected', 'tab-selected', 'navigation-selected', 'badge', 'stacked'].includes(id)) {
         assert.equal(hover.background, idle.background, `${theme}/${id}: semantic fill and selected state remain intact`);

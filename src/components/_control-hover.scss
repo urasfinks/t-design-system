@@ -1,7 +1,7 @@
 @use '../base';
 
 // A shared state treatment; existing components retain their resting appearance.
-$controls: ":is(button[class*='tg-'], .tg-btn, .tg-icon-btn, .tg-chip, .tg-tab, .tg-dot, .tg-switch, .tg-tabbar__item, a.tg-badge[href], .tg-disclosure__trigger, .tg-bottom-panel__header, .tg-bottom-panel__trigger)";
+$controls: ":is(button[class*='tg-'], .tg-btn, .tg-icon-btn, .tg-chip, .tg-tab, .tg-dot, .tg-tabbar__item, a.tg-badge[href], .tg-disclosure__trigger, .tg-bottom-panel__header, .tg-bottom-panel__trigger):not(.tg-switch, [role='switch'])";
 
 @layer tds.tokens {
   @media (prefers-color-scheme: dark) {
@@ -49,7 +49,6 @@ $controls: ":is(button[class*='tg-'], .tg-btn, .tg-icon-btn, .tg-chip, .tg-tab, 
     --control-idle-bg: var(--surface-bg);
     --control-hover-bg: var(--control-idle-bg);
   }
-  .tg-switch { --control-hover-bg: transparent; }
   .tg-badge--primary { --control-idle-bg: light-dark(var(--accent-soft), var(--accent-strong)); }
   .tg-badge--destructive { --control-idle-bg: light-dark(var(--danger-soft), var(--danger-strong)); }
 

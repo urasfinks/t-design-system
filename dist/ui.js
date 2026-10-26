@@ -2,7 +2,7 @@ import { initRipple } from './effects.js';
 
 const registrations = new WeakMap();
 const handled = new WeakSet();
-const controls = 'button, .tg-btn, .tg-icon-btn, .tg-chip, .tg-tab, .tg-tabbar__item, .tg-dot, .tg-switch, a.tg-badge[href], .tg-disclosure__trigger, .tg-bottom-panel__header, .tg-bottom-panel__trigger';
+const controls = 'button, .tg-btn, .tg-icon-btn, .tg-chip, .tg-tab, .tg-tabbar__item, .tg-dot, a.tg-badge[href], .tg-disclosure__trigger, .tg-bottom-panel__header, .tg-bottom-panel__trigger';
 
 /** Standard button feedback, including dynamic controls. Returns cleanup. */
 export function initUI(root = globalThis.document) {
@@ -37,6 +37,7 @@ export function initUI(root = globalThis.document) {
   const click = event => {
     if (handled.has(event)) return;
     const target = event.target?.nodeType === 1 ? event.target : event.target?.parentElement;
+    if (target?.closest('.tg-switch, [role="switch"]')) return;
     const host = target?.closest(controls);
     if (!host || host.closest('.tg-ripple') || (root !== doc && !root.contains(host))) return;
     if (host.matches('input, select, textarea') || target.closest('input, select, textarea') ||
