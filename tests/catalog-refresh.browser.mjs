@@ -31,6 +31,25 @@ try {
   await mkdir('artifacts/catalog-refresh', { recursive: true });
   for (const theme of ['light', 'dark', 'ios-dark']) {
     await page.getByLabel('Тема оформления', { exact: true }).selectOption(theme);
+    const backgrounds = await page.evaluate(() => {
+      const probe = document.createElement('div');
+      document.body.append(probe);
+      const resolve = token => {
+        probe.style.background = `var(${token})`;
+        return getComputedStyle(probe).backgroundColor;
+      };
+      const panel = resolve('--background-panel');
+      const main = resolve('--background-main');
+      probe.remove();
+      return {
+        panel, main, page: getComputedStyle(document.body).backgroundColor,
+        stages: [...document.querySelectorAll('.example-body, .preview-stage')].map(el => getComputedStyle(el).backgroundColor),
+      };
+    });
+    assert.equal(backgrounds.page, backgrounds.panel, `${theme}: catalog page uses panel background`);
+    for (const background of backgrounds.stages) {
+      assert.equal(background, backgrounds.main, `${theme}: component previews use site background`);
+    }
     for (const width of [320, 390, 1440]) {
       await page.setViewportSize({ width, height: 900 });
       assert.equal(await page.evaluate(() => document.documentElement.scrollWidth > innerWidth), false, `no horizontal page overflow at ${width}`);

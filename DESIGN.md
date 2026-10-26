@@ -37,6 +37,10 @@ The signature is the system itself: live components, clear examples, readable co
 
 ## Catalog
 
+The catalog page uses `--background-panel`. Every component preview stage uses
+`--background-main` to show components against the future site's background.
+Embedded screen examples keep `--background-main` as their page background.
+
 Use the library's tokens and component sizes. No miniature mock interface or
 8–11 px labels. Remove decorative section numbers and eyebrows. Keep the sidebar
 on desktop, with an explicit section menu on small screens. Use consistent SVG
