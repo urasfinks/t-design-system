@@ -11,6 +11,12 @@ try {
   const errors = [];
   page.on('pageerror', error => errors.push(error.message));
   await page.goto('http://127.0.0.1:4185/docs/');
+  const spaceSwitch = page.getByRole('switch', { name: 'Уведомления проекта', exact: true });
+  assert.equal(await spaceSwitch.getAttribute('aria-checked'), 'false');
+  await spaceSwitch.click();
+  assert.equal(await spaceSwitch.getAttribute('aria-checked'), 'true');
+  await spaceSwitch.press('Space');
+  assert.equal(await spaceSwitch.getAttribute('aria-checked'), 'false');
   const headings = await page.locator('.section-heading').evaluateAll(elements => elements.map(el =>
     el.children.length === 2 && el.children[0].tagName === 'DIV' &&
     el.children[0].children.length === 2 && el.children[0].children[0].tagName === 'H2' &&
