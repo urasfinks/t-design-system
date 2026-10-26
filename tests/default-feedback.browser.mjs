@@ -26,7 +26,12 @@ try {
   });
   await page.locator('#dynamic-feedback').focus();
   await page.keyboard.press('Enter');
-  assert.equal(await page.locator('#dynamic-feedback .tg-ripple__wave').count(), 1, 'dynamic icon button supports keyboard');
+  assert.equal(await page.locator('#dynamic-feedback .tg-ripple__wave').count(), 0, 'borderless icon button has no keyboard ripple');
+  for (const classes of ['tg-btn tg-btn--ghost', 'tg-icon-btn tg-search__clear', 'tg-icon-btn tg-icon-btn--ghost tg-ripple']) {
+    await page.locator('#dynamic-feedback').evaluate((el, classes) => { el.className = classes; }, classes);
+    await page.locator('#dynamic-feedback').click();
+    assert.equal(await page.locator('#dynamic-feedback .tg-ripple__wave, #dynamic-feedback .tg-feedback-layer').count(), 0, `${classes}: no pointer ripple`);
+  }
   assert.equal(await page.locator('#dynamic-feedback').evaluate(el => getComputedStyle(el).borderTopWidth), '0px');
   await page.locator('#interactive-avatar').click();
   assert.equal(await page.locator('#interactive-avatar .tg-feedback-layer').count(), 1);

@@ -51,13 +51,19 @@ try {
       if (['primary', 'secondary', 'destructive', 'icon', 'chip', 'chip-selected', 'tab-selected', 'navigation-selected', 'badge', 'stacked'].includes(id)) {
         assert.equal(hover.background, idle.background, `${theme}/${id}: semantic fill and selected state remain intact`);
       }
-      assert.equal(hover.filter, id === 'clear' ? 'none' : `brightness(${theme === 'light' ? '0.92' : '1.15'})`, `${theme}/${id}: shared hover mechanism`);
+      assert.equal(hover.filter, ['ghost', 'icon-ghost', 'clear'].includes(id) ? 'none' : `brightness(${theme === 'light' ? '0.92' : '1.15'})`, `${theme}/${id}: shared hover mechanism`);
       assert.deepEqual([hover.width, hover.height, hover.border], [idle.width, idle.height, idle.border], `${id}: stable geometry`);
-      if (id === 'clear') {
-        assert.equal(idle.border, '0px');
+      if (['ghost', 'icon-ghost', 'clear'].includes(id)) {
+        if (id !== 'ghost') assert.equal(idle.border, '0px');
         assert.equal(idle.background, 'rgba(0, 0, 0, 0)');
         assert.equal(hover.background, idle.background, 'clear hover changes icon only');
-        assert.notEqual(idle.color, hover.color, 'clear icon becomes more readable on hover');
+        assert.notEqual(idle.color, hover.color, 'borderless label changes palette color on hover');
+        await page.mouse.down();
+        const pressed = await button.evaluate(inspect);
+        assert.equal(pressed.background, idle.background, 'pressed background stays transparent');
+        assert.equal(pressed.filter, 'none');
+        assert.notEqual(pressed.color, hover.color, 'press changes label color');
+        await page.mouse.up();
       }
       checks++;
     }

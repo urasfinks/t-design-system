@@ -39,6 +39,7 @@ export function initUI(root = globalThis.document) {
     const target = event.target?.nodeType === 1 ? event.target : event.target?.parentElement;
     if (target?.closest('.tg-switch, [role="switch"]')) return;
     const host = target?.closest(controls);
+    if (host?.matches('.tg-btn--ghost, .tg-icon-btn--ghost, .tg-search__clear')) return;
     if (!host || host.closest('.tg-ripple') || (root !== doc && !root.contains(host))) return;
     if (host.matches('input, select, textarea') || target.closest('input, select, textarea') ||
         host.matches(':disabled') || host.closest('[disabled], [aria-disabled="true"]') ||

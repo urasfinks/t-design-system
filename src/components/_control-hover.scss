@@ -33,9 +33,16 @@ $controls: ":is(button[class*='tg-'], .tg-btn, .tg-icon-btn, .tg-chip, .tg-tab, 
     --control-idle-bg: transparent;
     --control-hover-bg: transparent;
   }
-  .tg-search__clear {
+  :is(.tg-btn--ghost, .tg-icon-btn--ghost, .tg-search__clear) {
     --control-hover-filter: none;
+
+    &:not([inert]):where(:not(:disabled, [disabled], [aria-disabled='true'], [disabled] *, [aria-disabled='true'] *, [inert] *)):is(:active, [data-pressed='true']) {
+      background-color: transparent;
+      color: var(--accent-strong);
+      filter: none;
+    }
   }
+  .tg-icon-btn--ghost { color: var(--text-secondary); }
   .tg-btn--stacked[aria-pressed='true'] { --control-idle-bg: var(--accent-soft); }
   .tg-tab[aria-selected='true'] {
     --control-idle-bg: var(--section-bg-color);
@@ -58,7 +65,7 @@ $controls: ":is(button[class*='tg-'], .tg-btn, .tg-icon-btn, .tg-chip, .tg-tab, 
       filter: var(--control-hover-filter, brightness(var(--control-hover-brightness, .92)));
       cursor: pointer;
     }
-    .tg-search__clear:where(:not(:disabled, [disabled], [aria-disabled='true'], [disabled] *, [aria-disabled='true'] *)):hover {
+    :is(.tg-btn--ghost, .tg-icon-btn--ghost, .tg-search__clear):not([inert]):where(:not(:disabled, [disabled], [aria-disabled='true'], [disabled] *, [aria-disabled='true'] *, [inert] *)):hover:where(:not(:active, [data-pressed='true'])) {
       color: var(--text-color);
     }
     .tg-tab:where(:not([aria-selected='true'])):is(:disabled, [disabled], [aria-disabled='true'], [disabled] *, [aria-disabled='true'] *):hover {
