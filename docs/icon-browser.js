@@ -1,3 +1,4 @@
+import '../dist/ui.js';
 const svgNS = 'http://www.w3.org/2000/svg';
 const aliases = { home: 'дом главная', search: 'поиск', mail: 'почта письмо', user: 'пользователь профиль', settings: 'настройки', heart: 'сердце избранное', 'trash-2': 'удалить корзина', x: 'закрыть', check: 'галочка готово', plus: 'добавить плюс', menu: 'меню', calendar: 'календарь', clock: 'время часы', bell: 'уведомления', download: 'скачать', upload: 'загрузить' };
 

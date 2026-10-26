@@ -2315,3 +2315,32 @@
     outline-offset: 3px;
   }
 }
+@layer tds.components {
+  :where(.tg-feedback-host) {
+    position: relative;
+  }
+  .tg-feedback-host {
+    isolation: isolate;
+  }
+  .tg-feedback-layer {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    overflow: clip;
+    border-radius: inherit;
+    pointer-events: none;
+    opacity: 0.25;
+  }
+  .tg-feedback-layer > .tg-ripple__wave {
+    background: var(--ripple-color, currentColor);
+    animation: tg-ripple-wave var(--ripple-duration, 500ms) ease-out forwards;
+  }
+  .tg-feedback-layer > .tg-ripple__ring {
+    box-shadow: inset 0 0 0 var(--ring-width, 1px) var(--ripple-border-color, var(--ripple-color, currentColor));
+    animation: tg-ripple-ring var(--ring-duration, 600ms) ease-out forwards;
+  }
+  .tg-feedback-layer > .tg-ripple__wash {
+    background: var(--ripple-hover-color, var(--ripple-color, currentColor));
+    animation: tg-ripple-wash var(--wash-duration, 700ms) ease-out forwards;
+  }
+}

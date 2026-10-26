@@ -143,6 +143,6 @@ Catalog-only `.avatar-stack` / `.mini-avatar` styles are not public components.
 The core source files are frozen at 678b61e1. New components live in separate modules:
 patterns, bottom-panel, and opt-in extensions. The original catalog preview and avatar
 stack remain intact. One root accent applies to all examples; alternative colors replace
-it globally. Ripple remains opt-in. Nested palette boundaries and the later component
+it globally. By explicit request, ui.js enables ripple on all button controls; legacy ripple APIs remain supported. Nested palette boundaries and the later component
 rebalance are intentionally excluded. Baseline tests enforce source equality and rendered
 compatibility; new components must pass their own responsive and interaction checks.

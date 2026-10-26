@@ -1,5 +1,4 @@
-import { initRipple } from '../dist/effects.js';
-initRipple();
+import '../dist/ui.js';
 
 const root = document.documentElement;
 const themeSelect = document.querySelector('#theme');

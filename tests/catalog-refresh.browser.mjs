@@ -22,7 +22,7 @@ try {
   assert.equal(await page.locator('#transition-demo').isVisible(), false);
   await page.locator('#transition-toggle').click();
   assert.equal(await page.locator('#transition-demo').isVisible(), true);
-  assert.equal(await page.locator('#effects .tg-ripple').count(), 2, 'original opt-in ripple examples remain available');
+  assert.equal(await page.locator('#ripple-demo').count(), 0, 'standard feedback needs no separate demo');
   await page.locator('#demo-error-summary a').click();
   assert.equal(await page.locator('#demo-contact-email').evaluate(el => el === document.activeElement), true);
   await mkdir('artifacts/catalog-refresh', { recursive: true });
