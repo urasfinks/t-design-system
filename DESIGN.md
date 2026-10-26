@@ -40,6 +40,10 @@ The signature is the system itself: live components, clear examples, readable co
 The catalog page uses `--background-panel`. Every component preview stage uses
 `--background-main` to show components against the future site's background.
 Embedded screen examples keep `--background-main` as their page background.
+Example blocks use `.example-panel > .example-body`, followed by an optional
+`.example-code` disclosure labeled “Посмотреть HTML”. Do not add metadata bars.
+Section headings use `.section-heading > div` containing `h2` and `p`, followed
+by `code.class-tag`. Place controls outside this heading structure.
 
 Use the library's tokens and component sizes. No miniature mock interface or
 8–11 px labels. Remove decorative section numbers and eyebrows. Keep the sidebar

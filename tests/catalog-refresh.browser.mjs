@@ -11,6 +11,19 @@ try {
   const errors = [];
   page.on('pageerror', error => errors.push(error.message));
   await page.goto('http://127.0.0.1:4185/docs/');
+  const headings = await page.locator('.section-heading').evaluateAll(elements => elements.map(el =>
+    el.children.length === 2 && el.children[0].tagName === 'DIV' &&
+    el.children[0].children.length === 2 && el.children[0].children[0].tagName === 'H2' &&
+    el.children[0].children[1].tagName === 'P' && el.children[1].matches('code.class-tag')
+  ));
+  assert.ok(headings.length > 0 && headings.every(Boolean), 'all section headings share title, description and class tag structure');
+  assert.equal(await page.locator('.example-meta').count(), 0, 'examples have no decorative metadata rows');
+  const panelStructures = await page.locator('.example-panel').evaluateAll(panels => panels.map(panel =>
+    [...panel.children].map(child => child.classList.contains('example-body') ? 'body' : child.classList.contains('example-code') ? 'code' : child.tagName)
+  ));
+  for (const structure of panelStructures) {
+    assert.ok(['body', 'body,code'].includes(structure.join(',')), `consistent example structure: ${structure}`);
+  }
   assert.equal(await page.locator('#orders-example > .tg-list-item').count(), 5);
   assert.equal(await page.locator('iframe[src="bottom-panel.html"]').count(), 0);
   assert.equal(await page.locator('#orders-example').evaluate(el => getComputedStyle(el).position), 'static');
@@ -44,11 +57,15 @@ try {
       return {
         panel, main, page: getComputedStyle(document.body).backgroundColor,
         stages: [...document.querySelectorAll('.example-body, .preview-stage')].map(el => getComputedStyle(el).backgroundColor),
+        tableHeaders: [...document.querySelectorAll('.tg-table thead th')].map(el => getComputedStyle(el).backgroundColor),
       };
     });
     assert.equal(backgrounds.page, backgrounds.panel, `${theme}: catalog page uses panel background`);
     for (const background of backgrounds.stages) {
       assert.equal(background, backgrounds.main, `${theme}: component previews use site background`);
+    }
+    for (const background of backgrounds.tableHeaders) {
+      assert.equal(background, backgrounds.main, `${theme}: table headers match site background`);
     }
     for (const width of [320, 390, 1440]) {
       await page.setViewportSize({ width, height: 900 });

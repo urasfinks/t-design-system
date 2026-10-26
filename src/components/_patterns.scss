@@ -117,7 +117,7 @@
     caption { padding: var(--space-3) var(--space-4); text-align: start; color: var(--text-secondary); }
     :is(th, td) { padding: var(--space-3) var(--space-4); text-align: start; border-block-end: var(--border); vertical-align: top; }
     th { font-weight: var(--fw-semibold); }
-    thead th { background: var(--surface-muted); }
+    thead th { background: var(--background-main); }
     :is(thead, tbody, tfoot):last-child > tr:last-child > :is(th, td) { border-block-end: 0; }
     tfoot :is(th, td) { border-block-start: var(--border); font-weight: var(--fw-semibold); }
   }

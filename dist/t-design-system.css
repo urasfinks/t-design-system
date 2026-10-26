@@ -2116,7 +2116,7 @@
     font-weight: var(--fw-semibold);
   }
   .tg-table thead th {
-    background: var(--surface-muted);
+    background: var(--background-main);
   }
   .tg-table :is(thead, tbody, tfoot):last-child > tr:last-child > :is(th, td) {
     border-block-end: 0;
