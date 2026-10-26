@@ -11,6 +11,15 @@ try {
   const errors = [];
   page.on('pageerror', error => errors.push(error.message));
   await page.goto('http://127.0.0.1:4185/docs/');
+  await page.setViewportSize({ width: 1280, height: 900 });
+  await page.evaluate(() => scrollTo({ top: 2500, behavior: 'instant' }));
+  const beforeThemeFocus = await page.evaluate(() => scrollY);
+  const themeBounds = await page.getByLabel('Тема оформления', { exact: true }).boundingBox();
+  // Click the visible sticky control without Playwright scrolling it into view first.
+  await page.mouse.click(themeBounds.x + themeBounds.width / 2, themeBounds.y + themeBounds.height / 2);
+  await page.keyboard.press('Escape');
+  await page.waitForTimeout(500);
+  assert.equal(await page.evaluate(() => scrollY), beforeThemeFocus, 'opening the sticky theme select does not scroll the page');
   const spaceSwitch = page.getByRole('switch', { name: 'Уведомления проекта', exact: true });
   assert.equal(await spaceSwitch.getAttribute('aria-checked'), 'false');
   await spaceSwitch.click();

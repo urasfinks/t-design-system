@@ -2,6 +2,7 @@ import '../dist/ui.js';
 
 const root = document.documentElement;
 const themeSelect = document.querySelector('#theme');
+themeSelect.addEventListener('pointerdown', () => themeSelect.focus({ preventScroll: true }));
 let storage;
 try { storage = localStorage; } catch { /* The file preview can disable storage. */ }
 const savedTheme = storage?.getItem('tds-theme');
