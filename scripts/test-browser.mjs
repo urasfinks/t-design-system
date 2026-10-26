@@ -1,5 +1,5 @@
 import { spawnSync } from 'node:child_process';
-for (const file of ['range.browser', 'button-spacing.browser', 'control-hover.browser', 'default-feedback.browser', 'component-polish.browser', 'baseline-compatibility.browser', 'error-surface.browser', 'catalog-refresh.browser', 'patterns.browser', 'icon-browser.browser', 'bottom-panel.browser', 'catalog-compositions.browser', 'compositions.browser', 'browser', 'audit.browser', 'effects.browser', 'design-system.browser', 'palette.browser', 'field-focus.browser', 'badges.browser', 'avatar-stack.browser']) {
+for (const file of ['icon-sizing.browser', 'select-arrow.browser', 'range.browser', 'button-spacing.browser', 'control-hover.browser', 'default-feedback.browser', 'component-polish.browser', 'baseline-compatibility.browser', 'error-surface.browser', 'catalog-refresh.browser', 'patterns.browser', 'icon-browser.browser', 'bottom-panel.browser', 'catalog-compositions.browser', 'compositions.browser', 'browser', 'audit.browser', 'effects.browser', 'design-system.browser', 'palette.browser', 'field-focus.browser', 'badges.browser', 'avatar-stack.browser']) {
   const result = spawnSync(process.execPath, [`tests/${file}.mjs`, ...process.argv.slice(2)], {stdio: 'inherit'});
   if (result.error) { console.error(result.error); process.exit(1); }
   if (result.status !== 0) process.exit(result.status ?? 1);

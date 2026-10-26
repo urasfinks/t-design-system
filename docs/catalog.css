@@ -50,7 +50,6 @@ h1 > span { color: var(--text-link); }
 .app-preview { max-width: 25rem; margin-inline: auto; padding: var(--space-5); border: 0; }
 .preview-top { display: flex; align-items: center; justify-content: space-between; margin-bottom: var(--space-5); }
 .preview-icon { color: var(--text-link); display: inline-flex; }
-.preview-icon .tg-icon { width: 1.5rem; height: 1.5rem; }
 .app-preview h2 { font-size: 1.375rem; font-weight: 600; margin: 0 0 var(--space-2); letter-spacing: -.025em; }
 .app-preview > p { margin: 0; }
 .app-preview .tg-list { border: 0; border-radius: 0; }
@@ -121,7 +120,6 @@ pre { max-width: 100%; overflow: auto; font: var(--catalog-caption)/1.7 ui-monos
 .card-status { align-self: start; }
 .tab-panel { padding: var(--space-4); color: var(--text-secondary); }
 .demo-tabbar { position: static; border: var(--border); border-radius: var(--radius-control); }
-.demo-tabbar .tg-icon { width: 1.5rem; height: 1.5rem; }
 .layout-cell { min-height: 6rem; display: grid; place-items: center; border: 1px dashed var(--control-border-color); border-radius: var(--radius); background: var(--surface-bg); font-size: var(--catalog-body); color: var(--text-secondary); }
 .install-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--space-6); }
 .install-grid > div { min-width: 0; }

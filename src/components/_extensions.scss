@@ -1,7 +1,21 @@
 // Additions and explicitly requested refinements to the frozen 678b61e core.
 @use '../base';
 
+@layer tds.tokens {
+  :root {
+    --select-arrow-hover-light: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
+    --select-arrow-hover-dark: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23fff' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
+  }
+}
+
 @layer tds.themes {
+  :root { --select-arrow-hover: var(--select-arrow-hover-light); }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme]) { --select-arrow-hover: var(--select-arrow-hover-dark); }
+  }
+  :root:is([data-theme='dark'], [data-theme='ios-dark']) {
+    --select-arrow-hover: var(--select-arrow-hover-dark);
+  }
   :root[data-theme='light'] { --background-muted-weight: 94%; }
   @media (prefers-color-scheme: light) {
     :root:not([data-theme]) { --background-muted-weight: 94%; }
@@ -9,6 +23,20 @@
 }
 
 @layer tds.components {
+  :is(.tg-btn, .tg-icon-btn, .tg-chip) svg:not(.tg-icon) {
+    inline-size: var(--icon-size);
+    block-size: var(--icon-size);
+  }
+  .tg-select:not([multiple]):is(:not([size]), [size='1']) {
+    background-size: var(--icon-size) var(--icon-size);
+  }
+
+  @media (hover: hover) and (forced-colors: none) {
+    .tg-select:not([multiple]):is(:not([size]), [size='1']):where(:not(:disabled, [readonly], [aria-disabled='true'], [aria-disabled='true'] *, [inert], [inert] *)):hover {
+      background-image: var(--select-arrow-hover);
+    }
+  }
+
   // Keep the label and icon inside their padding even in a narrow container.
   .tg-btn {
     min-inline-size: min-content;
