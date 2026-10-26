@@ -43,16 +43,19 @@ try {
     await page.locator('summary').click();
     for (const theme of ['light', 'dark', 'ios-dark']) {
       await page.locator('#panel-theme').selectOption(theme);
-      const surfaces = await page.locator('#orders-panel').evaluate(el => {
-        const css = node => getComputedStyle(node);
-        const list = el.querySelector('.tg-list');
-        return { panel: css(el).backgroundColor, header: css(el.querySelector('summary')).backgroundColor, list: css(list).backgroundColor, radius: css(list).borderRadius, padding: css(el.querySelector('#panel-content')).padding };
+      assert.equal(await page.locator('#orders-panel.tg-list > summary.tg-list-item').count(), 1);
+      assert.equal(await page.locator('#panel-content .tg-list').count(), 0, 'no nested list/card');
+      assert.equal(await page.locator('#panel-content > [data-order].tg-list-item').count(), 3);
+      assert.equal(await page.locator('.tg-bottom-panel').evaluate(el => getComputedStyle(el).backgroundColor), 'rgba(0, 0, 0, 0)');
+      assert.equal(await page.locator('.tg-bottom-panel').evaluate(el => getComputedStyle(el).boxShadow), 'none');
+      assert.equal(await page.locator('#panel-content').evaluate(el => getComputedStyle(el).display), 'contents');
+      const geometry = await page.locator('#orders-panel').evaluate(el => {
+        const header = getComputedStyle(el.querySelector('summary'));
+        const row = getComputedStyle(el.querySelector('[data-order]'));
+        return { header: header.padding, row: row.padding, radius: getComputedStyle(el).borderRadius };
       });
-      assert.equal(surfaces.header, surfaces.panel);
-      assert.equal(surfaces.list, surfaces.panel);
-      assert.equal(surfaces.radius, '0px');
-      assert.equal(surfaces.padding, '0px');
-      assert.equal(await page.locator('#orders-panel').evaluate(el => getComputedStyle(el).borderBottomLeftRadius), '0px');
+      assert.equal(geometry.header, geometry.row, 'total uses actual tg-list-item geometry');
+      assert.notEqual(geometry.radius, '0px', 'standard list owns its own radius');
       assert.equal(await page.evaluate(() => document.documentElement.scrollWidth > innerWidth), false);
       await page.screenshot({ path: `artifacts/polish/orders-${theme}-${width}.png` });
     }

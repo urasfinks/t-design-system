@@ -60,13 +60,10 @@ try {
   await page.locator('summary').click();
   for (const theme of ['light', 'dark', 'ios-dark']) {
     await page.locator('#panel-theme').selectOption(theme);
-    const surfaces = await page.locator('.tg-bottom-panel').evaluate(el => ({
-      panel: getComputedStyle(el).backgroundColor,
-      header: getComputedStyle(el.querySelector('summary')).backgroundColor,
-      list: getComputedStyle(el.querySelector('.tg-list')).backgroundColor,
-    }));
-    assert.equal(surfaces.panel, surfaces.list, `${theme}: panel and list share one surface`);
-    assert.equal(surfaces.header, surfaces.panel);
+    assert.equal(await page.locator('#orders-panel.tg-list > summary.tg-list-item').count(), 1);
+    assert.equal(await page.locator('.tg-bottom-panel').evaluate(el => getComputedStyle(el).backgroundColor), 'rgba(0, 0, 0, 0)');
+    assert.equal(await page.locator('#panel-content .tg-list').count(), 0);
+
   }
   await page.locator('#panel-example').selectOption('form');
   await page.getByRole('textbox', { name: 'Адрес' }).fill('Тверская, 1');
@@ -74,7 +71,7 @@ try {
   await page.setViewportSize({ width: 320, height: 800 });
   assert.equal(await page.evaluate(() => document.documentElement.scrollWidth > innerWidth), false);
   await page.locator('#panel-example').selectOption('long');
-  assert.equal(await page.locator('#panel-content .tg-list-item').count(), 30);
+  assert.equal(await page.locator('#panel-content [data-order]').count(), 30);
   await page.setViewportSize({ width: 390, height: 800 });
   await page.locator('#panel-theme').selectOption('dark');
   await page.emulateMedia({ reducedMotion: 'reduce' });

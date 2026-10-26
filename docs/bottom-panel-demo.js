@@ -30,19 +30,20 @@ const example = document.querySelector('#panel-example');
 const content = document.querySelector('#panel-content');
 function updateExample() {
   const isForm = example.value === 'form';
-  content.classList.toggle('tg-p-0', !isForm);
+  content.className = isForm ? 'tg-p-4' : 'tg-contents';
   const template = document.querySelector(isForm ? '#form-content' : '#orders-content');
   content.replaceChildren(template.content.cloneNode(true));
   if (example.value === 'long') {
-    const list = content.querySelector('.tg-list');
+    const note = content.querySelector('#panel-note');
     for (let index = 4; index <= 30; index++) {
       const row = document.createElement('div');
-      row.className = 'tg-list-item';
+      row.className = 'tg-list-item tg-row';
+      row.dataset.order = '';
       row.textContent = `Позиция заказа ${index} · 100 ₽`;
-      list.append(row);
+      note.before(row);
     }
   }
-  document.querySelector('#panel-label').textContent = isForm ? 'Доставка' : 'Итого с меня:';
+  document.querySelector('#panel-label').textContent = isForm ? 'Доставка' : 'Итого с меня';
   document.querySelector('#panel-total').textContent = isForm ? 'Адрес и комментарий' : example.value === 'long' ? '5 100 ₽' : '2 400 ₽';
 }
 example.addEventListener('change', updateExample);

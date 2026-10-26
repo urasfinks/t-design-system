@@ -166,20 +166,23 @@
 <div class="tg-empty"><svg class="tg-icon " viewBox="0 0 24 24" aria-hidden="true"><use href="../dist/icons/inbox.svg#inbox"></use></svg><h3 class="tg-empty__title">Пока нет заказов</h3><p class="tg-empty__description">Добавьте первый заказ, чтобы собрать общую сумму.</p><a class="tg-btn tg-btn--secondary" href="bottom-panel.html">Посмотреть пример заказа</a></div>
 </div></div>
   <h3>Нижняя раскрывающаяся панель</h3>
-  <p>Постоянный итог внизу экрана, детали раскрываются вверх. Заголовок остаётся видимым при прокрутке. Список, форма и длинный заказ в примере используют один компонент.</p>
+  <p>Обычный tg-list с закреплением внизу: итог — первая строка списка, позиции раскрываются под ней. Внешняя оболочка отвечает только за расположение; оформление задают tg-list и tg-list-item.</p>
   <div class="example-panel"><iframe class="composition-preview" src="bottom-panel.html" title="Нижняя панель с заменяемым содержимым" loading="lazy"></iframe></div>
   <p><a class="quiet-link" href="bottom-panel.html" target="_blank" rel="noopener">Открыть пример на весь экран ↗</a></p>
-  <details class="code-details"><summary>HTML компонента</summary><pre><code>&lt;details class="tg-bottom-panel"&gt;
-  &lt;summary class="tg-bottom-panel__header"&gt;
-    Мои заказы · 2 400 ₽
-    &lt;svg class="tg-icon tg-bottom-panel__chevron" aria-hidden="true"&gt;
-      &lt;use href="dist/icons/chevron-up.svg#chevron-up"&gt;&lt;/use&gt;
-    &lt;/svg&gt;
-  &lt;/summary&gt;
-  &lt;div class="tg-bottom-panel__content"&gt;
-    Любые списки, формы и кнопки вашего приложения.
-  &lt;/div&gt;
-&lt;/details&gt;</code></pre></details>
+  <details class="code-details"><summary>HTML компонента</summary><pre><code>&lt;div class="tg-bottom-panel tg-bottom-panel--list"&gt;
+  &lt;details class="tg-list"&gt;
+    &lt;summary class="tg-list-item tg-row tg-bottom-panel__trigger"&gt;
+      &lt;span class="tg-grow"&gt;Итого с меня&lt;/span&gt;
+      &lt;strong&gt;2 400 ₽&lt;/strong&gt;
+    &lt;/summary&gt;
+    &lt;div class="tg-contents"&gt;
+      &lt;div class="tg-list-item tg-row"&gt;
+        &lt;span class="tg-grow"&gt;Паста с грибами&lt;/span&gt;
+        &lt;span&gt;1 200 ₽&lt;/span&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/details&gt;
+&lt;/div&gt;</code></pre></details>
   <p class="tg-text-sm tg-text-muted">Работает без JavaScript. Добавьте странице нижний отступ под свёрнутую панель. Ширина, высота и отступ от низа меняются через CSS-переменные; вариант для Angular описан в README.</p>
 
 </section>
