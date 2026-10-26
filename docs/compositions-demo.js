@@ -27,7 +27,9 @@ const send = document.querySelector('#demo-send');
 const preview = document.querySelector('#demo-reply-preview');
 function resizeInput() {
   input.style.height = 'auto';
-  input.style.height = `${Math.min(input.scrollHeight, parseFloat(getComputedStyle(input).maxHeight))}px`;
+  const style = getComputedStyle(input);
+  const borders = parseFloat(style.borderTopWidth) + parseFloat(style.borderBottomWidth);
+  input.style.height = `${Math.min(input.scrollHeight + borders, parseFloat(style.maxHeight))}px`;
   send.disabled = !input.value.trim();
 }
 input.addEventListener('input', resizeInput);

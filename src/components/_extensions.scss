@@ -1,6 +1,12 @@
-// Opt-in additions to the frozen 678b61e component set.
+// Additions and explicitly requested refinements to the frozen 678b61e core.
 @use '../base';
 @layer tds.components {
+  // Balance the one-line message within the shared control height.
+  .tg-composer__textarea {
+    padding-block: max(0px, calc((var(--control-h) - 1lh - 2px) / 2));
+    &:placeholder-shown { white-space: pre; }
+  }
+
   .tg-btn--stacked {
     flex-direction: column;
     block-size: auto;

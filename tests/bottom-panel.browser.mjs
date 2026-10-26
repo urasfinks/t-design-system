@@ -65,7 +65,7 @@ try {
       header: getComputedStyle(el.querySelector('summary')).backgroundColor,
       list: getComputedStyle(el.querySelector('.tg-list')).backgroundColor,
     }));
-    assert.notEqual(surfaces.panel, surfaces.list, `${theme}: panel and nested list must have distinct surfaces`);
+    assert.equal(surfaces.panel, surfaces.list, `${theme}: panel and list share one surface`);
     assert.equal(surfaces.header, surfaces.panel);
   }
   await page.locator('#panel-example').selectOption('form');

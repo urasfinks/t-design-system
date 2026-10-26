@@ -45,7 +45,14 @@
       &:focus { outline: none; box-shadow: none; background: transparent; }
       &::-webkit-search-cancel-button { appearance: none; }
     }
-    &__clear { flex: 0 0 auto; min-inline-size: var(--control-h); min-block-size: var(--control-h); }
+    &__clear {
+      flex: 0 0 auto;
+      min-inline-size: var(--control-h);
+      min-block-size: var(--control-h);
+      border: 0;
+      background: transparent;
+      &:hover { background: transparent; }
+    }
   }
 
   .tg-empty {

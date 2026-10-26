@@ -14,7 +14,9 @@
     border-block-end: 0;
     border-start-start-radius: var(--radius-lg);
     border-start-end-radius: var(--radius-lg);
-    background: var(--bottom-bar-bg-color);
+    border-end-start-radius: 0;
+    border-end-end-radius: 0;
+    background: var(--surface-bg);
     color: var(--text-color);
     box-shadow: var(--shadow-overlay);
 
@@ -29,7 +31,7 @@
       min-block-size: var(--control-h);
       padding: var(--space-4);
       border: 0;
-      background: var(--bottom-bar-bg-color);
+      background: var(--surface-bg);
       color: inherit;
       font: inherit;
       text-align: start;

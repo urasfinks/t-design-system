@@ -16,11 +16,11 @@
   <label class="tg-field">Тема<select class="tg-select" id="panel-theme"><option value="light">Светлая</option><option value="dark">Тёмная · Desktop</option><option value="ios-dark">Тёмная · iOS</option></select></label>
   <section class="tg-card tg-col"><h2 class="tg-header__title">Произвольное содержимое</h2><p>Внутри панели можно разместить любые компоненты: список, поля ввода, кнопки. Меню выше заменяет содержимое без изменения самой панели.</p><a class="tg-link" href="index.html#navigation" target="_top">К описанию компонента</a></section>
 </main>
-<details class="tg-bottom-panel" id="orders-panel">
+<details class="tg-bottom-panel tg-list" id="orders-panel">
   <summary class="tg-bottom-panel__header"><span id="panel-label">Итого с меня:</span><strong class="tg-ms-auto" id="panel-total">2 400 ₽</strong><svg class="tg-icon tg-bottom-panel__chevron" viewBox="0 0 24 24" aria-hidden="true"><use href="../dist/icons/chevron-up.svg#chevron-up"></use></svg></summary>
   <div class="tg-bottom-panel__content" id="panel-content"></div>
 </details>
-<template id="orders-content"><div class="tg-list"><div class="tg-list-item tg-row"><span class="tg-grow">Паста с грибами</span><span>1 200 ₽</span></div><div class="tg-list-item tg-row"><span class="tg-grow">Овощи на гриле</span><span>800 ₽</span></div><div class="tg-list-item tg-row"><span class="tg-grow">Лимонад</span><span>400 ₽</span></div></div><p class="tg-text-sm tg-text-muted">Стоимость обслуживания включена.</p></template>
+<template id="orders-content"><div class="tg-list tg-no-border tg-no-radius-top tg-no-radius-bottom"><div class="tg-list-item tg-row"><span class="tg-grow">Паста с грибами</span><span>1 200 ₽</span></div><div class="tg-list-item tg-row"><span class="tg-grow">Овощи на гриле</span><span>800 ₽</span></div><div class="tg-list-item tg-row"><span class="tg-grow">Лимонад</span><span>400 ₽</span></div></div><div class="tg-p-4"><p class="tg-help">Стоимость обслуживания включена.</p></div></template>
 <template id="form-content"><form class="tg-col"><label class="tg-field">Адрес<input class="tg-input" name="address" autocomplete="street-address" placeholder="Улица, дом, квартира"></label><label class="tg-field">Комментарий<textarea class="tg-textarea" name="comment" rows="2" placeholder="Что нужно знать курьеру?"></textarea></label><p class="tg-help">Демонстрационная форма: данные никуда не отправляются.</p></form></template>
 </body>
 </html>

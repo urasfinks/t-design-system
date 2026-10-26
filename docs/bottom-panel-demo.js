@@ -30,6 +30,7 @@ const example = document.querySelector('#panel-example');
 const content = document.querySelector('#panel-content');
 function updateExample() {
   const isForm = example.value === 'form';
+  content.classList.toggle('tg-p-0', !isForm);
   const template = document.querySelector(isForm ? '#form-content' : '#orders-content');
   content.replaceChildren(template.content.cloneNode(true));
   if (example.value === 'long') {
