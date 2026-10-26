@@ -2283,6 +2283,13 @@
   .tg-composer__textarea:placeholder-shown {
     white-space: pre;
   }
+  .tg-icon-btn--ghost {
+    border: 0;
+    background: transparent;
+  }
+  .tg-icon-btn--ghost:hover {
+    background: transparent;
+  }
   .tg-btn--stacked {
     flex-direction: column;
     block-size: auto;

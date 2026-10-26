@@ -7,6 +7,12 @@
     &:placeholder-shown { white-space: pre; }
   }
 
+  .tg-icon-btn--ghost {
+    border: 0;
+    background: transparent;
+    &:hover { background: transparent; }
+  }
+
   .tg-btn--stacked {
     flex-direction: column;
     block-size: auto;
