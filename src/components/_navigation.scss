@@ -43,25 +43,21 @@
     padding: var(--space-2) var(--space-4);
     border: 0;
     border-radius: var(--radius-inset);
-    background: transparent;
+    background: var(--control-idle-bg);
     color: var(--text-secondary);
     font-size: var(--fs-sm);
     font-weight: var(--fw-medium);
     cursor: pointer;
-    transition: background var(--duration), color var(--duration);
 
     &[aria-selected='true'] {
-      background: var(--section-bg-color);
+      --control-idle-bg: var(--section-bg-color);
+      --control-hover-bg: var(--control-idle-bg);
       color: var(--text-color);
-    }
-
-    &[aria-selected='true'] {
       box-shadow: var(--shadow-control);
     }
 
     @media (hover: hover) {
-      &:where(:not(:disabled, [aria-disabled='true'], [aria-selected='true'])):hover {
-        background: var(--background-panel);
+      &:where(:not(:disabled, [aria-disabled='true'], [aria-selected='true'], [disabled] *, [aria-disabled='true'] *, [inert], [inert] *)):hover {
         color: var(--text-color);
       }
     }
@@ -91,7 +87,7 @@
       padding: var(--space-2);
       border: 0;
       border-radius: var(--radius-sm);
-      background: transparent;
+      background: var(--control-idle-bg);
       color: var(--text-secondary);
       font-size: var(--fs-xs);
       text-decoration: none;
@@ -101,7 +97,8 @@
 
       &[aria-current='page'] {
         color: var(--text-link);
-        background: var(--secondary-bg-color);
+        --control-idle-bg: var(--secondary-bg-color);
+        --control-hover-bg: var(--control-idle-bg);
       }
     }
   }

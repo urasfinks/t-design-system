@@ -8,7 +8,7 @@ try {
   const page = await browser.newPage({ reducedMotion: 'no-preference' });
   await page.goto('http://127.0.0.1:4195/docs/');
   await page.evaluate(() => document.documentElement.style.setProperty('--ripple-duration', '10s'));
-  const toggle = page.getByRole('switch', { name: 'Уведомления' });
+  const toggle = page.getByRole('switch', { name: 'Уведомления', exact: true });
   await toggle.locator('.tg-switch__knob').click();
   assert.equal(await toggle.getAttribute('aria-checked'), 'true', 'switch still toggles with the pointer');
   assert.equal(await toggle.locator('.tg-feedback-layer').count(), 0, 'switch has no button ripple');

@@ -46,6 +46,8 @@
       &::-webkit-search-cancel-button { appearance: none; }
     }
     &__clear {
+      --control-idle-bg: transparent;
+      --control-hover-bg: transparent;
       flex: 0 0 auto;
       min-inline-size: var(--control-h);
       min-block-size: var(--control-h);

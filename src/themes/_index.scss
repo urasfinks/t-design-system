@@ -4,6 +4,8 @@
 @mixin light {
   color-scheme: light;
   --select-arrow: var(--select-arrow-light);
+  --select-arrow-hover: var(--select-arrow-hover-light);
+  --control-hover-brightness: .92;
   --tds-bg: #f5f5f5;
   --tds-button: #2481cc;
   --tds-text: #000000;
@@ -12,12 +14,14 @@
   --background-panel: var(--background-raised);
   --background-muted: var(--background-muted-derived);
   --background-panel-weight: 0%;
-  --background-muted-weight: 98%;
+  --background-muted-weight: 94%;
   --background-muted-target: #000;
 }
 @mixin desktopDark {
   color-scheme: dark;
   --select-arrow: var(--select-arrow-dark);
+  --select-arrow-hover: var(--select-arrow-hover-dark);
+  --control-hover-brightness: 1.15;
   --tds-bg: #151e27;
   --tds-button: #2ea6ff;
   --tds-text: #ffffff;
@@ -32,6 +36,8 @@
 @mixin iosDark {
   color-scheme: dark;
   --select-arrow: var(--select-arrow-dark);
+  --select-arrow-hover: var(--select-arrow-hover-dark);
+  --control-hover-brightness: 1.15;
   --tds-bg: #000000;
   --tds-button: #3e88f7;
   --tds-text: #ffffff;

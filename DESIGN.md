@@ -146,11 +146,22 @@ The stylesheets require browsers with `@layer`, `color-mix()` and `light-dark()`
 Catalog-only `.avatar-stack` / `.mini-avatar` styles are not public components.
 
 
-## Additive compatibility contract
+## Core cascade contract
 
-The core source files are frozen at 678b61e1. New components live in separate modules:
-patterns, bottom-panel, and opt-in extensions. The original catalog preview and avatar
-stack remain intact. One root accent applies to all examples; alternative colors replace
-it globally. By explicit request, ui.js enables ripple on all button controls; legacy ripple APIs remain supported. Nested palette boundaries and the later component
-rebalance are intentionally excluded. Baseline tests enforce source equality and rendered
-compatibility; new components must pass their own responsive and interaction checks.
+The core is editable. Source files are not frozen to a historical commit. Refactoring
+must preserve the current visual language, public tg-* classes and behavior unless
+the user explicitly requests a visual change. Visual regression tests compare rendered
+styles and catalog pixels with the captured reference; they do not require source equality.
+
+Tokens and themes own system values. Base owns typography inheritance, focus, visibility
+and the shared control-state engine (components/control-states). Components own geometry
+and expose state parameters; variants change parameters rather than duplicate hover paint
+and transitions. Utilities remain the final presentation layer before native visibility.
+
+Former extensions are part of their owners: buttons, forms, avatar and compositions.
+components/extensions and components/control-hover remain compatibility entry points;
+they do not append corrective styles after the component system.
+
+The catalog markup, original preview, avatar stack, global accent and optional JS effects
+are preserved. One root accent applies to all examples. Independent SCSS imports retain
+their foundations. Existing palette roles, typography, radii and control sizes are unchanged.

@@ -1,0 +1,9 @@
+{
+  "sourceCommit": "cf53681",
+  "description": "Current original project before cascade refactor, 2026-10-26",
+  "files": {
+    "t-design-system.css": "dc6373a705c5eab7bbaa9af2236a40d84ea233ed2c3298cd654590a709b1eaf8",
+    "catalog.css": "333e9b6bb137113b536f933041b40577d9244d8756558c62081034fd90c5a553"
+  },
+  "catalogHTMLSHA256": "adfa85b9345f373d06c278443ef0f950660c65d783a1c8ed4743f82e77b976d8"
+}

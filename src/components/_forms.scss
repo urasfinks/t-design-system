@@ -85,10 +85,16 @@
     padding-inline-end: var(--space-10);
     background-image: var(--select-arrow);
     background-repeat: no-repeat;
-    background-size: 1.25rem 1.25rem;
+    background-size: var(--icon-size) var(--icon-size);
     background-position: right var(--space-3) center;
     text-overflow: ellipsis;
     cursor: pointer;
+
+    @media (hover: hover) and (forced-colors: none) {
+      &:where(:not(:disabled, [readonly], [aria-disabled='true'], [aria-disabled='true'] *, [inert], [inert] *)):hover {
+        background-image: var(--select-arrow-hover);
+      }
+    }
 
     &:dir(rtl) {
       background-position: left var(--space-3) center;

@@ -1,5 +1,4 @@
 import assert from 'node:assert/strict';
-import { execFileSync } from 'node:child_process';
 import { readFile, mkdir } from 'node:fs/promises';
 import { chromium, webkit } from 'playwright';
 import { measureContrast } from './helpers/contrast.mjs';
@@ -15,7 +14,7 @@ const check = (name, pass, detail) => {
 try {
   const page = await browser.newPage({ viewport: { width: 390, height: 844 }, reducedMotion: 'reduce' });
   const css = process.argv.includes('--baseline')
-    ? execFileSync('git', ['show', '678b61e:dist/t-design-system.css'], { encoding: 'utf8' })
+    ? await readFile('tests/fixtures/cascade-baseline/t-design-system.css', 'utf8')
     : await readFile('dist/t-design-system.css', 'utf8');
   await page.setContent(`<style>${css}</style><div class="tg-card">
     <p class="tg-text-muted">Вторичная информация</p>

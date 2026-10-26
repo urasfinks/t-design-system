@@ -25,7 +25,10 @@
     padding-block-end: var(--safe-area-bottom);
     &__form, &__input { display: flex; flex-wrap: nowrap; align-items: flex-end; gap: var(--space-3); }
     &__input { flex: 1 1 0%; min-inline-size: 0; }
-    &__textarea { flex: 1 1 0%; min-block-size: var(--control-h); resize: none; max-block-size: var(--composer-input-max-size); }
+    &__textarea { flex: 1 1 0%; min-block-size: var(--control-h); resize: none; max-block-size: var(--composer-input-max-size);
+      padding-block: max(0px, calc((var(--control-h) - 1lh - 2px) / 2));
+      &:placeholder-shown { white-space: pre; }
+    }
     &__caption { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: var(--space-3); }
   }
   .tg-reply-preview {

@@ -122,9 +122,9 @@ try {
   const traversal = await page.request.get('http://127.0.0.1:4174/docs/%2e%2e%2fpackage.json');
   check('HTTP server blocks encoded traversal', traversal.status() === 404);
   await page.getByLabel('Тема оформления').selectOption('dark');
-  check('catalog theme control', await style('body', 'background-color') === await bodyColor('#151e27'));
+  check('catalog theme control', await page.locator('html').getAttribute('data-theme') === 'dark' && await style('body', 'background-color') === await bodyColor('var(--background-panel)'));
   await page.getByLabel('Тема оформления').selectOption('ios-dark');
-  check('catalog exposes iOS dark palette', await style('body', 'background-color') === await bodyColor('#000000'));
+  check('catalog exposes iOS dark palette', await page.locator('html').getAttribute('data-theme') === 'ios-dark' && await style('body', 'background-color') === await bodyColor('var(--background-panel)'));
   await page.getByLabel('Тема оформления').selectOption('light');
   for (const theme of ['light', 'dark', 'ios-dark']) {
     await page.getByLabel('Тема оформления').selectOption(theme);
@@ -141,7 +141,7 @@ try {
       return { panelMatches, inputMatches, body: getComputedStyle(panel.querySelector('.example-body')).backgroundColor };
     });
     check(`${theme}: catalog panels and inputs follow the source materials`, surfaces.panelMatches && surfaces.inputMatches);
-    check(`${theme}: example body does not add an inverted inset surface`, surfaces.body === 'rgba(0, 0, 0, 0)');
+    check(`${theme}: example viewport uses the documented page background`, surfaces.body === await bodyColor('var(--background-main)'));
     const loadingText = await page.evaluate(measureContrast, { selector: '.loader-demo-stage .tg-text-sm' });
     check(`${theme}: real catalog loading text contrast ≥ 4.5`, loadingText.ratio >= 4.5);
   }
@@ -153,8 +153,8 @@ try {
   check('file control shows local filename and preview', await page.locator('#demo-upload-preview').isVisible() && (await page.locator('#demo-upload-status').textContent()).includes('preview.png'));
   await page.locator('#demo-file').setInputFiles([]);
   check('clearing file resets the preview', !await page.locator('#demo-upload-preview').isVisible());
-  await page.getByRole('switch', { name: 'Уведомления' }).click();
-  check('catalog switch changes state', await page.getByRole('switch', { name: 'Уведомления' }).getAttribute('aria-checked') === 'true');
+  await page.getByRole('switch', { name: 'Уведомления', exact: true }).click();
+  check('catalog switch changes state', await page.getByRole('switch', { name: 'Уведомления', exact: true }).getAttribute('aria-checked') === 'true');
   await page.getByRole('tab', { name: 'Настройки' }).click();
   check('tab reveals matching panel', await page.getByRole('tabpanel', { name: 'Настройки' }).isVisible());
   await page.keyboard.press('Home');
@@ -181,7 +181,7 @@ try {
   await page.locator('#demo-toast').waitFor({ state: 'hidden' });
   await page.locator('#demo-snackbar').waitFor({ state: 'hidden' });
   await Promise.all([page.waitForEvent('load'), page.getByRole('button', { name: 'Обновить примеры' }).click()]);
-  check('refresh examples recreates the initial control state', await page.getByRole('switch', { name: 'Уведомления' }).getAttribute('aria-checked') === 'false');
+  check('refresh examples recreates the initial control state', await page.getByRole('switch', { name: 'Уведомления', exact: true }).getAttribute('aria-checked') === 'false');
   for (const width of [320, 360, 768, 1440]) {
     await page.setViewportSize({ width, height: 1000 });
     check(`catalog has no horizontal overflow at ${width}px`, await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth));

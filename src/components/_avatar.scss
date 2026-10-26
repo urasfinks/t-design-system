@@ -99,6 +99,8 @@
   }
 
   .tg-badge {
+    --control-idle-bg: var(--surface-muted);
+    --control-hover-bg: var(--control-idle-bg);
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -107,7 +109,7 @@
     padding: .125rem .5rem;
     border: var(--border);
     border-radius: var(--radius-pill);
-    background: var(--secondary-bg-color);
+    background: var(--control-idle-bg);
     color: var(--text-color);
     font-size: var(--fs-xs);
     font-weight: var(--fw-regular);
@@ -119,18 +121,30 @@
     }
 
     &--primary {
-      background: light-dark(var(--accent-soft), var(--accent-strong));
+      --control-idle-bg: light-dark(var(--accent-soft), var(--accent-strong));
       color: light-dark(var(--accent-strong), var(--text-main));
     }
 
     &--secondary {
+      // Its public resting alias may be customized independently from hover.
       background: var(--secondary-bg-color-transparent);
       color: var(--text-main);
     }
 
     &--destructive {
-      background: light-dark(var(--danger-soft), var(--danger-strong));
+      --control-idle-bg: light-dark(var(--danger-soft), var(--danger-strong));
       color: light-dark(var(--danger-strong), var(--text-main));
     }
+  }
+}
+
+@layer tds.components {
+  :is(button, a[href]).tg-badge {
+    min-inline-size: var(--control-h);
+    min-block-size: var(--control-h);
+    font-size: var(--fs-sm);
+    text-decoration: none;
+    cursor: pointer;
+    &:focus-visible { outline: 2px solid var(--text-link); outline-offset: 3px; }
   }
 }

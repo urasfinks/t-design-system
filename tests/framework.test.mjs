@@ -29,7 +29,7 @@ test('distribution includes all stylesheets and module exports compile independe
   }
   const pkg = JSON.parse(await readFile('package.json', 'utf8'));
   for (const path of Object.values(pkg.exports).filter(p => !p.includes('*'))) await access(path);
-  for (const path of ['tokens', 'themes', 'base', 'utilities', 'components/icons', 'components/buttons', 'components/forms', 'components/surfaces', 'components/navigation', 'components/bottom-panel', 'components/patterns', 'components/feedback', 'components/avatar', 'components/upload', 'components/effects']) {
+  for (const path of ['tokens', 'themes', 'base', 'utilities', 'components/icons', 'components/buttons', 'components/forms', 'components/surfaces', 'components/navigation', 'components/bottom-panel', 'components/patterns', 'components/feedback', 'components/avatar', 'components/upload', 'components/effects', 'components/extensions', 'components/control-hover']) {
     const result = sass.compileString(`@use "${path}";`, { loadPaths: ['src'] });
     assert.ok(result.css.length > 0, path);
   }

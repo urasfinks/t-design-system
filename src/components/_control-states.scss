@@ -1,0 +1,44 @@
+@use '../themes';
+
+// Loaded by base before components. Owners declare only their resting/hover roles.
+$controls: ":is(button[class*='tg-'], .tg-btn, .tg-icon-btn, .tg-chip, .tg-tab, .tg-dot, .tg-tabbar__item, a.tg-badge[href], .tg-disclosure__trigger, .tg-bottom-panel__header, .tg-bottom-panel__trigger):not(.tg-switch, [role='switch'])";
+$available: ":not([inert]):where(:not(:disabled, [disabled], [aria-disabled='true'], [disabled] *, [aria-disabled='true'] *, [inert] *))";
+$ghosts: ':is(.tg-btn--ghost, .tg-icon-btn--ghost, .tg-search__clear)';
+
+@layer tds.components {
+  :where(#{$controls}) {
+    --control-idle-bg: transparent;
+    --control-hover-bg: var(--surface-muted);
+  }
+  #{$controls} {
+    transition: background-color var(--duration) var(--ease), color var(--duration) var(--ease),
+      border-color var(--duration) var(--ease), transform var(--duration-fast) var(--ease),
+      filter var(--duration-fast) var(--ease);
+  }
+  #{$ghosts} {
+    --control-hover-filter: none;
+    &#{$available}:is(:active, [data-pressed='true']) {
+      background-color: transparent;
+      color: var(--accent-strong);
+      filter: none;
+    }
+  }
+  @media (hover: hover) {
+    #{$controls}#{$available}:hover {
+      background-color: var(--control-hover-bg);
+      filter: var(--control-hover-filter, brightness(var(--control-hover-brightness, .92)));
+      cursor: pointer;
+    }
+    #{$ghosts}#{$available}:hover:where(:not(:active, [data-pressed='true'])) {
+      color: var(--text-color);
+    }
+    #{$controls}:is(:disabled, [disabled], [aria-disabled='true'], [disabled] *, [aria-disabled='true'] *):hover {
+      background-color: var(--control-idle-bg);
+      filter: none;
+      cursor: not-allowed;
+    }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    #{$controls} { transition: none; }
+  }
+}

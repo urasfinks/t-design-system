@@ -31,12 +31,16 @@
       box-shadow: none;
     }
 
+    &__trigger, &__header {
+      --control-idle-bg: var(--surface-bg);
+      --control-hover-bg: var(--control-idle-bg);
+      background: var(--control-idle-bg);
+    }
     &__trigger {
       position: sticky;
       inset-block-start: 0;
       z-index: 1;
       min-block-size: var(--control-h);
-      background: var(--surface-bg);
       cursor: pointer;
       list-style: none;
       &::-webkit-details-marker { display: none; }
@@ -55,7 +59,6 @@
       min-block-size: var(--control-h);
       padding: var(--space-4);
       border: 0;
-      background: var(--surface-bg);
       color: inherit;
       font: inherit;
       text-align: start;

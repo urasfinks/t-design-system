@@ -1,8 +1,11 @@
 @use '../base';
 
 @layer tds.components {
-  // Shared control foundation; variants below only describe their differences.
+  // One geometry and paint rule; variants supply values rather than copying states.
   :is(.tg-btn, .tg-icon-btn, .tg-chip) {
+    --control-idle-bg: var(--surface-muted);
+    --control-hover-bg: var(--control-idle-bg);
+    --control-color: var(--text-color);
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -13,8 +16,8 @@
     min-block-size: var(--control-h);
     padding-block: 0;
     border: 1px solid transparent;
-    background: var(--surface-muted);
-    color: var(--text-color);
+    background: var(--control-idle-bg);
+    color: var(--control-color);
     font-size: var(--fs);
     font-weight: var(--fw-medium);
     line-height: 1.3;
@@ -23,18 +26,11 @@
     cursor: pointer;
     vertical-align: middle;
     overflow-wrap: anywhere;
-    transition: background-color var(--duration) var(--ease), color var(--duration) var(--ease), border-color var(--duration) var(--ease), transform var(--duration-fast) var(--ease);
 
     svg:not(.tg-icon) {
-      inline-size: 1.25em;
-      block-size: 1.25em;
+      inline-size: var(--icon-size);
+      block-size: var(--icon-size);
       flex-shrink: 0;
-    }
-
-    @media (hover: hover) {
-      &:where(:not(:disabled, [aria-disabled='true'])):hover {
-        background: var(--background-panel);
-      }
     }
 
     &:where(:not(:disabled, [aria-disabled='true'])):is(:active, [data-pressed='true']) {
@@ -43,22 +39,22 @@
   }
 
   .tg-btn {
+    min-inline-size: min-content;
+    block-size: auto;
+    padding-block: var(--space-2);
     padding-inline: var(--space-4);
     border-radius: var(--radius-control);
 
-    &--secondary { background: var(--surface-muted); border: var(--border); }
-    &--ghost { background: transparent; color: var(--text-link); }
-    &--destructive {
-      background: var(--action-danger-bg);
-      color: var(--button-text-color);
-
-      @media (hover: hover) {
-        &:where(:not(:disabled, [aria-disabled='true'])):hover {
-          background: var(--danger-strong);
-        }
-      }
+    &--secondary { border: var(--border); }
+    &--ghost {
+      --control-idle-bg: transparent;
+      --control-hover-bg: transparent;
+      --control-color: var(--text-link);
     }
-
+    &--destructive {
+      --control-idle-bg: var(--action-danger-bg);
+      --control-color: var(--button-text-color);
+    }
     &--sm { padding-inline: var(--space-3); font-size: var(--fs-sm); }
     &--lg { padding-inline: var(--space-6); }
     &-box { inline-size: var(--control-h); padding-inline: 0; }
@@ -74,36 +70,39 @@
     border: var(--border);
     border-radius: var(--radius-control);
   }
-
-  .tg-btn--pill, .tg-icon-btn--pill {
-    border-radius: var(--radius-pill);
-  }
-
+  .tg-btn--pill, .tg-icon-btn--pill { border-radius: var(--radius-pill); }
   .tg-btn--primary, .tg-icon-btn--primary {
-    background: var(--action-bg);
-    color: var(--button-text-color);
-
-    @media (hover: hover) {
-      &:where(:not(:disabled, [aria-disabled='true'])):hover {
-        background: var(--action-hover-bg);
-      }
+    --control-idle-bg: var(--action-bg);
+    --control-color: var(--button-text-color);
+  }
+  .tg-icon-btn--ghost {
+    --control-idle-bg: transparent;
+    --control-hover-bg: transparent;
+    --control-color: var(--text-secondary);
+    border: 0;
+  }
+  .tg-btn--stacked {
+    flex-direction: column;
+    block-size: auto;
+    min-block-size: calc(var(--control-h) * 2);
+    padding: var(--space-3);
+    font-size: var(--fs-sm);
+    font-weight: var(--fw-regular);
+    &[aria-pressed='true'] {
+      --control-idle-bg: var(--accent-soft);
+      --control-color: var(--text-link);
+      border-color: var(--accent-main);
     }
   }
-
   .tg-chip {
     padding-inline: var(--space-3);
     border: var(--border);
     border-radius: var(--radius-pill);
     font-size: var(--fs-sm);
-
     &[aria-checked='true'] {
-      background: var(--action-bg);
-      color: var(--button-text-color);
+      --control-idle-bg: var(--action-bg);
+      --control-color: var(--button-text-color);
       border-color: transparent;
-
-      &:where(:not(:disabled, [aria-disabled='true'])):hover {
-        background: var(--action-hover-bg);
-      }
     }
   }
 }
