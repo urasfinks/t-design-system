@@ -2369,10 +2369,9 @@
   }
   :is(.tg-btn--ghost, .tg-icon-btn--ghost, .tg-search__clear) {
     --control-idle-bg: transparent;
-    --control-hover-bg: var(--surface-muted);
+    --control-hover-bg: transparent;
   }
   .tg-search__clear {
-    --control-hover-bg: transparent;
     --control-hover-filter: none;
   }
   .tg-btn--stacked[aria-pressed=true] {
