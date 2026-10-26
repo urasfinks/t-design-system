@@ -163,27 +163,18 @@
 <details class="tg-disclosure"><summary class="tg-disclosure__trigger">Что входит в раскрывающийся блок?</summary><div class="tg-disclosure__content"><p>Любой контент: текст, список или форма. Нативные details и summary работают мышью и с клавиатуры без JavaScript.</p><a class="tg-link" href="#start">Как подключить</a></div></details>
 </div></div>
 <div class="example-panel"><div class="example-body tg-col" data-ui data-example>
-<div class="tg-empty"><svg class="tg-icon " viewBox="0 0 24 24" aria-hidden="true"><use href="../dist/icons/inbox.svg#inbox"></use></svg><h3 class="tg-empty__title">Пока нет заказов</h3><p class="tg-empty__description">Добавьте первый заказ, чтобы собрать общую сумму.</p><a class="tg-btn tg-btn--secondary" href="bottom-panel.html">Посмотреть пример заказа</a></div>
+<div class="tg-empty"><svg class="tg-icon " viewBox="0 0 24 24" aria-hidden="true"><use href="../dist/icons/inbox.svg#inbox"></use></svg><h3 class="tg-empty__title">Пока нет заказов</h3><p class="tg-empty__description">Добавьте первый заказ, чтобы собрать общую сумму.</p><a class="tg-btn tg-btn--secondary" href="#orders-title">Посмотреть пример заказа</a></div>
 </div></div>
-  <h3>Нижняя раскрывающаяся панель</h3>
-  <p>Обычный tg-list с закреплением внизу: итог — первая строка списка, позиции раскрываются под ней. Внешняя оболочка отвечает только за расположение; оформление задают tg-list и tg-list-item.</p>
-  <div class="example-panel"><iframe class="composition-preview" src="bottom-panel.html" title="Нижняя панель с заменяемым содержимым" loading="lazy"></iframe></div>
-  <p><a class="quiet-link" href="bottom-panel.html" target="_blank" rel="noopener">Открыть пример на весь экран ↗</a></p>
-  <details class="code-details"><summary>HTML компонента</summary><pre><code>&lt;div class="tg-bottom-panel tg-bottom-panel--list"&gt;
-  &lt;details class="tg-list"&gt;
-    &lt;summary class="tg-list-item tg-row tg-bottom-panel__trigger"&gt;
-      &lt;span class="tg-grow"&gt;Итого с меня&lt;/span&gt;
-      &lt;strong&gt;2 400 ₽&lt;/strong&gt;
-    &lt;/summary&gt;
-    &lt;div class="tg-contents"&gt;
-      &lt;div class="tg-list-item tg-row"&gt;
-        &lt;span class="tg-grow"&gt;Паста с грибами&lt;/span&gt;
-        &lt;span&gt;1 200 ₽&lt;/span&gt;
-      &lt;/div&gt;
-    &lt;/div&gt;
-  &lt;/details&gt;
-&lt;/div&gt;</code></pre></details>
-  <p class="tg-text-sm tg-text-muted">Работает без JavaScript. Добавьте странице нижний отступ под свёрнутую панель. Ширина, высота и отступ от низа меняются через CSS-переменные; вариант для Angular описан в README.</p>
+  <h3 id="orders-title">Мои заказы</h3>
+  <div class="example-panel"><div class="example-body tg-col" data-ui data-example>
+<div class="tg-list" id="orders-example" aria-labelledby="orders-title">
+  <div class="tg-list-item tg-row"><span class="tg-grow">Паста с грибами</span><span>1 200 ₽</span></div>
+  <div class="tg-list-item tg-row"><span class="tg-grow">Овощи на гриле</span><span>800 ₽</span></div>
+  <div class="tg-list-item tg-row"><span class="tg-grow">Лимонад</span><span>400 ₽</span></div>
+  <div class="tg-list-item tg-row"><span class="tg-grow">Итого с меня</span><strong>2 400 ₽</strong></div>
+  <div class="tg-list-item tg-help">Стоимость обслуживания включена.</div>
+</div>
+  </div></div>
 
 </section>
 

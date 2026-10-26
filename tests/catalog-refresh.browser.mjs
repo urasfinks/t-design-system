@@ -11,6 +11,9 @@ try {
   const errors = [];
   page.on('pageerror', error => errors.push(error.message));
   await page.goto('http://127.0.0.1:4185/docs/');
+  assert.equal(await page.locator('#orders-example > .tg-list-item').count(), 5);
+  assert.equal(await page.locator('iframe[src="bottom-panel.html"]').count(), 0);
+  assert.equal(await page.locator('#orders-example').evaluate(el => getComputedStyle(el).position), 'static');
   assert.equal(await page.locator('#data .tg-table').count(), 1, 'catalog demonstrates actual data table');
   const rowEdges = await page.locator('#data tbody tr').last().locator('th, td').evaluateAll(cells => cells.map(el => getComputedStyle(el).borderBottomWidth));
   assert.equal(new Set(rowEdges).size, 1, 'last body row retains a complete separator before totals');
@@ -40,7 +43,7 @@ try {
   await page.locator('.nav-link[href="#icons"][aria-current="location"]').waitFor();
   await page.screenshot({ path: 'artifacts/catalog-refresh/icons.png' });
   // Alternative accents replace the shared root accent, including embedded examples.
-  const frames = ['#composition-preview', 'iframe[src="bottom-panel.html"]'];
+  const frames = ['#composition-preview'];
   for (const accent of ['green', 'violet', 'blue']) {
     await page.getByLabel('Акцентный цвет').selectOption(accent);
     const expected = await page.locator('html').evaluate(el => getComputedStyle(el).getPropertyValue('--accent-main').trim());

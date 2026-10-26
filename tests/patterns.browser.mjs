@@ -23,9 +23,19 @@ try {
       assert.equal(await page.locator('.tg-search__input').inputValue(), 'arbitrary <text> & кириллица');
       await page.locator('.tg-search__clear').click();
       assert.equal(await page.locator('.tg-search__input').inputValue(), '');
+      const trigger = page.locator('.tg-disclosure__trigger');
+      const radii = el => {
+        const style = getComputedStyle(el);
+        return [style.borderTopLeftRadius, style.borderTopRightRadius, style.borderBottomRightRadius, style.borderBottomLeftRadius];
+      };
+      const containerRadii = await page.locator('.tg-disclosure').evaluate(radii);
+      await trigger.hover();
+      assert.deepEqual(await trigger.evaluate(radii), containerRadii, `${theme}/${width}: closed hover preserves rounded corners`);
       await page.locator('summary').focus();
       await page.keyboard.press('Enter');
       assert.equal(await page.locator('details').getAttribute('open'), '');
+      await trigger.hover();
+      assert.deepEqual(await trigger.evaluate(radii), [...containerRadii.slice(0, 2), '0px', '0px'], `${theme}/${width}: open hover preserves top corners only`);
       await page.keyboard.press('Space');
       assert.equal(await page.locator('details').getAttribute('open'), null);
       const metrics = await page.evaluate(() => {

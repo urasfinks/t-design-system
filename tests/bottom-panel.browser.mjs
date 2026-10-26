@@ -57,6 +57,15 @@ try {
   await page.locator('button').evaluate(el => { el.setAttribute('aria-expanded', 'true'); document.querySelector('#body').hidden = false; });
   assert.equal(await page.locator('input').isVisible(), true);
   await page.goto('http://127.0.0.1:4181/docs/bottom-panel.html');
+  for (const width of [320, 1280]) {
+    await page.setViewportSize({ width, height: 800 });
+    const mainList = await page.locator('main > .tg-list').boundingBox();
+    const panelList = await page.locator('#orders-panel').boundingBox();
+    assert.equal(mainList.x, 16, 'main list uses the standard page gutter');
+    assert.equal(mainList.width, width - 32, 'main list fills the available width');
+    assert.equal(panelList.x, mainList.x, 'bottom list aligns with main list');
+    assert.equal(panelList.width, mainList.width, 'both lists have the same width');
+  }
   await page.locator('summary').click();
   for (const theme of ['light', 'dark', 'ios-dark']) {
     await page.locator('#panel-theme').selectOption(theme);

@@ -76,10 +76,15 @@
     &__trigger {
       min-block-size: var(--control-h);
       padding: var(--space-3) var(--space-4);
+      border-radius: var(--radius);
       font-weight: var(--fw-medium);
       cursor: pointer;
       overflow-wrap: anywhere;
       &::marker { color: var(--text-secondary); }
+    }
+    &[open] > &__trigger {
+      border-end-start-radius: 0;
+      border-end-end-radius: 0;
     }
     &__content { padding: 0 var(--space-4) var(--space-4); overflow-wrap: anywhere; }
   }

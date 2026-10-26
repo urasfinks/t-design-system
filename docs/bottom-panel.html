@@ -9,14 +9,16 @@
   <script type="module" src="bottom-panel-demo.js"></script>
 </head>
 <body>
-<main class="tg-container tg-container--reading tg-col tg-p-4" style="padding-bottom: calc(8rem + var(--safe-area-bottom))">
-  <h1 class="tg-header__title">Мои заказы</h1>
-  <p>Итог закреплён внизу. Нажмите на него, чтобы раскрыть детали вверх. Страница остаётся доступной.</p>
-  <label class="tg-field">Содержимое примера<select class="tg-select" id="panel-example"><option value="orders">Заказ</option><option value="form">Форма доставки</option><option value="long">Длинный список</option></select></label>
-  <label class="tg-field">Тема<select class="tg-select" id="panel-theme"><option value="light">Светлая</option><option value="dark">Тёмная · Desktop</option><option value="ios-dark">Тёмная · iOS</option></select></label>
-  <section class="tg-card tg-col"><h2 class="tg-header__title">Произвольное содержимое</h2><p>Внутри панели можно разместить любые компоненты: список, поля ввода, кнопки. Меню выше заменяет содержимое без изменения самой панели.</p><a class="tg-link" href="index.html#navigation" target="_top">К описанию компонента</a></section>
+<main class="tg-col tg-p-4" style="min-height: 100vh; padding-bottom: calc(8rem + var(--safe-area-bottom))">
+  <div class="tg-list">
+    <div class="tg-list-item"><h1 class="tg-header__title">Мои заказы</h1></div>
+    <div class="tg-list-item"><p>Итог закреплён внизу. Нажмите на него, чтобы раскрыть детали вверх. Страница остаётся доступной.</p></div>
+    <label class="tg-list-item tg-field">Содержимое примера<select class="tg-select" id="panel-example"><option value="orders">Заказ</option><option value="form">Форма доставки</option><option value="long">Длинный список</option></select></label>
+    <label class="tg-list-item tg-field">Тема<select class="tg-select" id="panel-theme"><option value="light">Светлая</option><option value="dark">Тёмная · Desktop</option><option value="ios-dark">Тёмная · iOS</option></select></label>
+    <section class="tg-list-item tg-col"><h2 class="tg-header__title">Произвольное содержимое</h2><p>Внутри панели можно разместить любые компоненты: список, поля ввода, кнопки. Меню выше заменяет содержимое без изменения самой панели.</p><a class="tg-link" href="index.html#navigation" target="_top">К описанию компонента</a></section>
+  </div>
 </main>
-<div class="tg-bottom-panel tg-bottom-panel--list">
+<div class="tg-bottom-panel tg-bottom-panel--list" style="--bottom-panel-width: 100%">
   <details class="tg-list" id="orders-panel">
     <summary class="tg-list-item tg-row tg-bottom-panel__trigger"><span class="tg-grow" id="panel-label">Итого с меня</span><strong id="panel-total">2 400 ₽</strong><svg class="tg-icon tg-bottom-panel__chevron" viewBox="0 0 24 24" aria-hidden="true"><use href="../dist/icons/chevron-up.svg#chevron-up"></use></svg></summary>
     <div id="panel-content"></div>
