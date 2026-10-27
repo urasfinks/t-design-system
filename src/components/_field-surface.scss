@@ -1,0 +1,29 @@
+// One field surface for composite fields (search, input group): the wrapper owns
+// the border, fill and focus ring; the native control inside stays transparent.
+@mixin surface($control) {
+  border: var(--border-field);
+  border-radius: var(--radius-control);
+  background: var(--field-bg);
+
+  &:focus-within { border-color: var(--accent-main); box-shadow: var(--focus); }
+  &:has(#{$control}[readonly]) { background: var(--section-bg-color); }
+  &:has(#{$control}:disabled) { opacity: var(--disabled-opacity, .5); cursor: not-allowed; }
+  &:has(#{$control}[aria-invalid='true']) {
+    border-color: var(--danger-main);
+    &:focus-within { box-shadow: 0 0 0 .25rem var(--danger-soft); }
+  }
+}
+
+// The control inside a composite field: no own surface, the iOS-safe 16px type.
+@mixin bare-control {
+  min-inline-size: 0;
+  min-block-size: var(--control-h);
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  color: var(--text-color);
+  font: inherit;
+  font-size: max(1rem, var(--fs));
+  &:focus { outline: none; box-shadow: none; background: transparent; }
+  &::placeholder { color: var(--text-secondary); opacity: 1; }
+}

@@ -1,0 +1,368 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light dark">
+  <title>Рабочее пространство — T Design System</title>
+  <link rel="stylesheet" href="../dist/t-design-system.css">
+  <script type="module" src="workspace-demo.js"></script>
+</head>
+<body>
+<a class="tg-sr-only" href="#ws-main">К содержимому</a>
+<div class="tg-page-shell">
+  <header class="tg-page-header tg-page-header--sticky">
+    <div class="tg-container tg-row tg-nowrap">
+      <a class="tg-brand tg-header__title tg-text" href="#ws-main" aria-label="Северный ветер"><svg class="tg-icon" viewBox="0 0 24 24" aria-hidden="true"><use href="../dist/icons/layers.svg#layers"></use></svg><span class="tg-hide-mobile">Северный ветер</span></a>
+      <nav class="tg-site-nav tg-hide-mobile" aria-label="Разделы">
+        <a class="tg-site-nav__link" href="#ws-overview">Обзор</a>
+        <a class="tg-site-nav__link" href="#ws-main" aria-current="page">Счета</a>
+        <a class="tg-site-nav__link" href="#ws-client">Клиенты</a>
+        <a class="tg-site-nav__link" href="#ws-help">Помощь</a>
+      </nav>
+      <div class="tg-row tg-gap-2 tg-ms-auto tg-nowrap">
+        <button class="tg-btn tg-btn--primary tg-btn--icon-end" type="button" id="ws-create" aria-haspopup="menu" aria-expanded="false" aria-controls="ws-create-menu" data-menu-trigger>
+          <svg class="tg-icon tg-btn__icon" viewBox="0 0 24 24" aria-hidden="true"><use href="../dist/icons/chevron-down.svg#chevron-down"></use></svg>
+          <span class="tg-btn__label">Создать</span>
+        </button>
+        <button class="tg-icon-btn" type="button" id="ws-settings" aria-haspopup="menu" aria-expanded="false" aria-controls="ws-settings-menu" aria-label="Настройки отображения" data-menu-trigger>
+          <svg class="tg-icon" viewBox="0 0 24 24" aria-hidden="true"><use href="../dist/icons/sliders.svg#sliders"></use></svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <div class="tg-menu" id="ws-create-menu" popover role="menu" aria-labelledby="ws-create">
+    <button class="tg-menu__item" type="button" role="menuitem" data-action="new-invoice"><svg class="tg-icon" viewBox="0 0 24 24" aria-hidden="true"><use href="../dist/icons/file-text.svg#file-text"></use></svg>Счёт<kbd class="tg-menu__shortcut">Alt N</kbd></button>
+    <a class="tg-menu__item" href="#ws-client" role="menuitem"><svg class="tg-icon" viewBox="0 0 24 24" aria-hidden="true"><use href="../dist/icons/user-plus.svg#user-plus"></use></svg><span class="tg-menu__text">Клиента<span class="tg-menu__item-meta">Карточка и контакты</span></span></a>
+    <div class="tg-menu__separator" role="separator"></div>
+    <button class="tg-menu__item" type="button" role="menuitem" aria-disabled="true"><svg class="tg-icon" viewBox="0 0 24 24" aria-hidden="true"><use href="../dist/icons/upload.svg#upload"></use></svg><span class="tg-menu__text">Импорт из CSV…<span class="tg-menu__item-meta">Доступен на тарифе «Команда»</span></span></button>
+  </div>
+
+  <div class="tg-menu" id="ws-settings-menu" popover role="menu" aria-labelledby="ws-settings">
+    <div role="group" aria-labelledby="ws-settings-density">
+      <div class="tg-menu__label" id="ws-settings-density">Таблица</div>
+      <button class="tg-menu__item" type="button" role="menuitemcheckbox" aria-checked="false" data-action="compact">Компактные строки</button>
+    </div>
+    <div class="tg-menu__separator" role="separator"></div>
+    <div role="group" aria-labelledby="ws-settings-theme">
+      <div class="tg-menu__label" id="ws-settings-theme">Тема</div>
+      <button class="tg-menu__item" type="button" role="menuitemradio" aria-checked="true" data-theme-choice="auto">Как в системе</button>
+      <button class="tg-menu__item" type="button" role="menuitemradio" aria-checked="false" data-theme-choice="light">Светлая</button>
+      <button class="tg-menu__item" type="button" role="menuitemradio" aria-checked="false" data-theme-choice="dark">Тёмная</button>
+      <button class="tg-menu__item" type="button" role="menuitemradio" aria-checked="false" data-theme-choice="ios-dark">Тёмная iOS</button>
+    </div>
+  </div>
+
+  <main class="tg-container tg-col tg-gap-6" id="ws-main">
+    <div class="tg-col tg-gap-2">
+      <h1 class="tg-header__title tg-mt-4">Счета</h1>
+      <p class="tg-mt-0 tg-mb-0 tg-text-muted">Данные примера. Экран собран только из публичных классов TDS, без CSS приложения.</p>
+    </div>
+
+    <div class="tg-notice tg-notice--with-icon" id="ws-verify">
+      <svg class="tg-icon tg-notice__icon" viewBox="0 0 24 24" aria-hidden="true"><use href="../dist/icons/mail.svg#mail"></use></svg>
+      <div class="tg-notice__content">
+        <strong class="tg-notice__title">Подтвердите почту для отправки счетов</strong>
+        <p class="tg-mb-0">Ссылка отправлена на finance@severny.example. Без подтверждения счета сохраняются как черновики.</p>
+      </div>
+      <div class="tg-notice__actions"><button class="tg-btn tg-btn--secondary tg-btn--sm" type="button" id="ws-resend">Отправить снова</button></div>
+      <button class="tg-icon-btn tg-icon-btn--ghost tg-notice__dismiss" type="button" aria-label="Скрыть сообщение" data-dismiss="ws-verify"><svg class="tg-icon" viewBox="0 0 24 24" aria-hidden="true"><use href="../dist/icons/x.svg#x"></use></svg></button>
+    </div>
+
+    <section class="tg-grid" id="ws-overview" aria-label="Показатели октября">
+      <div class="tg-card tg-stat">
+        <p class="tg-stat__label">Поступило в октябре</p>
+        <p class="tg-stat__value">1 284 600 ₽</p>
+        <p class="tg-stat__meta"><span class="tg-badge tg-badge--primary tg-stat__delta">+12,4%</span>к сентябрю</p>
+      </div>
+      <div class="tg-card tg-stat">
+        <p class="tg-stat__label">Ожидают оплаты</p>
+        <p class="tg-stat__value">418 200 ₽</p>
+        <p class="tg-stat__meta"><span class="tg-badge tg-badge--secondary tg-stat__delta">7 счетов</span>срок в ближайшие 14 дней</p>
+      </div>
+      <div class="tg-card tg-stat">
+        <p class="tg-stat__label">Просрочено</p>
+        <p class="tg-stat__value">96 000 ₽</p>
+        <p class="tg-stat__meta"><span class="tg-badge tg-badge--destructive tg-stat__delta">−2 счёта</span>за неделю</p>
+      </div>
+    </section>
+
+    <section class="tg-col tg-gap-4" aria-labelledby="ws-invoices-title">
+      <h2 class="tg-header__title" id="ws-invoices-title">Последние счета</h2>
+      <div class="tg-tabs tg-tabs--underline" role="tablist" aria-label="Представление">
+        <button class="tg-tab" role="tab" id="ws-tab-table" aria-selected="true" aria-controls="ws-panel-table">Таблица</button>
+        <button class="tg-tab" role="tab" id="ws-tab-templates" aria-selected="false" aria-controls="ws-panel-templates" tabindex="-1">Шаблоны</button>
+      </div>
+
+      <div class="tg-col tg-gap-3" role="tabpanel" id="ws-panel-table" aria-labelledby="ws-tab-table">
+        <div class="tg-toolbar tg-toolbar--responsive">
+          <form role="search" class="tg-grow" aria-label="Поиск по счетам" id="ws-search-form">
+            <div class="tg-search">
+              <svg class="tg-icon tg-search__icon" viewBox="0 0 24 24" aria-hidden="true"><use href="../dist/icons/search.svg#search"></use></svg>
+              <input class="tg-search__input" id="ws-search" type="search" placeholder="Клиент или номер счёта…" aria-label="Клиент или номер счёта" autocomplete="off">
+              <button class="tg-icon-btn tg-search__clear" type="reset" aria-label="Очистить поиск"><svg class="tg-icon" viewBox="0 0 24 24" aria-hidden="true"><use href="../dist/icons/x.svg#x"></use></svg></button>
+            </div>
+          </form>
+        </div>
+
+        <div class="tg-bulk-bar" role="region" aria-label="Действия с выбранными счетами" id="ws-bulk" hidden>
+          <span role="status" id="ws-bulk-count">Выбрано 0</span>
+          <button class="tg-btn tg-btn--secondary tg-btn--sm" type="button">Скачать PDF</button>
+          <button class="tg-btn tg-btn--destructive tg-btn--sm" type="button">Удалить</button>
+          <button class="tg-btn tg-btn--ghost tg-btn--sm" type="button" id="ws-bulk-clear">Снять выбор</button>
+        </div>
+
+        <div class="tg-table-wrap" role="region" aria-labelledby="ws-table-caption" tabindex="0">
+          <table class="tg-table tg-table--stack tg-table--caption-bottom" id="ws-table">
+            <caption id="ws-table-caption">Счета за октябрь · данные примера</caption>
+            <thead>
+              <tr>
+                <th scope="col" class="tg-table__select"><input class="tg-check" type="checkbox" id="ws-select-all" aria-label="Выбрать все счета"></th>
+                <th scope="col">Клиент</th>
+                <th scope="col">Статус</th>
+                <th scope="col" aria-sort="none" data-sort="due"><button class="tg-table__sort" type="button">Срок<svg class="tg-icon" viewBox="0 0 24 24" aria-hidden="true"><use href="../dist/icons/arrow-down.svg#arrow-down"></use></svg></button></th>
+                <th scope="col" class="tg-table__num" aria-sort="descending" data-sort="amount"><button class="tg-table__sort" type="button">Сумма<svg class="tg-icon" viewBox="0 0 24 24" aria-hidden="true"><use href="../dist/icons/arrow-down.svg#arrow-down"></use></svg></button></th>
+                <th scope="col"><span class="tg-sr-only">Действия</span></th>
+              </tr>
+            </thead>
+            <tbody id="ws-rows">
+              <tr data-due="2026-11-02" data-amount="240000">
+                <td class="tg-table__select"><input class="tg-check" type="checkbox" aria-label="Выбрать счёт INV-1042, Лесная артель"></td>
+                <th scope="row" data-label="Клиент"><span class="tg-table__cell-main"><span class="tg-avatar" aria-hidden="true"><span class="tg-avatar__initials">ЛА</span></span><span><span>Лесная артель</span><span class="tg-table__cell-meta">INV-1042</span></span></span></th>
+                <td data-label="Статус"><span class="tg-badge tg-badge--secondary"><span class="tg-badge__dot" aria-hidden="true"></span>Отправлен</span></td>
+                <td data-label="Срок"><time datetime="2026-11-02">2 нояб.</time></td>
+                <td class="tg-table__num" data-label="Сумма">240 000 ₽</td>
+                <td><button class="tg-icon-btn tg-icon-btn--ghost" type="button" aria-label="Действия со счётом INV-1042" aria-haspopup="menu" aria-expanded="false" aria-controls="ws-row-menu" data-menu-trigger data-invoice="INV-1042"><svg class="tg-icon" viewBox="0 0 24 24" aria-hidden="true"><use href="../dist/icons/more-horizontal.svg#more-horizontal"></use></svg></button></td>
+              </tr>
+              <tr data-due="2026-10-20" data-amount="96000">
+                <td class="tg-table__select"><input class="tg-check" type="checkbox" aria-label="Выбрать счёт INV-1037, Студия Отражение"></td>
+                <th scope="row" data-label="Клиент"><span class="tg-table__cell-main"><span class="tg-avatar" aria-hidden="true"><span class="tg-avatar__initials">СО</span></span><span><span>Студия Отражение</span><span class="tg-table__cell-meta">INV-1037</span></span></span></th>
+                <td data-label="Статус"><span class="tg-badge tg-badge--destructive"><span class="tg-badge__dot" aria-hidden="true"></span>Просрочен</span></td>
+                <td data-label="Срок"><time datetime="2026-10-20">20 окт.</time></td>
+                <td class="tg-table__num" data-label="Сумма">96 000 ₽</td>
+                <td><button class="tg-icon-btn tg-icon-btn--ghost" type="button" aria-label="Действия со счётом INV-1037" aria-haspopup="menu" aria-expanded="false" aria-controls="ws-row-menu" data-menu-trigger data-invoice="INV-1037"><svg class="tg-icon" viewBox="0 0 24 24" aria-hidden="true"><use href="../dist/icons/more-horizontal.svg#more-horizontal"></use></svg></button></td>
+              </tr>
+              <tr data-due="2026-11-14" data-amount="178200">
+                <td class="tg-table__select"><input class="tg-check" type="checkbox" aria-label="Выбрать счёт INV-1045, Кофейня «Зерно»"></td>
+                <th scope="row" data-label="Клиент"><span class="tg-table__cell-main"><span class="tg-avatar" aria-hidden="true"><span class="tg-avatar__initials">КЗ</span></span><span><span>Кофейня «Зерно»</span><span class="tg-table__cell-meta">INV-1045</span></span></span></th>
+                <td data-label="Статус"><span class="tg-badge tg-badge--secondary"><span class="tg-badge__dot" aria-hidden="true"></span>Черновик</span></td>
+                <td data-label="Срок"><time datetime="2026-11-14">14 нояб.</time></td>
+                <td class="tg-table__num" data-label="Сумма">178 200 ₽</td>
+                <td><button class="tg-icon-btn tg-icon-btn--ghost" type="button" aria-label="Действия со счётом INV-1045" aria-haspopup="menu" aria-expanded="false" aria-controls="ws-row-menu" data-menu-trigger data-invoice="INV-1045"><svg class="tg-icon" viewBox="0 0 24 24" aria-hidden="true"><use href="../dist/icons/more-horizontal.svg#more-horizontal"></use></svg></button></td>
+              </tr>
+              <tr data-due="2026-10-12" data-amount="412000">
+                <td class="tg-table__select"><input class="tg-check" type="checkbox" aria-label="Выбрать счёт INV-1031, Мастерская Ковальского"></td>
+                <th scope="row" data-label="Клиент"><span class="tg-table__cell-main"><span class="tg-avatar" aria-hidden="true"><span class="tg-avatar__initials">МК</span></span><span><span>Мастерская Ковальского</span><span class="tg-table__cell-meta">INV-1031</span></span></span></th>
+                <td data-label="Статус"><span class="tg-badge tg-badge--primary"><span class="tg-badge__dot" aria-hidden="true"></span>Оплачен</span></td>
+                <td data-label="Срок"><time datetime="2026-10-12">12 окт.</time></td>
+                <td class="tg-table__num" data-label="Сумма">412 000 ₽</td>
+                <td><button class="tg-icon-btn tg-icon-btn--ghost" type="button" aria-label="Действия со счётом INV-1031" aria-haspopup="menu" aria-expanded="false" aria-controls="ws-row-menu" data-menu-trigger data-invoice="INV-1031"><svg class="tg-icon" viewBox="0 0 24 24" aria-hidden="true"><use href="../dist/icons/more-horizontal.svg#more-horizontal"></use></svg></button></td>
+              </tr>
+            </tbody>
+            <tfoot>
+              <tr><th scope="row" colspan="4">Итого</th><td class="tg-table__num" id="ws-total">926 200 ₽</td><td></td></tr>
+            </tfoot>
+          </table>
+        </div>
+        <p class="tg-sr-only" role="status" id="ws-table-status"></p>
+
+        <nav class="tg-pager" aria-label="Страницы счетов">
+          <a class="tg-pager__link" aria-disabled="true">Назад</a>
+          <a class="tg-pager__link" href="#ws-main" aria-current="page" aria-label="Страница 1">1</a>
+          <a class="tg-pager__link" href="#ws-main" aria-label="Страница 2">2</a>
+          <a class="tg-pager__link" href="#ws-main" aria-label="Страница 3">3</a>
+          <span class="tg-pager__ellipsis" aria-hidden="true">…</span>
+          <a class="tg-pager__link" href="#ws-main" aria-label="Страница 9">9</a>
+          <a class="tg-pager__link" href="#ws-main" rel="next">Вперёд</a>
+          <span class="tg-pager__info tg-hide-mobile">1–4 из 34</span>
+        </nav>
+      </div>
+
+      <div role="tabpanel" id="ws-panel-templates" aria-labelledby="ws-tab-templates" hidden>
+        <ul class="tg-grid tg-p-0 tg-mt-0 tg-mb-0" role="list">
+          <li class="tg-card tg-card--link">
+            <figure class="tg-card__media tg-mt-0 tg-mb-0"><img src="composition-media.svg" alt="" width="1200" height="800"></figure>
+            <div class="tg-card__body">
+              <h3 class="tg-header__title"><a class="tg-card__link" href="#ws-main">Ежемесячная поддержка</a></h3>
+              <p class="tg-text-muted">Фиксированная сумма, автоматическая отправка первого числа.</p>
+            </div>
+            <div class="tg-card__footer"><span class="tg-badge tg-badge--secondary">12 клиентов</span><span class="tg-text-sm tg-text-muted tg-ms-auto">Изменён вчера</span></div>
+          </li>
+          <li class="tg-card tg-card--link">
+            <figure class="tg-card__media tg-mt-0 tg-mb-0"><img src="composition-media.svg" alt="" width="1200" height="800"></figure>
+            <div class="tg-card__body">
+              <h3 class="tg-header__title"><a class="tg-card__link" href="#ws-main">Проект с предоплатой</a></h3>
+              <p class="tg-text-muted">Две части: 40% при старте и остаток после сдачи этапа.</p>
+            </div>
+            <div class="tg-card__footer"><span class="tg-badge tg-badge--secondary">3 клиента</span><span class="tg-text-sm tg-text-muted tg-ms-auto">Изменён 14 окт.</span></div>
+          </li>
+          <li class="tg-card tg-card--link">
+            <figure class="tg-card__media tg-mt-0 tg-mb-0"><img src="composition-media.svg" alt="" width="1200" height="800"></figure>
+            <div class="tg-card__body">
+              <h3 class="tg-header__title"><a class="tg-card__link" href="#ws-main">Почасовая работа с длинным названием шаблона для проверки переноса</a></h3>
+              <p class="tg-text-muted">Часы из трекера, ставка по договору.</p>
+            </div>
+            <div class="tg-card__footer"><span class="tg-badge tg-badge--secondary">Черновик</span></div>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <div class="tg-menu" id="ws-row-menu" popover role="menu" aria-label="Действия со счётом">
+      <button class="tg-menu__item" type="button" role="menuitem" data-action="open"><svg class="tg-icon" viewBox="0 0 24 24" aria-hidden="true"><use href="../dist/icons/eye.svg#eye"></use></svg>Открыть</button>
+      <button class="tg-menu__item" type="button" role="menuitem" data-action="duplicate"><svg class="tg-icon" viewBox="0 0 24 24" aria-hidden="true"><use href="../dist/icons/copy.svg#copy"></use></svg>Дублировать<kbd class="tg-menu__shortcut">Alt D</kbd></button>
+      <button class="tg-menu__item" type="button" role="menuitem" data-action="remind"><svg class="tg-icon" viewBox="0 0 24 24" aria-hidden="true"><use href="../dist/icons/bell.svg#bell"></use></svg>Напомнить клиенту</button>
+      <div class="tg-menu__separator" role="separator"></div>
+      <button class="tg-menu__item tg-menu__item--destructive" type="button" role="menuitem" data-action="delete"><svg class="tg-icon" viewBox="0 0 24 24" aria-hidden="true"><use href="../dist/icons/trash-2.svg#trash-2"></use></svg>Удалить</button>
+    </div>
+
+    <section class="tg-grid" aria-label="Клиент и помощник">
+      <form class="tg-card tg-col tg-gap-4" id="ws-client" aria-labelledby="ws-client-title" novalidate>
+        <div class="tg-row tg-justify-between tg-nowrap">
+          <h2 class="tg-header__title" id="ws-client-title">Новый клиент</h2>
+          <button class="tg-icon-btn tg-toggle" type="button" aria-pressed="false" aria-label="Добавить в избранные" id="ws-favorite"><svg class="tg-icon" viewBox="0 0 24 24" aria-hidden="true"><use href="../dist/icons/star.svg#star"></use></svg></button>
+        </div>
+        <div class="tg-field">
+          <label class="tg-label" for="ws-site">Сайт</label>
+          <div class="tg-input-group">
+            <span class="tg-input-group__addon" aria-hidden="true">https://</span>
+            <input class="tg-input-group__control" id="ws-site" name="site" inputmode="url" autocomplete="url" spellcheck="false" placeholder="severny.example">
+          </div>
+        </div>
+        <div class="tg-field">
+          <label class="tg-label" for="ws-phone">Телефон бухгалтерии</label>
+          <div class="tg-input-group">
+            <select class="tg-input-group__addon" aria-label="Код страны" name="country"><option>+7</option><option>+375</option><option>+49</option></select>
+            <input class="tg-input-group__control" id="ws-phone" name="phone" type="tel" inputmode="tel" autocomplete="tel-national" placeholder="900 123-45-67">
+          </div>
+        </div>
+        <div class="tg-field">
+          <label class="tg-label" for="ws-rate">Ставка по договору</label>
+          <div class="tg-input-group">
+            <input class="tg-input-group__control tg-num" id="ws-rate" name="rate" inputmode="decimal" value="3 500" aria-describedby="ws-rate-unit">
+            <span class="tg-input-group__addon" id="ws-rate-unit">₽ в час</span>
+          </div>
+        </div>
+        <div class="tg-field">
+          <label class="tg-label" for="ws-password">Пароль для кабинета клиента</label>
+          <div class="tg-input-group">
+            <input class="tg-input-group__control" id="ws-password" name="password" type="password" autocomplete="new-password" aria-describedby="ws-rules">
+            <button class="tg-icon-btn tg-icon-btn--ghost tg-input-group__action" type="button" aria-pressed="false" aria-label="Показать пароль" id="ws-reveal"><svg class="tg-icon" viewBox="0 0 24 24" aria-hidden="true"><use href="../dist/icons/eye.svg#eye"></use></svg></button>
+          </div>
+          <ul class="tg-requirements" id="ws-rules">
+            <li class="tg-requirements__item" data-met="false" data-rule="length">Не короче 10 символов</li>
+            <li class="tg-requirements__item" data-met="false" data-rule="digit">Хотя бы одна цифра</li>
+            <li class="tg-requirements__item" data-met="false" data-rule="case">Строчные и прописные буквы</li>
+          </ul>
+        </div>
+        <fieldset class="tg-fieldset tg-choice-group" aria-describedby="ws-notify-count">
+          <legend>Уведомления клиенту</legend>
+          <label class="tg-choice"><input class="tg-check" type="checkbox" id="ws-notify-all" aria-controls="ws-notify-1 ws-notify-2 ws-notify-3"><span>Все уведомления</span></label>
+          <div class="tg-choice-group tg-choice-group--nested">
+            <label class="tg-choice"><input class="tg-check" type="checkbox" id="ws-notify-1" data-notify checked><span>Новый счёт<span class="tg-choice__description">Письмо с PDF и ссылкой на оплату</span></span></label>
+            <label class="tg-choice"><input class="tg-check" type="checkbox" id="ws-notify-2" data-notify><span>Напоминание за 3 дня до срока</span></label>
+            <label class="tg-choice"><input class="tg-check" type="checkbox" id="ws-notify-3" data-notify><span>Подтверждение оплаты</span></label>
+          </div>
+          <p class="tg-help" id="ws-notify-count">Выбрано 1 из 3</p>
+        </fieldset>
+        <div class="tg-toolbar">
+          <button class="tg-btn tg-btn--ghost" type="reset">Очистить</button>
+          <button class="tg-btn tg-btn--primary" type="submit" id="ws-save">
+            <span class="tg-btn__states">
+              <span data-state="idle">Сохранить клиента</span>
+              <span data-state="busy"><span class="tg-spinner" aria-hidden="true"></span>Сохраняем…</span>
+              <span data-state="success"><svg class="tg-icon" viewBox="0 0 24 24" aria-hidden="true"><use href="../dist/icons/check.svg#check"></use></svg>Сохранено</span>
+            </span>
+          </button>
+        </div>
+        <p class="tg-sr-only" role="status" id="ws-save-status"></p>
+      </form>
+
+      <section class="tg-card tg-chat" id="ws-help" aria-labelledby="ws-chat-title">
+        <div class="tg-row tg-justify-between tg-nowrap">
+          <h2 class="tg-header__title" id="ws-chat-title">Помощник по счетам</h2>
+          <div class="tg-avatar-group" role="group" aria-label="В разговоре: вы, бухгалтер и ещё 2">
+            <span class="tg-avatar"><span class="tg-avatar__initials">ВЫ</span></span>
+            <span class="tg-avatar"><span class="tg-avatar__initials">ИБ</span></span>
+            <span class="tg-avatar tg-avatar-group__more">+2</span>
+          </div>
+        </div>
+        <div class="tg-chat__log" role="log" aria-live="polite" aria-relevant="additions" id="ws-log">
+          <article class="tg-message tg-message--user" aria-label="Вы">
+            <div class="tg-message__body"><p>Какие счета просрочены больше недели?</p></div>
+          </article>
+          <article class="tg-message tg-message--assistant" data-state="done" aria-label="Помощник">
+            <div class="tg-message__body">
+              <p>Один: <strong>INV-1037</strong> для «Студии Отражение», 96 000 ₽, срок истёк 20 октября.</p>
+              <p>Напоминание можно отправить из меню строки или командой:</p>
+              <pre><code translate="no">remind INV-1037 --tone=polite</code></pre>
+            </div>
+            <div class="tg-message__actions">
+              <button class="tg-icon-btn tg-icon-btn--ghost" type="button" aria-label="Скопировать ответ"><svg class="tg-icon" viewBox="0 0 24 24" aria-hidden="true"><use href="../dist/icons/copy.svg#copy"></use></svg></button>
+              <button class="tg-icon-btn tg-icon-btn--ghost tg-toggle" type="button" aria-pressed="false" aria-label="Полезный ответ"><svg class="tg-icon" viewBox="0 0 24 24" aria-hidden="true"><use href="../dist/icons/thumbs-up.svg#thumbs-up"></use></svg></button>
+            </div>
+          </article>
+        </div>
+        <p class="tg-sr-only" role="status" id="ws-chat-status"></p>
+        <form class="tg-composer__form" id="ws-chat-form">
+          <div class="tg-composer__input"><textarea class="tg-textarea tg-composer__textarea" id="ws-prompt" rows="1" placeholder="Спросите о счетах…" aria-label="Сообщение помощнику" enterkeyhint="send"></textarea></div>
+          <div class="tg-composer__toolbar">
+            <button class="tg-icon-btn tg-icon-btn--ghost" type="button" aria-label="Прикрепить файл"><svg class="tg-icon" viewBox="0 0 24 24" aria-hidden="true"><use href="../dist/icons/paperclip.svg#paperclip"></use></svg></button>
+            <span class="tg-text-sm tg-text-muted tg-hide-mobile">Enter — отправить, Shift+Enter — новая строка</span>
+            <button class="tg-icon-btn tg-icon-btn--primary tg-ms-auto" type="submit" id="ws-send" aria-label="Отправить"><svg class="tg-icon" viewBox="0 0 24 24" aria-hidden="true"><use href="../dist/icons/arrow-up.svg#arrow-up"></use></svg></button>
+          </div>
+        </form>
+      </section>
+    </section>
+
+    <section class="tg-col tg-gap-3 tg-mb-6" aria-labelledby="ws-faq-title">
+      <div class="tg-row tg-justify-between">
+        <h2 class="tg-header__title" id="ws-faq-title">Частые вопросы</h2>
+        <div class="tg-accordion__controls"><button class="tg-btn tg-btn--ghost tg-btn--sm" type="button" id="ws-expand" aria-controls="ws-faq">Развернуть всё</button></div>
+      </div>
+      <div class="tg-accordion" id="ws-faq">
+        <details class="tg-disclosure">
+          <summary class="tg-disclosure__trigger">Когда клиент получит счёт?<span class="tg-disclosure__meta">1 мин</span></summary>
+          <div class="tg-disclosure__content">Сразу после отправки. Если почта не подтверждена, счёт остаётся черновиком и ничего не уходит клиенту.</div>
+        </details>
+        <details class="tg-disclosure">
+          <summary class="tg-disclosure__trigger">Можно ли изменить отправленный счёт?<span class="tg-disclosure__meta">2 мин</span></summary>
+          <div class="tg-disclosure__content">Да, до оплаты. Клиент получит новую версию, старая ссылка перестанет работать.</div>
+        </details>
+        <details class="tg-disclosure">
+          <summary class="tg-disclosure__trigger">Как работают напоминания о сроке?</summary>
+          <div class="tg-disclosure__content">За три дня до срока и в день срока, если клиент включил такие уведомления в карточке.</div>
+        </details>
+      </div>
+    </section>
+  </main>
+</div>
+
+<dialog class="tg-modal tg-modal--side" id="ws-invoice" aria-labelledby="ws-invoice-title">
+  <div class="tg-modal__sheet">
+    <header class="tg-modal__header">
+      <div><h2 class="tg-header__title" id="ws-invoice-title">Счёт INV-1037</h2><p class="tg-header__subtitle">Студия Отражение</p></div>
+      <button class="tg-icon-btn tg-icon-btn--ghost" type="button" aria-label="Закрыть" data-close><svg class="tg-icon" viewBox="0 0 24 24" aria-hidden="true"><use href="../dist/icons/x.svg#x"></use></svg></button>
+    </header>
+    <div class="tg-modal__body tg-col tg-gap-4" tabindex="0" aria-label="Подробности счёта">
+      <div class="tg-notice tg-notice--destructive tg-notice--with-icon">
+        <svg class="tg-icon tg-notice__icon" viewBox="0 0 24 24" aria-hidden="true"><use href="../dist/icons/alert-circle.svg#alert-circle"></use></svg>
+        <div class="tg-notice__content"><strong class="tg-notice__title">Срок оплаты прошёл 7 дней назад</strong><p class="tg-mb-0">Отправьте напоминание или договоритесь о новом сроке.</p></div>
+      </div>
+      <dl class="tg-summary">
+        <div class="tg-summary__row"><dt>Сумма</dt><dd class="tg-num">96 000 ₽</dd></div>
+        <div class="tg-summary__row"><dt>Выставлен</dt><dd>6 октября 2026</dd></div>
+        <div class="tg-summary__row"><dt>Срок</dt><dd>20 октября 2026</dd></div>
+        <div class="tg-summary__row"><dt>Получатель</dt><dd>finance@otrazhenie.example</dd></div>
+      </dl>
+      <details class="tg-disclosure"><summary class="tg-disclosure__trigger">Позиции счёта</summary><div class="tg-disclosure__content">Фотосъёмка каталога — 60 000 ₽<br>Ретушь 40 кадров — 36 000 ₽</div></details>
+    </div>
+    <form method="dialog" class="tg-modal__footer">
+      <button class="tg-btn tg-btn--secondary" value="close">Закрыть</button>
+      <button class="tg-btn tg-btn--primary" value="remind">Напомнить клиенту</button>
+    </form>
+  </div>
+</dialog>
+</body>
+</html>
