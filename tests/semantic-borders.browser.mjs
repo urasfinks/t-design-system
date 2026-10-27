@@ -16,6 +16,7 @@ try {
   let checks = 0;
   for (const theme of ['light', 'dark', 'ios-dark']) {
     await page.evaluate(theme => { document.documentElement.dataset.theme = theme; }, theme);
+    await page.waitForTimeout(400); // controls transition their colours on theme change
     const report = await page.evaluate(() => {
       const visible = color => { const alpha = color.match(/[\d.]+(?=\)$)/); return !/rgba\(.*,\s*0\)$/.test(color) && !(color.startsWith('rgba') && alpha && Number(alpha[0]) === 0); };
       const outlined = el => {
@@ -47,6 +48,29 @@ try {
       checks += 3;
     }
     assert.ok(report.dataRows.every(cursor => cursor !== 'pointer'), `${theme}: data rows do not pretend to be clickable`);
+    // The action outline must read as stronger than the panel outline, or the rule is invisible.
+    const outlines = await page.evaluate(() => {
+      const canvas = document.createElement('canvas'); canvas.width = canvas.height = 1;
+      const ctx = canvas.getContext('2d', { willReadFrequently: true });
+      const rgba = color => { ctx.clearRect(0, 0, 1, 1); ctx.fillStyle = color; ctx.fillRect(0, 0, 1, 1); return [...ctx.getImageData(0, 0, 1, 1).data].map((v, i) => i === 3 ? v / 255 : v); };
+      const over = (fg, bg) => fg.slice(0, 3).map((v, i) => v * fg[3] + bg[i] * (1 - fg[3])).concat(1);
+      const lum = rgb => rgb.slice(0, 3).map(v => v / 255).map(v => v <= .04045 ? v / 12.92 : ((v + .055) / 1.055) ** 2.4).reduce((s, v, i) => s + v * [.2126, .7152, .0722][i], 0);
+      const ratio = el => {
+        let ground = [255, 255, 255, 1];
+        const chain = []; for (let node = el.parentElement; node; node = node.parentElement) chain.unshift(node);
+        for (const node of chain) ground = over(rgba(getComputedStyle(node).backgroundColor), ground);
+        const line = over(rgba(getComputedStyle(el).borderTopColor), ground);
+        const [a, b] = [lum(line), lum(ground)].sort((x, y) => y - x);
+        return (a + .05) / (b + .05);
+      };
+      const pick = selector => ratio(document.querySelector(selector));
+      return {
+        actions: ['#selection .tg-chip[aria-pressed="false"]', '#buttons .tg-btn--secondary', '#buttons .tg-icon-btn:not(.tg-icon-btn--ghost)', '#selection a.tg-badge', '#avatars button.tg-avatar[aria-checked="false"]'].map(s => [s, pick(s)]),
+        panels: ['#surfaces .tg-card', '#lists .tg-list', '#feedback .tg-notice'].map(s => [s, pick(s)]),
+      };
+    });
+    for (const [selector, value] of outlines.actions) { assert.ok(value >= 1.5, `${theme}: action outline ${selector} ${value.toFixed(2)}:1 ≥ 1.5`); checks++; }
+    for (const [selector, value] of outlines.panels) { assert.ok(value <= 1.35, `${theme}: panel outline ${selector} ${value.toFixed(2)}:1 stays quiet`); checks++; }
     assert.ok(report.staticBadges.length >= 5 && report.actionBadges.length >= 1 && report.chips.length >= 3 && report.actionAvatars.length >= 2 && report.linkRows.length >= 3);
   }
 

@@ -97,7 +97,7 @@
   // The outline marks an avatar the reader can act on (select, open a profile).
   // :where keeps the selected ring above this resting outline.
   :where(button, a[href]).tg-avatar {
-    border-color: var(--border-color);
+    border-color: var(--action-border-color);
     cursor: pointer;
   }
 
@@ -118,6 +118,7 @@
     font-size: var(--fs-xs);
     font-weight: var(--fw-regular);
     line-height: 1.25;
+    font-variant-numeric: tabular-nums;
     vertical-align: middle;
 
     &--primary {
@@ -140,7 +141,7 @@
 
 @layer tds.components {
   :is(button, a[href]).tg-badge {
-    border: var(--border);
+    border: var(--border-action);
     min-inline-size: var(--control-h);
     min-block-size: var(--control-h);
     font-size: var(--fs-sm);

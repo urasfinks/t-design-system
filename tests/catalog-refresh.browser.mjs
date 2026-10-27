@@ -32,6 +32,15 @@ try {
     el.children[0].children[1].tagName === 'P' && el.children[1].matches('code.class-tag')
   ));
   assert.ok(headings.length > 0 && headings.every(Boolean), 'all section headings share title, description and class tag structure');
+  assert.equal(await page.locator('h1, h2, h3, h4, h5, h6').first().evaluate(el => el.tagName), 'H1', 'the page title is the first heading; navigation groups are not headings');
+  assert.equal(await page.locator('.sidebar [role="group"][aria-labelledby]').count(), 6, 'navigation groups keep an accessible name');
+  const readingSizes = await page.locator('.section-heading p, .example-rule').evaluateAll(elements => [...new Set(elements.map(el => getComputedStyle(el).fontSize))]);
+  assert.deepEqual(readingSizes, ['16px'], 'running catalog text is 16px');
+  // Example forms are copied as reference markup, so they behave like real forms.
+  const fields = await page.locator('main :is(input, select, textarea)').evaluateAll(elements => elements.map(el => ({ id: el.id, name: el.name, type: el.type, autocomplete: el.getAttribute('autocomplete'), spellcheck: el.getAttribute('spellcheck') })));
+  assert.deepEqual(fields.filter(field => !field.name).map(field => field.id), [], 'every example field has a name');
+  assert.ok(fields.filter(field => field.type === 'email').every(field => field.autocomplete === 'email' && field.spellcheck === 'false'), 'email fields autocomplete and skip spellcheck');
+  assert.equal(await page.locator('main code').evaluateAll(codes => codes.filter(code => !code.closest('[translate="no"]')).length), 0, 'code tokens are excluded from machine translation');
   assert.equal(await page.locator('.example-meta').count(), 0, 'examples have no decorative metadata rows');
   const panelStructures = await page.locator('.example-panel').evaluateAll(panels => panels.map(panel =>
     [...panel.children].map(child => child.classList.contains('example-body') ? 'body' : child.classList.contains('example-rule') ? 'rule' : child.classList.contains('example-code') ? 'code' : child.tagName)

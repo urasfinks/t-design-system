@@ -5,6 +5,8 @@
   --catalog-gutter: clamp(1.5rem, 4vw, 4rem);
   --catalog-caption: .8125rem;
   --catalog-body: .875rem;
+  /* Running text the reader actually reads (section intros, example rules) is 16px. */
+  --catalog-text: 1rem;
 }
 html { scroll-behavior: smooth; scroll-padding-top: calc(var(--catalog-header) + var(--space-6)); }
 body { background: var(--background-panel); }
@@ -34,7 +36,7 @@ p { text-wrap: pretty; }
 .catalog-search-open { margin-block-end: var(--space-5); }
 .mobile-navigation .catalog-search-open { margin: 0; flex: 0 0 auto; }
 .nav-group + .nav-group { margin-block-start: var(--space-4); }
-.nav-group-label { margin: 0; padding: var(--space-2) var(--space-3) var(--space-1); color: var(--text-secondary); font-size: var(--catalog-caption); font-weight: 500; letter-spacing: .02em; }
+.nav-group-label { display: block; margin: 0; padding: var(--space-2) var(--space-3) var(--space-1); color: var(--text-secondary); font-size: var(--catalog-caption); font-weight: 500; letter-spacing: .02em; }
 .nav-link { display: flex; align-items: center; gap: var(--space-2); padding: var(--space-2) var(--space-3); min-height: 2.75rem; border-radius: var(--radius-xs); text-decoration: none; font-size: var(--catalog-body); color: var(--text-secondary); }
 .nav-link.is-active { color: var(--text-color); background: var(--surface-muted); font-weight: 600; }
 .sidebar-note { border-top: var(--border); margin-top: auto; padding: var(--space-6) var(--space-3) 0; font-size: var(--catalog-caption); line-height: 1.8; color: var(--text-secondary); }
@@ -92,7 +94,7 @@ h1 > span { color: var(--text-link); }
 .section-heading { display: flex; align-items: end; justify-content: space-between; flex-wrap: wrap; gap: var(--space-4); margin-bottom: var(--space-6); }
 .section-heading > div { min-width: 0; flex: 1 1 20rem; }
 .section-heading h2 { font-size: clamp(1.5rem, 2vw, 1.875rem); font-weight: 600; letter-spacing: -.025em; line-height: 1.25; margin: 0 0 var(--space-3); }
-.section-heading p { font-size: var(--catalog-body); color: var(--text-secondary); margin: 0; line-height: 1.6; max-width: 65ch; }
+.section-heading p { font-size: var(--catalog-text); color: var(--text-secondary); margin: 0; line-height: 1.6; max-width: 65ch; }
 .class-tag { font: var(--catalog-caption)/1.5 ui-monospace, monospace; overflow-wrap: anywhere; color: var(--text-secondary); } /* taste-skill-ignore: literal CSS class names */
 .accent-control { display: grid; gap: var(--space-2); font-size: var(--catalog-caption); color: var(--text-secondary); }
 .accent-control select { min-width: 9rem; }
@@ -109,7 +111,7 @@ h1 > span { color: var(--text-link); }
 .example-panel { background: var(--background-panel); border: var(--border); border-radius: var(--radius-lg); overflow: clip; margin-top: var(--space-4); }
 .example-body { padding: var(--space-6); background: var(--background-main); }
 /* Each example states the rule it demonstrates: when to use it and why it looks this way. */
-.example-rule { margin: 0; padding: var(--space-4) var(--space-6); border-top: var(--border); color: var(--text-secondary); font-size: var(--catalog-body); line-height: 1.6; text-wrap: pretty; }
+.example-rule { margin: 0; padding: var(--space-4) var(--space-6); border-top: var(--border); color: var(--text-secondary); font-size: var(--catalog-text); line-height: 1.6; text-wrap: pretty; padding-inline-end: max(var(--space-6), calc(100% - 72ch - var(--space-6))); }
 .example-rule code { font: .9em/1 ui-monospace, SFMono-Regular, Consolas, monospace; color: var(--text-color); overflow-wrap: anywhere; }
 .example-code { border-top: var(--border); }
 .example-code summary { min-height: 2.75rem; cursor: pointer; display: flex; align-items: center; justify-content: space-between; gap: var(--space-3); padding: var(--space-3) var(--space-6); font-size: var(--catalog-caption); color: var(--text-secondary); list-style: none; }
@@ -146,7 +148,7 @@ pre { max-width: 100%; overflow: auto; font: var(--catalog-caption)/1.7 ui-monos
 .glass-demo-stage .tg-badge { align-self: flex-start; }
 .loader-demo-stage { position: relative; isolation: isolate; min-block-size: 12rem; }
 .loader-demo-stage .tg-spinner { align-self: center; }
-@media (hover: hover) {
+@media (hover: hover) and (pointer: fine) {
   .nav-link:hover { color: var(--text-color); background: var(--surface-muted); }
   .quiet-link:hover { text-decoration: underline; text-underline-offset: .2em; }
   .example-code summary:hover { background: var(--surface-muted); color: var(--text-color); }
@@ -223,7 +225,8 @@ dialog.catalog-search {
   overflow: auto;
 }
 dialog.catalog-search[open] { animation: catalog-search-in var(--duration) var(--ease) both; }
-dialog.catalog-search.is-closing { animation: catalog-search-out var(--duration) var(--ease) both; pointer-events: none; }
+dialog.catalog-search.is-closing { animation: catalog-search-out var(--duration-fast) var(--ease) both; pointer-events: none; }
+dialog.catalog-search.is-instant[open] { animation: none; }
 dialog.catalog-search::backdrop { background: var(--overlay-bg); backdrop-filter: blur(3px); }
 .catalog-search__header { display: flex; flex-wrap: wrap; align-items: start; justify-content: space-between; gap: var(--space-3); margin-block-end: var(--space-4); }
 .catalog-search__header > div { min-inline-size: 0; flex: 1 1 12rem; }
@@ -247,7 +250,7 @@ dialog.catalog-search::backdrop { background: var(--overlay-bg); backdrop-filter
 }
 
 .icon-gallery { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 9rem), 1fr)); gap: var(--space-3); }
-.icon-swatch { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: var(--space-3); min-height: 7rem; padding: var(--space-4); border-radius: var(--radius); background: var(--surface-muted); }
+.icon-swatch { content-visibility: auto; contain-intrinsic-size: auto 7rem; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: var(--space-3); min-height: 7rem; padding: var(--space-4); border-radius: var(--radius); background: var(--surface-muted); }
 .icon-swatch code { font-size: var(--catalog-caption); color: var(--text-secondary); overflow-wrap: anywhere; }
 
 .palette-table-wrap { margin-block: var(--space-6); }

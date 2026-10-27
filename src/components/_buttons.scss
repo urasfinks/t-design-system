@@ -45,7 +45,7 @@
     padding-inline: var(--space-4);
     border-radius: var(--radius-control);
 
-    &--secondary { border: var(--border); }
+    &--secondary { border: var(--border-action); }
     &--ghost {
       --control-idle-bg: transparent;
       --control-hover-bg: transparent;
@@ -67,7 +67,7 @@
   .tg-icon-btn {
     min-inline-size: var(--control-h);
     padding-inline: var(--space-2);
-    border: var(--border);
+    border: var(--border-action);
     border-radius: var(--radius-control);
   }
   .tg-btn--pill, .tg-icon-btn--pill { border-radius: var(--radius-pill); }
@@ -96,7 +96,7 @@
   }
   .tg-chip {
     padding-inline: var(--space-3);
-    border: var(--border);
+    border: var(--border-action);
     border-radius: var(--radius-pill);
     font-size: var(--fs-sm);
     // A filter toggles with aria-pressed; a choice in a group may use role=checkbox.

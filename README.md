@@ -154,8 +154,8 @@ import 't-design-system/ui/js';
 | Ритм | `--space-1` … `--space-6`, `--space-8`, `--space-10`, `--space-12`, `--space-16` (4–64 px при 1rem = 16px) |
 | Геометрия | `--radius-xs`, `--radius-sm`, `--radius`, `--radius-lg`, `--radius-pill`, `--control-h`, `--icon-avatar` |
 | Детали | `--border-color`, `--shadow-soft`, `--shadow-elev`, `--field-bg`, `--field-bg-hover`, `--safe-area-bottom` |
-| Состояния | `--choice-border-color` (граница невыбранных checkbox/radio, ≥3:1), `--disabled-opacity` (единая прозрачность недоступных контролов) |
-| Движение | `--duration`, `--duration-fast`, `--ease` |
+| Состояния | `--choice-border-color` (граница невыбранных checkbox/radio, ≥3:1), `--action-border-color` и `--border-action` (рамка мелких действий, ≈1.7:1, заметнее рамки панелей), `--disabled-opacity` (единая прозрачность недоступных контролов) |
+| Движение | `--duration`, `--duration-fast`, `--ease`, `--duration-fade-in`, `--duration-fade-out` (появление и уход всплывающих слоёв; при reduced motion остаются 120 ms) |
 | Порядок | `--z-sticky`, `--z-overlay`, `--z-toast` |
 
 Цветовые переопределения задавайте на `:root`: производные токены вычисляются там же.

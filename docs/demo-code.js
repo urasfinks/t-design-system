@@ -7,6 +7,7 @@ export function initDemoCode({ root = document } = {}) {
     const summary = document.createElement('summary');
     summary.textContent = 'Посмотреть HTML';
     const pre = document.createElement('pre');
+    pre.translate = false;
     const code = document.createElement('code');
     // Capture the initial markup, before the user changes the demo state.
     code.textContent = example.innerHTML.trim();

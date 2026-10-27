@@ -50,6 +50,10 @@
     --duration-fast: 120ms;
     --duration: 180ms;
     --ease: cubic-bezier(.23, 1, .32, 1);
+    // Opacity of layers that appear and leave (toast, snackbar, dialog). Exit is faster than entry.
+    // Reduced motion keeps these short fades: they explain a change without moving anything.
+    --duration-fade-in: var(--duration);
+    --duration-fade-out: var(--duration-fast);
     --z-sticky: 20;
     --z-overlay: 100;
     --z-toast: 120;
@@ -122,6 +126,10 @@
     // Quiet resting controls; the stronger boundary is reserved for contrast preferences.
     --field-border-color: var(--border-color);
     --border-field: 1px solid var(--field-border-color);
+    // Small elements: an outline means "you can act on this". It must read as
+    // stronger than the 8% panel outline (about 1.7:1 against the stage).
+    --action-border-color: light-dark(rgba(0, 0, 0, .24), rgba(255, 255, 255, .24));
+    --border-action: 1px solid var(--action-border-color);
     --switch-track-color: var(--field-bg);
     --switch-border-color: transparent;
     --notice-danger-bg: var(--danger-soft);
@@ -136,6 +144,7 @@
     :root {
       --field-border-color: var(--control-border-color);
       --switch-border-color: var(--control-border-color);
+      --action-border-color: var(--control-border-color);
     }
   }
 }

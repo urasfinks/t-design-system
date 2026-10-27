@@ -38,7 +38,12 @@ The signature is the system itself: live components, clear examples, readable co
 - Motion uses the shared easing, 120 ms press feedback and 180 ms state changes.
   Avoid entrance choreography and scaling hidden content to zero. Animate
   `transform` and `opacity` only: the progress bar uses `scaleX()`, the switch
-  knob an inline-aware `translateX()`, fades use `--duration`/`--ease`.
+  knob an inline-aware `translateX()`, the press wave `scale()`, fades use
+  `--duration`/`--ease`. Press feedback finishes within 300 ms. Layers that
+  appear (toast, snackbar, dialog) enter on `--duration-fade-in` and leave faster
+  on `--duration-fade-out`. Hover needs `(hover: hover) and (pointer: fine)`.
+  Reduced motion removes travel and scale but keeps a 120 ms fade on appearing
+  layers. Keyboard commands (search on `/` or Cmd/Ctrl+K) open without animation.
 - Error notices use a quiet tinted surface, a small semantic icon and primary
   text, without a red outline. Descriptions retain a clear recovery step.
   The material demo has a flat neutral backdrop; no decorative blue gradient.
@@ -57,6 +62,11 @@ separates content from the page and is outside this rule.
 | List row | `div.tg-list-item` — data, no hover | `a.tg-list-item[href]`, `button.tg-list-item` — full-width target, hover, focus, trailing chevron |
 | Button | — | secondary and icon buttons are outlined; primary and destructive are filled; ghost relies on text colour and context |
 
+The action outline is its own token, `--action-border-color` (24% black or
+white, about 1.7:1 against the stage), so it reads as stronger than the 8% panel
+outline (about 1.2:1). Under `prefers-contrast: more` it becomes the control
+border. A test keeps actions at 1.5:1 or more and panels at 1.35:1 or less.
+
 A status is never made clickable by styling alone, and a filter is never styled
 as a status. A full-width link row contains no nested links or buttons. The
 selection state lives in ARIA (`aria-pressed`, `aria-checked`, `aria-current`),
@@ -72,6 +82,11 @@ Example blocks follow one order: `.example-panel > .example-body`, then
 The rule is one or two sentences of static text: when to use the component,
 what to use instead, and why it looks the way it does (for example, why a status
 has no outline). Every live `[data-example]` has a rule. Do not add metadata bars.
+Running text (section intros and example rules) is 16 px (`--catalog-text`);
+14 px is for navigation and metadata. Navigation group labels are not headings:
+each group is `role="group"` named by its label, so the page's `h1` is the
+first heading. Example forms carry `name`, `autocomplete` and, for e-mail,
+`spellcheck="false"`; code is marked `translate="no"`.
 Section headings use `.section-heading > div` containing `h2` and `p`, followed
 by `code.class-tag`. Place controls outside this heading structure.
 
@@ -150,7 +165,8 @@ secondary or destructive modifiers. In badge compositions, an outline signals
 interaction; use a semantic button/link for the actual action. The “Пространство”
 label uses the neutral secondary modifier; “Новый проект” uses the accent primary
 modifier. Both are borderless.
-Standalone base badges retain their outlined API for interactive use. Direct avatar
+The base badge is borderless too; only a badge that is a link or button
+(`a.tg-badge[href]`, `button.tg-badge`) gets an outline (see Outline semantics). Direct avatar
 badge children retain a surface-separation border and shadow for overlapping
 geometry. Quantity overlays use the secondary badge.
 `tg-avatar--outlined` keeps the filled initials circle and a single neutral outer

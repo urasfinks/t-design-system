@@ -90,7 +90,7 @@
     text-overflow: ellipsis;
     cursor: pointer;
 
-    @media (hover: hover) and (forced-colors: none) {
+    @media (hover: hover) and (pointer: fine) and (forced-colors: none) {
       &:where(:not(:disabled, [readonly], [aria-disabled='true'], [aria-disabled='true'] *, [inert], [inert] *)):hover {
         background-image: var(--select-arrow-hover);
       }

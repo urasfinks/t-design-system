@@ -36,7 +36,7 @@ try {
   await page.evaluate(() => { window.disposeRipple = initRipple(); });
   await page.locator('#light').click();
   assert.match(await page.locator('#light .tg-ripple__wave').evaluate(el => getComputedStyle(el).backgroundColor), /0, 0, 0/);
-  assert.deepEqual(await page.locator('#light > [aria-hidden="true"]').evaluateAll(nodes => nodes.map(node => getComputedStyle(node).animationDuration)), ['0.5s', '0.6s', '0.7s']);
+  assert.deepEqual(await page.locator('#light > [aria-hidden="true"]').evaluateAll(nodes => nodes.map(node => getComputedStyle(node).animationDuration)), ['0.3s', '0.3s', '0.3s'], 'press feedback stays within 300ms');
   await page.evaluate(() => { window.disposeRipple(); window.disposeRipple = initRipple(document.getElementById('scope')); });
   await page.locator('#host').click();
   assert.equal(await page.locator('.tg-ripple__wave').count(), 0);

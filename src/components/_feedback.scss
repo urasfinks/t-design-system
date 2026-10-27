@@ -159,13 +159,14 @@
     visibility: hidden;
     transform: translateY(.5rem);
     pointer-events: none;
-    transition: opacity var(--duration), transform var(--duration), visibility var(--duration);
+    transition: opacity var(--duration-fade-out) var(--ease), transform var(--duration-fast) var(--ease), visibility 0s linear var(--duration-fade-out);
 
     &--show {
       opacity: 1;
       visibility: visible;
       transform: none;
       pointer-events: auto;
+      transition: opacity var(--duration-fade-in) var(--ease), transform var(--duration) var(--ease), visibility 0s;
     }
   }
 
@@ -178,13 +179,14 @@
     visibility: hidden;
     opacity: 0;
     transform: translateY(-100%);
-    transition: opacity var(--duration), transform var(--duration), visibility var(--duration);
+    transition: opacity var(--duration-fade-out) var(--ease), transform var(--duration-fast) var(--ease), visibility 0s linear var(--duration-fade-out);
     pointer-events: none;
 
     &--show {
       visibility: visible;
       opacity: 1;
       transform: none;
+      transition: opacity var(--duration-fade-in) var(--ease), transform var(--duration) var(--ease), visibility 0s;
     }
 
     &__content {
@@ -204,6 +206,7 @@
     color: var(--text-color);
     box-shadow: var(--shadow-overlay);
     overflow: auto;
+    overscroll-behavior: contain;
 
     &::backdrop {
       background: var(--overlay-bg);
@@ -267,8 +270,13 @@
       animation: none;
     }
 
+    // No travel, but the dialog still fades in so its arrival is legible.
     dialog.tg-modal[open] {
-      animation: none;
+      animation: tg-fade-in var(--duration-fade-in) var(--ease);
     }
+  }
+
+  @keyframes tg-fade-in {
+    from { opacity: 0; }
   }
 }

@@ -2,9 +2,10 @@
 
 @layer tds.components {
   .tg-ripple {
-    --ripple-duration: 500ms;
-    --ring-duration: 600ms;
-    --wash-duration: 700ms;
+    // Press feedback answers within ~300ms; scale(.98) on :active carries the first 100ms.
+    --ripple-duration: 300ms;
+    --ring-duration: 300ms;
+    --wash-duration: 300ms;
     --ring-width: 1px;
     --ripple-color: rgb(255 255 255 / .25);
     position: relative;
@@ -34,9 +35,9 @@
     &__wave {
       border-radius: 50%;
       background: var(--ripple-color);
-      transform: translate(-50%, -50%);
-      inline-size: 0;
-      block-size: 0;
+      transform: translate(-50%, -50%) scale(0);
+      inline-size: var(--ripple-size, 0px);
+      block-size: var(--ripple-size, 0px);
       animation: tg-ripple-wave var(--ripple-duration) ease-out forwards;
     }
 
@@ -57,15 +58,14 @@
     }
   }
 
+  // Composited only: transform and opacity, never the wave's layout size.
   @keyframes tg-ripple-wave {
     from {
-      inline-size: 0;
-      block-size: 0;
+      transform: translate(-50%, -50%) scale(0);
       opacity: .6;
     }
     to {
-      inline-size: var(--ripple-size, 0px);
-      block-size: var(--ripple-size, 0px);
+      transform: translate(-50%, -50%) scale(1);
       opacity: 0;
     }
   }

@@ -71,9 +71,11 @@ export function initCatalogSearch({ root = document, navigate } = {}) {
     status.textContent = matches.length ? `Найдено разделов: ${matches.length}` : 'Ничего не найдено. Измените запрос.';
   }
 
-  function open() {
+  // Keyboard commands repeat often, so a keyboard-opened search appears without animation.
+  function open({ instant = false } = {}) {
     if (dialog.open) return;
     clearTimeout(closeTimer);
+    dialog.classList.toggle('is-instant', instant);
     restoreFocus = true;
     previousFocus = document.activeElement;
     dialog.classList.remove('is-closing');
@@ -102,7 +104,7 @@ export function initCatalogSearch({ root = document, navigate } = {}) {
     navigate(id, { focus: true });
   }
 
-  for (const opener of openers) opener.addEventListener('click', open);
+  for (const opener of openers) opener.addEventListener('click', event => open({ instant: event.detail === 0 }));
   root.querySelector('[data-catalog-search-close]').addEventListener('click', () => close());
   input.addEventListener('input', render);
   input.addEventListener('keydown', event => {
@@ -132,13 +134,13 @@ export function initCatalogSearch({ root = document, navigate } = {}) {
     }
     if (command) {
       event.preventDefault();
-      open();
+      open({ instant: true });
       return;
     }
     if (event.target instanceof Element && event.target.closest('input, textarea, select, [contenteditable="true"]')) return;
     if (event.key === '/' && !event.metaKey && !event.ctrlKey && !event.altKey) {
       event.preventDefault();
-      open();
+      open({ instant: true });
     }
   });
 

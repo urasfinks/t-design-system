@@ -10,6 +10,14 @@ export function initCatalogDemos({ root = document } = {}) {
     if (value === 'auto') delete documentRoot.dataset.theme;
     else documentRoot.dataset.theme = value;
     try { storage?.setItem('tds-theme', value); } catch { /* Theme still works without persistence. */ }
+    // Match the browser chrome to the chosen theme; auto falls back to the media-specific metas.
+    requestAnimationFrame(() => {
+      const colour = value === 'auto' ? null : getComputedStyle(root.body).backgroundColor;
+      for (const meta of root.querySelectorAll('meta[name="theme-color"]')) {
+        meta.dataset.initial ??= meta.content;
+        meta.content = colour ?? meta.dataset.initial;
+      }
+    });
   }
   applyTheme(themeSelect.value);
   themeSelect.addEventListener('change', () => applyTheme(themeSelect.value));

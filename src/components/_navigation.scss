@@ -56,7 +56,7 @@
       box-shadow: var(--shadow-control);
     }
 
-    @media (hover: hover) {
+    @media (hover: hover) and (pointer: fine) {
       &:where(:not(:disabled, [aria-disabled='true'], [aria-selected='true'], [disabled] *, [aria-disabled='true'] *, [inert], [inert] *)):hover {
         color: var(--text-color);
       }

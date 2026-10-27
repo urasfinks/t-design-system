@@ -11,6 +11,7 @@ $ghosts: ':is(.tg-btn--ghost, .tg-icon-btn--ghost, .tg-search__clear)';
     --control-hover-bg: var(--surface-muted);
   }
   #{$controls} {
+    touch-action: manipulation;
     transition: background-color var(--duration) var(--ease), color var(--duration) var(--ease),
       border-color var(--duration) var(--ease), transform var(--duration-fast) var(--ease),
       filter var(--duration-fast) var(--ease);
@@ -23,7 +24,7 @@ $ghosts: ':is(.tg-btn--ghost, .tg-icon-btn--ghost, .tg-search__clear)';
       filter: none;
     }
   }
-  @media (hover: hover) {
+  @media (hover: hover) and (pointer: fine) {
     #{$controls}#{$available}:hover {
       background-color: var(--control-hover-bg);
       filter: var(--control-hover-filter, brightness(var(--control-hover-brightness, .92)));
