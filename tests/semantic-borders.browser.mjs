@@ -102,6 +102,18 @@ try {
   await page.mouse.move(0, 0);
   await page.waitForTimeout(250);
   assert.notEqual(await chip.evaluate(el => getComputedStyle(el).backgroundColor), idle, 'pressed filter is filled');
+  // Avatars are pictures, not text: no I-beam cursor, initials cannot be selected.
+  const avatars = await page.locator('#avatars .tg-avatar, #surfaces .tg-avatar').evaluateAll(nodes => nodes.map(node => ({
+    tag: node.tagName, cursor: getComputedStyle(node).cursor,
+    select: getComputedStyle(node).userSelect, initials: node.querySelector('.tg-avatar__initials, .tg-avatar__clip') && getComputedStyle(node.querySelector('.tg-avatar__initials, .tg-avatar__clip')).cursor,
+  })));
+  assert.ok(avatars.length >= 5);
+  for (const avatar of avatars) {
+    assert.equal(avatar.select, 'none', `${avatar.tag} avatar text is not selectable`);
+    assert.equal(avatar.cursor, avatar.tag === 'BUTTON' ? 'pointer' : 'default', `${avatar.tag} avatar cursor`);
+    if (avatar.initials) assert.notEqual(avatar.initials, 'text', 'initials do not show a text cursor');
+    checks += 2;
+  }
   // Dismiss actions (close, cancel) are auxiliary: transparent, no outline, wherever they appear.
   for (const path of ['docs/', 'docs/compositions.html']) {
     const view = await browser.newPage({ viewport: { width: 1280, height: 900 } });

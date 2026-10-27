@@ -1025,6 +1025,9 @@
     border-radius: 50%;
     background: transparent;
     vertical-align: middle;
+    -webkit-user-select: none;
+    user-select: none;
+    cursor: default;
     transition: border-color var(--duration), transform var(--duration-fast);
   }
   .tg-avatar:where(:not(:disabled, [aria-disabled=true])):is(:active, [data-pressed=true]) {

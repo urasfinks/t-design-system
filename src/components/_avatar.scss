@@ -13,6 +13,10 @@
     border-radius: 50%;
     background: transparent;
     vertical-align: middle;
+    // An avatar is a picture, not text: no I-beam and no accidental selection of initials.
+    -webkit-user-select: none;
+    user-select: none;
+    cursor: default;
     transition: border-color var(--duration), transform var(--duration-fast);
 
     &:where(:not(:disabled, [aria-disabled='true'])):is(:active, [data-pressed='true']) {

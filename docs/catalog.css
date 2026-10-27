@@ -66,6 +66,9 @@ h1 > span { color: var(--text-link); }
 .preview-bottom > span { font-size: var(--catalog-caption); }
 .avatar-stack { display: flex; align-items: center; }
 .mini-avatar {
+  -webkit-user-select: none;
+  user-select: none;
+  cursor: default;
   display: inline-grid;
   place-items: center;
   flex: 0 0 auto;

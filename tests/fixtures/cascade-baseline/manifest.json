@@ -1,9 +1,9 @@
 {
-  "sourceCommit": "c34bf56+audit-fixes",
-  "description": "Reviewed visual reference after the audit fixes, 2026-10-27",
+  "sourceCommit": "2658402+avatar-cursor",
+  "description": "Reviewed visual reference after the avatar cursor fix, 2026-10-27",
   "files": {
-    "t-design-system.css": "67fb7172fcf61ac62a0f399c75151b16f91b1adbb285da41981507397b45e4f3",
-    "catalog.css": "7e1f0af5e41a69fa432a24f56d06ad8602e02a8f22926e525936694205eeb65e"
+    "t-design-system.css": "c0d3da7d0fefdc90ae5afec24046e210e594e85a8fbe0caab5380a9b9a524a43",
+    "catalog.css": "dec34bb972e644fbfd70ac216a446d88565a6e1c8f1c44bf39ab35125332dcef"
   },
   "catalogHTMLSHA256": "814dd7ffbbf22a48a82db603d6627ab9a8f6c1065c2b3a4959fa95212b7417d8"
 }
