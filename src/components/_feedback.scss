@@ -69,7 +69,6 @@
     &::-webkit-progress-value {
       background: var(--progress-color);
       border-radius: inherit;
-      transition: width var(--progress-duration);
     }
 
     &::-moz-progress-bar {
@@ -79,11 +78,17 @@
 
     &__bar {
       display: block;
-      inline-size: clamp(0%, var(--progress, 0%), 100%);
+      inline-size: 100%;
       block-size: 100%;
       background: var(--progress-color);
       border-radius: inherit;
-      transition: inline-size var(--progress-duration);
+      transform: scaleX(clamp(0%, var(--progress, 0%), 100%));
+      transform-origin: left center;
+      transition: transform var(--progress-duration);
+    }
+
+    &:dir(rtl) &__bar {
+      transform-origin: right center;
     }
 
     &--striped {

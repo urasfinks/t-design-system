@@ -48,7 +48,7 @@
 
 @layer tds.components {
   :is(.tg-btn, .tg-icon-btn, .tg-chip, .tg-switch, .tg-tab, .tg-tabbar__item, .tg-avatar, .tg-dot):is(:disabled, [aria-disabled='true']) {
-    opacity: .45;
+    opacity: var(--disabled-opacity);
     cursor: not-allowed;
     transform: none;
   }

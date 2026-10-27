@@ -22,15 +22,23 @@ The signature is the system itself: live components, clear examples, readable co
 - Field borders are quiet at rest. Switches use their own filled track without
   an idle outline. Focus and invalid states remain distinct. Under
   `prefers-contrast: more`, field and switch boundaries use the stronger
-  control-border role. The quiet default does not claim universal WCAG AA
-  boundary contrast for empty custom controls.
+  control-border role. Unchecked checkbox and radio controls are the exception:
+  they use `--choice-border-color` with at least 3:1 contrast against the
+  adjacent surface, so an empty choice is visible before interaction. Search
+  placeholders use `--text-secondary` like every other field.
+- Disabled controls share one `--disabled-opacity` token. Disabled text is exempt
+  from WCAG contrast, but the reason for unavailability stays readable nearby.
+- Numbers that are compared (amounts, quantities, totals) use `.tg-num` or
+  `.tg-table__num`: tabular numerals aligned to the inline end.
 - Flat cards use a border, not a shadow. Shadows distinguish selected segmented
   controls and floating overlays. Glass is an opt-in material demonstrated in
   the effects catalog, not the default surface.
 - Touch controls keep a minimum 44 px target; long labels wrap. Hover requires
   hover capability. Keyboard focus stays visible; reduced motion removes movement.
 - Motion uses the shared easing, 120 ms press feedback and 180 ms state changes.
-  Avoid entrance choreography and scaling hidden content to zero.
+  Avoid entrance choreography and scaling hidden content to zero. Animate
+  `transform` and `opacity` only: the progress bar uses `scaleX()`, the switch
+  knob an inline-aware `translateX()`, fades use `--duration`/`--ease`.
 - Error notices use a quiet tinted surface, a small semantic icon and primary
   text, without a red outline. Descriptions retain a clear recovery step.
   The material demo has a flat neutral backdrop; no decorative blue gradient.
@@ -49,6 +57,18 @@ Use the library's tokens and component sizes. No miniature mock interface or
 8–11 px labels. Remove decorative section numbers and eyebrows. Keep the sidebar
 on desktop, with an explicit section menu on small screens. Use consistent SVG
 icons. Preserve live demos, HTML disclosure, theme/accent selectors and downloads.
+
+Navigation is grouped into “Основа”, “Компоненты” and “Примеры и интеграция”
+(an `optgroup` per group in the mobile select). Section titles describe the task,
+not a slogan. Global search is a native `dialog` opened by the “Поиск” button,
+`/` or Cmd/Ctrl+K (never while typing in a field). It matches section titles,
+`.tg-*` classes and `--*` tokens from explicit `data-search-*` metadata; arrows
+move, Enter navigates, Escape closes and focus returns to the opener. Search is
+a progressive enhancement: without JavaScript every section and example stays
+reachable. Catalog behavior lives in native ES modules: `catalog.js` only
+composes `catalog-navigation.js`, `catalog-search.js`, `catalog-demos.js` and
+`demo-code.js`. Examples remain static HTML. Deep links stay aligned while the
+icon gallery loads, and stop correcting as soon as the reader scrolls.
 
 ## References and interpretation
 

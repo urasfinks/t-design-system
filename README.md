@@ -154,6 +154,7 @@ import 't-design-system/ui/js';
 | Ритм | `--space-1` … `--space-6`, `--space-8`, `--space-10`, `--space-12`, `--space-16` (4–64 px при 1rem = 16px) |
 | Геометрия | `--radius-xs`, `--radius-sm`, `--radius`, `--radius-lg`, `--radius-pill`, `--control-h`, `--icon-avatar` |
 | Детали | `--border-color`, `--shadow-soft`, `--shadow-elev`, `--field-bg`, `--field-bg-hover`, `--safe-area-bottom` |
+| Состояния | `--choice-border-color` (граница невыбранных checkbox/radio, ≥3:1), `--disabled-opacity` (единая прозрачность недоступных контролов) |
 | Движение | `--duration`, `--duration-fast`, `--ease` |
 | Порядок | `--z-sticky`, `--z-overlay`, `--z-toast` |
 
@@ -372,7 +373,8 @@ SDK-параметры для hint, section и других вторичных �
 | Кнопка | `.tg-btn`, `--primary`, `--secondary`, `--ghost`, `--destructive`, `--sm`, `--lg` | `disabled`, `aria-busy`, `data-pressed` |
 | Иконкокнопка | `.tg-icon-btn`, `--primary` | Нужен `aria-label` |
 | Поля | `.tg-field`, `.tg-label`, `.tg-input`, `.tg-select`, `.tg-textarea`, `.tg-help` | `disabled`, `readonly`, `aria-invalid`, `.tg-help--error` |
-| Нативный выбор | `.tg-choice`, `.tg-check`, `.tg-radio` | Нативные `checked`, `disabled` |
+| Нативный выбор | `.tg-choice`, `.tg-check`, `.tg-radio` | Нативные `checked`, `disabled`; граница без выбора — `--choice-border-color` |
+| Числа | `.tg-num`, `.tg-table__num` (на `th`/`td`) | Табличные цифры и выравнивание к концу строки для сумм и количеств |
 | Переключатель | `.tg-switch` + `.tg-switch__knob` | `role="switch"`, `aria-checked` |
 | Чип | `.tg-chip` | Для переключения: `role="checkbox"`, `aria-checked` |
 | Карточка | `.tg-card`, `.tg-header`, `.tg-header-secondary` | Заголовки `.tg-header__title`, `__subtitle` |
@@ -551,13 +553,20 @@ npm pack                         # локальный архив для уста
 в `artifacts/`. Требуется Node.js 20+.
 Сам фреймворк не зависит от Node.js; он нужен только для сборки и разработки.
 
-Состояние на 23 октября 2026: `npm test` проходит (14 тестов). Полный запуск
-`npm run test:browser` останавливается в `tests/browser.mjs` на сравнении Desktop
-Dark с исходной палитрой: `tests/fixtures/source-palettes.json` содержит старый
-фон `#18222d`, а тема использует `#151e27`. Эта фикстура описывает исходное
-приложение; ожидания теста требуют согласования с текущим контрактом темы.
-Остальные браузерные наборы при таком запуске не выполняются: скрипт завершает
-работу после первой ошибки.
+Визуальный эталон `tests/fixtures/cascade-baseline/` обновляется только после
+ручного просмотра скриншотов: скопируйте `dist/t-design-system.css` и
+`docs/catalog.css` в фикстуру и пересчитайте SHA-256 в `manifest.json`
+(включая `catalogHTMLSHA256`). Скрипт браузерных проверок останавливается на
+первой ошибке.
+
+### Каталог
+
+Разделы сгруппированы: «Основа», «Компоненты», «Примеры и интеграция». Поиск
+открывается кнопкой «Поиск», клавишей `/` или Cmd/Ctrl+K и ищет по названиям
+разделов, классам `.tg-*` и токенам `--*`. Стрелки выбирают результат, Enter
+переходит, Escape закрывает. Без JavaScript все разделы и примеры остаются
+доступны. Логика витрины разделена на ES-модули: `catalog.js` (точка сборки),
+`catalog-navigation.js`, `catalog-search.js`, `catalog-demos.js`, `demo-code.js`.
 
 Checkbox и radio используют `--choice-size: 1.5rem` (24px при базовом шрифте
 16px). Дорожка switch на `.125rem` выше (26px) для визуального выравнивания.

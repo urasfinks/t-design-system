@@ -142,11 +142,11 @@
   }
 
   .tg-fade-in {
-    animation: tg-effect-in 350ms ease both;
+    animation: tg-effect-in var(--duration) var(--ease) both;
   }
 
   .tg-fade-out {
-    animation: tg-effect-out 350ms ease both;
+    animation: tg-effect-out var(--duration) var(--ease) both;
   }
 
   @keyframes tg-effect-in {

@@ -1,6 +1,7 @@
 import assert from 'node:assert/strict';
 import { readFile } from 'node:fs/promises';
 import { chromium, webkit } from 'playwright';
+import { measureContrast } from './helpers/contrast.mjs';
 
 const browser = await (process.argv.includes('--webkit') ? webkit : chromium).launch();
 try {
@@ -63,11 +64,28 @@ try {
       inputBackground: getComputedStyle(document.querySelector('.tg-input')).backgroundColor,
     }));
     assert.equal(idle.appearance, 'none', `${theme}: radio has a themed idle surface`);
-    assert.equal(idle.border, 'rgba(0, 0, 0, 0)');
     assert.equal(idle.background, idle.inputBackground, `${theme}: idle radio matches input background`);
     const checkbox = page.getByLabel('Запомнить', { exact: true });
     await checkbox.uncheck();
-    assert.equal(await checkbox.evaluate(el => getComputedStyle(el).borderTopColor), 'rgba(0, 0, 0, 0)');
+    for (const [name, control] of [['radio', radio], ['checkbox', checkbox]]) {
+      const border = await control.evaluate(el => {
+        const probe = document.createElement('span');
+        probe.style.color = 'var(--choice-border-color)'; document.body.append(probe);
+        const expected = getComputedStyle(probe).color; probe.remove();
+        const style = getComputedStyle(el);
+        const target = document.createElement('span'); target.id = 'choice-border-probe';
+        target.style.color = style.borderTopColor; target.style.backgroundColor = style.backgroundColor;
+        el.parentElement.append(target);
+        return { actual: style.borderTopColor, expected };
+      });
+      assert.equal(border.actual, border.expected, `${theme}: unchecked ${name} uses the semantic visible border`);
+      const inside = await page.evaluate(measureContrast, { selector: '#choice-border-probe' });
+      assert.ok(inside.ratio >= 3, `${theme}: unchecked ${name} border contrast against fill was ${inside.ratio}`);
+      await page.locator('#choice-border-probe').evaluate(el => el.style.backgroundColor = 'transparent');
+      const outside = await page.evaluate(measureContrast, { selector: '#choice-border-probe' });
+      assert.ok(outside.ratio >= 3, `${theme}: unchecked ${name} border contrast against outer surface was ${outside.ratio}`);
+      await page.locator('#choice-border-probe').evaluate(el => el.remove());
+    }
     await checkbox.check();
     assert.ok(await checkbox.isChecked());
     assert.equal(await checkbox.evaluate(el => getComputedStyle(el, '::before').content), '""');

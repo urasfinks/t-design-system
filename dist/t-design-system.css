@@ -115,6 +115,8 @@
     --action-hover-bg: var(--accent-strong);
     --action-danger-bg: var(--danger-strong);
     --control-border-color: light-dark(rgba(0, 0, 0, .5), rgba(255, 255, 255, .5));
+    --choice-border-color: var(--control-border-color);
+    --disabled-opacity: .5;
     --border-control: 1px solid var(--control-border-color);
     --field-border-color: var(--border-color);
     --border-field: 1px solid var(--field-border-color);
@@ -344,7 +346,7 @@
 }
 @layer tds.components {
   :is(.tg-btn, .tg-icon-btn, .tg-chip, .tg-switch, .tg-tab, .tg-tabbar__item, .tg-avatar, .tg-dot):is(:disabled, [aria-disabled=true]) {
-    opacity: 0.45;
+    opacity: var(--disabled-opacity);
     cursor: not-allowed;
     transform: none;
   }
@@ -542,7 +544,7 @@
     box-shadow: 0 0 0 0.25rem var(--danger-soft);
   }
   :is(.tg-input, .tg-select, .tg-textarea):disabled {
-    opacity: 0.5;
+    opacity: var(--disabled-opacity);
     cursor: not-allowed;
   }
   .tg-textarea {
@@ -599,14 +601,14 @@
     cursor: pointer;
   }
   .tg-check:not(:checked), .tg-radio:not(:checked) {
-    border-color: transparent;
+    border-color: var(--choice-border-color);
   }
   .tg-check:checked, .tg-check.tg-check:indeterminate, .tg-radio:checked, .tg-radio.tg-check:indeterminate {
     background-color: var(--accent-main);
     border-color: var(--accent-main);
   }
   .tg-check:disabled, .tg-radio:disabled {
-    opacity: 0.5;
+    opacity: var(--disabled-opacity);
     cursor: not-allowed;
   }
   .tg-check {
@@ -687,23 +689,27 @@
     border-color: var(--switch-border-color);
   }
   .tg-switch__knob {
+    --switch-shift: 0px;
     position: absolute;
     inset-inline-start: 0.125rem;
     inset-block-start: 50%;
-    transform: translateY(-50%);
+    transform: translate(var(--switch-shift), -50%);
     inline-size: calc(var(--h) - 0.25rem);
     block-size: calc(var(--h) - 0.25rem);
     border-radius: 50%;
     background: var(--switch-knob-color);
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
-    transition: inset-inline-start var(--duration) var(--ease);
+    transition: transform var(--duration) var(--ease);
   }
   .tg-switch:is([aria-checked=true], .tg-switch--on)::before {
     background: var(--accent-main);
     border-color: var(--switch-border-color);
   }
   .tg-switch:is([aria-checked=true], .tg-switch--on) .tg-switch__knob {
-    inset-inline-start: calc(var(--w) - var(--h) + 0.125rem);
+    --switch-shift: calc(var(--w) - var(--h));
+  }
+  .tg-switch:dir(rtl):is([aria-checked=true], .tg-switch--on) .tg-switch__knob {
+    --switch-shift: calc(var(--h) - var(--w));
   }
   .tg-component-size {
     inline-size: 3.25rem;
@@ -739,7 +745,7 @@
     outline-offset: 3px;
   }
   .tg-upload--disabled, .tg-upload[aria-disabled=true] {
-    opacity: 0.45;
+    opacity: var(--disabled-opacity);
     cursor: not-allowed;
   }
   .tg-upload__icon {
@@ -1169,7 +1175,6 @@
   .tg-progress::-webkit-progress-value {
     background: var(--progress-color);
     border-radius: inherit;
-    transition: width var(--progress-duration);
   }
   .tg-progress::-moz-progress-bar {
     background: var(--progress-color);
@@ -1177,11 +1182,16 @@
   }
   .tg-progress__bar {
     display: block;
-    inline-size: clamp(0%, var(--progress, 0%), 100%);
+    inline-size: 100%;
     block-size: 100%;
     background: var(--progress-color);
     border-radius: inherit;
-    transition: inline-size var(--progress-duration);
+    transform: scaleX(clamp(0%, var(--progress, 0%), 100%));
+    transform-origin: left center;
+    transition: transform var(--progress-duration);
+  }
+  .tg-progress:dir(rtl) .tg-progress__bar {
+    transform-origin: right center;
   }
   .tg-progress--striped .tg-progress__bar {
     position: relative;
@@ -1461,10 +1471,10 @@
     position: absolute;
   }
   .tg-fade-in {
-    animation: tg-effect-in 350ms ease both;
+    animation: tg-effect-in var(--duration) var(--ease) both;
   }
   .tg-fade-out {
-    animation: tg-effect-out 350ms ease both;
+    animation: tg-effect-out var(--duration) var(--ease) both;
   }
   @keyframes tg-effect-in {
     from {
@@ -2093,6 +2103,10 @@
     box-shadow: none;
     background: transparent;
   }
+  .tg-search__input::placeholder {
+    color: var(--text-secondary);
+    opacity: 1;
+  }
   .tg-search__input::-webkit-search-cancel-button {
     appearance: none;
   }
@@ -2210,6 +2224,10 @@
   .tg-table tfoot :is(th, td) {
     border-block-start: var(--border);
     font-weight: var(--fw-semibold);
+  }
+  .tg-num, .tg-table .tg-table__num {
+    font-variant-numeric: tabular-nums;
+    text-align: end;
   }
   .tg-breadcrumbs {
     min-inline-size: 0;

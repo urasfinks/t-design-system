@@ -85,5 +85,44 @@ try {
     assert.equal(await page.locator('#custom').evaluate(el => getComputedStyle(el).borderTopLeftRadius), '7px');
     assert.equal(await page.locator('#utility').evaluate(el => getComputedStyle(el).paddingLeft), '3px');
   }
+  await page.emulateMedia({ reducedMotion: 'no-preference' });
+  await page.setContent(`<style>${css}</style>
+    <table class="tg-table"><thead><tr><th>Название</th><th class="tg-table__num">Сумма</th></tr></thead><tbody><tr><td>Обычная</td><td class="tg-table__num">1 234,50</td></tr></tbody></table>
+    <span class="tg-num">9 999</span>
+    <div class="tg-progress" id="numeric-progress" style="width:200px"><span class="tg-progress__bar" style="--progress:50%"></span></div>
+    <button class="tg-switch" id="numeric-switch" role="switch" aria-checked="false"><span class="tg-switch__knob"></span></button>
+    <div class="tg-fade-in"></div><div class="tg-fade-out"></div>`);
+  const numeric = await page.evaluate(() => [...document.querySelectorAll('.tg-num, .tg-table__num')].map(el => ({
+    numeric: getComputedStyle(el).fontVariantNumeric, align: getComputedStyle(el).textAlign,
+  })));
+  assert.ok(numeric.length === 3 && numeric.every(value => value.numeric === 'tabular-nums' && value.align === 'end'), JSON.stringify(numeric));
+  assert.equal(await page.locator('td').first().evaluate(el => getComputedStyle(el).textAlign), 'start');
+  for (const direction of ['ltr', 'rtl']) {
+    await page.locator('#numeric-progress').evaluate((el, direction) => el.dir = direction, direction);
+    const progress = await page.locator('#numeric-progress').evaluate(el => {
+      const bar = el.querySelector('.tg-progress__bar');
+      return { transition: getComputedStyle(bar).transitionProperty, track: el.getBoundingClientRect().width,
+        fill: bar.getBoundingClientRect().width, origin: parseFloat(getComputedStyle(bar).transformOrigin) };
+    });
+    assert.equal(progress.transition.includes('transform'), true, JSON.stringify(progress));
+    assert.equal(progress.transition.includes('inline-size'), false, JSON.stringify(progress));
+    assert.equal(progress.fill, progress.track / 2);
+    assert.equal(progress.origin, direction === 'rtl' ? progress.track : 0);
+  }
+  const knob = page.locator('#numeric-switch .tg-switch__knob');
+  const idleTransform = await knob.evaluate(el => getComputedStyle(el).transform);
+  await page.locator('#numeric-switch').evaluate(el => el.setAttribute('aria-checked', 'true'));
+  await page.waitForFunction(idle => getComputedStyle(document.querySelector('#numeric-switch .tg-switch__knob')).transform !== idle, idleTransform);
+  const checkedTransform = await knob.evaluate(el => getComputedStyle(el).transform);
+  assert.notEqual(checkedTransform, idleTransform);
+  assert.equal(await knob.evaluate(el => getComputedStyle(el).transitionProperty.includes('inset-inline-start')), false);
+  for (const selector of ['.tg-fade-in', '.tg-fade-out']) {
+    const animation = await page.locator(selector).evaluate(el => ({ duration: getComputedStyle(el).animationDuration, easing: getComputedStyle(el).animationTimingFunction }));
+    assert.equal(animation.duration, '0.18s');
+    assert.equal(animation.easing, 'cubic-bezier(0.23, 1, 0.32, 1)');
+  }
+  await page.emulateMedia({ reducedMotion: 'reduce' });
+  assert.equal(await knob.evaluate(el => getComputedStyle(el).transitionDuration), '0s');
+  assert.ok(await page.locator('.tg-fade-in').evaluate(el => parseFloat(getComputedStyle(el).animationDuration) <= .001));
   console.log('Patterns: 320/1440px, four themes, native details keyboard, search/reset, contained table, long content and reduced motion passed.');
 } finally { await browser.close(); }

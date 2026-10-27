@@ -21,6 +21,10 @@ try {
     <p class="tg-help tg-help--error">Проверьте адрес</p>
     <a class="tg-link" href="#test">Открыть настройки</a>
     <input class="tg-input" placeholder="Ваше имя" aria-label="Имя">
+    <div class="tg-search" id="disabled-search"><input class="tg-search__input" id="search-input" type="search" placeholder="Найти компонент" aria-label="Поиск"></div>
+    <input class="tg-input" id="disabled-input" disabled aria-label="Недоступное поле">
+    <input class="tg-check" id="disabled-check" type="checkbox" disabled aria-label="Недоступный выбор">
+    <label class="tg-upload tg-upload--disabled" id="disabled-upload">Недоступная загрузка</label>
     <textarea class="tg-textarea" aria-label="О себе"></textarea>
     <select class="tg-select" id="select" aria-label="Роль"><option>Дизайнер с длинным названием роли</option><option>Разработчик</option></select>
     <select class="tg-select" id="multiple-select" multiple aria-label="Несколько ролей"><option>Дизайнер</option></select>
@@ -74,12 +78,27 @@ try {
     }
     const placeholder = await page.evaluate(measureContrast, { selector: '.tg-input', pseudo: '::placeholder' });
     check(`${theme}: placeholder contrast ≥ 4.5`, placeholder.ratio >= 4.5, placeholder);
+    const searchPlaceholder = await page.evaluate(measureContrast, { selector: '#search-input', pseudo: '::placeholder' });
+    check(`${theme}: search placeholder contrast ≥ 4.5`, searchPlaceholder.ratio >= 4.5, searchPlaceholder);
+    const disabledOpacity = await page.evaluate(() => {
+      const probe = document.createElement('span');
+      probe.style.opacity = 'var(--disabled-opacity)'; document.body.append(probe);
+      const expected = getComputedStyle(probe).opacity; probe.remove();
+      const search = document.querySelector('#search-input'); search.disabled = true;
+      const selectors = ['.tg-btn[disabled]', '#disabled-input', '#disabled-check', '#disabled-search', '#disabled-upload'];
+      const values = Object.fromEntries(selectors.map(selector => [selector, getComputedStyle(document.querySelector(selector)).opacity]));
+      search.disabled = false;
+      return { expected, values };
+    });
+    for (const [selector, value] of Object.entries(disabledOpacity.values)) {
+      check(`${theme}: ${selector} uses shared disabled opacity`, value === disabledOpacity.expected && value !== '1', disabledOpacity);
+    }
     const normalFieldBorder = await page.locator('.tg-textarea').evaluate(el => getComputedStyle(el).borderTopColor);
     check(`${theme}: idle switch has no contrasting outline`, await page.locator('.tg-switch').evaluate(el => getComputedStyle(el, '::before').borderTopColor === 'rgba(0, 0, 0, 0)'));
     await page.emulateMedia({ contrast: 'more' });
     const contrastFieldBorder = await page.locator('.tg-textarea').evaluate(el => getComputedStyle(el).borderTopColor);
     check(`${theme}: increased contrast strengthens field boundaries`, normalFieldBorder !== contrastFieldBorder, { normalFieldBorder, contrastFieldBorder });
-    for (const selector of ['.tg-input', '.tg-textarea']) {
+    for (const selector of ['.tg-input:not([disabled])', '.tg-textarea']) {
       await page.locator(selector).evaluate(el => {
         const style = getComputedStyle(el);
         const probe = document.createElement('span'); probe.id = 'border-probe';

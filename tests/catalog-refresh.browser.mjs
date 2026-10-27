@@ -43,6 +43,11 @@ try {
   assert.equal(await page.locator('iframe[src="bottom-panel.html"]').count(), 0);
   assert.equal(await page.locator('#orders-example').evaluate(el => getComputedStyle(el).position), 'static');
   assert.equal(await page.locator('#data .tg-table').count(), 1, 'catalog demonstrates actual data table');
+  assert.equal(await page.locator('#data thead .tg-table__num').count(), 2, 'numeric columns include quantity and sum');
+  assert.equal(await page.locator('#data tbody td.tg-table__num').count(), 4);
+  assert.equal(await page.locator('#data tfoot .tg-table__num').count(), 1);
+  assert.equal(await page.locator('#orders-example .tg-num').count(), 4, 'monetary list values use tabular numbers');
+  assert.equal(await page.locator('#orders-example .tg-grow').first().evaluate(el => getComputedStyle(el).textAlign), 'start', 'ordinary labels remain start-aligned');
   const rowEdges = await page.locator('#data tbody tr').last().locator('th, td').evaluateAll(cells => cells.map(el => getComputedStyle(el).borderBottomWidth));
   assert.equal(new Set(rowEdges).size, 1, 'last body row retains a complete separator before totals');
   assert.notEqual(rowEdges[0], '0px');

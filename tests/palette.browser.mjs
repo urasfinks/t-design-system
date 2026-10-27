@@ -48,6 +48,24 @@ try {
     for (const width of [320, 390, 1440]) {
       await page.setViewportSize({ width, height: 900 });
       assert.ok(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth), `${theme}: table overflow at ${width}px`);
+      assert.equal(await page.getByRole('table').count(), 1, `${theme}: native table semantics remain`);
+      assert.equal(await page.getByRole('row').count(), 5, `${theme}: header and palette rows remain accessible`);
+      const tokens = await page.locator('.palette-table code').evaluateAll(elements => elements.map(el => ({
+        text: el.textContent,
+        wrap: getComputedStyle(el).overflowWrap,
+        wordBreak: getComputedStyle(el).wordBreak,
+        fits: el.getBoundingClientRect().width <= el.parentElement.getBoundingClientRect().width + 1 && el.scrollWidth <= el.clientWidth + 1,
+      })));
+      assert.equal(new Set(tokens.map(token => token.text)).size, 12);
+      assert.ok(tokens.every(token => token.fits), `${theme}/${width}: token names fit their cells`);
+      if (width <= 390) {
+        assert.ok(tokens.every(token => token.wrap !== 'anywhere' && token.wordBreak !== 'break-all'), `${theme}/${width}: full tokens do not break into arbitrary fragments`);
+        assert.ok(await page.locator('.palette-table tbody tr').evaluateAll(rows => rows.every(row => getComputedStyle(row).display === 'grid')));
+        const zoom = await page.addStyleTag({ content: 'html { font-size: 200% !important; }' });
+        assert.ok(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth), `${theme}/${width}: palette supports 200% text`);
+        assert.ok(await page.locator('.palette-table code').evaluateAll(elements => elements.every(el => el.scrollWidth <= el.clientWidth + 1)), `${theme}/${width}: tokens stay readable at 200% text`);
+        await zoom.evaluate(el => el.remove());
+      }
     }
     await page.locator('body').evaluate(el => el.style.setProperty('--accent-main', '#18745b'));
     assert.ok(await page.locator('[style="background:var(--accent-strong)"]').evaluate(el => getComputedStyle(el).backgroundColor !== 'rgba(0, 0, 0, 0)'));

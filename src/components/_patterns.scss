@@ -43,6 +43,7 @@
       font: inherit;
       font-size: max(1rem, var(--fs));
       &:focus { outline: none; box-shadow: none; background: transparent; }
+      &::placeholder { color: var(--text-secondary); opacity: 1; }
       &::-webkit-search-cancel-button { appearance: none; }
     }
     &__clear {
@@ -122,6 +123,11 @@
     thead th { background: var(--background-main); }
     :is(thead, tbody, tfoot):last-child > tr:last-child > :is(th, td) { border-block-end: 0; }
     tfoot :is(th, td) { border-block-start: var(--border); font-weight: var(--fw-semibold); }
+  }
+
+  .tg-num, .tg-table .tg-table__num {
+    font-variant-numeric: tabular-nums;
+    text-align: end;
   }
 
   .tg-breadcrumbs {

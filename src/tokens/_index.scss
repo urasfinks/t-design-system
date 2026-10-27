@@ -116,6 +116,8 @@
     --action-hover-bg: var(--accent-strong);
     --action-danger-bg: var(--danger-strong);
     --control-border-color: light-dark(rgba(0, 0, 0, .5), rgba(255, 255, 255, .5));
+    --choice-border-color: var(--control-border-color);
+    --disabled-opacity: .5;
     --border-control: 1px solid var(--control-border-color);
     // Quiet resting controls; the stronger boundary is reserved for contrast preferences.
     --field-border-color: var(--border-color);

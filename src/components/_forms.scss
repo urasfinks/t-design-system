@@ -61,7 +61,7 @@
     }
 
     &:disabled {
-      opacity: .5;
+      opacity: var(--disabled-opacity);
       cursor: not-allowed;
     }
   }
@@ -126,7 +126,7 @@
     cursor: pointer;
 
     &:not(:checked) {
-      border-color: transparent;
+      border-color: var(--choice-border-color);
     }
 
     &:checked, &.tg-check:indeterminate {
@@ -135,7 +135,7 @@
     }
 
     &:disabled {
-      opacity: .5;
+      opacity: var(--disabled-opacity);
       cursor: not-allowed;
     }
   }
@@ -229,16 +229,17 @@
     }
 
     &__knob {
+      --switch-shift: 0px;
       position: absolute;
       inset-inline-start: .125rem;
       inset-block-start: 50%;
-      transform: translateY(-50%);
+      transform: translate(var(--switch-shift), -50%);
       inline-size: calc(var(--h) - .25rem);
       block-size: calc(var(--h) - .25rem);
       border-radius: 50%;
       background: var(--switch-knob-color);
       box-shadow: 0 1px 3px #0003;
-      transition: inset-inline-start var(--duration) var(--ease);
+      transition: transform var(--duration) var(--ease);
     }
 
     &:is([aria-checked='true'], .tg-switch--on)::before {
@@ -247,7 +248,11 @@
     }
 
     &:is([aria-checked='true'], .tg-switch--on) .tg-switch__knob {
-      inset-inline-start: calc(var(--w) - var(--h) + .125rem);
+      --switch-shift: calc(var(--w) - var(--h));
+    }
+
+    &:dir(rtl):is([aria-checked='true'], .tg-switch--on) .tg-switch__knob {
+      --switch-shift: calc(var(--h) - var(--w));
     }
   }
 

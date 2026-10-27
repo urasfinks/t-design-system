@@ -1,0 +1,4187 @@
+{
+ "url": "docs/index.html",
+ "at": "2026-10-26T22:13:13.044Z",
+ "allow": [],
+ "viewports": [
+  {
+   "width": 1440,
+   "height": 900,
+   "load": "load",
+   "screens": 12,
+   "filled": [
+    0.34,
+    0.3,
+    0.61,
+    0.67,
+    0.71,
+    0.56,
+    0.48,
+    0.22,
+    0.67,
+    0.51,
+    0.25,
+    0.45
+   ],
+   "motion": {
+    "elements": 4,
+    "css": 4,
+    "transitions": 0,
+    "scripted": 0,
+    "videos": 0,
+    "playingVideos": 0
+   },
+   "metrics": {
+    "viewport": {
+     "w": 1440,
+     "h": 900
+    },
+    "page": {
+     "height": 13664,
+     "screens": 15.2,
+     "words": 1441,
+     "img": 1,
+     "video": 0,
+     "canvas": 0,
+     "svg": 313,
+     "sections": 14,
+     "horizontalOverflow": 0,
+     "overflowCulprits": [],
+     "uiFragments": 26,
+     "uiAbuse": false,
+     "realPictures": 0,
+     "videoCount": 0,
+     "uiPictures": 13,
+     "pictureSamples": [],
+     "blendText": 0,
+     "sideScrollers": 0,
+     "brokenImages": [],
+     "emoji": [],
+     "videosNoPoster": 0
+    },
+    "hero": {
+     "text": "Один язык для интерфейсов.",
+     "words": 4,
+     "chars": 26,
+     "lines": 2,
+     "size": 49,
+     "vw": 3.4,
+     "font": "system-ui",
+     "weight": 600,
+     "tracking": -0.03,
+     "leading": 1.12,
+     "top": 250,
+     "tag": "h1",
+     "kind": "heading",
+     "align": "left",
+     "position": "left"
+    },
+    "h1": {
+     "text": "Один язык для интерфейсов.",
+     "words": 4,
+     "lines": 2,
+     "size": 49,
+     "font": "system-ui"
+    },
+    "headings": [
+     {
+      "text": "t ·",
+      "words": 2,
+      "chars": 3,
+      "lines": 1,
+      "size": 28,
+      "vw": 1.9,
+      "font": "system-ui",
+      "weight": 600,
+      "tracking": -0.03,
+      "leading": 1.5,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "left",
+      "widthRatio": 0.02,
+      "top": 20,
+      "tag": "span",
+      "kind": "heading"
+     },
+     {
+      "text": "Один язык для интерфейсов.",
+      "words": 4,
+      "chars": 26,
+      "lines": 2,
+      "size": 49,
+      "vw": 3.4,
+      "font": "system-ui",
+      "weight": 600,
+      "tracking": -0.03,
+      "leading": 1.12,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "left",
+      "widthRatio": 0.38,
+      "top": 250,
+      "tag": "h1",
+      "kind": "heading"
+     },
+     {
+      "text": "Баланс начинается с деталей",
+      "words": 4,
+      "chars": 27,
+      "lines": 1,
+      "size": 28.8,
+      "vw": 2,
+      "font": "system-ui",
+      "weight": 600,
+      "tracking": -0.025,
+      "leading": 1.25,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "center",
+      "widthRatio": 0.56,
+      "top": 916,
+      "tag": "h2",
+      "kind": "heading"
+     },
+     {
+      "text": "Aa Бб 123",
+      "words": 3,
+      "chars": 9,
+      "lines": 1,
+      "size": 32,
+      "vw": 2.2,
+      "font": "system-ui",
+      "weight": 400,
+      "tracking": -0.025,
+      "leading": 1.5,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "left",
+      "widthRatio": 0.24,
+      "top": 1659,
+      "tag": "div",
+      "kind": "heading"
+     },
+     {
+      "text": "Кнопки с ясной иерархией",
+      "words": 4,
+      "chars": 24,
+      "lines": 1,
+      "size": 28.8,
+      "vw": 2,
+      "font": "system-ui",
+      "weight": 600,
+      "tracking": -0.025,
+      "leading": 1.25,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "center",
+      "widthRatio": 0.7,
+      "top": 1828,
+      "tag": "h2",
+      "kind": "heading"
+     },
+     {
+      "text": "Иконки Feather",
+      "words": 2,
+      "chars": 14,
+      "lines": 1,
+      "size": 28.8,
+      "vw": 2,
+      "font": "system-ui",
+      "weight": 600,
+      "tracking": -0.025,
+      "leading": 1.25,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "center",
+      "widthRatio": 0.63,
+      "top": 2288,
+      "tag": "h2",
+      "kind": "heading"
+     },
+     {
+      "text": "Место для ваших данных",
+      "words": 4,
+      "chars": 22,
+      "lines": 1,
+      "size": 28.8,
+      "vw": 2,
+      "font": "system-ui",
+      "weight": 600,
+      "tracking": -0.025,
+      "leading": 1.25,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "center",
+      "widthRatio": 0.69,
+      "top": 3527,
+      "tag": "h2",
+      "kind": "heading"
+     },
+     {
+      "text": "Собирайте из простых блоков",
+      "words": 4,
+      "chars": 27,
+      "lines": 1,
+      "size": 28.8,
+      "vw": 2,
+      "font": "system-ui",
+      "weight": 600,
+      "tracking": -0.025,
+      "leading": 1.25,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "center",
+      "widthRatio": 0.64,
+      "top": 5261,
+      "tag": "h2",
+      "kind": "heading"
+     },
+     {
+      "text": "Пространство для идей",
+      "words": 3,
+      "chars": 21,
+      "lines": 1,
+      "size": 28.8,
+      "vw": 2,
+      "font": "system-ui",
+      "weight": 600,
+      "tracking": -0.025,
+      "leading": 1.25,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "center",
+      "widthRatio": 0.63,
+      "top": 6253,
+      "tag": "h2",
+      "kind": "heading"
+     },
+     {
+      "text": "Мои заказы",
+      "words": 2,
+      "chars": 10,
+      "lines": 1,
+      "size": 28.8,
+      "vw": 2,
+      "font": "system-ui",
+      "weight": 600,
+      "tracking": -0.025,
+      "leading": 1.25,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "center",
+      "widthRatio": 0.61,
+      "top": 6770,
+      "tag": "h2",
+      "kind": "heading"
+     },
+     {
+      "text": "Понятно, где вы находитесь",
+      "words": 4,
+      "chars": 26,
+      "lines": 1,
+      "size": 28.8,
+      "vw": 2,
+      "font": "system-ui",
+      "weight": 600,
+      "tracking": -0.025,
+      "leading": 1.25,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "center",
+      "widthRatio": 0.64,
+      "top": 7267,
+      "tag": "h2",
+      "kind": "heading"
+     },
+     {
+      "text": "Каждое действие получает ответ",
+      "words": 4,
+      "chars": 30,
+      "lines": 1,
+      "size": 28.8,
+      "vw": 2,
+      "font": "system-ui",
+      "weight": 600,
+      "tracking": -0.025,
+      "leading": 1.25,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "center",
+      "widthRatio": 0.62,
+      "top": 8047,
+      "tag": "h2",
+      "kind": "heading"
+     },
+     {
+      "text": "Небольшие, но важные",
+      "words": 3,
+      "chars": 20,
+      "lines": 1,
+      "size": 28.8,
+      "vw": 2,
+      "font": "system-ui",
+      "weight": 600,
+      "tracking": -0.025,
+      "leading": 1.25,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "center",
+      "widthRatio": 0.62,
+      "top": 8922,
+      "tag": "h2",
+      "kind": "heading"
+     },
+     {
+      "text": "Тот же ритм в любом масштабе",
+      "words": 6,
+      "chars": 28,
+      "lines": 1,
+      "size": 28.8,
+      "vw": 2,
+      "font": "system-ui",
+      "weight": 600,
+      "tracking": -0.025,
+      "leading": 1.25,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "center",
+      "widthRatio": 0.64,
+      "top": 9240,
+      "tag": "h2",
+      "kind": "heading"
+     },
+     {
+      "text": "Данные и сводки",
+      "words": 3,
+      "chars": 15,
+      "lines": 1,
+      "size": 28.8,
+      "vw": 2,
+      "font": "system-ui",
+      "weight": 600,
+      "tracking": -0.025,
+      "leading": 1.25,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "center",
+      "widthRatio": 0.62,
+      "top": 9589,
+      "tag": "h2",
+      "kind": "heading"
+     },
+     {
+      "text": "Готовые композиции экранов",
+      "words": 3,
+      "chars": 26,
+      "lines": 1,
+      "size": 28.8,
+      "vw": 2,
+      "font": "system-ui",
+      "weight": 600,
+      "tracking": -0.025,
+      "leading": 1.25,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "center",
+      "widthRatio": 0.51,
+      "top": 10419,
+      "tag": "h2",
+      "kind": "heading"
+     },
+     {
+      "text": "Те самые ощущения",
+      "words": 3,
+      "chars": 17,
+      "lines": 1,
+      "size": 28.8,
+      "vw": 2,
+      "font": "system-ui",
+      "weight": 600,
+      "tracking": -0.025,
+      "leading": 1.25,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "center",
+      "widthRatio": 0.62,
+      "top": 12040,
+      "tag": "h2",
+      "kind": "heading"
+     },
+     {
+      "text": "Один файл — и можно собирать",
+      "words": 6,
+      "chars": 28,
+      "lines": 1,
+      "size": 28.8,
+      "vw": 2,
+      "font": "system-ui",
+      "weight": 600,
+      "tracking": -0.025,
+      "leading": 1.25,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "center",
+      "widthRatio": 0.64,
+      "top": 12978,
+      "tag": "h2",
+      "kind": "heading"
+     }
+    ],
+    "headingSummary": {
+     "count": 18,
+     "maxLines": 2,
+     "over2Lines": 0,
+     "statements": 0,
+     "centered": 0,
+     "medianWords": 3,
+     "mixedFontHeadings": 0
+    },
+    "type": {
+     "families": [
+      {
+       "family": "monospace",
+       "share": 0.68,
+       "mono": false
+      },
+      {
+       "family": "system-ui",
+       "share": 0.31,
+       "mono": false
+      },
+      {
+       "family": "ui-monospace",
+       "share": 0.01,
+       "mono": false
+      }
+     ],
+     "familyCount": 3,
+     "sizes": [
+      13,
+      14,
+      16,
+      18,
+      24,
+      28,
+      29,
+      32,
+      49
+     ],
+     "sizeCount": 9,
+     "notLoaded": [],
+     "body": {
+      "font": "system-ui",
+      "size": 14,
+      "leading": 1.6,
+      "weight": 400,
+      "tracking": 0,
+      "contrast": 7.6
+     },
+     "measureChars": 155,
+     "max": {
+      "size": 49,
+      "vw": 3.4,
+      "font": "system-ui",
+      "text": "Один языкдля интерфейсов."
+     },
+     "monoShare": 0.69,
+     "monoProseShare": 0,
+     "monoFamilies": [
+      "ui-monospace",
+      "monospace"
+     ],
+     "monoSamples": [
+      "reset",
+      "→",
+      "tokens",
+      "→",
+      "themes",
+      "→"
+     ],
+     "microLabels": 0,
+     "microLabelShare": 0,
+     "microSamples": [],
+     "upperShare": 0,
+     "centerShare": 0.1,
+     "smallText": 0
+    },
+    "eyebrows": [
+     {
+      "text": "Типографика",
+      "above": "Aa Бб 123",
+      "upper": false,
+      "tracked": false,
+      "mono": false,
+      "pill": false,
+      "size": 13,
+      "top": 1624
+     },
+     {
+      "text": "Посмотреть HTML",
+      "above": "Иконки Feather",
+      "upper": false,
+      "tracked": false,
+      "mono": false,
+      "pill": false,
+      "size": 13,
+      "top": 2179
+     },
+     {
+      "text": "Посмотреть HTML",
+      "above": "Место для ваших данных",
+      "upper": false,
+      "tracked": false,
+      "mono": false,
+      "pill": false,
+      "size": 13,
+      "top": 3418
+     },
+     {
+      "text": "Посмотреть HTML",
+      "above": "Пространство для идей",
+      "upper": false,
+      "tracked": false,
+      "mono": false,
+      "pill": false,
+      "size": 13,
+      "top": 6144
+     },
+     {
+      "text": "Посмотреть HTML",
+      "above": "Мои заказы",
+      "upper": false,
+      "tracked": false,
+      "mono": false,
+      "pill": false,
+      "size": 13,
+      "top": 6661
+     },
+     {
+      "text": "Посмотреть HTML",
+      "above": "Понятно, где вы находитесь",
+      "upper": false,
+      "tracked": false,
+      "mono": false,
+      "pill": false,
+      "size": 13,
+      "top": 7158
+     },
+     {
+      "text": "Посмотреть HTML",
+      "above": "Каждое действие получает ответ",
+      "upper": false,
+      "tracked": false,
+      "mono": false,
+      "pill": false,
+      "size": 13,
+      "top": 7938
+     },
+     {
+      "text": "Посмотреть HTML",
+      "above": "Тот же ритм в любом масштабе",
+      "upper": false,
+      "tracked": false,
+      "mono": false,
+      "pill": false,
+      "size": 13,
+      "top": 9131
+     },
+     {
+      "text": "Посмотреть HTML",
+      "above": "Данные и сводки",
+      "upper": false,
+      "tracked": false,
+      "mono": false,
+      "pill": false,
+      "size": 13,
+      "top": 9480
+     },
+     {
+      "text": "Посмотреть HTML",
+      "above": "Один файл — и можно собирать",
+      "upper": false,
+      "tracked": false,
+      "mono": false,
+      "pill": false,
+      "size": 13,
+      "top": 12869
+     }
+    ],
+    "numbered": [],
+    "color": {
+     "bodyBg": "#212d3b",
+     "bodyBgHsl": {
+      "h": 212,
+      "s": 0.28,
+      "l": 0.18
+     },
+     "dark": true,
+     "sectionBgs": [
+      {
+       "color": "#212d3b",
+       "top": 2405,
+       "hsl": {
+        "h": 212,
+        "s": 0.28,
+        "l": 0.18
+       }
+      },
+      {
+       "color": "#151e27",
+       "top": 2406,
+       "hsl": {
+        "h": 210,
+        "s": 0.3,
+        "l": 0.12
+       }
+      },
+      {
+       "color": "#1d2733",
+       "top": 11334,
+       "hsl": {
+        "h": 213,
+        "s": 0.28,
+        "l": 0.16
+       }
+      }
+     ],
+     "textColors": [
+      {
+       "color": "#ffffff",
+       "share": 0.75
+      },
+      {
+       "color": "#bcc0c4",
+       "share": 0.24
+      },
+      {
+       "color": "#77c5ff",
+       "share": 0
+      },
+      {
+       "color": "#f59494",
+       "share": 0
+      }
+     ],
+     "button": {
+      "bg": "#2178b8",
+      "hsl": {
+       "h": 205,
+       "s": 0.7,
+       "l": 0.43
+      },
+      "fg": "#ffffff"
+     },
+     "lowContrast": []
+    },
+    "buttons": {
+     "count": 30,
+     "inHero": 4,
+     "radius": 12,
+     "height": 48,
+     "withShadow": 1,
+     "withGradient": 0,
+     "mono": 0,
+     "upper": 0,
+     "heroLabels": [
+      "К содержимому",
+      "Обзор",
+      "Смотреть компоненты",
+      "Настроить профиль"
+     ]
+    },
+    "surfaces": {
+     "shadowStatic": 0,
+     "shadowOverlay": 1,
+     "shadowSamples": [],
+     "gradients": 0,
+     "scrims": 0,
+     "gradientSamples": [],
+     "gradientText": 0,
+     "hairlines": 57,
+     "hairlineSamples": [
+      "header.site-header 1440px",
+      "aside.sidebar 240px",
+      "div.feature-strip 1085px",
+      "div.foundation-card 346px",
+      "div.foundation-card 346px"
+     ],
+     "outlinedBoxes": 27,
+     "dashed": 0,
+     "blurred": 1,
+     "roundedBoxes": 42,
+     "boxRadius": 16,
+     "squareMedia": 0,
+     "roundedMedia": 0,
+     "mediaRadius": 0,
+     "textShadow": 0,
+     "cardRows": [
+      {
+       "count": 3,
+       "iconTopped": false,
+       "rounded": false,
+       "top": 1598
+      },
+      {
+       "count": 5,
+       "iconTopped": false,
+       "rounded": true,
+       "top": 3622
+      },
+      {
+       "count": 5,
+       "iconTopped": false,
+       "rounded": true,
+       "top": 5355
+      },
+      {
+       "count": 3,
+       "iconTopped": false,
+       "rounded": true,
+       "top": 12157
+      }
+     ]
+    },
+    "heroMedia": [],
+    "nav": {
+     "links": 1,
+     "fixed": true,
+     "height": 72,
+     "floatingPill": false,
+     "blur": false
+    },
+    "fontsLoaded": []
+   },
+   "layout": {
+    "viewport": {
+     "w": 1440,
+     "h": 900
+    },
+    "pageH": 13664,
+    "margins": {
+     "left": 298,
+     "right": 58
+    },
+    "sections": [
+     {
+      "sel": "section#overview.hero",
+      "tag": "section",
+      "top": 72,
+      "height": 684,
+      "words": 66,
+      "media": 0,
+      "middle": 217,
+      "heading": {
+       "text": "Один язык",
+       "size": 49,
+       "tag": "h1"
+      },
+      "left": 298,
+      "right": 126,
+      "textLeft": 298,
+      "textRight": 126,
+      "fullBleed": false,
+      "footer": false,
+      "hero": true,
+      "continues": false,
+      "pinned": false
+     },
+     {
+      "sel": "section#tokens.catalog-section",
+      "tag": "section",
+      "top": 852,
+      "height": 912,
+      "words": 69,
+      "media": 0,
+      "middle": 0,
+      "heading": {
+       "text": "Баланс начинается с деталей",
+       "size": 29,
+       "tag": "h2"
+      },
+      "left": 298,
+      "right": 58,
+      "textLeft": 298,
+      "textRight": 58,
+      "fullBleed": false,
+      "footer": false,
+      "hero": false,
+      "continues": false,
+      "pinned": false
+     },
+     {
+      "sel": "section#buttons.catalog-section",
+      "tag": "section",
+      "top": 1764,
+      "height": 460,
+      "words": 111,
+      "media": 0,
+      "middle": 346,
+      "heading": {
+       "text": "Кнопки с ясной иерархией",
+       "size": 29,
+       "tag": "h2"
+      },
+      "left": 298,
+      "right": 58,
+      "textLeft": 298,
+      "textRight": -456,
+      "fullBleed": false,
+      "footer": false,
+      "hero": false,
+      "continues": false,
+      "pinned": false
+     },
+     {
+      "sel": "section#icons.catalog-section",
+      "tag": "section",
+      "top": 2224,
+      "height": 1239,
+      "words": 166,
+      "media": 0,
+      "middle": 0,
+      "heading": {
+       "text": "Иконки Feather",
+       "size": 29,
+       "tag": "h2"
+      },
+      "left": 298,
+      "right": 58,
+      "textLeft": 298,
+      "textRight": 58,
+      "fullBleed": false,
+      "footer": false,
+      "hero": false,
+      "continues": false,
+      "pinned": false
+     },
+     {
+      "sel": "div.example-panel",
+      "tag": "div",
+      "top": 3622,
+      "height": 504,
+      "words": 28,
+      "media": 0,
+      "middle": 0,
+      "heading": null,
+      "left": 323,
+      "right": 83,
+      "textLeft": 323,
+      "textRight": 354,
+      "fullBleed": false,
+      "footer": false,
+      "hero": false,
+      "continues": true,
+      "pinned": false
+     },
+     {
+      "sel": "div.example-panel",
+      "tag": "div",
+      "top": 4142,
+      "height": 143,
+      "words": 7,
+      "media": 0,
+      "middle": 235,
+      "heading": null,
+      "left": 323,
+      "right": 83,
+      "textLeft": 323,
+      "textRight": 140,
+      "fullBleed": false,
+      "footer": false,
+      "hero": false,
+      "continues": true,
+      "pinned": false
+     },
+     {
+      "sel": "div.example-panel",
+      "tag": "div",
+      "top": 4301,
+      "height": 231,
+      "words": 13,
+      "media": 0,
+      "middle": 288,
+      "heading": null,
+      "left": 323,
+      "right": 83,
+      "textLeft": 323,
+      "textRight": 83,
+      "fullBleed": false,
+      "footer": false,
+      "hero": false,
+      "continues": true,
+      "pinned": false
+     },
+     {
+      "sel": "div.example-panel",
+      "tag": "div",
+      "top": 4547,
+      "height": 276,
+      "words": 9,
+      "media": 0,
+      "middle": 0,
+      "heading": null,
+      "left": 323,
+      "right": 99,
+      "textLeft": 323,
+      "textRight": 902,
+      "fullBleed": false,
+      "footer": false,
+      "hero": false,
+      "continues": true,
+      "pinned": false
+     },
+     {
+      "sel": "div.example-panel",
+      "tag": "div",
+      "top": 4839,
+      "height": 288,
+      "words": 14,
+      "media": 0,
+      "middle": 0,
+      "heading": {
+       "text": "Проверьте данные",
+       "size": 16,
+       "tag": "h3"
+      },
+      "left": 323,
+      "right": 83,
+      "textLeft": 323,
+      "textRight": 776,
+      "fullBleed": false,
+      "footer": false,
+      "hero": false,
+      "continues": true,
+      "pinned": false
+     },
+     {
+      "sel": "div.example-panel",
+      "tag": "div",
+      "top": 5355,
+      "height": 343,
+      "words": 35,
+      "media": 0,
+      "middle": 284,
+      "heading": {
+       "text": "Пространство для идей",
+       "size": 18,
+       "tag": "h3"
+      },
+      "left": 323,
+      "right": 109,
+      "textLeft": 323,
+      "textRight": 109,
+      "fullBleed": false,
+      "footer": false,
+      "hero": false,
+      "continues": true,
+      "pinned": false
+     },
+     {
+      "sel": "div.example-panel",
+      "tag": "div",
+      "top": 5714,
+      "height": 145,
+      "words": 25,
+      "media": 0,
+      "middle": 0,
+      "heading": null,
+      "left": 323,
+      "right": 194,
+      "textLeft": 323,
+      "textRight": 194,
+      "fullBleed": false,
+      "footer": false,
+      "hero": false,
+      "continues": true,
+      "pinned": false
+     },
+     {
+      "sel": "div.example-panel",
+      "tag": "div",
+      "top": 5875,
+      "height": 314,
+      "words": 15,
+      "media": 0,
+      "middle": 195,
+      "heading": {
+       "text": "Пока нет заказов",
+       "size": 18,
+       "tag": "h3"
+      },
+      "left": 323,
+      "right": 394,
+      "textLeft": 323,
+      "textRight": 394,
+      "fullBleed": false,
+      "footer": false,
+      "hero": false,
+      "continues": true,
+      "pinned": false
+     },
+     {
+      "sel": "div.section-heading",
+      "tag": "div",
+      "top": 6189,
+      "height": 134,
+      "words": 11,
+      "media": 0,
+      "middle": 571,
+      "heading": {
+       "text": "Пространство для идей",
+       "size": 29,
+       "tag": "h2"
+      },
+      "left": 298,
+      "right": 58,
+      "textLeft": 298,
+      "textRight": 58,
+      "fullBleed": false,
+      "footer": false,
+      "hero": false,
+      "continues": true,
+      "pinned": false
+     },
+     {
+      "sel": "div.example-panel",
+      "tag": "div",
+      "top": 6348,
+      "height": 358,
+      "words": 21,
+      "media": 0,
+      "middle": 585,
+      "heading": {
+       "text": "Пространство для идей",
+       "size": 18,
+       "tag": "h3"
+      },
+      "left": 323,
+      "right": 100,
+      "textLeft": 323,
+      "textRight": 730,
+      "fullBleed": false,
+      "footer": false,
+      "hero": false,
+      "continues": true,
+      "pinned": false
+     },
+     {
+      "sel": "div.section-heading",
+      "tag": "div",
+      "top": 6706,
+      "height": 134,
+      "words": 15,
+      "media": 0,
+      "middle": 478,
+      "heading": {
+       "text": "Мои заказы",
+       "size": 29,
+       "tag": "h2"
+      },
+      "left": 298,
+      "right": 58,
+      "textLeft": 298,
+      "textRight": 58,
+      "fullBleed": false,
+      "footer": false,
+      "hero": false,
+      "continues": true,
+      "pinned": false
+     },
+     {
+      "sel": "div.example-panel",
+      "tag": "div",
+      "top": 6865,
+      "height": 338,
+      "words": 25,
+      "media": 0,
+      "middle": 693,
+      "heading": null,
+      "left": 323,
+      "right": 100,
+      "textLeft": 323,
+      "textRight": 100,
+      "fullBleed": false,
+      "footer": false,
+      "hero": false,
+      "continues": true,
+      "pinned": false
+     },
+     {
+      "sel": "section#navigation.catalog-section",
+      "tag": "section",
+      "top": 7203,
+      "height": 781,
+      "words": 50,
+      "media": 0,
+      "middle": 8,
+      "heading": {
+       "text": "Понятно, где вы находитесь",
+       "size": 29,
+       "tag": "h2"
+      },
+      "left": 298,
+      "right": 58,
+      "textLeft": 298,
+      "textRight": 58,
+      "fullBleed": false,
+      "footer": false,
+      "hero": false,
+      "continues": false,
+      "pinned": false
+     },
+     {
+      "sel": "section#feedback.catalog-section",
+      "tag": "section",
+      "top": 7983,
+      "height": 861,
+      "words": 372,
+      "media": 0,
+      "middle": 0,
+      "heading": {
+       "text": "Каждое действие получает ответ",
+       "size": 29,
+       "tag": "h2"
+      },
+      "left": 298,
+      "right": 58,
+      "textLeft": 298,
+      "textRight": -2076,
+      "fullBleed": false,
+      "footer": false,
+      "hero": false,
+      "continues": false,
+      "pinned": false
+     },
+     {
+      "sel": "section#avatars.catalog-section",
+      "tag": "section",
+      "top": 8858,
+      "height": 317,
+      "words": 22,
+      "media": 0,
+      "middle": 290,
+      "heading": {
+       "text": "Небольшие, но важные",
+       "size": 29,
+       "tag": "h2"
+      },
+      "left": 298,
+      "right": 58,
+      "textLeft": 298,
+      "textRight": 58,
+      "fullBleed": false,
+      "footer": false,
+      "hero": false,
+      "continues": false,
+      "pinned": false
+     },
+     {
+      "sel": "section#layout.catalog-section",
+      "tag": "section",
+      "top": 9176,
+      "height": 349,
+      "words": 25,
+      "media": 0,
+      "middle": 297,
+      "heading": {
+       "text": "Тот же ритм в любом масштабе",
+       "size": 29,
+       "tag": "h2"
+      },
+      "left": 298,
+      "right": 58,
+      "textLeft": 298,
+      "textRight": 58,
+      "fullBleed": false,
+      "footer": false,
+      "hero": false,
+      "continues": false,
+      "pinned": false
+     },
+     {
+      "sel": "section#data.catalog-section",
+      "tag": "section",
+      "top": 9525,
+      "height": 816,
+      "words": 223,
+      "media": 0,
+      "middle": 0,
+      "heading": {
+       "text": "Данные и сводки",
+       "size": 29,
+       "tag": "h2"
+      },
+      "left": 298,
+      "right": 58,
+      "textLeft": 298,
+      "textRight": -3997,
+      "fullBleed": false,
+      "footer": false,
+      "hero": false,
+      "continues": false,
+      "pinned": false
+     },
+     {
+      "sel": "div.example-panel",
+      "tag": "div",
+      "top": 10600,
+      "height": 735,
+      "words": 2,
+      "media": 1,
+      "middle": 0,
+      "heading": null,
+      "left": 323,
+      "right": 83,
+      "textLeft": 323,
+      "textRight": 1001,
+      "fullBleed": false,
+      "footer": false,
+      "hero": false,
+      "continues": true,
+      "pinned": false
+     },
+     {
+      "sel": "div.example-panel",
+      "tag": "div",
+      "top": 11351,
+      "height": 626,
+      "words": 182,
+      "media": 0,
+      "middle": 0,
+      "heading": {
+       "text": "Что входит в TDS",
+       "size": 18,
+       "tag": "h3"
+      },
+      "left": 323,
+      "right": 94,
+      "textLeft": 323,
+      "textRight": 94,
+      "fullBleed": false,
+      "footer": false,
+      "hero": false,
+      "continues": true,
+      "pinned": false
+     },
+     {
+      "sel": "section#effects.catalog-section",
+      "tag": "section",
+      "top": 11976,
+      "height": 938,
+      "words": 148,
+      "media": 0,
+      "middle": 0,
+      "heading": {
+       "text": "Те самые ощущения",
+       "size": 29,
+       "tag": "h2"
+      },
+      "left": 298,
+      "right": 58,
+      "textLeft": 298,
+      "textRight": -1418,
+      "fullBleed": false,
+      "footer": false,
+      "hero": false,
+      "continues": false,
+      "pinned": false
+     },
+     {
+      "sel": "section#start.catalog-section.start-section",
+      "tag": "section",
+      "top": 12914,
+      "height": 600,
+      "words": 79,
+      "media": 0,
+      "middle": 139,
+      "heading": {
+       "text": "Один файл — и можно собирать",
+       "size": 29,
+       "tag": "h2"
+      },
+      "left": 298,
+      "right": 58,
+      "textLeft": 298,
+      "textRight": 58,
+      "fullBleed": false,
+      "footer": true,
+      "hero": false,
+      "continues": false,
+      "pinned": false
+     }
+    ],
+    "gaps": [],
+    "h1s": [
+     {
+      "text": "Один язык для интерфейсов.",
+      "size": 49,
+      "top": 250,
+      "firstScreen": true
+     }
+    ],
+    "edgeText": [
+     {
+      "text": "<button class=\"tg-btn tg-btn--primary tg-btn--sm\">",
+      "side": "right",
+      "px": 14
+     },
+     {
+      "text": "<div class=\"tg-grid\"><div class=\"layout-cell\">Блок",
+      "side": "right",
+      "px": 14
+     }
+    ],
+    "edges": [
+     {
+      "x": 298,
+      "n": 28
+     },
+     {
+      "x": 323,
+      "n": 4
+     },
+     {
+      "x": 454,
+      "n": 1
+     }
+    ],
+    "leftBlocks": 33,
+    "bodySize": 13,
+    "stage": false,
+    "explains": false,
+    "slivers": [],
+    "voidShare": 0.12,
+    "voidBox": {
+     "x": 180,
+     "y": 600,
+     "w": 840,
+     "h": 180
+    }
+   },
+   "app": {
+    "viewport": {
+     "w": 1440,
+     "h": 900
+    },
+    "dark": true,
+    "ground": "#212d3b",
+    "sidebar": {
+     "w": 240,
+     "tag": "aside",
+     "links": 14,
+     "share": 0.17
+    },
+    "topbar": {
+     "h": 72
+    },
+    "canvas": {
+     "left": 58,
+     "right": 58
+    },
+    "hero": {
+     "text": "Один язык для интерфейсов.",
+     "words": 4,
+     "chars": 26,
+     "lines": 2,
+     "size": 49,
+     "vw": 3.4,
+     "font": "system-ui",
+     "weight": 600,
+     "tracking": -0.03,
+     "leading": 1.12,
+     "top": 250,
+     "tag": "h1",
+     "kind": "heading",
+     "align": "left",
+     "position": "left"
+    },
+    "charts": 1,
+    "layout": {
+     "panels": 35,
+     "firstScreen": 2,
+     "ragged": [],
+     "voids": []
+    },
+    "tiles": 0,
+    "panels": {
+     "count": 76,
+     "radii": [
+      [
+       16,
+       35
+      ],
+      [
+       0,
+       32
+      ],
+      [
+       12,
+       9
+      ]
+     ],
+     "heavyBorders": 43,
+     "borderSamples": [
+      "#ffffff on #212d3b (13.97:1)",
+      "#ffffff on #212d3b (13.97:1)",
+      "#ffffff on #212d3b (13.97:1)"
+     ],
+     "heavyShadows": 0,
+     "softShadows": 0,
+     "shadowSamples": [],
+     "glass": 1
+    },
+    "chips": {
+     "count": 2,
+     "hues": 1,
+     "samples": [
+      {
+       "hue": 213,
+       "size": 48,
+       "radius": "12px"
+      },
+      {
+       "hue": 213,
+       "size": 48,
+       "radius": "9999px"
+      }
+     ]
+    },
+    "numbers": {
+     "cells": 2,
+     "leftAligned": 2,
+     "figures": 10,
+     "tabularShare": 0.5,
+     "kpiMax": 16
+    },
+    "rows": {
+     "count": 6,
+     "median": 103
+    },
+    "chartHues": 0,
+    "placeholders": [],
+    "type": {
+     "under13": 0,
+     "tiny": 0,
+     "tinySamples": [],
+     "sizes": [
+      13,
+      14,
+      16,
+      18,
+      22,
+      29,
+      32,
+      49
+     ]
+    },
+    "title": {
+     "text": "Один язык\nдля интерфейсов.",
+     "size": 49,
+     "top": 250
+    },
+    "colourShare": 0.027
+   },
+   "consoleErrors": []
+  },
+  {
+   "width": 768,
+   "height": 1024,
+   "load": "load",
+   "screens": 12,
+   "filled": [
+    0.46,
+    0.31,
+    0.67,
+    0.79,
+    0.8,
+    0.56,
+    0.51,
+    0.71,
+    0.79,
+    0.53,
+    0.55,
+    0.84
+   ],
+   "motion": {
+    "elements": 4,
+    "css": 4,
+    "transitions": 0,
+    "scripted": 0,
+    "videos": 0,
+    "playingVideos": 0
+   },
+   "metrics": {
+    "viewport": {
+     "w": 768,
+     "h": 1024
+    },
+    "page": {
+     "height": 14440,
+     "screens": 14.1,
+     "words": 1434,
+     "img": 1,
+     "video": 0,
+     "canvas": 0,
+     "svg": 313,
+     "sections": 14,
+     "horizontalOverflow": 0,
+     "overflowCulprits": [],
+     "uiFragments": 26,
+     "uiAbuse": false,
+     "realPictures": 0,
+     "videoCount": 0,
+     "uiPictures": 14,
+     "pictureSamples": [],
+     "blendText": 0,
+     "sideScrollers": 0,
+     "brokenImages": [],
+     "emoji": [],
+     "videosNoPoster": 0
+    },
+    "hero": {
+     "text": "Один язык для интерфейсов.",
+     "words": 4,
+     "chars": 26,
+     "lines": 2,
+     "size": 38,
+     "vw": 5,
+     "font": "system-ui",
+     "weight": 600,
+     "tracking": -0.03,
+     "leading": 1.12,
+     "top": 254,
+     "tag": "h1",
+     "kind": "heading",
+     "align": "left",
+     "position": "left"
+    },
+    "h1": {
+     "text": "Один язык для интерфейсов.",
+     "words": 4,
+     "lines": 2,
+     "size": 38.4,
+     "font": "system-ui"
+    },
+    "headings": [
+     {
+      "text": "t ·",
+      "words": 2,
+      "chars": 3,
+      "lines": 1,
+      "size": 28,
+      "vw": 3.6,
+      "font": "system-ui",
+      "weight": 600,
+      "tracking": -0.03,
+      "leading": 1.5,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "left",
+      "widthRatio": 0.04,
+      "top": 20,
+      "tag": "span",
+      "kind": "heading"
+     },
+     {
+      "text": "Один язык для интерфейсов.",
+      "words": 4,
+      "chars": 26,
+      "lines": 2,
+      "size": 38.4,
+      "vw": 5,
+      "font": "system-ui",
+      "weight": 600,
+      "tracking": -0.03,
+      "leading": 1.12,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "left",
+      "widthRatio": 0.44,
+      "top": 254,
+      "tag": "h1",
+      "kind": "heading"
+     },
+     {
+      "text": "Aa Бб 123",
+      "words": 3,
+      "chars": 9,
+      "lines": 1,
+      "size": 32,
+      "vw": 4.2,
+      "font": "system-ui",
+      "weight": 400,
+      "tracking": -0.025,
+      "leading": 1.5,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "center",
+      "widthRatio": 0.92,
+      "top": 1709,
+      "tag": "div",
+      "kind": "heading"
+     }
+    ],
+    "headingSummary": {
+     "count": 3,
+     "maxLines": 2,
+     "over2Lines": 0,
+     "statements": 0,
+     "centered": 0,
+     "medianWords": 3,
+     "mixedFontHeadings": 0
+    },
+    "type": {
+     "families": [
+      {
+       "family": "monospace",
+       "share": 0.69,
+       "mono": false
+      },
+      {
+       "family": "system-ui",
+       "share": 0.3,
+       "mono": false
+      },
+      {
+       "family": "ui-monospace",
+       "share": 0.01,
+       "mono": false
+      }
+     ],
+     "familyCount": 3,
+     "sizes": [
+      13,
+      14,
+      16,
+      18,
+      24,
+      28,
+      32,
+      38
+     ],
+     "sizeCount": 8,
+     "notLoaded": [],
+     "body": {
+      "font": "system-ui",
+      "size": 14,
+      "leading": 1.6,
+      "weight": 400,
+      "tracking": 0,
+      "contrast": 7.6
+     },
+     "measureChars": 101,
+     "max": {
+      "size": 38.4,
+      "vw": 5,
+      "font": "system-ui",
+      "text": "Один языкдля интерфейсов."
+     },
+     "monoShare": 0.7,
+     "monoProseShare": 0,
+     "monoFamilies": [
+      "ui-monospace",
+      "monospace"
+     ],
+     "monoSamples": [
+      "reset",
+      "→",
+      "tokens",
+      "→",
+      "themes",
+      "→"
+     ],
+     "microLabels": 0,
+     "microLabelShare": 0,
+     "microSamples": [],
+     "upperShare": 0,
+     "centerShare": 0.1,
+     "smallText": 0
+    },
+    "eyebrows": [
+     {
+      "text": "Типографика",
+      "above": "Aa Бб 123",
+      "upper": false,
+      "tracked": false,
+      "mono": false,
+      "pill": false,
+      "size": 13,
+      "top": 1674
+     }
+    ],
+    "numbered": [],
+    "color": {
+     "bodyBg": "#212d3b",
+     "bodyBgHsl": {
+      "h": 212,
+      "s": 0.28,
+      "l": 0.18
+     },
+     "dark": true,
+     "sectionBgs": [
+      {
+       "color": "#212d3b",
+       "top": 2834,
+       "hsl": {
+        "h": 212,
+        "s": 0.28,
+        "l": 0.18
+       }
+      },
+      {
+       "color": "#151e27",
+       "top": 2835,
+       "hsl": {
+        "h": 210,
+        "s": 0.3,
+        "l": 0.12
+       }
+      },
+      {
+       "color": "#1d2733",
+       "top": 11881,
+       "hsl": {
+        "h": 213,
+        "s": 0.28,
+        "l": 0.16
+       }
+      }
+     ],
+     "textColors": [
+      {
+       "color": "#ffffff",
+       "share": 0.76
+      },
+      {
+       "color": "#bcc0c4",
+       "share": 0.24
+      },
+      {
+       "color": "#77c5ff",
+       "share": 0
+      },
+      {
+       "color": "#f59494",
+       "share": 0
+      }
+     ],
+     "button": {
+      "bg": "#2178b8",
+      "hsl": {
+       "h": 205,
+       "s": 0.7,
+       "l": 0.43
+      },
+      "fg": "#ffffff"
+     },
+     "lowContrast": []
+    },
+    "buttons": {
+     "count": 29,
+     "inHero": 3,
+     "radius": 12,
+     "height": 48,
+     "withShadow": 1,
+     "withGradient": 0,
+     "mono": 0,
+     "upper": 0,
+     "heroLabels": [
+      "К содержимому",
+      "Смотреть компоненты",
+      "Настроить профиль"
+     ]
+    },
+    "surfaces": {
+     "shadowStatic": 0,
+     "shadowOverlay": 1,
+     "shadowSamples": [],
+     "gradients": 0,
+     "scrims": 0,
+     "gradientSamples": [],
+     "gradientText": 0,
+     "hairlines": 57,
+     "hairlineSamples": [
+      "header.site-header 768px",
+      "nav.mobile-navigation 768px",
+      "div.feature-strip 704px",
+      "div.foundation-card 704px",
+      "div.foundation-card 704px"
+     ],
+     "outlinedBoxes": 27,
+     "dashed": 0,
+     "blurred": 1,
+     "roundedBoxes": 42,
+     "boxRadius": 16,
+     "squareMedia": 0,
+     "roundedMedia": 0,
+     "mediaRadius": 0,
+     "textShadow": 0,
+     "cardRows": []
+    },
+    "heroMedia": [],
+    "nav": {
+     "links": 1,
+     "fixed": true,
+     "height": 72,
+     "floatingPill": false,
+     "blur": false
+    },
+    "fontsLoaded": []
+   },
+   "layout": {
+    "viewport": {
+     "w": 768,
+     "h": 1024
+    },
+    "pageH": 14440,
+    "margins": {
+     "left": 32,
+     "right": 34
+    },
+    "sections": [
+     {
+      "sel": "section#overview.hero",
+      "tag": "section",
+      "top": 133,
+      "height": 657,
+      "words": 66,
+      "media": 0,
+      "middle": 70,
+      "heading": {
+       "text": "Один язык",
+       "size": 38,
+       "tag": "h1"
+      },
+      "left": 32,
+      "right": 68,
+      "textLeft": 32,
+      "textRight": 68,
+      "fullBleed": false,
+      "footer": false,
+      "hero": true,
+      "continues": false,
+      "pinned": false
+     },
+     {
+      "sel": "section#tokens.catalog-section",
+      "tag": "section",
+      "top": 886,
+      "height": 1260,
+      "words": 69,
+      "media": 0,
+      "middle": 0,
+      "heading": {
+       "text": "Баланс начинается с деталей",
+       "size": 24,
+       "tag": "h2"
+      },
+      "left": 32,
+      "right": 32,
+      "textLeft": 32,
+      "textRight": 32,
+      "fullBleed": false,
+      "footer": false,
+      "hero": false,
+      "continues": false,
+      "pinned": false
+     },
+     {
+      "sel": "section#buttons.catalog-section",
+      "tag": "section",
+      "top": 2146,
+      "height": 514,
+      "words": 111,
+      "media": 0,
+      "middle": 49,
+      "heading": {
+       "text": "Кнопки с ясной иерархией",
+       "size": 24,
+       "tag": "h2"
+      },
+      "left": 32,
+      "right": 32,
+      "textLeft": 32,
+      "textRight": -862,
+      "fullBleed": false,
+      "footer": false,
+      "hero": false,
+      "continues": false,
+      "pinned": false
+     },
+     {
+      "sel": "section#icons.catalog-section",
+      "tag": "section",
+      "top": 2659,
+      "height": 1232,
+      "words": 142,
+      "media": 0,
+      "middle": 0,
+      "heading": {
+       "text": "Иконки Feather",
+       "size": 24,
+       "tag": "h2"
+      },
+      "left": 32,
+      "right": 32,
+      "textLeft": 32,
+      "textRight": 32,
+      "fullBleed": false,
+      "footer": false,
+      "hero": false,
+      "continues": false,
+      "pinned": false
+     },
+     {
+      "sel": "div.example-panel",
+      "tag": "div",
+      "top": 4044,
+      "height": 524,
+      "words": 28,
+      "media": 0,
+      "middle": 0,
+      "heading": null,
+      "left": 57,
+      "right": 57,
+      "textLeft": 57,
+      "textRight": 138,
+      "fullBleed": false,
+      "footer": false,
+      "hero": false,
+      "continues": true,
+      "pinned": false
+     },
+     {
+      "sel": "div.example-panel",
+      "tag": "div",
+      "top": 4584,
+      "height": 143,
+      "words": 7,
+      "media": 0,
+      "middle": 44,
+      "heading": null,
+      "left": 57,
+      "right": 57,
+      "textLeft": 57,
+      "textRight": 115,
+      "fullBleed": false,
+      "footer": false,
+      "hero": false,
+      "continues": true,
+      "pinned": false
+     },
+     {
+      "sel": "div.example-panel",
+      "tag": "div",
+      "top": 4742,
+      "height": 230,
+      "words": 13,
+      "media": 0,
+      "middle": 98,
+      "heading": null,
+      "left": 57,
+      "right": 57,
+      "textLeft": 57,
+      "textRight": 57,
+      "fullBleed": false,
+      "footer": false,
+      "hero": false,
+      "continues": true,
+      "pinned": false
+     },
+     {
+      "sel": "div.example-panel",
+      "tag": "div",
+      "top": 4989,
+      "height": 275,
+      "words": 9,
+      "media": 0,
+      "middle": 0,
+      "heading": null,
+      "left": 57,
+      "right": 73,
+      "textLeft": 57,
+      "textRight": 496,
+      "fullBleed": false,
+      "footer": false,
+      "hero": false,
+      "continues": true,
+      "pinned": false
+     },
+     {
+      "sel": "div.example-panel",
+      "tag": "div",
+      "top": 5280,
+      "height": 288,
+      "words": 14,
+      "media": 0,
+      "middle": 0,
+      "heading": {
+       "text": "Проверьте данные",
+       "size": 16,
+       "tag": "h3"
+      },
+      "left": 57,
+      "right": 57,
+      "textLeft": 57,
+      "textRight": 370,
+      "fullBleed": false,
+      "footer": false,
+      "hero": false,
+      "continues": true,
+      "pinned": false
+     },
+     {
+      "sel": "div.example-panel",
+      "tag": "div",
+      "top": 5790,
+      "height": 355,
+      "words": 35,
+      "media": 0,
+      "middle": 93,
+      "heading": {
+       "text": "Пространство для идей",
+       "size": 18,
+       "tag": "h3"
+      },
+      "left": 57,
+      "right": 83,
+      "textLeft": 57,
+      "textRight": 83,
+      "fullBleed": false,
+      "footer": false,
+      "hero": false,
+      "continues": true,
+      "pinned": false
+     },
+     {
+      "sel": "div.example-panel",
+      "tag": "div",
+      "top": 6161,
+      "height": 145,
+      "words": 25,
+      "media": 0,
+      "middle": 0,
+      "heading": null,
+      "left": 57,
+      "right": 83,
+      "textLeft": 57,
+      "textRight": 83,
+      "fullBleed": false,
+      "footer": false,
+      "hero": false,
+      "continues": true,
+      "pinned": false
+     },
+     {
+      "sel": "div.example-panel",
+      "tag": "div",
+      "top": 6322,
+      "height": 314,
+      "words": 15,
+      "media": 0,
+      "middle": 5,
+      "heading": {
+       "text": "Пока нет заказов",
+       "size": 18,
+       "tag": "h3"
+      },
+      "left": 57,
+      "right": 178,
+      "textLeft": 57,
+      "textRight": 178,
+      "fullBleed": false,
+      "footer": false,
+      "hero": false,
+      "continues": true,
+      "pinned": false
+     },
+     {
+      "sel": "div.section-heading",
+      "tag": "div",
+      "top": 6635,
+      "height": 128,
+      "words": 11,
+      "media": 0,
+      "middle": 190,
+      "heading": {
+       "text": "Пространство для идей",
+       "size": 24,
+       "tag": "h2"
+      },
+      "left": 32,
+      "right": 32,
+      "textLeft": 32,
+      "textRight": 32,
+      "fullBleed": false,
+      "footer": false,
+      "hero": false,
+      "continues": true,
+      "pinned": false
+     },
+     {
+      "sel": "div.example-panel",
+      "tag": "div",
+      "top": 6788,
+      "height": 356,
+      "words": 21,
+      "media": 0,
+      "middle": 204,
+      "heading": {
+       "text": "Пространство для идей",
+       "size": 18,
+       "tag": "h3"
+      },
+      "left": 57,
+      "right": 74,
+      "textLeft": 57,
+      "textRight": 323,
+      "fullBleed": false,
+      "footer": false,
+      "hero": false,
+      "continues": true,
+      "pinned": false
+     },
+     {
+      "sel": "div.section-heading",
+      "tag": "div",
+      "top": 7144,
+      "height": 128,
+      "words": 15,
+      "media": 0,
+      "middle": 97,
+      "heading": {
+       "text": "Мои заказы",
+       "size": 24,
+       "tag": "h2"
+      },
+      "left": 32,
+      "right": 32,
+      "textLeft": 32,
+      "textRight": 32,
+      "fullBleed": false,
+      "footer": false,
+      "hero": false,
+      "continues": true,
+      "pinned": false
+     },
+     {
+      "sel": "div.example-panel",
+      "tag": "div",
+      "top": 7296,
+      "height": 338,
+      "words": 25,
+      "media": 0,
+      "middle": 312,
+      "heading": null,
+      "left": 57,
+      "right": 74,
+      "textLeft": 57,
+      "textRight": 74,
+      "fullBleed": false,
+      "footer": false,
+      "hero": false,
+      "continues": true,
+      "pinned": false
+     },
+     {
+      "sel": "section#navigation.catalog-section",
+      "tag": "section",
+      "top": 7634,
+      "height": 773,
+      "words": 50,
+      "media": 0,
+      "middle": 0,
+      "heading": {
+       "text": "Понятно, где вы находитесь",
+       "size": 24,
+       "tag": "h2"
+      },
+      "left": 32,
+      "right": 32,
+      "textLeft": 32,
+      "textRight": 32,
+      "fullBleed": false,
+      "footer": false,
+      "hero": false,
+      "continues": false,
+      "pinned": false
+     },
+     {
+      "sel": "section#feedback.catalog-section",
+      "tag": "section",
+      "top": 8408,
+      "height": 875,
+      "words": 372,
+      "media": 0,
+      "middle": 0,
+      "heading": {
+       "text": "Каждое действие получает ответ",
+       "size": 24,
+       "tag": "h2"
+      },
+      "left": 32,
+      "right": 32,
+      "textLeft": 32,
+      "textRight": -2482,
+      "fullBleed": false,
+      "footer": false,
+      "hero": false,
+      "continues": false,
+      "pinned": false
+     },
+     {
+      "sel": "section#avatars.catalog-section",
+      "tag": "section",
+      "top": 9297,
+      "height": 310,
+      "words": 22,
+      "media": 0,
+      "middle": 28,
+      "heading": {
+       "text": "Небольшие, но важные",
+       "size": 24,
+       "tag": "h2"
+      },
+      "left": 32,
+      "right": 32,
+      "textLeft": 32,
+      "textRight": 32,
+      "fullBleed": false,
+      "footer": false,
+      "hero": false,
+      "continues": false,
+      "pinned": false
+     },
+     {
+      "sel": "section#layout.catalog-section",
+      "tag": "section",
+      "top": 9607,
+      "height": 455,
+      "words": 25,
+      "media": 0,
+      "middle": 84,
+      "heading": {
+       "text": "Тот же ритм в любом масштабе",
+       "size": 24,
+       "tag": "h2"
+      },
+      "left": 32,
+      "right": 32,
+      "textLeft": 32,
+      "textRight": 32,
+      "fullBleed": false,
+      "footer": false,
+      "hero": false,
+      "continues": false,
+      "pinned": false
+     },
+     {
+      "sel": "section#data.catalog-section",
+      "tag": "section",
+      "top": 10062,
+      "height": 810,
+      "words": 223,
+      "media": 0,
+      "middle": 0,
+      "heading": {
+       "text": "Данные и сводки",
+       "size": 24,
+       "tag": "h2"
+      },
+      "left": 32,
+      "right": 32,
+      "textLeft": 32,
+      "textRight": -4403,
+      "fullBleed": false,
+      "footer": false,
+      "hero": false,
+      "continues": false,
+      "pinned": false
+     },
+     {
+      "sel": "div.example-panel",
+      "tag": "div",
+      "top": 11147,
+      "height": 735,
+      "words": 2,
+      "media": 1,
+      "middle": 0,
+      "heading": null,
+      "left": 57,
+      "right": 57,
+      "textLeft": 57,
+      "textRight": 595,
+      "fullBleed": false,
+      "footer": false,
+      "hero": false,
+      "continues": true,
+      "pinned": false
+     },
+     {
+      "sel": "div.example-panel",
+      "tag": "div",
+      "top": 11898,
+      "height": 798,
+      "words": 182,
+      "media": 0,
+      "middle": 0,
+      "heading": {
+       "text": "Что входит в TDS",
+       "size": 18,
+       "tag": "h3"
+      },
+      "left": 57,
+      "right": 67,
+      "textLeft": 57,
+      "textRight": 67,
+      "fullBleed": false,
+      "footer": false,
+      "hero": false,
+      "continues": true,
+      "pinned": false
+     },
+     {
+      "sel": "section#effects.catalog-section",
+      "tag": "section",
+      "top": 12696,
+      "height": 956,
+      "words": 148,
+      "media": 0,
+      "middle": 0,
+      "heading": {
+       "text": "Те самые ощущения",
+       "size": 24,
+       "tag": "h2"
+      },
+      "left": 32,
+      "right": 32,
+      "textLeft": 32,
+      "textRight": -1825,
+      "fullBleed": false,
+      "footer": false,
+      "hero": false,
+      "continues": false,
+      "pinned": false
+     },
+     {
+      "sel": "section#start.catalog-section.start-section",
+      "tag": "section",
+      "top": 13651,
+      "height": 640,
+      "words": 79,
+      "media": 0,
+      "middle": 0,
+      "heading": {
+       "text": "Один файл — и можно собирать",
+       "size": 24,
+       "tag": "h2"
+      },
+      "left": 32,
+      "right": 32,
+      "textLeft": 32,
+      "textRight": 32,
+      "fullBleed": false,
+      "footer": true,
+      "hero": false,
+      "continues": false,
+      "pinned": false
+     }
+    ],
+    "gaps": [],
+    "h1s": [
+     {
+      "text": "Один язык для интерфейсов.",
+      "size": 38,
+      "top": 254,
+      "firstScreen": true
+     }
+    ],
+    "edgeText": [],
+    "edges": [
+     {
+      "x": 32,
+      "n": 28
+     },
+     {
+      "x": 57,
+      "n": 5
+     }
+    ],
+    "leftBlocks": 33,
+    "bodySize": 13,
+    "stage": false,
+    "explains": false,
+    "slivers": [],
+    "voidShare": 0,
+    "voidBox": null
+   },
+   "app": {
+    "viewport": {
+     "w": 768,
+     "h": 1024
+    },
+    "dark": true,
+    "ground": "#212d3b",
+    "sidebar": null,
+    "topbar": {
+     "h": 72
+    },
+    "canvas": {
+     "left": 32,
+     "right": 32
+    },
+    "hero": {
+     "text": "Один язык для интерфейсов.",
+     "words": 4,
+     "chars": 26,
+     "lines": 2,
+     "size": 38,
+     "vw": 5,
+     "font": "system-ui",
+     "weight": 600,
+     "tracking": -0.03,
+     "leading": 1.12,
+     "top": 254,
+     "tag": "h1",
+     "kind": "heading",
+     "align": "left",
+     "position": "left"
+    },
+    "charts": 1,
+    "layout": {
+     "panels": 35,
+     "firstScreen": 2,
+     "ragged": [],
+     "voids": []
+    },
+    "tiles": 0,
+    "panels": {
+     "count": 76,
+     "radii": [
+      [
+       16,
+       35
+      ],
+      [
+       0,
+       32
+      ],
+      [
+       12,
+       9
+      ]
+     ],
+     "heavyBorders": 43,
+     "borderSamples": [
+      "#ffffff on #212d3b (13.97:1)",
+      "#ffffff on #212d3b (13.97:1)",
+      "#ffffff on #212d3b (13.97:1)"
+     ],
+     "heavyShadows": 0,
+     "softShadows": 0,
+     "shadowSamples": [],
+     "glass": 1
+    },
+    "chips": {
+     "count": 2,
+     "hues": 1,
+     "samples": [
+      {
+       "hue": 213,
+       "size": 48,
+       "radius": "12px"
+      },
+      {
+       "hue": 213,
+       "size": 48,
+       "radius": "9999px"
+      }
+     ]
+    },
+    "numbers": {
+     "cells": 2,
+     "leftAligned": 2,
+     "figures": 10,
+     "tabularShare": 0.5,
+     "kpiMax": 16
+    },
+    "rows": {
+     "count": 6,
+     "median": 103
+    },
+    "chartHues": 0,
+    "placeholders": [],
+    "type": {
+     "under13": 0,
+     "tiny": 0,
+     "tinySamples": [],
+     "sizes": [
+      13,
+      14,
+      16,
+      18,
+      22,
+      24,
+      32,
+      38
+     ]
+    },
+    "title": {
+     "text": "Один язык\nдля интерфейсов.",
+     "size": 38,
+     "top": 254
+    },
+    "colourShare": 0.034
+   },
+   "consoleErrors": []
+  },
+  {
+   "width": 390,
+   "height": 844,
+   "load": "load",
+   "screens": 12,
+   "filled": [
+    0.45,
+    0.41,
+    0.37,
+    0.63,
+    0.91,
+    0.74,
+    0.85,
+    0.8,
+    0.5,
+    0.67,
+    0.56,
+    0.8
+   ],
+   "motion": {
+    "elements": 4,
+    "css": 4,
+    "transitions": 0,
+    "scripted": 0,
+    "videos": 0,
+    "playingVideos": 0
+   },
+   "metrics": {
+    "viewport": {
+     "w": 390,
+     "h": 844
+    },
+    "page": {
+     "height": 17689,
+     "screens": 21,
+     "words": 1433,
+     "img": 1,
+     "video": 0,
+     "canvas": 0,
+     "svg": 313,
+     "sections": 14,
+     "horizontalOverflow": 0,
+     "overflowCulprits": [],
+     "uiFragments": 26,
+     "uiAbuse": false,
+     "realPictures": 0,
+     "videoCount": 0,
+     "uiPictures": 17,
+     "pictureSamples": [],
+     "blendText": 0,
+     "sideScrollers": 0,
+     "brokenImages": [],
+     "emoji": [],
+     "videosNoPoster": 0
+    },
+    "hero": {
+     "text": "Один язык для интерфейсов.",
+     "words": 4,
+     "chars": 26,
+     "lines": 2,
+     "size": 33,
+     "vw": 8.5,
+     "font": "system-ui",
+     "weight": 600,
+     "tracking": -0.03,
+     "leading": 1.12,
+     "top": 157,
+     "tag": "h1",
+     "kind": "heading",
+     "align": "left",
+     "position": "left"
+    },
+    "h1": {
+     "text": "Один язык для интерфейсов.",
+     "words": 4,
+     "lines": 2,
+     "size": 33.2,
+     "font": "system-ui"
+    },
+    "headings": [
+     {
+      "text": "t ·",
+      "words": 2,
+      "chars": 3,
+      "lines": 1,
+      "size": 24,
+      "vw": 6.2,
+      "font": "system-ui",
+      "weight": 600,
+      "tracking": -0.03,
+      "leading": 1.5,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "left",
+      "widthRatio": 0.07,
+      "top": 18,
+      "tag": "span",
+      "kind": "heading"
+     },
+     {
+      "text": "Один язык для интерфейсов.",
+      "words": 4,
+      "chars": 26,
+      "lines": 2,
+      "size": 33.2,
+      "vw": 8.5,
+      "font": "system-ui",
+      "weight": 600,
+      "tracking": -0.03,
+      "leading": 1.12,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "center",
+      "widthRatio": 0.9,
+      "top": 157,
+      "tag": "h1",
+      "kind": "heading"
+     },
+     {
+      "text": "Всё на своих местах",
+      "words": 4,
+      "chars": 19,
+      "lines": 1,
+      "size": 22,
+      "vw": 5.6,
+      "font": "system-ui",
+      "weight": 600,
+      "tracking": -0.025,
+      "leading": 1.5,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "center",
+      "widthRatio": 0.69,
+      "top": 629,
+      "tag": "h2",
+      "kind": "heading"
+     },
+     {
+      "text": "Баланс начинается с деталей",
+      "words": 4,
+      "chars": 27,
+      "lines": 1,
+      "size": 24,
+      "vw": 6.2,
+      "font": "system-ui",
+      "weight": 600,
+      "tracking": -0.025,
+      "leading": 1.25,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "center",
+      "widthRatio": 0.9,
+      "top": 1272,
+      "tag": "h2",
+      "kind": "heading"
+     },
+     {
+      "text": "Aa Бб 123",
+      "words": 3,
+      "chars": 9,
+      "lines": 1,
+      "size": 32,
+      "vw": 8.2,
+      "font": "system-ui",
+      "weight": 400,
+      "tracking": -0.025,
+      "leading": 1.5,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "center",
+      "widthRatio": 0.9,
+      "top": 2104,
+      "tag": "div",
+      "kind": "heading"
+     },
+     {
+      "text": "Кнопки с ясной иерархией",
+      "words": 4,
+      "chars": 24,
+      "lines": 1,
+      "size": 24,
+      "vw": 6.2,
+      "font": "system-ui",
+      "weight": 600,
+      "tracking": -0.025,
+      "leading": 1.25,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "center",
+      "widthRatio": 0.9,
+      "top": 2586,
+      "tag": "h2",
+      "kind": "heading"
+     },
+     {
+      "text": "Иконки Feather",
+      "words": 2,
+      "chars": 14,
+      "lines": 1,
+      "size": 24,
+      "vw": 6.2,
+      "font": "system-ui",
+      "weight": 600,
+      "tracking": -0.025,
+      "leading": 1.25,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "center",
+      "widthRatio": 0.9,
+      "top": 3230,
+      "tag": "h2",
+      "kind": "heading"
+     },
+     {
+      "text": "Место для ваших данных",
+      "words": 4,
+      "chars": 22,
+      "lines": 1,
+      "size": 24,
+      "vw": 6.2,
+      "font": "system-ui",
+      "weight": 600,
+      "tracking": -0.025,
+      "leading": 1.25,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "center",
+      "widthRatio": 0.9,
+      "top": 4734,
+      "tag": "h2",
+      "kind": "heading"
+     },
+     {
+      "text": "Собирайте из простых блоков",
+      "words": 4,
+      "chars": 27,
+      "lines": 1,
+      "size": 24,
+      "vw": 6.2,
+      "font": "system-ui",
+      "weight": 600,
+      "tracking": -0.025,
+      "leading": 1.25,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "center",
+      "widthRatio": 0.9,
+      "top": 6884,
+      "tag": "h2",
+      "kind": "heading"
+     },
+     {
+      "text": "Пространство для идей",
+      "words": 3,
+      "chars": 21,
+      "lines": 1,
+      "size": 24,
+      "vw": 6.2,
+      "font": "system-ui",
+      "weight": 600,
+      "tracking": -0.025,
+      "leading": 1.25,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "center",
+      "widthRatio": 0.9,
+      "top": 8184,
+      "tag": "h2",
+      "kind": "heading"
+     },
+     {
+      "text": "Мои заказы",
+      "words": 2,
+      "chars": 10,
+      "lines": 1,
+      "size": 24,
+      "vw": 6.2,
+      "font": "system-ui",
+      "weight": 600,
+      "tracking": -0.025,
+      "leading": 1.25,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "center",
+      "widthRatio": 0.9,
+      "top": 8717,
+      "tag": "h2",
+      "kind": "heading"
+     },
+     {
+      "text": "Понятно, где вы находитесь",
+      "words": 4,
+      "chars": 26,
+      "lines": 1,
+      "size": 24,
+      "vw": 6.2,
+      "font": "system-ui",
+      "weight": 600,
+      "tracking": -0.025,
+      "leading": 1.25,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "center",
+      "widthRatio": 0.9,
+      "top": 9240,
+      "tag": "h2",
+      "kind": "heading"
+     },
+     {
+      "text": "Каждое действие получает ответ",
+      "words": 4,
+      "chars": 30,
+      "lines": 2,
+      "size": 24,
+      "vw": 6.2,
+      "font": "system-ui",
+      "weight": 600,
+      "tracking": -0.025,
+      "leading": 1.25,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "center",
+      "widthRatio": 0.9,
+      "top": 10163,
+      "tag": "h2",
+      "kind": "heading"
+     },
+     {
+      "text": "Небольшие, но важные",
+      "words": 3,
+      "chars": 20,
+      "lines": 1,
+      "size": 24,
+      "vw": 6.2,
+      "font": "system-ui",
+      "weight": 600,
+      "tracking": -0.025,
+      "leading": 1.25,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "center",
+      "widthRatio": 0.9,
+      "top": 11309,
+      "tag": "h2",
+      "kind": "heading"
+     },
+     {
+      "text": "Тот же ритм в любом масштабе",
+      "words": 6,
+      "chars": 28,
+      "lines": 1,
+      "size": 24,
+      "vw": 6.2,
+      "font": "system-ui",
+      "weight": 600,
+      "tracking": -0.025,
+      "leading": 1.25,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "center",
+      "widthRatio": 0.9,
+      "top": 11686,
+      "tag": "h2",
+      "kind": "heading"
+     },
+     {
+      "text": "Данные и сводки",
+      "words": 3,
+      "chars": 15,
+      "lines": 1,
+      "size": 24,
+      "vw": 6.2,
+      "font": "system-ui",
+      "weight": 600,
+      "tracking": -0.025,
+      "leading": 1.25,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "center",
+      "widthRatio": 0.9,
+      "top": 12288,
+      "tag": "h2",
+      "kind": "heading"
+     },
+     {
+      "text": "Готовые композиции экранов",
+      "words": 3,
+      "chars": 26,
+      "lines": 1,
+      "size": 24,
+      "vw": 6.2,
+      "font": "system-ui",
+      "weight": 600,
+      "tracking": -0.025,
+      "leading": 1.25,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "center",
+      "widthRatio": 0.9,
+      "top": 13259,
+      "tag": "h2",
+      "kind": "heading"
+     },
+     {
+      "text": "Те самые ощущения",
+      "words": 3,
+      "chars": 17,
+      "lines": 1,
+      "size": 24,
+      "vw": 6.2,
+      "font": "system-ui",
+      "weight": 600,
+      "tracking": -0.025,
+      "leading": 1.25,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "center",
+      "widthRatio": 0.9,
+      "top": 15477,
+      "tag": "h2",
+      "kind": "heading"
+     },
+     {
+      "text": "Один файл — и можно собирать",
+      "words": 6,
+      "chars": 28,
+      "lines": 2,
+      "size": 24,
+      "vw": 6.2,
+      "font": "system-ui",
+      "weight": 600,
+      "tracking": -0.025,
+      "leading": 1.25,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "center",
+      "widthRatio": 0.9,
+      "top": 16465,
+      "tag": "h2",
+      "kind": "heading"
+     },
+     {
+      "text": "t ·",
+      "words": 2,
+      "chars": 3,
+      "lines": 1,
+      "size": 24,
+      "vw": 6.2,
+      "font": "system-ui",
+      "weight": 600,
+      "tracking": -0.03,
+      "leading": 1.5,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "left",
+      "widthRatio": 0.07,
+      "top": 17629,
+      "tag": "span",
+      "kind": "heading"
+     }
+    ],
+    "headingSummary": {
+     "count": 20,
+     "maxLines": 2,
+     "over2Lines": 0,
+     "statements": 0,
+     "centered": 0,
+     "medianWords": 3,
+     "mixedFontHeadings": 0
+    },
+    "type": {
+     "families": [
+      {
+       "family": "monospace",
+       "share": 0.69,
+       "mono": false
+      },
+      {
+       "family": "system-ui",
+       "share": 0.3,
+       "mono": false
+      },
+      {
+       "family": "ui-monospace",
+       "share": 0.01,
+       "mono": false
+      }
+     ],
+     "familyCount": 3,
+     "sizes": [
+      13,
+      14,
+      16,
+      17,
+      24,
+      32,
+      33
+     ],
+     "sizeCount": 7,
+     "notLoaded": [],
+     "body": {
+      "font": "system-ui",
+      "size": 14,
+      "leading": 1.6,
+      "weight": 400,
+      "tracking": 0,
+      "contrast": 7.6
+     },
+     "measureChars": 52,
+     "max": {
+      "size": 33.2,
+      "vw": 8.5,
+      "font": "system-ui",
+      "text": "Один языкдля интерфейсов."
+     },
+     "monoShare": 0.7,
+     "monoProseShare": 0,
+     "monoFamilies": [
+      "ui-monospace",
+      "monospace"
+     ],
+     "monoSamples": [
+      "reset",
+      "→",
+      "tokens",
+      "→",
+      "themes",
+      "→"
+     ],
+     "microLabels": 0,
+     "microLabelShare": 0,
+     "microSamples": [],
+     "upperShare": 0,
+     "centerShare": 0.1,
+     "smallText": 0
+    },
+    "eyebrows": [
+     {
+      "text": "Типографика",
+      "above": "Aa Бб 123",
+      "upper": false,
+      "tracked": false,
+      "mono": false,
+      "pill": false,
+      "size": 13,
+      "top": 2069
+     }
+    ],
+    "numbered": [],
+    "color": {
+     "bodyBg": "#212d3b",
+     "bodyBgHsl": {
+      "h": 212,
+      "s": 0.28,
+      "l": 0.18
+     },
+     "dark": true,
+     "sectionBgs": [
+      {
+       "color": "#151e27",
+       "top": 505,
+       "hsl": {
+        "h": 210,
+        "s": 0.3,
+        "l": 0.12
+       }
+      },
+      {
+       "color": "#212d3b",
+       "top": 565,
+       "hsl": {
+        "h": 212,
+        "s": 0.28,
+        "l": 0.18
+       }
+      },
+      {
+       "color": "#1d2733",
+       "top": 14267,
+       "hsl": {
+        "h": 213,
+        "s": 0.28,
+        "l": 0.16
+       }
+      }
+     ],
+     "textColors": [
+      {
+       "color": "#ffffff",
+       "share": 0.76
+      },
+      {
+       "color": "#bcc0c4",
+       "share": 0.24
+      },
+      {
+       "color": "#77c5ff",
+       "share": 0
+      },
+      {
+       "color": "#f59494",
+       "share": 0
+      }
+     ],
+     "button": {
+      "bg": "#2178b8",
+      "hsl": {
+       "h": 205,
+       "s": 0.7,
+       "l": 0.43
+      },
+      "fg": "#ffffff"
+     },
+     "lowContrast": []
+    },
+    "buttons": {
+     "count": 29,
+     "inHero": 2,
+     "radius": 12,
+     "height": 45,
+     "withShadow": 1,
+     "withGradient": 0,
+     "mono": 0,
+     "upper": 0,
+     "heroLabels": [
+      "К содержимому",
+      "Смотреть компоненты"
+     ]
+    },
+    "surfaces": {
+     "shadowStatic": 0,
+     "shadowOverlay": 1,
+     "shadowSamples": [],
+     "gradients": 0,
+     "scrims": 0,
+     "gradientSamples": [],
+     "gradientText": 0,
+     "hairlines": 57,
+     "hairlineSamples": [
+      "header.site-header 390px",
+      "nav.mobile-navigation 390px",
+      "div.feature-strip 350px",
+      "div.foundation-card 350px",
+      "div.foundation-card 350px"
+     ],
+     "outlinedBoxes": 27,
+     "dashed": 0,
+     "blurred": 1,
+     "roundedBoxes": 46,
+     "boxRadius": 16,
+     "squareMedia": 0,
+     "roundedMedia": 0,
+     "mediaRadius": 0,
+     "textShadow": 0,
+     "cardRows": [
+      {
+       "count": 3,
+       "iconTopped": false,
+       "rounded": false,
+       "top": 2043
+      },
+      {
+       "count": 5,
+       "iconTopped": false,
+       "rounded": true,
+       "top": 4858
+      },
+      {
+       "count": 5,
+       "iconTopped": false,
+       "rounded": true,
+       "top": 7008
+      },
+      {
+       "count": 3,
+       "iconTopped": false,
+       "rounded": true,
+       "top": 10360
+      },
+      {
+       "count": 3,
+       "iconTopped": false,
+       "rounded": true,
+       "top": 15646
+      }
+     ]
+    },
+    "heroMedia": [],
+    "nav": {
+     "links": 1,
+     "fixed": false,
+     "height": 64,
+     "floatingPill": false,
+     "blur": false
+    },
+    "fontsLoaded": []
+   },
+   "layout": {
+    "viewport": {
+     "w": 390,
+     "h": 844
+    },
+    "pageH": 17689,
+    "margins": {
+     "left": 20,
+     "right": 32
+    },
+    "sections": [
+     {
+      "sel": "section#overview.hero",
+      "tag": "section",
+      "top": 125,
+      "height": 954,
+      "words": 66,
+      "media": 0,
+      "middle": 0,
+      "heading": {
+       "text": "Один язык",
+       "size": 33,
+       "tag": "h1"
+      },
+      "left": 20,
+      "right": 29,
+      "textLeft": 20,
+      "textRight": 29,
+      "fullBleed": false,
+      "footer": false,
+      "hero": true,
+      "continues": false,
+      "pinned": false
+     },
+     {
+      "sel": "div.feature-strip",
+      "tag": "div",
+      "top": 1079,
+      "height": 145,
+      "words": 14,
+      "media": 0,
+      "middle": 55,
+      "heading": null,
+      "left": 20,
+      "right": 41,
+      "textLeft": 20,
+      "textRight": 41,
+      "fullBleed": false,
+      "footer": false,
+      "hero": false,
+      "continues": false,
+      "pinned": false
+     },
+     {
+      "sel": "section#tokens.catalog-section",
+      "tag": "section",
+      "top": 1224,
+      "height": 1314,
+      "words": 69,
+      "media": 0,
+      "middle": 0,
+      "heading": {
+       "text": "Баланс начинается с деталей",
+       "size": 24,
+       "tag": "h2"
+      },
+      "left": 20,
+      "right": 24,
+      "textLeft": 20,
+      "textRight": 24,
+      "fullBleed": false,
+      "footer": false,
+      "hero": false,
+      "continues": false,
+      "pinned": false
+     },
+     {
+      "sel": "section#buttons.catalog-section",
+      "tag": "section",
+      "top": 2538,
+      "height": 644,
+      "words": 111,
+      "media": 0,
+      "middle": 0,
+      "heading": {
+       "text": "Кнопки с ясной иерархией",
+       "size": 24,
+       "tag": "h2"
+      },
+      "left": 20,
+      "right": 55,
+      "textLeft": 20,
+      "textRight": -1224,
+      "fullBleed": false,
+      "footer": false,
+      "hero": false,
+      "continues": false,
+      "pinned": false
+     },
+     {
+      "sel": "div.section-heading",
+      "tag": "div",
+      "top": 3230,
+      "height": 145,
+      "words": 24,
+      "media": 0,
+      "middle": 0,
+      "heading": {
+       "text": "Иконки Feather",
+       "size": 24,
+       "tag": "h2"
+      },
+      "left": 20,
+      "right": 62,
+      "textLeft": 20,
+      "textRight": 62,
+      "fullBleed": false,
+      "footer": false,
+      "hero": false,
+      "continues": true,
+      "pinned": false
+     },
+     {
+      "sel": "div.example-panel",
+      "tag": "div",
+      "top": 3399,
+      "height": 988,
+      "words": 60,
+      "media": 0,
+      "middle": 0,
+      "heading": null,
+      "left": 41,
+      "right": 42,
+      "textLeft": 41,
+      "textRight": 42,
+      "fullBleed": false,
+      "footer": false,
+      "hero": false,
+      "continues": true,
+      "pinned": false
+     },
+     {
+      "sel": "div.example-panel",
+      "tag": "div",
+      "top": 4497,
+      "height": 188,
+      "words": 5,
+      "media": 0,
+      "middle": 0,
+      "heading": null,
+      "left": 41,
+      "right": 136,
+      "textLeft": 41,
+      "textRight": 153,
+      "fullBleed": false,
+      "footer": false,
+      "hero": false,
+      "continues": true,
+      "pinned": false
+     },
+     {
+      "sel": "div.example-panel",
+      "tag": "div",
+      "top": 4858,
+      "height": 747,
+      "words": 28,
+      "media": 0,
+      "middle": 0,
+      "heading": null,
+      "left": 41,
+      "right": 41,
+      "textLeft": 41,
+      "textRight": 123,
+      "fullBleed": false,
+      "footer": false,
+      "hero": false,
+      "continues": true,
+      "pinned": false
+     },
+     {
+      "sel": "div.example-panel",
+      "tag": "div",
+      "top": 5621,
+      "height": 269,
+      "words": 7,
+      "media": 0,
+      "middle": 0,
+      "heading": null,
+      "left": 41,
+      "right": 114,
+      "textLeft": 41,
+      "textRight": 114,
+      "fullBleed": false,
+      "footer": false,
+      "hero": false,
+      "continues": true,
+      "pinned": false
+     },
+     {
+      "sel": "div.example-panel",
+      "tag": "div",
+      "top": 5906,
+      "height": 235,
+      "words": 13,
+      "media": 0,
+      "middle": 0,
+      "heading": null,
+      "left": 41,
+      "right": 41,
+      "textLeft": 41,
+      "textRight": 41,
+      "fullBleed": false,
+      "footer": false,
+      "hero": false,
+      "continues": true,
+      "pinned": false
+     },
+     {
+      "sel": "div.example-panel",
+      "tag": "div",
+      "top": 6157,
+      "height": 261,
+      "words": 9,
+      "media": 0,
+      "middle": 0,
+      "heading": null,
+      "left": 41,
+      "right": 57,
+      "textLeft": 41,
+      "textRight": 134,
+      "fullBleed": false,
+      "footer": false,
+      "hero": false,
+      "continues": true,
+      "pinned": false
+     },
+     {
+      "sel": "div.example-panel",
+      "tag": "div",
+      "top": 6434,
+      "height": 294,
+      "words": 14,
+      "media": 0,
+      "middle": 0,
+      "heading": {
+       "text": "Проверьте данные",
+       "size": 16,
+       "tag": "h3"
+      },
+      "left": 41,
+      "right": 41,
+      "textLeft": 41,
+      "textRight": 61,
+      "fullBleed": false,
+      "footer": false,
+      "hero": false,
+      "continues": true,
+      "pinned": false
+     },
+     {
+      "sel": "div.example-panel",
+      "tag": "div",
+      "top": 7008,
+      "height": 610,
+      "words": 35,
+      "media": 0,
+      "middle": 0,
+      "heading": {
+       "text": "Пространство для идей",
+       "size": 17,
+       "tag": "h3"
+      },
+      "left": 41,
+      "right": 66,
+      "textLeft": 41,
+      "textRight": 66,
+      "fullBleed": false,
+      "footer": false,
+      "hero": false,
+      "continues": true,
+      "pinned": false
+     },
+     {
+      "sel": "div.example-panel",
+      "tag": "div",
+      "top": 7634,
+      "height": 161,
+      "words": 7,
+      "media": 0,
+      "middle": 0,
+      "heading": null,
+      "left": 41,
+      "right": 74,
+      "textLeft": 41,
+      "textRight": 74,
+      "fullBleed": false,
+      "footer": false,
+      "hero": false,
+      "continues": true,
+      "pinned": false
+     },
+     {
+      "sel": "div.example-panel",
+      "tag": "div",
+      "top": 7811,
+      "height": 325,
+      "words": 15,
+      "media": 0,
+      "middle": 0,
+      "heading": {
+       "text": "Пока нет заказов",
+       "size": 17,
+       "tag": "h3"
+      },
+      "left": 41,
+      "right": 79,
+      "textLeft": 41,
+      "textRight": 79,
+      "fullBleed": false,
+      "footer": false,
+      "hero": false,
+      "continues": true,
+      "pinned": false
+     },
+     {
+      "sel": "div.section-heading",
+      "tag": "div",
+      "top": 8136,
+      "height": 148,
+      "words": 11,
+      "media": 0,
+      "middle": 0,
+      "heading": {
+       "text": "Пространство для идей",
+       "size": 24,
+       "tag": "h2"
+      },
+      "left": 20,
+      "right": 21,
+      "textLeft": 20,
+      "textRight": 21,
+      "fullBleed": false,
+      "footer": false,
+      "hero": false,
+      "continues": true,
+      "pinned": false
+     },
+     {
+      "sel": "div.example-panel",
+      "tag": "div",
+      "top": 8308,
+      "height": 361,
+      "words": 21,
+      "media": 0,
+      "middle": 0,
+      "heading": {
+       "text": "Пространство для идей",
+       "size": 17,
+       "tag": "h3"
+      },
+      "left": 41,
+      "right": 58,
+      "textLeft": 41,
+      "textRight": 66,
+      "fullBleed": false,
+      "footer": false,
+      "hero": false,
+      "continues": true,
+      "pinned": false
+     },
+     {
+      "sel": "div.section-heading",
+      "tag": "div",
+      "top": 8669,
+      "height": 170,
+      "words": 15,
+      "media": 0,
+      "middle": 0,
+      "heading": {
+       "text": "Мои заказы",
+       "size": 24,
+       "tag": "h2"
+      },
+      "left": 20,
+      "right": 53,
+      "textLeft": 20,
+      "textRight": 53,
+      "fullBleed": false,
+      "footer": false,
+      "hero": false,
+      "continues": true,
+      "pinned": false
+     },
+     {
+      "sel": "div.example-panel",
+      "tag": "div",
+      "top": 8863,
+      "height": 329,
+      "words": 25,
+      "media": 0,
+      "middle": 0,
+      "heading": null,
+      "left": 41,
+      "right": 58,
+      "textLeft": 41,
+      "textRight": 58,
+      "fullBleed": false,
+      "footer": false,
+      "hero": false,
+      "continues": true,
+      "pinned": false
+     },
+     {
+      "sel": "section#navigation.catalog-section",
+      "tag": "section",
+      "top": 9192,
+      "height": 922,
+      "words": 50,
+      "media": 0,
+      "middle": 0,
+      "heading": {
+       "text": "Понятно, где вы находитесь",
+       "size": 24,
+       "tag": "h2"
+      },
+      "left": 20,
+      "right": 46,
+      "textLeft": 20,
+      "textRight": 61,
+      "fullBleed": false,
+      "footer": false,
+      "hero": false,
+      "continues": false,
+      "pinned": false
+     },
+     {
+      "sel": "section#feedback.catalog-section",
+      "tag": "section",
+      "top": 10115,
+      "height": 1133,
+      "words": 372,
+      "media": 0,
+      "middle": 0,
+      "heading": {
+       "text": "Каждое действие получает ответ",
+       "size": 24,
+       "tag": "h2"
+      },
+      "left": 20,
+      "right": 30,
+      "textLeft": 20,
+      "textRight": -2844,
+      "fullBleed": false,
+      "footer": false,
+      "hero": false,
+      "continues": false,
+      "pinned": false
+     },
+     {
+      "sel": "section#avatars.catalog-section",
+      "tag": "section",
+      "top": 11261,
+      "height": 377,
+      "words": 22,
+      "media": 0,
+      "middle": 0,
+      "heading": {
+       "text": "Небольшие, но важные",
+       "size": 24,
+       "tag": "h2"
+      },
+      "left": 20,
+      "right": 71,
+      "textLeft": 20,
+      "textRight": 71,
+      "fullBleed": false,
+      "footer": false,
+      "hero": false,
+      "continues": false,
+      "pinned": false
+     },
+     {
+      "sel": "section#layout.catalog-section",
+      "tag": "section",
+      "top": 11638,
+      "height": 601,
+      "words": 25,
+      "media": 0,
+      "middle": 0,
+      "heading": {
+       "text": "Тот же ритм в любом масштабе",
+       "size": 24,
+       "tag": "h2"
+      },
+      "left": 20,
+      "right": 24,
+      "textLeft": 20,
+      "textRight": 24,
+      "fullBleed": false,
+      "footer": false,
+      "hero": false,
+      "continues": false,
+      "pinned": false
+     },
+     {
+      "sel": "section#data.catalog-section",
+      "tag": "section",
+      "top": 12240,
+      "height": 958,
+      "words": 223,
+      "media": 0,
+      "middle": 48,
+      "heading": {
+       "text": "Данные и сводки",
+       "size": 24,
+       "tag": "h2"
+      },
+      "left": 20,
+      "right": 0,
+      "textLeft": 20,
+      "textRight": -4765,
+      "fullBleed": false,
+      "footer": false,
+      "hero": false,
+      "continues": false,
+      "pinned": false
+     },
+     {
+      "sel": "div.section-heading",
+      "tag": "div",
+      "top": 13259,
+      "height": 145,
+      "words": 26,
+      "media": 0,
+      "middle": 0,
+      "heading": {
+       "text": "Готовые композиции экранов",
+       "size": 24,
+       "tag": "h2"
+      },
+      "left": 20,
+      "right": 30,
+      "textLeft": 20,
+      "textRight": 30,
+      "fullBleed": false,
+      "footer": false,
+      "hero": false,
+      "continues": true,
+      "pinned": false
+     },
+     {
+      "sel": "div.example-panel",
+      "tag": "div",
+      "top": 13541,
+      "height": 727,
+      "words": 2,
+      "media": 1,
+      "middle": 0,
+      "heading": null,
+      "left": 41,
+      "right": 41,
+      "textLeft": 41,
+      "textRight": 233,
+      "fullBleed": false,
+      "footer": false,
+      "hero": false,
+      "continues": true,
+      "pinned": false
+     },
+     {
+      "sel": "div.example-panel",
+      "tag": "div",
+      "top": 14284,
+      "height": 1145,
+      "words": 182,
+      "media": 0,
+      "middle": 0,
+      "heading": {
+       "text": "Что входит в TDS",
+       "size": 17,
+       "tag": "h3"
+      },
+      "left": 41,
+      "right": 43,
+      "textLeft": 41,
+      "textRight": 43,
+      "fullBleed": false,
+      "footer": false,
+      "hero": false,
+      "continues": true,
+      "pinned": false
+     },
+     {
+      "sel": "section#effects.catalog-section",
+      "tag": "section",
+      "top": 15429,
+      "height": 988,
+      "words": 148,
+      "media": 0,
+      "middle": 0,
+      "heading": {
+       "text": "Те самые ощущения",
+       "size": 24,
+       "tag": "h2"
+      },
+      "left": 20,
+      "right": 23,
+      "textLeft": 20,
+      "textRight": -2187,
+      "fullBleed": false,
+      "footer": false,
+      "hero": false,
+      "continues": false,
+      "pinned": false
+     },
+     {
+      "sel": "section#start.catalog-section.start-section",
+      "tag": "section",
+      "top": 16417,
+      "height": 1123,
+      "words": 79,
+      "media": 0,
+      "middle": 0,
+      "heading": {
+       "text": "Один файл — и можно собирать",
+       "size": 24,
+       "tag": "h2"
+      },
+      "left": 20,
+      "right": 27,
+      "textLeft": 20,
+      "textRight": 27,
+      "fullBleed": false,
+      "footer": true,
+      "hero": false,
+      "continues": false,
+      "pinned": false
+     }
+    ],
+    "gaps": [],
+    "h1s": [
+     {
+      "text": "Один язык для интерфейсов.",
+      "size": 33,
+      "top": 157,
+      "firstScreen": true
+     }
+    ],
+    "edgeText": [],
+    "edges": [
+     {
+      "x": 20,
+      "n": 23
+     },
+     {
+      "x": 41,
+      "n": 3
+     }
+    ],
+    "leftBlocks": 26,
+    "bodySize": 13,
+    "stage": false,
+    "explains": false,
+    "slivers": [],
+    "voidShare": 0,
+    "voidBox": null
+   },
+   "app": {
+    "viewport": {
+     "w": 390,
+     "h": 844
+    },
+    "dark": true,
+    "ground": "#212d3b",
+    "sidebar": null,
+    "topbar": {
+     "h": 64
+    },
+    "canvas": {
+     "left": 20,
+     "right": -164
+    },
+    "hero": {
+     "text": "Один язык для интерфейсов.",
+     "words": 4,
+     "chars": 26,
+     "lines": 2,
+     "size": 33,
+     "vw": 8.5,
+     "font": "system-ui",
+     "weight": 600,
+     "tracking": -0.03,
+     "leading": 1.12,
+     "top": 157,
+     "tag": "h1",
+     "kind": "heading",
+     "align": "left",
+     "position": "left"
+    },
+    "charts": 1,
+    "layout": {
+     "panels": 35,
+     "firstScreen": 1,
+     "ragged": [],
+     "voids": []
+    },
+    "tiles": 0,
+    "panels": {
+     "count": 366,
+     "radii": [
+      [
+       12,
+       298
+      ],
+      [
+       16,
+       36
+      ],
+      [
+       0,
+       32
+      ]
+     ],
+     "heavyBorders": 46,
+     "borderSamples": [
+      "#ffffff on #212d3b (13.97:1)",
+      "#ffffff on #212d3b (13.97:1)",
+      "#ffffff on #212d3b (13.97:1)"
+     ],
+     "heavyShadows": 0,
+     "softShadows": 0,
+     "shadowSamples": [],
+     "glass": 1
+    },
+    "chips": {
+     "count": 2,
+     "hues": 1,
+     "samples": [
+      {
+       "hue": 213,
+       "size": 45,
+       "radius": "12px"
+      },
+      {
+       "hue": 213,
+       "size": 45,
+       "radius": "9999px"
+      }
+     ]
+    },
+    "numbers": {
+     "cells": 2,
+     "leftAligned": 2,
+     "figures": 10,
+     "tabularShare": 0.5,
+     "kpiMax": 16
+    },
+    "rows": {
+     "count": 6,
+     "median": 116
+    },
+    "chartHues": 0,
+    "placeholders": [],
+    "type": {
+     "under13": 0.01,
+     "tiny": 0,
+     "tinySamples": [],
+     "sizes": [
+      12,
+      13,
+      14,
+      16,
+      17,
+      22,
+      24,
+      32,
+      33
+     ]
+    },
+    "title": {
+     "text": "Один язык\nдля интерфейсов.",
+     "size": 33,
+     "top": 157
+    },
+    "colourShare": 0.036
+   },
+   "consoleErrors": []
+  }
+ ],
+ "findings": [
+  {
+   "level": "FAIL",
+   "id": "button-fx",
+   "width": 1440,
+   "message": "Buttons with shadow/glow.",
+   "fix": "Flat fill, one colour.",
+   "alsoAt": [
+    768,
+    390
+   ]
+  },
+  {
+   "level": "FAIL",
+   "id": "edge-text",
+   "width": 1440,
+   "message": "2 text block(s) sit within 16px of the screen edge: \"<button class=\"tg-btn tg-btn--\" (14px from the right); \"<div class=\"tg-grid\"><div clas\" (14px from the right)",
+   "fix": "Keep text inside the page margin (16–32px or more). Only display type deliberately bled past the edge may touch it."
+  },
+  {
+   "level": "WARN",
+   "id": "heavy-borders",
+   "width": 1440,
+   "message": "43 panel borders are dark against their ground: #ffffff on #212d3b (13.97:1) | #ffffff on #212d3b (13.97:1) | #ffffff on #212d3b (13.97:1)",
+   "fix": "A panel border is a whisper: about 1.1–1.3:1 against its ground on a light screen (#e5e7eb–#ededed on white), and about 1.2–1.5:1 on a dark one (#1a1a1a on #000, #2e2e2e on #111). Darker lines turn the screen into a grid of boxes; keep the stronger line for controls.",
+   "alsoAt": [
+    768,
+    390
+   ]
+  },
+  {
+   "level": "WARN",
+   "id": "below-fold",
+   "width": 1440,
+   "message": "Only 2 of 35 blocks start on the first 1440px screen.",
+   "fix": "Every block the brief names shows its header and first rows on the first desktop screen: size the headline block to its question, cap long lists with \"View all\", and put time-sensitive blocks before long tables."
+  },
+  {
+   "level": "WARN",
+   "id": "app-title-size",
+   "width": 1440,
+   "message": "The h1 is 49px (\"Один язык\nдля интерфейсов.\").",
+   "fix": "An app screen is not a landing page: the title is 18-32px (20-24px on a phone).",
+   "alsoAt": [
+    768,
+    390
+   ]
+  }
+ ],
+ "images": [
+  {
+   "viewport": "desktop",
+   "width": 1440,
+   "fold": "/Users/sfinks/WebstormProjects/t-design-system/.taste-skill/before/desktop-fold.jpg",
+   "pages": [
+    "/Users/sfinks/WebstormProjects/t-design-system/.taste-skill/before/desktop-page-01.jpg",
+    "/Users/sfinks/WebstormProjects/t-design-system/.taste-skill/before/desktop-page-02.jpg",
+    "/Users/sfinks/WebstormProjects/t-design-system/.taste-skill/before/desktop-page-03.jpg"
+   ],
+   "film": []
+  },
+  {
+   "viewport": "tablet",
+   "width": 768,
+   "fold": "/Users/sfinks/WebstormProjects/t-design-system/.taste-skill/before/tablet-fold.jpg",
+   "pages": [
+    "/Users/sfinks/WebstormProjects/t-design-system/.taste-skill/before/tablet-page-01.jpg",
+    "/Users/sfinks/WebstormProjects/t-design-system/.taste-skill/before/tablet-page-02.jpg"
+   ],
+   "film": []
+  },
+  {
+   "viewport": "mobile",
+   "width": 390,
+   "fold": "/Users/sfinks/WebstormProjects/t-design-system/.taste-skill/before/mobile-fold.jpg",
+   "pages": [
+    "/Users/sfinks/WebstormProjects/t-design-system/.taste-skill/before/mobile-page-01.jpg",
+    "/Users/sfinks/WebstormProjects/t-design-system/.taste-skill/before/mobile-page-02.jpg"
+   ],
+   "film": []
+  }
+ ]
+}

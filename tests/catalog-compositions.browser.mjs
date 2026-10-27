@@ -13,6 +13,15 @@ try {
   assert.equal(await page.locator('#compositions').count(), 1, 'catalog exposes compositions');
   await page.waitForFunction(() => document.querySelectorAll('.icon-gallery svg use').length === 287);
   assert.equal(await page.locator('.icon-gallery svg use').count(), 287, 'all Feather icons are discoverable');
+  assert.ok(await page.locator('[data-example]').evaluateAll(examples => examples.every(example => example.closest('.example-panel').querySelectorAll(':scope > details.example-code').length === 1)), 'code disclosures initialize exactly once');
+  const contracts = await page.evaluate(async () => {
+    const [navigation, demos, code] = await Promise.all([
+      import('./catalog-navigation.js'), import('./catalog-demos.js'), import('./demo-code.js'),
+    ]);
+    const api = navigation.initCatalogNavigation();
+    return [typeof api.navigate, typeof api.sync, typeof demos.initCatalogDemos, typeof code.initDemoCode];
+  });
+  assert.deepEqual(contracts, ['function', 'function', 'function', 'function'], 'focused catalog modules expose stable initialization contracts');
   assert.equal(await page.locator('.nav-link[href="#compositions"]').count(), 1);
   assert.equal(await page.locator('#section-select option[value="compositions"]').count(), 1);
   const frame = page.frameLocator('#composition-preview');

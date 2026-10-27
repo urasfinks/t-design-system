@@ -98,7 +98,7 @@ try {
   await page.keyboard.press(useWebkit ? 'Alt+Tab' : 'Tab');
   check('keyboard focus is visible', await page.locator('#button').evaluate(el => el.matches(':focus-visible') && getComputedStyle(el).outlineStyle !== 'none'));
   check('reduced motion removes control transitions', (await style('#button', 'transition-duration')).split(',').every(value => value.trim() === '0s'));
-  check('progress has safe default width', await style('.tg-progress__bar', 'width') === '0px');
+  check('progress has safe default visual width', await page.locator('.tg-progress__bar').evaluate(el => el.getBoundingClientRect().width) === 0);
   await page.evaluate(() => document.body.insertAdjacentHTML('beforeend', '<div id="hidden-layout" class="tg-col" hidden>Скрытая колонка</div><button id="hidden-button" class="tg-btn" hidden>Скрытая кнопка</button>'));
   check('hidden attribute beats component and utility display', await style('#hidden-layout', 'display') === 'none' && await style('#hidden-button', 'display') === 'none');
 
