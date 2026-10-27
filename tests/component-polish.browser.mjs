@@ -21,11 +21,36 @@ try {
         return { difference: Math.abs(top - bottom), height: el.offsetHeight, scroll: el.scrollHeight, client: el.clientHeight };
       });
       assert.ok(metrics.difference <= 1, `single-line message is vertically centered: ${JSON.stringify(metrics)}`);
+      // The author avatar shares the field's height, so the row reads as one line.
+      const row = await page.evaluate(() => {
+        const box = sel => document.querySelector(sel)?.getBoundingClientRect();
+        const avatar = box('.tg-composer__form .tg-avatar__initials'), field = box('#demo-message'), send = box('#demo-send');
+        return { avatar: avatar && avatar.height ? [avatar.top, avatar.height] : null, field: [field.top, field.height], send: [send.top, send.height] };
+      });
+      if (row.avatar) assert.ok(Math.abs(row.avatar[0] - row.field[0]) <= 1 && Math.abs(row.avatar[1] - row.field[1]) <= 1, `composer avatar matches the field height: ${JSON.stringify(row)}`);
+      assert.ok(Math.abs(row.send[0] - row.field[0]) <= 1 && Math.abs(row.send[1] - row.field[1]) <= 1, `send button matches the field height: ${JSON.stringify(row)}`);
       await page.locator('#demo-message').fill('А\nБ\nВ');
       assert.equal(await page.locator('#demo-message').evaluate(el => el.scrollHeight <= el.clientHeight + 1), true, 'multiline message is not clipped');
     }
     await page.evaluate(() => document.documentElement.style.removeProperty('font-size'));
     await page.locator('#demo-message').fill('');
+    // Ghost actions under a comment align their labels with the comment text, not their padding box.
+    const comment = await page.evaluate(() => {
+      const root = document.querySelector('.tg-comment');
+      const text = root.querySelector('.tg-comment__text').getBoundingClientRect().left;
+      const range = document.createRange(); range.selectNodeContents(root.querySelector('.tg-comment__actions .tg-btn'));
+      return { text, label: range.getBoundingClientRect().left };
+    });
+    assert.ok(Math.abs(comment.label - comment.text) <= 1, `${width}px: first comment action label aligns with the text: ${JSON.stringify(comment)}`);
+    // Reply quote and caption belong to the field: they share its start edge, after the avatar.
+    await page.locator('#demo-reply').click();
+    const edges = await page.evaluate(() => {
+      const left = sel => { const el = document.querySelector(sel); const r = el?.getBoundingClientRect(); return r && r.width ? Math.round(r.left) : null; };
+      return { field: left('.tg-composer__input'), reply: left('#demo-reply-preview'), caption: left('.tg-composer__caption') };
+    });
+    assert.equal(edges.reply, edges.field, `${width}px: reply quote starts at the field: ${JSON.stringify(edges)}`);
+    if (edges.caption !== null) assert.equal(edges.caption, edges.field, `${width}px: caption starts at the field: ${JSON.stringify(edges)}`);
+    await page.locator('#demo-cancel-reply').click();
     await page.screenshot({ path: `artifacts/polish/composer-${width}.png` });
     await page.goto('http://127.0.0.1:4191/docs/#icons');
     const clear = page.locator('#icon-reset');

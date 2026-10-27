@@ -25,11 +25,19 @@
     padding-block-end: var(--safe-area-bottom);
     &__form, &__input { display: flex; flex-wrap: nowrap; align-items: flex-end; gap: var(--space-3); }
     &__input { flex: 1 1 0%; min-inline-size: 0; }
+    // The author avatar sits on the field's line: same height as the field and send button.
+    // No selection ring here, so the visible circle fills the whole control height.
+    &__form > .tg-avatar-size { --icon-avatar: var(--control-h); }
+    &__form > .tg-avatar-size > .tg-avatar { padding: 0; border-width: 0; }
     &__textarea { flex: 1 1 0%; min-block-size: var(--control-h); resize: none; max-block-size: var(--composer-input-max-size);
       padding-block: max(0px, calc((var(--control-h) - 1lh - 2px) / 2));
       &:placeholder-shown { white-space: pre; }
     }
     &__caption { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: var(--space-3); }
+    // The reply quote and the caption belong to the field, so they start at its edge, after the avatar.
+    &__inner:has(> .tg-composer__form > .tg-avatar-size) > :is(.tg-reply-preview, .tg-composer__caption) {
+      margin-inline-start: calc(var(--control-h) + var(--space-3));
+    }
   }
   .tg-reply-preview {
     display: flex;
@@ -48,6 +56,10 @@
     scroll-margin-block: var(--space-6) calc(var(--tg-composer-height, var(--composer-reserved-size)) + var(--space-6));
     &__body { flex: 1 1 0%; min-inline-size: 0; }
     &__text { white-space: pre-wrap; overflow-wrap: anywhere; }
+    // Optical alignment: a leading ghost action's label sits on the text's edge;
+    // its padding and hover fill extend into the gutter instead.
+    &__actions > .tg-btn--ghost:first-child { margin-inline-start: calc(-1 * (var(--space-4) + 1px)); }
+    &__actions > .tg-btn--ghost.tg-btn--sm:first-child { margin-inline-start: calc(-1 * (var(--space-3) + 1px)); }
   }
   .tg-thread {
     margin-inline-start: calc(var(--icon-avatar) + var(--space-3));
@@ -64,6 +76,8 @@
   @media (max-width: 36rem) {
     .tg-composer__inner { --tg-container-padding-start: var(--space-3); --tg-container-padding-end: var(--space-3); }
     .tg-composer__caption, .tg-composer__form > .tg-avatar-size { display: none; }
+    // The avatar is hidden here, so the quote returns to the field's edge.
+    .tg-composer__inner:has(> .tg-composer__form > .tg-avatar-size) > .tg-reply-preview { margin-inline-start: 0; }
     .tg-toolbar--responsive { align-items: stretch; }
     .tg-tabs--responsive { inline-size: 100%; }
     .tg-tabs--responsive .tg-tab { justify-content: center; }

@@ -102,6 +102,21 @@ try {
   await page.mouse.move(0, 0);
   await page.waitForTimeout(250);
   assert.notEqual(await chip.evaluate(el => getComputedStyle(el).backgroundColor), idle, 'pressed filter is filled');
+  // Dismiss actions (close, cancel) are auxiliary: transparent, no outline, wherever they appear.
+  for (const path of ['docs/', 'docs/compositions.html']) {
+    const view = await browser.newPage({ viewport: { width: 1280, height: 900 } });
+    await view.goto(`http://127.0.0.1:4192/${path}`);
+    const dismiss = await view.locator('button.tg-icon-btn').evaluateAll(buttons => buttons
+      .filter(button => /^(Закрыть|Отменить)/.test(button.getAttribute('aria-label') || ''))
+      .map(button => { const style = getComputedStyle(button); return [button.getAttribute('aria-label'), parseFloat(style.borderTopWidth), style.backgroundColor]; }));
+    assert.ok(dismiss.length >= (path.endsWith('compositions.html') ? 2 : 1), `${path}: dismiss buttons found`);
+    for (const [label, width, background] of dismiss) {
+      assert.equal(width, 0, `${path}: «${label}» has no outline`);
+      assert.equal(background, 'rgba(0, 0, 0, 0)', `${path}: «${label}» is transparent`);
+      checks += 2;
+    }
+    await view.close();
+  }
   assert.deepEqual(errors, []);
   console.log(`Semantic borders: ${checks} checks — statuses and static avatars borderless; filters, linked badges, selectable avatars outlined; link rows interactive in three themes.`);
 } finally { await browser?.close(); server.kill(); }
