@@ -99,7 +99,8 @@
     border: var(--border);
     border-radius: var(--radius-pill);
     font-size: var(--fs-sm);
-    &[aria-checked='true'] {
+    // A filter toggles with aria-pressed; a choice in a group may use role=checkbox.
+    &:is([aria-pressed='true'], [aria-checked='true']) {
       --control-idle-bg: var(--action-bg);
       --control-color: var(--button-text-color);
       border-color: transparent;

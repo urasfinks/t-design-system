@@ -1,7 +1,7 @@
 @use '../themes';
 
 // Loaded by base before components. Owners declare only their resting/hover roles.
-$controls: ":is(button[class*='tg-'], .tg-btn, .tg-icon-btn, .tg-chip, .tg-tab, .tg-dot, .tg-tabbar__item, a.tg-badge[href], .tg-disclosure__trigger, .tg-bottom-panel__header, .tg-bottom-panel__trigger):not(.tg-switch, [role='switch'])";
+$controls: ":is(button[class*='tg-'], .tg-btn, .tg-icon-btn, .tg-chip, .tg-tab, .tg-dot, .tg-tabbar__item, a.tg-badge[href], a.tg-list-item[href], .tg-disclosure__trigger, .tg-bottom-panel__header, .tg-bottom-panel__trigger):not(.tg-switch, [role='switch'])";
 $available: ":not([inert]):where(:not(:disabled, [disabled], [aria-disabled='true'], [disabled] *, [aria-disabled='true'] *, [inert] *))";
 $ghosts: ':is(.tg-btn--ghost, .tg-icon-btn--ghost, .tg-search__clear)';
 

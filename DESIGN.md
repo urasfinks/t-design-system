@@ -43,13 +43,35 @@ The signature is the system itself: live components, clear examples, readable co
   text, without a red outline. Descriptions retain a clear recovery step.
   The material demo has a flat neutral backdrop; no decorative blue gradient.
 
+## Outline semantics for small elements
+
+On small elements an outline means “you can act on this”. Panels — cards,
+lists, tables, notices, fieldsets, disclosures — keep their own outline: it
+separates content from the page and is outside this rule.
+
+| Element | Information (no outline) | Action (outline, or fill when selected) |
+| --- | --- | --- |
+| Badge | `span.tg-badge` — a status or counter | `a.tg-badge[href]`, `button.tg-badge` — outline, 44 px target, focus |
+| Filter | — | `button.tg-chip[aria-pressed]` — outline; pressed filters are filled |
+| Avatar | `span.tg-avatar` — a picture of a person | `button.tg-avatar` / `a.tg-avatar` — outline; selected gets the accent ring |
+| List row | `div.tg-list-item` — data, no hover | `a.tg-list-item[href]`, `button.tg-list-item` — full-width target, hover, focus, trailing chevron |
+| Button | — | secondary and icon buttons are outlined; primary and destructive are filled; ghost relies on text colour and context |
+
+A status is never made clickable by styling alone, and a filter is never styled
+as a status. A full-width link row contains no nested links or buttons. The
+selection state lives in ARIA (`aria-pressed`, `aria-checked`, `aria-current`),
+not in colour alone.
+
 ## Catalog
 
 The catalog page uses `--background-panel`. Every component preview stage uses
 `--background-main` to show components against the future site's background.
 Embedded screen examples keep `--background-main` as their page background.
-Example blocks use `.example-panel > .example-body`, followed by an optional
-`.example-code` disclosure labeled “Посмотреть HTML”. Do not add metadata bars.
+Example blocks follow one order: `.example-panel > .example-body`, then
+`p.example-rule`, then the `.example-code` disclosure labeled “Посмотреть HTML”.
+The rule is one or two sentences of static text: when to use the component,
+what to use instead, and why it looks the way it does (for example, why a status
+has no outline). Every live `[data-example]` has a rule. Do not add metadata bars.
 Section headings use `.section-heading > div` containing `h2` and `p`, followed
 by `code.class-tag`. Place controls outside this heading structure.
 
@@ -58,9 +80,12 @@ Use the library's tokens and component sizes. No miniature mock interface or
 on desktop, with an explicit section menu on small screens. Use consistent SVG
 icons. Preserve live demos, HTML disclosure, theme/accent selectors and downloads.
 
-Navigation is grouped into “Основа”, “Компоненты” and “Примеры и интеграция”
-(an `optgroup` per group in the mobile select). Section titles describe the task,
-not a slogan. Global search is a native `dialog` opened by the “Поиск” button,
+The catalog has one section per task, in six groups (an `optgroup` per group in
+the mobile select, in page order): “Основа” (overview, colors, layout),
+“Действия” (buttons, icons, filters and statuses), “Ввод” (fields, choice, file
+upload), “Содержимое” (cards, lists and disclosure, empty state, avatars, data),
+“Навигация и отклик” (navigation, feedback, dialogs and messages) and “Примеры и
+интеграция”. Section titles describe the task, not a slogan. Global search is a native `dialog` opened by the “Поиск” button,
 `/` or Cmd/Ctrl+K (never while typing in a field). It matches section titles,
 `.tg-*` classes and `--*` tokens from explicit `data-search-*` metadata; arrows
 move, Enter navigates, Escape closes and focus returns to the opener. Search is

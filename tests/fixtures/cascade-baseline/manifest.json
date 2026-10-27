@@ -1,9 +1,9 @@
 {
-  "sourceCommit": "4d911bd+catalog-component-refactor",
-  "description": "Reviewed visual reference after the catalog and component refactor, 2026-10-27",
+  "sourceCommit": "6c81e88+semantic-demo-refactor",
+  "description": "Reviewed visual reference after the semantic catalog refactor, 2026-10-27",
   "files": {
-    "t-design-system.css": "efc98e2419686b28a4196afb5ce12a906f9abe5d123055825652a5da5ad6fc86",
-    "catalog.css": "0442607abc634b84a05c9062446b9dd14d55a9a8c6e61cfc18d169a15bf74e84"
+    "t-design-system.css": "017a80aefa698c1fa5c95b7d6b81ccd36b1761a3874b2bd4483f0a10d6c1c012",
+    "catalog.css": "f8223566f869970b21ec13976e1735ae511ed9915fe1ba147f79f80baccfd004"
   },
-  "catalogHTMLSHA256": "2b6274cab5d4b46e8a4782a21f4753026cc8816b0f431dec504fb913dceb6c11"
+  "catalogHTMLSHA256": "53e78dfc0dc4e71f33006882f07f8db36c004966e2762bf08227ab4e869e0a8a"
 }

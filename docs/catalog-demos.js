@@ -24,6 +24,10 @@ export function initCatalogDemos({ root = document } = {}) {
   for (const control of root.querySelectorAll('button[role="switch"], button[role="checkbox"]')) {
     control.addEventListener('click', () => control.setAttribute('aria-checked', String(control.getAttribute('aria-checked') !== 'true')));
   }
+  // Filters are toggle buttons; the application owns what they filter.
+  for (const chip of root.querySelectorAll('.tg-chip[aria-pressed]')) {
+    chip.addEventListener('click', () => chip.setAttribute('aria-pressed', String(chip.getAttribute('aria-pressed') !== 'true')));
+  }
   const tabs = [...root.querySelectorAll('[role="tab"]')];
   function selectTab(tab, focus = false) {
     for (const item of tabs) {

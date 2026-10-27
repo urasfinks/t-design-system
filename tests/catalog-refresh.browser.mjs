@@ -34,11 +34,16 @@ try {
   assert.ok(headings.length > 0 && headings.every(Boolean), 'all section headings share title, description and class tag structure');
   assert.equal(await page.locator('.example-meta').count(), 0, 'examples have no decorative metadata rows');
   const panelStructures = await page.locator('.example-panel').evaluateAll(panels => panels.map(panel =>
-    [...panel.children].map(child => child.classList.contains('example-body') ? 'body' : child.classList.contains('example-code') ? 'code' : child.tagName)
+    [...panel.children].map(child => child.classList.contains('example-body') ? 'body' : child.classList.contains('example-rule') ? 'rule' : child.classList.contains('example-code') ? 'code' : child.tagName)
   ));
   for (const structure of panelStructures) {
-    assert.ok(['body', 'body,code'].includes(structure.join(',')), `consistent example structure: ${structure}`);
+    assert.ok(['body', 'body,code', 'body,rule', 'body,rule,code'].includes(structure.join(',')), `consistent example structure: ${structure}`);
   }
+  // Every live component example explains the rule it demonstrates: example → rule → HTML.
+  assert.ok(await page.locator('[data-example]').evaluateAll(examples => examples.every(example => {
+    const order = [...example.closest('.example-panel').children].map(child => child.className.split(' ')[0]);
+    return order.join(',') === 'example-body,example-rule,example-code';
+  })), 'each live example is followed by its rule and then its HTML');
   assert.equal(await page.locator('#orders-example > .tg-list-item').count(), 5);
   assert.equal(await page.locator('iframe[src="bottom-panel.html"]').count(), 0);
   assert.equal(await page.locator('#orders-example').evaluate(el => getComputedStyle(el).position), 'static');
@@ -51,8 +56,8 @@ try {
   const rowEdges = await page.locator('#data tbody tr').last().locator('th, td').evaluateAll(cells => cells.map(el => getComputedStyle(el).borderBottomWidth));
   assert.equal(new Set(rowEdges).size, 1, 'last body row retains a complete separator before totals');
   assert.notEqual(rowEdges[0], '0px');
-  await page.locator('#surfaces .tg-disclosure__trigger').click();
-  assert.equal(await page.locator('#surfaces .tg-disclosure').getAttribute('open'), '');
+  await page.locator('#lists .tg-disclosure__trigger').click();
+  assert.equal(await page.locator('#lists .tg-disclosure').getAttribute('open'), '');
   await page.locator('#transition-toggle').click();
   await page.locator('#transition-demo').waitFor({ state: 'hidden' });
   assert.equal(await page.locator('#transition-demo').isVisible(), false);

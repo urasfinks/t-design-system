@@ -243,11 +243,11 @@
   }
 }
 @layer tds.components {
-  :where(:is(button[class*=tg-], .tg-btn, .tg-icon-btn, .tg-chip, .tg-tab, .tg-dot, .tg-tabbar__item, a.tg-badge[href], .tg-disclosure__trigger, .tg-bottom-panel__header, .tg-bottom-panel__trigger):not(.tg-switch, [role=switch])) {
+  :where(:is(button[class*=tg-], .tg-btn, .tg-icon-btn, .tg-chip, .tg-tab, .tg-dot, .tg-tabbar__item, a.tg-badge[href], a.tg-list-item[href], .tg-disclosure__trigger, .tg-bottom-panel__header, .tg-bottom-panel__trigger):not(.tg-switch, [role=switch])) {
     --control-idle-bg: transparent;
     --control-hover-bg: var(--surface-muted);
   }
-  :is(button[class*=tg-], .tg-btn, .tg-icon-btn, .tg-chip, .tg-tab, .tg-dot, .tg-tabbar__item, a.tg-badge[href], .tg-disclosure__trigger, .tg-bottom-panel__header, .tg-bottom-panel__trigger):not(.tg-switch, [role=switch]) {
+  :is(button[class*=tg-], .tg-btn, .tg-icon-btn, .tg-chip, .tg-tab, .tg-dot, .tg-tabbar__item, a.tg-badge[href], a.tg-list-item[href], .tg-disclosure__trigger, .tg-bottom-panel__header, .tg-bottom-panel__trigger):not(.tg-switch, [role=switch]) {
     transition: background-color var(--duration) var(--ease), color var(--duration) var(--ease), border-color var(--duration) var(--ease), transform var(--duration-fast) var(--ease), filter var(--duration-fast) var(--ease);
   }
   :is(.tg-btn--ghost, .tg-icon-btn--ghost, .tg-search__clear) {
@@ -259,7 +259,7 @@
     filter: none;
   }
   @media (hover: hover) {
-    :is(button[class*=tg-], .tg-btn, .tg-icon-btn, .tg-chip, .tg-tab, .tg-dot, .tg-tabbar__item, a.tg-badge[href], .tg-disclosure__trigger, .tg-bottom-panel__header, .tg-bottom-panel__trigger):not(.tg-switch, [role=switch]):not([inert]):where(:not(:disabled, [disabled], [aria-disabled=true], [disabled] *, [aria-disabled=true] *, [inert] *)):hover {
+    :is(button[class*=tg-], .tg-btn, .tg-icon-btn, .tg-chip, .tg-tab, .tg-dot, .tg-tabbar__item, a.tg-badge[href], a.tg-list-item[href], .tg-disclosure__trigger, .tg-bottom-panel__header, .tg-bottom-panel__trigger):not(.tg-switch, [role=switch]):not([inert]):where(:not(:disabled, [disabled], [aria-disabled=true], [disabled] *, [aria-disabled=true] *, [inert] *)):hover {
       background-color: var(--control-hover-bg);
       filter: var(--control-hover-filter, brightness(var(--control-hover-brightness, 0.92)));
       cursor: pointer;
@@ -267,14 +267,14 @@
     :is(.tg-btn--ghost, .tg-icon-btn--ghost, .tg-search__clear):not([inert]):where(:not(:disabled, [disabled], [aria-disabled=true], [disabled] *, [aria-disabled=true] *, [inert] *)):hover:where(:not(:active, [data-pressed=true])) {
       color: var(--text-color);
     }
-    :is(button[class*=tg-], .tg-btn, .tg-icon-btn, .tg-chip, .tg-tab, .tg-dot, .tg-tabbar__item, a.tg-badge[href], .tg-disclosure__trigger, .tg-bottom-panel__header, .tg-bottom-panel__trigger):not(.tg-switch, [role=switch]):is(:disabled, [disabled], [aria-disabled=true], [disabled] *, [aria-disabled=true] *):hover {
+    :is(button[class*=tg-], .tg-btn, .tg-icon-btn, .tg-chip, .tg-tab, .tg-dot, .tg-tabbar__item, a.tg-badge[href], a.tg-list-item[href], .tg-disclosure__trigger, .tg-bottom-panel__header, .tg-bottom-panel__trigger):not(.tg-switch, [role=switch]):is(:disabled, [disabled], [aria-disabled=true], [disabled] *, [aria-disabled=true] *):hover {
       background-color: var(--control-idle-bg);
       filter: none;
       cursor: not-allowed;
     }
   }
   @media (prefers-reduced-motion: reduce) {
-    :is(button[class*=tg-], .tg-btn, .tg-icon-btn, .tg-chip, .tg-tab, .tg-dot, .tg-tabbar__item, a.tg-badge[href], .tg-disclosure__trigger, .tg-bottom-panel__header, .tg-bottom-panel__trigger):not(.tg-switch, [role=switch]) {
+    :is(button[class*=tg-], .tg-btn, .tg-icon-btn, .tg-chip, .tg-tab, .tg-dot, .tg-tabbar__item, a.tg-badge[href], a.tg-list-item[href], .tg-disclosure__trigger, .tg-bottom-panel__header, .tg-bottom-panel__trigger):not(.tg-switch, [role=switch]) {
       transition: none;
     }
   }
@@ -485,7 +485,7 @@
     border-radius: var(--radius-pill);
     font-size: var(--fs-sm);
   }
-  .tg-chip[aria-checked=true] {
+  .tg-chip:is([aria-pressed=true], [aria-checked=true]) {
     --control-idle-bg: var(--action-bg);
     --control-color: var(--button-text-color);
     border-color: transparent;
@@ -820,6 +820,28 @@
     font-size: var(--fs-sm);
     color: var(--text-secondary);
   }
+  :where(a[href], button).tg-list-item {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    inline-size: 100%;
+    min-block-size: var(--control-h);
+    border: 0;
+    background: var(--control-idle-bg, transparent);
+    color: inherit;
+    font: inherit;
+    text-align: start;
+    text-decoration: none;
+    cursor: pointer;
+  }
+  :where(a[href], button).tg-list-item:focus-visible {
+    outline: 2px solid var(--text-link);
+    outline-offset: -2px;
+  }
+  :where(a[href], button).tg-list-item > .tg-icon:last-child {
+    margin-inline-start: auto;
+    color: var(--text-secondary);
+  }
   .tg-header, .tg-header-secondary {
     display: flex;
     flex-wrap: wrap;
@@ -1063,7 +1085,8 @@
     box-shadow: var(--shadow-soft);
     pointer-events: none;
   }
-  button.tg-avatar {
+  :where(button, a[href]).tg-avatar {
+    border-color: var(--border-color);
     cursor: pointer;
   }
   .tg-badge {
@@ -1075,7 +1098,7 @@
     min-inline-size: 1.5rem;
     min-block-size: 1.5rem;
     padding: 0.125rem 0.5rem;
-    border: var(--border);
+    border: 0;
     border-radius: var(--radius-pill);
     background: var(--control-idle-bg);
     color: var(--text-color);
@@ -1083,9 +1106,6 @@
     font-weight: var(--fw-regular);
     line-height: 1.25;
     vertical-align: middle;
-  }
-  .tg-badge--primary, .tg-badge--secondary, .tg-badge--destructive {
-    border: 0;
   }
   .tg-badge--primary {
     --control-idle-bg: light-dark(var(--accent-soft), var(--accent-strong));
@@ -1102,6 +1122,7 @@
 }
 @layer tds.components {
   :is(button, a[href]).tg-badge {
+    border: var(--border);
     min-inline-size: var(--control-h);
     min-block-size: var(--control-h);
     font-size: var(--fs-sm);

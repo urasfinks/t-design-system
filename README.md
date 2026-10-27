@@ -376,13 +376,13 @@ SDK-параметры для hint, section и других вторичных �
 | Нативный выбор | `.tg-choice`, `.tg-check`, `.tg-radio` | Нативные `checked`, `disabled`; граница без выбора — `--choice-border-color` |
 | Числа | `.tg-num`, `.tg-table__num` (на `th`/`td`) | Табличные цифры и выравнивание к концу строки для сумм и количеств |
 | Переключатель | `.tg-switch` + `.tg-switch__knob` | `role="switch"`, `aria-checked` |
-| Чип | `.tg-chip` | Для переключения: `role="checkbox"`, `aria-checked` |
+| Фильтр | `.tg-chip` | `button` с `aria-pressed` (или `role="checkbox"` + `aria-checked` в группе выбора); выбранный — с заливкой |
 | Карточка | `.tg-card`, `.tg-header`, `.tg-header-secondary` | Заголовки `.tg-header__title`, `__subtitle` |
-| Список | `.tg-list`, `.tg-list-item`, `__title`, `__subtitle` | `--wrap`, `.tg-list-item-break` |
+| Список | `.tg-list`, `.tg-list-item`, `__title`, `__subtitle` | `--wrap`, `.tg-list-item-break`; строка-переход — `a.tg-list-item[href]` или `button.tg-list-item` |
 | Табы | `.tg-tabs`, `.tg-tab` | `role="tablist"`, `role="tab"`, `aria-selected`, `aria-controls` |
 | Нижняя панель | `.tg-tabbar`, `.tg-tabbar__item` | `aria-current="page"` |
-| Аватар | `.tg-avatar`, `--outlined`, `.tg-avatar__clip`, `.tg-avatar__initials` | Выбор кнопкой с `role="checkbox"`, `aria-checked` |
-| Бейдж | `.tg-badge`, `--primary`, `--secondary`, `--destructive` | Внутри аватара размещается в углу, отдельно — в потоке |
+| Аватар | `.tg-avatar`, `--outlined`, `.tg-avatar__clip`, `.tg-avatar__initials` | Статичный `span` без рамки; выбор — `button` с `role="checkbox"`, `aria-checked` и рамкой |
+| Бейдж | `.tg-badge`, `--primary`, `--secondary`, `--destructive` | Статус без рамки; `a[href]`/`button` получает рамку и область 44 px. Внутри аватара — в углу |
 | Сообщение | `.tg-notice`, `--destructive`, `--accent`, `--with-icon` | Для динамических сообщений приложение задаёт live region |
 | Прогресс | `.tg-progress`, `.tg-progress__bar`, `--striped` | Нативный `value/max` или `--progress:42%` с `role="progressbar"` |
 | Индикатор | `.tg-spinner`, `--lg` | Декоративный: `aria-hidden="true"`; состояние загрузки на родителе |
@@ -561,8 +561,21 @@ npm pack                         # локальный архив для уста
 
 ### Каталог
 
-Разделы сгруппированы: «Основа», «Компоненты», «Примеры и интеграция». Поиск
-открывается кнопкой «Поиск», клавишей `/` или Cmd/Ctrl+K и ищет по названиям
+20 разделов — по одному на задачу — в шести группах: «Основа», «Действия»,
+«Ввод», «Содержимое», «Навигация и отклик», «Примеры и интеграция». Каждый живой
+пример устроен одинаково: пример → правило применения (`p.example-rule`: когда
+использовать, чем заменить и почему компонент выглядит именно так) → «Посмотреть
+HTML».
+
+**Рамка у мелких элементов означает «можно нажать».** Статус (`span.tg-badge`) и
+обычный аватар — без рамки. Фильтр (`button.tg-chip[aria-pressed]`), бейдж-ссылка,
+аватар-кнопка, вторичная и иконочная кнопки — с рамкой; выбранный фильтр получает
+заливку. Строка списка, которая куда-то ведёт, — `a.tg-list-item[href]` с
+наведением, фокусом и стрелкой; строки данных не реагируют на наведение. Панели
+(карточки, списки, таблицы, уведомления) сохраняют свою рамку: она отделяет
+содержимое от фона. Подробнее — DESIGN.md → Outline semantics.
+
+Поиск открывается кнопкой «Поиск», клавишей `/` или Cmd/Ctrl+K и ищет по названиям
 разделов, классам `.tg-*` и токенам `--*`. Стрелки выбирают результат, Enter
 переходит, Escape закрывает. Без JavaScript все разделы и примеры остаются
 доступны. Логика витрины разделена на ES-модули: `catalog.js` (точка сборки),

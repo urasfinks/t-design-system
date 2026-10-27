@@ -108,6 +108,9 @@ h1 > span { color: var(--text-link); }
 .radius-scale > span { display: grid; place-items: center; width: 2.25rem; height: 2.25rem; border: var(--border-control); color: var(--text-secondary); font-size: var(--catalog-caption); }
 .example-panel { background: var(--background-panel); border: var(--border); border-radius: var(--radius-lg); overflow: clip; margin-top: var(--space-4); }
 .example-body { padding: var(--space-6); background: var(--background-main); }
+/* Each example states the rule it demonstrates: when to use it and why it looks this way. */
+.example-rule { margin: 0; padding: var(--space-4) var(--space-6); border-top: var(--border); color: var(--text-secondary); font-size: var(--catalog-body); line-height: 1.6; text-wrap: pretty; }
+.example-rule code { font: .9em/1 ui-monospace, SFMono-Regular, Consolas, monospace; color: var(--text-color); overflow-wrap: anywhere; }
 .example-code { border-top: var(--border); }
 .example-code summary { min-height: 2.75rem; cursor: pointer; display: flex; align-items: center; justify-content: space-between; gap: var(--space-3); padding: var(--space-3) var(--space-6); font-size: var(--catalog-caption); color: var(--text-secondary); list-style: none; }
 .example-code summary::-webkit-details-marker { display: none; }
@@ -118,7 +121,9 @@ pre { max-width: 100%; overflow: auto; font: var(--catalog-caption)/1.7 ui-monos
 .form-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--space-6); }
 .form-wide { grid-column: 1/-1; }
 .radio-group { display: flex; flex-wrap: wrap; gap: var(--space-4); border: 0; padding: 0; margin: 0; }
-.choice-row { justify-content: space-between; gap: var(--space-6); }
+.choice-row { justify-content: space-between; align-items: start; gap: var(--space-6); }
+.choice-legend { margin-block-end: var(--space-2); padding: 0; color: var(--text-secondary); font-size: var(--catalog-caption); font-weight: 600; }
+.radio-group.tg-col { gap: var(--space-2); }
 .surface-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--space-6); align-items: stretch; }
 .card-status { align-self: start; }
 .tab-panel { padding: var(--space-4); color: var(--text-secondary); }
@@ -192,7 +197,7 @@ pre { max-width: 100%; overflow: auto; font: var(--catalog-caption)/1.7 ui-monos
   .token-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .form-grid, .surface-grid, .install-grid { grid-template-columns: 1fr; }
   .example-body { padding: var(--space-5); }
-  .example-code summary { padding-inline: var(--space-5); }
+  .example-code summary, .example-rule { padding-inline: var(--space-5); }
   .glass-demo-stage { padding: var(--space-5); }
   .tg-tabs { gap: var(--space-1); }
   .tg-tab { padding-inline: var(--space-3); }

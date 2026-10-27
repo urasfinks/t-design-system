@@ -12,11 +12,20 @@ try {
   const errors = [];
   page.on('pageerror', error => errors.push(error.message));
   await page.goto('http://127.0.0.1:4186/docs/');
-  assert.equal(await page.locator('main > section').count(), 14);
-  assert.equal(await page.locator('.sidebar .nav-link').count(), 14);
-  assert.equal(await page.locator('#section-select option').count(), 14);
-  assert.equal(await page.locator('.nav-group-label').count(), 3);
-  assert.equal(await page.locator('#section-select optgroup').count(), 3);
+  const SECTIONS = 20;
+  assert.equal(await page.locator('main > section').count(), SECTIONS);
+  assert.equal(await page.locator('.sidebar .nav-link').count(), SECTIONS);
+  assert.equal(await page.locator('#section-select option').count(), SECTIONS);
+  assert.equal(await page.locator('.nav-group-label').count(), 6);
+  assert.equal(await page.locator('#section-select optgroup').count(), 6);
+  // Sidebar, mobile select and page order describe the same sections.
+  const order = await page.evaluate(() => ({
+    sections: [...document.querySelectorAll('main > section')].map(section => section.id),
+    links: [...document.querySelectorAll('.sidebar .nav-link')].map(link => link.hash.slice(1)),
+    options: [...document.querySelectorAll('#section-select option')].map(option => option.value),
+  }));
+  assert.deepEqual(order.links, order.sections, 'sidebar follows page order');
+  assert.deepEqual(order.options, order.sections, 'mobile menu follows page order');
 
   const opener = page.getByRole('button', { name: 'Поиск по каталогу', exact: true }).first();
   const dialog = page.locator('#catalog-search');
@@ -24,8 +33,8 @@ try {
   await opener.click();
   assert.equal(await dialog.evaluate(el => el.open), true);
   assert.equal(await input.evaluate(el => el === document.activeElement), true);
-  assert.equal(await page.locator('#catalog-search-results [role="option"]').count(), 14);
-  assert.match(await page.locator('#catalog-search-status').textContent(), /14/);
+  assert.equal(await page.locator('#catalog-search-results [role="option"]').count(), SECTIONS);
+  assert.match(await page.locator('#catalog-search-status').textContent(), new RegExp(String(SECTIONS)));
   assert.equal(await page.locator('#catalog-search-results [role="option"]').first().locator('span').first().textContent(), 'Один язык для интерфейсов.', 'line breaks in headings become spaces');
   await page.keyboard.press('Control+K');
   assert.equal(await page.locator('dialog[open]').count(), 1, 'shortcut does not reopen an active modal');
@@ -33,7 +42,9 @@ try {
   assert.equal(await page.locator('#catalog-search-results [role="option"]').count(), 1);
   assert.match(await page.locator('#catalog-search-results').textContent(), /Кнопки/);
   await input.fill('.tg-switch');
-  assert.match(await page.locator('#catalog-search-results').textContent(), /#forms/);
+  assert.match(await page.locator('#catalog-search-results').textContent(), /#choices/);
+  await input.fill('aria-pressed');
+  assert.match(await page.locator('#catalog-search-results').textContent(), /#selection/);
   await input.fill('--background-panel');
   assert.match(await page.locator('#catalog-search-results').textContent(), /темы|Токены/i);
   await input.fill('<script>не существует</script>');
@@ -87,8 +98,9 @@ try {
   assert.deepEqual(errors, []);
   const staticPage = await browser.newPage({ javaScriptEnabled: false });
   await staticPage.goto('http://127.0.0.1:4186/docs/');
-  assert.equal(await staticPage.locator('.sidebar .nav-link:visible').count(), 14);
-  assert.equal(await staticPage.locator('#buttons [data-example]:visible').count(), 2);
+  assert.equal(await staticPage.locator('.sidebar .nav-link:visible').count(), SECTIONS);
+  assert.equal(await staticPage.locator('#buttons [data-example]:visible').count(), 3);
+  assert.equal(await staticPage.locator('.example-rule:visible').count(), await staticPage.locator('[data-example]').count() + 1, 'rules are static text, readable without JavaScript');
 
   // Deep links must land on their section even though the icon gallery grows the page after load.
   for (const id of ['forms', 'data', 'effects']) {
