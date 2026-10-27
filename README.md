@@ -807,6 +807,41 @@ CSS приложения вне слоёв может переопределят
 на неё фокус после неуспешной проверки; сообщения у полей связывайте через
 `aria-describedby` и `aria-invalid`. Компонент оформляет ошибки, не валидирует форму.
 
+### Рабочие компоненты (P0 по архиву 21st.dev)
+
+Живой экран без CSS приложения: [docs/workspace.html](docs/workspace.html), поведение
+примера — [docs/workspace-demo.js](docs/workspace-demo.js). Спецификации —
+`references/21st-dev-1000/images/*/components.md`.
+
+Компоненты встроены в каскад, а не дописаны поверх: системные значения
+(`--font-family-mono`, `--fs-display`, маски `--icon-mask-check`, `--icon-mask-chevron-right`,
+`--icon-mask-chevron-down`) живут в tokens; фокус, наследование шрифта и disabled —
+в base; hover и переход — в общем `control-states` (владелец задаёт только
+`--control-idle-bg`, `--control-hover-bg`, `--control-hover-filter`, а меню делает
+окраску мгновенной через `--control-paint-duration`). Поиск и группа полей используют
+одну поверхность `components/field-surface`.
+
+| Компонент | Классы | Состояния и обязанности приложения |
+| --- | --- | --- |
+| Меню действий | `.tg-menu` (лучше с `popover`), `__item`, `--destructive`, `__text`, `__item-meta`, `__label`, `__separator`, `__shortcut` | `role=menu/menuitem/menuitemcheckbox/menuitemradio`, `aria-checked`, `aria-disabled`, `aria-haspopup="menu"` у пункта даёт шеврон. Приложение: ↑/↓, Home/End, поиск по букве, Escape с возвратом фокуса, Tab закрывает; `data-instant` при открытии с клавиатуры. Без CSS anchor positioning хост задаёт `--tg-anchor-block`, `--tg-anchor-inline`, `--tg-menu-origin` и `data-positioned`. На узком сенсорном экране меню становится нижним листом |
+| Кнопка: части | `.tg-btn__icon`, `__label`, `__subtext`, `.tg-btn--icon-end` | Иконка после подписи — `--icon-end`, порядок логический и в RTL |
+| Кнопка: ход выполнения | `[aria-busy]`, `.tg-btn__states > [data-state=idle/busy/success/error]`, `data-state` на кнопке, `.tg-btn__progress` + `--progress` (0…1) | Все подписи в одной ячейке — ширина не прыгает; видна только активная. Итог объявляет приложение |
+| Кнопка-переключатель | `.tg-toggle[aria-pressed]` | Тот же вид выбора, что у `.tg-btn--stacked` |
+| Группа полей | `.tg-input-group`, `__control`, `__addon` (текст или `select`), `__action` | Рамка, фон и фокус — у обёртки; `aria-invalid`, `disabled`, `readonly` на контроле |
+| Требования к значению | `.tg-requirements`, `__item[data-met]`, `--invalid` | Информация при вводе; ошибкой становится только после неудачной отправки |
+| Описание выбора, группы | `.tg-choice__description`, `.tg-choice-group`, `--nested` | Вложенные варианты начинаются под текстом родителя; `indeterminate` задаёт приложение |
+| Зоны карточки | `.tg-card__media` (+ `--card-media-ratio`), `__body`, `__footer`, `.tg-card--interactive`, `.tg-card--link` + `.tg-card__link` | Карточка-ссылка растягивает одну ссылку заголовка; вложенные кнопки в ней запрещены |
+| Показатель | `.tg-stat`, `__label`, `__value`, `__meta`, `__delta` | Изменение — текст со знаком в бейдже, не только цвет |
+| Таблица | `.tg-table--compact`, `--stack` (+ `data-label` у ячеек), `--caption-bottom`, `__cell-main`, `__cell-meta`, `__select`, `__sort` | `aria-sort` на `th`, выбор строк — флажком (строка подсвечивается сама), сортировку и объявление делает приложение |
+| Массовые действия | `.tg-bulk-bar` | Счётчик в `role=status`; на телефоне прилипает к низу |
+| Аккордеон | `.tg-accordion`, `--separate`, `__controls`, `.tg-disclosure__meta` | Нативные `details`; один открытый раздел — атрибут `name` |
+| Сообщение: действия | `.tg-notice__actions`, `__dismiss` | Закрытие и его запоминание — приложение |
+| Диалог | `.tg-modal__body`, `dialog.tg-modal--side` | Тело прокручивается, шапка и действия на месте; боковая панель у inline-end |
+| Аватары | `.tg-avatar-group`, `__more` (+ `--avatar-group-ring`) | Имя группы — `aria-label` |
+| Точка статуса | `.tg-badge__dot` | Повторяет цвет текста бейджа |
+| Навигация | `.tg-tabs--underline`, `.tg-site-nav`, `__link[aria-current]`, `.tg-page-header--sticky`, `.tg-pager`, `__link`, `__ellipsis`, `__info` | Сегментные табы остаются видом по умолчанию; `.tg-pagination` — для каруселей |
+| Чат с ассистентом | `.tg-chat`, `__log` (`role=log`), `.tg-message`, `--user`, `--assistant`, `__body`, `__meta`, `__actions`, `data-state=streaming/done/stopped/error`; `.tg-composer__toolbar`, `__attachments` | Стриминг, остановка, объявление начала и конца ответа, санитизация Markdown — приложение |
+
 ### Полная галерея Feather
 
 В разделе «Иконки» доступны все 287 иконок feather-icons 4.29.2: поиск по именам

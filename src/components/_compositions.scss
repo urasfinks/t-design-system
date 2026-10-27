@@ -7,6 +7,13 @@
     padding-block-start: max(env(safe-area-inset-top, 0px), var(--tg-content-safe-area-inset-top, 0px));
     border-block-end: var(--border);
   }
+  // A header that stays while the page scrolls needs its own background.
+  .tg-page-header--sticky {
+    position: sticky;
+    inset-block-start: 0;
+    z-index: var(--z-sticky);
+    background: var(--background-main);
+  }
   .tg-page-content {
     --tg-container-padding-end: calc(var(--tg-composer-height, var(--composer-reserved-size)) + var(--space-6));
   }
@@ -39,6 +46,105 @@
       margin-inline-start: calc(var(--control-h) + var(--space-3));
     }
   }
+  // Composer parts for assistants: attachments above the field, tools under it.
+  .tg-composer__attachments {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2);
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    &:empty { display: none; }
+  }
+  .tg-composer__toolbar {
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: center;
+    gap: var(--space-1);
+    min-inline-size: 0;
+  }
+  .tg-composer__form:has(> .tg-composer__toolbar) { flex-wrap: wrap; }
+  .tg-composer__form:has(> .tg-composer__toolbar) > :is(.tg-composer__input, .tg-composer__toolbar, .tg-composer__attachments) { flex: 1 0 100%; }
+
+  // A conversation with an assistant. The user's turns sit in bubbles at the inline
+  // end; the assistant answers in running text, which reads better at length.
+  .tg-chat {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+    min-inline-size: 0;
+  }
+  .tg-chat__log {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-5);
+    min-inline-size: 0;
+    overflow-wrap: anywhere;
+  }
+  .tg-message {
+    display: grid;
+    gap: var(--space-2);
+    min-inline-size: 0;
+    max-inline-size: 100%;
+    scroll-margin-block-end: calc(var(--tg-composer-height, var(--composer-reserved-size)) + var(--space-6));
+
+    &__body {
+      min-inline-size: 0;
+      line-height: 1.6;
+      > :first-child { margin-block-start: 0; }
+      > :last-child { margin-block-end: 0; }
+      :is(p, ul, ol, pre, blockquote, table) { margin-block: 0 var(--space-3); }
+      :is(ul, ol) { padding-inline-start: var(--space-6); }
+      code { padding: .1em .35em; border-radius: var(--radius-xs); background: var(--background-muted); font-family: var(--font-family-mono); font-size: .875em; }
+      pre {
+        overflow-x: auto;
+        padding: var(--space-3) var(--space-4);
+        border-radius: var(--radius-control);
+        background: var(--background-muted);
+        font-family: var(--font-family-mono);
+        font-size: var(--fs-sm);
+        line-height: 1.5;
+        > code { padding: 0; background: none; font-size: inherit; }
+      }
+    }
+    &--user {
+      align-self: flex-end;
+      justify-self: end;
+      max-inline-size: min(85%, 36rem);
+      > .tg-message__body {
+        padding: var(--space-2) var(--space-4);
+        border-radius: var(--radius-lg);
+        border-end-end-radius: var(--radius-xs);
+        background: var(--background-muted);
+      }
+    }
+    &__meta { font-size: var(--fs-xs); color: var(--text-secondary); }
+    &__actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-1);
+      margin-inline-start: calc(var(--space-2) * -1);
+    }
+    // While the answer streams, a caret marks where text arrives.
+    &[data-state='streaming'] > .tg-message__body > :last-child::after {
+      content: '';
+      display: inline-block;
+      inline-size: .5em;
+      block-size: 1.1em;
+      margin-inline-start: .125em;
+      vertical-align: text-bottom;
+      border-radius: 1px;
+      background: currentColor;
+      animation: tg-caret 1s steps(2, jump-none) infinite;
+    }
+    &[data-state='error'] > .tg-message__body { color: var(--text-secondary); }
+  }
+  @keyframes tg-caret { 50% { opacity: 0; } }
+  @media (hover: hover) and (pointer: fine) {
+    .tg-message--assistant:not(:last-child) > .tg-message__actions { opacity: 0; transition: opacity var(--duration) var(--ease); }
+    .tg-message--assistant:is(:hover, :focus-within) > .tg-message__actions { opacity: 1; }
+  }
+
   .tg-reply-preview {
     display: flex;
     align-items: center;

@@ -14,12 +14,15 @@
     -webkit-tap-highlight-color: transparent;
   }
   :where(.tg-btn, .tg-icon-btn, .tg-input, .tg-select, .tg-textarea, .tg-tab,
-    .tg-tabbar__item, .tg-switch, .tg-chip, .tg-avatar, .tg-dot) {
+    .tg-tabbar__item, .tg-switch, .tg-chip, .tg-avatar, .tg-dot, .tg-menu__item,
+    .tg-pager__link, .tg-site-nav__link, .tg-table__sort, .tg-input-group__control,
+    .tg-input-group__addon) {
     font: inherit;
     letter-spacing: inherit;
     color: inherit;
   }
-  :where(.tg-btn, .tg-icon-btn, .tg-tab, .tg-tabbar__item, .tg-switch, .tg-chip, .tg-avatar, .tg-check, .tg-radio, .tg-link, .tg-dot):focus-visible {
+  :where(.tg-btn, .tg-icon-btn, .tg-tab, .tg-tabbar__item, .tg-switch, .tg-chip, .tg-avatar, .tg-check, .tg-radio, .tg-link, .tg-dot,
+    .tg-pager__link, .tg-site-nav__link, .tg-table__sort):focus-visible {
     outline: 2px solid var(--text-link);
     outline-offset: 3px;
   }
@@ -49,7 +52,8 @@
 }
 
 @layer tds.components {
-  :is(.tg-btn, .tg-icon-btn, .tg-chip, .tg-switch, .tg-tab, .tg-tabbar__item, .tg-avatar, .tg-dot):is(:disabled, [aria-disabled='true']) {
+  :is(.tg-btn, .tg-icon-btn, .tg-chip, .tg-switch, .tg-tab, .tg-tabbar__item, .tg-avatar, .tg-dot,
+    .tg-menu__item, .tg-pager__link, .tg-site-nav__link, .tg-table__sort):is(:disabled, [aria-disabled='true']) {
     opacity: var(--disabled-opacity);
     cursor: not-allowed;
     transform: none;

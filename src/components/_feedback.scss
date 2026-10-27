@@ -48,6 +48,23 @@
     &__content > :not(:first-child) {
       margin-block-start: var(--space-1);
     }
+
+    // A recovery step and a way to close. Actions wrap under the text on narrow screens.
+    &:has(> .tg-notice__actions) { flex-wrap: wrap; }
+    &:has(> .tg-notice__actions) > .tg-notice__content { flex: 1 1 16rem; }
+    &__actions {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: var(--space-2);
+      margin-inline-start: auto;
+    }
+    &__dismiss {
+      flex: 0 0 auto;
+      margin-block: calc(var(--space-2) * -1);
+      margin-inline-end: calc(var(--space-2) * -1);
+      color: inherit;
+    }
   }
 
   .tg-progress {
@@ -240,6 +257,47 @@
     }
   }
 
+  // Long content scrolls inside the dialog while its header and actions stay put.
+  .tg-modal__sheet:has(> .tg-modal__body) {
+    display: flex;
+    flex-direction: column;
+    max-block-size: inherit;
+    padding-block: var(--space-5) 0;
+    > .tg-modal__header, > .tg-modal__footer { flex: 0 0 auto; }
+    > .tg-modal__footer { margin-block-start: 0; padding-block: var(--space-4) var(--space-5); border-block-start: var(--border); }
+  }
+  dialog.tg-modal:has(> .tg-modal__sheet > .tg-modal__body) { overflow: hidden; }
+  .tg-modal__body {
+    flex: 1 1 auto;
+    min-block-size: 0;
+    margin-inline: calc(var(--space-5) * -1);
+    padding: 0 var(--space-5) var(--space-5);
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    &:focus-visible { outline: 2px solid var(--text-link); outline-offset: -2px; }
+  }
+
+  // A panel along the inline end: details, filters, a profile.
+  dialog.tg-modal--side {
+    inline-size: min(28rem, 100%);
+    block-size: 100dvh;
+    max-block-size: 100dvh;
+    margin: 0;
+    margin-inline-start: auto;
+    border-block: 0;
+    border-inline-end: 0;
+    border-radius: 0;
+    border-start-start-radius: var(--radius-lg);
+    border-end-start-radius: var(--radius-lg);
+    &[open] { animation: tg-slide-in var(--duration) var(--ease); }
+    &:dir(rtl)[open] { --tg-slide-from: -1rem; }
+    > .tg-modal__sheet { block-size: 100%; }
+  }
+  @keyframes tg-slide-in {
+    from { opacity: 0; transform: translateX(var(--tg-slide-from, 1rem)); }
+    to { opacity: 1; transform: none; }
+  }
+
   @keyframes tg-pop {
     from {
       opacity: 0;
@@ -271,7 +329,7 @@
     }
 
     // No travel, but the dialog still fades in so its arrival is legible.
-    dialog.tg-modal[open] {
+    dialog.tg-modal[open], dialog.tg-modal--side[open] {
       animation: tg-fade-in var(--duration-fade-in) var(--ease);
     }
   }

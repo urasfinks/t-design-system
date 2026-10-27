@@ -9,7 +9,93 @@
   }
 
   .tg-card {
-    padding: var(--space-4);
+    --card-padding: var(--space-4);
+    padding: var(--card-padding);
+  }
+
+  // Card zones. A card with zones is a column: media meets the edges, the footer
+  // settles at the bottom so cards in a grid align their actions.
+  .tg-card:has(> :is(.tg-card__media, .tg-card__body, .tg-card__footer)) {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+  }
+  .tg-card__media {
+    margin: calc(var(--card-padding) * -1) calc(var(--card-padding) * -1) 0;
+    border-radius: calc(var(--radius-lg) - 1px) calc(var(--radius-lg) - 1px) 0 0;
+    overflow: clip;
+    background: var(--background-muted);
+
+    > :is(img, video, picture) {
+      display: block;
+      inline-size: 100%;
+      aspect-ratio: var(--card-media-ratio, 16 / 9);
+      object-fit: cover;
+    }
+  }
+  .tg-card__body {
+    display: grid;
+    gap: var(--space-2);
+    min-inline-size: 0;
+    > * { margin: 0; }
+  }
+  .tg-card__footer {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--space-2) var(--space-3);
+    margin-block-start: auto;
+  }
+
+  // A card the reader acts on. Like small actions, it gains the action outline;
+  // a whole-card link stretches the one link in its heading over the card.
+  .tg-card--interactive, .tg-card--link {
+    position: relative;
+    transition: border-color var(--duration) var(--ease);
+    @media (hover: hover) and (pointer: fine) {
+      &:hover { border-color: var(--action-border-color); }
+    }
+  }
+  .tg-card--link:has(.tg-card__link:focus-visible) { outline: 2px solid var(--text-link); outline-offset: 3px; }
+  .tg-card__link {
+    color: inherit;
+    text-decoration: none;
+    &:focus-visible { outline: none; }
+    .tg-card--link &::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+      border-radius: inherit;
+    }
+  }
+
+  // One figure with its label and change. The change is text with a sign, never colour alone.
+  .tg-stat {
+    display: grid;
+    align-content: start;
+    gap: var(--space-1);
+    min-inline-size: 0;
+
+    &__label { margin: 0; font-size: var(--fs-sm); color: var(--text-secondary); }
+    &__value {
+      margin: 0;
+      font-size: var(--fs-display);
+      font-weight: var(--fw-semibold);
+      line-height: 1.15;
+      letter-spacing: -.02em;
+      font-variant-numeric: tabular-nums;
+    }
+    &__meta {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: var(--space-2);
+      margin: var(--space-1) 0 0;
+      font-size: var(--fs-sm);
+      color: var(--text-secondary);
+    }
+    &__delta { flex: 0 0 auto; }
   }
 
   .tg-list {

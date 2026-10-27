@@ -27,4 +27,49 @@
       animation: tg-ripple-wash var(--wash-duration, 300ms) ease-out forwards;
     }
   }
+
+  // Async actions. The label stays; aria-busy shows progress, data-state the outcome.
+  :is(.tg-btn, .tg-icon-btn)[aria-busy='true'] { cursor: progress; }
+
+  // Every state label occupies the same cell, so the width never jumps between them.
+  .tg-btn__states {
+    display: inline-grid;
+    > * {
+      grid-area: 1 / 1;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: var(--space-2);
+      visibility: hidden;
+      opacity: 0;
+      filter: blur(2px);
+      transition: opacity var(--duration-fade-out) var(--ease), filter var(--duration-fade-out) var(--ease), visibility 0s linear var(--duration-fade-out);
+    }
+  }
+  .tg-btn:not([data-state]) .tg-btn__states > [data-state='idle'],
+  .tg-btn[data-state='idle'] .tg-btn__states > [data-state='idle'],
+  .tg-btn[data-state='busy'] .tg-btn__states > [data-state='busy'],
+  .tg-btn[data-state='success'] .tg-btn__states > [data-state='success'],
+  .tg-btn[data-state='error'] .tg-btn__states > [data-state='error'] {
+    visibility: visible;
+    opacity: 1;
+    filter: none;
+    transition: opacity var(--duration-fade-in) var(--ease), filter var(--duration-fade-in) var(--ease), visibility 0s;
+  }
+
+  // A known percentage: a thin bar along the bottom edge, drawn with scaleX().
+  .tg-btn:has(> .tg-btn__progress) { position: relative; overflow: clip; }
+  .tg-btn__progress {
+    position: absolute;
+    inset-inline: 0;
+    inset-block-end: 0;
+    block-size: 3px;
+    background: currentColor;
+    opacity: .45;
+    transform: scaleX(clamp(0, var(--progress, 0), 1));
+    transform-origin: left center;
+    transition: transform var(--progress-duration) var(--ease);
+    pointer-events: none;
+    &:dir(rtl) { transform-origin: right center; }
+  }
 }

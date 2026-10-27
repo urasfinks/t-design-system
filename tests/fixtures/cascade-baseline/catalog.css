@@ -117,10 +117,14 @@ h1 > span { color: var(--text-link); }
 .example-rule { margin: 0; padding: var(--space-4) var(--space-6); border-top: var(--border); color: var(--text-secondary); font-size: var(--catalog-text); line-height: 1.6; text-wrap: pretty; padding-inline-end: max(var(--space-6), calc(100% - 72ch - var(--space-6))); }
 .example-rule code { font: .9em/1 ui-monospace, SFMono-Regular, Consolas, monospace; color: var(--text-color); overflow-wrap: anywhere; }
 .example-code { border-top: var(--border); }
-.example-code summary { min-height: 2.75rem; cursor: pointer; display: flex; align-items: center; justify-content: space-between; gap: var(--space-3); padding: var(--space-3) var(--space-6); font-size: var(--catalog-caption); color: var(--text-secondary); list-style: none; }
+.example-code summary { --summary-pad: var(--space-6); position: relative; min-height: 2.75rem; cursor: pointer; display: flex; align-items: center; justify-content: space-between; gap: var(--space-3); padding: var(--space-3) calc(var(--summary-pad) + 1.5rem) var(--space-3) var(--summary-pad); font-size: var(--catalog-caption); color: var(--text-secondary); list-style: none; }
 .example-code summary::-webkit-details-marker { display: none; }
-.example-code summary::after { content: '+'; font: 1rem var(--font-family); }
-.example-code[open] summary::after { content: '−'; }
+/* Plus drawn from two bars: on open the vertical bar turns flat onto the horizontal one and both spin half a turn, so + becomes −. */
+.example-code summary::before, .example-code summary::after { content: ''; position: absolute; inset-inline-end: var(--summary-pad); inset-block-start: 50%; inline-size: .75rem; block-size: 1.5px; margin-block-start: -.75px; border-radius: 1px; background: currentColor; transition: transform var(--duration) var(--ease); }
+.example-code summary::after { transform: rotate(90deg); }
+.example-code[open] summary::before { transform: rotate(180deg); }
+.example-code[open] summary::after { transform: rotate(180deg); }
+@media (prefers-reduced-motion: reduce) { .example-code summary::before, .example-code summary::after { transition: none; } }
 pre { max-width: 100%; overflow: auto; font: var(--catalog-caption)/1.7 ui-monospace, SFMono-Regular, Consolas, monospace; margin: 0; padding: var(--space-6); tab-size: 2; background: var(--surface-muted); color: var(--text-color); }
 .example-code pre { max-height: 24rem; border-top: var(--border); }
 .form-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--space-6); }
@@ -202,7 +206,8 @@ pre { max-width: 100%; overflow: auto; font: var(--catalog-caption)/1.7 ui-monos
   .token-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .form-grid, .surface-grid, .install-grid { grid-template-columns: 1fr; }
   .example-body { padding: var(--space-5); }
-  .example-code summary, .example-rule { padding-inline: var(--space-5); }
+  .example-code summary { --summary-pad: var(--space-5); }
+  .example-rule { padding-inline: var(--space-5); }
   .glass-demo-stage { padding: var(--space-5); }
   .tg-tabs { gap: var(--space-1); }
   .tg-tab { padding-inline: var(--space-3); }

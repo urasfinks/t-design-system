@@ -88,12 +88,32 @@
     padding: var(--space-3);
     font-size: var(--fs-sm);
     font-weight: var(--fw-regular);
-    &[aria-pressed='true'] {
-      --control-idle-bg: var(--accent-soft);
-      --control-color: var(--text-link);
-      border-color: var(--accent-main);
-    }
   }
+  // A pressed toggle and a pressed stacked option share one selected look.
+  :is(.tg-btn--stacked, .tg-toggle)[aria-pressed='true'] {
+    --control-idle-bg: var(--accent-soft);
+    --control-color: var(--text-link);
+    border-color: var(--accent-main);
+  }
+
+  // Button parts: an icon, a label column and an optional second line.
+  .tg-btn__icon { flex: 0 0 auto; }
+  .tg-btn__label {
+    display: inline-flex;
+    flex-direction: column;
+    min-inline-size: 0;
+  }
+  .tg-btn__subtext {
+    font-size: var(--fs-sm);
+    font-weight: var(--fw-regular);
+    line-height: 1.35;
+  }
+  .tg-btn:has(.tg-btn__subtext) {
+    justify-content: flex-start;
+    text-align: start;
+  }
+  // The icon follows the label; row-reverse keeps the order logical in RTL.
+  .tg-btn--icon-end { flex-direction: row-reverse; }
   .tg-chip {
     padding-inline: var(--space-3);
     border: var(--border-action);

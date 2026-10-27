@@ -98,6 +98,31 @@
     }
   }
 
+  // Participants as one overlapping row. Each picture is separated by a ring of the
+  // surface behind it; the last item counts the rest.
+  .tg-avatar-group {
+    --icon-avatar: var(--icon-btn);
+    display: inline-flex;
+    align-items: center;
+    flex-wrap: nowrap;
+    vertical-align: middle;
+
+    > .tg-avatar {
+      padding: 0;
+      border-width: 0;
+      > :is(.tg-avatar__initials, .tg-avatar__clip) { box-shadow: 0 0 0 2px var(--avatar-group-ring, var(--surface-bg)); }
+      & + .tg-avatar { margin-inline-start: calc(var(--icon-avatar) * -.25); }
+    }
+  }
+  .tg-avatar-group__more {
+    background: var(--background-muted);
+    color: var(--text-secondary);
+    font-size: var(--fs-xs);
+    font-weight: var(--fw-semibold);
+    font-variant-numeric: tabular-nums;
+    box-shadow: 0 0 0 2px var(--avatar-group-ring, var(--surface-bg));
+  }
+
   // The outline marks an avatar the reader can act on (select, open a profile).
   // :where keeps the selected ring above this resting outline.
   :where(button, a[href]).tg-avatar {
@@ -140,6 +165,15 @@
       --control-idle-bg: light-dark(var(--danger-soft), var(--danger-strong));
       color: light-dark(var(--danger-strong), var(--text-main));
     }
+  }
+  // A status dot repeats the badge text colour; the word still carries the meaning.
+  .tg-badge:has(> .tg-badge__dot) { gap: var(--space-1); }
+  .tg-badge__dot {
+    flex: 0 0 auto;
+    inline-size: .375rem;
+    block-size: .375rem;
+    border-radius: 50%;
+    background: currentColor;
   }
 }
 

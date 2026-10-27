@@ -26,3 +26,19 @@ test('the legacy control-hover entry retains reset, focus and visibility foundat
   assert.match(css, /\[hidden\]/);
   assert.match(css, /aria-disabled/);
 });
+
+test('new components plug into shared tokens and the state engine instead of local paint', async () => {
+  const menu = await read('src/components/_menu.scss');
+  assert.match(menu, /--control-paint-duration:\s*0s/);
+  assert.match(menu, /var\(--icon-mask-check\)/);
+  assert.doesNotMatch(menu, /#[0-9a-f]{3,8}\b|rgba?\(/i);
+  const patterns = await read('src/components/_patterns.scss');
+  const forms = await read('src/components/_forms.scss');
+  // Search and input group share one field surface definition.
+  assert.match(patterns, /field-surface\.surface\('\.tg-search__input'\)/);
+  assert.match(forms, /field-surface\.surface\('\.tg-input-group__control'\)/);
+  const states = await read('src/components/_control-states.scss');
+  for (const link of ['a.tg-menu__item[href]', 'a.tg-pager__link[href]', 'a.tg-site-nav__link[href]']) assert.ok(states.includes(link), link);
+  const base = await read('src/base/_index.scss');
+  for (const name of ['.tg-pager__link', '.tg-site-nav__link', '.tg-table__sort']) assert.ok(base.includes(name), name);
+});

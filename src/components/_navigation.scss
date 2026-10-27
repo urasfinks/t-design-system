@@ -67,6 +67,105 @@
     }
   }
 
+  // Underlined tabs for content panels inside a page; segmented tabs stay the default.
+  .tg-tabs--underline {
+    gap: var(--space-5);
+    padding: 0;
+    border: 0;
+    border-block-end: var(--border);
+    border-radius: 0;
+    background: transparent;
+
+    > .tg-tab {
+      --control-hover-bg: transparent;
+      --control-hover-filter: none;
+      flex: 0 0 auto;
+      padding-inline: 0;
+      border-radius: 0;
+      box-shadow: inset 0 -2px 0 transparent;
+
+      &[aria-selected='true'] {
+        --control-idle-bg: transparent;
+        box-shadow: inset 0 -2px 0 var(--accent-main);
+      }
+    }
+  }
+
+  // Site navigation in a header: plain links, the current one on a tone step.
+  .tg-site-nav {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--space-1);
+    min-inline-size: 0;
+
+    &__link {
+      display: inline-flex;
+      align-items: center;
+      min-block-size: var(--control-h);
+      padding-inline: var(--space-3);
+      border-radius: var(--radius-control);
+      background: var(--control-idle-bg, transparent);
+      color: var(--text-secondary);
+      font-size: var(--fs-sm);
+      font-weight: var(--fw-medium);
+      text-decoration: none;
+      white-space: nowrap;
+      --control-hover-filter: none;
+
+      &[aria-current='page'] {
+        --control-idle-bg: var(--surface-muted);
+        color: var(--text-color);
+      }
+      @media (hover: hover) and (pointer: fine) {
+        &:hover { color: var(--text-color); }
+      }
+    }
+  }
+
+  // Numbered pages for data. Dots (.tg-pagination) remain for carousels and onboarding.
+  .tg-pager {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--space-1);
+    min-inline-size: 0;
+
+    &__link {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: var(--space-1);
+      min-inline-size: var(--control-h);
+      min-block-size: var(--control-h);
+      padding-inline: var(--space-3);
+      border: 0;
+      border-radius: var(--radius-control);
+      background: var(--control-idle-bg, transparent);
+      color: var(--text-color);
+      font-variant-numeric: tabular-nums;
+      text-decoration: none;
+      cursor: pointer;
+      --control-hover-filter: none;
+
+      &[aria-current='page'] {
+        --control-idle-bg: var(--accent-soft);
+        --control-hover-bg: var(--accent-soft);
+        color: var(--text-link);
+        font-weight: var(--fw-semibold);
+      }
+      &:is(a:not([href]), [aria-disabled='true']) { opacity: var(--disabled-opacity); cursor: not-allowed; }
+    }
+    &__ellipsis {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-inline-size: var(--space-6);
+      color: var(--text-secondary);
+    }
+    &__info { margin-inline: var(--space-2); font-size: var(--fs-sm); color: var(--text-secondary); font-variant-numeric: tabular-nums; }
+  }
+
   .tg-tabbar {
     position: sticky;
     inset-block-end: 0;

@@ -47,6 +47,26 @@ try {
   await page.keyboard.press('Escape');
   await page.waitForFunction(() => !document.querySelector('#catalog-search').open);
 
+  // «Посмотреть HTML»: the + turns into − by rotating its bars, on transform only.
+  const summary = page.locator('#buttons .example-code summary').first();
+  const bars = () => summary.evaluate(el => ['::before', '::after'].map(pseudo => {
+    const style = getComputedStyle(el, pseudo);
+    return { transform: style.transform, property: style.transitionProperty, duration: style.transitionDuration };
+  }));
+  const vertical = 'matrix(0, 1, -1, 0, 0, 0)';
+  const flat = 'matrix(-1, 0, 0, -1, 0, 0)';
+  const closed = await bars();
+  assert.equal(closed[0].transform, 'none', 'closed: horizontal bar');
+  assert.equal(closed[1].transform, vertical, 'closed: vertical bar makes a plus');
+  assert.ok(closed.every(bar => bar.property === 'transform' && ms(bar.duration)[0] > 0 && ms(bar.duration)[0] <= 300), `plus animates transform within 300ms: ${JSON.stringify(closed)}`);
+  await summary.click();
+  await page.waitForTimeout(400);
+  const open = await bars();
+  assert.ok(open.every(bar => bar.transform === flat), `open: both bars lie flat as a minus: ${JSON.stringify(open)}`);
+  await summary.click();
+  await page.waitForTimeout(400);
+  assert.equal((await bars())[1].transform, vertical, 'closing turns the minus back into a plus');
+
   // Reduced motion: no travel, short fades for appearing layers.
   await page.emulateMedia({ reducedMotion: 'reduce' });
   await page.getByRole('button', { name: 'Уведомление сверху' }).click();
@@ -58,6 +78,8 @@ try {
   assert.ok(ms(snack.opacity)[0] > 0 && ms(snack.opacity)[0] <= 150, `reduced motion keeps a short fade: ${snack.opacity}`);
   await page.getByRole('button', { name: 'Открыть диалог' }).click();
   assert.equal(await page.locator('#demo-dialog').evaluate(el => getComputedStyle(el).animationName), 'tg-fade-in', 'dialog fades in without moving');
+  await page.keyboard.press('Escape');
+  assert.ok(await summary.evaluate(el => ['::before', '::after'].every(pseudo => getComputedStyle(el, pseudo).transitionDuration === '0s')), 'reduced motion: the plus switches without turning');
   await page.keyboard.press('Escape');
   console.log('Motion: press ≤300ms on transform, faster exits, shared curve, instant keyboard search, precise-pointer hover and gentle reduced motion passed.');
 } finally { await browser?.close(); server.kill(); }

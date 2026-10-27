@@ -1,4 +1,5 @@
 @use '../base';
+@use 'field-surface';
 @layer tds.components {
   .tg-field {
     display: grid;
@@ -261,5 +262,139 @@
     min-block-size: var(--control-h);
     display: inline-flex;
     align-items: center;
+  }
+
+  // A choice can carry a second line. The control aligns to the first line of text.
+  .tg-choice:has(.tg-choice__description) {
+    align-items: flex-start;
+    padding-block: var(--space-2);
+  }
+  .tg-choice__description {
+    display: block;
+    margin-block-start: var(--space-1);
+    font-size: var(--fs-sm);
+    color: var(--text-secondary);
+  }
+
+  // Related independent choices. Nested children start under the parent label's text.
+  .tg-choice-group {
+    display: grid;
+    justify-items: start;
+    min-inline-size: 0;
+
+    &--nested {
+      padding-inline-start: calc(var(--choice-size) + var(--space-3));
+    }
+  }
+
+  // A field with prefixes, suffixes, a unit picker or an inline action.
+  .tg-input-group {
+    display: flex;
+    align-items: stretch;
+    min-inline-size: 0;
+    min-block-size: var(--control-h);
+    @include field-surface.surface('.tg-input-group__control');
+    transition: box-shadow var(--duration) var(--ease), border-color var(--duration) var(--ease), background-color var(--duration) var(--ease);
+
+    &:where(:not(:focus-within, :has(.tg-input-group__control:disabled), :has(.tg-input-group__control[readonly]))):hover {
+      background-color: var(--field-bg-hover);
+    }
+
+    &__control {
+      @include field-surface.bare-control;
+      flex: 1 1 0%;
+      inline-size: 100%;
+      padding: var(--space-2) var(--space-3);
+      line-height: 1.5;
+      &:disabled { cursor: not-allowed; }
+    }
+
+    // Text and icons around the value. A select addon keeps its native picker.
+    &__addon {
+      display: flex;
+      align-items: center;
+      flex: 0 0 auto;
+      gap: var(--space-2);
+      padding-inline: var(--space-3);
+      color: var(--text-secondary);
+      white-space: nowrap;
+
+      &:first-child { padding-inline-end: 0; }
+      &:last-child { padding-inline-start: 0; }
+    }
+    select.tg-input-group__addon {
+      appearance: none;
+      min-block-size: var(--control-h);
+      margin: 0;
+      padding-inline: var(--space-3) var(--space-8);
+      border: 0;
+      border-inline-end: var(--border-field);
+      border-radius: 0;
+      background: var(--select-arrow) no-repeat right var(--space-2) center / 1rem 1rem;
+      color: var(--text-color);
+      font-size: max(1rem, var(--fs));
+      cursor: pointer;
+      &:focus { outline: none; }
+      &:focus-visible { box-shadow: inset 0 0 0 2px var(--text-link); }
+      &:dir(rtl) { background-position: left var(--space-2) center; }
+    }
+
+    // An inline action fills the field height; its corners follow the field's.
+    &__action {
+      align-self: stretch;
+      block-size: auto;
+      min-block-size: 0;
+      border: 0;
+      border-radius: 0 calc(var(--radius-control) - 1px) calc(var(--radius-control) - 1px) 0;
+      &:dir(rtl) { border-radius: calc(var(--radius-control) - 1px) 0 0 calc(var(--radius-control) - 1px); }
+      &:focus-visible { outline-offset: -3px; }
+    }
+  }
+
+  // Rules that light up while typing: information, never an error before submit.
+  .tg-requirements {
+    display: grid;
+    gap: var(--space-1);
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    font-size: var(--fs-sm);
+    color: var(--text-secondary);
+
+    &__item {
+      display: flex;
+      align-items: flex-start;
+      gap: var(--space-2);
+      transition: color var(--duration) var(--ease);
+
+      &::before {
+        content: '';
+        flex: 0 0 auto;
+        inline-size: 1rem;
+        block-size: 1rem;
+        margin-block-start: calc((1lh - 1rem) / 2);
+        border: 2px solid currentColor;
+        border-radius: 50%;
+        opacity: .6;
+      }
+
+      &[data-met='true'] {
+        color: var(--accent-readable);
+        &::before {
+          border: 0;
+          border-radius: 0;
+          background: currentColor;
+          opacity: 1;
+          mask: var(--icon-mask-check) center / contain no-repeat;
+        }
+      }
+    }
+
+    // After a failed submit the unmet rules become the error.
+    &--invalid &__item:not([data-met='true']) { color: var(--text-danger); }
+  }
+
+  @media (forced-colors: active) {
+    .tg-input-group:focus-within { outline: 2px solid Highlight; outline-offset: 2px; }
   }
 }
