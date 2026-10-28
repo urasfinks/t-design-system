@@ -569,10 +569,10 @@ HTML».
 
 **Рамка у мелких элементов означает «можно нажать».** Статус (`span.tg-badge`) и
 обычный аватар — без рамки. Фильтр (`button.tg-chip[aria-pressed]`), бейдж-ссылка,
-аватар-кнопка — с рамкой; выбранный фильтр получает заливку. Вторичная и иконочная
-кнопки тоже обведены, но едва заметно: форму несёт спокойная заливка, а рамка
-`--button-border-color` (.04 в светлой теме, .02 в тёмных) только отмечает край; при
-`prefers-contrast: more` она становится обычной рамкой действия. Строка списка, которая куда-то ведёт, — `a.tg-list-item[href]` с
+аватар-кнопка, кнопки всех вариантов, радио, флажки и переключатели, а также бейдж
+внутри кликабельной строки — с одной общей рамкой действия `--action-border-color`. Она
+едва заметна (.04 в светлой теме, .02 в тёмных): форму несёт заливка, рамка отмечает край;
+при `prefers-contrast: more` рамка становится полной. Выбранный фильтр получает заливку. Строка списка, которая куда-то ведёт, — `a.tg-list-item[href]` с
 наведением, фокусом и стрелкой; строки данных не реагируют на наведение. Панели
 (карточки, списки, таблицы, уведомления) сохраняют свою рамку: она отделяет
 содержимое от фона. Подробнее — DESIGN.md → Outline semantics.
@@ -826,7 +826,7 @@ CSS приложения вне слоёв может переопределят
 | Компонент | Классы | Состояния и обязанности приложения |
 | --- | --- | --- |
 | Меню действий | `.tg-menu` (лучше с `popover`), `__item`, `--destructive`, `__text`, `__item-meta`, `__label`, `__separator`, `__shortcut` | `role=menu/menuitem/menuitemcheckbox/menuitemradio`, `aria-checked`, `aria-disabled`, `aria-haspopup="menu"` у пункта даёт шеврон. Приложение: ↑/↓, Home/End, поиск по букве, Escape с возвратом фокуса, Tab закрывает; `data-instant` при открытии с клавиатуры. Без CSS anchor positioning хост задаёт `--tg-anchor-block`, `--tg-anchor-inline`, `--tg-menu-origin` и `data-positioned`. На узком сенсорном экране меню становится нижним листом |
-| Кнопка: части | `.tg-btn__icon`, `__label`, `__subtext`, `.tg-btn--icon-end` | Иконка после подписи — `--icon-end`, порядок логический и в RTL |
+| Кнопка: части | `.tg-btn__icon`, `__label`, `__subtext`, `.tg-btn--icon-end` | Иконка после подписи — `--icon-end`, порядок логический и в RTL. Любая кнопка — ровно `--control-h` по высоте, подпись в одну строку; `__subtext` помещается в ту же высоту; не влезающая подпись в `__label` сокращается многоточием (полное имя остаётся у кнопки) |
 | Кнопка: ход выполнения | `[aria-busy]`, `.tg-btn__states > [data-state=idle/busy/success/error]`, `data-state` на кнопке, `.tg-btn__progress` + `--progress` (0…1) | Все подписи в одной ячейке — ширина не прыгает; видна только активная. Итог объявляет приложение |
 | Кнопка-переключатель | `.tg-toggle[aria-pressed]` | Тот же вид выбора, что у `.tg-btn--stacked` |
 | Группа полей | `.tg-input-group`, `__control`, `__addon` (текст или `select`), `__action` | Рамка, фон и фокус — у обёртки; `aria-invalid`, `disabled`, `readonly` на контроле |
@@ -846,9 +846,9 @@ CSS приложения вне слоёв может переопределят
 
 ### Компоненты по архиву 21st.dev (волны 0–8)
 
-Все 110 компонентных спецификаций из `references/21st-dev-1000/images/*/components.md`
+Все 107 компонентных спецификаций из `references/21st-dev-1000/images/*/components.md`
 реализованы и показаны в [docs/index.html](docs/index.html) (у каждого примера
-`data-spec="ID"`). Секции лендингов и композиции из готовых классов остаются
+`data-spec="ID"`). SH2 (материалы кнопки), F32 (декоративное свечение поля) и SH3 (живой аватар) удалены по решению владельца: у полей одна общая подсветка фокуса. Секции лендингов и композиции из готовых классов остаются
 документацией. Статус каждой спецификации — `references/21st-dev-1000/implementation.json`,
 сверка — `node scripts/verify-implementation.mjs` (код 0, когда готовы все), план —
 `docs/superpowers/plans/2026-10-27-full-component-implementation.md`.
@@ -959,11 +959,8 @@ const dispose = initEffects(); // указатель для .tg-effect-*, хол
 | **8. Эффекты** | | |
 | B19 | Декоративные эффекты кнопок | `.tg-effect-glow`, `.tg-effect-sheen`, `.tg-effect-border-beam`, `.tg-effect-magnetic` |
 | C18 | Декоративные эффекты карточек | `.tg-effect-tilt`, `.tg-effect-glare`, `.tg-effect-spotlight` |
-| F32 | Декоративные поля | `.tg-effect-focus-glow` |
 | G2 | 3D-карусели и coverflow | `.tg-carousel--coverflow`, `.tg-carousel--fan`, `.tg-carousel--ring` |
 | SH1 | Декоративный слой фона | `.tg-effect-layer` |
-| SH2 | Эффект поверх кнопки | `[data-tg-effect]` |
-| SH3 | Эффект аватара | `.tg-avatar[data-tg-effect]` |
 | SH4 | Переход слайдов с эффектом | `.tg-carousel[data-tg-effect]` |
 
 ### Полная галерея Feather

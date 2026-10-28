@@ -162,7 +162,11 @@
     overflow: clip;
     background: var(--background-muted);
     &:has(> [aria-expanded='true']) { flex-grow: 4; }
-    > img { position: absolute; inset: 0; inline-size: 100%; block-size: 100%; object-fit: cover; }
+    > img { position: absolute; inset: 0; inline-size: 100%; block-size: 100%; object-fit: cover; transition: transform var(--duration) var(--ease); }
+  }
+  // A closed panel answers hover: its picture leans in.
+  @media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
+    .tg-image-accordion__item:has(> .tg-image-accordion__trigger:hover) > img { transform: scale(1.04); }
   }
   .tg-image-accordion__trigger {
     --control-hover-filter: none;
@@ -279,25 +283,41 @@
   @supports (animation-timeline: view()) {
     @media (prefers-reduced-motion: no-preference) and (min-width: 36rem) {
       .tg-carousel:is(.tg-carousel--coverflow, .tg-carousel--fan, .tg-carousel--ring) > .tg-carousel__viewport {
-        perspective: 60rem;
         // The first and last slides can reach the centre, where they are flat.
-        padding: var(--space-4) 27%;
+        padding: var(--space-4) 30%;
+        // The slide stays flat: it is the snap target, so it lands exactly in the centre
+        // (a turned box is lopsided and would pull the snap off centre). Its picture turns,
+        // driven by the slide's own view timeline; perspective lives in that transform, so
+        // every slide has its own vanishing point and left and right neighbours mirror.
         > .tg-carousel__slide {
-          // Padding leaves 46% of the width; each slide takes all of it.
+          // Padding leaves 40% of the width; each slide takes all of it.
           flex-basis: 100%;
           scroll-snap-align: center;
-          animation: tg-carousel-coverflow linear both;
-          animation-timeline: view(inline);
+          view-timeline: --tg-carousel-slide inline;
+          background: none;
+          overflow: visible;
+          > img, > picture, > video {
+            border-radius: var(--radius-lg);
+            animation: tg-carousel-coverflow linear both;
+            animation-timeline: --tg-carousel-slide;
+          }
+          // The caption belongs to the centred slide; on the neighbours it fades out.
+          > figcaption { animation: tg-carousel-caption linear both; animation-timeline: --tg-carousel-slide; }
         }
       }
-      .tg-carousel.tg-carousel--fan > .tg-carousel__viewport > .tg-carousel__slide { transform-origin: 50% 160%; animation-name: tg-carousel-fan; }
-      .tg-carousel.tg-carousel--ring > .tg-carousel__viewport > .tg-carousel__slide { animation-name: tg-carousel-ring; }
+      .tg-carousel.tg-carousel--fan > .tg-carousel__viewport > .tg-carousel__slide > :is(img, picture, video) { transform-origin: 50% 160%; animation-name: tg-carousel-fan; }
+      .tg-carousel.tg-carousel--ring > .tg-carousel__viewport > .tg-carousel__slide > :is(img, picture, video) { animation-name: tg-carousel-ring; }
     }
   }
+  @keyframes tg-carousel-caption {
+    0%, 38% { opacity: 0; }
+    50% { opacity: 1; }
+    62%, 100% { opacity: 0; }
+  }
   @keyframes tg-carousel-coverflow {
-    from { transform: rotateY(calc(42deg * var(--carousel-flow))) scale(.82); opacity: .55; }
-    50% { transform: none; opacity: 1; }
-    to { transform: rotateY(calc(-42deg * var(--carousel-flow))) scale(.82); opacity: .55; }
+    from { transform: perspective(60rem) translateZ(-6rem) rotateY(calc(40deg * var(--carousel-flow))); opacity: .6; }
+    50% { transform: perspective(60rem) translateZ(0) rotateY(0deg); opacity: 1; }
+    to { transform: perspective(60rem) translateZ(-6rem) rotateY(calc(-40deg * var(--carousel-flow))); opacity: .6; }
   }
   @keyframes tg-carousel-fan {
     from { transform: rotate(calc(9deg * var(--carousel-flow))) scale(.9); opacity: .6; }
@@ -305,8 +325,8 @@
     to { transform: rotate(calc(-9deg * var(--carousel-flow))) scale(.9); opacity: .6; }
   }
   @keyframes tg-carousel-ring {
-    from { transform: rotateY(calc(62deg * var(--carousel-flow))) translateZ(-8rem); opacity: .4; }
-    50% { transform: none; opacity: 1; }
-    to { transform: rotateY(calc(-62deg * var(--carousel-flow))) translateZ(-8rem); opacity: .4; }
+    from { transform: perspective(60rem) translateZ(-14rem) rotateY(calc(55deg * var(--carousel-flow))); opacity: .45; }
+    50% { transform: perspective(60rem) translateZ(0) rotateY(0deg); opacity: 1; }
+    to { transform: perspective(60rem) translateZ(-14rem) rotateY(calc(-55deg * var(--carousel-flow))); opacity: .45; }
   }
 }

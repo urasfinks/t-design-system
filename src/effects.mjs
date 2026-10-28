@@ -24,7 +24,7 @@ export function initRipple(root = globalThis.document) {
   const click = event => {
     const target = event.target?.nodeType === 1 ? event.target : event.target?.parentElement;
     const host = target?.closest('.tg-ripple');
-    if (host?.matches('.tg-btn--ghost, .tg-icon-btn--ghost, .tg-search__clear')) return;
+    if (host?.matches('.tg-btn--ghost, .tg-icon-btn--ghost, .tg-search__clear, .tg-tag-input__remove')) return;
     if (!host || (root !== doc && !root.contains(host))) return;
     // Replaced/void elements cannot own the effect nodes. Native disabled
     // fieldsets and disabled ancestors also suppress synthetic activation.

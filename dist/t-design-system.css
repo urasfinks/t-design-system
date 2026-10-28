@@ -123,16 +123,17 @@
     --action-hover-bg: var(--accent-strong);
     --action-danger-bg: var(--danger-strong);
     --control-border-color: light-dark(rgba(0, 0, 0, .5), rgba(255, 255, 255, .5));
-    --choice-border-color: var(--control-border-color);
+    --choice-border-color: var(--action-border-color);
     --disabled-opacity: .5;
     --border-control: 1px solid var(--control-border-color);
     --field-border-color: var(--border-color);
     --border-field: 1px solid var(--field-border-color);
-    --action-border-color: light-dark(rgba(0, 0, 0, .24), rgba(255, 255, 255, .24));
+    --group-border-color: var(--field-border-color);
+    --action-border-color: light-dark(rgba(0, 0, 0, .04), rgba(255, 255, 255, .02));
     --border-action: 1px solid var(--action-border-color);
-    --button-border-color: light-dark(rgba(0, 0, 0, .04), rgba(255, 255, 255, .02));
+    --panel-hover-border-color: light-dark(rgba(0, 0, 0, .24), rgba(255, 255, 255, .24));
     --switch-track-color: var(--field-bg);
-    --switch-border-color: transparent;
+    --switch-border-color: var(--action-border-color);
     --notice-danger-bg: var(--danger-soft);
     --surface-bg: var(--section-color);
     --surface-muted: var(--secondary-bg-color);
@@ -144,9 +145,7 @@
   @media (prefers-contrast: more) {
     :root {
       --field-border-color: var(--control-border-color);
-      --switch-border-color: var(--control-border-color);
       --action-border-color: var(--control-border-color);
-      --button-border-color: var(--action-border-color);
     }
   }
 }
@@ -256,39 +255,45 @@
   }
 }
 @layer tds.components {
-  :where(:is(button[class*=tg-], .tg-btn, .tg-icon-btn, .tg-chip, .tg-tab, .tg-dot, .tg-tabbar__item, a.tg-badge[href], a.tg-list-item[href], a.tg-menu__item[href], a.tg-pager__link[href], a.tg-site-nav__link[href], .tg-disclosure__trigger, .tg-bottom-panel__header, .tg-bottom-panel__trigger, .tg-segmented__item, a.tg-sidebar__link[href], summary.tg-sidebar__link, a.tg-nav-menu__link[href], a.tg-nav-menu__top[href], .tg-command__item):not(.tg-switch, [role=switch])) {
+  :where(:is(button[class*=tg-], .tg-btn, .tg-icon-btn, .tg-chip, .tg-tab, .tg-dot, .tg-tabbar__item, a.tg-badge[href], a.tg-list-item[href], a.tg-menu__item[href], a.tg-pager__link[href], a.tg-site-nav__link[href], .tg-disclosure__trigger, .tg-bottom-panel__header, .tg-bottom-panel__trigger, .tg-segmented__item, a.tg-sidebar__link[href], summary.tg-sidebar__link, a.tg-nav-menu__link[href], a.tg-nav-menu__top[href], .tg-command__item, .tg-listbox__option, .tg-check, .tg-radio):not(.tg-switch, [role=switch])) {
     --control-idle-bg: transparent;
     --control-hover-bg: var(--surface-muted);
   }
-  :is(button[class*=tg-], .tg-btn, .tg-icon-btn, .tg-chip, .tg-tab, .tg-dot, .tg-tabbar__item, a.tg-badge[href], a.tg-list-item[href], a.tg-menu__item[href], a.tg-pager__link[href], a.tg-site-nav__link[href], .tg-disclosure__trigger, .tg-bottom-panel__header, .tg-bottom-panel__trigger, .tg-segmented__item, a.tg-sidebar__link[href], summary.tg-sidebar__link, a.tg-nav-menu__link[href], a.tg-nav-menu__top[href], .tg-command__item):not(.tg-switch, [role=switch]) {
+  :is(button[class*=tg-], .tg-btn, .tg-icon-btn, .tg-chip, .tg-tab, .tg-dot, .tg-tabbar__item, a.tg-badge[href], a.tg-list-item[href], a.tg-menu__item[href], a.tg-pager__link[href], a.tg-site-nav__link[href], .tg-disclosure__trigger, .tg-bottom-panel__header, .tg-bottom-panel__trigger, .tg-segmented__item, a.tg-sidebar__link[href], summary.tg-sidebar__link, a.tg-nav-menu__link[href], a.tg-nav-menu__top[href], .tg-command__item, .tg-listbox__option, .tg-check, .tg-radio):not(.tg-switch, [role=switch]) {
     touch-action: manipulation;
     transition: background-color var(--control-paint-duration, var(--duration)) var(--ease), color var(--control-paint-duration, var(--duration)) var(--ease), border-color var(--duration) var(--ease), transform var(--duration-fast) var(--ease), filter var(--duration-fast) var(--ease);
   }
-  :is(.tg-btn--ghost, .tg-icon-btn--ghost, .tg-search__clear) {
+  :is(.tg-btn--ghost, .tg-icon-btn--ghost, .tg-search__clear, .tg-tag-input__remove, .tg-wheel__option):not([inert]) {
+    --control-idle-bg: transparent;
+    --control-hover-bg: transparent;
     --control-hover-filter: none;
+    border-color: transparent;
   }
-  :is(.tg-btn--ghost, .tg-icon-btn--ghost, .tg-search__clear):not([inert]):where(:not(:disabled, [disabled], [aria-disabled=true], [disabled] *, [aria-disabled=true] *, [inert] *)):is(:active, [data-pressed=true]) {
+  :is(.tg-btn--ghost, .tg-icon-btn--ghost, .tg-search__clear, .tg-tag-input__remove, .tg-wheel__option):not([inert]):where(:not(:disabled, [disabled], [aria-disabled=true], [disabled] *, [aria-disabled=true] *, [inert] *)):is(:active, [data-pressed=true]) {
     background-color: transparent;
     color: var(--accent-strong);
     filter: none;
   }
   @media (hover: hover) and (pointer: fine) {
-    :is(button[class*=tg-], .tg-btn, .tg-icon-btn, .tg-chip, .tg-tab, .tg-dot, .tg-tabbar__item, a.tg-badge[href], a.tg-list-item[href], a.tg-menu__item[href], a.tg-pager__link[href], a.tg-site-nav__link[href], .tg-disclosure__trigger, .tg-bottom-panel__header, .tg-bottom-panel__trigger, .tg-segmented__item, a.tg-sidebar__link[href], summary.tg-sidebar__link, a.tg-nav-menu__link[href], a.tg-nav-menu__top[href], .tg-command__item):not(.tg-switch, [role=switch]):not([inert]):where(:not(:disabled, [disabled], [aria-disabled=true], [disabled] *, [aria-disabled=true] *, [inert] *)):hover {
+    :is(button[class*=tg-], .tg-btn, .tg-icon-btn, .tg-chip, .tg-tab, .tg-dot, .tg-tabbar__item, a.tg-badge[href], a.tg-list-item[href], a.tg-menu__item[href], a.tg-pager__link[href], a.tg-site-nav__link[href], .tg-disclosure__trigger, .tg-bottom-panel__header, .tg-bottom-panel__trigger, .tg-segmented__item, a.tg-sidebar__link[href], summary.tg-sidebar__link, a.tg-nav-menu__link[href], a.tg-nav-menu__top[href], .tg-command__item, .tg-listbox__option, .tg-check, .tg-radio):not(.tg-switch, [role=switch]):not([inert]):where(:not(:disabled, [disabled], [aria-disabled=true], [disabled] *, [aria-disabled=true] *, [inert] *)):hover, .tg-choice:hover > :is(button[class*=tg-], .tg-btn, .tg-icon-btn, .tg-chip, .tg-tab, .tg-dot, .tg-tabbar__item, a.tg-badge[href], a.tg-list-item[href], a.tg-menu__item[href], a.tg-pager__link[href], a.tg-site-nav__link[href], .tg-disclosure__trigger, .tg-bottom-panel__header, .tg-bottom-panel__trigger, .tg-segmented__item, a.tg-sidebar__link[href], summary.tg-sidebar__link, a.tg-nav-menu__link[href], a.tg-nav-menu__top[href], .tg-command__item, .tg-listbox__option, .tg-check, .tg-radio):not(.tg-switch, [role=switch]):not([inert]):where(:not(:disabled, [disabled], [aria-disabled=true], [disabled] *, [aria-disabled=true] *, [inert] *)) {
       background-color: var(--control-hover-bg);
       filter: var(--control-hover-filter, brightness(var(--control-hover-brightness, 0.92)));
       cursor: pointer;
     }
-    :is(.tg-btn--ghost, .tg-icon-btn--ghost, .tg-search__clear):not([inert]):where(:not(:disabled, [disabled], [aria-disabled=true], [disabled] *, [aria-disabled=true] *, [inert] *)):hover:where(:not(:active, [data-pressed=true])) {
+    .tg-switch:not([inert]):where(:not(:disabled, [disabled], [aria-disabled=true], [disabled] *, [aria-disabled=true] *, [inert] *)):hover::before, .tg-choice:hover > .tg-switch:not([inert]):where(:not(:disabled, [disabled], [aria-disabled=true], [disabled] *, [aria-disabled=true] *, [inert] *))::before {
+      filter: brightness(var(--control-hover-brightness, 0.92));
+    }
+    :is(.tg-btn--ghost, .tg-icon-btn--ghost, .tg-search__clear, .tg-tag-input__remove, .tg-wheel__option):not([inert]):where(:not(:disabled, [disabled], [aria-disabled=true], [disabled] *, [aria-disabled=true] *, [inert] *)):hover:where(:not(:active, [data-pressed=true])) {
       color: var(--text-color);
     }
-    :is(button[class*=tg-], .tg-btn, .tg-icon-btn, .tg-chip, .tg-tab, .tg-dot, .tg-tabbar__item, a.tg-badge[href], a.tg-list-item[href], a.tg-menu__item[href], a.tg-pager__link[href], a.tg-site-nav__link[href], .tg-disclosure__trigger, .tg-bottom-panel__header, .tg-bottom-panel__trigger, .tg-segmented__item, a.tg-sidebar__link[href], summary.tg-sidebar__link, a.tg-nav-menu__link[href], a.tg-nav-menu__top[href], .tg-command__item):not(.tg-switch, [role=switch]):is(:disabled, [disabled], [aria-disabled=true], [disabled] *, [aria-disabled=true] *):hover {
+    :is(button[class*=tg-], .tg-btn, .tg-icon-btn, .tg-chip, .tg-tab, .tg-dot, .tg-tabbar__item, a.tg-badge[href], a.tg-list-item[href], a.tg-menu__item[href], a.tg-pager__link[href], a.tg-site-nav__link[href], .tg-disclosure__trigger, .tg-bottom-panel__header, .tg-bottom-panel__trigger, .tg-segmented__item, a.tg-sidebar__link[href], summary.tg-sidebar__link, a.tg-nav-menu__link[href], a.tg-nav-menu__top[href], .tg-command__item, .tg-listbox__option, .tg-check, .tg-radio):not(.tg-switch, [role=switch]):is(:disabled, [disabled], [aria-disabled=true], [disabled] *, [aria-disabled=true] *):hover {
       background-color: var(--control-idle-bg);
       filter: none;
       cursor: not-allowed;
     }
   }
   @media (prefers-reduced-motion: reduce) {
-    :is(button[class*=tg-], .tg-btn, .tg-icon-btn, .tg-chip, .tg-tab, .tg-dot, .tg-tabbar__item, a.tg-badge[href], a.tg-list-item[href], a.tg-menu__item[href], a.tg-pager__link[href], a.tg-site-nav__link[href], .tg-disclosure__trigger, .tg-bottom-panel__header, .tg-bottom-panel__trigger, .tg-segmented__item, a.tg-sidebar__link[href], summary.tg-sidebar__link, a.tg-nav-menu__link[href], a.tg-nav-menu__top[href], .tg-command__item):not(.tg-switch, [role=switch]) {
+    :is(button[class*=tg-], .tg-btn, .tg-icon-btn, .tg-chip, .tg-tab, .tg-dot, .tg-tabbar__item, a.tg-badge[href], a.tg-list-item[href], a.tg-menu__item[href], a.tg-pager__link[href], a.tg-site-nav__link[href], .tg-disclosure__trigger, .tg-bottom-panel__header, .tg-bottom-panel__trigger, .tg-segmented__item, a.tg-sidebar__link[href], summary.tg-sidebar__link, a.tg-nav-menu__link[href], a.tg-nav-menu__top[href], .tg-command__item, .tg-listbox__option, .tg-check, .tg-radio):not(.tg-switch, [role=switch]) {
       transition: none;
     }
   }
@@ -341,7 +346,7 @@
     -webkit-user-drag: none;
     pointer-events: none;
   }
-  .tg-link:hover {
+  :is(.tg-link, .tg-error-summary a):hover {
     text-decoration-thickness: 2px;
   }
   @media (prefers-reduced-motion: reduce) {
@@ -405,7 +410,7 @@
     block-size: var(--control-h);
     min-block-size: var(--control-h);
     padding-block: 0;
-    border: 1px solid transparent;
+    border: var(--border-action);
     background: var(--control-idle-bg);
     color: var(--control-color);
     font-size: var(--fs);
@@ -432,12 +437,7 @@
     padding-inline: var(--space-4);
     border-radius: var(--radius-control);
   }
-  .tg-btn--secondary {
-    border-color: var(--button-border-color);
-  }
   .tg-btn--ghost {
-    --control-idle-bg: transparent;
-    --control-hover-bg: transparent;
     --control-color: var(--text-link);
   }
   .tg-btn--destructive {
@@ -470,7 +470,6 @@
   .tg-icon-btn {
     min-inline-size: var(--control-h);
     padding-inline: var(--space-2);
-    border-color: var(--button-border-color);
     border-radius: var(--radius-control);
   }
   .tg-btn--pill, .tg-icon-btn--pill {
@@ -481,10 +480,7 @@
     --control-color: var(--button-text-color);
   }
   .tg-icon-btn--ghost {
-    --control-idle-bg: transparent;
-    --control-hover-bg: transparent;
     --control-color: var(--text-secondary);
-    border: 0;
   }
   .tg-btn--stacked {
     flex-direction: column;
@@ -507,10 +503,14 @@
     flex-direction: column;
     min-inline-size: 0;
   }
+  .tg-btn:has(.tg-btn__subtext) {
+    padding-block: var(--space-1);
+    line-height: 1.15;
+  }
   .tg-btn__subtext {
-    font-size: var(--fs-sm);
+    font-size: var(--fs-xs);
     font-weight: var(--fw-regular);
-    line-height: 1.35;
+    line-height: 1.2;
   }
   .tg-btn:has(.tg-btn__subtext) {
     justify-content: flex-start;
@@ -521,7 +521,6 @@
   }
   .tg-chip {
     padding-inline: var(--space-3);
-    border: var(--border-action);
     border-radius: var(--radius-pill);
     font-size: var(--fs-sm);
   }
@@ -569,7 +568,9 @@
   :is(.tg-btn-group--attached, .tg-split-btn) > :is(.tg-btn--secondary, .tg-icon-btn:not(.tg-icon-btn--primary, .tg-icon-btn--ghost), .tg-select, .tg-input) + :is(.tg-btn--secondary, .tg-icon-btn:not(.tg-icon-btn--primary, .tg-icon-btn--ghost), .tg-select, .tg-input) {
     margin-inline-start: -1px;
   }
-  :is(.tg-btn-group--attached, .tg-split-btn) > :is(.tg-btn--secondary, .tg-icon-btn:not(.tg-icon-btn--primary, .tg-icon-btn--ghost), .tg-select, .tg-input) + :is(.tg-btn--secondary, .tg-icon-btn:not(.tg-icon-btn--primary, .tg-icon-btn--ghost))::before,
+  :is(.tg-btn-group--attached, .tg-split-btn) > :is(.tg-btn--secondary, .tg-icon-btn:not(.tg-icon-btn--primary, .tg-icon-btn--ghost)) {
+    border-color: var(--group-border-color);
+  }
   :is(.tg-btn-group--attached, .tg-split-btn) > :is(.tg-btn--primary, .tg-icon-btn--primary, .tg-btn--destructive) + :is(.tg-btn--primary, .tg-icon-btn--primary, .tg-btn--destructive)::before {
     content: "";
     position: absolute;
@@ -908,8 +909,10 @@
     inline-size: var(--choice-size);
     block-size: var(--choice-size);
     margin: 0;
+    --control-idle-bg: var(--field-bg);
+    --control-hover-bg: var(--control-idle-bg);
     border: var(--border-field);
-    background-color: var(--field-bg);
+    background-color: var(--control-idle-bg);
     accent-color: var(--accent-main);
     vertical-align: middle;
     cursor: pointer;
@@ -918,7 +921,7 @@
     border-color: var(--choice-border-color);
   }
   .tg-check:checked, .tg-check.tg-check:indeterminate, .tg-radio:checked, .tg-radio.tg-check:indeterminate {
-    background-color: var(--accent-main);
+    --control-idle-bg: var(--accent-main);
     border-color: var(--accent-main);
   }
   .tg-check:disabled, .tg-radio:disabled {
@@ -1135,13 +1138,13 @@
     background: var(--select-arrow) no-repeat right var(--space-2) center/1rem 1rem;
     color: var(--text-color);
     font-size: max(1rem, var(--fs));
-    cursor: pointer;
   }
   .tg-input-group select.tg-input-group__addon:focus {
     outline: none;
+    box-shadow: none;
   }
-  .tg-input-group select.tg-input-group__addon:focus-visible {
-    box-shadow: inset 0 0 0 2px var(--text-link);
+  .tg-input-group select.tg-input-group__addon {
+    cursor: pointer;
   }
   .tg-input-group select.tg-input-group__addon:dir(rtl) {
     background-position: left var(--space-2) center;
@@ -1171,7 +1174,26 @@
     border: var(--border-field);
     border-radius: var(--radius-control);
     background: var(--field-bg);
-    transition: border-color var(--duration) var(--ease);
+  }
+  .tg-copy:focus-within {
+    border-color: var(--accent-main);
+    box-shadow: var(--focus);
+  }
+  .tg-copy:has(.tg-copy__value[readonly]) {
+    background: var(--section-bg-color);
+  }
+  .tg-copy:has(.tg-copy__value:disabled) {
+    opacity: var(--disabled-opacity, 0.5);
+    cursor: not-allowed;
+  }
+  .tg-copy:has(.tg-copy__value[aria-invalid=true]) {
+    border-color: var(--danger-main);
+  }
+  .tg-copy:has(.tg-copy__value[aria-invalid=true]):focus-within {
+    box-shadow: 0 0 0 0.25rem var(--danger-soft);
+  }
+  .tg-copy {
+    transition: border-color var(--duration) var(--ease), box-shadow var(--duration) var(--ease);
   }
   .tg-copy[data-state=copied] {
     border-color: var(--accent-main);
@@ -1191,10 +1213,24 @@
     user-select: all;
     background: none;
   }
+  .tg-copy:has(> .tg-copy__action) {
+    padding-block: 0;
+    padding-inline-end: 0;
+  }
   .tg-copy__action {
     flex: 0 0 auto;
-    min-block-size: calc(var(--control-h) - var(--space-2) - 2px);
-    border-radius: var(--radius-inset);
+    border-color: inherit;
+    border-inline-start-color: var(--group-border-color);
+  }
+  .tg-copy__action:focus-visible {
+    outline: none;
+  }
+  .tg-copy__action {
+    align-self: stretch;
+    margin-block: -1px;
+    margin-inline-end: -1px;
+    border-start-start-radius: 0;
+    border-end-start-radius: 0;
   }
   @media (max-width: 22.5rem) {
     .tg-copy:has(> .tg-btn.tg-copy__action) {
@@ -1207,6 +1243,8 @@
     }
     .tg-copy:has(> .tg-btn.tg-copy__action) > .tg-copy__action {
       inline-size: 100%;
+      margin: 0;
+      border-radius: var(--radius-inset);
     }
   }
   .tg-requirements {
@@ -1454,11 +1492,12 @@
     }
   }
   details.tg-card--disclosure {
+    --disclosure-radius-start: var(--radius-lg);
+    --disclosure-radius-end: var(--radius-lg);
     padding: 0;
   }
   details.tg-card--disclosure > .tg-disclosure__trigger {
     padding: var(--card-padding);
-    border-radius: inherit;
     font-size: var(--fs);
   }
   details.tg-card--disclosure[open] > .tg-disclosure__trigger {
@@ -1498,7 +1537,7 @@
   }
   @media (hover: hover) and (pointer: fine) {
     .tg-card--interactive:hover, .tg-card--link:hover {
-      border-color: var(--action-border-color);
+      border-color: var(--panel-hover-border-color);
     }
   }
   .tg-card--link:has(.tg-card__link:focus-visible) {
@@ -2069,7 +2108,7 @@
     inline-size: 100%;
     block-size: 100%;
     border-radius: inherit;
-    background: var(--section-separator-color);
+    background: var(--surface-muted);
     color: var(--avatar-initials-color);
     font-size: calc(var(--icon-avatar) / 3.5);
     font-weight: var(--fw-semibold);
@@ -2175,6 +2214,9 @@
   }
 }
 @layer tds.components {
+  :where(a[href], button, summary) .tg-badge {
+    border: var(--border-action);
+  }
   :is(button, a[href]).tg-badge {
     border: var(--border-action);
     min-inline-size: var(--control-h);
@@ -2249,7 +2291,6 @@
     flex: 0 0 auto;
     margin-block: calc(var(--space-2) * -1);
     margin-inline-end: calc(var(--space-2) * -1);
-    color: inherit;
   }
   .tg-progress {
     display: block;
@@ -2709,7 +2750,7 @@
     }
   }
   :is(.tg-effect-glow, .tg-effect-sheen, .tg-effect-border-beam, .tg-effect-tilt, .tg-effect-glare,
-  .tg-effect-spotlight, .tg-effect-focus-glow, .tg-btn[data-tg-effect]) {
+  .tg-effect-spotlight) {
     --effect-intensity: 1;
     position: relative;
     isolation: isolate;
@@ -2717,8 +2758,8 @@
   :is(.tg-effect-sheen, .tg-effect-glare, .tg-effect-spotlight) {
     overflow: clip;
   }
-  :is(.tg-effect-glow, .tg-effect-focus-glow, .tg-effect-sheen, .tg-effect-border-beam, .tg-effect-glare, .tg-effect-spotlight)::before,
-  .tg-effect-sheen::after, .tg-btn[data-tg-effect=glow] > .tg-effect-layer::before {
+  :is(.tg-effect-glow, .tg-effect-sheen, .tg-effect-border-beam, .tg-effect-glare, .tg-effect-spotlight)::before,
+  .tg-effect-sheen::after {
     content: "";
     position: absolute;
     inset: 0;
@@ -2726,12 +2767,12 @@
     border-radius: inherit;
     pointer-events: none;
   }
-  :is(.tg-effect-glow, .tg-effect-sheen, .tg-effect-border-beam, .tg-effect-glare, .tg-effect-spotlight, .tg-effect-focus-glow):is(:disabled, [aria-disabled=true], [aria-busy=true], :has(:disabled))::before,
+  :is(.tg-effect-glow, .tg-effect-sheen, .tg-effect-border-beam, .tg-effect-glare, .tg-effect-spotlight):is(:disabled, [aria-disabled=true], [aria-busy=true], :has(:disabled))::before,
   .tg-effect-sheen:is(:disabled, [aria-disabled=true], [aria-busy=true])::after,
   :is(:disabled, [aria-disabled=true], [aria-busy=true]) > .tg-effect-layer {
     display: none;
   }
-  :is(.tg-effect-glow, .tg-effect-focus-glow)::before, .tg-btn[data-tg-effect=glow] > .tg-effect-layer::before {
+  :is(.tg-effect-glow)::before {
     inset: calc(var(--space-4) * -1);
     padding: var(--space-4);
     border-radius: calc(var(--radius-control) + var(--space-4));
@@ -2741,15 +2782,6 @@
     opacity: 0;
     transform: scale(0.92);
     transition: opacity var(--duration-fade-out) var(--ease), transform var(--duration) var(--ease);
-  }
-  .tg-effect-focus-glow {
-    display: grid;
-    border-radius: var(--radius-control);
-  }
-  .tg-effect-focus-glow:focus-within::before {
-    opacity: calc(0.45 * var(--effect-intensity));
-    transform: none;
-    transition-duration: var(--duration-fade-in), var(--duration);
   }
   .tg-effect-sheen::after {
     background: linear-gradient(105deg, transparent 35%, var(--overlay-text) 50%, transparent 65%);
@@ -2813,38 +2845,6 @@
     position: relative;
     isolation: isolate;
   }
-  .tg-btn[data-tg-effect] > .tg-effect-layer {
-    inset: -1px;
-    background: none;
-  }
-  .tg-btn[data-tg-effect=metal] > .tg-effect-layer {
-    z-index: 0;
-    padding: 1.5px;
-    background: conic-gradient(from var(--effect-angle), var(--accent-strong), var(--overlay-text), var(--accent-main), var(--accent-strong), var(--overlay-text), var(--accent-strong));
-    mask: linear-gradient(black 0 0) content-box exclude, linear-gradient(black 0 0);
-  }
-  .tg-btn[data-tg-effect=glass] > .tg-effect-layer {
-    background: linear-gradient(to bottom, var(--overlay-text), transparent 55%);
-    box-shadow: inset 0 0 0 1px var(--overlay-text);
-    opacity: calc(0.22 * var(--effect-intensity));
-  }
-  .tg-btn[data-tg-effect=glow] > .tg-effect-layer {
-    inset: 0;
-  }
-  .tg-avatar[data-tg-effect=orb] {
-    container: tg-avatar/inline-size;
-  }
-  .tg-avatar[data-tg-effect=orb] > .tg-effect-layer {
-    inset: var(--space-1);
-    z-index: 0;
-    border-radius: 50%;
-    background: radial-gradient(circle at 86% 84%, var(--accent-main), transparent 42%), radial-gradient(circle at 18% 14%, var(--accent-readable), transparent 34%), var(--accent-strong);
-  }
-  .tg-avatar[data-tg-effect=orb] > .tg-avatar__initials {
-    position: relative;
-    background: transparent;
-    color: var(--button-text-color);
-  }
   .tg-carousel[data-tg-effect=ripple] > .tg-carousel__viewport {
     grid-area: 1/1;
   }
@@ -2861,8 +2861,7 @@
     opacity: 1;
   }
   @media (hover: hover) and (pointer: fine) {
-    .tg-effect-glow:where(:not(:disabled, [aria-disabled=true], [aria-busy=true])):is(:hover, :focus-visible)::before,
-    .tg-btn[data-tg-effect=glow]:where(:not(:disabled, [aria-disabled=true], [aria-busy=true])):is(:hover, :focus-visible) > .tg-effect-layer::before {
+    .tg-effect-glow:where(:not(:disabled, [aria-disabled=true], [aria-busy=true])):is(:hover, :focus-visible)::before {
       opacity: calc(0.5 * var(--effect-intensity));
       transform: none;
       transition-duration: var(--duration-fade-in), var(--duration);
@@ -2885,31 +2884,15 @@
     .tg-effect-sheen:dir(rtl):is(:hover, :focus-visible)::after {
       transform: translateX(-100%);
     }
-    .tg-btn[data-tg-effect=metal]:is(:hover, :focus-visible) > .tg-effect-layer {
-      animation: tg-effect-turn 2.4s linear infinite;
-    }
   }
   @media (prefers-reduced-motion: no-preference) {
     .tg-effect-border-beam::before {
       animation: tg-effect-turn 3.2s linear infinite;
     }
-    .tg-avatar[data-tg-effect=orb][data-state=thinking] > .tg-effect-layer {
-      animation: tg-effect-spin 3.6s linear infinite;
-    }
-    @container tg-avatar (max-width: 2rem) {
-      .tg-effect-layer {
-        animation: none;
-      }
-    }
   }
   @keyframes tg-effect-turn {
     to {
       --effect-angle: 360deg;
-    }
-  }
-  @keyframes tg-effect-spin {
-    to {
-      transform: rotate(1turn);
     }
   }
   @media (prefers-reduced-motion: reduce) {
@@ -2920,8 +2903,8 @@
     }
   }
   @media (forced-colors: active) {
-    :is(.tg-effect-glow, .tg-effect-sheen, .tg-effect-border-beam, .tg-effect-glare, .tg-effect-spotlight, .tg-effect-focus-glow)::before,
-    .tg-effect-sheen::after, .tg-btn[data-tg-effect] > .tg-effect-layer {
+    :is(.tg-effect-glow, .tg-effect-sheen, .tg-effect-border-beam, .tg-effect-glare, .tg-effect-spotlight)::before,
+    .tg-effect-sheen::after {
       display: none;
     }
   }
@@ -3849,8 +3832,6 @@
     appearance: none;
   }
   .tg-search__clear {
-    --control-idle-bg: transparent;
-    --control-hover-bg: transparent;
     flex: 0 0 auto;
     min-inline-size: var(--control-h);
     min-block-size: var(--control-h);
@@ -3883,15 +3864,19 @@
     margin-block-start: var(--space-2);
   }
   .tg-disclosure {
+    --disclosure-radius-start: var(--radius);
+    --disclosure-radius-end: var(--radius);
     min-inline-size: 0;
     border: var(--border);
-    border-radius: var(--radius);
+    border-radius: var(--disclosure-radius-start) var(--disclosure-radius-start) var(--disclosure-radius-end) var(--disclosure-radius-end);
     background: var(--surface-bg);
   }
   .tg-disclosure__trigger {
+    --disclosure-inner-start: max(0px, calc(var(--disclosure-radius-start, var(--radius)) - 1px));
+    --disclosure-inner-end: max(0px, calc(var(--disclosure-radius-end, var(--radius)) - 1px));
     min-block-size: var(--control-h);
     padding: var(--space-3) var(--space-4);
-    border-radius: var(--radius);
+    border-radius: var(--disclosure-inner-start) var(--disclosure-inner-start) var(--disclosure-inner-end) var(--disclosure-inner-end);
     font-weight: var(--fw-medium);
     cursor: pointer;
     overflow-wrap: anywhere;
@@ -4048,6 +4033,10 @@
     font-weight: var(--fw-medium);
     font-variant-numeric: tabular-nums;
   }
+  .tg-bulk-bar[data-empty] > [role=status] {
+    color: var(--text-secondary);
+    font-weight: var(--fw-regular);
+  }
   @media (max-width: 36rem) {
     .tg-table--stack {
       display: flex;
@@ -4123,7 +4112,7 @@
     .tg-table-wrap:has(> .tg-table--stack) {
       overflow-x: visible;
     }
-    .tg-bulk-bar {
+    .tg-bulk-bar:not([data-empty]) {
       position: sticky;
       inset-block-end: calc(var(--space-2) + var(--safe-area-bottom));
       z-index: var(--z-sticky);
@@ -4135,24 +4124,24 @@
     min-inline-size: 0;
   }
   .tg-accordion > .tg-disclosure {
-    border-radius: 0;
+    --disclosure-radius-start: 0px;
+    --disclosure-radius-end: 0px;
   }
   .tg-accordion > .tg-disclosure + .tg-disclosure {
     border-block-start: 0;
   }
   .tg-accordion > .tg-disclosure:first-of-type {
-    border-start-start-radius: var(--radius);
-    border-start-end-radius: var(--radius);
+    --disclosure-radius-start: var(--radius);
   }
   .tg-accordion > .tg-disclosure:last-of-type {
-    border-end-start-radius: var(--radius);
-    border-end-end-radius: var(--radius);
+    --disclosure-radius-end: var(--radius);
   }
   .tg-accordion--separate {
     gap: var(--space-2);
   }
   .tg-accordion--separate > .tg-disclosure {
-    border-radius: var(--radius);
+    --disclosure-radius-start: var(--radius);
+    --disclosure-radius-end: var(--radius);
   }
   .tg-accordion--separate > .tg-disclosure + .tg-disclosure {
     border-block-start: var(--border);
@@ -4561,8 +4550,7 @@
     inset-inline: 0;
     inset-block-end: 0;
     block-size: 3px;
-    background: currentColor;
-    opacity: 0.45;
+    background: var(--accent-main);
     transform: scaleX(clamp(0, var(--progress, 0), 1));
     transform-origin: left center;
     transition: transform var(--progress-duration) var(--ease);
@@ -4830,7 +4818,6 @@
     inset-block-start: 50%;
     inset-inline-end: var(--space-2);
     translate: 0 -50%;
-    color: inherit;
   }
   .tg-hover-card {
     --tg-float-origin: top center;
@@ -5328,7 +5315,7 @@
     }
   }
   .tg-timeline {
-    --timeline-marker: 1rem;
+    --timeline-marker: 1.25rem;
     display: grid;
     gap: 0;
     margin: 0;
@@ -5342,7 +5329,7 @@
     column-gap: var(--space-3);
     row-gap: var(--space-1);
     align-content: start;
-    padding-block-end: var(--space-5);
+    padding-block-end: var(--space-6);
   }
   .tg-timeline__item > :not(.tg-timeline__marker) {
     grid-column: 2;
@@ -5352,23 +5339,27 @@
   .tg-timeline__item > :is(h3, h4, strong) {
     font-size: var(--fs);
     font-weight: var(--fw-semibold);
+    line-height: 1.35;
   }
   .tg-timeline__item > p {
     color: var(--text-secondary);
   }
   .tg-timeline__item > .tg-badge {
     justify-self: start;
+    margin-block-start: var(--space-1);
   }
   .tg-timeline__item:not(:last-child)::before {
     content: "";
     position: absolute;
-    background: var(--border-color);
-    inset-block: calc(calc(var(--timeline-marker) / 2) * 2 + var(--space-1)) calc(var(--space-1) * -1);
-    inset-inline-start: calc(calc(var(--timeline-marker) / 2) - 1px);
+    z-index: 0;
+    background: var(--step-line-color, var(--border-color));
+    inset-block: calc(var(--timeline-marker) / 2) calc(var(--timeline-marker) / -2);
+    inset-inline: calc(var(--timeline-marker) / 2 - 1px) auto;
     inline-size: 2px;
+    block-size: auto;
   }
-  .tg-timeline__item[data-state=done]:not(:last-child)::before {
-    background: var(--accent-main);
+  .tg-timeline__item[data-state=done] {
+    --step-line-color: var(--accent-main);
   }
   .tg-timeline__item:last-child {
     padding-block-end: 0;
@@ -5397,12 +5388,10 @@
   .tg-timeline__marker {
     grid-row: 1;
     grid-column: 1;
-    margin-block-start: 0.125rem;
-    border-width: 2px;
   }
   .tg-timeline__marker > .tg-icon {
-    inline-size: 0.625rem;
-    block-size: 0.625rem;
+    inline-size: 0.75rem;
+    block-size: 0.75rem;
     stroke-width: 3;
   }
   .tg-timeline__item[data-state=done] .tg-timeline__marker {
@@ -5427,6 +5416,10 @@
     font-variant-numeric: tabular-nums;
   }
   .tg-timeline__item > .tg-timeline__time {
+    line-height: 1.35;
+    text-box: trim-start cap alphabetic;
+  }
+  .tg-timeline__item > .tg-timeline__time {
     grid-row: 1;
   }
   @media (min-width: 48rem) {
@@ -5437,29 +5430,32 @@
       overscroll-behavior-inline: contain;
       scroll-snap-type: inline proximity;
       scrollbar-width: thin;
-      padding-block-end: var(--space-2);
+      padding-block: var(--space-1) var(--space-2);
     }
     .tg-timeline--horizontal > .tg-timeline__item {
       grid-template-columns: minmax(0, 1fr);
-      grid-template-rows: auto var(--timeline-marker);
+      row-gap: var(--space-1);
       padding-block-end: 0;
-      padding-inline-end: var(--space-5);
+      padding-inline-end: var(--space-6);
       scroll-snap-align: start;
     }
     .tg-timeline--horizontal > .tg-timeline__item > * {
       grid-column: 1;
     }
-    .tg-timeline--horizontal > .tg-timeline__item > .tg-timeline__time {
-      grid-row: 1;
-    }
     .tg-timeline--horizontal > .tg-timeline__item > .tg-timeline__marker {
+      grid-row: 1;
+      margin-block-end: var(--space-2);
+    }
+    .tg-timeline--horizontal > .tg-timeline__item > .tg-timeline__time {
       grid-row: 2;
-      margin-block: var(--space-2);
     }
     .tg-timeline--horizontal > .tg-timeline__item:not(:last-child)::before {
-      inset-block: auto;
-      inset-block-start: calc(var(--fs-sm) * 1.5 + var(--space-2) + var(--timeline-marker) / 2 - 1px);
-      inset-inline: calc(var(--timeline-marker) + var(--space-1)) var(--space-1);
+      content: "";
+      position: absolute;
+      z-index: 0;
+      background: var(--step-line-color, var(--border-color));
+      inset-inline: calc(var(--timeline-marker) / 2) calc(var(--timeline-marker) / -2);
+      inset-block: calc(var(--timeline-marker) / 2 - 1px) auto;
       inline-size: auto;
       block-size: 2px;
     }
@@ -5571,8 +5567,12 @@
     padding-block-end: var(--space-5);
   }
   .tg-stepper--vertical > .tg-stepper__step > .tg-stepper__label {
-    padding-block-start: calc((var(--stepper-marker) - 1.4em) / 2);
     font-size: var(--fs);
+    line-height: 1.35;
+    text-box: trim-start cap alphabetic;
+  }
+  .tg-stepper--vertical > .tg-stepper__step[data-state=done] {
+    --step-line-color: var(--accent-main);
   }
   .tg-stepper--vertical > .tg-stepper__step:last-child {
     padding-block-end: 0;
@@ -5580,13 +5580,14 @@
   .tg-stepper--vertical > .tg-stepper__step:not(:last-child)::after {
     content: "";
     position: absolute;
-    background: var(--border-color);
-    inset-block: calc(calc(var(--stepper-marker) / 2) * 2 + var(--space-1)) calc(var(--space-1) * -1);
-    inset-inline-start: calc(calc(var(--stepper-marker) / 2) - 1px);
+    z-index: 0;
+    background: var(--step-line-color, var(--border-color));
+    inset-block: calc(var(--stepper-marker) / 2) calc(var(--stepper-marker) / -2);
+    inset-inline: calc(var(--stepper-marker) / 2 - 1px) auto;
     inline-size: 2px;
+    block-size: auto;
     flex: none;
     min-inline-size: 0;
-    block-size: auto;
     border-radius: 1px;
   }
   .tg-stepper--vertical .tg-stepper__description {
@@ -6002,7 +6003,6 @@
     outline-offset: 1px;
   }
   .tg-tag-input__remove {
-    --control-hover-filter: none;
     display: grid;
     place-items: center;
     flex: 0 0 auto;
@@ -6177,6 +6177,9 @@
     font-variant-numeric: tabular-nums;
     transition: border-color var(--duration-fast) var(--ease), box-shadow var(--duration-fast) var(--ease);
   }
+  .tg-otp__slot::before, .tg-otp__slot::after {
+    grid-area: 1/1;
+  }
   .tg-otp__slot:empty::before {
     content: attr(data-placeholder);
     color: var(--text-secondary);
@@ -6185,6 +6188,9 @@
   .tg-otp:focus-within .tg-otp__slot[data-active] {
     border-color: var(--accent-main);
     box-shadow: var(--focus);
+  }
+  .tg-otp:focus-within .tg-otp__slot[data-active]:empty::before {
+    visibility: hidden;
   }
   .tg-otp:focus-within .tg-otp__slot[data-active]:empty::after {
     content: "";
@@ -6240,7 +6246,7 @@
   }
   @media (hover: hover) and (pointer: fine) {
     .tg-choice-card:where(:not(:has(input:disabled))):hover {
-      border-color: var(--action-border-color);
+      border-color: var(--panel-hover-border-color);
     }
   }
   .tg-choice-card:has(input:checked) {
@@ -6910,6 +6916,12 @@
     inline-size: 100%;
     block-size: 100%;
     object-fit: cover;
+    transition: transform var(--duration) var(--ease);
+  }
+  @media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
+    .tg-image-accordion__item:has(> .tg-image-accordion__trigger:hover) > img {
+      transform: scale(1.04);
+    }
   }
   .tg-image-accordion__trigger {
     --control-hover-filter: none;
@@ -7131,36 +7143,56 @@
   @supports (animation-timeline: view()) {
     @media (prefers-reduced-motion: no-preference) and (min-width: 36rem) {
       .tg-carousel:is(.tg-carousel--coverflow, .tg-carousel--fan, .tg-carousel--ring) > .tg-carousel__viewport {
-        perspective: 60rem;
-        padding: var(--space-4) 27%;
+        padding: var(--space-4) 30%;
       }
       .tg-carousel:is(.tg-carousel--coverflow, .tg-carousel--fan, .tg-carousel--ring) > .tg-carousel__viewport > .tg-carousel__slide {
         flex-basis: 100%;
         scroll-snap-align: center;
-        animation: tg-carousel-coverflow linear both;
-        animation-timeline: view(inline);
+        view-timeline: --tg-carousel-slide inline;
+        background: none;
+        overflow: visible;
       }
-      .tg-carousel.tg-carousel--fan > .tg-carousel__viewport > .tg-carousel__slide {
+      .tg-carousel:is(.tg-carousel--coverflow, .tg-carousel--fan, .tg-carousel--ring) > .tg-carousel__viewport > .tg-carousel__slide > img, .tg-carousel:is(.tg-carousel--coverflow, .tg-carousel--fan, .tg-carousel--ring) > .tg-carousel__viewport > .tg-carousel__slide > picture, .tg-carousel:is(.tg-carousel--coverflow, .tg-carousel--fan, .tg-carousel--ring) > .tg-carousel__viewport > .tg-carousel__slide > video {
+        border-radius: var(--radius-lg);
+        animation: tg-carousel-coverflow linear both;
+        animation-timeline: --tg-carousel-slide;
+      }
+      .tg-carousel:is(.tg-carousel--coverflow, .tg-carousel--fan, .tg-carousel--ring) > .tg-carousel__viewport > .tg-carousel__slide > figcaption {
+        animation: tg-carousel-caption linear both;
+        animation-timeline: --tg-carousel-slide;
+      }
+      .tg-carousel.tg-carousel--fan > .tg-carousel__viewport > .tg-carousel__slide > :is(img, picture, video) {
         transform-origin: 50% 160%;
         animation-name: tg-carousel-fan;
       }
-      .tg-carousel.tg-carousel--ring > .tg-carousel__viewport > .tg-carousel__slide {
+      .tg-carousel.tg-carousel--ring > .tg-carousel__viewport > .tg-carousel__slide > :is(img, picture, video) {
         animation-name: tg-carousel-ring;
       }
     }
   }
-  @keyframes tg-carousel-coverflow {
-    from {
-      transform: rotateY(calc(42deg * var(--carousel-flow))) scale(0.82);
-      opacity: 0.55;
+  @keyframes tg-carousel-caption {
+    0%, 38% {
+      opacity: 0;
     }
     50% {
-      transform: none;
+      opacity: 1;
+    }
+    62%, 100% {
+      opacity: 0;
+    }
+  }
+  @keyframes tg-carousel-coverflow {
+    from {
+      transform: perspective(60rem) translateZ(-6rem) rotateY(calc(40deg * var(--carousel-flow)));
+      opacity: 0.6;
+    }
+    50% {
+      transform: perspective(60rem) translateZ(0) rotateY(0deg);
       opacity: 1;
     }
     to {
-      transform: rotateY(calc(-42deg * var(--carousel-flow))) scale(0.82);
-      opacity: 0.55;
+      transform: perspective(60rem) translateZ(-6rem) rotateY(calc(-40deg * var(--carousel-flow)));
+      opacity: 0.6;
     }
   }
   @keyframes tg-carousel-fan {
@@ -7179,16 +7211,16 @@
   }
   @keyframes tg-carousel-ring {
     from {
-      transform: rotateY(calc(62deg * var(--carousel-flow))) translateZ(-8rem);
-      opacity: 0.4;
+      transform: perspective(60rem) translateZ(-14rem) rotateY(calc(55deg * var(--carousel-flow)));
+      opacity: 0.45;
     }
     50% {
-      transform: none;
+      transform: perspective(60rem) translateZ(0) rotateY(0deg);
       opacity: 1;
     }
     to {
-      transform: rotateY(calc(-62deg * var(--carousel-flow))) translateZ(-8rem);
-      opacity: 0.4;
+      transform: perspective(60rem) translateZ(-14rem) rotateY(calc(-55deg * var(--carousel-flow)));
+      opacity: 0.45;
     }
   }
 }
@@ -7819,7 +7851,8 @@
     border-end-end-radius: var(--radius-inset);
   }
   .tg-calendar--range .tg-calendar__day--in-range {
-    --control-hover-bg: transparent;
+    --control-hover-bg: var(--accent-soft);
+    --control-hover-filter: initial;
     color: var(--accent-readable);
   }
   .tg-calendar--range .tg-calendar__day--in-range.tg-calendar__day--outside {
@@ -7828,6 +7861,7 @@
   .tg-calendar--range .tg-calendar__day:is(.tg-calendar__day--range-start, .tg-calendar__day--range-end) {
     --control-idle-bg: var(--action-bg);
     --control-hover-bg: var(--action-bg);
+    --control-hover-filter: initial;
     color: var(--button-text-color);
     font-weight: var(--fw-semibold);
   }
@@ -8187,6 +8221,11 @@
     border-radius: var(--radius-lg);
     background: var(--surface-bg);
     overflow: clip;
+    transition: border-color var(--duration) var(--ease), box-shadow var(--duration) var(--ease);
+  }
+  .tg-editor:has(.tg-editor__content:focus) {
+    border-color: var(--accent-main);
+    box-shadow: var(--focus);
   }
   .tg-editor__bar {
     display: flex;
@@ -8236,7 +8275,7 @@
     caret-color: var(--text-link);
   }
   .tg-editor__content:focus-visible {
-    box-shadow: inset 0 0 0 2px var(--text-link);
+    box-shadow: none;
   }
   .tg-editor__content[contenteditable=false] {
     caret-color: transparent;
@@ -8414,11 +8453,11 @@
     z-index: -1;
     border-radius: inherit;
     background: var(--accent-soft);
-    transform: scaleX(var(--slide-progress, 0));
-    transform-origin: left center;
+    --slide-rest: calc((1 - var(--slide-progress, 0)) * (100% - var(--control-h)));
+    clip-path: inset(0 var(--slide-rest) 0 0 round var(--radius-pill));
   }
   .tg-slide-confirm__track:dir(rtl) {
-    transform-origin: right center;
+    clip-path: inset(0 0 0 var(--slide-rest) round var(--radius-pill));
   }
   .tg-slide-confirm__label {
     grid-area: 1/1;
@@ -8487,8 +8526,8 @@
     inset-inline-end: var(--space-4);
     inset-block-end: calc(var(--space-4) + var(--safe-area-bottom) + var(--tg-composer-height, 0px) + var(--tg-tabbar-height, 0px));
     z-index: var(--z-sticky);
-    inline-size: calc(var(--control-h) + var(--space-2));
-    block-size: calc(var(--control-h) + var(--space-2));
+    inline-size: var(--control-h);
+    block-size: var(--control-h);
     border-radius: var(--radius-pill);
     box-shadow: var(--shadow-overlay);
   }
@@ -8736,7 +8775,7 @@
     min-inline-size: 1px;
     block-size: 100%;
     border-radius: 1px;
-    background: var(--border-color);
+    background: var(--text-muted);
     transform: scaleY(var(--level, 0.5));
   }
   .tg-waveform__bar[data-played] {
@@ -8785,6 +8824,7 @@
     border: 2px solid var(--accent-main);
     border-radius: 2px;
     cursor: move;
+    touch-action: none;
   }
   .tg-selection-box:focus-visible {
     outline: 2px solid var(--text-link);

@@ -202,8 +202,10 @@ function initWorkspaceDemos(root) {
     const chosen = rowChecks().filter(box => box.checked).length;
     all.checked = chosen > 0 && chosen === rowChecks().length;
     all.indeterminate = chosen > 0 && chosen < rowChecks().length;
-    bulk.hidden = chosen === 0;
-    root.querySelector('#demo-bulk-count').textContent = `Выбрано ${chosen} ${plural(chosen, 'участник', 'участника', 'участников')}`;
+    // The bar stays in place: empty, it says so and its actions are unavailable.
+    bulk.toggleAttribute('data-empty', chosen === 0);
+    for (const button of bulk.querySelectorAll('button')) button.disabled = chosen === 0;
+    root.querySelector('#demo-bulk-count').textContent = chosen ? `Выбрано ${chosen} ${plural(chosen, 'участник', 'участника', 'участников')}` : 'Ничего не выбрано';
   };
   all.addEventListener('change', () => { for (const box of rowChecks()) box.checked = all.checked; syncRows(); });
   table.addEventListener('change', event => { if (event.target.closest('tbody .tg-table__select')) syncRows(); });

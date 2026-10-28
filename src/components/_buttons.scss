@@ -16,7 +16,9 @@
     block-size: var(--control-h);
     min-block-size: var(--control-h);
     padding-block: 0;
-    border: 1px solid transparent;
+    // Every button family member draws the one action outline; variants only change it
+    // where they have no container (ghost) or sit in a field group.
+    border: var(--border-action);
     background: var(--control-idle-bg);
     color: var(--control-color);
     font-size: var(--fs);
@@ -39,6 +41,10 @@
     }
   }
 
+  // Every button is one control height: a label is one line and a second line
+  // (.tg-btn__subtext) fits inside that height. Write labels that fit their place. Only
+  // when a label cannot fit (200% text, a very narrow column) does it wrap and the button
+  // grow, so no text is ever cut or pushed out of the button.
   .tg-btn {
     min-inline-size: min-content;
     block-size: auto;
@@ -46,12 +52,7 @@
     padding-inline: var(--space-4);
     border-radius: var(--radius-control);
 
-    &--secondary { border-color: var(--button-border-color); }
-    &--ghost {
-      --control-idle-bg: transparent;
-      --control-hover-bg: transparent;
-      --control-color: var(--text-link);
-    }
+    &--ghost { --control-color: var(--text-link); }
     &--destructive {
       --control-idle-bg: var(--action-danger-bg);
       --control-color: var(--button-text-color);
@@ -68,7 +69,6 @@
   .tg-icon-btn {
     min-inline-size: var(--control-h);
     padding-inline: var(--space-2);
-    border-color: var(--button-border-color);
     border-radius: var(--radius-control);
   }
   .tg-btn--pill, .tg-icon-btn--pill { border-radius: var(--radius-pill); }
@@ -76,12 +76,9 @@
     --control-idle-bg: var(--action-bg);
     --control-color: var(--button-text-color);
   }
-  .tg-icon-btn--ghost {
-    --control-idle-bg: transparent;
-    --control-hover-bg: transparent;
-    --control-color: var(--text-secondary);
-    border: 0;
-  }
+  .tg-icon-btn--ghost { --control-color: var(--text-secondary); }
+  // A stacked tile (icon over a caption) is a choice tile, not a command button: it keeps
+  // its own height and may wrap.
   .tg-btn--stacked {
     flex-direction: column;
     block-size: auto;
@@ -100,10 +97,12 @@
     flex-direction: column;
     min-inline-size: 0;
   }
+  // Two lines inside one control height: tighter leading for both.
+  .tg-btn:has(.tg-btn__subtext) { padding-block: var(--space-1); line-height: 1.15; }
   .tg-btn__subtext {
-    font-size: var(--fs-sm);
+    font-size: var(--fs-xs);
     font-weight: var(--fw-regular);
-    line-height: 1.35;
+    line-height: 1.2;
   }
   .tg-btn:has(.tg-btn__subtext) {
     justify-content: flex-start;
@@ -113,7 +112,6 @@
   .tg-btn--icon-end { flex-direction: row-reverse; }
   .tg-chip {
     padding-inline: var(--space-3);
-    border: var(--border-action);
     border-radius: var(--radius-pill);
     font-size: var(--fs-sm);
     // A filter toggles with aria-pressed; a choice in a group may use role=checkbox.
@@ -148,9 +146,13 @@
     > :is(.tg-btn--secondary, .tg-icon-btn:not(.tg-icon-btn--primary, .tg-icon-btn--ghost), .tg-select, .tg-input) + :is(.tg-btn--secondary, .tg-icon-btn:not(.tg-icon-btn--primary, .tg-icon-btn--ghost), .tg-select, .tg-input) {
       margin-inline-start: -1px;
     }
-    // Filled neighbours (secondary on secondary, primary on primary) are divided by a
-    // hairline of the text colour on the fill.
-    > :is(.tg-btn--secondary, .tg-icon-btn:not(.tg-icon-btn--primary, .tg-icon-btn--ghost), .tg-select, .tg-input) + :is(.tg-btn--secondary, .tg-icon-btn:not(.tg-icon-btn--primary, .tg-icon-btn--ghost))::before,
+    // A joined group is one outlined control, with or without a field in it: every outlined
+    // part draws the same group outline (the field's), and neighbours share one line.
+    > :is(.tg-btn--secondary, .tg-icon-btn:not(.tg-icon-btn--primary, .tg-icon-btn--ghost)) {
+      border-color: var(--group-border-color);
+    }
+    // Filled parts (primary on primary) have no visible outline to share, so they are
+    // divided by a hairline of the text colour on the fill.
     > :is(.tg-btn--primary, .tg-icon-btn--primary, .tg-btn--destructive) + :is(.tg-btn--primary, .tg-icon-btn--primary, .tg-btn--destructive)::before {
       content: '';
       position: absolute;

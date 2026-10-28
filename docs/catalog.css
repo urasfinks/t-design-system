@@ -11,7 +11,8 @@
 html { scroll-behavior: smooth; scroll-padding-top: calc(var(--catalog-header) + var(--space-6)); }
 body { background: var(--background-panel); }
 a, button, select { -webkit-tap-highlight-color: transparent; }
-a:focus-visible, summary:focus-visible, select:not(.tg-select):focus-visible { outline: 2px solid var(--text-link); outline-offset: 4px; }
+/* Catalog chrome only: this unlayered rule would beat the system's own focus inside examples. */
+:is(a, summary, select:not(.tg-select)):not(.example-panel *):focus-visible { outline: 2px solid var(--text-link); outline-offset: 4px; }
 h1, h2, h3 { text-wrap: balance; }
 p { text-wrap: pretty; }
 .site-header {
@@ -333,7 +334,8 @@ dialog.catalog-search::backdrop { background: var(--overlay-bg); backdrop-filter
 .toc-stage__doc h3:first-child { margin-block-start: 0; }
 .toc-stage__doc p { margin: 0 0 var(--space-16); }
 @media (max-width: 48rem) { .toc-stage { grid-template-columns: 1fr; } .toc-stage .toc-demo { order: -1; } }
-#media .tg-carousel { max-inline-size: 44rem; }
+/* A flat gallery keeps a reading width; the 3D variants (G2) need the panel's width for their neighbours. */
+#media .tg-carousel:not(.tg-carousel--coverflow, .tg-carousel--fan, .tg-carousel--ring) { max-inline-size: 44rem; }
 .calendar-spacer { inline-size: var(--control-h); flex: 0 0 auto; }
 .donut-layout { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: var(--space-6); }
 .donut-layout > .tg-chart__plot { flex: 0 0 14rem; }
@@ -357,7 +359,4 @@ dialog.catalog-search::backdrop { background: var(--overlay-bg); backdrop-filter
 .effect-stage--accent { --effect-layer-bg: var(--accent-soft); }
 .effect-stage__title { margin: 0; max-inline-size: 18ch; font-size: var(--fs-display); line-height: 1.15; text-wrap: balance; }
 .effect-card__icon { display: inline-grid; place-items: center; inline-size: 2.5rem; block-size: 2.5rem; border-radius: var(--radius-inset); background: var(--accent-soft); color: var(--accent-readable); }
-.effect-form { max-inline-size: 30rem; }
-.effect-form__row { flex-wrap: wrap; }
-.effect-form__row > .tg-effect-focus-glow { flex: 1 1 14rem; }
 [data-carousel-variant] { align-self: flex-start; }

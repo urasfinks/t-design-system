@@ -94,7 +94,7 @@ try {
       check(`${theme}: ${selector} uses shared disabled opacity`, value === disabledOpacity.expected && value !== '1', disabledOpacity);
     }
     const normalFieldBorder = await page.locator('.tg-textarea').evaluate(el => getComputedStyle(el).borderTopColor);
-    check(`${theme}: idle switch has no contrasting outline`, await page.locator('.tg-switch').evaluate(el => getComputedStyle(el, '::before').borderTopColor === 'rgba(0, 0, 0, 0)'));
+    check(`${theme}: idle switch has the shared action outline`, await page.locator('.tg-switch').evaluate(el => { const probe = document.createElement('i'); probe.style.color = 'var(--action-border-color)'; el.append(probe); const c = getComputedStyle(probe).color; probe.remove(); return getComputedStyle(el, '::before').borderTopColor === c; }));
     await page.emulateMedia({ contrast: 'more' });
     const contrastFieldBorder = await page.locator('.tg-textarea').evaluate(el => getComputedStyle(el).borderTopColor);
     check(`${theme}: increased contrast strengthens field boundaries`, normalFieldBorder !== contrastFieldBorder, { normalFieldBorder, contrastFieldBorder });

@@ -30,7 +30,8 @@
   .tg-link { color: var(--text-link); text-underline-offset: .2em; }
   button:where([class*='tg-']) { -webkit-user-select: none; user-select: none; }
   button.tg-avatar img { -webkit-user-drag: none; pointer-events: none; }
-  .tg-link:hover { text-decoration-thickness: 2px; }
+  // Links inside components (error summary) answer hover like .tg-link.
+  :is(.tg-link, .tg-error-summary a):hover { text-decoration-thickness: 2px; }
   @media (prefers-reduced-motion: reduce) {
     :where([class*='tg-'], [class*='tg-']::before, [class*='tg-']::after) {
       --duration: 0s;

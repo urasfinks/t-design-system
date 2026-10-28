@@ -46,12 +46,20 @@ try {
   check('C11 done markers carry an icon (not colour alone)', await page.locator(`${tl} > li[data-state="done"] .tg-timeline__marker svg`).count() === 2);
   check('C11 a done step draws an accent line to the next', await css(`${tl} > li[data-state="done"]`, 'background-color', '::before') !== await css(`${tl} > li[aria-current="step"]`, 'background-color', '::before'));
   const line = await page.locator(`${tl} > li:first-child`).evaluate(el => { const r = el.getBoundingClientRect(); const s = getComputedStyle(el, '::before'); return { top: parseFloat(s.top), bottom: parseFloat(s.bottom), h: r.height }; });
-  check('C11 the line starts below the marker', line.top > 0);
+  // The line passes through the marker centres: from this marker's centre to the next one's.
+  const centres = sel => page.locator(sel).evaluate(list => [...list.querySelectorAll(':scope > li')].map(li => { const m = li.querySelector('.tg-timeline__marker').getBoundingClientRect(); return { x: m.left + m.width / 2, y: m.top + m.height / 2 }; }));
+  const lineOf = sel => page.locator(sel).evaluate(li => { const r = li.getBoundingClientRect(), s = getComputedStyle(li, '::before'); return { x1: r.left + parseFloat(s.left), y1: r.top + parseFloat(s.top), x2: r.right - parseFloat(s.right), y2: r.bottom - parseFloat(s.bottom), w: parseFloat(s.width), h: parseFloat(s.height) }; });
+  const vc = await centres(tl), vl = await lineOf(`${tl} > li:first-child`);
+  check('C11 the line runs from the first marker centre to the second', Math.abs(vl.x1 + vl.w / 2 - vc[0].x) < .6 && Math.abs(vl.y1 - vc[0].y) < .6 && Math.abs(vl.y2 - vc[1].y) < .6);
   await contrast(`${tl} > li:first-child .tg-timeline__time`, 'C11 time');
   await contrast(`${tl} > li:first-child p`, 'C11 description');
   const road = `${ex('M10')} .tg-timeline--horizontal`;
   check('M10 horizontal timeline is a row on wide screens', await css(road, 'grid-auto-flow') === 'column');
   check('M10 horizontal timeline scrolls inside a focusable region', await css(road, 'overflow-x') === 'auto' && await page.locator(road).getAttribute('tabindex') === '0');
+  const hc = await centres(road), hl = await lineOf(`${road} > li:first-child`);
+  check('M10 the line runs through the marker centres', Math.abs(hl.y1 + hl.h / 2 - hc[0].y) < .6 && Math.abs(hl.x1 - hc[0].x) < .6 && Math.abs(hl.x2 - hc[1].x) < .6);
+  check('M10 a done step draws the accent line on the row too', await css(`${road} > li[data-state="done"]`, 'background-color', '::before') === await css(`${tl} > li[data-state="done"]`, 'background-color', '::before'));
+  check('M10 text keeps its distance from the marker', (await box(`${road} > li:first-child .tg-timeline__time`)).top - (await box(`${road} > li:first-child .tg-timeline__marker`)).bottom >= 8 - .6);
   await page.setViewportSize({ width: 390, height: 900 });
   check('M10 horizontal timeline returns to a column on phones', await css(road, 'grid-auto-flow') !== 'column');
   await page.setViewportSize({ width: 1440, height: 900 });
@@ -117,7 +125,7 @@ try {
   await page.context().grantPermissions(['clipboard-read', 'clipboard-write']).catch(() => {});
   const copy = `${ex('B4')} #demo-copy-promo`;
   check('B4 value is selectable text in a mono face', await css(`${copy} .tg-copy__value`, 'user-select') === 'all');
-  check('B4 action uses the inset radius', await css(`${copy} .tg-copy__action`, 'border-top-left-radius') === `${await length('var(--radius-inset)')}px`);
+  check('B4 action joins the frame at its end, one control height', await css(`${copy} .tg-copy__action`, 'border-top-left-radius') === '0px' && Math.abs((await box(`${copy} .tg-copy__action`)).height - await length('var(--control-h)')) < .6);
   await page.locator(`${copy} .tg-copy__action`).click();
   await page.waitForTimeout(120);
   const copyState = await page.locator(copy).getAttribute('data-state');

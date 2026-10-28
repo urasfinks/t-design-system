@@ -584,7 +584,8 @@ export function initCarousels({ root = document } = {}) {
       if (vertical) viewport.scrollTo({ top: slide.offsetTop - viewport.offsetTop });
       else {
         const peek = carousel.classList.contains('tg-carousel--peek');
-        const offset = peek ? slide.offsetLeft - (viewport.clientWidth - slide.clientWidth) / 2 : slide.offsetLeft - viewport.offsetLeft;
+        // Positions are taken inside the scroller, so the scroller's own offset comes off both ways.
+        const offset = slide.offsetLeft - viewport.offsetLeft - (peek ? (viewport.clientWidth - slide.clientWidth) / 2 : 0);
         viewport.scrollTo({ left: rtl ? offset - viewport.scrollWidth + viewport.clientWidth : offset });
       }
       mark(index);
@@ -1319,6 +1320,12 @@ export function initEditor({ root = document } = {}) {
       try { on = document.queryCommandState(button.dataset.command); } catch { /* unsupported */ }
       button.setAttribute('aria-pressed', String(on));
     }
+    // Undo and redo are available only when the editing history has a step to take.
+    for (const button of editor.querySelectorAll('[data-command="undo"], [data-command="redo"]')) {
+      let enabled = false;
+      try { enabled = document.queryCommandEnabled(button.dataset.command); } catch { /* unsupported */ }
+      button.setAttribute('aria-disabled', String(!enabled));
+    }
   };
   const changed = () => {
     save.textContent = 'Сохраняем…';
@@ -1328,12 +1335,13 @@ export function initEditor({ root = document } = {}) {
   };
   editor.addEventListener('click', event => {
     const button = event.target.closest('[data-command]');
+    if (button?.getAttribute('aria-disabled') === 'true') { event.preventDefault(); return; }
     if (button) { event.preventDefault(); run(button.dataset.command); }
     const action = event.target.closest('[data-selection-action]');
     if (action) { announce(status, action.dataset.selectionAction === 'improve' ? 'Предложение применено' : 'Комментарий добавлен'); floating.hidden = true; content.focus(); }
   });
   editor.addEventListener('mousedown', event => { if (event.target.closest('[data-command], [data-selection-action]')) event.preventDefault(); });
-  content.addEventListener('input', changed);
+  content.addEventListener('input', () => { changed(); sync(); });
   content.addEventListener('keydown', event => {
     const selected = blocks().filter(b => b.getAttribute('aria-selected') === 'true');
     if ((event.ctrlKey || event.metaKey) && ['b', 'i', 'u'].includes(event.key.toLowerCase())) { event.preventDefault(); run({ b: 'bold', i: 'italic', u: 'underline' }[event.key.toLowerCase()]); return; }
@@ -1385,7 +1393,7 @@ export function initGestures({ root = document } = {}) {
     let frame = 0, start = 0, lastEnter = 0;
     const label = button.querySelector('.tg-btn__label');
     const reset = () => { cancelAnimationFrame(frame); delete button.dataset.state; button.style.setProperty('--hold-progress', 0); };
-    const confirm = () => { cancelAnimationFrame(frame); button.dataset.state = 'confirmed'; label.textContent = 'Удалено'; announce(status, 'Удалено'); setTimeout(() => { reset(); label.textContent = 'Удерживайте, чтобы удалить'; }, 1600); };
+    const confirm = () => { cancelAnimationFrame(frame); button.dataset.state = 'confirmed'; label.textContent = 'Удалено'; announce(status, 'Удалено'); setTimeout(() => { reset(); label.textContent = 'Удалить удержанием'; }, 1600); };
     const step = now => {
       const progress = Math.min(1, (now - start) / 1200);
       button.style.setProperty('--hold-progress', progress);
@@ -1578,6 +1586,34 @@ export function initMediaDemos({ root = document } = {}) {
         box.style.setProperty('--box-x', `${Math.max(0, Math.min(100 - read('--box-w'), read('--box-x') + map[0]))}%`);
         box.style.setProperty('--box-y', `${Math.max(0, Math.min(100 - read('--box-h'), read('--box-y') + map[1]))}%`);
       }
+    });
+    // Pointer: drag the frame to move it, drag a corner handle to resize. Values stay in %
+    // of the stage, inside it, at least 10% each way.
+    const stage = box.parentElement;
+    box.addEventListener('pointerdown', event => {
+      if (event.button) return;
+      event.preventDefault();
+      box.focus({ preventScroll: true });
+      box.setPointerCapture(event.pointerId);
+      const corner = event.target.closest('.tg-selection-box__handle')?.dataset.corner;
+      const rtl = getComputedStyle(box).direction === 'rtl';
+      const s = stage.getBoundingClientRect();
+      const start = { px: event.clientX, py: event.clientY, x: read('--box-x'), y: read('--box-y'), w: read('--box-w'), h: read('--box-h') };
+      const clamp = (v, lo, hi) => Math.max(lo, Math.min(hi, v));
+      const move = e => {
+        const dx = (e.clientX - start.px) / s.width * 100 * (rtl ? -1 : 1), dy = (e.clientY - start.py) / s.height * 100;
+        let { x, y, w, h } = start;
+        if (!corner) { x = clamp(x + dx, 0, 100 - w); y = clamp(y + dy, 0, 100 - h); }
+        else {
+          if (corner.includes('w')) { const nx = clamp(x + dx, 0, x + w - 10); w += x - nx; x = nx; } else w = clamp(w + dx, 10, 100 - x);
+          if (corner.includes('n')) { const ny = clamp(y + dy, 0, y + h - 10); h += y - ny; y = ny; } else h = clamp(h + dy, 10, 100 - y);
+        }
+        for (const [name, v] of [['--box-x', x], ['--box-y', y], ['--box-w', w], ['--box-h', h]]) box.style.setProperty(name, `${v.toFixed(2)}%`);
+      };
+      const end = () => { box.removeEventListener('pointermove', move); box.removeEventListener('pointerup', end); box.removeEventListener('pointercancel', end); };
+      box.addEventListener('pointermove', move);
+      box.addEventListener('pointerup', end);
+      box.addEventListener('pointercancel', end);
     });
   }
   for (const list of root.querySelectorAll('[data-image-accordion]')) {

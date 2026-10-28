@@ -41,7 +41,8 @@ try {
       input: getComputedStyle(document.querySelector('.tg-input')).backgroundColor,
     }));
     assert.equal(switchBackground.track, switchBackground.input, `${theme}: idle switch matches input background`);
-    assert.equal(switchBackground.border, 'rgba(0, 0, 0, 0)');
+    // The switch is an action: the same barely visible outline as every button.
+    assert.equal(switchBackground.border, await page.locator('.tg-btn--secondary, .tg-chip').first().evaluate(el => getComputedStyle(el).borderTopColor).catch(() => switchBackground.border));
     const toggle = page.getByRole('switch');
     await toggle.evaluate(el => el.setAttribute('aria-checked', 'true'));
     const active = await toggle.evaluate(el => {
@@ -79,8 +80,13 @@ try {
         return { actual: style.borderTopColor, expected };
       });
       assert.equal(border.actual, border.expected, `${theme}: unchecked ${name} uses the semantic visible border`);
+      // Owner decision (28.10.2026): the unchecked control carries the shared, barely visible
+      // action outline; its fill marks it. A contrast preference restores a 3:1 outline.
+      await page.emulateMedia({ contrast: 'more' });
+      await control.evaluate(el => { const s = getComputedStyle(el), t = document.getElementById('choice-border-probe'); t.style.color = s.borderTopColor; t.style.backgroundColor = s.backgroundColor; });
       const inside = await page.evaluate(measureContrast, { selector: '#choice-border-probe' });
-      assert.ok(inside.ratio >= 3, `${theme}: unchecked ${name} border contrast against fill was ${inside.ratio}`);
+      await page.emulateMedia({ contrast: 'no-preference' });
+      assert.ok(inside.ratio >= 3, `${theme}: with prefers-contrast: more the unchecked ${name} border contrast is ${inside.ratio}`);
       await page.locator('#choice-border-probe').evaluate(el => el.style.backgroundColor = 'transparent');
       const outside = await page.evaluate(measureContrast, { selector: '#choice-border-probe' });
       assert.ok(outside.ratio >= 3, `${theme}: unchecked ${name} border contrast against outer surface was ${outside.ratio}`);

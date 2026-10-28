@@ -125,7 +125,8 @@
     min-inline-size: 1px;
     block-size: 100%;
     border-radius: 1px;
-    background: var(--border-color);
+    // Opaque: the quiet text tone for what is still to play, the accent for what was played.
+    background: var(--text-muted);
     transform: scaleY(var(--level, .5));
     &[data-played] { background: var(--accent-main); }
   }
@@ -154,6 +155,8 @@
     border: 2px solid var(--accent-main);
     border-radius: 2px;
     cursor: move;
+    // Dragging the frame must not scroll the page on touch screens.
+    touch-action: none;
     &:focus-visible { outline: 2px solid var(--text-link); outline-offset: 3px; }
   }
   .tg-selection-box__handle {

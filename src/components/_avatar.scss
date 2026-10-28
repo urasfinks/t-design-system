@@ -56,7 +56,9 @@
       inline-size: 100%;
       block-size: 100%;
       border-radius: inherit;
-      background: var(--section-separator-color);
+      // An opaque fill (the same as a secondary button): overlapping avatars in a group
+      // must not show through each other.
+      background: var(--surface-muted);
       color: var(--avatar-initials-color);
       font-size: calc(var(--icon-avatar) / 3.5);
       font-weight: var(--fw-semibold);
@@ -178,6 +180,9 @@
 }
 
 @layer tds.components {
+  // A badge inside something clickable (a link row, a button) is part of that action, so it
+  // draws the same action outline. :where keeps a badge on an avatar with its own ring.
+  :where(a[href], button, summary) .tg-badge { border: var(--border-action); }
   :is(button, a[href]).tg-badge {
     border: var(--border-action);
     min-inline-size: var(--control-h);

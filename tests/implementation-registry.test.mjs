@@ -12,14 +12,16 @@ test('the registry lists every spec heading of the 17 reference folders', () => 
   assert.deepEqual(specs.map(spec => spec.id).sort(), ids.sort());
 });
 
-test('110 component specs are in scope; compositions and landing sections are documentation', () => {
+test('107 component specs are in scope; compositions and landing sections are documentation; owner removals are noted', () => {
   const inScope = specs.filter(spec => spec.scope === 'in');
-  assert.equal(inScope.length, 110);
+  assert.equal(inScope.length, 107);
   for (const spec of inScope) {
     assert.ok(spec.type !== 'composition' || ['C16', 'M9', 'M10', 'S2'].includes(spec.id), `${spec.id} is a component`);
     assert.ok(spec.classes.length > 0, `${spec.id} names the classes that prove it`);
   }
-  for (const spec of specs.filter(spec => spec.scope === 'out')) assert.equal(spec.state, 'out-of-scope');
+  for (const spec of specs.filter(spec => spec.scope === 'out')) {
+    assert.ok(spec.state === 'out-of-scope' || (spec.state === 'removed' && spec.note), `${spec.id} is out of scope or removed with a note`);
+  }
 });
 
 test('every spec marked done is in the built CSS, the catalog and a test', () => {

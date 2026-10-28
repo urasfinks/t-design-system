@@ -64,8 +64,7 @@
     inset-inline: 0;
     inset-block-end: 0;
     block-size: 3px;
-    background: currentColor;
-    opacity: .45;
+    background: var(--accent-main);
     transform: scaleX(clamp(0, var(--progress, 0), 1));
     transform-origin: left center;
     transition: transform var(--progress-duration) var(--ease);

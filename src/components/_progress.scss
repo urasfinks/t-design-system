@@ -58,8 +58,10 @@
 
   // Timeline: events in order with the current stage. A column by default; --horizontal
   // is a scrollable row on wide screens and falls back to the column on phones.
+  // Timeline: a marker per event on one line that passes through the marker centres.
+  // The first text line starts at the marker's top edge.
   .tg-timeline {
-    --timeline-marker: 1rem;
+    --timeline-marker: 1.25rem;
     display: grid;
     gap: 0;
     margin: 0;
@@ -73,24 +75,22 @@
     column-gap: var(--space-3);
     row-gap: var(--space-1);
     align-content: start;
-    padding-block-end: var(--space-5);
+    padding-block-end: var(--space-6);
 
     > :not(.tg-timeline__marker) { grid-column: 2; margin: 0; min-inline-size: 0; }
-    > :is(h3, h4, strong) { font-size: var(--fs); font-weight: var(--fw-semibold); }
+    > :is(h3, h4, strong) { font-size: var(--fs); font-weight: var(--fw-semibold); line-height: 1.35; }
     > p { color: var(--text-secondary); }
-    > .tg-badge { justify-self: start; }
+    > .tg-badge { justify-self: start; margin-block-start: var(--space-1); }
 
-    &:not(:last-child)::before { @include steps.line(block, calc(var(--timeline-marker) / 2), var(--space-1)); }
-    &[data-state='done']:not(:last-child)::before { background: var(--accent-main); }
+    &:not(:last-child)::before { @include steps.through-line(block, var(--timeline-marker)); }
+    &[data-state='done'] { --step-line-color: var(--accent-main); }
     &:last-child { padding-block-end: 0; }
   }
   .tg-timeline__marker {
     @include steps.marker(var(--timeline-marker));
     grid-row: 1;
     grid-column: 1;
-    margin-block-start: .125rem;
-    border-width: 2px;
-    > .tg-icon { inline-size: .625rem; block-size: .625rem; stroke-width: 3; }
+    > .tg-icon { inline-size: .75rem; block-size: .75rem; stroke-width: 3; }
   }
   @include steps.marker-states('.tg-timeline__item', '.tg-timeline__marker');
   .tg-timeline__time {
@@ -99,8 +99,11 @@
     font-size: var(--fs-sm);
     font-variant-numeric: tabular-nums;
   }
+  // In a column the first text line starts at the marker's top edge.
+  .tg-timeline__item > .tg-timeline__time { @include steps.text-at-marker-top; }
   .tg-timeline__item > .tg-timeline__time { grid-row: 1; }
 
+  // Horizontal: markers on one row at the top, the text of each event under its marker.
   @media (min-width: 48rem) {
     .tg-timeline--horizontal {
       grid-auto-columns: minmax(12rem, 1fr);
@@ -109,25 +112,19 @@
       overscroll-behavior-inline: contain;
       scroll-snap-type: inline proximity;
       scrollbar-width: thin;
-      padding-block-end: var(--space-2);
+      padding-block: var(--space-1) var(--space-2);
 
       > .tg-timeline__item {
         grid-template-columns: minmax(0, 1fr);
-        grid-template-rows: auto var(--timeline-marker);
+        row-gap: var(--space-1);
         padding-block-end: 0;
-        padding-inline-end: var(--space-5);
+        padding-inline-end: var(--space-6);
         scroll-snap-align: start;
 
         > * { grid-column: 1; }
-        > .tg-timeline__time { grid-row: 1; }
-        > .tg-timeline__marker { grid-row: 2; margin-block: var(--space-2); }
-        &:not(:last-child)::before {
-          inset-block: auto;
-          inset-block-start: calc(var(--fs-sm) * 1.5 + var(--space-2) + var(--timeline-marker) / 2 - 1px);
-          inset-inline: calc(var(--timeline-marker) + var(--space-1)) var(--space-1);
-          inline-size: auto;
-          block-size: 2px;
-        }
+        > .tg-timeline__marker { grid-row: 1; margin-block-end: var(--space-2); }
+        > .tg-timeline__time { grid-row: 2; }
+        &:not(:last-child)::before { @include steps.through-line(inline, var(--timeline-marker)); }
       }
     }
   }
@@ -199,13 +196,14 @@
       column-gap: var(--space-3);
       padding-block-end: var(--space-5);
 
-      > .tg-stepper__label { padding-block-start: calc((var(--stepper-marker) - 1.4em) / 2); font-size: var(--fs); }
+      // The label starts at the marker's top edge; the line runs through the marker centres.
+      > .tg-stepper__label { font-size: var(--fs); @include steps.text-at-marker-top; }
+      &[data-state='done'] { --step-line-color: var(--accent-main); }
       &:last-child { padding-block-end: 0; }
       &:not(:last-child)::after {
-        @include steps.line(block, calc(var(--stepper-marker) / 2), var(--space-1));
+        @include steps.through-line(block, var(--stepper-marker));
         flex: none;
         min-inline-size: 0;
-        block-size: auto;
         border-radius: 1px;
       }
     }

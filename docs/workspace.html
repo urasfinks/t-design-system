@@ -106,11 +106,11 @@
           </form>
         </div>
 
-        <div class="tg-bulk-bar" role="region" aria-label="Действия с выбранными счетами" id="ws-bulk" hidden>
-          <span role="status" id="ws-bulk-count">Выбрано 0</span>
-          <button class="tg-btn tg-btn--secondary tg-btn--sm" type="button">Скачать PDF</button>
-          <button class="tg-btn tg-btn--destructive tg-btn--sm" type="button">Удалить</button>
-          <button class="tg-btn tg-btn--ghost tg-btn--sm" type="button" id="ws-bulk-clear">Снять выбор</button>
+        <div class="tg-bulk-bar" role="region" aria-label="Действия с выбранными счетами" id="ws-bulk" data-empty>
+          <span role="status" id="ws-bulk-count">Ничего не выбрано</span>
+          <button class="tg-btn tg-btn--secondary tg-btn--sm" type="button" disabled>Скачать PDF</button>
+          <button class="tg-btn tg-btn--destructive tg-btn--sm" type="button" disabled>Удалить</button>
+          <button class="tg-btn tg-btn--ghost tg-btn--sm" type="button" id="ws-bulk-clear" disabled>Снять выбор</button>
         </div>
 
         <div class="tg-table-wrap" role="region" aria-labelledby="ws-table-caption" tabindex="0">

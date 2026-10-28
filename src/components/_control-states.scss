@@ -1,9 +1,11 @@
 @use '../themes';
 
 // Loaded by base before components. Owners declare only their resting/hover roles.
-$controls: ":is(button[class*='tg-'], .tg-btn, .tg-icon-btn, .tg-chip, .tg-tab, .tg-dot, .tg-tabbar__item, a.tg-badge[href], a.tg-list-item[href], a.tg-menu__item[href], a.tg-pager__link[href], a.tg-site-nav__link[href], .tg-disclosure__trigger, .tg-bottom-panel__header, .tg-bottom-panel__trigger, .tg-segmented__item, a.tg-sidebar__link[href], summary.tg-sidebar__link, a.tg-nav-menu__link[href], a.tg-nav-menu__top[href], .tg-command__item):not(.tg-switch, [role='switch'])";
+$controls: ":is(button[class*='tg-'], .tg-btn, .tg-icon-btn, .tg-chip, .tg-tab, .tg-dot, .tg-tabbar__item, a.tg-badge[href], a.tg-list-item[href], a.tg-menu__item[href], a.tg-pager__link[href], a.tg-site-nav__link[href], .tg-disclosure__trigger, .tg-bottom-panel__header, .tg-bottom-panel__trigger, .tg-segmented__item, a.tg-sidebar__link[href], summary.tg-sidebar__link, a.tg-nav-menu__link[href], a.tg-nav-menu__top[href], .tg-command__item, .tg-listbox__option, .tg-check, .tg-radio):not(.tg-switch, [role='switch'])";
 $available: ":not([inert]):where(:not(:disabled, [disabled], [aria-disabled='true'], [disabled] *, [aria-disabled='true'] *, [inert] *))";
-$ghosts: ':is(.tg-btn--ghost, .tg-icon-btn--ghost, .tg-search__clear)';
+// Buttons without a container: ghosts and actions inside a field (clear a search, remove a
+// tag). No fill at rest or on hover; hover and press change the colour only.
+$ghosts: ':is(.tg-btn--ghost, .tg-icon-btn--ghost, .tg-search__clear, .tg-tag-input__remove, .tg-wheel__option)';
 
 @layer tds.components {
   :where(#{$controls}) {
@@ -17,8 +19,16 @@ $ghosts: ':is(.tg-btn--ghost, .tg-icon-btn--ghost, .tg-search__clear)';
       border-color var(--duration) var(--ease), transform var(--duration-fast) var(--ease),
       filter var(--duration-fast) var(--ease);
   }
-  #{$ghosts} {
+  // :not([inert]) lifts the role one step above the owners' family rules (.tg-btn,
+  // .tg-icon-btn), which load later: the role wins without repeating it in every owner.
+  #{$ghosts}:not([inert]) {
+    --control-idle-bg: transparent;
+    --control-hover-bg: transparent;
     --control-hover-filter: none;
+    // No container, so no outline either; the 1px stays so sizes match.
+    border-color: transparent;
+  }
+  #{$ghosts} {
     &#{$available}:is(:active, [data-pressed='true']) {
       background-color: transparent;
       color: var(--accent-strong);
@@ -26,10 +36,15 @@ $ghosts: ':is(.tg-btn--ghost, .tg-icon-btn--ghost, .tg-search__clear)';
     }
   }
   @media (hover: hover) and (pointer: fine) {
-    #{$controls}#{$available}:hover {
+    // A control inside its label (radio, checkbox) answers the label's hover too.
+    #{$controls}#{$available}:hover, .tg-choice:hover > #{$controls}#{$available} {
       background-color: var(--control-hover-bg);
       filter: var(--control-hover-filter, brightness(var(--control-hover-brightness, .92)));
       cursor: pointer;
+    }
+    // The switch paints its track on ::before; the same hover darkening applies there.
+    .tg-switch#{$available}:hover::before, .tg-choice:hover > .tg-switch#{$available}::before {
+      filter: brightness(var(--control-hover-brightness, .92));
     }
     #{$ghosts}#{$available}:hover:where(:not(:active, [data-pressed='true'])) {
       color: var(--text-color);

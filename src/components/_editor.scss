@@ -12,6 +12,8 @@
     border-radius: var(--radius-lg);
     background: var(--surface-bg);
     overflow: clip;
+    transition: border-color var(--duration) var(--ease), box-shadow var(--duration) var(--ease);
+    &:has(.tg-editor__content:focus) { border-color: var(--accent-main); box-shadow: var(--focus); }
   }
   .tg-editor__bar {
     display: flex;
@@ -53,7 +55,8 @@
     line-height: 1.6;
     outline: none;
     caret-color: var(--text-link);
-    &:focus-visible { box-shadow: inset 0 0 0 2px var(--text-link); }
+    // Focus is shown by the editor frame, the same accent border and ring as every field.
+    &:focus-visible { box-shadow: none; }
     &[contenteditable='false'] { caret-color: transparent; }
     > * { margin: 0; }
     h2 { font-size: var(--fs-display); line-height: 1.2; letter-spacing: -.01em; }

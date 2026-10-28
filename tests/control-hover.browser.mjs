@@ -65,7 +65,8 @@ try {
           });
           assert.equal(hover.color, textColor, `${theme}: clear hover uses the main text color`);
         }
-        if (id !== 'ghost') assert.equal(idle.border, '0px');
+        // No container, no outline: a transparent 1px keeps the family's size.
+        assert.equal(await button.evaluate(el => getComputedStyle(el).borderTopColor), 'rgba(0, 0, 0, 0)', `${id}: borderless`);
         assert.equal(idle.background, 'rgba(0, 0, 0, 0)');
         assert.equal(hover.background, idle.background, 'clear hover changes icon only');
         assert.notEqual(idle.color, hover.color, 'borderless label changes palette color on hover');

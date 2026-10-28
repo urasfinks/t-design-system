@@ -43,9 +43,11 @@
     z-index: -1;
     border-radius: inherit;
     background: var(--accent-soft);
-    transform: scaleX(var(--slide-progress, 0));
-    transform-origin: left center;
-    &:dir(rtl) { transform-origin: right center; }
+    // The fill ends at the thumb and keeps the pill's rounded ends: a clip, not a scale,
+    // which would flatten the radius and poke past the track's rounded end.
+    --slide-rest: calc((1 - var(--slide-progress, 0)) * (100% - var(--control-h)));
+    clip-path: inset(0 var(--slide-rest) 0 0 round var(--radius-pill));
+    &:dir(rtl) { clip-path: inset(0 0 0 var(--slide-rest) round var(--radius-pill)); }
   }
   .tg-slide-confirm__label {
     grid-area: 1 / 1;
@@ -90,8 +92,8 @@
     inset-inline-end: var(--space-4);
     inset-block-end: calc(var(--space-4) + var(--safe-area-bottom) + var(--tg-composer-height, 0px) + var(--tg-tabbar-height, 0px));
     z-index: var(--z-sticky);
-    inline-size: calc(var(--control-h) + var(--space-2));
-    block-size: calc(var(--control-h) + var(--space-2));
+    inline-size: var(--control-h);
+    block-size: var(--control-h);
     border-radius: var(--radius-pill);
     box-shadow: var(--shadow-overlay);
     &--extended { inline-size: auto; padding-inline: var(--space-4) var(--space-5); gap: var(--space-2); }

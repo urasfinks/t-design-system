@@ -77,11 +77,13 @@
     }
   }
   // A card that opens in place: a native details element with the card surface.
+  // The card gives the shared disclosure trigger its corners (see .tg-disclosure).
   details.tg-card--disclosure {
+    --disclosure-radius-start: var(--radius-lg);
+    --disclosure-radius-end: var(--radius-lg);
     padding: 0;
     > .tg-disclosure__trigger {
       padding: var(--card-padding);
-      border-radius: inherit;
       font-size: var(--fs);
     }
     &[open] > .tg-disclosure__trigger { border-end-start-radius: 0; border-end-end-radius: 0; }
@@ -106,13 +108,13 @@
     margin-block-start: auto;
   }
 
-  // A card the reader acts on. Like small actions, it gains the action outline;
+  // A card the reader acts on answers hover with a stronger edge;
   // a whole-card link stretches the one link in its heading over the card.
   .tg-card--interactive, .tg-card--link {
     position: relative;
     transition: border-color var(--duration) var(--ease);
     @media (hover: hover) and (pointer: fine) {
-      &:hover { border-color: var(--action-border-color); }
+      &:hover { border-color: var(--panel-hover-border-color); }
     }
   }
   .tg-card--link:has(.tg-card__link:focus-visible) { outline: 2px solid var(--text-link); outline-offset: 3px; }

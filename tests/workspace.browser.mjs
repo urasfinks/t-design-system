@@ -97,13 +97,15 @@ try {
 
   // Table selection and sorting.
   await page.locator('#ws-select-all').check();
-  check('select all reveals the bulk bar', !(await page.locator('#ws-bulk').isHidden()));
+  const tableTop = (await page.locator('#ws-rows').boundingBox()).y;
+  check('select all fills the bulk bar and enables its actions', (await page.locator('#ws-bulk').getAttribute('data-empty')) === null && !(await page.locator('#ws-bulk button').first().isDisabled()));
+  check('choosing rows does not move the table', Math.abs((await page.locator('#ws-rows').boundingBox()).y - tableTop) < .5);
   check('bulk bar counts the rows', (await page.locator('#ws-bulk-count').textContent()).includes('4'));
   check('selected rows take the soft accent', await css('#ws-rows tr td', 'background-color') !== 'rgba(0, 0, 0, 0)');
   await page.locator('#ws-rows .tg-check').first().uncheck();
   check('partial selection is indeterminate', await page.locator('#ws-select-all').evaluate(el => el.indeterminate));
   await page.locator('#ws-bulk-clear').click();
-  check('clearing hides the bulk bar', await page.locator('#ws-bulk').isHidden());
+  check('clearing leaves the bar in place, empty, with actions unavailable', await page.locator('#ws-bulk').isVisible() && await page.locator('#ws-bulk').getAttribute('data-empty') !== null && await page.locator('#ws-bulk button').first().isDisabled() && (await page.locator('#ws-bulk-count').textContent()) === 'Ничего не выбрано');
   await page.locator('[data-sort="due"] .tg-table__sort').click();
   check('sorting marks the header', await page.locator('[data-sort="due"]').getAttribute('aria-sort') === 'descending' && await page.locator('[data-sort="amount"]').getAttribute('aria-sort') === 'none');
   const firstDue = await page.locator('#ws-rows tr').first().getAttribute('data-due');

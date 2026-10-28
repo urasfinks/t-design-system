@@ -162,7 +162,6 @@
   }
   // A 24px mark; padding and negative margin make a 44px target.
   .tg-tag-input__remove {
-    --control-hover-filter: none;
     display: grid;
     place-items: center;
     flex: 0 0 auto;
@@ -265,9 +264,12 @@
     font-variant-numeric: tabular-nums;
     transition: border-color var(--duration-fast) var(--ease), box-shadow var(--duration-fast) var(--ease);
 
+    // Placeholder and caret share the cell's one grid area, so neither pushes the other.
+    &::before, &::after { grid-area: 1 / 1; }
     &:empty::before { content: attr(data-placeholder); color: var(--text-secondary); font-weight: var(--fw-regular); }
     // The active cell shows the caret of the hidden field.
     .tg-otp:focus-within &[data-active] { border-color: var(--accent-main); box-shadow: var(--focus); }
+    .tg-otp:focus-within &[data-active]:empty::before { visibility: hidden; }
     .tg-otp:focus-within &[data-active]:empty::after {
       content: '';
       inline-size: 2px;
@@ -309,7 +311,7 @@
     transition: border-color var(--duration) var(--ease), box-shadow var(--duration) var(--ease);
 
     @media (hover: hover) and (pointer: fine) {
-      &:where(:not(:has(input:disabled))):hover { border-color: var(--action-border-color); }
+      &:where(:not(:has(input:disabled))):hover { border-color: var(--panel-hover-border-color); }
     }
     &:has(input:checked) { @include selected.ring; }
     &:has(input:focus-visible) { outline: 2px solid var(--text-link); outline-offset: 3px; }

@@ -1498,12 +1498,13 @@
       "name": "Декоративные поля",
       "type": "extend",
       "priority": "P2",
-      "scope": "in",
+      "scope": "out",
       "wave": 8,
-      "state": "done",
+      "state": "removed",
       "classes": [
         ".tg-effect-focus-glow"
-      ]
+      ],
+      "note": "Удалено по решению владельца 28.10.2026: у полей одна общая подсветка фокуса, декоративное свечение не входит в систему."
     },
     {
       "id": "F33",
@@ -2328,12 +2329,13 @@
       "name": "Эффект поверх кнопки",
       "type": "extend",
       "priority": "P2",
-      "scope": "in",
+      "scope": "out",
       "wave": 8,
-      "state": "done",
+      "state": "removed",
       "classes": [
         "[data-tg-effect"
-      ]
+      ],
+      "note": "Удалено по решению владельца 28.10.2026: материалы кнопки (metal/glass/glow) не входят в систему."
     },
     {
       "id": "SH3",
@@ -2341,12 +2343,13 @@
       "name": "Эффект аватара",
       "type": "extend",
       "priority": "P2",
-      "scope": "in",
+      "scope": "out",
       "wave": 8,
-      "state": "done",
+      "state": "removed",
       "classes": [
         ".tg-avatar[data-tg-effect"
-      ]
+      ],
+      "note": "Удалено по решению владельца 28.10.2026: живой аватар (orb) не входит в систему."
     },
     {
       "id": "SH4",

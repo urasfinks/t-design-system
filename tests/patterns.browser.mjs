@@ -30,12 +30,13 @@ try {
       };
       const containerRadii = await page.locator('.tg-disclosure').evaluate(radii);
       await trigger.hover();
-      assert.deepEqual(await trigger.evaluate(radii), containerRadii, `${theme}/${width}: closed hover preserves rounded corners`);
+      // The trigger sits inside the 1px border: its corners are the container's minus 1px (concentric).
+      assert.deepEqual(await trigger.evaluate(radii), containerRadii.map(r => `${parseFloat(r) - 1}px`), `${theme}/${width}: closed hover follows the rounded corners`);
       await page.locator('summary').focus();
       await page.keyboard.press('Enter');
       assert.equal(await page.locator('details').getAttribute('open'), '');
       await trigger.hover();
-      assert.deepEqual(await trigger.evaluate(radii), [...containerRadii.slice(0, 2), '0px', '0px'], `${theme}/${width}: open hover preserves top corners only`);
+      assert.deepEqual(await trigger.evaluate(radii), [...containerRadii.slice(0, 2).map(r => `${parseFloat(r) - 1}px`), '0px', '0px'], `${theme}/${width}: open hover keeps the top corners only`);
       await page.keyboard.press('Space');
       assert.equal(await page.locator('details').getAttribute('open'), null);
       const metrics = await page.evaluate(() => {

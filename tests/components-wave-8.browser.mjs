@@ -1,5 +1,4 @@
-// Wave 8 — decorative effects: SH1 background layer, B19 button effects, SH2 button
-// materials, C18 card effects, F32 focus glow, G2 3D carousels, SH3 orb avatar, SH4 ripple.
+// Wave 8 — decorative effects: SH1 background layer, B19 button effects, C18 card effects, G2 3D carousels, SH4 ripple.
 // Runs with motion allowed and a fine pointer; a second page checks reduced motion.
 import { openCatalog } from './helpers/catalog-page.mjs';
 import { measureContrast } from './helpers/contrast.mjs';
@@ -56,17 +55,6 @@ try {
   await page.waitForTimeout(80);
   check('B19 leaving resets the magnet', await magnet.evaluate(el => el.style.getPropertyValue('--magnet-x')) === '');
 
-  // SH2 — materials
-  const metal = `${ex('SH2')} a[data-tg-effect="metal"]`;
-  const plain = await page.evaluate(() => { const a = document.createElement('a'); a.className = 'tg-btn tg-btn--primary'; a.textContent = 'Перейти на Pro'; document.querySelector('[data-spec~="SH2"] .effect-row').append(a); const r = a.getBoundingClientRect(); a.remove(); return [r.width, r.height]; });
-  const mbox = await box(metal);
-  check('SH2 the material does not change the button size', Math.abs(mbox.width - plain[0]) < .5 && Math.abs(mbox.height - plain[1]) < .5);
-  check('SH2 the metal frame is a masked ring', (await css(`${metal} > .tg-effect-layer`, 'mask-composite')).includes('exclude'));
-  await page.locator(metal).hover();
-  check('SH2 hover turns the metal highlight', await css(`${metal} > .tg-effect-layer`, 'animation-name') === 'tg-effect-turn');
-  check('SH2 a busy button shows no material', await css(`${ex('SH2')} [aria-busy="true"] > .tg-effect-layer`, 'display') === 'none');
-  await contrast(`${ex('SH2')} a[data-tg-effect="glass"]`, 'SH2 glass label');
-
   // C18 — card effects
   const tilt = page.locator(`${ex('C18')} .tg-effect-tilt`);
   await tilt.scrollIntoViewIfNeeded();
@@ -88,44 +76,27 @@ try {
   await page.mouse.move(5, 5);
   await contrast(`${ex('C18')} .tg-effect-spotlight p`, 'C18 card text');
 
-  // F32 — focus glow
-  const wrap = `${ex('F32')} .tg-effect-focus-glow`;
-  check('F32 no glow before focus', await opacity(wrap) === 0);
-  await page.locator('#demo-wait-email').focus();
-  await page.waitForTimeout(300);
-  check('F32 focus shows the glow', await opacity(wrap) > .3);
-  check('F32 the field keeps its focus ring', (await css('#demo-wait-email', 'box-shadow')) !== 'none' || (await css('#demo-wait-email', 'outline-style')) !== 'none');
-
-  // G2 — 3D carousels
-  const g2 = '#demo-g2 .tg-carousel__slide';
-  check('G2 slides are driven by a view timeline', (await css(g2, 'animation-timeline')).includes('view') && await css(g2, 'animation-name') === 'tg-carousel-coverflow');
-  const first = await box(g2), vp = await box('#demo-g2 .tg-carousel__viewport');
-  check('G2 the first slide starts in the centre', Math.abs(first.left + first.width / 2 - (vp.left + vp.width / 2)) < 2);
+  // G2 — 3D carousels: the slide stays flat (it is the snap target); its picture turns.
+  const g2 = '#demo-g2 .tg-carousel__slide > img';
+  const slide = '#demo-g2 .tg-carousel__slide';
+  check('G2 pictures are driven by their slide\'s view timeline', (await css(g2, 'animation-timeline')).includes('--tg-carousel-slide') && await css(g2, 'animation-name') === 'tg-carousel-coverflow');
+  check('G2 the slide itself is not transformed', ['none', ''].includes(await css(slide, 'transform')));
+  const centreOffset = i => page.locator('#demo-g2 .tg-carousel__viewport').evaluate((vp, i) => { const s = vp.children[i], r = vp.getBoundingClientRect(), b = s.getBoundingClientRect(); return b.left + b.width / 2 - (r.left + r.width / 2); }, i);
+  check('G2 the first slide starts exactly in the centre', Math.abs(await centreOffset(0)) < 1);
   const flatness = i => page.locator(g2).nth(i).evaluate(el => el.getBoundingClientRect().width / el.offsetWidth);
-  check('G2 the centred slide is flat', await flatness(0) > .97);
-  check('G2 a neighbour is turned', await flatness(1) < .9);
+  check('G2 the centred picture is flat', await flatness(0) > .97);
+  check('G2 a neighbour picture is turned', await flatness(1) < .9);
+  check('G2 only the centred slide shows its caption', Number(await css('#demo-g2 .tg-carousel__slide:nth-child(1) > figcaption', 'opacity')) > .9 && Number(await css('#demo-g2 .tg-carousel__slide:nth-child(2) > figcaption', 'opacity')) < .1);
   await page.locator(`${ex('G2')} input[value="fan"]`).check();
   check('G2 the variant switch swaps the timeline animation', await css(g2, 'animation-name') === 'tg-carousel-fan');
   await page.locator('#demo-g2 [data-carousel-next]').click();
+  await page.waitForTimeout(900);
   check('G2 arrows work as in G1', await page.locator('#demo-g2 .tg-dot').nth(1).getAttribute('aria-current') === 'true');
+  check('G2 the next slide lands exactly in the centre', Math.abs(await centreOffset(1)) < 1);
   check('G2 focus order is the DOM order', await page.locator('#demo-g2 .tg-carousel__viewport').getAttribute('tabindex') === '0');
   await page.setViewportSize({ width: 390, height: 900 });
   check('G2 on phones it is the flat G1', await css(g2, 'animation-name') === 'none');
   await page.setViewportSize({ width: 1440, height: 900 });
-
-  // SH3 — orb avatar
-  const orb = `${ex('SH3')} [data-tg-effect="orb"]`;
-  // The darkest accent sits under the initials; measure against that layer, the brighter
-  // accent only reaches the edge.
-  for (const name of ['light', 'dark', 'ios-dark']) {
-    await theme(name);
-    const { ratio } = await page.evaluate(measureContrast, { selector: `${orb} .tg-avatar__initials`, background: `${orb} > .tg-effect-layer` });
-    check(`SH3 initials ${name}: contrast ${ratio.toFixed(2)} ≥ 4.5`, ratio >= 4.5);
-  }
-  await theme(null);
-  check('SH3 the orb turns only while thinking', await css(`${orb}:not([data-state]) > .tg-effect-layer`, 'animation-name') === 'none' && await css(`${orb}[data-state="thinking"] > .tg-effect-layer`, 'animation-name') === 'tg-effect-spin');
-  check('SH3 thinking is also said in text', (await page.locator(`${ex('SH3')} [role="status"]`).textContent()).includes('Думает'));
-  check('SH3 the avatar keeps its name', await page.locator(orb).first().getAttribute('aria-label') === 'Ассистент');
 
   // SH4 — ripple
   const ripple = `${ex('SH4')} .tg-carousel`;
@@ -153,7 +124,6 @@ try {
   check('reduced motion: the background layer is a still frame', await still.locator(field).getAttribute('data-state') === 'static');
   check('reduced motion: the border beam stands still', await stillCss(beam, 'animation-name', '::before') === 'none');
   check('reduced motion: the 3D carousel is flat', await stillCss(g2, 'animation-name') === 'none');
-  check('reduced motion: the orb does not turn', await stillCss(`${orb}[data-state="thinking"] > .tg-effect-layer`, 'animation-name') === 'none');
   await still.locator(`${ripple} [data-carousel-next]`).click();
   await still.waitForTimeout(60);
   check('reduced motion: no ripple', await still.locator(`${ripple} > canvas`).getAttribute('data-state') === 'idle');
@@ -161,7 +131,7 @@ try {
 
   for (const width of [320, 390]) {
     await page.setViewportSize({ width, height: 900 });
-    for (const id of ['SH1', 'B19', 'SH2', 'C18', 'F32', 'G2', 'SH3', 'SH4']) {
+    for (const id of ['SH1', 'B19', 'C18', 'G2', 'SH4']) {
       const over = await page.locator(ex(id)).evaluate(el => el.scrollWidth - el.clientWidth);
       check(`${id} at ${width}px has no horizontal overflow`, over <= 1, String(over));
     }

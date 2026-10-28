@@ -71,8 +71,10 @@ function updateSelection() {
   const chosen = checks.filter(check => check.checked).length;
   selectAll.checked = chosen > 0 && chosen === checks.length;
   selectAll.indeterminate = chosen > 0 && chosen < checks.length;
-  bulk.hidden = chosen === 0;
-  $('#ws-bulk-count').textContent = `Выбрано ${chosen} ${plural(chosen, 'счёт', 'счёта', 'счетов')}`;
+  // The bar stays in place: empty, it says so and its actions are unavailable.
+  bulk.toggleAttribute('data-empty', chosen === 0);
+  for (const button of bulk.querySelectorAll('button')) button.disabled = chosen === 0;
+  $('#ws-bulk-count').textContent = chosen ? `Выбрано ${chosen} ${plural(chosen, 'счёт', 'счёта', 'счетов')}` : 'Ничего не выбрано';
 }
 function updateTotal() {
   const sum = $$('tr', rowsBody).filter(row => !row.hidden && row.dataset.amount).reduce((total, row) => total + Number(row.dataset.amount), 0);

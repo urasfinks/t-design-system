@@ -46,6 +46,36 @@ $error: "[data-state='error']";
   }
 }
 
+// Text beside a marker in a column of steps starts at the marker's top edge: the first
+// line's leading is trimmed (where text-box is supported) so the capitals touch that edge.
+@mixin text-at-marker-top {
+  line-height: 1.35;
+  text-box: trim-start cap alphabetic;
+}
+
+// A line through the marker centres: from this step's centre to the next step's centre,
+// under the markers (they sit above it and paint their own fill). Steps follow each other
+// with no gap on that axis; $size is the marker size.
+@mixin through-line($axis: block, $size: 1.25rem) {
+  content: '';
+  position: absolute;
+  z-index: 0;
+  // The colour is a parameter: a done step sets it, the axis never overrides it.
+  background: var(--step-line-color, var(--border-color));
+  // Both axes are set, so a horizontal variant fully replaces the vertical line.
+  @if $axis == block {
+    inset-block: calc(#{$size} / 2) calc(#{$size} / -2);
+    inset-inline: calc(#{$size} / 2 - 1px) auto;
+    inline-size: 2px;
+    block-size: auto;
+  } @else {
+    inset-inline: calc(#{$size} / 2) calc(#{$size} / -2);
+    inset-block: calc(#{$size} / 2 - 1px) auto;
+    inline-size: auto;
+    block-size: 2px;
+  }
+}
+
 // The joining line, drawn by the step's pseudo-element from its marker to the next step.
 // $axis: block (a column of steps) or inline (a row). $offset is the marker centre.
 @mixin line($axis: block, $offset: 1rem, $gap: var(--space-1)) {
