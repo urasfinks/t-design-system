@@ -9,6 +9,21 @@
   .tg-col { display: flex; flex-direction: column; gap: var(--space-3); }
   .tg-row-valign-top { align-items: flex-start; }
   .tg-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 18rem), 1fr)); gap: var(--space-4); }
+  // Bento: 1 column on phones, 2 from 36rem, 4 from 64rem. Tiles read --span and
+  // --row-span; DOM order is the visual order (no dense packing).
+  .tg-grid--bento {
+    grid-template-columns: minmax(0, 1fr);
+    grid-auto-rows: minmax(10rem, auto);
+    > * { min-inline-size: 0; }
+    @media (min-width: 36rem) {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      > * { grid-column: span min(var(--span, 1), 2); grid-row: span var(--row-span, 1); }
+    }
+    @media (min-width: 64rem) {
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      > * { grid-column: span var(--span, 1); }
+    }
+  }
   .tg-section { margin-block: var(--space-5); }
   .tg-ios-spacer { inline-size: 100%; block-size: var(--ios-h); flex-shrink: 0; }
   .tg-no-select { -webkit-user-select: none; user-select: none; -webkit-touch-callout: none; }

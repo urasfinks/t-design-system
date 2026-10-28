@@ -1,0 +1,286 @@
+@use '../base';
+@use 'floating';
+@use 'option';
+
+// Small floating layers that explain or announce: tooltip, hover card, toast region,
+// announcement banner, command palette. Surfaces and motion come from the floating engine.
+@layer tds.components {
+  // Tooltip: a short name or shortcut for a control, shown on hover after a delay and at
+  // once on keyboard focus. Never the only place for essential information.
+  .tg-tooltip {
+    --tg-float-origin: bottom center;
+    max-inline-size: min(16rem, calc(100vw - var(--space-4)));
+    padding: var(--space-1) var(--space-2);
+    border: 0;
+    border-radius: var(--radius-sm);
+    background: var(--overlay-bg);
+    color: var(--overlay-text);
+    font-size: var(--fs-sm);
+    line-height: 1.35;
+    overflow-wrap: anywhere;
+    pointer-events: none;
+
+    &[data-side='bottom'] { --tg-float-origin: top center; }
+    &[data-side='inline-start'] { --tg-float-origin: right center; }
+    &[data-side='inline-end'] { --tg-float-origin: left center; }
+    &:dir(rtl)[data-side='inline-start'] { --tg-float-origin: left center; }
+    &:dir(rtl)[data-side='inline-end'] { --tg-float-origin: right center; }
+
+    // A shortcut inside reads as a quieter second part.
+    > kbd, > .tg-kbd { min-inline-size: 0; margin-inline-start: var(--space-2); padding: 0; border: 0; background: none; color: inherit; opacity: .72; font: inherit; font-variant-numeric: tabular-nums; }
+  }
+  .tg-tooltip[popover] {
+    @include floating.popover(--tg-float-origin, bottom center, bottom center, .96);
+    // Tooltips are tiny: a shorter entrance than menus.
+    &:popover-open {
+      transition: opacity var(--duration-fast) var(--ease), transform var(--duration-fast) var(--ease),
+        overlay var(--duration-fast) allow-discrete, display var(--duration-fast) allow-discrete;
+    }
+  }
+  @supports (position-area: block-end) {
+    .tg-tooltip[popover]:not([data-positioned]) {
+      position-area: block-start;
+      position-try-fallbacks: flip-block, flip-inline;
+      margin: var(--space-2);
+    }
+    .tg-tooltip[popover][data-side='bottom']:not([data-positioned]) { position-area: block-end; }
+    .tg-tooltip[popover][data-side='inline-start']:not([data-positioned]) { position-area: inline-start; }
+    .tg-tooltip[popover][data-side='inline-end']:not([data-positioned]) { position-area: inline-end; }
+  }
+
+  @media (forced-colors: active) {
+    .tg-tooltip { border: 1px solid CanvasText; }
+  }
+
+  // Toast parts. A toast reads: icon, title and description, actions, close.
+  .tg-toast:has(> :is(.tg-toast__title, .tg-toast__action, .tg-toast__close, .tg-toast__body)) {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2) var(--space-3);
+    padding-block: var(--space-3);
+    padding-inline: var(--space-4) var(--space-2);
+    > .tg-icon { flex: 0 0 auto; color: var(--text-secondary); }
+  }
+  .tg-toast__body {
+    display: grid;
+    flex: 1 1 auto;
+    gap: .125rem;
+    min-inline-size: 0;
+    > * { margin: 0; }
+    > :not(.tg-toast__title) { color: var(--text-secondary); font-size: var(--fs-sm); }
+  }
+  .tg-toast__title { font-weight: var(--fw-semibold); }
+  .tg-toast__action { flex: 0 0 auto; }
+  .tg-toast__close { flex: 0 0 auto; margin-block: calc(var(--space-2) * -1); }
+
+  // Toast region: exists before any message so screen readers hear each one once.
+  // Toasts inside it stack at the bottom edge, newest in front.
+  .tg-toast-region {
+    position: fixed;
+    inset-inline: var(--space-4);
+    inset-block-end: calc(var(--space-5) + var(--safe-area-bottom) + var(--tg-composer-height, 0px));
+    z-index: var(--z-toast);
+    inline-size: min(26rem, calc(100% - var(--space-8)));
+    margin-inline: auto;
+    pointer-events: none;
+
+    &[data-placement='top'] { inset-block: calc(var(--space-4) + env(safe-area-inset-top, 0px)) auto; }
+
+    > [role='status'], > [role='log'] {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-2);
+    }
+    .tg-toast {
+      position: relative;
+      inset: auto;
+      inline-size: 100%;
+      max-inline-size: none;
+      margin: 0;
+    }
+    .tg-toast--show { pointer-events: auto; }
+  }
+  // Stacked mode: the host sets data-stacked on the region and, on each toast,
+  // --toast-index (0 = newest), --toast-offset (its distance from the edge when expanded),
+  // data-front on the newest and data-overflow beyond the third; the list height goes in
+  // --toast-stack-height (collapsed) and --toast-stack-expanded. Hover or focus inside expands the stack.
+  .tg-toast-region[data-stacked] {
+    > [role='status'], > [role='log'] {
+      position: relative;
+      display: block;
+      block-size: var(--toast-stack-height, auto);
+      transition: block-size var(--duration) var(--ease);
+    }
+    .tg-toast {
+      position: absolute;
+      inset-inline: 0;
+      inset-block-end: 0;
+      z-index: calc(10 - var(--toast-index, 0));
+      transform-origin: bottom center;
+      transform: translateY(calc(var(--toast-index, 0) * -.625rem)) scale(calc(1 - var(--toast-index, 0) * .05));
+      transition: opacity var(--duration-fade-in) var(--ease), transform var(--duration) var(--ease), visibility 0s;
+      // Back toasts show only their edge; their text would read through the front one.
+      > * { transition: opacity var(--duration-fast) var(--ease); }
+      &:not([data-front]) > * { opacity: var(--toast-content-opacity, 0); }
+      &[data-overflow] { opacity: 0; visibility: hidden; }
+      &:not(.tg-toast--show) { opacity: 0; transform: translateY(100%); transition: opacity var(--duration-fade-out) var(--ease), transform var(--duration-fast) var(--ease), visibility 0s linear var(--duration-fade-out); }
+    }
+    &[data-placement='top'] .tg-toast { inset-block: 0 auto; transform-origin: top center; transform: translateY(calc(var(--toast-index, 0) * .625rem)) scale(calc(1 - var(--toast-index, 0) * .05)); }
+  }
+  .tg-toast-region[data-stacked]:is(:hover, :focus-within, [data-expanded]) {
+    pointer-events: auto;
+    > [role='status'], > [role='log'] { block-size: var(--toast-stack-expanded, auto); }
+    .tg-toast {
+      --toast-content-opacity: 1;
+      transform: translateY(calc(var(--toast-offset, 0px) * -1));
+      &[data-overflow] { opacity: 1; visibility: visible; }
+    }
+    &[data-placement='top'] .tg-toast { transform: translateY(var(--toast-offset, 0px)); }
+  }
+  @media (max-width: 36rem) {
+    .tg-toast-region { inset-inline: var(--space-3); inline-size: auto; }
+  }
+
+  // Announcement banner: one line across the page about the product (maintenance, a new
+  // version). Not an alert. --sticky keeps it above the header while scrolling.
+  .tg-banner {
+    position: relative;
+    // Room for the close button, outside any container padding inside.
+    padding-inline-end: calc(var(--control-h) + var(--space-2));
+    background: var(--background-muted);
+    color: var(--text-color);
+    font-size: var(--fs-sm);
+
+    &--accent { background: var(--accent-soft); }
+    &--sticky { position: sticky; inset-block-start: 0; z-index: calc(var(--z-sticky) + 1); }
+  }
+  .tg-banner__content {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--space-1) var(--space-3);
+    min-block-size: var(--control-h);
+    padding-block: var(--space-2);
+    > .tg-icon { flex: 0 0 auto; color: var(--text-secondary); }
+    > p { flex: 1 1 10rem; margin: 0; min-inline-size: 0; }
+  }
+  .tg-banner--accent .tg-banner__content > .tg-icon { color: var(--text-link); }
+  .tg-banner__action { flex: 0 0 auto; font-weight: var(--fw-medium); }
+  .tg-banner__dismiss {
+    position: absolute;
+    inset-block-start: 50%;
+    inset-inline-end: var(--space-2);
+    translate: 0 -50%;
+    color: inherit;
+  }
+
+  // Hover card: a preview of a profile or link, shown after a pause on hover and at once
+  // on focus. Extra information only; touch screens follow the link instead.
+  .tg-hover-card {
+    --tg-float-origin: top center;
+    inline-size: min(20rem, calc(100vw - var(--space-4)));
+    padding: var(--space-4);
+    @include floating.surface(var(--radius-lg));
+    font-size: var(--fs-sm);
+    line-height: 1.45;
+    overflow-wrap: anywhere;
+    > * { margin: 0; }
+    > * + * { margin-block-start: var(--space-2); }
+  }
+  .tg-hover-card[popover] { @include floating.popover(--tg-float-origin, top center, top center); }
+  @supports (position-area: block-end) {
+    .tg-hover-card[popover]:not([data-positioned]) {
+      position-area: block-end;
+      position-try-fallbacks: flip-block, flip-inline;
+      margin: var(--space-2);
+    }
+  }
+  .tg-hover-card__trigger { text-decoration-style: dotted; text-underline-offset: .25em; }
+  @media (hover: none) {
+    .tg-hover-card[popover] { display: none; }
+  }
+
+  // Command palette: a dialog near the top with a search field (combobox) over grouped
+  // commands (listbox). Opens at once from Ctrl/Cmd+K, returns focus when it closes.
+  dialog.tg-command {
+    inline-size: min(40rem, calc(100% - var(--space-8)));
+    max-block-size: min(32rem, calc(100dvh - 20vh - var(--space-4)));
+    margin-block: 20vh auto;
+    padding: 0;
+    overflow: hidden;
+    &[open] { display: flex; flex-direction: column; }
+    &[data-instant][open] { animation: none; }
+  }
+  .tg-command__search {
+    display: flex;
+    flex: 0 0 auto;
+    align-items: center;
+    gap: var(--space-3);
+    padding-inline: var(--space-4);
+    border-block-end: var(--border);
+    > .tg-icon { flex: 0 0 auto; color: var(--text-secondary); }
+  }
+  .tg-command__input {
+    flex: 1 1 auto;
+    min-inline-size: 0;
+    min-block-size: calc(var(--control-h) + var(--space-2));
+    border: 0;
+    background: transparent;
+    color: var(--text-color);
+    font: inherit;
+    font-size: max(1rem, var(--fs));
+    &:focus { outline: none; }
+    &::placeholder { color: var(--text-secondary); opacity: 1; }
+    &::-webkit-search-cancel-button { display: none; }
+  }
+  .tg-command__list {
+    flex: 1 1 auto;
+    min-block-size: 0;
+    padding: var(--space-2);
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    > .tg-empty { padding-block: var(--space-6); }
+  }
+  .tg-command__group + .tg-command__group { margin-block-start: var(--space-2); }
+  .tg-command__group-label {
+    padding: var(--space-2) var(--space-3) var(--space-1);
+    color: var(--text-secondary);
+    font-size: var(--fs-xs);
+    font-weight: var(--fw-semibold);
+    letter-spacing: .02em;
+  }
+  .tg-command__item {
+    --control-hover-filter: none;
+    --control-paint-duration: 0s;
+    @include option.row;
+    -webkit-user-select: none;
+    user-select: none;
+    &:is([aria-selected='true'], [data-active]) { background: var(--control-hover-bg); }
+    > .tg-command__text { display: grid; flex: 1 1 auto; min-inline-size: 0; }
+  }
+  .tg-command__meta { @include option.meta; }
+  .tg-command__shortcut {
+    flex: 0 0 auto;
+    margin-inline-start: auto;
+    font: inherit;
+    color: var(--text-secondary);
+    font-size: var(--fs-xs);
+    font-variant-numeric: tabular-nums;
+  }
+  .tg-command__footer {
+    display: flex;
+    flex: 0 0 auto;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--space-2) var(--space-4);
+    padding: var(--space-2) var(--space-4);
+    border-block-start: var(--border);
+    color: var(--text-secondary);
+    font-size: var(--fs-xs);
+    > span { display: inline-flex; align-items: center; gap: var(--space-1); }
+  }
+  @media (max-width: 36rem) {
+    dialog.tg-command { inline-size: 100%; max-inline-size: none; block-size: 100dvh; max-block-size: none; margin: 0; border-radius: 0; }
+  }
+}
+

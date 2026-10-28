@@ -216,30 +216,25 @@
     }
     &--separate { gap: var(--space-2); }
     &--separate > .tg-disclosure { border-radius: var(--radius); & + .tg-disclosure { border-block-start: var(--border); } }
-
-    .tg-disclosure__trigger {
-      display: flex;
-      align-items: center;
-      gap: var(--space-3);
-      list-style: none;
-      &::-webkit-details-marker { display: none; }
-      &::after {
-        content: '';
-        flex: 0 0 auto;
-        inline-size: var(--icon-size);
-        block-size: var(--icon-size);
-        margin-inline-start: auto;
-        background: var(--text-secondary);
-        mask: var(--icon-mask-chevron-down) center / contain no-repeat;
-        transition: transform var(--duration) var(--ease);
-      }
-    }
-    .tg-disclosure[open] > .tg-disclosure__trigger::after { transform: rotate(180deg); }
-    .tg-disclosure__content {
-      transition: opacity var(--duration-fade-in) var(--ease);
-      @starting-style { opacity: 0; }
+  }
+  :is(.tg-accordion, .tg-card--disclosure) .tg-disclosure__trigger {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    list-style: none;
+    &::-webkit-details-marker { display: none; }
+    &::after {
+      content: '';
+      flex: 0 0 auto;
+      inline-size: var(--icon-size);
+      block-size: var(--icon-size);
+      margin-inline-start: auto;
+      background: var(--text-secondary);
+      mask: var(--icon-mask-chevron-down) center / contain no-repeat;
+      transition: transform var(--duration) var(--ease);
     }
   }
+  .tg-accordion .tg-disclosure[open] > .tg-disclosure__trigger::after, .tg-card--disclosure[open] > .tg-disclosure__trigger::after { transform: rotate(180deg); }
   .tg-accordion__controls { display: flex; flex-wrap: wrap; justify-content: flex-end; gap: var(--space-2); }
   .tg-disclosure__meta {
     margin-inline-start: auto;
@@ -308,7 +303,7 @@
       block-size: 6px;
       border: 0;
       border-radius: var(--radius-pill);
-      background: linear-gradient(to right, var(--accent-main) var(--range-progress, 50%), var(--background-muted) var(--range-progress, 50%));
+      background: var(--range-track-bg, linear-gradient(to right, var(--accent-main) var(--range-progress, 50%), var(--background-muted) var(--range-progress, 50%)));
     }
     &::-webkit-slider-thumb {
       appearance: none;
@@ -323,7 +318,7 @@
       block-size: 6px;
       border: 0;
       border-radius: var(--radius-pill);
-      background: var(--background-muted);
+      background: var(--range-track-bg, var(--background-muted));
     }
     &::-moz-range-thumb {
       inline-size: 16px;
@@ -336,7 +331,7 @@
       block-size: 6px;
       border: 0;
       border-radius: var(--radius-pill);
-      background: var(--accent-main);
+      background: var(--range-progress-bg, var(--accent-main));
     }
     &:disabled { cursor: not-allowed; opacity: var(--disabled-opacity, .5); }
   }
@@ -353,4 +348,80 @@
     .tg-summary__row { grid-template-columns: minmax(0, 1fr); gap: var(--space-1); }
   }
 
+  // The toolbar above a data table: search, filters, column menu, export, result count.
+  .tg-table-toolbar {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--space-2) var(--space-3);
+    min-inline-size: 0;
+    > .tg-search { flex: 1 1 14rem; max-inline-size: 22rem; }
+    > .tg-table-toolbar__filters { display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-2); }
+    > .tg-table-toolbar__end { display: flex; align-items: center; gap: var(--space-2); margin-inline-start: auto; }
+  }
+  .tg-table-toolbar__count { color: var(--text-secondary); font-size: var(--fs-sm); font-variant-numeric: tabular-nums; white-space: nowrap; }
+
+  // Sortable list: rows with a 44px handle. The lifted row floats on the overlay shadow,
+  // a 2px accent line marks where it will land. Keyboard: Space lifts, arrows move,
+  // Space drops, Escape cancels; the host announces each step.
+  .tg-sortable {
+    display: grid;
+    gap: 0;
+    margin: 0;
+    padding: 0;
+    border: var(--border);
+    border-radius: var(--radius-lg);
+    background: var(--surface-bg);
+    list-style: none;
+  }
+  .tg-sortable__item {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    min-block-size: var(--control-h);
+    padding: var(--space-1) var(--space-4) var(--space-1) var(--space-1);
+    background: var(--surface-bg);
+    transition: transform var(--duration) var(--ease), box-shadow var(--duration) var(--ease);
+    & + & { border-block-start: var(--border); }
+    &:first-child { border-start-start-radius: inherit; border-start-end-radius: inherit; }
+    &:last-child { border-end-start-radius: inherit; border-end-end-radius: inherit; }
+    > .tg-num, > .tg-badge { margin-inline-start: auto; }
+    &[data-grabbed] {
+      z-index: 2;
+      border-radius: var(--radius-control);
+      box-shadow: var(--shadow-overlay);
+      transform: scale(1.01);
+    }
+    &[data-drop='before']::before, &[data-drop='after']::after {
+      content: '';
+      position: absolute;
+      inset-inline: var(--space-2);
+      block-size: 2px;
+      border-radius: 1px;
+      background: var(--accent-main);
+    }
+    &[data-drop='before']::before { inset-block-start: -1px; }
+    &[data-drop='after']::after { inset-block-end: -1px; }
+  }
+  .tg-sortable__handle {
+    --control-hover-filter: none;
+    display: grid;
+    flex: 0 0 auto;
+    place-items: center;
+    inline-size: var(--control-h);
+    block-size: var(--control-h);
+    padding: 0;
+    border: 0;
+    border-radius: var(--radius-inset);
+    background: var(--control-idle-bg, transparent);
+    color: var(--text-secondary);
+    cursor: grab;
+    touch-action: none;
+    &:focus-visible { outline: 2px solid var(--text-link); outline-offset: -2px; }
+    &[aria-pressed='true'] { cursor: grabbing; color: var(--text-link); }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .tg-sortable__item[data-grabbed] { transform: none; }
+  }
 }

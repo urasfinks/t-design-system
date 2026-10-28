@@ -108,6 +108,9 @@
       transform-origin: right center;
     }
 
+    // A failed or over-quota bar keeps the same shape in the danger role.
+    &--destructive { --progress-color: var(--danger-main); }
+
     &--striped {
       & .tg-progress__bar {
         position: relative;

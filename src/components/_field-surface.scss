@@ -1,9 +1,14 @@
 // One field surface for composite fields (search, input group): the wrapper owns
 // the border, fill and focus ring; the native control inside stays transparent.
-@mixin surface($control) {
+// The static frame: border, radius and fill of a field.
+@mixin frame {
   border: var(--border-field);
   border-radius: var(--radius-control);
   background: var(--field-bg);
+}
+
+@mixin surface($control) {
+  @include frame;
 
   &:focus-within { border-color: var(--accent-main); box-shadow: var(--focus); }
   &:has(#{$control}[readonly]) { background: var(--section-bg-color); }

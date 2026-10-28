@@ -1,0 +1,292 @@
+@use '../base';
+@use 'steps';
+
+// Progress through a value or a sequence: ring, timeline, stepper. Markers and lines come
+// from the steps engine; colours are the progress and palette roles.
+@layer tds.components {
+  // Circular progress. --value 0…100 sets the arc; no value means indeterminate.
+  .tg-progress-ring {
+    --ring-size: 2.5rem;
+    --ring-stroke: 3;
+    position: relative;
+    display: inline-grid;
+    flex: 0 0 auto;
+    place-items: center;
+    inline-size: var(--ring-size);
+    block-size: var(--ring-size);
+    color: var(--progress-color);
+
+    > svg {
+      grid-area: 1 / 1;
+      inline-size: 100%;
+      block-size: 100%;
+      transform: rotate(-90deg);
+      overflow: visible;
+    }
+    &:dir(rtl) > svg { transform: rotate(-90deg) scaleY(-1); }
+
+    &--sm { --ring-size: 1.5rem; --ring-stroke: 4; }
+    &--lg { --ring-size: 4rem; --ring-stroke: 2.5; }
+    &--destructive { --progress-color: var(--danger-main); }
+  }
+  .tg-progress-ring__track, .tg-progress-ring__value {
+    fill: none;
+    stroke-width: var(--ring-stroke);
+  }
+  .tg-progress-ring__track { stroke: var(--progress-track-color); }
+  .tg-progress-ring__value {
+    stroke: currentColor;
+    stroke-linecap: round;
+    stroke-dasharray: clamp(0, var(--value, 25), 100) 100;
+    transition: stroke-dasharray var(--progress-duration) var(--ease);
+  }
+  .tg-progress-ring__label {
+    grid-area: 1 / 1;
+    color: var(--text-color);
+    font-size: calc(var(--ring-size) * .28);
+    font-weight: var(--fw-semibold);
+    font-variant-numeric: tabular-nums;
+    line-height: 1;
+  }
+  // Indeterminate: no aria-valuenow, a quarter arc turns.
+  .tg-progress-ring:not([aria-valuenow]) > svg { animation: tg-ring-spin 1s linear infinite; }
+  @keyframes tg-ring-spin { to { transform: rotate(270deg); } }
+  @media (prefers-reduced-motion: reduce) {
+    .tg-progress-ring:not([aria-valuenow]) > svg { animation: tg-ring-pulse 1.6s ease-in-out infinite; animation-duration: 1.6s; animation-iteration-count: infinite; }
+    @keyframes tg-ring-pulse { 50% { opacity: .4; } }
+  }
+
+  // Timeline: events in order with the current stage. A column by default; --horizontal
+  // is a scrollable row on wide screens and falls back to the column on phones.
+  .tg-timeline {
+    --timeline-marker: 1rem;
+    display: grid;
+    gap: 0;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+  .tg-timeline__item {
+    position: relative;
+    display: grid;
+    grid-template-columns: var(--timeline-marker) minmax(0, 1fr);
+    column-gap: var(--space-3);
+    row-gap: var(--space-1);
+    align-content: start;
+    padding-block-end: var(--space-5);
+
+    > :not(.tg-timeline__marker) { grid-column: 2; margin: 0; min-inline-size: 0; }
+    > :is(h3, h4, strong) { font-size: var(--fs); font-weight: var(--fw-semibold); }
+    > p { color: var(--text-secondary); }
+    > .tg-badge { justify-self: start; }
+
+    &:not(:last-child)::before { @include steps.line(block, calc(var(--timeline-marker) / 2), var(--space-1)); }
+    &[data-state='done']:not(:last-child)::before { background: var(--accent-main); }
+    &:last-child { padding-block-end: 0; }
+  }
+  .tg-timeline__marker {
+    @include steps.marker(var(--timeline-marker));
+    grid-row: 1;
+    grid-column: 1;
+    margin-block-start: .125rem;
+    border-width: 2px;
+    > .tg-icon { inline-size: .625rem; block-size: .625rem; stroke-width: 3; }
+  }
+  @include steps.marker-states('.tg-timeline__item', '.tg-timeline__marker');
+  .tg-timeline__time {
+    order: -1;
+    color: var(--text-secondary);
+    font-size: var(--fs-sm);
+    font-variant-numeric: tabular-nums;
+  }
+  .tg-timeline__item > .tg-timeline__time { grid-row: 1; }
+
+  @media (min-width: 48rem) {
+    .tg-timeline--horizontal {
+      grid-auto-columns: minmax(12rem, 1fr);
+      grid-auto-flow: column;
+      overflow-x: auto;
+      overscroll-behavior-inline: contain;
+      scroll-snap-type: inline proximity;
+      scrollbar-width: thin;
+      padding-block-end: var(--space-2);
+
+      > .tg-timeline__item {
+        grid-template-columns: minmax(0, 1fr);
+        grid-template-rows: auto var(--timeline-marker);
+        padding-block-end: 0;
+        padding-inline-end: var(--space-5);
+        scroll-snap-align: start;
+
+        > * { grid-column: 1; }
+        > .tg-timeline__time { grid-row: 1; }
+        > .tg-timeline__marker { grid-row: 2; margin-block: var(--space-2); }
+        &:not(:last-child)::before {
+          inset-block: auto;
+          inset-block-start: calc(var(--fs-sm) * 1.5 + var(--space-2) + var(--timeline-marker) / 2 - 1px);
+          inset-inline: calc(var(--timeline-marker) + var(--space-1)) var(--space-1);
+          inline-size: auto;
+          block-size: 2px;
+        }
+      }
+    }
+  }
+
+  // Stepper: the steps of a long form. A row with labels; on phones the labels of
+  // upcoming steps hide and the current label stays. --vertical adds descriptions.
+  .tg-stepper {
+    --stepper-marker: 2rem;
+    display: flex;
+    gap: var(--space-2);
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    counter-reset: tg-step;
+  }
+  .tg-stepper__step {
+    position: relative;
+    display: flex;
+    flex: 1 1 0;
+    align-items: center;
+    gap: var(--space-2);
+    min-inline-size: 0;
+    color: var(--text-secondary);
+    font-size: var(--fs-sm);
+    font-weight: var(--fw-medium);
+
+    &:not(:last-child)::after {
+      content: '';
+      flex: 1 1 var(--space-4);
+      min-inline-size: var(--space-4);
+      block-size: 2px;
+      border-radius: 1px;
+      background: var(--border-color);
+    }
+    &[data-state='done']:not(:last-child)::after { background: var(--accent-main); }
+    &:is([aria-current='step'], [data-state='current'], [data-state='done']) { color: var(--text-color); }
+    &[data-state='error'] { color: var(--text-danger); }
+  }
+  .tg-stepper__marker { @include steps.marker(var(--stepper-marker)); }
+  @include steps.marker-states('.tg-stepper__step', '.tg-stepper__marker');
+  .tg-stepper__label {
+    display: grid;
+    min-inline-size: 0;
+    overflow-wrap: anywhere;
+  }
+  .tg-stepper__description {
+    color: var(--text-secondary);
+    font-weight: var(--fw-regular);
+  }
+  @media (max-width: 36rem) {
+    .tg-stepper:not(.tg-stepper--vertical) .tg-stepper__step:not([aria-current='step'], [data-state='current']) .tg-stepper__label {
+      position: absolute;
+      inline-size: 1px;
+      block-size: 1px;
+      overflow: hidden;
+      clip-path: inset(50%);
+      white-space: nowrap;
+    }
+    .tg-stepper:not(.tg-stepper--vertical) .tg-stepper__step:not([aria-current='step'], [data-state='current']) { flex: 0 1 auto; }
+  }
+  .tg-stepper--vertical {
+    flex-direction: column;
+    gap: 0;
+
+    > .tg-stepper__step {
+      display: grid;
+      grid-template-columns: var(--stepper-marker) minmax(0, 1fr);
+      align-items: start;
+      column-gap: var(--space-3);
+      padding-block-end: var(--space-5);
+
+      > .tg-stepper__label { padding-block-start: calc((var(--stepper-marker) - 1.4em) / 2); font-size: var(--fs); }
+      &:last-child { padding-block-end: 0; }
+      &:not(:last-child)::after {
+        @include steps.line(block, calc(var(--stepper-marker) / 2), var(--space-1));
+        flex: none;
+        min-inline-size: 0;
+        block-size: auto;
+        border-radius: 1px;
+      }
+    }
+    .tg-stepper__description { font-size: var(--fs-sm); }
+  }
+
+  // Schedule: events on a time grid. Each event is a list item with its full time as
+  // text; the grid placement (--start/--end in rows of 15 minutes) is a visual extra.
+  .tg-schedule {
+    --schedule-row: 1.25rem;
+    --schedule-rows: 40;
+    display: grid;
+    grid-template-columns: 3.5rem minmax(0, 1fr);
+    min-inline-size: 0;
+    border: var(--border);
+    border-radius: var(--radius-lg);
+    background: var(--surface-bg);
+    overflow: clip;
+  }
+  .tg-schedule__axis {
+    display: grid;
+    grid-template-rows: repeat(var(--schedule-rows), var(--schedule-row));
+    margin: 0;
+    padding: 0;
+    border-inline-end: 1px solid var(--border-subtle-color);
+    color: var(--text-secondary);
+    font-size: var(--fs-xs);
+    font-variant-numeric: tabular-nums;
+    list-style: none;
+    > li { grid-row: span 4; padding: 0 var(--space-2); text-align: end; translate: 0 -.5em; }
+    > li:first-child { translate: none; }
+  }
+  .tg-schedule__row {
+    position: relative;
+    display: grid;
+    grid-template-rows: repeat(var(--schedule-rows), var(--schedule-row));
+    grid-auto-columns: minmax(0, 1fr);
+    gap: 0 var(--space-1);
+    margin: 0;
+    padding: 0 var(--space-1);
+    background-image: linear-gradient(to bottom, var(--border-subtle-color) 1px, transparent 1px);
+    background-size: 100% calc(var(--schedule-row) * 4);
+    list-style: none;
+  }
+  .tg-schedule__event {
+    grid-row: var(--start, 1) / var(--end, 5);
+    grid-column: var(--lane, 1);
+    display: grid;
+    align-content: start;
+    gap: 0;
+    min-block-size: 0;
+    margin-block: 1px;
+    padding: var(--space-1) var(--space-2);
+    border-inline-start: 3px solid var(--accent-main);
+    border-radius: var(--radius-xs);
+    background: var(--accent-soft);
+    color: var(--text-color);
+    font-size: var(--fs-xs);
+    line-height: 1.35;
+    overflow: hidden;
+    > strong { font-size: var(--fs-sm); font-weight: var(--fw-semibold); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+    > time { color: var(--text-secondary); font-variant-numeric: tabular-nums; }
+    &[data-conflict] { border-inline-start-color: var(--danger-main); background: var(--danger-soft); }
+    &:is(a, button) { cursor: pointer; text-decoration: none; }
+    &:focus-visible { outline: 2px solid var(--text-link); outline-offset: 1px; }
+  }
+  .tg-schedule__now {
+    position: absolute;
+    inset-inline: 0;
+    inset-block-start: calc(var(--now, 0) * var(--schedule-row));
+    z-index: 1;
+    block-size: 2px;
+    background: var(--danger-main);
+    pointer-events: none;
+    &::before { content: ''; position: absolute; inset-inline-start: -4px; inset-block-start: -3px; inline-size: 8px; block-size: 8px; border-radius: 50%; background: inherit; }
+  }
+  // Phones: the grid gives way to the list of events by time.
+  @media (max-width: 36rem) {
+    .tg-schedule { grid-template-columns: 1fr; }
+    .tg-schedule__axis, .tg-schedule__now { display: none; }
+    .tg-schedule__row { display: grid; grid-template-rows: none; gap: var(--space-2); padding: var(--space-2); background: none; }
+    .tg-schedule__event { grid-row: auto; grid-column: auto; padding-block: var(--space-2); }
+  }
+}

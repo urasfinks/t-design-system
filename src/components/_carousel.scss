@@ -1,0 +1,312 @@
+@use '../base';
+@use 'track';
+
+// Sequences viewed one at a time: carousel, image gallery. Built on the track engine:
+// without scripts every carousel is a scrollable, swipeable area.
+@property --fade-start { syntax: '<length>'; inherits: false; initial-value: 0px; }
+@property --fade-end { syntax: '<length>'; inherits: false; initial-value: 0px; }
+
+@layer tds.components {
+  .tg-carousel {
+    --carousel-ratio: 16 / 9;
+    --carousel-gap: var(--space-3);
+    position: relative;
+    display: grid;
+    gap: var(--space-3);
+    min-inline-size: 0;
+  }
+  .tg-carousel__viewport {
+    display: flex;
+    gap: var(--carousel-gap);
+    min-inline-size: 0;
+    border-radius: var(--radius-lg);
+    @include track.scroller(inline);
+    &:focus-visible { outline: 2px solid var(--text-link); outline-offset: 3px; }
+  }
+  .tg-carousel__slide {
+    position: relative;
+    display: grid;
+    flex: 0 0 100%;
+    min-inline-size: 0;
+    margin: 0;
+    border-radius: var(--radius-lg);
+    background: var(--background-muted);
+    overflow: clip;
+    scroll-snap-align: start;
+    scroll-snap-stop: always;
+
+    > img, > picture > img, > video {
+      display: block;
+      grid-area: 1 / 1;
+      inline-size: 100%;
+      block-size: 100%;
+      aspect-ratio: var(--carousel-ratio);
+      object-fit: cover;
+    }
+    // A caption sits on the image over the overlay role, not on a blur.
+    > figcaption {
+      grid-area: 1 / 1;
+      align-self: end;
+      justify-self: start;
+      max-inline-size: calc(100% - var(--space-6));
+      margin: var(--space-3);
+      padding: var(--space-1) var(--space-2);
+      border-radius: var(--radius-sm);
+      background: var(--overlay-bg);
+      color: var(--overlay-text);
+      font-size: var(--fs-sm);
+    }
+  }
+  .tg-carousel__controls {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-3);
+    > .tg-pagination { margin: 0; }
+  }
+  // In a narrow carousel the dots take their own row above the arrows instead of wrapping.
+  .tg-carousel { container: tg-carousel / inline-size; }
+  @container tg-carousel (max-width: 24rem) {
+    .tg-carousel__controls { flex-wrap: wrap; }
+    .tg-carousel__controls > .tg-pagination { order: -1; flex: 1 0 100%; flex-wrap: nowrap; }
+  }
+  .tg-carousel__count { min-inline-size: 4ch; color: var(--text-secondary); font-size: var(--fs-sm); font-variant-numeric: tabular-nums; text-align: center; }
+
+  // Peek: neighbours show at the edges, the current slide snaps to the centre.
+  .tg-carousel--peek {
+    > .tg-carousel__viewport {
+      padding-inline: var(--space-8);
+      scroll-padding-inline: var(--space-8);
+      border-radius: 0;
+      > .tg-carousel__slide { flex-basis: calc(100% - var(--space-4)); scroll-snap-align: center; }
+    }
+  }
+  // Thumbnails choose a slide; the current one carries the accent outline.
+  .tg-carousel__thumbs {
+    display: flex;
+    gap: var(--space-2);
+    min-inline-size: 0;
+    padding: 3px;
+    @include track.scroller(inline, proximity);
+    > button {
+      flex: 0 0 auto;
+      inline-size: 3.5rem;
+      block-size: 3.5rem;
+      padding: 0;
+      border: 2px solid transparent;
+      border-radius: var(--radius-inset);
+      background: var(--background-muted);
+      overflow: clip;
+      opacity: .72;
+      cursor: pointer;
+      transition: opacity var(--duration) var(--ease), border-color var(--duration) var(--ease);
+      > img { display: block; inline-size: 100%; block-size: 100%; object-fit: cover; }
+      &[aria-current='true'] { border-color: var(--accent-main); opacity: 1; }
+      &:focus-visible { outline: 2px solid var(--text-link); outline-offset: 2px; }
+    }
+    @media (hover: hover) and (pointer: fine) { > button:hover { opacity: 1; } }
+  }
+  // Vertical: snap along the block axis; thumbnails move to the inline end on wide screens.
+  .tg-carousel--vertical {
+    > .tg-carousel__viewport {
+      flex-direction: column;
+      block-size: var(--carousel-height, 20rem);
+      @include track.scroller(block);
+      > .tg-carousel__slide { flex-basis: 100%; > img { aspect-ratio: auto; } }
+    }
+    @media (min-width: 36rem) {
+      grid-template-columns: minmax(0, 1fr) auto;
+      > .tg-carousel__thumbs { flex-direction: column; max-block-size: var(--carousel-height, 20rem); @include track.scroller(block, proximity); }
+    }
+  }
+}
+
+@layer tds.components {
+  // Card stack: cards on one cell; the ones behind step back by transform. Buttons are
+  // always there; swipe is an extra. Only the front card is in the accessibility tree.
+  .tg-card-stack {
+    display: grid;
+    gap: var(--space-4);
+    justify-items: center;
+    min-inline-size: 0;
+  }
+  .tg-card-stack__deck { display: grid; inline-size: min(100%, 22rem); padding-block-start: var(--space-4); }
+  .tg-card-stack__item {
+    grid-area: 1 / 1;
+    inline-size: 100%;
+    transform-origin: top center;
+    transform: translateY(calc(var(--depth, 0) * -.625rem)) scale(calc(1 - var(--depth, 0) * .05));
+    z-index: calc(10 - var(--depth, 0));
+    transition: transform var(--duration) var(--ease), opacity var(--duration) var(--ease);
+    &[data-depth='3'], &[data-depth='4'] { opacity: 0; }
+    &:not([data-depth='0']) { box-shadow: var(--shadow-control); }
+    &[data-leaving] { opacity: 0; transform: translateX(var(--leave-x, 110%)) rotate(var(--leave-r, 6deg)); }
+  }
+  .tg-card-stack__controls { display: flex; flex-wrap: wrap; justify-content: center; gap: var(--space-2); }
+
+  // Image accordion: panels share a row; the open one takes more fractions. The change is
+  // instant — only the caption fades. Phones get a vertical list.
+  .tg-image-accordion {
+    display: flex;
+    gap: var(--space-2);
+    block-size: var(--image-accordion-height, 20rem);
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+  .tg-image-accordion__item {
+    position: relative;
+    flex: 1 1 0;
+    min-inline-size: var(--control-h);
+    border-radius: var(--radius-lg);
+    overflow: clip;
+    background: var(--background-muted);
+    &:has(> [aria-expanded='true']) { flex-grow: 4; }
+    > img { position: absolute; inset: 0; inline-size: 100%; block-size: 100%; object-fit: cover; }
+  }
+  .tg-image-accordion__trigger {
+    --control-hover-filter: none;
+    --control-hover-bg: transparent;
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: flex-end;
+    padding: var(--space-3);
+    border: 0;
+    border-radius: inherit;
+    background: linear-gradient(to top, var(--overlay-bg), transparent 55%);
+    color: var(--overlay-text);
+    font: inherit;
+    font-weight: var(--fw-semibold);
+    text-align: start;
+    cursor: pointer;
+    &:focus-visible { outline: 2px solid var(--text-link); outline-offset: -3px; }
+    > span { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+    &[aria-expanded='false'] > span { writing-mode: vertical-rl; rotate: 180deg; }
+  }
+  // The description sits on the overlay role like a carousel caption, so its contrast does
+  // not depend on the picture.
+  .tg-image-accordion__panel {
+    position: absolute;
+    inset-inline-start: var(--space-3);
+    inset-block-end: calc(var(--space-3) + 1.75rem);
+    max-inline-size: calc(100% - var(--space-6));
+    margin: 0;
+    padding: var(--space-1) var(--space-2);
+    border-radius: var(--radius-sm);
+    background: var(--overlay-bg);
+    color: var(--overlay-text);
+    font-size: var(--fs-sm);
+    pointer-events: none;
+    animation: tg-caption-in var(--duration) var(--ease);
+  }
+  @keyframes tg-caption-in { from { opacity: 0; } }
+  @media (max-width: 36rem) {
+    .tg-image-accordion { flex-direction: column; block-size: auto; }
+    .tg-image-accordion__item { flex: none; block-size: 4rem; &:has(> [aria-expanded='true']) { block-size: 14rem; } }
+    .tg-image-accordion__trigger[aria-expanded='false'] > span { writing-mode: horizontal-tb; rotate: none; }
+  }
+
+  // Marquee: a track of items and its copy move by transform; hover, focus and the pause
+  // button stop it. Reduced motion or phones: a still row that scrolls by hand.
+  .tg-marquee {
+    --marquee-duration: 40s;
+    --marquee-gap: var(--space-4);
+    position: relative;
+    display: grid;
+    gap: var(--space-3);
+    min-inline-size: 0;
+  }
+  .tg-marquee__viewport {
+    display: flex;
+    gap: var(--marquee-gap);
+    overflow: hidden;
+    mask-image: linear-gradient(to right, transparent, black var(--space-8), black calc(100% - var(--space-8)), transparent);
+  }
+  .tg-marquee__track {
+    display: flex;
+    flex: 0 0 auto;
+    gap: var(--marquee-gap);
+    min-inline-size: 100%;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    animation: tg-marquee var(--marquee-duration) linear infinite;
+    > * { flex: 0 0 auto; inline-size: min(20rem, 80vw); }
+  }
+  @keyframes tg-marquee { to { transform: translateX(calc(-100% - var(--marquee-gap))); } }
+  .tg-marquee:dir(rtl) .tg-marquee__track { animation-direction: reverse; }
+  .tg-marquee:is(:hover, :focus-within, [data-paused]) .tg-marquee__track { animation-play-state: paused; }
+  .tg-marquee__pause { justify-self: end; }
+  .tg-marquee--vertical {
+    > .tg-marquee__viewport { flex-direction: column; block-size: var(--marquee-height, 22rem); mask-image: linear-gradient(to bottom, transparent, black var(--space-8), black calc(100% - var(--space-8)), transparent); }
+    .tg-marquee__track { flex-direction: column; min-inline-size: 0; min-block-size: 100%; animation-name: tg-marquee-y; > * { inline-size: auto; } }
+  }
+  @keyframes tg-marquee-y { to { transform: translateY(calc(-100% - var(--marquee-gap))); } }
+  @media (prefers-reduced-motion: reduce), (max-width: 36rem) {
+    .tg-marquee__viewport { overflow-x: auto; scroll-snap-type: x proximity; mask-image: none; scrollbar-width: thin; }
+    .tg-marquee__track { animation: none; > * { scroll-snap-align: start; } }
+    .tg-marquee__track[aria-hidden='true'] { display: none; }
+    .tg-marquee__pause { display: none; }
+    .tg-marquee--vertical > .tg-marquee__viewport { overflow-y: auto; overflow-x: hidden; }
+  }
+}
+
+@layer tds.utilities {
+  // A scroll area whose edges fade to show there is more. Only transparency is masked,
+  // so text under the fade stays readable as it scrolls into view.
+  .tg-scroll-fade {
+    --fade-size: var(--space-8);
+    --fade-start: var(--fade-size);
+    --fade-end: var(--fade-size);
+    @include track.fade-mask(inline, var(--fade-size));
+    overflow-x: auto;
+    &:focus-visible { outline: 2px solid var(--text-link); outline-offset: 2px; }
+  }
+  .tg-scroll-fade--block { @include track.fade-mask(block, var(--fade-size)); overflow-x: visible; overflow-y: auto; }
+  @supports (animation-timeline: scroll()) {
+    .tg-scroll-fade { animation: tg-scroll-fade-x linear both; animation-timeline: scroll(self inline); }
+    .tg-scroll-fade--block { animation-name: tg-scroll-fade-y; animation-timeline: scroll(self block); }
+    @keyframes tg-scroll-fade-x { 0% { --fade-start: 0px; --fade-end: var(--fade-size); } 8% { --fade-start: var(--fade-size); } 92% { --fade-end: var(--fade-size); } 100% { --fade-start: var(--fade-size); --fade-end: 0px; } }
+    @keyframes tg-scroll-fade-y { 0% { --fade-start: 0px; --fade-end: var(--fade-size); } 8% { --fade-start: var(--fade-size); } 92% { --fade-end: var(--fade-size); } 100% { --fade-start: var(--fade-size); --fade-end: 0px; } }
+  }
+
+  // G2 — coverflow, fan and ring: G1 slides transformed by their distance from the centre
+  // with a scroll-driven timeline. Without support, with reduced motion and on phones the
+  // carousel stays the flat G1; focus order never changes.
+  .tg-carousel:is(.tg-carousel--coverflow, .tg-carousel--fan, .tg-carousel--ring) { --carousel-flow: 1; }
+  .tg-carousel:is(.tg-carousel--coverflow, .tg-carousel--fan, .tg-carousel--ring):dir(rtl) { --carousel-flow: -1; }
+  @supports (animation-timeline: view()) {
+    @media (prefers-reduced-motion: no-preference) and (min-width: 36rem) {
+      .tg-carousel:is(.tg-carousel--coverflow, .tg-carousel--fan, .tg-carousel--ring) > .tg-carousel__viewport {
+        perspective: 60rem;
+        // The first and last slides can reach the centre, where they are flat.
+        padding: var(--space-4) 27%;
+        > .tg-carousel__slide {
+          // Padding leaves 46% of the width; each slide takes all of it.
+          flex-basis: 100%;
+          scroll-snap-align: center;
+          animation: tg-carousel-coverflow linear both;
+          animation-timeline: view(inline);
+        }
+      }
+      .tg-carousel.tg-carousel--fan > .tg-carousel__viewport > .tg-carousel__slide { transform-origin: 50% 160%; animation-name: tg-carousel-fan; }
+      .tg-carousel.tg-carousel--ring > .tg-carousel__viewport > .tg-carousel__slide { animation-name: tg-carousel-ring; }
+    }
+  }
+  @keyframes tg-carousel-coverflow {
+    from { transform: rotateY(calc(42deg * var(--carousel-flow))) scale(.82); opacity: .55; }
+    50% { transform: none; opacity: 1; }
+    to { transform: rotateY(calc(-42deg * var(--carousel-flow))) scale(.82); opacity: .55; }
+  }
+  @keyframes tg-carousel-fan {
+    from { transform: rotate(calc(9deg * var(--carousel-flow))) scale(.9); opacity: .6; }
+    50% { transform: none; opacity: 1; }
+    to { transform: rotate(calc(-9deg * var(--carousel-flow))) scale(.9); opacity: .6; }
+  }
+  @keyframes tg-carousel-ring {
+    from { transform: rotateY(calc(62deg * var(--carousel-flow))) translateZ(-8rem); opacity: .4; }
+    50% { transform: none; opacity: 1; }
+    to { transform: rotateY(calc(-62deg * var(--carousel-flow))) translateZ(-8rem); opacity: .4; }
+  }
+}

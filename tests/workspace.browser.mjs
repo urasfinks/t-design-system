@@ -1,3 +1,4 @@
+// Specs: A4 B2 B7 B14 C1 C6 D2 D4 FT1 F2 F3 F11 F12 M1 M2 M5 M6 M13 N4 N9 N12
 // Workspace screen: the cascade-built components (menu, input group, card zones, stat,
 // table selection/sorting/stacking, accordion, notices, avatar group, pager, site nav,
 // chat, side dialog) across themes, widths, keyboard, RTL and reduced motion.

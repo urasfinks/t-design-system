@@ -12,7 +12,7 @@ try {
   const errors = [];
   page.on('pageerror', error => errors.push(error.message));
   await page.goto('http://127.0.0.1:4186/docs/');
-  const SECTIONS = 20;
+  const SECTIONS = 28;
   assert.equal(await page.locator('main > section').count(), SECTIONS);
   assert.equal(await page.locator('.sidebar .nav-link').count(), SECTIONS);
   assert.equal(await page.locator('#section-select option').count(), SECTIONS);
@@ -99,7 +99,8 @@ try {
   const staticPage = await browser.newPage({ javaScriptEnabled: false });
   await staticPage.goto('http://127.0.0.1:4186/docs/');
   assert.equal(await staticPage.locator('.sidebar .nav-link:visible').count(), SECTIONS);
-  assert.equal(await staticPage.locator('#buttons [data-example]:visible').count(), 3);
+  assert.equal(await staticPage.locator('#buttons [data-example]:visible').count(), await staticPage.locator('#buttons [data-example]').count());
+  assert.ok(await staticPage.locator('#buttons [data-example]').count() >= 4);
   assert.equal(await staticPage.locator('.example-rule:visible').count(), await staticPage.locator('[data-example]').count() + 1, 'rules are static text, readable without JavaScript');
 
   // Deep links must land on their section even though the icon gallery grows the page after load.

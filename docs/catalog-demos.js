@@ -1,3 +1,4 @@
+import { initMenus } from './menu-demo.js';
 export function initCatalogDemos({ root = document } = {}) {
   const documentRoot = root.documentElement;
   const themeSelect = root.querySelector('#theme');
@@ -36,7 +37,10 @@ export function initCatalogDemos({ root = document } = {}) {
   for (const chip of root.querySelectorAll('.tg-chip[aria-pressed]')) {
     chip.addEventListener('click', () => chip.setAttribute('aria-pressed', String(chip.getAttribute('aria-pressed') !== 'true')));
   }
-  const tabs = [...root.querySelectorAll('[role="tab"]')];
+  // Each tablist is its own group: several tab sets may live on one page.
+  // Vertical and collapsed-label tab sets have their own controller (catalog-components.js).
+  for (const list of root.querySelectorAll('[role="tablist"]:not(.tg-tabs--vertical, .tg-tabs--collapsed-labels)')) initTabs([...list.querySelectorAll('[role="tab"]')]);
+  function initTabs(tabs) {
   function selectTab(tab, focus = false) {
     for (const item of tabs) {
       const active = item === tab;
@@ -57,6 +61,7 @@ export function initCatalogDemos({ root = document } = {}) {
       if (event.key === 'End') next = tabs.length - 1;
       if (next !== undefined) { event.preventDefault(); selectTab(tabs[next], true); }
     });
+  }
   }
   const toast = root.querySelector('#demo-toast');
   let toastTimer;
@@ -108,6 +113,8 @@ export function initCatalogDemos({ root = document } = {}) {
     });
   }
 
+  initWorkspaceDemos(root);
+
   // The refresh icon has a real refresh action; all demo state is recreated on load.
   root.querySelector('#reload-examples').addEventListener('click', () => location.reload());
   const range = root.querySelector('#demo-range');
@@ -125,4 +132,110 @@ export function initCatalogDemos({ root = document } = {}) {
     content.inert = !expanded;
     content.setAttribute('aria-hidden', String(!expanded));
   });
+}
+
+// Demos for the cascade-built components; the application owns all of this behavior.
+function initWorkspaceDemos(root) {
+  const say = (node, text) => { node.textContent = ''; requestAnimationFrame(() => { node.textContent = text; }); };
+  const plural = (n, one, few, many) => {
+    const mod10 = n % 10, mod100 = n % 100;
+    if (mod10 === 1 && mod100 !== 11) return one;
+    if (mod10 >= 2 && mod10 <= 4 && (mod100 < 12 || mod100 > 14)) return few;
+    return many;
+  };
+  const menuStatus = root.querySelector('#demo-menu-status');
+  initMenus({ root, onAction: item => say(menuStatus, `Пример: ${item.textContent.trim().replace(/\s+/g, ' ')}`) });
+
+  for (const toggle of root.querySelectorAll('.tg-toggle[aria-pressed]')) {
+    toggle.addEventListener('click', () => toggle.setAttribute('aria-pressed', String(toggle.getAttribute('aria-pressed') !== 'true')));
+  }
+
+  const save = root.querySelector('#demo-async-save');
+  const saveStatus = root.querySelector('#demo-async-status');
+  save.addEventListener('click', () => {
+    if (save.dataset.state === 'busy') return;
+    save.dataset.state = 'busy';
+    save.setAttribute('aria-busy', 'true');
+    say(saveStatus, 'Публикуем');
+    setTimeout(() => {
+      save.dataset.state = 'success';
+      save.removeAttribute('aria-busy');
+      say(saveStatus, 'Опубликовано');
+      setTimeout(() => { save.dataset.state = 'idle'; }, 1600);
+    }, 900);
+  });
+
+  const password = root.querySelector('#demo-new-password');
+  const rules = { length: value => value.length >= 10, digit: value => /\d/.test(value) };
+  password.addEventListener('input', () => {
+    for (const rule of root.querySelectorAll('#demo-password-rules [data-rule]')) rule.dataset.met = String(rules[rule.dataset.rule](password.value));
+  });
+  root.querySelector('#demo-reveal').addEventListener('click', event => {
+    const shown = password.type === 'password';
+    password.type = shown ? 'text' : 'password';
+    event.currentTarget.setAttribute('aria-pressed', String(shown));
+  });
+
+  const exportAll = root.querySelector('#demo-export-all');
+  const exportItems = [...root.querySelectorAll('[data-export]')];
+  const syncExport = () => {
+    const count = exportItems.filter(box => box.checked).length;
+    exportAll.checked = count === exportItems.length;
+    exportAll.indeterminate = count > 0 && count < exportItems.length;
+    root.querySelector('#demo-export-count').textContent = `Выбрано ${count} из ${exportItems.length}`;
+  };
+  exportAll.addEventListener('change', () => { for (const box of exportItems) box.checked = exportAll.checked; syncExport(); });
+  for (const box of exportItems) box.addEventListener('change', syncExport);
+  syncExport();
+
+  const expand = root.querySelector('#demo-faq-expand');
+  const sections = [...root.querySelectorAll('#demo-faq > details')];
+  const label = () => { expand.textContent = sections.every(section => section.open) ? 'Свернуть всё' : 'Развернуть всё'; };
+  expand.addEventListener('click', () => { const open = !sections.every(section => section.open); for (const section of sections) section.open = open; label(); });
+  for (const section of sections) section.addEventListener('toggle', label);
+
+  const table = root.querySelector('#demo-payments');
+  const all = root.querySelector('#demo-payments-all');
+  const bulk = root.querySelector('#demo-bulk');
+  const rowChecks = () => [...table.querySelectorAll('tbody .tg-check')];
+  const syncRows = () => {
+    const chosen = rowChecks().filter(box => box.checked).length;
+    all.checked = chosen > 0 && chosen === rowChecks().length;
+    all.indeterminate = chosen > 0 && chosen < rowChecks().length;
+    bulk.hidden = chosen === 0;
+    root.querySelector('#demo-bulk-count').textContent = `Выбрано ${chosen} ${plural(chosen, 'участник', 'участника', 'участников')}`;
+  };
+  all.addEventListener('change', () => { for (const box of rowChecks()) box.checked = all.checked; syncRows(); });
+  table.addEventListener('change', event => { if (event.target.closest('tbody .tg-table__select')) syncRows(); });
+  root.querySelector('#demo-bulk-clear').addEventListener('click', () => { for (const box of rowChecks()) box.checked = false; syncRows(); all.focus(); });
+  const sortNames = { due: 'сроку', amount: 'сумме' };
+  table.addEventListener('click', event => {
+    const button = event.target.closest('.tg-table__sort');
+    if (!button) return;
+    const header = button.closest('th');
+    const next = header.getAttribute('aria-sort') === 'descending' ? 'ascending' : 'descending';
+    for (const th of table.querySelectorAll('th[aria-sort]')) th.setAttribute('aria-sort', 'none');
+    header.setAttribute('aria-sort', next);
+    const key = header.dataset.sort;
+    const value = row => key === 'amount' ? Number(row.dataset.amount) : Date.parse(row.dataset.due);
+    const body = table.tBodies[0];
+    body.append(...[...body.rows].sort((a, b) => (value(a) - value(b)) * (next === 'ascending' ? 1 : -1)));
+    say(root.querySelector('#demo-payments-status'), `Отсортировано по ${sortNames[key]}, ${next === 'ascending' ? 'по возрастанию' : 'по убыванию'}`);
+  });
+
+  for (const dismiss of root.querySelectorAll('[data-dismiss]')) {
+    dismiss.addEventListener('click', () => {
+      const notice = root.getElementById(dismiss.dataset.dismiss);
+      const section = notice.closest('section');
+      notice.hidden = true;
+      const heading = section.querySelector('h2');
+      heading.tabIndex = -1;
+      heading.focus();
+    });
+  }
+
+  const side = root.querySelector('#demo-side-dialog');
+  root.querySelector('#open-side-dialog').addEventListener('click', () => side.showModal());
+  side.querySelector('[data-close-side]').addEventListener('click', () => side.close());
+  root.querySelector('#demo-chat-form').addEventListener('submit', event => event.preventDefault());
 }

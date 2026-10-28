@@ -29,15 +29,74 @@
     > :is(img, video, picture) {
       display: block;
       inline-size: 100%;
+      block-size: auto;
       aspect-ratio: var(--card-media-ratio, 16 / 9);
       object-fit: cover;
     }
+  }
+  .tg-card__media--video > video { background: var(--background-muted); }
+  // Featured card: a 2px accent frame drawn inside the 1px border, so the size stays.
+  .tg-card--featured {
+    border-color: var(--accent-main);
+    box-shadow: inset 0 0 0 1px var(--accent-main);
+  }
+  // Media first: the text sits on the image over a one-colour shade (the overlay role
+  // fading to transparent), so it keeps contrast on light photos.
+  .tg-card--overlay {
+    position: relative;
+    isolation: isolate;
+    justify-content: flex-end;
+    min-block-size: 16rem;
+    padding: var(--card-padding);
+    border-color: transparent;
+    background: var(--overlay-bg);
+    color: var(--overlay-text);
+    overflow: clip;
+
+    > .tg-card__media {
+      position: absolute;
+      inset: 0;
+      z-index: -1;
+      margin: 0;
+      border-radius: inherit;
+      > :is(img, video, picture) { block-size: 100%; aspect-ratio: auto; }
+      &::after {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(to top, var(--overlay-bg) 0%, var(--overlay-bg) 18%, transparent 72%);
+      }
+    }
+    > .tg-card__body, > .tg-card__footer { position: relative; margin-block-start: 0; }
+    :is(.tg-header__subtitle, .tg-text-muted, p) { color: inherit; }
+    .tg-card__link { color: inherit; }
+    // The photo leans in a little on hover; the text never moves.
+    @media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
+      > .tg-card__media > :is(img, video, picture) { transition: transform var(--duration) var(--ease); }
+      &:is(:hover, :focus-within) > .tg-card__media > :is(img, video, picture) { transform: scale(1.03); }
+    }
+  }
+  // A card that opens in place: a native details element with the card surface.
+  details.tg-card--disclosure {
+    padding: 0;
+    > .tg-disclosure__trigger {
+      padding: var(--card-padding);
+      border-radius: inherit;
+      font-size: var(--fs);
+    }
+    &[open] > .tg-disclosure__trigger { border-end-start-radius: 0; border-end-end-radius: 0; }
+    > .tg-disclosure__content, > .tg-card__body { padding: 0 var(--card-padding) var(--card-padding); }
+  }
+  // Card to dialog: the shared element keeps its place while the dialog opens.
+  @media (prefers-reduced-motion: no-preference) {
+    ::view-transition-group(tg-card-morph) { animation-duration: var(--duration); animation-timing-function: var(--ease); }
   }
   .tg-card__body {
     display: grid;
     gap: var(--space-2);
     min-inline-size: 0;
     > * { margin: 0; }
+    > .tg-badge { justify-self: start; }
   }
   .tg-card__footer {
     display: flex;
@@ -208,6 +267,22 @@
 
     &-transparent {
       block-size: var(--space-4);
+    }
+  }
+  // A divider that names the choice between two ways ("или"). The text is read once:
+  // the element is a separator with a label, the lines are decoration.
+  .tg-divider--label {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    block-size: auto;
+    border-block-start: 0;
+    color: var(--text-secondary);
+    font-size: var(--fs-sm);
+    &::before, &::after {
+      content: '';
+      flex: 1 1 0;
+      border-block-start: 1px dashed var(--section-separator-color);
     }
   }
 }

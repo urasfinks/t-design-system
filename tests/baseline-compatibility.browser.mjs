@@ -5,7 +5,8 @@ import {compareCatalogPaint} from './helpers/catalog-paint.mjs';
 const fixture = 'tests/fixtures/cascade-baseline/';
 const baseline = await readFile(fixture+'t-design-system.css','utf8') + await readFile(fixture+'catalog.css','utf8');
 const current = await readFile('dist/t-design-system.css','utf8') + await readFile('docs/catalog.css','utf8');
-const html = (await readFile('docs/index.html','utf8'))
+// The saved catalog markup is rendered, so new examples never change what is compared.
+const html = (await readFile(fixture+'index.html','utf8'))
   .replace(/<script\b[\s\S]*?<\/script>/g,'')
   .replace(/<link\b[^>]*>/g,'')
   .replace(/<iframe\b[\s\S]*?<\/iframe>/g,'')

@@ -842,6 +842,128 @@ CSS приложения вне слоёв может переопределят
 | Навигация | `.tg-tabs--underline`, `.tg-site-nav`, `__link[aria-current]`, `.tg-page-header--sticky`, `.tg-pager`, `__link`, `__ellipsis`, `__info` | Сегментные табы остаются видом по умолчанию; `.tg-pagination` — для каруселей |
 | Чат с ассистентом | `.tg-chat`, `__log` (`role=log`), `.tg-message`, `--user`, `--assistant`, `__body`, `__meta`, `__actions`, `data-state=streaming/done/stopped/error`; `.tg-composer__toolbar`, `__attachments` | Стриминг, остановка, объявление начала и конца ответа, санитизация Markdown — приложение |
 
+### Компоненты по архиву 21st.dev (волны 0–8)
+
+Все 110 компонентных спецификаций из `references/21st-dev-1000/images/*/components.md`
+реализованы и показаны в [docs/index.html](docs/index.html) (у каждого примера
+`data-spec="ID"`). Секции лендингов и композиции из готовых классов остаются
+документацией. Статус каждой спецификации — `references/21st-dev-1000/implementation.json`,
+сверка — `node scripts/verify-implementation.mjs` (код 0, когда готовы все), план —
+`docs/superpowers/plans/2026-10-27-full-component-implementation.md`.
+
+Общие движки (`floating`, `option`, `selected`, `steps`, `track`, `field-surface`) описаны в
+[docs/component-standard.md](docs/component-standard.md). Поведение примеров — в
+`docs/catalog-components.js`: это образец того, что делает приложение (клавиатура, фокус,
+объявления), а не часть CSS.
+
+Эффекты подключаются отдельно:
+
+```js
+import { initEffects } from 't-design-system/effects/js';
+const dispose = initEffects(); // указатель для .tg-effect-*, холсты .tg-effect-layer, рябь карусели
+```
+
+| ID | Компонент | Классы и атрибуты |
+| --- | --- | --- |
+| **0. Основа и движки** | | |
+| B8 | Сегментированный выбор | `.tg-segmented`, `.tg-segmented__item`, `.tg-segmented--vertical` |
+| B15 | Подсказка | `.tg-tooltip` |
+| **1. Примитивы** | | |
+| A1 | Композер запроса | `.tg-composer__toolbar`, `.tg-composer__attachments` |
+| B4 | Кнопка копирования | `.tg-copy`, `.tg-copy__value`, `.tg-copy__action` |
+| B5 | Кнопка с ходом выполнения | `.tg-btn__progress`, `.tg-btn__states` |
+| B9 | Группа кнопок и сплит-кнопка | `.tg-btn-group`, `.tg-btn-group--attached`, `.tg-split-btn`, `.tg-split-btn__main`, `.tg-split-btn__menu` |
+| B13 | Панель инструментов и dock | `.tg-toolbar--floating`, `.tg-toolbar__separator` |
+| B17 | Toast, snackbar и баннер-уведомление | `.tg-toast__action` |
+| C2 | Медиа-карточка | `.tg-card--overlay`, `.tg-card__media--video` |
+| C11 | Хронология и ход процесса | `.tg-timeline`, `.tg-timeline__item`, `.tg-timeline__marker`, `.tg-timeline__time` |
+| C17 | Раскрывающаяся карточка | `.tg-card--disclosure` |
+| CT1 | Баннер-объявление | `.tg-banner`, `.tg-banner--sticky`, `.tg-banner--accent`, `.tg-banner__content`, `.tg-banner__action`, `.tg-banner__dismiss` |
+| D1 | Таблица данных | `.tg-table--compact`, `.tg-table--stack`, `.tg-table__cell-main`, `.tg-table__cell-meta` |
+| F1 | Текстовое поле и многострочный ввод | `.tg-label__required` |
+| F28 | Пошаговая форма | `.tg-stepper`, `.tg-stepper__step`, `.tg-stepper__marker`, `.tg-stepper__label` |
+| M3 | Toast и стек уведомлений | `.tg-toast-region`, `.tg-toast__title`, `.tg-toast__action`, `.tg-toast__close` |
+| M7 | Линейный прогресс | `.tg-progress--destructive` |
+| M8 | Круговой прогресс | `.tg-progress-ring`, `.tg-progress-ring__track`, `.tg-progress-ring__value`, `.tg-progress-ring__label` |
+| M9 | Шаги процесса | `.tg-stepper--vertical` |
+| M10 | Хронология | `.tg-timeline--horizontal` |
+| M15 | Клавиши и сочетания | `.tg-kbd` |
+| M19 | Индикатор ожидания | `.tg-spinner` |
+| N1 | Вкладки | `.tg-tabs--underline`, `.tg-tabs--segmented` |
+| S2 | Внешние провайдеры, SSO и «сначала идентификатор» | `.tg-divider--label` |
+| **2. Выбор и ввод** | | |
+| C5 | Всплывающая карточка (hover card) | `.tg-hover-card` |
+| D3 | Панель фильтров, поиска и столбцов | `.tg-table-toolbar` |
+| F4 | Числовое поле со степпером | `.tg-number`, `.tg-number__step`, `.tg-number__input` |
+| F5 | Код подтверждения (OTP) | `.tg-otp`, `.tg-otp__input`, `.tg-otp__slot`, `.tg-otp__separator` |
+| F6 | Поле поиска | `.tg-search` |
+| F7 | Нативный список выбора | `.tg-select` |
+| F8 | Пользовательский список выбора (listbox) | `.tg-listbox-trigger`, `.tg-listbox`, `.tg-listbox__option`, `.tg-listbox__option-meta` |
+| F9 | Combobox и мультивыбор с поиском | `.tg-combobox`, `.tg-combobox__input`, `.tg-combobox__list` |
+| F10 | Ввод тегов | `.tg-tag-input`, `.tg-tag-input__tag`, `.tg-tag-input__remove`, `.tg-tag-input__field` |
+| F13 | Радиогруппа | `.tg-radio` |
+| F14 | Карточки выбора | `.tg-choice-card`, `.tg-choice-card__media`, `.tg-choice-card__title`, `.tg-choice-card__description`, `.tg-choice-card__indicator` |
+| F16 | Чипы выбора | `.tg-chip` |
+| F17 | Переключатель | `.tg-switch` |
+| F18 | Ползунок и диапазон | `.tg-range-field`, `.tg-range-field__output`, `.tg-range-dual` |
+| F19 | Загрузка файлов и dropzone | `.tg-upload__list`, `.tg-upload__item` |
+| **3. Навигация и структура** | | |
+| G1 | Карусель изображений | `.tg-carousel--peek`, `.tg-carousel__thumbs`, `.tg-carousel--vertical` |
+| M22 | Затухание края прокрутки | `.tg-scroll-fade` |
+| N2 | Раскрывающиеся иконочные вкладки | `.tg-tabs--collapsed-labels`, `.tg-tab__label` |
+| N3 | Вертикальные вкладки и навигация настроек | `.tg-tabs--vertical` |
+| N5 | Мега-меню и выпадающая навигация | `.tg-nav-menu`, `.tg-nav-menu__trigger`, `.tg-nav-menu__panel`, `.tg-nav-menu__group`, `.tg-nav-menu__link` |
+| N6 | Мобильная навигация | `.tg-tabbar` |
+| N8 | Строка меню (menubar) | `.tg-menubar`, `.tg-menubar__item` |
+| N10 | Палитра команд | `.tg-command`, `.tg-command__input`, `.tg-command__list`, `.tg-command__group`, `.tg-command__item`, `.tg-command__shortcut`, `.tg-command__footer` |
+| N11 | Боковая панель | `.tg-sidebar`, `.tg-sidebar__header`, `.tg-sidebar__section`, `.tg-sidebar__link`, `.tg-sidebar__footer`, `.tg-sidebar--collapsed` |
+| N13 | Оглавление | `.tg-toc`, `.tg-toc__link`, `.tg-toc__link--nested` |
+| N14 | Список разделов со счётчиками | `.tg-list-item` |
+| N16 | Навигация карусели | `.tg-carousel`, `.tg-carousel__viewport`, `.tg-carousel__slide`, `.tg-carousel__controls` |
+| **4. Дата и время** | | |
+| F20 | Поле даты и времени | `.tg-date-field`, `.tg-date-field__segment` |
+| F21 | Календарь | `.tg-calendar`, `.tg-calendar__header`, `.tg-calendar__grid`, `.tg-calendar__day`, `.tg-calendar__day--today`, `.tg-calendar__day--outside`, `.tg-calendar__event-dot` |
+| F22 | Диапазон дат и пресеты | `.tg-calendar--range`, `.tg-calendar__day--range-start`, `.tg-calendar__day--in-range`, `.tg-calendar__day--range-end`, `.tg-calendar__presets` |
+| **5. Данные** | | |
+| C12 | Статусные карточки | `.tg-notice` |
+| C16 | Bento-сетка | `.tg-grid--bento` |
+| D5 | Состояния загрузки таблицы | `.tg-skeleton`, `.tg-empty` |
+| D6 | Сортируемый список | `.tg-sortable`, `.tg-sortable__item`, `.tg-sortable__handle` |
+| D7 | Линейные и площадные графики | `.tg-chart`, `.tg-chart__header`, `.tg-chart__plot`, `.tg-chart__legend`, `.tg-chart__legend-item`, `.tg-chart__tooltip`, `.tg-chart__data` |
+| D8 | Столбчатые графики | `.tg-chart--bar` |
+| D9 | Кольцевые и круговые диаграммы | `.tg-chart--donut`, `.tg-chart__center` |
+| M11 | Расписание по времени | `.tg-schedule`, `.tg-schedule__axis`, `.tg-schedule__row`, `.tg-schedule__event` |
+| **6. Ассистент, текст, карточки контента** | | |
+| A5 | Ход работы агента и результаты инструментов | `.tg-agent-step`, `.tg-agent-step__icon`, `.tg-agent-step__label`, `.tg-agent-step__time`, `.tg-agent-step__detail` |
+| A6 | Подтверждение действия агента | `.tg-approval`, `.tg-approval__title`, `.tg-approval__description`, `.tg-approval__options`, `.tg-approval__actions` |
+| B1 | Базовая кнопка и варианты | `.tg-btn` |
+| B3 | Иконкокнопка | `.tg-icon-btn` |
+| B16 | Диалог и выдвижная панель | `.tg-modal` |
+| PR2 | Карточка тарифа | `.tg-card--featured`, `.tg-price`, `.tg-feature-list`, `.tg-feature-list__item--off` |
+| TS1 | Карточка отзыва | `.tg-testimonial`, `.tg-testimonial__quote`, `.tg-testimonial__author`, `.tg-testimonial__rating`, `.tg-testimonial__media` |
+| T1 | Оболочка редактора и выделение блоков | `.tg-editor`, `.tg-editor__toolbar`, `.tg-editor__content`, `.tg-editor__status`, `.tg-editor__block` |
+| T2 | Панель у выделения | `.tg-selection-toolbar` |
+| **7. Продвинутые компоненты** | | |
+| B6 | Подтверждение удержанием или свайпом | `.tg-hold-btn`, `.tg-slide-confirm` |
+| B12 | Плавающая кнопка и меню быстрых действий | `.tg-fab`, `.tg-fab--extended`, `.tg-fab-menu`, `.tg-fab-menu__list`, `.tg-fab-menu__item` |
+| C15 | Стопка и колода карточек | `.tg-card-stack`, `.tg-card-stack__item`, `.tg-card-stack__controls` |
+| C21 | Медиаплеер и сравнение изображений | `.tg-player`, `.tg-player__cover`, `.tg-player__meta`, `.tg-player__controls`, `.tg-player__progress`, `.tg-compare`, `.tg-compare__before`, `.tg-compare__after`, `.tg-compare__handle` |
+| F24 | Колесо выбора | `.tg-wheel`, `.tg-wheel__column`, `.tg-wheel__option` |
+| F25 | Выбор цвета | `.tg-color-field`, `.tg-color-field__swatch`, `.tg-color-field__input`, `.tg-color-picker`, `.tg-color-picker__area`, `.tg-color-picker__hue`, `.tg-color-picker__swatches` |
+| F26 | Выбор эмодзи | `.tg-emoji-picker`, `.tg-emoji-picker__search`, `.tg-emoji-picker__grid`, `.tg-emoji-picker__option` |
+| F33 | Холст и аудио | `.tg-selection-box`, `.tg-selection-box__handle`, `.tg-waveform`, `.tg-waveform__track`, `.tg-waveform__bar`, `.tg-waveform__progress` |
+| G4 | Аккордеон изображений | `.tg-image-accordion`, `.tg-image-accordion__item`, `.tg-image-accordion__trigger`, `.tg-image-accordion__panel` |
+| TS4 | Бегущая лента отзывов | `.tg-marquee`, `.tg-marquee__track`, `.tg-marquee--vertical`, `.tg-marquee__pause` |
+| **8. Эффекты** | | |
+| B19 | Декоративные эффекты кнопок | `.tg-effect-glow`, `.tg-effect-sheen`, `.tg-effect-border-beam`, `.tg-effect-magnetic` |
+| C18 | Декоративные эффекты карточек | `.tg-effect-tilt`, `.tg-effect-glare`, `.tg-effect-spotlight` |
+| F32 | Декоративные поля | `.tg-effect-focus-glow` |
+| G2 | 3D-карусели и coverflow | `.tg-carousel--coverflow`, `.tg-carousel--fan`, `.tg-carousel--ring` |
+| SH1 | Декоративный слой фона | `.tg-effect-layer` |
+| SH2 | Эффект поверх кнопки | `[data-tg-effect]` |
+| SH3 | Эффект аватара | `.tg-avatar[data-tg-effect]` |
+| SH4 | Переход слайдов с эффектом | `.tg-carousel[data-tg-effect]` |
+
 ### Полная галерея Feather
 
 В разделе «Иконки» доступны все 287 иконок feather-icons 4.29.2: поиск по именам

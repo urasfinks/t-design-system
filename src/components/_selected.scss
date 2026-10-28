@@ -1,0 +1,61 @@
+// Selected-state engine. One vocabulary for "this one is chosen" across segmented tabs,
+// segmented controls, toggles, chips and choice cards. Owners include a mixin; the
+// colours stay palette roles so a custom accent flows everywhere.
+
+// The trough that holds segments.
+@mixin track {
+  padding: var(--space-1);
+  border: var(--border);
+  border-radius: var(--radius-control);
+  background: var(--secondary-bg-color);
+}
+
+// A segment at rest: quiet text on the trough.
+@mixin segment {
+  min-block-size: var(--control-h);
+  padding: var(--space-2) var(--space-4);
+  border: 0;
+  border-radius: var(--radius-inset);
+  background: var(--control-idle-bg);
+  color: var(--text-secondary);
+  font-size: var(--fs-sm);
+  font-weight: var(--fw-medium);
+  cursor: pointer;
+}
+
+// The chosen segment rises to the surface above the trough.
+@mixin segment-current {
+  --control-idle-bg: var(--section-bg-color);
+  --control-hover-bg: var(--control-idle-bg);
+  color: var(--text-color);
+  box-shadow: var(--shadow-control);
+}
+
+// Hovering a quiet segment brings its text to full strength (fine pointers only).
+@mixin segment-hover($not-current) {
+  @media (hover: hover) and (pointer: fine) {
+    &:where(:not(:disabled, [aria-disabled='true'], #{$not-current}, [disabled] *, [aria-disabled='true'] *, [inert], [inert] *)):hover {
+      color: var(--text-color);
+    }
+  }
+}
+
+// Soft accent: an outlined control that is switched on.
+@mixin soft {
+  --control-idle-bg: var(--accent-soft);
+  --control-color: var(--text-link);
+  border-color: var(--accent-main);
+}
+
+// Filled accent: a chip or pill that is pressed.
+@mixin filled {
+  --control-idle-bg: var(--action-bg);
+  --control-color: var(--button-text-color);
+  border-color: transparent;
+}
+
+// Accent ring without a size change: the 1px border plus a 1px outer shadow read as 2px.
+@mixin ring {
+  border-color: var(--accent-main);
+  box-shadow: 0 0 0 1px var(--accent-main);
+}

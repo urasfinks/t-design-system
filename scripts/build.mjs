@@ -17,7 +17,7 @@ await copyFile(new URL('src/telegram.mjs', root), new URL('dist/telegram.js', ro
 console.log('Built dist/telegram.js (optional theme bridge)');
 
 await copyFile(new URL('src/effects.mjs', root), new URL('dist/effects.js', root));
-console.log('Built dist/effects.js (optional ripple helper)');
+console.log('Built dist/effects.js (optional ripple and decorative effects)');
 
 const ui = await readFile(new URL('src/ui.mjs', root), 'utf8');
 await writeFile(new URL('dist/ui.js', root), ui.replaceAll("'./effects.mjs'", "'./effects.js'"));

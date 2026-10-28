@@ -1,4 +1,5 @@
 @use '../base';
+@use 'selected';
 
 @layer tds.components {
   // One geometry and paint rule; variants supply values rather than copying states.
@@ -90,11 +91,7 @@
     font-weight: var(--fw-regular);
   }
   // A pressed toggle and a pressed stacked option share one selected look.
-  :is(.tg-btn--stacked, .tg-toggle)[aria-pressed='true'] {
-    --control-idle-bg: var(--accent-soft);
-    --control-color: var(--text-link);
-    border-color: var(--accent-main);
-  }
+  :is(.tg-btn--stacked, .tg-toggle)[aria-pressed='true'] { @include selected.soft; }
 
   // Button parts: an icon, a label column and an optional second line.
   .tg-btn__icon { flex: 0 0 auto; }
@@ -120,10 +117,65 @@
     border-radius: var(--radius-pill);
     font-size: var(--fs-sm);
     // A filter toggles with aria-pressed; a choice in a group may use role=checkbox.
-    &:is([aria-pressed='true'], [aria-checked='true']) {
-      --control-idle-bg: var(--action-bg);
-      --control-color: var(--button-text-color);
-      border-color: transparent;
+    &:is([aria-pressed='true'], [aria-checked='true']) { @include selected.filled; }
+  }
+
+  // Related actions of one level. A plain group keeps its gap; --attached joins the
+  // buttons into one outline. A split button is two real buttons: the action and its menu.
+  .tg-btn-group {
+    display: inline-flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--space-2);
+    max-inline-size: 100%;
+  }
+  :is(.tg-btn-group--attached, .tg-split-btn) {
+    display: inline-flex;
+    flex-wrap: nowrap;
+    gap: 0;
+    isolation: isolate;
+
+    > :is(.tg-btn, .tg-icon-btn, .tg-select, .tg-input) {
+      position: relative;
+      flex: 0 0 auto;
+      &:focus-visible { z-index: 1; }
+    }
+    > .tg-btn { white-space: nowrap; }
+    > :is(.tg-select, .tg-input) { flex: 1 1 auto; inline-size: auto; min-inline-size: 0; }
+    > :not(:first-child) { border-start-start-radius: 0; border-end-start-radius: 0; }
+    > :not(:last-child) { border-start-end-radius: 0; border-end-end-radius: 0; }
+    // Outlined neighbours share one border line instead of doubling it.
+    > :is(.tg-btn--secondary, .tg-icon-btn:not(.tg-icon-btn--primary, .tg-icon-btn--ghost), .tg-select, .tg-input) + :is(.tg-btn--secondary, .tg-icon-btn:not(.tg-icon-btn--primary, .tg-icon-btn--ghost), .tg-select, .tg-input) {
+      margin-inline-start: -1px;
+    }
+  }
+  // Filled parts are divided by a hairline of the text colour on the fill.
+  .tg-split-btn {
+    > .tg-split-btn__main { min-inline-size: 0; }
+    > .tg-split-btn__menu {
+      inline-size: auto;
+      min-inline-size: var(--control-h);
+      padding-inline: var(--space-3);
+    }
+    > :is(.tg-btn--primary, .tg-icon-btn--primary, .tg-btn--destructive) + :is(.tg-btn--primary, .tg-icon-btn--primary, .tg-btn--destructive)::before {
+      content: '';
+      position: absolute;
+      inset-block: 25%;
+      inset-inline-start: 0;
+      inline-size: 1px;
+      background: currentColor;
+      opacity: .32;
+    }
+  }
+  @media (max-width: 22.5rem) {
+    .tg-btn-group--attached {
+      flex-direction: column;
+      align-items: stretch;
+      inline-size: 100%;
+      > :not(:first-child) { margin-inline-start: 0; margin-block-start: -1px; }
+      > :not(:first-child), > :not(:last-child) { border-radius: 0; }
+      > :first-child { border-start-start-radius: var(--radius-control); border-start-end-radius: var(--radius-control); }
+      > :last-child { border-end-start-radius: var(--radius-control); border-end-end-radius: var(--radius-control); }
     }
   }
 }

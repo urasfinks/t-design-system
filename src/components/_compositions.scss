@@ -20,6 +20,28 @@
   .tg-brand { display: inline-flex; align-items: center; gap: var(--space-3); text-decoration: none; white-space: nowrap; }
   .tg-toolbar { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: var(--space-3); }
   .tg-toolbar--compact { gap: var(--space-1); }
+  // A toolbar that floats over a canvas or content: the floating-layer surface, snug padding.
+  .tg-toolbar--floating {
+    display: inline-flex;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    max-inline-size: 100%;
+    padding: var(--space-1);
+    border: var(--border);
+    border-radius: var(--radius-control);
+    background: var(--surface-bg);
+    box-shadow: var(--shadow-overlay);
+    overflow-x: auto;
+    scrollbar-width: none;
+    > :is(.tg-btn, .tg-icon-btn) { flex: 0 0 auto; }
+  }
+  .tg-toolbar__separator {
+    flex: 0 0 auto;
+    align-self: stretch;
+    inline-size: 1px;
+    margin: var(--space-2) var(--space-1);
+    background: var(--border-subtle-color);
+  }
   .tg-source-link { display: flex; flex-wrap: nowrap; align-items: center; gap: var(--space-3); color: var(--text-color); text-decoration: none; }
 
   .tg-composer {
@@ -214,4 +236,86 @@
   .tg-align-center { align-items: center; }
   .tg-justify-between { justify-content: space-between; }
   @media (max-width: 36rem) { .tg-hide-mobile { display: none; } }
+
+  // Agent progress: what the assistant is doing now and what its tools returned.
+  // State is text plus an icon (spinner, check, cross); details are a native disclosure.
+  .tg-agent-steps { display: grid; gap: var(--space-1); margin: 0; padding: 0; list-style: none; }
+  .tg-agent-step {
+    display: grid;
+    grid-template-columns: 1.25rem minmax(0, 1fr) auto;
+    align-items: center;
+    column-gap: var(--space-2);
+    min-block-size: 2rem;
+    color: var(--text-secondary);
+    font-size: var(--fs-sm);
+    > details { grid-column: 2 / -1; }
+    &[data-state='done'] .tg-agent-step__icon { color: var(--text-link); }
+    &[data-state='error'] { color: var(--text-danger); .tg-agent-step__icon { color: var(--text-danger); } }
+    &[data-state='running'] .tg-agent-step__label { color: var(--text-color); }
+  }
+  .tg-agent-step__icon {
+    display: grid;
+    place-items: center;
+    inline-size: 1.25rem;
+    block-size: 1.25rem;
+    > .tg-icon { inline-size: 1rem; block-size: 1rem; }
+    > .tg-spinner { inline-size: .875rem; block-size: .875rem; }
+  }
+  .tg-agent-step__label { min-inline-size: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .tg-agent-step__label code { font-family: var(--font-family-mono); font-size: .9em; }
+  .tg-agent-step__time { font-variant-numeric: tabular-nums; font-size: var(--fs-xs); }
+  .tg-agent-step__detail {
+    margin-block: var(--space-1) var(--space-2);
+    > summary {
+      display: inline-flex;
+      align-items: center;
+      min-block-size: 2rem;
+      color: var(--text-link);
+      cursor: pointer;
+      &:focus-visible { outline: 2px solid var(--text-link); outline-offset: 2px; border-radius: var(--radius-xs); }
+    }
+    > ul, > ol {
+      display: grid;
+      gap: var(--space-1);
+      margin: var(--space-1) 0 0;
+      padding: var(--space-2) var(--space-3);
+      border-inline-start: 2px solid var(--border-subtle-color);
+      list-style: none;
+      color: var(--text-color);
+    }
+    a { color: var(--text-link); text-underline-offset: .2em; }
+  }
+
+  // Approval: the assistant asks before an action with consequences. The app decides;
+  // TDS only lays out the question. After the decision it becomes a static record.
+  .tg-approval {
+    display: grid;
+    gap: var(--space-3);
+    max-inline-size: var(--layout-reading-width);
+    padding: var(--space-4);
+    border: var(--border);
+    border-radius: var(--radius-lg);
+    background: var(--surface-bg);
+    &[data-state='danger'] { border-color: var(--danger-main); }
+    &[data-state='decided'] { padding-block: var(--space-3); color: var(--text-secondary); font-size: var(--fs-sm); }
+  }
+  .tg-approval__title {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    margin: 0;
+    font-size: var(--fs);
+    font-weight: var(--fw-semibold);
+    > .tg-icon { flex: 0 0 auto; color: var(--text-link); }
+    .tg-approval[data-state='danger'] & > .tg-icon { color: var(--text-danger); }
+  }
+  .tg-approval__description { margin: 0; color: var(--text-secondary); font-size: var(--fs-sm); }
+  .tg-approval__options { display: grid; gap: var(--space-2); margin: 0; padding: 0; border: 0; min-inline-size: 0; > legend { padding: 0; margin-block-end: var(--space-1); font-size: var(--fs-sm); font-weight: var(--fw-medium); } }
+  .tg-approval__actions {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    gap: var(--space-2);
+    @media (max-width: 36rem) { > .tg-btn { flex: 1 1 100%; } }
+  }
 }

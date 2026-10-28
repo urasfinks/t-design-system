@@ -1,4 +1,6 @@
 @use '../base';
+@use 'floating';
+@use 'option';
 
 // Commands opened from a button: "…", "Create", right click. Navigation uses links
 // in nav, not this menu. TDS styles the layer; the host owns focus, keys and closing.
@@ -14,84 +16,24 @@
     overflow-y: auto;
     overscroll-behavior: contain;
     padding: var(--space-1);
-    border: var(--border);
-    border-radius: var(--radius-control);
-    background: var(--surface-bg);
-    color: var(--text-color);
-    box-shadow: var(--shadow-overlay);
+    @include floating.surface;
     font-size: var(--fs);
     line-height: 1.4;
     overflow-wrap: anywhere;
   }
 
   // A popover menu lives in the top layer, so no overflow ancestor clips it.
-  // It grows from its trigger; the host sets the anchor coordinates when CSS
-  // anchor positioning is unavailable.
-  .tg-menu[popover] {
-    position: fixed;
-    inset: auto;
-    inset-block-start: var(--tg-anchor-block, auto);
-    inset-inline-start: var(--tg-anchor-inline, auto);
-    margin: 0;
-    transform-origin: var(--tg-menu-origin, top left);
-    opacity: 0;
-    transform: scale(.97);
-    transition: opacity var(--duration-fade-out) var(--ease), transform var(--duration-fast) var(--ease),
-      overlay var(--duration-fade-out) allow-discrete, display var(--duration-fade-out) allow-discrete;
-
-    &:dir(rtl) { transform-origin: var(--tg-menu-origin, top right); }
-
-    &:popover-open {
-      opacity: 1;
-      transform: none;
-      transition: opacity var(--duration-fade-in) var(--ease), transform var(--duration) var(--ease),
-        overlay var(--duration-fade-in) allow-discrete, display var(--duration-fade-in) allow-discrete;
-
-      @starting-style {
-        opacity: 0;
-        transform: scale(.97);
-      }
-    }
-
-    // Opened from the keyboard: appear at once, as the catalog search does.
-    &[data-instant] { transition: none; }
-  }
-
-  @supports (position-area: block-end) {
-    .tg-menu[popover]:not([data-positioned]) {
-      position-area: block-end span-inline-end;
-      position-try-fallbacks: flip-block, flip-inline, flip-block flip-inline;
-      margin-block: var(--space-1);
-    }
-  }
+  .tg-menu[popover] { @include floating.popover(--tg-menu-origin); }
+  @include floating.anchored('.tg-menu[popover]');
 
   .tg-menu__item {
     --control-hover-filter: none;
     --control-paint-duration: 0s;
-    display: flex;
-    align-items: center;
-    gap: var(--space-3);
-    inline-size: 100%;
-    min-block-size: var(--menu-item-h);
-    padding: var(--space-2) var(--space-3);
-    border: 0;
-    border-radius: var(--radius-inset);
-    background: var(--control-idle-bg, transparent);
-    color: inherit;
-    font: inherit;
-    text-align: start;
-    text-decoration: none;
-    cursor: pointer;
-
-    > .tg-icon { color: var(--text-secondary); }
+    @include option.row(var(--menu-item-h));
 
     // Keyboard focus moves through items: the row lights up and keeps a ring.
     &:focus { outline: none; }
-    &:focus-visible {
-      background: var(--control-hover-bg);
-      outline: 2px solid var(--text-link);
-      outline-offset: -2px;
-    }
+    &:focus-visible { @include option.active; }
 
     &--destructive {
       --control-hover-bg: var(--danger-soft);
@@ -105,13 +47,9 @@
       padding-inline-start: calc(var(--space-3) + 1rem + var(--space-3));
 
       &::before {
-        content: '';
+        @include option.mark;
         position: absolute;
         inset-inline-start: var(--space-3);
-        inline-size: 1rem;
-        block-size: 1rem;
-        background: currentColor;
-        mask: var(--icon-mask-check) center / contain no-repeat;
         opacity: 0;
       }
       &[aria-checked='true']::before { opacity: 1; }
@@ -142,10 +80,7 @@
     flex: 1 1 auto;
     min-inline-size: 0;
   }
-  .tg-menu__item-meta {
-    font-size: var(--fs-sm);
-    color: var(--text-secondary);
-  }
+  .tg-menu__item-meta { @include option.meta; }
   .tg-menu__label {
     padding: var(--space-2) var(--space-3) var(--space-1);
     font-size: var(--fs-sm);
@@ -168,19 +103,7 @@
   }
   .tg-menu__item-meta, .tg-menu__shortcut { .tg-menu__item--destructive & { color: inherit; } }
 
-  // On small touch screens the menu becomes a sheet at the bottom edge.
-  @media (max-width: 36rem) and (pointer: coarse) {
-    .tg-menu[popover]:not([data-positioned]), .tg-menu[popover][data-positioned] {
-      --tg-menu-origin: bottom center;
-      position-area: none;
-      inset: auto 0 0;
-      inline-size: auto;
-      max-inline-size: none;
-      margin: var(--space-2);
-      margin-block-end: calc(var(--space-2) + var(--safe-area-bottom));
-      border-radius: var(--radius-lg);
-    }
-  }
+  @include floating.sheet('.tg-menu[popover]', --tg-menu-origin);
 
   @media (forced-colors: active) {
     .tg-menu__item:focus-visible { outline-color: Highlight; }

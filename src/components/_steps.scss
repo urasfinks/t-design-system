@@ -1,0 +1,64 @@
+// Steps engine: a marker per step and a line that joins them. Used by the timeline,
+// the stepper, agent progress and password requirements. State comes from
+// data-state="done|current|upcoming|error" (or aria-current="step" for current).
+
+$done: "[data-state='done']";
+$current: ":is([data-state='current'], [aria-current='step'])";
+$error: "[data-state='error']";
+
+// The round marker: a number, an icon or a dot. Lives in the step's first column.
+@mixin marker($size: 2rem) {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  flex: 0 0 auto;
+  place-items: center;
+  inline-size: $size;
+  block-size: $size;
+  border: 2px solid var(--border-color);
+  border-radius: 50%; // a step marker is a point on a line, not a control
+  background: var(--surface-bg);
+  color: var(--text-secondary);
+  font-size: var(--fs-sm);
+  font-weight: var(--fw-semibold);
+  font-variant-numeric: tabular-nums;
+  line-height: 1;
+
+  > .tg-icon { inline-size: calc(#{$size} * .5); block-size: calc(#{$size} * .5); }
+}
+
+// Marker paint by state. `$step` is the selector of the step that carries the state.
+@mixin marker-states($step, $marker) {
+  #{$step}#{$done} #{$marker} {
+    border-color: transparent;
+    background: var(--action-bg);
+    color: var(--button-text-color);
+  }
+  #{$step}#{$current} #{$marker} {
+    border-color: var(--accent-main);
+    color: var(--text-link);
+    box-shadow: 0 0 0 .25rem var(--accent-soft);
+  }
+  #{$step}#{$error} #{$marker} {
+    border-color: transparent;
+    background: var(--action-danger-bg);
+    color: var(--button-text-color);
+  }
+}
+
+// The joining line, drawn by the step's pseudo-element from its marker to the next step.
+// $axis: block (a column of steps) or inline (a row). $offset is the marker centre.
+@mixin line($axis: block, $offset: 1rem, $gap: var(--space-1)) {
+  content: '';
+  position: absolute;
+  background: var(--border-color);
+  @if $axis == block {
+    inset-block: calc(#{$offset} * 2 + #{$gap}) calc(#{$gap} * -1);
+    inset-inline-start: calc(#{$offset} - 1px);
+    inline-size: 2px;
+  } @else {
+    inset-inline: calc(#{$offset} * 2 + #{$gap}) calc(#{$gap} * -1);
+    inset-block-start: calc(#{$offset} - 1px);
+    block-size: 2px;
+  }
+}

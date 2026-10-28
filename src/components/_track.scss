@@ -1,0 +1,26 @@
+// Track engine: a scroll area that snaps item by item and fades its edges. Used by the
+// carousel, the image gallery, the wheel picker and the marquee. Owners include it.
+
+// A scroller along one axis. Native scrolling keeps swipe, wheel and keyboard.
+@mixin scroller($axis: inline, $snap: mandatory) {
+  overscroll-behavior-#{$axis}: contain;
+  scrollbar-width: none;
+  &::-webkit-scrollbar { display: none; }
+  @if $axis == inline {
+    overflow-x: auto;
+    overflow-y: hidden;
+    scroll-snap-type: x $snap;
+  } @else {
+    overflow-x: hidden;
+    overflow-y: auto;
+    scroll-snap-type: y $snap;
+  }
+  @media (prefers-reduced-motion: no-preference) { scroll-behavior: smooth; }
+}
+
+// Soft edges: a transparency mask, never a colour. --fade-start/--fade-end shrink to 0
+// at the ends where scroll-driven animations exist (the owner registers them).
+@mixin fade-mask($axis: inline, $size: var(--space-8)) {
+  $dir: if($axis == inline, 'to right', 'to bottom');
+  mask-image: linear-gradient(#{$dir}, transparent, black var(--fade-start, #{$size}), black calc(100% - var(--fade-end, #{$size})), transparent);
+}

@@ -1,14 +1,12 @@
 @use 'buttons';
+@use 'selected';
 @layer tds.components {
   .tg-tabs {
     display: flex;
     align-items: center;
     gap: var(--space-2);
     max-inline-size: 100%;
-    padding: var(--space-1);
-    border: var(--border);
-    border-radius: var(--radius-control);
-    background: var(--secondary-bg-color);
+    @include selected.track;
     overflow-x: auto;
     scrollbar-width: thin;
 
@@ -39,33 +37,118 @@
 
   .tg-tab {
     flex: 1 0 auto;
-    min-block-size: var(--control-h);
-    padding: var(--space-2) var(--space-4);
-    border: 0;
-    border-radius: var(--radius-inset);
-    background: var(--control-idle-bg);
-    color: var(--text-secondary);
-    font-size: var(--fs-sm);
-    font-weight: var(--fw-medium);
-    cursor: pointer;
+    @include selected.segment;
 
-    &[aria-selected='true'] {
-      --control-idle-bg: var(--section-bg-color);
-      --control-hover-bg: var(--control-idle-bg);
-      color: var(--text-color);
-      box-shadow: var(--shadow-control);
-    }
-
-    @media (hover: hover) and (pointer: fine) {
-      &:where(:not(:disabled, [aria-disabled='true'], [aria-selected='true'], [disabled] *, [aria-disabled='true'] *, [inert], [inert] *)):hover {
-        color: var(--text-color);
-      }
-    }
+    &[aria-selected='true'] { @include selected.segment-current; }
+    @include selected.segment-hover("[aria-selected='true']");
 
     &:focus-visible {
       outline-offset: -3px;
     }
   }
+
+  // Segmented control: one choice (native radios) or several (aria-pressed buttons) in a
+  // trough. It switches a value, not a panel — panels use tabs.
+  .tg-segmented {
+    display: inline-flex;
+    flex-wrap: nowrap;
+    align-items: stretch;
+    gap: var(--space-1);
+    min-inline-size: 0;
+    max-inline-size: 100%;
+    margin: 0;
+    @include selected.track;
+    overflow-x: auto;
+    scrollbar-width: thin;
+
+    &--vertical {
+      flex-direction: column;
+      inline-size: max-content;
+      max-inline-size: 100%;
+      overflow: visible;
+      > .tg-segmented__item { justify-content: flex-start; }
+    }
+  }
+  .tg-segmented__item {
+    position: relative;
+    display: inline-flex;
+    flex: 1 0 auto;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-2);
+    @include selected.segment;
+    padding-inline: var(--space-3);
+    white-space: nowrap;
+
+    > .tg-icon { flex: 0 0 auto; }
+    // The native radio covers the whole segment: the label is the hit area.
+    > input {
+      position: absolute;
+      inset: 0;
+      margin: 0;
+      border-radius: inherit;
+      opacity: 0;
+      cursor: inherit;
+      appearance: none;
+    }
+    &:is([aria-pressed='true'], :has(> input:checked)) { @include selected.segment-current; }
+    @include selected.segment-hover("[aria-pressed='true'], :has(> input:checked)");
+    &:focus-visible, &:has(> input:focus-visible) { outline: 2px solid var(--text-link); outline-offset: -3px; }
+    &:has(> input:disabled) { opacity: var(--disabled-opacity); cursor: not-allowed; }
+  }
+
+  // Segmented tabs are the default look; --segmented names it explicitly, for markup
+  // that should read the same in any context.
+  .tg-tabs--segmented { @include selected.track; }
+
+  // Vertical tabs: a column for settings sections; ↑/↓ move between tabs
+  // (aria-orientation="vertical"). Phones get the horizontal row back.
+  .tg-tabs--vertical {
+    flex-direction: column;
+    align-items: stretch;
+    inline-size: max-content;
+    max-inline-size: 100%;
+    overflow: visible;
+    > .tg-tab {
+      display: flex;
+      flex: 0 0 auto;
+      align-items: center;
+      justify-content: flex-start;
+      gap: var(--space-2);
+      text-align: start;
+      > .tg-badge { margin-inline-start: auto; }
+    }
+    @media (max-width: 36rem) {
+      flex-direction: row;
+      inline-size: auto;
+      overflow-x: auto;
+      > .tg-tab { flex: 1 0 auto; justify-content: center; }
+    }
+  }
+  // Tabs with icons where only the selected one shows its label. The label stays in the
+  // DOM for screen readers; width changes at once, only the label fades in.
+  .tg-tab__label { min-inline-size: 0; }
+  .tg-tabs--collapsed-labels > .tg-tab {
+    position: relative;
+    display: inline-flex;
+    flex: 0 0 auto;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-2);
+    min-inline-size: var(--control-h);
+    padding-inline: var(--space-3);
+    > .tg-icon { flex: 0 0 auto; }
+    &:not([aria-selected='true']) > .tg-tab__label {
+      position: absolute;
+      inline-size: 1px;
+      block-size: 1px;
+      overflow: hidden;
+      clip-path: inset(50%);
+      white-space: nowrap;
+    }
+    &[aria-selected='true'] > .tg-tab__label { animation: tg-label-in var(--duration) var(--ease); }
+  }
+  @keyframes tg-label-in { from { opacity: 0; } }
 
   // Underlined tabs for content panels inside a page; segmented tabs stay the default.
   .tg-tabs--underline {

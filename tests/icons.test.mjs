@@ -12,7 +12,8 @@ test('individual SVG assets resolve every catalog reference and ship their licen
     assert.ok(symbols.includes(id), id);
     assert.match(await readFile('dist/icons/' + id + '.svg', 'utf8'), new RegExp('id="' + id + '"'));
   }
-  const svgTags = [...html.matchAll(/<svg\b[^>]*>[\s\S]*?<\/svg>/g)].map(m => m[0]);
+  // Icons come from one source; data graphics (progress rings, charts) draw their own shapes.
+  const svgTags = [...html.matchAll(/<svg\b[^>]*>[\s\S]*?<\/svg>/g)].map(m => m[0]).filter(svg => /<svg\b[^>]*class="[^"]*tg-icon/.test(svg));
   assert.ok(svgTags.length > 10);
   assert.ok(svgTags.every(svg => svg.includes('<use href="../dist/icons/')), 'one icon source throughout the catalog');
   const closeButton = html.match(/<button[^>]*id="close-dialog"[\s\S]*?<\/button>/)?.[0];

@@ -1,0 +1,142 @@
+@use '../base';
+
+// Gesture-backed actions and the floating action button. Every gesture has a plain
+// button or keyboard path; motion is transform/opacity only.
+@layer tds.components {
+  // Hold to confirm: the fill grows with --hold-progress (0…1) set by the host.
+  .tg-hold-btn {
+    position: relative;
+    isolation: isolate;
+    overflow: clip;
+    &::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      z-index: -1;
+      background: currentColor;
+      opacity: .18;
+      transform: scaleX(var(--hold-progress, 0));
+      transform-origin: left center;
+    }
+    &:dir(rtl)::before { transform-origin: right center; }
+    &[data-state='holding']::before { transition: none; }
+    &:not([data-state='holding'])::before { transition: transform var(--duration-fast) var(--ease); }
+    &[data-state='confirmed']::before { transform: scaleX(1); opacity: .28; }
+  }
+
+  // Slide to confirm: a native range with a large thumb; reaching the end confirms.
+  .tg-slide-confirm {
+    position: relative;
+    display: grid;
+    align-items: center;
+    inline-size: min(100%, 22rem);
+    min-block-size: calc(var(--control-h) + var(--space-2));
+    padding: var(--space-1);
+    border-radius: var(--radius-pill);
+    background: var(--background-muted);
+    isolation: isolate;
+    &[data-state='confirmed'] { background: var(--accent-soft); }
+  }
+  .tg-slide-confirm__track {
+    position: absolute;
+    inset: var(--space-1);
+    z-index: -1;
+    border-radius: inherit;
+    background: var(--accent-soft);
+    transform: scaleX(var(--slide-progress, 0));
+    transform-origin: left center;
+    &:dir(rtl) { transform-origin: right center; }
+  }
+  .tg-slide-confirm__label {
+    grid-area: 1 / 1;
+    padding-inline: var(--control-h);
+    color: var(--text-secondary);
+    font-size: var(--fs-sm);
+    font-weight: var(--fw-medium);
+    text-align: center;
+    pointer-events: none;
+    opacity: calc(1 - var(--slide-progress, 0) * 1.6);
+  }
+  .tg-slide-confirm__thumb {
+    grid-area: 1 / 1;
+    inline-size: 100%;
+    min-block-size: var(--control-h);
+    margin: 0;
+    appearance: none;
+    background: transparent;
+    cursor: grab;
+    &:active { cursor: grabbing; }
+    &::-webkit-slider-runnable-track { block-size: var(--control-h); background: transparent; }
+    &::-webkit-slider-thumb {
+      appearance: none;
+      inline-size: var(--control-h);
+      block-size: var(--control-h);
+      border-radius: 50%;
+      background: var(--action-bg) var(--icon-mask-chevron-right) center / 1.25rem no-repeat;
+      box-shadow: var(--shadow-control);
+    }
+    &::-moz-range-track { block-size: var(--control-h); background: transparent; }
+    &::-moz-range-thumb { inline-size: var(--control-h); block-size: var(--control-h); border: 0; border-radius: 50%; background: var(--action-bg); box-shadow: var(--shadow-control); }
+    &:focus-visible { outline: none; }
+    &:focus-visible::-webkit-slider-thumb { outline: 2px solid var(--text-link); outline-offset: 3px; }
+    &:focus-visible::-moz-range-thumb { outline: 2px solid var(--text-link); outline-offset: 3px; }
+  }
+  @media (max-width: 36rem) { .tg-slide-confirm { inline-size: 100%; } }
+
+  // Floating action button: the one main action of a mobile screen, above the tab bar
+  // and composer. --extended adds its label. The quick-action menu opens above it.
+  .tg-fab {
+    position: fixed;
+    inset-inline-end: var(--space-4);
+    inset-block-end: calc(var(--space-4) + var(--safe-area-bottom) + var(--tg-composer-height, 0px) + var(--tg-tabbar-height, 0px));
+    z-index: var(--z-sticky);
+    inline-size: calc(var(--control-h) + var(--space-2));
+    block-size: calc(var(--control-h) + var(--space-2));
+    border-radius: var(--radius-pill);
+    box-shadow: var(--shadow-overlay);
+    &--extended { inline-size: auto; padding-inline: var(--space-4) var(--space-5); gap: var(--space-2); }
+    > .tg-icon { transition: transform var(--duration) var(--ease); }
+    &[aria-expanded='true'] > .tg-icon:only-child { transform: rotate(45deg); }
+  }
+  .tg-fab-menu {
+    position: fixed;
+    inset-inline-end: var(--space-4);
+    inset-block-end: calc(var(--space-4) + var(--safe-area-bottom) + var(--tg-composer-height, 0px) + var(--tg-tabbar-height, 0px) + var(--control-h) + var(--space-5));
+    z-index: var(--z-sticky);
+  }
+  .tg-fab-menu__list {
+    display: grid;
+    justify-items: end;
+    gap: var(--space-2);
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+  .tg-fab-menu__item {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-3);
+    min-block-size: var(--control-h);
+    padding-inline: var(--space-4) var(--space-2);
+    border: var(--border);
+    border-radius: var(--radius-pill);
+    background: var(--surface-bg);
+    color: var(--text-color);
+    box-shadow: var(--shadow-overlay);
+    font: inherit;
+    font-weight: var(--fw-medium);
+    cursor: pointer;
+    > .tg-icon { color: var(--text-link); }
+    &:focus-visible { outline: 2px solid var(--text-link); outline-offset: 2px; }
+  }
+  // Items rise in sequence when the menu opens; reduced motion shows them at once.
+  .tg-fab-menu:not([hidden]) .tg-fab-menu__item {
+    animation: tg-fab-item-in var(--duration) var(--ease) both;
+    animation-delay: calc(var(--i, 0) * 30ms);
+  }
+  @keyframes tg-fab-item-in { from { opacity: 0; transform: translateY(.5rem) scale(.96); } }
+  @media (prefers-reduced-motion: reduce) { .tg-fab-menu:not([hidden]) .tg-fab-menu__item { animation: none; } }
+  // Inside a preview frame the button stays in its container.
+  .tg-fab-scope { position: relative; overflow: clip; contain: layout; }
+  .tg-fab-scope > :is(.tg-fab, .tg-fab-menu) { position: absolute; }
+}

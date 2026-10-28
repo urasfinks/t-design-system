@@ -30,7 +30,8 @@ test('the legacy control-hover entry retains reset, focus and visibility foundat
 test('new components plug into shared tokens and the state engine instead of local paint', async () => {
   const menu = await read('src/components/_menu.scss');
   assert.match(menu, /--control-paint-duration:\s*0s/);
-  assert.match(menu, /var\(--icon-mask-check\)/);
+  assert.match(menu, /@include option\.mark/);
+  assert.match(await read('src/components/_option.scss'), /var\(--icon-mask-check\)/);
   assert.doesNotMatch(menu, /#[0-9a-f]{3,8}\b|rgba?\(/i);
   const patterns = await read('src/components/_patterns.scss');
   const forms = await read('src/components/_forms.scss');
@@ -41,4 +42,27 @@ test('new components plug into shared tokens and the state engine instead of loc
   for (const link of ['a.tg-menu__item[href]', 'a.tg-pager__link[href]', 'a.tg-site-nav__link[href]']) assert.ok(states.includes(link), link);
   const base = await read('src/base/_index.scss');
   for (const name of ['.tg-pager__link', '.tg-site-nav__link', '.tg-table__sort']) assert.ok(base.includes(name), name);
+});
+
+test('shared engines own surfaces, rows, selection and steps; owners only include them', async () => {
+  const engines = ['floating', 'option', 'selected', 'steps', 'track'];
+  for (const name of engines) {
+    const source = await read(`src/components/_${name}.scss`);
+    // Engines are mixin libraries: they never emit rules or layers on their own.
+    assert.doesNotMatch(source, /@layer/, `${name} emits no layer`);
+    assert.doesNotMatch(source, /#[0-9a-f]{3,8}\b|rgba?\(|color-mix/i, `${name} uses palette roles only`);
+  }
+  const menu = await read('src/components/_menu.scss');
+  assert.match(menu, /@include floating\.surface/);
+  assert.match(menu, /@include floating\.popover/);
+  assert.match(menu, /@include option\.row/);
+  const overlays = await read('src/components/_overlays.scss');
+  assert.match(overlays, /\.tg-tooltip\[popover\] \{\s*@include floating\.popover/);
+  const navigation = await read('src/components/_navigation.scss');
+  // Tabs and the segmented control share one trough, segment and current-segment rule.
+  assert.ok((navigation.match(/@include selected\.track/g) || []).length >= 2);
+  assert.ok((navigation.match(/@include selected\.segment-current/g) || []).length >= 2);
+  const buttons = await read('src/components/_buttons.scss');
+  assert.match(buttons, /@include selected\.soft/);
+  assert.match(buttons, /@include selected\.filled/);
 });

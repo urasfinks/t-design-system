@@ -1,0 +1,2540 @@
+{
+  "description": "Учёт реализации компонентных спецификаций 21st.dev. scope=in — компонент в работе; out — композиция или секция лендинга, остаётся документацией. state=done ставится последним шагом задачи плана.",
+  "plan": "docs/superpowers/plans/2026-10-27-full-component-implementation.md",
+  "specs": [
+    {
+      "id": "A1",
+      "folder": "ai-chats",
+      "name": "Композер запроса",
+      "type": "extend",
+      "priority": "P0",
+      "scope": "in",
+      "wave": 1,
+      "state": "done",
+      "classes": [
+        ".tg-composer__toolbar",
+        ".tg-composer__attachments"
+      ]
+    },
+    {
+      "id": "A2",
+      "folder": "ai-chats",
+      "name": "Подсказки и быстрые действия",
+      "type": "composition",
+      "priority": "P1",
+      "scope": "out",
+      "wave": null,
+      "state": "out-of-scope",
+      "classes": []
+    },
+    {
+      "id": "A3",
+      "folder": "ai-chats",
+      "name": "Выбор режима и модели",
+      "type": "composition",
+      "priority": "P1",
+      "scope": "out",
+      "wave": null,
+      "state": "out-of-scope",
+      "classes": []
+    },
+    {
+      "id": "A4",
+      "folder": "ai-chats",
+      "name": "Окно чата и сообщения",
+      "type": "new",
+      "priority": "P0",
+      "scope": "in",
+      "wave": "P0",
+      "state": "done",
+      "classes": [
+        ".tg-chat",
+        ".tg-chat__log",
+        ".tg-message",
+        ".tg-message--user",
+        ".tg-message--assistant",
+        ".tg-message__body",
+        ".tg-message__meta",
+        ".tg-message__actions"
+      ]
+    },
+    {
+      "id": "A5",
+      "folder": "ai-chats",
+      "name": "Ход работы агента и результаты инструментов",
+      "type": "new",
+      "priority": "P1",
+      "scope": "in",
+      "wave": 6,
+      "state": "done",
+      "classes": [
+        ".tg-agent-step",
+        ".tg-agent-step__icon",
+        ".tg-agent-step__label",
+        ".tg-agent-step__time",
+        ".tg-agent-step__detail"
+      ]
+    },
+    {
+      "id": "A6",
+      "folder": "ai-chats",
+      "name": "Подтверждение действия агента",
+      "type": "new",
+      "priority": "P1",
+      "scope": "in",
+      "wave": 6,
+      "state": "done",
+      "classes": [
+        ".tg-approval",
+        ".tg-approval__title",
+        ".tg-approval__description",
+        ".tg-approval__options",
+        ".tg-approval__actions"
+      ]
+    },
+    {
+      "id": "A7",
+      "folder": "ai-chats",
+      "name": "Ветвление ответа",
+      "type": "composition",
+      "priority": "P2",
+      "scope": "out",
+      "wave": null,
+      "state": "out-of-scope",
+      "classes": []
+    },
+    {
+      "id": "A8",
+      "folder": "ai-chats",
+      "name": "Спросить ИИ о выделенном",
+      "type": "composition",
+      "priority": "P2",
+      "scope": "out",
+      "wave": null,
+      "state": "out-of-scope",
+      "classes": []
+    },
+    {
+      "id": "A9",
+      "folder": "ai-chats",
+      "name": "Генерация медиа",
+      "type": "composition",
+      "priority": "P2",
+      "scope": "out",
+      "wave": null,
+      "state": "out-of-scope",
+      "classes": []
+    },
+    {
+      "id": "A10",
+      "folder": "ai-chats",
+      "name": "Аватар ассистента",
+      "type": "composition",
+      "priority": "P2",
+      "scope": "out",
+      "wave": null,
+      "state": "out-of-scope",
+      "classes": []
+    },
+    {
+      "id": "B1",
+      "folder": "buttons",
+      "name": "Базовая кнопка и варианты",
+      "type": "existing",
+      "priority": "P0",
+      "scope": "in",
+      "wave": 6,
+      "state": "done",
+      "classes": [
+        ".tg-btn"
+      ]
+    },
+    {
+      "id": "B2",
+      "folder": "buttons",
+      "name": "Кнопка с иконкой и подтекстом",
+      "type": "extend",
+      "priority": "P0",
+      "scope": "in",
+      "wave": "P0",
+      "state": "done",
+      "classes": [
+        ".tg-btn__icon",
+        ".tg-btn__label",
+        ".tg-btn__subtext",
+        ".tg-btn--icon-end"
+      ]
+    },
+    {
+      "id": "B3",
+      "folder": "buttons",
+      "name": "Иконкокнопка",
+      "type": "existing",
+      "priority": "P0",
+      "scope": "in",
+      "wave": 6,
+      "state": "done",
+      "classes": [
+        ".tg-icon-btn"
+      ]
+    },
+    {
+      "id": "B4",
+      "folder": "buttons",
+      "name": "Кнопка копирования",
+      "type": "extend",
+      "priority": "P1",
+      "scope": "in",
+      "wave": 1,
+      "state": "done",
+      "classes": [
+        ".tg-copy",
+        ".tg-copy__value",
+        ".tg-copy__action"
+      ]
+    },
+    {
+      "id": "B5",
+      "folder": "buttons",
+      "name": "Кнопка с ходом выполнения",
+      "type": "extend",
+      "priority": "P0",
+      "scope": "in",
+      "wave": 1,
+      "state": "done",
+      "classes": [
+        ".tg-btn__progress",
+        ".tg-btn__states"
+      ]
+    },
+    {
+      "id": "B6",
+      "folder": "buttons",
+      "name": "Подтверждение удержанием или свайпом",
+      "type": "new",
+      "priority": "P2",
+      "scope": "in",
+      "wave": 7,
+      "state": "done",
+      "classes": [
+        ".tg-hold-btn",
+        ".tg-slide-confirm"
+      ]
+    },
+    {
+      "id": "B7",
+      "folder": "buttons",
+      "name": "Кнопка-переключатель",
+      "type": "extend",
+      "priority": "P0",
+      "scope": "in",
+      "wave": "P0",
+      "state": "done",
+      "classes": [
+        ".tg-toggle"
+      ]
+    },
+    {
+      "id": "B8",
+      "folder": "buttons",
+      "name": "Сегментированный выбор",
+      "type": "new",
+      "priority": "P1",
+      "scope": "in",
+      "wave": 0,
+      "state": "done",
+      "classes": [
+        ".tg-segmented",
+        ".tg-segmented__item",
+        ".tg-segmented--vertical"
+      ]
+    },
+    {
+      "id": "B9",
+      "folder": "buttons",
+      "name": "Группа кнопок и сплит-кнопка",
+      "type": "new",
+      "priority": "P1",
+      "scope": "in",
+      "wave": 1,
+      "state": "done",
+      "classes": [
+        ".tg-btn-group",
+        ".tg-btn-group--attached",
+        ".tg-split-btn",
+        ".tg-split-btn__main",
+        ".tg-split-btn__menu"
+      ]
+    },
+    {
+      "id": "B10",
+      "folder": "buttons",
+      "name": "Переключатель темы",
+      "type": "composition",
+      "priority": "P1",
+      "scope": "out",
+      "wave": null,
+      "state": "out-of-scope",
+      "classes": []
+    },
+    {
+      "id": "B11",
+      "folder": "buttons",
+      "name": "Кнопка со счётчиком",
+      "type": "composition",
+      "priority": "P1",
+      "scope": "out",
+      "wave": null,
+      "state": "out-of-scope",
+      "classes": []
+    },
+    {
+      "id": "B12",
+      "folder": "buttons",
+      "name": "Плавающая кнопка и меню быстрых действий",
+      "type": "new",
+      "priority": "P2",
+      "scope": "in",
+      "wave": 7,
+      "state": "done",
+      "classes": [
+        ".tg-fab",
+        ".tg-fab--extended",
+        ".tg-fab-menu",
+        ".tg-fab-menu__list",
+        ".tg-fab-menu__item"
+      ]
+    },
+    {
+      "id": "B13",
+      "folder": "buttons",
+      "name": "Панель инструментов и dock",
+      "type": "extend",
+      "priority": "P1",
+      "scope": "in",
+      "wave": 1,
+      "state": "done",
+      "classes": [
+        ".tg-toolbar--floating",
+        ".tg-toolbar__separator"
+      ]
+    },
+    {
+      "id": "B14",
+      "folder": "buttons",
+      "name": "Меню действий",
+      "type": "new",
+      "priority": "P0",
+      "scope": "in",
+      "wave": "P0",
+      "state": "done",
+      "classes": [
+        ".tg-menu",
+        ".tg-menu__item",
+        ".tg-menu__label",
+        ".tg-menu__separator",
+        ".tg-menu__shortcut",
+        ".tg-menu__item--destructive"
+      ]
+    },
+    {
+      "id": "B15",
+      "folder": "buttons",
+      "name": "Подсказка",
+      "type": "new",
+      "priority": "P1",
+      "scope": "in",
+      "wave": 0,
+      "state": "done",
+      "classes": [
+        ".tg-tooltip"
+      ]
+    },
+    {
+      "id": "B16",
+      "folder": "buttons",
+      "name": "Диалог и выдвижная панель",
+      "type": "existing",
+      "priority": "P0",
+      "scope": "in",
+      "wave": 6,
+      "state": "done",
+      "classes": [
+        ".tg-modal"
+      ]
+    },
+    {
+      "id": "B17",
+      "folder": "buttons",
+      "name": "Toast, snackbar и баннер-уведомление",
+      "type": "existing",
+      "priority": "P1",
+      "scope": "in",
+      "wave": 1,
+      "state": "done",
+      "classes": [
+        ".tg-toast__action"
+      ]
+    },
+    {
+      "id": "B18",
+      "folder": "buttons",
+      "name": "Промо-баннер с действием",
+      "type": "composition",
+      "priority": "P2",
+      "scope": "out",
+      "wave": null,
+      "state": "out-of-scope",
+      "classes": []
+    },
+    {
+      "id": "B19",
+      "folder": "buttons",
+      "name": "Декоративные эффекты кнопок",
+      "type": "extend",
+      "priority": "P2",
+      "scope": "in",
+      "wave": 8,
+      "state": "done",
+      "classes": [
+        ".tg-effect-glow",
+        ".tg-effect-sheen",
+        ".tg-effect-border-beam",
+        ".tg-effect-magnetic"
+      ]
+    },
+    {
+      "id": "B20",
+      "folder": "buttons",
+      "name": "Карточки из раздела кнопок",
+      "type": "composition",
+      "priority": "P1",
+      "scope": "out",
+      "wave": null,
+      "state": "out-of-scope",
+      "classes": []
+    },
+    {
+      "id": "B21",
+      "folder": "buttons",
+      "name": "Формы и загрузка из раздела кнопок",
+      "type": "composition",
+      "priority": "P1",
+      "scope": "out",
+      "wave": null,
+      "state": "out-of-scope",
+      "classes": []
+    },
+    {
+      "id": "B22",
+      "folder": "buttons",
+      "name": "Навигация из раздела кнопок",
+      "type": "composition",
+      "priority": "P1",
+      "scope": "out",
+      "wave": null,
+      "state": "out-of-scope",
+      "classes": []
+    },
+    {
+      "id": "C1",
+      "folder": "cards",
+      "name": "Базовая карточка и её зоны",
+      "type": "extend",
+      "priority": "P0",
+      "scope": "in",
+      "wave": "P0",
+      "state": "done",
+      "classes": [
+        ".tg-card__media",
+        ".tg-card__body",
+        ".tg-card__footer",
+        ".tg-card--link",
+        ".tg-card--interactive"
+      ]
+    },
+    {
+      "id": "C2",
+      "folder": "cards",
+      "name": "Медиа-карточка",
+      "type": "extend",
+      "priority": "P0",
+      "scope": "in",
+      "wave": 1,
+      "state": "done",
+      "classes": [
+        ".tg-card--overlay",
+        ".tg-card__media--video"
+      ]
+    },
+    {
+      "id": "C3",
+      "folder": "cards",
+      "name": "Карточка товара",
+      "type": "composition",
+      "priority": "P1",
+      "scope": "out",
+      "wave": null,
+      "state": "out-of-scope",
+      "classes": []
+    },
+    {
+      "id": "C4",
+      "folder": "cards",
+      "name": "Карточка профиля и контакта",
+      "type": "composition",
+      "priority": "P1",
+      "scope": "out",
+      "wave": null,
+      "state": "out-of-scope",
+      "classes": []
+    },
+    {
+      "id": "C5",
+      "folder": "cards",
+      "name": "Всплывающая карточка (hover card)",
+      "type": "new",
+      "priority": "P1",
+      "scope": "in",
+      "wave": 2,
+      "state": "done",
+      "classes": [
+        ".tg-hover-card"
+      ]
+    },
+    {
+      "id": "C6",
+      "folder": "cards",
+      "name": "KPI-плитка",
+      "type": "new",
+      "priority": "P0",
+      "scope": "in",
+      "wave": "P0",
+      "state": "done",
+      "classes": [
+        ".tg-stat",
+        ".tg-stat__label",
+        ".tg-stat__value",
+        ".tg-stat__meta",
+        ".tg-stat__delta"
+      ]
+    },
+    {
+      "id": "C7",
+      "folder": "cards",
+      "name": "Карточка с графиком",
+      "type": "composition",
+      "priority": "P1",
+      "scope": "out",
+      "wave": null,
+      "state": "out-of-scope",
+      "classes": []
+    },
+    {
+      "id": "C8",
+      "folder": "cards",
+      "name": "Платёжная карта и способ оплаты",
+      "type": "composition",
+      "priority": "P2",
+      "scope": "out",
+      "wave": null,
+      "state": "out-of-scope",
+      "classes": []
+    },
+    {
+      "id": "C9",
+      "folder": "cards",
+      "name": "Финансовые сводки",
+      "type": "composition",
+      "priority": "P1",
+      "scope": "out",
+      "wave": null,
+      "state": "out-of-scope",
+      "classes": []
+    },
+    {
+      "id": "C10",
+      "folder": "cards",
+      "name": "Список в карточке",
+      "type": "composition",
+      "priority": "P0",
+      "scope": "out",
+      "wave": null,
+      "state": "out-of-scope",
+      "classes": []
+    },
+    {
+      "id": "C11",
+      "folder": "cards",
+      "name": "Хронология и ход процесса",
+      "type": "new",
+      "priority": "P1",
+      "scope": "in",
+      "wave": 1,
+      "state": "done",
+      "classes": [
+        ".tg-timeline",
+        ".tg-timeline__item",
+        ".tg-timeline__marker",
+        ".tg-timeline__time"
+      ]
+    },
+    {
+      "id": "C12",
+      "folder": "cards",
+      "name": "Статусные карточки",
+      "type": "existing",
+      "priority": "P0",
+      "scope": "in",
+      "wave": 5,
+      "state": "done",
+      "classes": [
+        ".tg-notice"
+      ]
+    },
+    {
+      "id": "C13",
+      "folder": "cards",
+      "name": "Квитанция и сводка",
+      "type": "composition",
+      "priority": "P1",
+      "scope": "out",
+      "wave": null,
+      "state": "out-of-scope",
+      "classes": []
+    },
+    {
+      "id": "C14",
+      "folder": "cards",
+      "name": "Публикация и пост",
+      "type": "composition",
+      "priority": "P1",
+      "scope": "out",
+      "wave": null,
+      "state": "out-of-scope",
+      "classes": []
+    },
+    {
+      "id": "C15",
+      "folder": "cards",
+      "name": "Стопка и колода карточек",
+      "type": "new",
+      "priority": "P2",
+      "scope": "in",
+      "wave": 7,
+      "state": "done",
+      "classes": [
+        ".tg-card-stack",
+        ".tg-card-stack__item",
+        ".tg-card-stack__controls"
+      ]
+    },
+    {
+      "id": "C16",
+      "folder": "cards",
+      "name": "Bento-сетка",
+      "type": "composition",
+      "priority": "P1",
+      "scope": "in",
+      "wave": 5,
+      "state": "done",
+      "classes": [
+        ".tg-grid--bento"
+      ]
+    },
+    {
+      "id": "C17",
+      "folder": "cards",
+      "name": "Раскрывающаяся карточка",
+      "type": "extend",
+      "priority": "P1",
+      "scope": "in",
+      "wave": 1,
+      "state": "done",
+      "classes": [
+        ".tg-card--disclosure"
+      ]
+    },
+    {
+      "id": "C18",
+      "folder": "cards",
+      "name": "Декоративные эффекты карточек",
+      "type": "extend",
+      "priority": "P2",
+      "scope": "in",
+      "wave": 8,
+      "state": "done",
+      "classes": [
+        ".tg-effect-tilt",
+        ".tg-effect-glare",
+        ".tg-effect-spotlight"
+      ]
+    },
+    {
+      "id": "C19",
+      "folder": "cards",
+      "name": "Формы в карточке",
+      "type": "composition",
+      "priority": "P1",
+      "scope": "out",
+      "wave": null,
+      "state": "out-of-scope",
+      "classes": []
+    },
+    {
+      "id": "C20",
+      "folder": "cards",
+      "name": "Промо, реферал и награда",
+      "type": "composition",
+      "priority": "P2",
+      "scope": "out",
+      "wave": null,
+      "state": "out-of-scope",
+      "classes": []
+    },
+    {
+      "id": "C21",
+      "folder": "cards",
+      "name": "Медиаплеер и сравнение изображений",
+      "type": "new",
+      "priority": "P2",
+      "scope": "in",
+      "wave": 7,
+      "state": "done",
+      "classes": [
+        ".tg-player",
+        ".tg-player__cover",
+        ".tg-player__meta",
+        ".tg-player__controls",
+        ".tg-player__progress",
+        ".tg-compare",
+        ".tg-compare__before",
+        ".tg-compare__after",
+        ".tg-compare__handle"
+      ]
+    },
+    {
+      "id": "C22",
+      "folder": "cards",
+      "name": "Малые виджеты",
+      "type": "composition",
+      "priority": "P2",
+      "scope": "out",
+      "wave": null,
+      "state": "out-of-scope",
+      "classes": []
+    },
+    {
+      "id": "C23",
+      "folder": "cards",
+      "name": "Канбан-доска",
+      "type": "composition",
+      "priority": "P2",
+      "scope": "out",
+      "wave": null,
+      "state": "out-of-scope",
+      "classes": []
+    },
+    {
+      "id": "CT1",
+      "folder": "ctas",
+      "name": "Баннер-объявление",
+      "type": "new",
+      "priority": "P1",
+      "scope": "in",
+      "wave": 1,
+      "state": "done",
+      "classes": [
+        ".tg-banner",
+        ".tg-banner--sticky",
+        ".tg-banner--accent",
+        ".tg-banner__content",
+        ".tg-banner__action",
+        ".tg-banner__dismiss"
+      ]
+    },
+    {
+      "id": "CT2",
+      "folder": "ctas",
+      "name": "Промо-баннер с медиа",
+      "type": "composition",
+      "priority": "P2",
+      "scope": "out",
+      "wave": null,
+      "state": "out-of-scope",
+      "classes": []
+    },
+    {
+      "id": "CT3",
+      "folder": "ctas",
+      "name": "Финальная карточка приглашения",
+      "type": "composition",
+      "priority": "P2",
+      "scope": "out",
+      "wave": null,
+      "state": "out-of-scope",
+      "classes": []
+    },
+    {
+      "id": "CT4",
+      "folder": "ctas",
+      "name": "Подписка в диалоге",
+      "type": "composition",
+      "priority": "P1",
+      "scope": "out",
+      "wave": null,
+      "state": "out-of-scope",
+      "classes": []
+    },
+    {
+      "id": "CT5",
+      "folder": "ctas",
+      "name": "Выбор направления с CTA",
+      "type": "composition",
+      "priority": "P2",
+      "scope": "out",
+      "wave": null,
+      "state": "out-of-scope",
+      "classes": []
+    },
+    {
+      "id": "D1",
+      "folder": "dashboards",
+      "name": "Таблица данных",
+      "type": "existing",
+      "priority": "P0",
+      "scope": "in",
+      "wave": 1,
+      "state": "done",
+      "classes": [
+        ".tg-table--compact",
+        ".tg-table--stack",
+        ".tg-table__cell-main",
+        ".tg-table__cell-meta"
+      ]
+    },
+    {
+      "id": "D2",
+      "folder": "dashboards",
+      "name": "Выбор строк и массовые действия",
+      "type": "extend",
+      "priority": "P0",
+      "scope": "in",
+      "wave": "P0",
+      "state": "done",
+      "classes": [
+        ".tg-table__select",
+        ".tg-bulk-bar"
+      ]
+    },
+    {
+      "id": "D3",
+      "folder": "dashboards",
+      "name": "Панель фильтров, поиска и столбцов",
+      "type": "extend",
+      "priority": "P1",
+      "scope": "in",
+      "wave": 2,
+      "state": "done",
+      "classes": [
+        ".tg-table-toolbar"
+      ]
+    },
+    {
+      "id": "D4",
+      "folder": "dashboards",
+      "name": "Сортировка по столбцам",
+      "type": "extend",
+      "priority": "P0",
+      "scope": "in",
+      "wave": "P0",
+      "state": "done",
+      "classes": [
+        ".tg-table__sort"
+      ]
+    },
+    {
+      "id": "D5",
+      "folder": "dashboards",
+      "name": "Состояния загрузки таблицы",
+      "type": "existing",
+      "priority": "P0",
+      "scope": "in",
+      "wave": 5,
+      "state": "done",
+      "classes": [
+        ".tg-skeleton",
+        ".tg-empty"
+      ]
+    },
+    {
+      "id": "D6",
+      "folder": "dashboards",
+      "name": "Сортируемый список",
+      "type": "new",
+      "priority": "P2",
+      "scope": "in",
+      "wave": 5,
+      "state": "done",
+      "classes": [
+        ".tg-sortable",
+        ".tg-sortable__item",
+        ".tg-sortable__handle"
+      ]
+    },
+    {
+      "id": "D7",
+      "folder": "dashboards",
+      "name": "Линейные и площадные графики",
+      "type": "new",
+      "priority": "P1",
+      "scope": "in",
+      "wave": 5,
+      "state": "done",
+      "classes": [
+        ".tg-chart",
+        ".tg-chart__header",
+        ".tg-chart__plot",
+        ".tg-chart__legend",
+        ".tg-chart__legend-item",
+        ".tg-chart__tooltip",
+        ".tg-chart__data"
+      ]
+    },
+    {
+      "id": "D8",
+      "folder": "dashboards",
+      "name": "Столбчатые графики",
+      "type": "new",
+      "priority": "P1",
+      "scope": "in",
+      "wave": 5,
+      "state": "done",
+      "classes": [
+        ".tg-chart--bar"
+      ]
+    },
+    {
+      "id": "D9",
+      "folder": "dashboards",
+      "name": "Кольцевые и круговые диаграммы",
+      "type": "new",
+      "priority": "P1",
+      "scope": "in",
+      "wave": 5,
+      "state": "done",
+      "classes": [
+        ".tg-chart--donut",
+        ".tg-chart__center"
+      ]
+    },
+    {
+      "id": "D10",
+      "folder": "dashboards",
+      "name": "Свечные графики",
+      "type": "composition",
+      "priority": "P2",
+      "scope": "out",
+      "wave": null,
+      "state": "out-of-scope",
+      "classes": []
+    },
+    {
+      "id": "D11",
+      "folder": "dashboards",
+      "name": "Специальные визуализации",
+      "type": "composition",
+      "priority": "P2",
+      "scope": "out",
+      "wave": null,
+      "state": "out-of-scope",
+      "classes": []
+    },
+    {
+      "id": "D12",
+      "folder": "dashboards",
+      "name": "Экран дашборда",
+      "type": "composition",
+      "priority": "P1",
+      "scope": "out",
+      "wave": null,
+      "state": "out-of-scope",
+      "classes": []
+    },
+    {
+      "id": "D13",
+      "folder": "dashboards",
+      "name": "Иллюстрации продукта",
+      "type": "composition",
+      "priority": "P2",
+      "scope": "out",
+      "wave": null,
+      "state": "out-of-scope",
+      "classes": []
+    },
+    {
+      "id": "FE1",
+      "folder": "features",
+      "name": "Сетка возможностей",
+      "type": "composition",
+      "priority": "P1",
+      "scope": "out",
+      "wave": null,
+      "state": "out-of-scope",
+      "classes": []
+    },
+    {
+      "id": "FE2",
+      "folder": "features",
+      "name": "Bento возможностей",
+      "type": "composition",
+      "priority": "P1",
+      "scope": "out",
+      "wave": null,
+      "state": "out-of-scope",
+      "classes": []
+    },
+    {
+      "id": "FE3",
+      "folder": "features",
+      "name": "Акцентная карточка возможности",
+      "type": "composition",
+      "priority": "P2",
+      "scope": "out",
+      "wave": null,
+      "state": "out-of-scope",
+      "classes": []
+    },
+    {
+      "id": "FE4",
+      "folder": "features",
+      "name": "Ряд меток",
+      "type": "composition",
+      "priority": "P2",
+      "scope": "out",
+      "wave": null,
+      "state": "out-of-scope",
+      "classes": []
+    },
+    {
+      "id": "FE5",
+      "folder": "features",
+      "name": "Переключаемая демонстрация",
+      "type": "composition",
+      "priority": "P1",
+      "scope": "out",
+      "wave": null,
+      "state": "out-of-scope",
+      "classes": []
+    },
+    {
+      "id": "FE6",
+      "folder": "features",
+      "name": "Карусель возможностей",
+      "type": "composition",
+      "priority": "P2",
+      "scope": "out",
+      "wave": null,
+      "state": "out-of-scope",
+      "classes": []
+    },
+    {
+      "id": "FT1",
+      "folder": "footers",
+      "name": "Итоговая строка и подпись таблицы",
+      "type": "existing",
+      "priority": "P0",
+      "scope": "in",
+      "wave": "P0",
+      "state": "done",
+      "classes": [
+        ".tg-table--caption-bottom"
+      ]
+    },
+    {
+      "id": "F1",
+      "folder": "forms",
+      "name": "Текстовое поле и многострочный ввод",
+      "type": "existing",
+      "priority": "P0",
+      "scope": "in",
+      "wave": 1,
+      "state": "done",
+      "classes": [
+        ".tg-label__required"
+      ]
+    },
+    {
+      "id": "F2",
+      "folder": "forms",
+      "name": "Поле с дополнениями (input group)",
+      "type": "new",
+      "priority": "P0",
+      "scope": "in",
+      "wave": "P0",
+      "state": "done",
+      "classes": [
+        ".tg-input-group",
+        ".tg-input-group__control",
+        ".tg-input-group__addon",
+        ".tg-input-group__action"
+      ]
+    },
+    {
+      "id": "F3",
+      "folder": "forms",
+      "name": "Пароль и проверка требований",
+      "type": "extend",
+      "priority": "P0",
+      "scope": "in",
+      "wave": "P0",
+      "state": "done",
+      "classes": [
+        ".tg-requirements",
+        ".tg-requirements__item"
+      ]
+    },
+    {
+      "id": "F4",
+      "folder": "forms",
+      "name": "Числовое поле со степпером",
+      "type": "new",
+      "priority": "P1",
+      "scope": "in",
+      "wave": 2,
+      "state": "done",
+      "classes": [
+        ".tg-number",
+        ".tg-number__step",
+        ".tg-number__input"
+      ]
+    },
+    {
+      "id": "F5",
+      "folder": "forms",
+      "name": "Код подтверждения (OTP)",
+      "type": "new",
+      "priority": "P1",
+      "scope": "in",
+      "wave": 2,
+      "state": "done",
+      "classes": [
+        ".tg-otp",
+        ".tg-otp__input",
+        ".tg-otp__slot",
+        ".tg-otp__separator"
+      ]
+    },
+    {
+      "id": "F6",
+      "folder": "forms",
+      "name": "Поле поиска",
+      "type": "existing",
+      "priority": "P0",
+      "scope": "in",
+      "wave": 2,
+      "state": "done",
+      "classes": [
+        ".tg-search"
+      ]
+    },
+    {
+      "id": "F7",
+      "folder": "forms",
+      "name": "Нативный список выбора",
+      "type": "existing",
+      "priority": "P0",
+      "scope": "in",
+      "wave": 2,
+      "state": "done",
+      "classes": [
+        ".tg-select"
+      ]
+    },
+    {
+      "id": "F8",
+      "folder": "forms",
+      "name": "Пользовательский список выбора (listbox)",
+      "type": "new",
+      "priority": "P1",
+      "scope": "in",
+      "wave": 2,
+      "state": "done",
+      "classes": [
+        ".tg-listbox-trigger",
+        ".tg-listbox",
+        ".tg-listbox__option",
+        ".tg-listbox__option-meta"
+      ]
+    },
+    {
+      "id": "F9",
+      "folder": "forms",
+      "name": "Combobox и мультивыбор с поиском",
+      "type": "new",
+      "priority": "P1",
+      "scope": "in",
+      "wave": 2,
+      "state": "done",
+      "classes": [
+        ".tg-combobox",
+        ".tg-combobox__input",
+        ".tg-combobox__list"
+      ]
+    },
+    {
+      "id": "F10",
+      "folder": "forms",
+      "name": "Ввод тегов",
+      "type": "new",
+      "priority": "P1",
+      "scope": "in",
+      "wave": 2,
+      "state": "done",
+      "classes": [
+        ".tg-tag-input",
+        ".tg-tag-input__tag",
+        ".tg-tag-input__remove",
+        ".tg-tag-input__field"
+      ]
+    },
+    {
+      "id": "F11",
+      "folder": "forms",
+      "name": "Флажок",
+      "type": "existing",
+      "priority": "P0",
+      "scope": "in",
+      "wave": "P0",
+      "state": "done",
+      "classes": [
+        ".tg-choice__description"
+      ]
+    },
+    {
+      "id": "F12",
+      "folder": "forms",
+      "name": "Группа флажков и «выбрать все»",
+      "type": "extend",
+      "priority": "P0",
+      "scope": "in",
+      "wave": "P0",
+      "state": "done",
+      "classes": [
+        ".tg-choice-group",
+        ".tg-choice-group--nested"
+      ]
+    },
+    {
+      "id": "F13",
+      "folder": "forms",
+      "name": "Радиогруппа",
+      "type": "existing",
+      "priority": "P0",
+      "scope": "in",
+      "wave": 2,
+      "state": "done",
+      "classes": [
+        ".tg-radio"
+      ]
+    },
+    {
+      "id": "F14",
+      "folder": "forms",
+      "name": "Карточки выбора",
+      "type": "new",
+      "priority": "P1",
+      "scope": "in",
+      "wave": 2,
+      "state": "done",
+      "classes": [
+        ".tg-choice-card",
+        ".tg-choice-card__media",
+        ".tg-choice-card__title",
+        ".tg-choice-card__description",
+        ".tg-choice-card__indicator"
+      ]
+    },
+    {
+      "id": "F15",
+      "folder": "forms",
+      "name": "Сегменты в формах",
+      "type": "composition",
+      "priority": "P1",
+      "scope": "out",
+      "wave": null,
+      "state": "out-of-scope",
+      "classes": []
+    },
+    {
+      "id": "F16",
+      "folder": "forms",
+      "name": "Чипы выбора",
+      "type": "existing",
+      "priority": "P1",
+      "scope": "in",
+      "wave": 2,
+      "state": "done",
+      "classes": [
+        ".tg-chip"
+      ]
+    },
+    {
+      "id": "F17",
+      "folder": "forms",
+      "name": "Переключатель",
+      "type": "existing",
+      "priority": "P0",
+      "scope": "in",
+      "wave": 2,
+      "state": "done",
+      "classes": [
+        ".tg-switch"
+      ]
+    },
+    {
+      "id": "F18",
+      "folder": "forms",
+      "name": "Ползунок и диапазон",
+      "type": "extend",
+      "priority": "P1",
+      "scope": "in",
+      "wave": 2,
+      "state": "done",
+      "classes": [
+        ".tg-range-field",
+        ".tg-range-field__output",
+        ".tg-range-dual"
+      ]
+    },
+    {
+      "id": "F19",
+      "folder": "forms",
+      "name": "Загрузка файлов и dropzone",
+      "type": "extend",
+      "priority": "P0",
+      "scope": "in",
+      "wave": 2,
+      "state": "done",
+      "classes": [
+        ".tg-upload__list",
+        ".tg-upload__item"
+      ]
+    },
+    {
+      "id": "F20",
+      "folder": "forms",
+      "name": "Поле даты и времени",
+      "type": "new",
+      "priority": "P1",
+      "scope": "in",
+      "wave": 4,
+      "state": "done",
+      "classes": [
+        ".tg-date-field",
+        ".tg-date-field__segment"
+      ]
+    },
+    {
+      "id": "F21",
+      "folder": "forms",
+      "name": "Календарь",
+      "type": "new",
+      "priority": "P1",
+      "scope": "in",
+      "wave": 4,
+      "state": "done",
+      "classes": [
+        ".tg-calendar",
+        ".tg-calendar__header",
+        ".tg-calendar__grid",
+        ".tg-calendar__day",
+        ".tg-calendar__day--today",
+        ".tg-calendar__day--outside",
+        ".tg-calendar__event-dot"
+      ]
+    },
+    {
+      "id": "F22",
+      "folder": "forms",
+      "name": "Диапазон дат и пресеты",
+      "type": "extend",
+      "priority": "P1",
+      "scope": "in",
+      "wave": 4,
+      "state": "done",
+      "classes": [
+        ".tg-calendar--range",
+        ".tg-calendar__day--range-start",
+        ".tg-calendar__day--in-range",
+        ".tg-calendar__day--range-end",
+        ".tg-calendar__presets"
+      ]
+    },
+    {
+      "id": "F23",
+      "folder": "forms",
+      "name": "Выбор времени и запись",
+      "type": "composition",
+      "priority": "P2",
+      "scope": "out",
+      "wave": null,
+      "state": "out-of-scope",
+      "classes": []
+    },
+    {
+      "id": "F24",
+      "folder": "forms",
+      "name": "Колесо выбора",
+      "type": "new",
+      "priority": "P2",
+      "scope": "in",
+      "wave": 7,
+      "state": "done",
+      "classes": [
+        ".tg-wheel",
+        ".tg-wheel__column",
+        ".tg-wheel__option"
+      ]
+    },
+    {
+      "id": "F25",
+      "folder": "forms",
+      "name": "Выбор цвета",
+      "type": "new",
+      "priority": "P2",
+      "scope": "in",
+      "wave": 7,
+      "state": "done",
+      "classes": [
+        ".tg-color-field",
+        ".tg-color-field__swatch",
+        ".tg-color-field__input",
+        ".tg-color-picker",
+        ".tg-color-picker__area",
+        ".tg-color-picker__hue",
+        ".tg-color-picker__swatches"
+      ]
+    },
+    {
+      "id": "F26",
+      "folder": "forms",
+      "name": "Выбор эмодзи",
+      "type": "new",
+      "priority": "P2",
+      "scope": "in",
+      "wave": 7,
+      "state": "done",
+      "classes": [
+        ".tg-emoji-picker",
+        ".tg-emoji-picker__search",
+        ".tg-emoji-picker__grid",
+        ".tg-emoji-picker__option"
+      ]
+    },
+    {
+      "id": "F27",
+      "folder": "forms",
+      "name": "Формы и группы полей",
+      "type": "composition",
+      "priority": "P0",
+      "scope": "out",
+      "wave": null,
+      "state": "out-of-scope",
+      "classes": []
+    },
+    {
+      "id": "F28",
+      "folder": "forms",
+      "name": "Пошаговая форма",
+      "type": "new",
+      "priority": "P1",
+      "scope": "in",
+      "wave": 1,
+      "state": "done",
+      "classes": [
+        ".tg-stepper",
+        ".tg-stepper__step",
+        ".tg-stepper__marker",
+        ".tg-stepper__label"
+      ]
+    },
+    {
+      "id": "F29",
+      "folder": "forms",
+      "name": "Регистрация и вход",
+      "type": "composition",
+      "priority": "P1",
+      "scope": "out",
+      "wave": null,
+      "state": "out-of-scope",
+      "classes": []
+    },
+    {
+      "id": "F30",
+      "folder": "forms",
+      "name": "AI-поле ввода",
+      "type": "composition",
+      "priority": "P1",
+      "scope": "out",
+      "wave": null,
+      "state": "out-of-scope",
+      "classes": []
+    },
+    {
+      "id": "F31",
+      "folder": "forms",
+      "name": "Матрица настроек",
+      "type": "composition",
+      "priority": "P1",
+      "scope": "out",
+      "wave": null,
+      "state": "out-of-scope",
+      "classes": []
+    },
+    {
+      "id": "F32",
+      "folder": "forms",
+      "name": "Декоративные поля",
+      "type": "extend",
+      "priority": "P2",
+      "scope": "in",
+      "wave": 8,
+      "state": "done",
+      "classes": [
+        ".tg-effect-focus-glow"
+      ]
+    },
+    {
+      "id": "F33",
+      "folder": "forms",
+      "name": "Холст и аудио",
+      "type": "new",
+      "priority": "P2",
+      "scope": "in",
+      "wave": 7,
+      "state": "done",
+      "classes": [
+        ".tg-selection-box",
+        ".tg-selection-box__handle",
+        ".tg-waveform",
+        ".tg-waveform__track",
+        ".tg-waveform__bar",
+        ".tg-waveform__progress"
+      ]
+    },
+    {
+      "id": "F34",
+      "folder": "forms",
+      "name": "Календарные данные и афиша",
+      "type": "composition",
+      "priority": "P2",
+      "scope": "out",
+      "wave": null,
+      "state": "out-of-scope",
+      "classes": []
+    },
+    {
+      "id": "F35",
+      "folder": "forms",
+      "name": "Список переходов",
+      "type": "composition",
+      "priority": "P1",
+      "scope": "out",
+      "wave": null,
+      "state": "out-of-scope",
+      "classes": []
+    },
+    {
+      "id": "G1",
+      "folder": "galleries",
+      "name": "Карусель изображений",
+      "type": "extend",
+      "priority": "P1",
+      "scope": "in",
+      "wave": 3,
+      "state": "done",
+      "classes": [
+        ".tg-carousel--peek",
+        ".tg-carousel__thumbs",
+        ".tg-carousel--vertical"
+      ]
+    },
+    {
+      "id": "G2",
+      "folder": "galleries",
+      "name": "3D-карусели и coverflow",
+      "type": "extend",
+      "priority": "P2",
+      "scope": "in",
+      "wave": 8,
+      "state": "done",
+      "classes": [
+        ".tg-carousel--coverflow",
+        ".tg-carousel--fan",
+        ".tg-carousel--ring"
+      ]
+    },
+    {
+      "id": "G3",
+      "folder": "galleries",
+      "name": "Сетка галереи с фильтром",
+      "type": "composition",
+      "priority": "P1",
+      "scope": "out",
+      "wave": null,
+      "state": "out-of-scope",
+      "classes": []
+    },
+    {
+      "id": "G4",
+      "folder": "galleries",
+      "name": "Аккордеон изображений",
+      "type": "new",
+      "priority": "P2",
+      "scope": "in",
+      "wave": 7,
+      "state": "done",
+      "classes": [
+        ".tg-image-accordion",
+        ".tg-image-accordion__item",
+        ".tg-image-accordion__trigger",
+        ".tg-image-accordion__panel"
+      ]
+    },
+    {
+      "id": "G5",
+      "folder": "galleries",
+      "name": "Галерея в диалоге",
+      "type": "composition",
+      "priority": "P1",
+      "scope": "out",
+      "wave": null,
+      "state": "out-of-scope",
+      "classes": []
+    },
+    {
+      "id": "G6",
+      "folder": "galleries",
+      "name": "Сравнение изображений",
+      "type": "composition",
+      "priority": "P2",
+      "scope": "out",
+      "wave": null,
+      "state": "out-of-scope",
+      "classes": []
+    },
+    {
+      "id": "G7",
+      "folder": "galleries",
+      "name": "Лента логотипов",
+      "type": "composition",
+      "priority": "P1",
+      "scope": "out",
+      "wave": null,
+      "state": "out-of-scope",
+      "classes": []
+    },
+    {
+      "id": "G8",
+      "folder": "galleries",
+      "name": "Ползунки значений",
+      "type": "composition",
+      "priority": "P1",
+      "scope": "out",
+      "wave": null,
+      "state": "out-of-scope",
+      "classes": []
+    },
+    {
+      "id": "G9",
+      "folder": "galleries",
+      "name": "Разворачивающийся буклет",
+      "type": "composition",
+      "priority": "P2",
+      "scope": "out",
+      "wave": null,
+      "state": "out-of-scope",
+      "classes": []
+    },
+    {
+      "id": "H1",
+      "folder": "heroes",
+      "name": "Hero со слайдером изображений",
+      "type": "composition",
+      "priority": "P2",
+      "scope": "out",
+      "wave": null,
+      "state": "out-of-scope",
+      "classes": []
+    },
+    {
+      "id": "H2",
+      "folder": "heroes",
+      "name": "Hero с декоративным фоном",
+      "type": "composition",
+      "priority": "P2",
+      "scope": "out",
+      "wave": null,
+      "state": "out-of-scope",
+      "classes": []
+    },
+    {
+      "id": "H3",
+      "folder": "heroes",
+      "name": "Hero-bento",
+      "type": "composition",
+      "priority": "P2",
+      "scope": "out",
+      "wave": null,
+      "state": "out-of-scope",
+      "classes": []
+    },
+    {
+      "id": "H4",
+      "folder": "heroes",
+      "name": "Hero с шапкой и действиями",
+      "type": "composition",
+      "priority": "P1",
+      "scope": "out",
+      "wave": null,
+      "state": "out-of-scope",
+      "classes": []
+    },
+    {
+      "id": "H5",
+      "folder": "heroes",
+      "name": "Hero с формой",
+      "type": "composition",
+      "priority": "P2",
+      "scope": "out",
+      "wave": null,
+      "state": "out-of-scope",
+      "classes": []
+    },
+    {
+      "id": "H6",
+      "folder": "heroes",
+      "name": "Hero с карточкой продукта",
+      "type": "composition",
+      "priority": "P2",
+      "scope": "out",
+      "wave": null,
+      "state": "out-of-scope",
+      "classes": []
+    },
+    {
+      "id": "M1",
+      "folder": "misc",
+      "name": "Аккордеон",
+      "type": "extend",
+      "priority": "P0",
+      "scope": "in",
+      "wave": "P0",
+      "state": "done",
+      "classes": [
+        ".tg-accordion",
+        ".tg-accordion__controls",
+        ".tg-disclosure__meta"
+      ]
+    },
+    {
+      "id": "M2",
+      "folder": "misc",
+      "name": "Сообщение (alert)",
+      "type": "extend",
+      "priority": "P0",
+      "scope": "in",
+      "wave": "P0",
+      "state": "done",
+      "classes": [
+        ".tg-notice__actions",
+        ".tg-notice__dismiss"
+      ]
+    },
+    {
+      "id": "M3",
+      "folder": "misc",
+      "name": "Toast и стек уведомлений",
+      "type": "extend",
+      "priority": "P1",
+      "scope": "in",
+      "wave": 1,
+      "state": "done",
+      "classes": [
+        ".tg-toast-region",
+        ".tg-toast__title",
+        ".tg-toast__action",
+        ".tg-toast__close"
+      ]
+    },
+    {
+      "id": "M4",
+      "folder": "misc",
+      "name": "Центр уведомлений",
+      "type": "composition",
+      "priority": "P1",
+      "scope": "out",
+      "wave": null,
+      "state": "out-of-scope",
+      "classes": []
+    },
+    {
+      "id": "M5",
+      "folder": "misc",
+      "name": "Аватары и группа аватаров",
+      "type": "extend",
+      "priority": "P0",
+      "scope": "in",
+      "wave": "P0",
+      "state": "done",
+      "classes": [
+        ".tg-avatar-group",
+        ".tg-avatar-group__more"
+      ]
+    },
+    {
+      "id": "M6",
+      "folder": "misc",
+      "name": "Бейджи и чипы",
+      "type": "existing",
+      "priority": "P0",
+      "scope": "in",
+      "wave": "P0",
+      "state": "done",
+      "classes": [
+        ".tg-badge__dot"
+      ]
+    },
+    {
+      "id": "M7",
+      "folder": "misc",
+      "name": "Линейный прогресс",
+      "type": "existing",
+      "priority": "P0",
+      "scope": "in",
+      "wave": 1,
+      "state": "done",
+      "classes": [
+        ".tg-progress--destructive"
+      ]
+    },
+    {
+      "id": "M8",
+      "folder": "misc",
+      "name": "Круговой прогресс",
+      "type": "new",
+      "priority": "P1",
+      "scope": "in",
+      "wave": 1,
+      "state": "done",
+      "classes": [
+        ".tg-progress-ring",
+        ".tg-progress-ring__track",
+        ".tg-progress-ring__value",
+        ".tg-progress-ring__label"
+      ]
+    },
+    {
+      "id": "M9",
+      "folder": "misc",
+      "name": "Шаги процесса",
+      "type": "composition",
+      "priority": "P1",
+      "scope": "in",
+      "wave": 1,
+      "state": "done",
+      "classes": [
+        ".tg-stepper--vertical"
+      ]
+    },
+    {
+      "id": "M10",
+      "folder": "misc",
+      "name": "Хронология",
+      "type": "composition",
+      "priority": "P1",
+      "scope": "in",
+      "wave": 1,
+      "state": "done",
+      "classes": [
+        ".tg-timeline--horizontal"
+      ]
+    },
+    {
+      "id": "M11",
+      "folder": "misc",
+      "name": "Расписание по времени",
+      "type": "new",
+      "priority": "P2",
+      "scope": "in",
+      "wave": 5,
+      "state": "done",
+      "classes": [
+        ".tg-schedule",
+        ".tg-schedule__axis",
+        ".tg-schedule__row",
+        ".tg-schedule__event"
+      ]
+    },
+    {
+      "id": "M12",
+      "folder": "misc",
+      "name": "Поиск и палитра команд",
+      "type": "composition",
+      "priority": "P1",
+      "scope": "out",
+      "wave": null,
+      "state": "out-of-scope",
+      "classes": []
+    },
+    {
+      "id": "M13",
+      "folder": "misc",
+      "name": "Диалоги и выдвижные панели",
+      "type": "existing",
+      "priority": "P0",
+      "scope": "in",
+      "wave": "P0",
+      "state": "done",
+      "classes": [
+        ".tg-modal--side",
+        ".tg-modal__body"
+      ]
+    },
+    {
+      "id": "M14",
+      "folder": "misc",
+      "name": "Подсказки",
+      "type": "composition",
+      "priority": "P1",
+      "scope": "out",
+      "wave": null,
+      "state": "out-of-scope",
+      "classes": []
+    },
+    {
+      "id": "M15",
+      "folder": "misc",
+      "name": "Клавиши и сочетания",
+      "type": "new",
+      "priority": "P1",
+      "scope": "in",
+      "wave": 1,
+      "state": "done",
+      "classes": [
+        ".tg-kbd"
+      ]
+    },
+    {
+      "id": "M16",
+      "folder": "misc",
+      "name": "Выпадающие меню",
+      "type": "composition",
+      "priority": "P1",
+      "scope": "out",
+      "wave": null,
+      "state": "out-of-scope",
+      "classes": []
+    },
+    {
+      "id": "M17",
+      "folder": "misc",
+      "name": "Строки настроек с выбором",
+      "type": "composition",
+      "priority": "P1",
+      "scope": "out",
+      "wave": null,
+      "state": "out-of-scope",
+      "classes": []
+    },
+    {
+      "id": "M18",
+      "folder": "misc",
+      "name": "Панель инструментов",
+      "type": "composition",
+      "priority": "P1",
+      "scope": "out",
+      "wave": null,
+      "state": "out-of-scope",
+      "classes": []
+    },
+    {
+      "id": "M19",
+      "folder": "misc",
+      "name": "Индикатор ожидания",
+      "type": "existing",
+      "priority": "P1",
+      "scope": "in",
+      "wave": 1,
+      "state": "done",
+      "classes": [
+        ".tg-spinner"
+      ]
+    },
+    {
+      "id": "M20",
+      "folder": "misc",
+      "name": "Распределение оценок",
+      "type": "composition",
+      "priority": "P2",
+      "scope": "out",
+      "wave": null,
+      "state": "out-of-scope",
+      "classes": []
+    },
+    {
+      "id": "M21",
+      "folder": "misc",
+      "name": "Длинный документ",
+      "type": "composition",
+      "priority": "P1",
+      "scope": "out",
+      "wave": null,
+      "state": "out-of-scope",
+      "classes": []
+    },
+    {
+      "id": "M22",
+      "folder": "misc",
+      "name": "Затухание края прокрутки",
+      "type": "extend",
+      "priority": "P2",
+      "scope": "in",
+      "wave": 3,
+      "state": "done",
+      "classes": [
+        ".tg-scroll-fade"
+      ]
+    },
+    {
+      "id": "N1",
+      "folder": "navigation",
+      "name": "Вкладки",
+      "type": "existing",
+      "priority": "P0",
+      "scope": "in",
+      "wave": 1,
+      "state": "done",
+      "classes": [
+        ".tg-tabs--underline",
+        ".tg-tabs--segmented"
+      ]
+    },
+    {
+      "id": "N2",
+      "folder": "navigation",
+      "name": "Раскрывающиеся иконочные вкладки",
+      "type": "extend",
+      "priority": "P2",
+      "scope": "in",
+      "wave": 3,
+      "state": "done",
+      "classes": [
+        ".tg-tabs--collapsed-labels",
+        ".tg-tab__label"
+      ]
+    },
+    {
+      "id": "N3",
+      "folder": "navigation",
+      "name": "Вертикальные вкладки и навигация настроек",
+      "type": "extend",
+      "priority": "P1",
+      "scope": "in",
+      "wave": 3,
+      "state": "done",
+      "classes": [
+        ".tg-tabs--vertical"
+      ]
+    },
+    {
+      "id": "N4",
+      "folder": "navigation",
+      "name": "Шапка сайта",
+      "type": "extend",
+      "priority": "P0",
+      "scope": "in",
+      "wave": "P0",
+      "state": "done",
+      "classes": [
+        ".tg-site-nav",
+        ".tg-site-nav__link",
+        ".tg-page-header--sticky"
+      ]
+    },
+    {
+      "id": "N5",
+      "folder": "navigation",
+      "name": "Мега-меню и выпадающая навигация",
+      "type": "new",
+      "priority": "P1",
+      "scope": "in",
+      "wave": 3,
+      "state": "done",
+      "classes": [
+        ".tg-nav-menu",
+        ".tg-nav-menu__trigger",
+        ".tg-nav-menu__panel",
+        ".tg-nav-menu__group",
+        ".tg-nav-menu__link"
+      ]
+    },
+    {
+      "id": "N6",
+      "folder": "navigation",
+      "name": "Мобильная навигация",
+      "type": "existing",
+      "priority": "P0",
+      "scope": "in",
+      "wave": 3,
+      "state": "done",
+      "classes": [
+        ".tg-tabbar"
+      ]
+    },
+    {
+      "id": "N7",
+      "folder": "navigation",
+      "name": "Dock",
+      "type": "composition",
+      "priority": "P2",
+      "scope": "out",
+      "wave": null,
+      "state": "out-of-scope",
+      "classes": []
+    },
+    {
+      "id": "N8",
+      "folder": "navigation",
+      "name": "Строка меню (menubar)",
+      "type": "new",
+      "priority": "P2",
+      "scope": "in",
+      "wave": 3,
+      "state": "done",
+      "classes": [
+        ".tg-menubar",
+        ".tg-menubar__item"
+      ]
+    },
+    {
+      "id": "N9",
+      "folder": "navigation",
+      "name": "Выпадающее и контекстное меню",
+      "type": "extend",
+      "priority": "P0",
+      "scope": "in",
+      "wave": "P0",
+      "state": "done",
+      "classes": [
+        ".tg-menu"
+      ]
+    },
+    {
+      "id": "N10",
+      "folder": "navigation",
+      "name": "Палитра команд",
+      "type": "new",
+      "priority": "P1",
+      "scope": "in",
+      "wave": 3,
+      "state": "done",
+      "classes": [
+        ".tg-command",
+        ".tg-command__input",
+        ".tg-command__list",
+        ".tg-command__group",
+        ".tg-command__item",
+        ".tg-command__shortcut",
+        ".tg-command__footer"
+      ]
+    },
+    {
+      "id": "N11",
+      "folder": "navigation",
+      "name": "Боковая панель",
+      "type": "new",
+      "priority": "P1",
+      "scope": "in",
+      "wave": 3,
+      "state": "done",
+      "classes": [
+        ".tg-sidebar",
+        ".tg-sidebar__header",
+        ".tg-sidebar__section",
+        ".tg-sidebar__link",
+        ".tg-sidebar__footer",
+        ".tg-sidebar--collapsed"
+      ]
+    },
+    {
+      "id": "N12",
+      "folder": "navigation",
+      "name": "Пагинация",
+      "type": "extend",
+      "priority": "P0",
+      "scope": "in",
+      "wave": "P0",
+      "state": "done",
+      "classes": [
+        ".tg-pager",
+        ".tg-pager__link",
+        ".tg-pager__ellipsis"
+      ]
+    },
+    {
+      "id": "N13",
+      "folder": "navigation",
+      "name": "Оглавление",
+      "type": "new",
+      "priority": "P1",
+      "scope": "in",
+      "wave": 3,
+      "state": "done",
+      "classes": [
+        ".tg-toc",
+        ".tg-toc__link",
+        ".tg-toc__link--nested"
+      ]
+    },
+    {
+      "id": "N14",
+      "folder": "navigation",
+      "name": "Список разделов со счётчиками",
+      "type": "existing",
+      "priority": "P1",
+      "scope": "in",
+      "wave": 3,
+      "state": "done",
+      "classes": [
+        ".tg-list-item"
+      ]
+    },
+    {
+      "id": "N15",
+      "folder": "navigation",
+      "name": "Меню уведомлений",
+      "type": "composition",
+      "priority": "P1",
+      "scope": "out",
+      "wave": null,
+      "state": "out-of-scope",
+      "classes": []
+    },
+    {
+      "id": "N16",
+      "folder": "navigation",
+      "name": "Навигация карусели",
+      "type": "new",
+      "priority": "P1",
+      "scope": "in",
+      "wave": 3,
+      "state": "done",
+      "classes": [
+        ".tg-carousel",
+        ".tg-carousel__viewport",
+        ".tg-carousel__slide",
+        ".tg-carousel__controls"
+      ]
+    },
+    {
+      "id": "N17",
+      "folder": "navigation",
+      "name": "Навигация календаря",
+      "type": "composition",
+      "priority": "P1",
+      "scope": "out",
+      "wave": null,
+      "state": "out-of-scope",
+      "classes": []
+    },
+    {
+      "id": "PR1",
+      "folder": "pricing",
+      "name": "Секция тарифов с периодом оплаты",
+      "type": "composition",
+      "priority": "P1",
+      "scope": "out",
+      "wave": null,
+      "state": "out-of-scope",
+      "classes": []
+    },
+    {
+      "id": "PR2",
+      "folder": "pricing",
+      "name": "Карточка тарифа",
+      "type": "extend",
+      "priority": "P1",
+      "scope": "in",
+      "wave": 6,
+      "state": "done",
+      "classes": [
+        ".tg-card--featured",
+        ".tg-price",
+        ".tg-feature-list",
+        ".tg-feature-list__item--off"
+      ]
+    },
+    {
+      "id": "PR3",
+      "folder": "pricing",
+      "name": "Таблица сравнения тарифов",
+      "type": "composition",
+      "priority": "P1",
+      "scope": "out",
+      "wave": null,
+      "state": "out-of-scope",
+      "classes": []
+    },
+    {
+      "id": "PR4",
+      "folder": "pricing",
+      "name": "Калькулятор и дополнения",
+      "type": "composition",
+      "priority": "P2",
+      "scope": "out",
+      "wave": null,
+      "state": "out-of-scope",
+      "classes": []
+    },
+    {
+      "id": "PR5",
+      "folder": "pricing",
+      "name": "Предложения и товар",
+      "type": "composition",
+      "priority": "P2",
+      "scope": "out",
+      "wave": null,
+      "state": "out-of-scope",
+      "classes": []
+    },
+    {
+      "id": "SH1",
+      "folder": "shaders",
+      "name": "Декоративный слой фона",
+      "type": "new",
+      "priority": "P2",
+      "scope": "in",
+      "wave": 8,
+      "state": "done",
+      "classes": [
+        ".tg-effect-layer"
+      ]
+    },
+    {
+      "id": "SH2",
+      "folder": "shaders",
+      "name": "Эффект поверх кнопки",
+      "type": "extend",
+      "priority": "P2",
+      "scope": "in",
+      "wave": 8,
+      "state": "done",
+      "classes": [
+        "[data-tg-effect"
+      ]
+    },
+    {
+      "id": "SH3",
+      "folder": "shaders",
+      "name": "Эффект аватара",
+      "type": "extend",
+      "priority": "P2",
+      "scope": "in",
+      "wave": 8,
+      "state": "done",
+      "classes": [
+        ".tg-avatar[data-tg-effect"
+      ]
+    },
+    {
+      "id": "SH4",
+      "folder": "shaders",
+      "name": "Переход слайдов с эффектом",
+      "type": "extend",
+      "priority": "P2",
+      "scope": "in",
+      "wave": 8,
+      "state": "done",
+      "classes": [
+        ".tg-carousel[data-tg-effect"
+      ]
+    },
+    {
+      "id": "S1",
+      "folder": "sign-in",
+      "name": "Вход по почте и паролю",
+      "type": "composition",
+      "priority": "P0",
+      "scope": "out",
+      "wave": null,
+      "state": "out-of-scope",
+      "classes": []
+    },
+    {
+      "id": "S2",
+      "folder": "sign-in",
+      "name": "Внешние провайдеры, SSO и «сначала идентификатор»",
+      "type": "composition",
+      "priority": "P1",
+      "scope": "in",
+      "wave": 1,
+      "state": "done",
+      "classes": [
+        ".tg-divider--label"
+      ]
+    },
+    {
+      "id": "S3",
+      "folder": "sign-in",
+      "name": "Вход без пароля: ссылка, код, QR",
+      "type": "composition",
+      "priority": "P1",
+      "scope": "out",
+      "wave": null,
+      "state": "out-of-scope",
+      "classes": []
+    },
+    {
+      "id": "S4",
+      "folder": "sign-in",
+      "name": "Разделённый экран с изображением",
+      "type": "composition",
+      "priority": "P2",
+      "scope": "out",
+      "wave": null,
+      "state": "out-of-scope",
+      "classes": []
+    },
+    {
+      "id": "S5",
+      "folder": "sign-in",
+      "name": "Шапка страницы авторизации",
+      "type": "composition",
+      "priority": "P1",
+      "scope": "out",
+      "wave": null,
+      "state": "out-of-scope",
+      "classes": []
+    },
+    {
+      "id": "TS1",
+      "folder": "testimonials",
+      "name": "Карточка отзыва",
+      "type": "new",
+      "priority": "P1",
+      "scope": "in",
+      "wave": 6,
+      "state": "done",
+      "classes": [
+        ".tg-testimonial",
+        ".tg-testimonial__quote",
+        ".tg-testimonial__author",
+        ".tg-testimonial__rating",
+        ".tg-testimonial__media"
+      ]
+    },
+    {
+      "id": "TS2",
+      "folder": "testimonials",
+      "name": "Сетка отзывов",
+      "type": "composition",
+      "priority": "P1",
+      "scope": "out",
+      "wave": null,
+      "state": "out-of-scope",
+      "classes": []
+    },
+    {
+      "id": "TS3",
+      "folder": "testimonials",
+      "name": "Слайдер и стопка отзывов",
+      "type": "composition",
+      "priority": "P2",
+      "scope": "out",
+      "wave": null,
+      "state": "out-of-scope",
+      "classes": []
+    },
+    {
+      "id": "TS4",
+      "folder": "testimonials",
+      "name": "Бегущая лента отзывов",
+      "type": "new",
+      "priority": "P2",
+      "scope": "in",
+      "wave": 7,
+      "state": "done",
+      "classes": [
+        ".tg-marquee",
+        ".tg-marquee__track",
+        ".tg-marquee--vertical",
+        ".tg-marquee__pause"
+      ]
+    },
+    {
+      "id": "TS5",
+      "folder": "testimonials",
+      "name": "Полоса доверия с логотипами",
+      "type": "composition",
+      "priority": "P1",
+      "scope": "out",
+      "wave": null,
+      "state": "out-of-scope",
+      "classes": []
+    },
+    {
+      "id": "TS6",
+      "folder": "testimonials",
+      "name": "Вход с отзывом",
+      "type": "composition",
+      "priority": "P2",
+      "scope": "out",
+      "wave": null,
+      "state": "out-of-scope",
+      "classes": []
+    },
+    {
+      "id": "T1",
+      "folder": "text",
+      "name": "Оболочка редактора и выделение блоков",
+      "type": "new",
+      "priority": "P2",
+      "scope": "in",
+      "wave": 6,
+      "state": "done",
+      "classes": [
+        ".tg-editor",
+        ".tg-editor__toolbar",
+        ".tg-editor__content",
+        ".tg-editor__status",
+        ".tg-editor__block"
+      ]
+    },
+    {
+      "id": "T2",
+      "folder": "text",
+      "name": "Панель у выделения",
+      "type": "new",
+      "priority": "P2",
+      "scope": "in",
+      "wave": 6,
+      "state": "done",
+      "classes": [
+        ".tg-selection-toolbar"
+      ]
+    },
+    {
+      "id": "T3",
+      "folder": "text",
+      "name": "Анимированный заголовок",
+      "type": "composition",
+      "priority": "P2",
+      "scope": "out",
+      "wave": null,
+      "state": "out-of-scope",
+      "classes": []
+    }
+  ]
+}

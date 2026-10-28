@@ -1,0 +1,80 @@
+// Floating layer engine: menus, tooltips, hover cards, listboxes, panels that open from
+// a trigger. Owners include the parts they need; nothing here emits CSS on its own.
+//
+// Host parameters (set by the application when CSS anchor positioning is unavailable):
+//   --tg-anchor-block, --tg-anchor-inline — viewport coordinates of the layer;
+//   the origin variable passed to `popover()` — the corner the layer grows from.
+
+// The raised surface every floating layer shares.
+@mixin surface($radius: var(--radius-control)) {
+  border: var(--border);
+  border-radius: $radius;
+  background: var(--surface-bg);
+  color: var(--text-color);
+  box-shadow: var(--shadow-overlay);
+}
+
+// A popover in the top layer: placed by the host or by CSS anchors, grows from its
+// trigger, leaves faster than it arrives, appears at once when opened from the keyboard.
+@mixin popover($origin-var: --tg-float-origin, $origin: top left, $origin-rtl: top right, $scale: .97) {
+  position: fixed;
+  inset: auto;
+  inset-block-start: var(--tg-anchor-block, auto);
+  inset-inline-start: var(--tg-anchor-inline, auto);
+  margin: 0;
+  transform-origin: var(#{$origin-var}, $origin);
+  opacity: 0;
+  transform: scale($scale);
+  transition: opacity var(--duration-fade-out) var(--ease), transform var(--duration-fast) var(--ease),
+    overlay var(--duration-fade-out) allow-discrete, display var(--duration-fade-out) allow-discrete;
+
+  &:dir(rtl) { transform-origin: var(#{$origin-var}, $origin-rtl); }
+
+  &:popover-open {
+    opacity: 1;
+    transform: none;
+    transition: opacity var(--duration-fade-in) var(--ease), transform var(--duration) var(--ease),
+      overlay var(--duration-fade-in) allow-discrete, display var(--duration-fade-in) allow-discrete;
+
+    @starting-style {
+      opacity: 0;
+      transform: scale($scale);
+    }
+  }
+
+  // Closed: out of the layout. Owners give the layer a display (grid, flex) that would
+  // otherwise beat the browser's own [popover] rule; the exit still animates because
+  // display is transitioned discretely above.
+  &:not(:popover-open) { display: none; }
+
+  // Opened from the keyboard: appear at once.
+  &[data-instant] { transition: none; }
+}
+
+// CSS anchor positioning as an enhancement; the host marks [data-positioned] when it
+// measured coordinates itself.
+@mixin anchored($selector, $area: block-end span-inline-end, $gap: var(--space-1)) {
+  @supports (position-area: block-end) {
+    #{$selector}:not([data-positioned]) {
+      position-area: $area;
+      position-try-fallbacks: flip-block, flip-inline, flip-block flip-inline;
+      margin-block: $gap;
+    }
+  }
+}
+
+// On small touch screens a floating panel becomes a sheet at the bottom edge.
+@mixin sheet($selector, $origin-var: --tg-float-origin) {
+  @media (max-width: 36rem) and (pointer: coarse) {
+    #{$selector}:not([data-positioned]), #{$selector}[data-positioned] {
+      #{$origin-var}: bottom center;
+      position-area: none;
+      inset: auto 0 0;
+      inline-size: auto;
+      max-inline-size: none;
+      margin: var(--space-2);
+      margin-block-end: calc(var(--space-2) + var(--safe-area-bottom));
+      border-radius: var(--radius-lg);
+    }
+  }
+}

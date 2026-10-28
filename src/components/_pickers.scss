@@ -1,0 +1,568 @@
+@use '../base';
+@use 'floating';
+@use 'option';
+@use 'selected';
+@use 'field-surface';
+
+// Choosing values: custom listbox, combobox, tag input, number stepper, one-time code,
+// choice cards, labelled and dual ranges. Field frames come from field-surface, the
+// popup list from the floating engine, rows from the option engine.
+@layer tds.components {
+  // Listbox trigger: looks like the native select, opens a list of rich options.
+  .tg-listbox-trigger {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    inline-size: 100%;
+    min-inline-size: 0;
+    min-block-size: var(--control-h);
+    padding: var(--space-2) var(--space-3);
+    padding-inline-end: var(--space-10);
+    @include field-surface.frame;
+    background-image: var(--select-arrow);
+    background-repeat: no-repeat;
+    background-size: var(--icon-size) var(--icon-size);
+    background-position: right var(--space-3) center;
+    color: var(--text-color);
+    font-size: max(1rem, var(--fs));
+    line-height: 1.5;
+    text-align: start;
+    cursor: pointer;
+    transition: box-shadow var(--duration) var(--ease), border-color var(--duration) var(--ease), background-color var(--duration) var(--ease);
+
+    --control-idle-bg: var(--field-bg);
+    --control-hover-bg: var(--field-bg-hover);
+    --control-hover-filter: none;
+    &:dir(rtl) { background-position: left var(--space-3) center; }
+    > .tg-icon, > .tg-avatar { flex: 0 0 auto; }
+    > .tg-avatar { --icon-avatar: 1.75rem; margin-block: calc(var(--space-1) * -1); padding: 0; border-width: 0; font-size: var(--fs-xs); }
+    > :not(.tg-icon, .tg-avatar) { min-inline-size: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+    &:focus-visible, &[aria-expanded='true'] {
+      outline: none;
+      border-color: var(--accent-main);
+      box-shadow: var(--focus);
+    }
+    &[aria-invalid='true'] { border-color: var(--danger-main); }
+  }
+
+  // The popup list shared by listbox and combobox.
+  .tg-listbox {
+    --listbox-option-h: var(--control-h);
+    display: grid;
+    align-content: start;
+    min-inline-size: max(12rem, var(--tg-anchor-width, 0px));
+    max-inline-size: min(26rem, calc(100vw - var(--space-8)));
+    max-block-size: min(20rem, calc(100dvh - var(--space-8)));
+    margin: 0;
+    padding: var(--space-1);
+    list-style: none;
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    @include floating.surface;
+    font-size: var(--fs);
+    line-height: 1.4;
+
+    &:empty::after, > .tg-listbox__empty {
+      padding: var(--space-3);
+      color: var(--text-secondary);
+      font-size: var(--fs-sm);
+      text-align: center;
+    }
+    &:empty::after { content: attr(data-empty); }
+    &[aria-busy='true'] { opacity: .6; }
+  }
+  .tg-listbox[popover] { @include floating.popover(--tg-listbox-origin); }
+  @supports (position-area: block-end) {
+    .tg-listbox[popover]:not([data-positioned]) {
+      position-area: block-end span-inline-end;
+      position-try-fallbacks: flip-block;
+      min-inline-size: max(12rem, anchor-size(width));
+      margin-block: var(--space-1);
+    }
+  }
+  @include floating.sheet('.tg-listbox[popover]', --tg-listbox-origin);
+
+  .tg-listbox__option {
+    --control-hover-filter: none;
+    --control-paint-duration: 0s;
+    @include option.row(var(--listbox-option-h));
+    padding-inline-end: calc(var(--space-3) + 1rem + var(--space-3));
+    position: relative;
+    -webkit-user-select: none;
+    user-select: none;
+
+    > .tg-avatar { --icon-avatar: var(--icon-btn-prep); flex: 0 0 auto; padding: 0; border-width: 0; }
+    // The active option (keyboard, aria-activedescendant) and the hovered one share paint.
+    &[data-active], &:hover { background: var(--control-hover-bg); }
+    // A ring only while the keyboard drives the list; the pointer gets the tint alone.
+    .tg-listbox:not([data-pointer]) &[data-active] { @include option.active; }
+    &[aria-selected='true'] { color: var(--accent-readable); font-weight: var(--fw-medium); }
+    &[aria-selected='true']::after {
+      @include option.mark;
+      position: absolute;
+      inset-inline-end: var(--space-3);
+    }
+    &[aria-disabled='true'] { opacity: var(--disabled-opacity); cursor: not-allowed; background: none; }
+  }
+  .tg-listbox__text { display: grid; flex: 1 1 auto; min-inline-size: 0; }
+  .tg-listbox__option-meta { @include option.meta; font-weight: var(--fw-regular); }
+  .tg-listbox__group {
+    padding: var(--space-2) var(--space-3) var(--space-1);
+    color: var(--text-secondary);
+    font-size: var(--fs-sm);
+    font-weight: var(--fw-medium);
+  }
+
+  // Combobox: a text field that filters a listbox. Selected values of a multiple
+  // combobox are tags before the field, inside one frame.
+  .tg-combobox {
+    position: relative;
+    min-inline-size: 0;
+    > .tg-combobox__list:not([popover]) {
+      position: absolute;
+      inset-inline: 0;
+      max-inline-size: none;
+      inset-block-start: calc(100% + var(--space-1));
+      z-index: var(--z-overlay);
+    }
+  }
+  .tg-combobox__input { padding-inline-end: var(--space-10); }
+
+  // Tag input: tags and a field in one frame that wraps.
+  .tg-tag-input {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--space-1);
+    min-inline-size: 0;
+    min-block-size: var(--control-h);
+    padding: var(--space-1) var(--space-2);
+    @include field-surface.surface('.tg-tag-input__field');
+    cursor: text;
+    transition: box-shadow var(--duration) var(--ease), border-color var(--duration) var(--ease);
+    &[data-limit] .tg-tag-input__field::placeholder { color: var(--text-danger); }
+  }
+  .tg-tag-input__tag {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-1);
+    min-inline-size: 0;
+    max-inline-size: 100%;
+    min-block-size: calc(var(--chip-h) - var(--space-2));
+    padding-inline: var(--space-3) var(--space-1);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-pill);
+    background: var(--surface-bg);
+    color: var(--text-color);
+    font-size: var(--fs-sm);
+    font-weight: var(--fw-medium);
+    overflow-wrap: anywhere;
+    &[data-invalid] { background: var(--danger-soft); color: var(--text-danger); }
+    &:focus-within { outline: 2px solid var(--text-link); outline-offset: 1px; }
+  }
+  // A 24px mark; padding and negative margin make a 44px target.
+  .tg-tag-input__remove {
+    --control-hover-filter: none;
+    display: grid;
+    place-items: center;
+    flex: 0 0 auto;
+    inline-size: 1.5rem;
+    block-size: 1.5rem;
+    margin: calc(var(--space-2) * -1) calc(var(--space-2) * -1) calc(var(--space-2) * -1) 0;
+    padding: 0;
+    border: var(--space-2) solid transparent;
+    box-sizing: content-box;
+    border-radius: 50%;
+    background: transparent;
+    background-clip: padding-box;
+    color: var(--text-secondary);
+    cursor: pointer;
+    > .tg-icon { inline-size: 1rem; block-size: 1rem; }
+    &:focus-visible { outline: none; }
+  }
+  .tg-tag-input__field {
+    @include field-surface.bare-control;
+    flex: 1 1 8ch;
+    min-inline-size: 8ch;
+    min-block-size: calc(var(--control-h) - var(--space-2) - 2px);
+    padding: 0 var(--space-1);
+  }
+
+  // Number stepper: − field + in the input-group frame; the native spinner is hidden
+  // but arrow keys keep working.
+  .tg-number {
+    display: inline-flex;
+    align-items: stretch;
+    inline-size: auto;
+    max-inline-size: 100%;
+    min-block-size: var(--control-h);
+    @include field-surface.surface('.tg-number__input');
+    transition: box-shadow var(--duration) var(--ease), border-color var(--duration) var(--ease);
+
+    &--pill { border-radius: var(--radius-pill); > .tg-number__step { border-radius: var(--radius-pill); } }
+  }
+  .tg-number__input {
+    @include field-surface.bare-control;
+    inline-size: calc(3ch + var(--space-6));
+    min-inline-size: calc(3ch + var(--space-6));
+    field-sizing: content;
+    padding-inline: var(--space-2);
+    text-align: center;
+    font-variant-numeric: tabular-nums;
+    appearance: textfield;
+    -moz-appearance: textfield;
+    &::-webkit-inner-spin-button, &::-webkit-outer-spin-button { appearance: none; margin: 0; }
+  }
+  .tg-number__step {
+    flex: 0 0 auto;
+    inline-size: var(--control-h);
+    block-size: auto;
+    min-block-size: 0;
+    border-radius: calc(var(--radius-control) - 1px);
+  }
+
+  // One-time code: one real field under decorative cells. The field keeps paste,
+  // autofill (one-time-code) and a single Tab stop; the cells only show it.
+  .tg-otp {
+    --otp-cell: 2.75rem;
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+    justify-self: start;
+    max-inline-size: 100%;
+  }
+  .tg-otp__input {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    inline-size: 100%;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    color: transparent;
+    caret-color: transparent;
+    font-size: max(1rem, var(--fs));
+    letter-spacing: 2em;
+    outline: none;
+    opacity: 0;
+    cursor: text;
+    &::selection { background: transparent; }
+  }
+  .tg-otp__group { display: inline-flex; flex: 0 1 auto; gap: var(--space-2); min-inline-size: 0; }
+  .tg-otp__slot {
+    position: relative;
+    display: grid;
+    flex: 0 1 var(--otp-cell);
+    place-items: center;
+    min-inline-size: 2rem;
+    block-size: calc(var(--otp-cell) + var(--space-2));
+    @include field-surface.frame;
+    color: var(--text-color);
+    font-size: var(--fs-lg);
+    font-weight: var(--fw-semibold);
+    font-variant-numeric: tabular-nums;
+    transition: border-color var(--duration-fast) var(--ease), box-shadow var(--duration-fast) var(--ease);
+
+    &:empty::before { content: attr(data-placeholder); color: var(--text-secondary); font-weight: var(--fw-regular); }
+    // The active cell shows the caret of the hidden field.
+    .tg-otp:focus-within &[data-active] { border-color: var(--accent-main); box-shadow: var(--focus); }
+    .tg-otp:focus-within &[data-active]:empty::after {
+      content: '';
+      inline-size: 2px;
+      block-size: 1.25em;
+      background: var(--text-link);
+      animation: tg-caret 1s steps(1) infinite;
+    }
+  }
+  @keyframes tg-caret { 50% { opacity: 0; } }
+  .tg-otp__separator {
+    flex: 0 0 auto;
+    inline-size: var(--space-2);
+    block-size: 2px;
+    border-radius: 1px;
+    background: var(--border-color);
+  }
+  .tg-otp[data-state='error'] .tg-otp__slot { border-color: var(--danger-main); }
+  .tg-otp[data-state='success'] .tg-otp__slot { border-color: var(--accent-main); background: var(--accent-soft); }
+  .tg-otp[aria-busy='true'] .tg-otp__slot { opacity: .6; }
+  .tg-otp:has(.tg-otp__input:disabled) { opacity: var(--disabled-opacity); }
+  @media (max-width: 22.5rem) {
+    .tg-otp, .tg-otp__group { gap: var(--space-1); }
+  }
+
+  // Choice cards: a label with a native radio/checkbox; checked draws the accent ring.
+  .tg-choice-card {
+    position: relative;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    align-content: start;
+    gap: var(--space-1) var(--space-3);
+    min-inline-size: 0;
+    padding: var(--space-4);
+    border: var(--border);
+    border-radius: var(--radius-lg);
+    background: var(--surface-bg);
+    color: var(--text-color);
+    cursor: pointer;
+    transition: border-color var(--duration) var(--ease), box-shadow var(--duration) var(--ease);
+
+    @media (hover: hover) and (pointer: fine) {
+      &:where(:not(:has(input:disabled))):hover { border-color: var(--action-border-color); }
+    }
+    &:has(input:checked) { @include selected.ring; }
+    &:has(input:focus-visible) { outline: 2px solid var(--text-link); outline-offset: 3px; }
+    &:has(input:disabled) { opacity: var(--disabled-opacity); cursor: not-allowed; }
+    > :not(.tg-choice-card__indicator) { grid-column: 1; }
+  }
+  .tg-choice-card__media {
+    grid-column: 1 / -1;
+    margin: calc(var(--space-4) * -1) calc(var(--space-4) * -1) var(--space-2);
+    border-radius: calc(var(--radius-lg) - 1px) calc(var(--radius-lg) - 1px) 0 0;
+    overflow: clip;
+    &:has(> .tg-icon) { display: flex; margin: 0 0 var(--space-1); color: var(--text-link); }
+    > .tg-icon { inline-size: 1.5rem; block-size: 1.5rem; }
+    > img { display: block; inline-size: 100%; block-size: auto; aspect-ratio: 16 / 9; object-fit: cover; }
+  }
+  .tg-choice-card__title { font-weight: var(--fw-semibold); }
+  .tg-choice-card__description { color: var(--text-secondary); font-size: var(--fs-sm); }
+  .tg-choice-card__indicator {
+    grid-row: 1;
+    grid-column: 2;
+    align-self: start;
+    margin: 0;
+  }
+  .tg-choice-card:has(> .tg-choice-card__media:not(:has(> .tg-icon))) > .tg-choice-card__indicator { grid-row: 2; }
+  @media (forced-colors: active) {
+    .tg-choice-card:has(input:checked) { outline: 3px solid Highlight; }
+  }
+
+  // Range with its value: label and output on one line, the slider below.
+  .tg-range-field {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    align-items: baseline;
+    gap: 0 var(--space-3);
+    min-inline-size: 0;
+    > :is(.tg-range, .tg-range-dual, .tg-range-field__marks) { grid-column: 1 / -1; }
+  }
+  .tg-range-field__output {
+    color: var(--text-color);
+    font-size: var(--fs-sm);
+    font-weight: var(--fw-medium);
+    font-variant-numeric: tabular-nums;
+  }
+  .tg-range-field__marks {
+    display: flex;
+    justify-content: space-between;
+    margin-block-start: calc(var(--space-2) * -1);
+    color: var(--text-secondary);
+    font-size: var(--fs-xs);
+    font-variant-numeric: tabular-nums;
+  }
+  // Two native ranges on one track; the fill between them follows --range-start/--range-end (0…100%).
+  .tg-range-dual {
+    position: relative;
+    display: grid;
+    min-block-size: var(--control-h);
+    &::before {
+      content: '';
+      grid-area: 1 / 1;
+      align-self: center;
+      block-size: 6px;
+      border-radius: var(--radius-pill);
+      background: linear-gradient(to right, var(--background-muted) var(--range-start, 0%), var(--accent-main) var(--range-start, 0%), var(--accent-main) var(--range-end, 100%), var(--background-muted) var(--range-end, 100%));
+    }
+    &:dir(rtl)::before { background: linear-gradient(to left, var(--background-muted) var(--range-start, 0%), var(--accent-main) var(--range-start, 0%), var(--accent-main) var(--range-end, 100%), var(--background-muted) var(--range-end, 100%)); }
+    > input[type='range'].tg-range {
+      grid-area: 1 / 1;
+      pointer-events: none;
+      &::-webkit-slider-runnable-track { background: transparent; }
+      &::-moz-range-track, &::-moz-range-progress { background: transparent; }
+      &::-webkit-slider-thumb { pointer-events: auto; box-shadow: 0 0 0 3px var(--surface-bg); }
+      &::-moz-range-thumb { pointer-events: auto; box-shadow: 0 0 0 3px var(--surface-bg); }
+    }
+  }
+
+  // Wheel: columns that snap their options to a centre band (time, date on phones).
+  // Each column is a listbox; arrows step, the host keeps aria-selected on the centred one.
+  .tg-wheel {
+    --wheel-item: 2.75rem;
+    --wheel-rows: 5;
+    position: relative;
+    display: inline-flex;
+    gap: var(--space-1);
+    padding: 0 var(--space-2);
+    border: var(--border);
+    border-radius: var(--radius-lg);
+    background: var(--surface-bg);
+    &::before {
+      content: '';
+      position: absolute;
+      inset-inline: var(--space-2);
+      inset-block-start: 50%;
+      block-size: var(--wheel-item);
+      translate: 0 -50%;
+      border-radius: var(--radius-inset);
+      background: var(--background-muted);
+      pointer-events: none;
+    }
+  }
+  .tg-wheel__column {
+    position: relative;
+    block-size: calc(var(--wheel-item) * var(--wheel-rows));
+    min-inline-size: 3.5rem;
+    margin: 0;
+    padding: calc(var(--wheel-item) * (var(--wheel-rows) - 1) / 2) 0;
+    list-style: none;
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    scroll-snap-type: y mandatory;
+    scrollbar-width: none;
+    mask-image: linear-gradient(to bottom, transparent, black 35%, black 65%, transparent);
+    &::-webkit-scrollbar { display: none; }
+    &:focus-visible { outline: 2px solid var(--text-link); outline-offset: -2px; border-radius: var(--radius-inset); }
+    @media (prefers-reduced-motion: no-preference) { scroll-behavior: smooth; }
+  }
+  .tg-wheel__option {
+    display: grid;
+    place-items: center;
+    block-size: var(--wheel-item);
+    padding-inline: var(--space-2);
+    color: var(--text-secondary);
+    font-size: var(--fs-lg);
+    font-variant-numeric: tabular-nums;
+    scroll-snap-align: center;
+    cursor: pointer;
+    &[aria-selected='true'] { color: var(--text-color); font-weight: var(--fw-semibold); }
+    &[aria-disabled='true'] { opacity: var(--disabled-opacity); }
+  }
+
+  // Colour: the native picker in a field with its HEX value; the extended picker adds a
+  // 2D area (two sliders for assistive tech), a hue range and swatches as radios.
+  .tg-color-field {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    min-inline-size: 0;
+    min-block-size: var(--control-h);
+    padding: var(--space-1);
+    padding-inline-end: var(--space-3);
+    @include field-surface.surface('.tg-color-field__input');
+    transition: box-shadow var(--duration) var(--ease), border-color var(--duration) var(--ease);
+  }
+  .tg-color-field__swatch {
+    flex: 0 0 auto;
+    inline-size: calc(var(--control-h) - var(--space-2) - 2px);
+    block-size: calc(var(--control-h) - var(--space-2) - 2px);
+    padding: 0;
+    border: 0;
+    border-radius: var(--radius-inset);
+    background: none;
+    cursor: pointer;
+    &::-webkit-color-swatch-wrapper { padding: 0; }
+    &::-webkit-color-swatch { border: 1px solid var(--border-color); border-radius: var(--radius-inset); }
+    &::-moz-color-swatch { border: 1px solid var(--border-color); border-radius: var(--radius-inset); }
+    &:focus-visible { outline: 2px solid var(--text-link); outline-offset: 2px; }
+  }
+  .tg-color-field__input {
+    @include field-surface.bare-control;
+    flex: 1 1 auto;
+    inline-size: 100%;
+    font-family: var(--font-family-mono);
+    text-transform: uppercase;
+  }
+  .tg-color-picker {
+    display: grid;
+    gap: var(--space-3);
+    inline-size: min(100%, 18rem);
+    padding: var(--space-3);
+    border: var(--border);
+    border-radius: var(--radius-lg);
+    background: var(--surface-bg);
+  }
+  .tg-color-picker__area {
+    position: relative;
+    aspect-ratio: 3 / 2;
+    border-radius: var(--radius-inset);
+    background: linear-gradient(to top, black, transparent), linear-gradient(to right, white, hsl(var(--picker-hue, 210) 100% 50%));
+    touch-action: none;
+    cursor: crosshair;
+    &:focus-within { outline: 2px solid var(--text-link); outline-offset: 2px; }
+  }
+  .tg-color-picker__handle {
+    position: absolute;
+    inset-inline-start: calc(var(--picker-s, .5) * 100%);
+    inset-block-start: calc((1 - var(--picker-v, .5)) * 100%);
+    inline-size: 1.125rem;
+    block-size: 1.125rem;
+    border: 2px solid white;
+    border-radius: 50%;
+    box-shadow: 0 0 0 1px black, var(--shadow-control);
+    translate: -50% -50%;
+    pointer-events: none;
+  }
+  // The area is operated by two visually hidden sliders over it.
+  .tg-color-picker__area > input[type='range'] {
+    position: absolute;
+    inset: 0;
+    inline-size: 100%;
+    block-size: 100%;
+    margin: 0;
+    opacity: 0;
+    pointer-events: none;
+  }
+  // Content colour, not interface colour: the hue track shows the whole circle.
+  .tg-color-picker__hue {
+    --range-track-bg: linear-gradient(to right, red, yellow, lime, cyan, blue, magenta, red);
+    --range-progress-bg: transparent;
+  }
+  .tg-color-picker__swatches {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2);
+    margin: 0;
+    padding: 0;
+    border: 0;
+    > label { position: relative; display: block; inline-size: 2rem; block-size: 2rem; border-radius: 50%; background: var(--swatch, transparent); box-shadow: inset 0 0 0 1px var(--border-color); cursor: pointer; }
+    > label > input { position: absolute; inset: 0; margin: 0; opacity: 0; cursor: inherit; }
+    > label:has(:checked) { box-shadow: 0 0 0 2px var(--surface-bg), 0 0 0 4px var(--accent-main); }
+    > label:has(:focus-visible) { outline: 2px solid var(--text-link); outline-offset: 4px; }
+  }
+
+  // Emoji picker: search, then a grid of 44px cells moved through with arrows.
+  .tg-emoji-picker {
+    display: grid;
+    gap: var(--space-2);
+    inline-size: min(100%, 20rem);
+    padding: var(--space-2);
+    border: var(--border);
+    border-radius: var(--radius-lg);
+    background: var(--surface-bg);
+  }
+  .tg-emoji-picker__search { position: sticky; inset-block-start: 0; }
+  .tg-emoji-picker__group { margin: var(--space-1) var(--space-1) 0; color: var(--text-secondary); font-size: var(--fs-xs); font-weight: var(--fw-semibold); }
+  .tg-emoji-picker__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(2.75rem, 1fr));
+    max-block-size: 14rem;
+    overflow-y: auto;
+    overscroll-behavior: contain;
+  }
+  .tg-emoji-picker__option {
+    --control-hover-filter: none;
+    display: grid;
+    place-items: center;
+    block-size: 2.75rem;
+    padding: 0;
+    border: 0;
+    border-radius: var(--radius-inset);
+    background: var(--control-idle-bg, transparent);
+    font-size: 1.375rem;
+    line-height: 1;
+    cursor: pointer;
+    &:focus-visible { outline: 2px solid var(--text-link); outline-offset: -2px; }
+    &[aria-selected='true'] { background: var(--accent-soft); }
+  }
+}

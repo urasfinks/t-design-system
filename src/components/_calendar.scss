@@ -1,0 +1,189 @@
+@use '../base';
+@use 'field-surface';
+
+// Dates and times: the segmented date field, the month calendar and date ranges.
+// Native date inputs keep the .tg-input look; the calendar is a grid of 44px days.
+@layer tds.components {
+  // Native date and time inputs: the picker icon follows the text colour.
+  .tg-input:is([type='date'], [type='time'], [type='datetime-local'], [type='month']) {
+    font-variant-numeric: tabular-nums;
+    &::-webkit-calendar-picker-indicator { opacity: .6; cursor: pointer; }
+    &::-webkit-datetime-edit-fields-wrapper { padding: 0; }
+  }
+
+  // Segmented date field: day, month and year are spinbuttons in one field frame.
+  .tg-date-field {
+    display: inline-flex;
+    align-items: center;
+    gap: 0;
+    max-inline-size: 100%;
+    min-block-size: var(--control-h);
+    padding: var(--space-1) var(--space-3);
+    @include field-surface.frame;
+    color: var(--text-color);
+    font-size: max(1rem, var(--fs));
+    font-variant-numeric: tabular-nums;
+    transition: box-shadow var(--duration) var(--ease), border-color var(--duration) var(--ease);
+    &:focus-within { border-color: var(--accent-main); box-shadow: var(--focus); }
+    &[aria-invalid='true'] { border-color: var(--danger-main); }
+    > .tg-icon { margin-inline-start: auto; padding-inline-start: var(--space-3); color: var(--text-secondary); box-sizing: content-box; }
+  }
+  .tg-date-field__segment {
+    min-inline-size: 2ch;
+    padding: .125rem .1875rem;
+    border-radius: var(--radius-xs);
+    text-align: center;
+    caret-color: transparent;
+    cursor: text;
+    outline: none;
+    &[data-placeholder] { color: var(--text-secondary); }
+    &:focus { background: var(--accent-soft); color: var(--text-color); }
+  }
+  .tg-date-field__separator { color: var(--text-secondary); padding-inline: 1px; }
+
+  // Month calendar: a real table grid; days are 44px buttons with the inset radius.
+  .tg-calendar {
+    --calendar-day: 2.75rem;
+    display: grid;
+    gap: var(--space-3);
+    inline-size: max-content;
+    max-inline-size: 100%;
+    min-inline-size: 0;
+    color: var(--text-color);
+  }
+  .tg-calendar__months { display: flex; flex-wrap: wrap; gap: var(--space-6); }
+  .tg-calendar__month { display: grid; gap: var(--space-2); align-content: start; }
+  .tg-calendar__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-2);
+    > .tg-header__title, > h2, > h3 { flex: 1 1 auto; margin: 0; font-size: var(--fs); font-weight: var(--fw-semibold); text-align: center; text-transform: capitalize; }
+    > .tg-icon-btn:dir(rtl) > .tg-icon { transform: scaleX(-1); }
+  }
+  .tg-calendar__grid {
+    border-collapse: collapse;
+    border-spacing: 0;
+    table-layout: fixed;
+    > thead th {
+      inline-size: var(--calendar-day);
+      padding: 0 0 var(--space-1);
+      color: var(--text-secondary);
+      font-size: var(--fs-xs);
+      font-weight: var(--fw-medium);
+      text-align: center;
+    }
+    td { padding: 1px 0; text-align: center; }
+  }
+  .tg-calendar__day {
+    --control-hover-filter: none;
+    position: relative;
+    display: inline-grid;
+    place-items: center;
+    inline-size: var(--calendar-day);
+    block-size: var(--calendar-day);
+    padding: 0;
+    border: 0;
+    border-radius: var(--radius-inset);
+    background: var(--control-idle-bg, transparent);
+    color: inherit;
+    font: inherit;
+    font-size: var(--fs-sm);
+    font-variant-numeric: tabular-nums;
+    cursor: pointer;
+    &:focus-visible { outline: 2px solid var(--text-link); outline-offset: -2px; z-index: 1; }
+    &--outside { color: var(--text-secondary); }
+    &--today { box-shadow: inset 0 0 0 1.5px var(--accent-main); font-weight: var(--fw-semibold); }
+    &:is([aria-pressed='true'], [aria-selected='true']) {
+      --control-idle-bg: var(--action-bg);
+      --control-hover-bg: var(--action-bg);
+      color: var(--button-text-color);
+      font-weight: var(--fw-semibold);
+    }
+    &[aria-disabled='true'] { opacity: var(--disabled-opacity); cursor: not-allowed; }
+  }
+  // Up to three event marks under the number: accent, danger, neutral.
+  .tg-calendar__events {
+    position: absolute;
+    inset-block-end: .3125rem;
+    inset-inline: 0;
+    display: flex;
+    justify-content: center;
+    gap: 2px;
+    pointer-events: none;
+  }
+  .tg-calendar__event-dot {
+    inline-size: 4px;
+    block-size: 4px;
+    border-radius: 50%;
+    background: var(--accent-main);
+    &--danger { background: var(--danger-main); }
+    &--neutral { background: var(--text-secondary); }
+  }
+  .tg-calendar__day:is([aria-pressed='true'], [aria-selected='true']) .tg-calendar__event-dot { background: currentColor; }
+  .tg-calendar__legend {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-1) var(--space-4);
+    margin: 0;
+    padding: 0;
+    color: var(--text-secondary);
+    font-size: var(--fs-xs);
+    list-style: none;
+    > li { display: inline-flex; align-items: center; gap: var(--space-1); }
+  }
+  .tg-calendar__footer { display: flex; flex-wrap: wrap; justify-content: flex-end; gap: var(--space-2); }
+
+  // Range: a solid soft band runs between the ends; the ends are filled.
+  .tg-calendar--range {
+    td:has(> .tg-calendar__day--in-range) { background: var(--accent-soft); }
+    td:has(> .tg-calendar__day--range-start) { background: linear-gradient(to right, transparent 50%, var(--accent-soft) 50%); }
+    td:has(> .tg-calendar__day--range-end) { background: linear-gradient(to left, transparent 50%, var(--accent-soft) 50%); }
+    td:has(> .tg-calendar__day--range-start.tg-calendar__day--range-end) { background: none; }
+    &:dir(rtl) {
+      td:has(> .tg-calendar__day--range-start) { background: linear-gradient(to left, transparent 50%, var(--accent-soft) 50%); }
+      td:has(> .tg-calendar__day--range-end) { background: linear-gradient(to right, transparent 50%, var(--accent-soft) 50%); }
+    }
+    // The band breaks at week edges: first and last cells of a row round their outer side.
+    td:first-child:has(> .tg-calendar__day--in-range) { border-start-start-radius: var(--radius-inset); border-end-start-radius: var(--radius-inset); }
+    td:last-child:has(> .tg-calendar__day--in-range) { border-start-end-radius: var(--radius-inset); border-end-end-radius: var(--radius-inset); }
+    .tg-calendar__day--in-range { --control-hover-bg: transparent; color: var(--accent-readable); }
+    .tg-calendar__day--in-range.tg-calendar__day--outside { color: var(--text-secondary); }
+    .tg-calendar__day:is(.tg-calendar__day--range-start, .tg-calendar__day--range-end) {
+      --control-idle-bg: var(--action-bg);
+      --control-hover-bg: var(--action-bg);
+      color: var(--button-text-color);
+      font-weight: var(--fw-semibold);
+    }
+    // While choosing the end, the hovered span previews the band.
+    td:has(> .tg-calendar__day[data-preview]) { background: var(--accent-soft); }
+  }
+  .tg-calendar__layout { display: flex; flex-wrap: wrap; gap: var(--space-4); align-items: start; }
+  .tg-calendar__presets {
+    display: grid;
+    align-content: start;
+    gap: 2px;
+    min-inline-size: 10rem;
+    margin: 0;
+    padding: 0 var(--space-4) 0 0;
+    border-inline-end: 1px solid var(--border-subtle-color);
+    list-style: none;
+    .tg-btn { justify-content: flex-start; inline-size: 100%; }
+    .tg-btn[aria-pressed='true'] { --control-idle-bg: var(--background-muted); }
+  }
+  @media (max-width: 36rem) {
+    .tg-calendar { --calendar-day: 2.5rem; inline-size: auto; }
+    .tg-calendar__layout { flex-direction: column; }
+    .tg-calendar__presets {
+      display: flex;
+      flex-wrap: nowrap;
+      gap: var(--space-2);
+      inline-size: 100%;
+      padding: 0 0 var(--space-2);
+      border-inline-end: 0;
+      overflow-x: auto;
+      scrollbar-width: none;
+      .tg-btn { inline-size: auto; white-space: nowrap; }
+    }
+  }
+}

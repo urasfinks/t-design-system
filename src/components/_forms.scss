@@ -11,6 +11,12 @@
     font-size: var(--fs-sm);
     font-weight: var(--fw-medium);
   }
+  // The visual mark of a required field; `required` on the control is what is announced.
+  .tg-label__required {
+    margin-inline-start: .125em;
+    color: var(--text-danger);
+    font-weight: var(--fw-semibold);
+  }
 
   .tg-help {
     margin: 0;
@@ -348,6 +354,51 @@
       border-radius: 0 calc(var(--radius-control) - 1px) calc(var(--radius-control) - 1px) 0;
       &:dir(rtl) { border-radius: calc(var(--radius-control) - 1px) 0 0 calc(var(--radius-control) - 1px); }
       &:focus-visible { outline-offset: -3px; }
+    }
+  }
+
+  // Copy a short value: the value is selectable text in a field frame, the action sits
+  // inside with the inset radius. The host writes to the clipboard and announces it.
+  .tg-copy {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    min-inline-size: 0;
+    max-inline-size: 100%;
+    min-block-size: var(--control-h);
+    padding: var(--space-1);
+    padding-inline-start: var(--space-3);
+    @include field-surface.frame;
+    transition: border-color var(--duration) var(--ease);
+
+    &[data-state='copied'] { border-color: var(--accent-main); }
+    &[data-state='error'] { border-color: var(--danger-main); }
+  }
+  .tg-copy__value {
+    flex: 1 1 auto;
+    min-inline-size: 0;
+    overflow: hidden;
+    color: var(--text-color);
+    font-family: var(--font-family-mono);
+    font-size: var(--fs-sm);
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    user-select: all;
+    background: none;
+  }
+  .tg-copy__action {
+    flex: 0 0 auto;
+    min-block-size: calc(var(--control-h) - var(--space-2) - 2px);
+    border-radius: var(--radius-inset);
+  }
+  // On the narrowest screens the action moves under the value.
+  @media (max-width: 22.5rem) {
+    .tg-copy:has(> .tg-btn.tg-copy__action) {
+      flex-wrap: wrap;
+      padding: var(--space-2);
+      padding-inline-start: var(--space-3);
+      > .tg-copy__value { flex-basis: 100%; }
+      > .tg-copy__action { inline-size: 100%; }
     }
   }
 

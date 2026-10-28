@@ -97,10 +97,12 @@ icons. Preserve live demos, HTML disclosure, theme/accent selectors and download
 
 The catalog has one section per task, in six groups (an `optgroup` per group in
 the mobile select, in page order): “Основа” (overview, colors, layout),
-“Действия” (buttons, icons, filters and statuses), “Ввод” (fields, choice, file
-upload), “Содержимое” (cards, lists and disclosure, empty state, avatars, data),
-“Навигация и отклик” (navigation, feedback, dialogs and messages) and “Примеры и
-интеграция”. Section titles describe the task, not a slogan. Global search is a native `dialog` opened by the “Поиск” button,
+“Действия” (buttons, action menus, icons, filters and statuses), “Ввод” (fields, choice,
+option lists and pickers, date and time, file upload), “Содержимое” (cards, lists and
+disclosure, text and keys, empty state, avatars, data, charts, process progress, media and
+galleries), “Навигация и отклик” (navigation, application navigation, feedback, dialogs and
+messages) and “Примеры и интеграция” (compositions, effects, setup). New components join the
+group of their task; there is no separate section per source archive. Section titles describe the task, not a slogan. Global search is a native `dialog` opened by the “Поиск” button,
 `/` or Cmd/Ctrl+K (never while typing in a field). It matches section titles,
 `.tg-*` classes and `--*` tokens from explicit `data-search-*` metadata; arrows
 move, Enter navigates, Escape closes and focus returns to the opener. Search is
@@ -227,3 +229,13 @@ they do not append corrective styles after the component system.
 The catalog markup, original preview, avatar stack, global accent and optional JS effects
 are preserved. One root accent applies to all examples. Independent SCSS imports retain
 their foundations. Existing palette roles, typography, radii and control sizes are unchanged.
+
+## Decorative effects
+
+Effects (`.tg-effect-*`, `data-tg-effect`, `.tg-effect-layer`) are the only place for
+expression beyond the Operate mode, and they are always optional: one key button, card or
+section per screen, never in working forms or Telegram Mini Apps by default. They use the
+accent roles and the overlay text role as a neutral highlight, sit behind content so text
+contrast does not change, animate only transform, opacity or a registered angle, stay still
+on touch screens and with reduced motion, and switch off for disabled or busy hosts. Without
+`effects.js` every host looks like the plain component.

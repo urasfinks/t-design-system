@@ -1,0 +1,617 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light dark">
+  <meta name="theme-color" content="#f5f5f5" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#151e27" media="(prefers-color-scheme: dark)">
+  <meta name="description" content="t-design-system — CSS-фреймворк для веба и Telegram Mini Apps. Компоненты, темы и примеры.">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%232369cb'/%3E%3Ctext x='23' y='47' fill='white' font-family='sans-serif' font-size='48' font-weight='600'%3Et%3C/text%3E%3C/svg%3E">
+  <link rel="stylesheet" href="../dist/t-design-system.css">
+  <link rel="stylesheet" href="catalog.css">
+  <script type="module" src="catalog.js"></script>
+  <title>t-design-system — Компоненты</title>
+</head>
+<body>
+<a class="skip-link" href="#content">К содержимому</a>
+<header class="site-header">
+  <a class="brand" href="#overview" aria-label="t-design-system, начало"><span class="brand-mark">t<span>·</span></span><span>t-design-system</span></a>
+  <div class="header-tools">
+    <span class="version">v0.1.0</span>
+    <label class="sr-label" for="theme">Тема оформления</label>
+    <select id="theme" class="tg-select theme-select" aria-label="Тема оформления"><option value="auto">Авто</option><option value="light">Светлая</option><option value="dark">Тёмная · Desktop</option><option value="ios-dark">Тёмная · iOS</option></select>
+  </div>
+</header>
+<nav class="mobile-navigation" aria-label="Навигация по каталогу"><button class="tg-icon-btn tg-icon-btn--ghost catalog-search-open" type="button" data-catalog-search-open aria-label="Поиск по каталогу" hidden><svg class="tg-icon" viewBox="0 0 24 24" aria-hidden="true"><use href="../dist/icons/search.svg#search"></use></svg></button><label for="section-select">Раздел</label><select class="tg-select" id="section-select" aria-label="Раздел каталога"><optgroup label="Основа"><option value="overview">Обзор</option><option value="tokens">Цвета и темы</option><option value="layout">Компоновка</option></optgroup><optgroup label="Действия"><option value="buttons">Кнопки</option><option value="menus">Меню действий</option><option value="icons">Иконки</option><option value="selection">Фильтры и статусы</option></optgroup><optgroup label="Ввод"><option value="forms">Поля ввода</option><option value="choices">Выбор</option><option value="upload">Загрузка файлов</option></optgroup><optgroup label="Содержимое"><option value="surfaces">Карточки</option><option value="lists">Списки и раскрытие</option><option value="empty">Пустое состояние</option><option value="avatars">Аватары</option><option value="data">Данные и сводки</option></optgroup><optgroup label="Навигация и отклик"><option value="navigation">Навигация</option><option value="feedback">Обратная связь</option><option value="overlays">Диалоги и сообщения</option></optgroup><optgroup label="Примеры и интеграция"><option value="compositions">Композиции</option><option value="effects">Эффекты</option><option value="start">Подключение</option></optgroup></select></nav>
+<div class="site-layout">
+<aside class="sidebar">
+  <div class="sidebar-label">Библиотека</div>
+  <button class="tg-btn tg-btn--secondary tg-w-full catalog-search-open" type="button" data-catalog-search-open aria-label="Поиск по каталогу" hidden><svg class="tg-icon" viewBox="0 0 24 24" aria-hidden="true"><use href="../dist/icons/search.svg#search"></use></svg>Поиск</button>
+  <nav aria-label="Разделы компонентов">
+    <div class="nav-group" role="group" aria-labelledby="nav-group-1"><span class="nav-group-label" id="nav-group-1">Основа</span>
+      <a href="#overview" class="nav-link is-active"><span>Обзор</span></a>
+      <a href="#tokens" class="nav-link"><span>Цвета и темы</span></a>
+      <a href="#layout" class="nav-link"><span>Компоновка</span></a>
+    </div>
+    <div class="nav-group" role="group" aria-labelledby="nav-group-2"><span class="nav-group-label" id="nav-group-2">Действия</span>
+      <a href="#buttons" class="nav-link"><span>Кнопки</span></a>
+      <a href="#menus" class="nav-link"><span>Меню действий</span></a>
+      <a href="#icons" class="nav-link"><span>Иконки</span></a>
+      <a href="#selection" class="nav-link"><span>Фильтры и статусы</span></a>
+    </div>
+    <div class="nav-group" role="group" aria-labelledby="nav-group-3"><span class="nav-group-label" id="nav-group-3">Ввод</span>
+      <a href="#forms" class="nav-link"><span>Поля ввода</span></a>
+      <a href="#choices" class="nav-link"><span>Выбор</span></a>
+      <a href="#upload" class="nav-link"><span>Загрузка файлов</span></a>
+    </div>
+    <div class="nav-group" role="group" aria-labelledby="nav-group-4"><span class="nav-group-label" id="nav-group-4">Содержимое</span>
+      <a href="#surfaces" class="nav-link"><span>Карточки</span></a>
+      <a href="#lists" class="nav-link"><span>Списки и раскрытие</span></a>
+      <a href="#empty" class="nav-link"><span>Пустое состояние</span></a>
+      <a href="#avatars" class="nav-link"><span>Аватары</span></a>
+      <a href="#data" class="nav-link"><span>Данные и сводки</span></a>
+    </div>
+    <div class="nav-group" role="group" aria-labelledby="nav-group-5"><span class="nav-group-label" id="nav-group-5">Навигация и отклик</span>
+      <a href="#navigation" class="nav-link"><span>Навигация</span></a>
+      <a href="#feedback" class="nav-link"><span>Обратная связь</span></a>
+      <a href="#overlays" class="nav-link"><span>Диалоги и сообщения</span></a>
+    </div>
+    <div class="nav-group" role="group" aria-labelledby="nav-group-6"><span class="nav-group-label" id="nav-group-6">Примеры и интеграция</span>
+      <a href="#compositions" class="nav-link"><span>Композиции</span></a>
+      <a href="#effects" class="nav-link"><span>Эффекты</span></a>
+      <a href="#start" class="nav-link"><span>Подключение</span></a>
+    </div>
+  </nav>
+  <div class="sidebar-note"><span class="status-dot"></span> Веб + Telegram<br><span>Один CSS. Ваш интерфейс.</span></div>
+</aside>
+<main id="content">
+<section id="overview" class="hero" data-search-keywords="обзор введение компоненты .tg-card .tg-list .tg-badge">
+  <div class="hero-copy">
+  <h1>Один язык<br>для интерфейсов.</h1>
+  <p class="hero-description">Мягкие поверхности, точные отступы и спокойная типографика. Стили вашего проекта теперь в самостоятельном CSS-фреймворке.</p>
+  <div class="hero-actions"><a href="#buttons" class="tg-btn tg-btn--primary">Смотреть компоненты <svg viewBox="0 0 24 24" class="tg-icon" aria-hidden="true"><use href="../dist/icons/arrow-up-right.svg#arrow-up-right"></use></svg></a><a href="#start" class="quiet-link">Подключить <svg viewBox="0 0 24 24" class="tg-icon" aria-hidden="true"><use href="../dist/icons/arrow-right.svg#arrow-right"></use></svg></a></div>
+  <div class="hero-meta"><span>Без JS-зависимостей</span><span>Три палитры</span><span>Гибкий каскад</span></div>
+  </div>
+  <div class="preview-stage">
+    <div class="preview-label">Пример интерфейса · из компонентов ниже</div>
+    <article class="app-preview tg-card" data-ui aria-label="Пример интерфейса">
+      <div class="preview-top"><span class="preview-icon"><svg viewBox="0 0 24 24" class="tg-icon" aria-hidden="true"><use href="../dist/icons/grid.svg#grid"></use></svg></span><span class="tg-badge tg-badge--secondary">Пространство</span></div>
+      <h2>Всё на своих местах</h2><p class="tg-text-muted tg-text-sm">Небольшие детали. Цельный интерфейс.</p>
+      <div class="tg-list tg-mt-5">
+        <a class="tg-list-item" href="#surfaces"><span class="preview-item-icon"><svg viewBox="0 0 24 24" class="tg-icon" aria-hidden="true"><use href="../dist/icons/folder.svg#folder"></use></svg></span><div class="tg-grow"><div class="tg-list-item__title">Ваши проекты</div><div class="tg-list-item__subtitle">Всё важное рядом</div></div><span class="tg-badge tg-badge--primary">8</span><svg viewBox="0 0 24 24" class="tg-icon" aria-hidden="true"><use href="../dist/icons/chevron-right.svg#chevron-right"></use></svg></a>
+        <a class="tg-list-item" href="#lists"><span class="preview-item-icon"><svg viewBox="0 0 24 24" class="tg-icon" aria-hidden="true"><use href="../dist/icons/clock.svg#clock"></use></svg></span><div class="tg-grow"><div class="tg-list-item__title">Последние изменения</div><div class="tg-list-item__subtitle">Сегодня, 12:30</div></div><svg viewBox="0 0 24 24" class="tg-icon" aria-hidden="true"><use href="../dist/icons/chevron-right.svg#chevron-right"></use></svg></a>
+      </div>
+      <div class="preview-bottom"><div class="avatar-stack" aria-label="3 участника"><span class="mini-avatar"><span class="mini-avatar__label">А</span></span><span class="mini-avatar"><span class="mini-avatar__label">М</span></span><span class="mini-avatar"><span class="mini-avatar__label">+1</span></span></div><span class="tg-text-sm tg-text-muted">Вместе удобнее</span></div>
+      <a class="tg-btn tg-btn--primary tg-w-full" href="#forms">Настроить профиль <svg viewBox="0 0 24 24" class="tg-icon" aria-hidden="true"><use href="../dist/icons/arrow-right.svg#arrow-right"></use></svg></a>
+    </article>
+    <div class="preview-caption"><span class="status-dot"></span> Адаптируется к вашей теме</div>
+  </div>
+</section>
+<div class="feature-strip"><div><strong>Токены</strong><span>Вся система в переменных</span></div><div><strong>Компоненты</strong><span>Готовые блоки и состояния</span></div><div><strong>Каскад</strong><span>Понятный порядок слоёв</span></div></div>
+
+<section id="tokens" class="catalog-section" data-search-keywords="токены цвета темы типографика отступы радиусы --background-main --background-panel --background-muted --accent-main --accent-strong --accent-soft --text-main --text-secondary --text-muted --danger-main --danger-strong --danger-soft">
+  <div class="section-heading"><div><h2>Цвета и токены тем</h2><p>Семантические цвета, шаг отступов 4 px и адаптивные размеры.</p></div><code translate="no" class="class-tag">--background-main · --accent-main</code></div>
+  <label class="accent-control">Акцент<select class="tg-select" name="accent" aria-label="Акцентный цвет"><option value="blue">Исходный</option><option value="green">Зелёный</option><option value="violet">Фиолетовый</option></select></label>
+  <div class="palette-table-wrap">
+    <table class="palette-table">
+      <caption class="tg-sr-only">Четыре цвета и три градации каждого</caption>
+      <thead><tr><th scope="col">Цвет</th><th scope="col">Исходный</th><th scope="col">Градация 2</th><th scope="col">Градация 3</th></tr></thead>
+      <tbody>
+        <tr data-search-tokens="--background-main --background-panel --background-muted"><th scope="row">Фон</th><td><div class="palette-swatch" style="background:var(--background-main)" aria-hidden="true"></div><code translate="no">--background-<wbr>main</code></td><td><div class="palette-swatch" style="background:var(--background-panel)" aria-hidden="true"></div><code translate="no">--background-<wbr>panel</code></td><td><div class="palette-swatch" style="background:var(--background-muted)" aria-hidden="true"></div><code translate="no">--background-<wbr>muted</code></td></tr>
+        <tr data-search-tokens="--accent-main --accent-strong --accent-soft"><th scope="row">Акцент</th><td><div class="palette-swatch" style="background:var(--accent-main)" aria-hidden="true"></div><code translate="no">--accent-<wbr>main</code></td><td><div class="palette-swatch" style="background:var(--accent-strong)" aria-hidden="true"></div><code translate="no">--accent-<wbr>strong</code></td><td><div class="palette-swatch" style="background:var(--accent-soft)" aria-hidden="true"></div><code translate="no">--accent-<wbr>soft</code></td></tr>
+        <tr data-search-tokens="--text-main --text-secondary --text-muted"><th scope="row">Текст</th><td><div class="palette-swatch" style="background:var(--text-main)" aria-hidden="true"></div><code translate="no">--text-<wbr>main</code></td><td><div class="palette-swatch" style="background:var(--text-secondary)" aria-hidden="true"></div><code translate="no">--text-<wbr>secondary</code></td><td><div class="palette-swatch" style="background:var(--text-muted)" aria-hidden="true"></div><code translate="no">--text-<wbr>muted</code></td></tr>
+        <tr data-search-tokens="--danger-main --danger-strong --danger-soft"><th scope="row">Ошибка</th><td><div class="palette-swatch" style="background:var(--danger-main)" aria-hidden="true"></div><code translate="no">--danger-<wbr>main</code></td><td><div class="palette-swatch" style="background:var(--danger-strong)" aria-hidden="true"></div><code translate="no">--danger-<wbr>strong</code></td><td><div class="palette-swatch" style="background:var(--danger-soft)" aria-hidden="true"></div><code translate="no">--danger-<wbr>soft</code></td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="foundation-grid"><div class="foundation-card"><span class="mini-label">Типографика</span><div class="type-specimen">Aa Бб 123</div><div class="tg-row tg-text-muted tg-text-sm"><span>System UI</span><span>400 / 500 / 600</span></div></div><div class="foundation-card"><span class="mini-label">Отступы</span><div class="spacing-scale" aria-label="Отступы 4, 8, 12, 16, 20, 24 пикселя"><span style="--size:4">4</span><span style="--size:8">8</span><span style="--size:12">12</span><span style="--size:16">16</span><span style="--size:20">20</span><span style="--size:24">24</span></div><div class="tg-text-muted tg-text-sm">Один ритм для всех компонентов</div></div><div class="foundation-card"><span class="mini-label">Радиусы</span><div class="radius-scale"><span style="border-radius:8px">8</span><span style="border-radius:12px">12</span><span style="border-radius:16px">16</span><span style="border-radius:999px">∞</span></div><div class="tg-text-muted tg-text-sm">От поля ввода до кнопки</div></div></div>
+</section>
+
+<section id="layout" class="catalog-section" data-search-keywords="компоновка сетка строки колонки утилиты .tg-grid .tg-row .tg-col .tg-container">
+  <div class="section-heading"><div><h2>Сетка и компоновка</h2><p>Раскладку задают явно: сетка, строка или колонка.</p></div><code translate="no" class="class-tag">.tg-grid · .tg-row · .tg-col</code></div>
+  <div class="example-panel"><div class="example-body" data-ui data-example><div class="tg-grid"><div class="layout-cell">Блок 01</div><div class="layout-cell">Блок 02</div><div class="layout-cell">Блок 03</div></div></div>
+  <p class="example-rule">Сетка подходит равноправным блокам, <code translate="no">.tg-row</code> переносимому ряду, <code translate="no">.tg-col</code> вертикальному потоку. Карточка не угадывает раскладку своих детей: поток выбирают классом.</p></div>
+</section>
+
+<section id="buttons" class="catalog-section" data-search-keywords="кнопки действия размеры иконка капсула загрузка .tg-btn .tg-btn--primary .tg-btn--secondary .tg-btn--ghost .tg-btn--destructive .tg-btn--pill .tg-icon-btn .tg-icon-btn--ghost переключатель избранное подпись состояние публикация .tg-btn__icon .tg-btn__label .tg-btn__subtext .tg-btn--icon-end .tg-toggle .tg-btn__states .tg-btn__progress">
+  <div class="section-heading"><div><h2>Кнопки и действия</h2><p>Одна геометрия, три уровня внимания и отдельная семантика удаления.</p></div><code translate="no" class="class-tag">.tg-btn · .tg-icon-btn · .tg-toggle</code></div>
+  <div class="example-panel"><div class="example-body tg-row" data-ui data-example>
+<button id="primary-demo" class="tg-btn tg-btn--primary">Сохранить <svg viewBox="0 0 24 24" class="tg-icon" aria-hidden="true"><use href="../dist/icons/arrow-right.svg#arrow-right"></use></svg></button>
+<button class="tg-btn tg-btn--secondary">Отмена</button>
+<button class="tg-btn tg-btn--ghost">Подробнее</button>
+<button class="tg-btn tg-btn--destructive">Удалить проект</button>
+  </div>
+  <p class="example-rule">Основная кнопка залита цветом, она одна на область задачи. Вторичная обведена рамкой: это равноценная альтернатива. Прозрачная обозначает дополнительное действие, её выдают цвет текста и контекст. Удаление получает отдельный цвет и подпись, которая называет последствие.</p></div>
+  <div class="example-panel"><div class="example-body tg-row" data-ui data-example>
+<button class="tg-icon-btn" aria-label="Добавить участника"><svg viewBox="0 0 24 24" class="tg-icon" aria-hidden="true"><use href="../dist/icons/user-plus.svg#user-plus"></use></svg></button>
+<button class="tg-icon-btn tg-icon-btn--ghost" aria-label="Закрыть"><svg viewBox="0 0 24 24" class="tg-icon" aria-hidden="true"><use href="../dist/icons/x.svg#x"></use></svg></button>
+<button class="tg-btn tg-btn--secondary tg-btn--pill" id="reload-examples"><svg viewBox="0 0 24 24" class="tg-icon" aria-hidden="true"><use href="../dist/icons/rotate-cw.svg#rotate-cw"></use></svg> Обновить примеры</button>
+<a class="tg-btn tg-btn--primary tg-btn--pill" href="#forms">Добавить <svg viewBox="0 0 24 24" class="tg-icon" aria-hidden="true"><use href="../dist/icons/file-text.svg#file-text"></use></svg></a>
+  </div>
+  <p class="example-rule">Кнопке из одной иконки нужен <code translate="no">aria-label</code>, а сама иконка скрыта через <code translate="no">aria-hidden</code>. Переход на другое место делается ссылкой <code translate="no">a href</code>, даже если она выглядит как кнопка; действие на месте делается <code translate="no">button</code>. Капсула подходит вспомогательным и плавающим действиям.</p></div>
+  <div class="example-panel"><div class="example-body tg-row" data-ui data-example>
+<button class="tg-btn tg-btn--primary tg-btn--sm">Компактная</button>
+<button class="tg-btn tg-btn--primary">Обычная</button>
+<button class="tg-btn tg-btn--primary tg-btn--lg">Крупная</button>
+<button class="tg-btn tg-btn--primary" disabled>Недоступна</button>
+<button class="tg-btn tg-btn--secondary" disabled aria-busy="true"><span class="tg-spinner" aria-hidden="true"></span> Сохранение</button>
+<button class="tg-icon-btn" aria-label="Удаление недоступно" disabled><svg viewBox="0 0 24 24" class="tg-icon" aria-hidden="true"><use href="../dist/icons/trash-2.svg#trash-2"></use></svg></button>
+  </div>
+  <p class="example-rule">Недоступное действие обозначает нативный <code translate="no">disabled</code>: состояние передаёт не только прозрачность, но и курсор и доступность. Во время запроса <code translate="no">aria-busy</code> сохраняет подпись и блокирует повтор. Высоту кнопки не фиксируют: длинная подпись переносится.</p></div>
+  <div class="example-panel"><div class="example-body tg-row" data-ui data-example>
+<button class="tg-btn tg-btn--secondary tg-btn--lg" type="button"><svg class="tg-icon tg-btn__icon" viewBox="0 0 24 24" aria-hidden="true"><use href="../dist/icons/download.svg#download"></use></svg><span class="tg-btn__label">Скачать отчёт<span class="tg-btn__subtext">PDF, 2,4 МБ</span></span></button>
+<a class="tg-btn tg-btn--primary tg-btn--icon-end" href="#menus"><svg class="tg-icon tg-btn__icon" viewBox="0 0 24 24" aria-hidden="true"><use href="../dist/icons/arrow-right.svg#arrow-right"></use></svg><span class="tg-btn__label">Дальше</span></a>
+<button class="tg-btn tg-btn--secondary tg-toggle" type="button" aria-pressed="false"><svg class="tg-icon tg-btn__icon" viewBox="0 0 24 24" aria-hidden="true"><use href="../dist/icons/star.svg#star"></use></svg><span class="tg-btn__label">В избранное</span></button>
+<button class="tg-btn tg-btn--primary" type="button" id="demo-async-save"><span class="tg-btn__states"><span data-state="idle">Опубликовать</span><span data-state="busy"><span class="tg-spinner" aria-hidden="true"></span>Публикуем…</span><span data-state="success"><svg class="tg-icon" viewBox="0 0 24 24" aria-hidden="true"><use href="../dist/icons/check.svg#check"></use></svg>Опубликовано</span></span></button>
+<span class="tg-sr-only" role="status" id="demo-async-status"></span>
+  </div>
+  <p class="example-rule">Иконка, подпись и вторая строка — части одной кнопки: <code translate="no">__icon</code>, <code translate="no">__label</code>, <code translate="no">__subtext</code>. Переключатель «В избранное» хранит состояние в <code translate="no">aria-pressed</code> и выглядит как выбранный вариант. Подписи всех состояний публикации лежат в одной ячейке <code translate="no">__states</code>, поэтому ширина кнопки не прыгает; видна только подпись из <code translate="no">data-state</code>.</p></div>
+</section>
+
+<section id="menus" class="catalog-section" data-search-keywords="меню действий выпадающее контекстное команды сочетание клавиш popover .tg-menu .tg-menu__item .tg-menu__item--destructive .tg-menu__label .tg-menu__separator .tg-menu__shortcut .tg-menu__text .tg-menu__item-meta">
+  <div class="section-heading"><div><h2>Меню действий</h2><p>Команды над объектом по кнопке «Ещё» или «Создать». Для переходов по сайту остаются ссылки в навигации.</p></div><code translate="no" class="class-tag">.tg-menu</code></div>
+  <div class="example-panel"><div class="example-body tg-row" data-ui data-example>
+<button class="tg-btn tg-btn--secondary tg-btn--icon-end" type="button" id="demo-menu-create" aria-haspopup="menu" aria-expanded="false" aria-controls="demo-menu-create-list" data-menu-trigger><svg class="tg-icon tg-btn__icon" viewBox="0 0 24 24" aria-hidden="true"><use href="../dist/icons/chevron-down.svg#chevron-down"></use></svg><span class="tg-btn__label">Создать</span></button>
+<div class="tg-menu" id="demo-menu-create-list" popover role="menu" aria-labelledby="demo-menu-create">
+  <button class="tg-menu__item" type="button" role="menuitem"><svg class="tg-icon" viewBox="0 0 24 24" aria-hidden="true"><use href="../dist/icons/file-text.svg#file-text"></use></svg>Документ<kbd class="tg-menu__shortcut">Alt N</kbd></button>
+  <button class="tg-menu__item" type="button" role="menuitem"><svg class="tg-icon" viewBox="0 0 24 24" aria-hidden="true"><use href="../dist/icons/users.svg#users"></use></svg><span class="tg-menu__text">Пространство<span class="tg-menu__item-meta">Для задач и людей команды</span></span></button>
+  <div class="tg-menu__separator" role="separator"></div>
+  <button class="tg-menu__item" type="button" role="menuitem" aria-disabled="true"><svg class="tg-icon" viewBox="0 0 24 24" aria-hidden="true"><use href="../dist/icons/upload.svg#upload"></use></svg><span class="tg-menu__text">Импорт…<span class="tg-menu__item-meta">Нет прав администратора</span></span></button>
+</div>
+<button class="tg-icon-btn" type="button" id="demo-menu-row" aria-label="Действия с проектом" aria-haspopup="menu" aria-expanded="false" aria-controls="demo-menu-row-list" data-menu-trigger><svg class="tg-icon" viewBox="0 0 24 24" aria-hidden="true"><use href="../dist/icons/more-horizontal.svg#more-horizontal"></use></svg></button>
+<div class="tg-menu" id="demo-menu-row-list" popover role="menu" aria-labelledby="demo-menu-row">
+  <div role="group" aria-labelledby="demo-menu-view"><div class="tg-menu__label" id="demo-menu-view">Вид</div>
+    <button class="tg-menu__item" type="button" role="menuitemcheckbox" aria-checked="true">Показывать архив</button></div>
+  <button class="tg-menu__item" type="button" role="menuitem"><svg class="tg-icon" viewBox="0 0 24 24" aria-hidden="true"><use href="../dist/icons/copy.svg#copy"></use></svg>Дублировать<kbd class="tg-menu__shortcut">Alt D</kbd></button>
+  <div class="tg-menu__separator" role="separator"></div>
+  <button class="tg-menu__item tg-menu__item--destructive" type="button" role="menuitem"><svg class="tg-icon" viewBox="0 0 24 24" aria-hidden="true"><use href="../dist/icons/trash-2.svg#trash-2"></use></svg>Удалить проект</button>
+</div>
+<span class="tg-sr-only" role="status" id="demo-menu-status"></span>
+  </div>
+  <p class="example-rule">Меню открывается в верхнем слое через <code translate="no">popover</code>, поэтому родитель с <code translate="no">overflow</code> его не обрезает. Стрелки перемещают по пунктам, Escape закрывает меню и возвращает фокус на кнопку, с клавиатуры меню появляется без анимации. Опасный пункт стоит последним, недоступный остаётся в списке с объяснением.</p></div>
+</section>
+
+<section id="icons" class="catalog-section" data-search-keywords="иконки feather svg поиск .tg-icon .tg-search"><div class="section-heading"><div><h2>Иконки Feather</h2><p>Все 287 иконок. Поиск по имени и тегам, три размера и готовая разметка. Каждый SVG загружается отдельно.</p></div><code translate="no" class="class-tag">.tg-icon · .tg-search</code></div><div class="example-panel"><div class="example-body" data-ui><div data-icon-browser data-manifest-url="../dist/icons.json">
+  <div class="icon-browser-controls">
+    <div class="tg-field icon-search-field"><label class="tg-label" for="icon-search">Поиск иконок</label><div class="tg-search"><svg class="tg-icon tg-search__icon" viewBox="0 0 24 24" aria-hidden="true"><use href="../dist/icons/search.svg#search"></use></svg><input class="tg-search__input" id="icon-search" name="icon_query" type="search" spellcheck="false" placeholder="Название или тег: home, arrow, mail" autocomplete="off"><button class="tg-icon-btn tg-search__clear" id="icon-reset" type="button" aria-label="Очистить поиск иконок"><svg class="tg-icon" viewBox="0 0 24 24" aria-hidden="true"><use href="../dist/icons/x.svg#x"></use></svg></button></div></div>
+    <div class="tg-field icon-size-field"><label class="tg-label" for="icon-size">Размер</label><select class="tg-select" id="icon-size" name="icon_size"><option value="16">16 px</option><option value="20" selected>20 px</option><option value="24">24 px</option></select></div>
+
+  </div>
+  <p id="icon-count" role="status" aria-live="polite"></p>
+  <p class="tg-help" id="icon-keyboard-help">Стрелки и Home/End перемещают фокус, Enter выбирает иконку. Tab выходит из галереи.</p>
+  <div class="icon-grid icon-gallery" id="icon-grid" role="group" aria-label="Иконки Feather" aria-describedby="icon-keyboard-help"></div>
+  <div class="tg-empty" id="icon-empty" hidden><h3 class="tg-empty__title">Иконки не найдены</h3><p class="tg-empty__description">Попробуйте другой запрос.</p></div>
+  <p class="tg-label">Разметка выбранной иконки</p>
+  <pre translate="no" class="code-block"><code translate="no" id="icon-markup" tabindex="0" aria-label="Разметка выбранной иконки"></code></pre>
+  <button class="tg-btn tg-btn--secondary" id="icon-copy" type="button">Скопировать разметку</button>
+  <span id="icon-copy-status" role="status" aria-live="polite"></span>
+</div>
+</div><p class="example-rule">Декоративную иконку скрывайте через <code translate="no">aria-hidden</code>. Имя действия задаёт текст кнопки или <code translate="no">aria-label</code>, а не <code translate="no">title</code> внутри SVG. Feather 4.29.2 · MIT.</p></div>
+</section>
+
+<section id="selection" class="catalog-section" data-search-keywords="фильтры статусы чипы метки aria-pressed .tg-chip .tg-badge .tg-badge--primary .tg-badge--secondary .tg-badge--destructive точка статуса .tg-badge__dot">
+  <div class="section-heading"><div><h2>Фильтры и статусы</h2><p>Одинаковая капсула, разное поведение.</p></div><code translate="no" class="class-tag">.tg-chip · .tg-badge</code></div>
+  <div class="example-panel"><div class="example-body tg-col" data-ui data-example>
+<div class="tg-row" role="group" aria-label="Фильтры проектов"><button class="tg-chip" aria-pressed="true">Дизайн</button><button class="tg-chip" aria-pressed="false">Разработка</button><button class="tg-chip" aria-pressed="false">Аналитика</button><button class="tg-chip" aria-pressed="false" disabled>Скоро</button></div>
+<div class="tg-row"><span class="tg-badge tg-badge--primary">Активен</span><span class="tg-badge tg-badge--secondary">Черновик</span><span class="tg-badge tg-badge--destructive">Требует внимания</span><span class="tg-badge">12</span></div>
+  </div>
+  <p class="example-rule">Фильтр делается кнопкой <code translate="no">button</code> с <code translate="no">aria-pressed</code> и рамкой: его можно нажать. Статус делается <code translate="no">span</code> без рамки и без обработчика. Не делайте статус кнопкой и не выдавайте фильтр за статус одним оформлением. Фильтрацию данных подключает приложение.</p></div>
+  <div class="example-panel"><div class="example-body tg-row" data-ui data-example>
+<span class="tg-text-sm tg-text-muted">Заказы ждут подтверждения</span><a class="tg-badge tg-badge--primary" href="#data">Открыть 2 заказа</a>
+  </div>
+  <p class="example-rule">Если метка всё-таки ведёт куда-то, она становится ссылкой и получает рамку, область нажатия 44 px и фокус. Рамка здесь сигнализирует «можно нажать», а не украшает.</p></div>
+  <div class="example-panel"><div class="example-body tg-row" data-ui data-example>
+<span class="tg-badge tg-badge--secondary"><span class="tg-badge__dot" aria-hidden="true"></span>Отправлен</span>
+<span class="tg-badge tg-badge--primary"><span class="tg-badge__dot" aria-hidden="true"></span>Оплачен</span>
+<span class="tg-badge tg-badge--destructive"><span class="tg-badge__dot" aria-hidden="true"></span>Просрочен</span>
+  </div>
+  <p class="example-rule">Точка повторяет цвет текста бейджа и помогает быстро пробежать глазами столбец статусов. Смысл по-прежнему несёт слово: точка без текста — не статус.</p></div>
+</section>
+
+<section id="forms" class="catalog-section" data-search-keywords="формы поля ввод валидация ошибки поиск .tg-field .tg-label .tg-input .tg-select .tg-textarea .tg-help .tg-error-summary .tg-search группа полей приставка единица телефон пароль требования .tg-input-group .tg-input-group__control .tg-input-group__addon .tg-input-group__action .tg-requirements .tg-requirements__item">
+  <div class="section-heading"><div><h2>Поля ввода</h2><p>Подписи, подсказки, валидация и заметный фокус.</p></div><code translate="no" class="class-tag">.tg-field · .tg-input · .tg-input-group</code></div>
+  <div class="example-panel"><div class="example-body form-grid" data-ui data-example>
+<div class="tg-field"><label class="tg-label" for="demo-name">Имя</label><input class="tg-input" id="demo-name" name="name" placeholder="Как к вам обращаться?" autocomplete="given-name" aria-describedby="name-help"><p id="name-help" class="tg-help">Будет видно участникам команды.</p></div>
+<div class="tg-field"><label class="tg-label" for="demo-role">Роль в команде</label><select class="tg-select" id="demo-role" name="role" aria-describedby="role-help"><option>Дизайнер</option><option>Разработчик</option><option>Менеджер</option></select><p id="role-help" class="tg-help">Можно изменить в любой момент.</p></div>
+<div class="tg-field"><label class="tg-label" for="demo-email">Электронная почта</label><input class="tg-input" id="demo-email" name="email" type="email" autocomplete="email" spellcheck="false" value="mail@" aria-invalid="true" aria-describedby="email-error"><p id="email-error" class="tg-help tg-help--error">Укажите адрес целиком, например name@mail.ru.</p></div>
+<div class="tg-field"><label class="tg-label" for="demo-disabled">Идентификатор</label><input class="tg-input" id="demo-disabled" name="workspace_id" value="Будет создан автоматически" disabled><p class="tg-help">Пример недоступного поля.</p></div>
+<div class="tg-field form-wide"><label class="tg-label" for="demo-bio">О себе</label><textarea class="tg-textarea" id="demo-bio" name="bio" placeholder="Несколько слов о том, чем вы занимаетесь…" rows="3"></textarea></div>
+  </div>
+  <p class="example-rule">Рамка поля обозначает место ввода. Placeholder не заменяет подпись. <code translate="no">aria-invalid</code> всегда сопровождается связанной текстовой ошибкой: красный цвет только поддерживает текст.</p></div>
+  <div class="example-panel"><div class="example-body tg-col" data-ui data-example>
+<form class="tg-field" role="search" onsubmit="return false"><label class="tg-label" for="demo-search">Поиск по заказам</label><div class="tg-search"><svg class="tg-icon tg-search__icon" viewBox="0 0 24 24" aria-hidden="true"><use href="../dist/icons/search.svg#search"></use></svg><input class="tg-search__input" id="demo-search" name="q" type="search" placeholder="Блюдо или участник…" autocomplete="off"><button class="tg-icon-btn tg-search__clear" type="reset" aria-label="Очистить поиск"><svg class="tg-icon" viewBox="0 0 24 24" aria-hidden="true"><use href="../dist/icons/x.svg#x"></use></svg></button></div></form>
+  </div>
+  <p class="example-rule">Рамка принадлежит оболочке <code translate="no">.tg-search</code>, а не внутреннему полю. Очистка остаётся дополнительным действием без рамки. Подпись остаётся видимой или доступной скринридеру.</p></div>
+  <div class="example-panel"><div class="example-body tg-col" data-ui data-example>
+<div class="tg-error-summary" id="demo-error-summary" tabindex="-1" aria-labelledby="errors-title"><svg class="tg-icon tg-error-summary__icon" viewBox="0 0 24 24" aria-hidden="true"><use href="../dist/icons/alert-circle.svg#alert-circle"></use></svg><div class="tg-error-summary__content"><h3 class="tg-error-summary__title" id="errors-title">Проверьте данные</h3><ul><li><a href="#demo-contact-email">Укажите полный адрес электронной почты</a></li></ul></div></div><div class="tg-field"><label class="tg-label" for="demo-contact-email">Почта для чека</label><input class="tg-input" type="email" id="demo-contact-email" name="receipt_email" autocomplete="email" spellcheck="false" value="mail@" aria-invalid="true" aria-describedby="contact-error"><p class="tg-help tg-help--error" id="contact-error">Например, name@mail.ru</p></div>
+  </div>
+  <p class="example-rule">Сводку ошибок показывают после проверки формы и переводят на неё фокус. Ссылки ведут к полям; сообщение рядом с полем остаётся доступным через <code translate="no">aria-describedby</code>.</p></div>
+  <div class="example-panel"><div class="example-body tg-col" data-ui data-example>
+<div class="tg-field"><label class="tg-label" for="demo-site">Сайт</label><div class="tg-input-group"><span class="tg-input-group__addon" aria-hidden="true">https://</span><input class="tg-input-group__control" id="demo-site" name="site" inputmode="url" autocomplete="url" spellcheck="false" placeholder="example.com"></div></div>
+<div class="tg-field"><label class="tg-label" for="demo-phone">Телефон</label><div class="tg-input-group"><select class="tg-input-group__addon" name="country" aria-label="Код страны"><option>+7</option><option>+375</option><option>+49</option></select><input class="tg-input-group__control" id="demo-phone" name="phone" type="tel" inputmode="tel" autocomplete="tel-national" placeholder="900 123-45-67"></div></div>
+<div class="tg-field"><label class="tg-label" for="demo-width">Ширина блока</label><div class="tg-input-group"><input class="tg-input-group__control tg-num" id="demo-width" name="width" inputmode="decimal" value="280" aria-describedby="demo-width-unit"><span class="tg-input-group__addon" id="demo-width-unit">px</span></div></div>
+<div class="tg-field"><label class="tg-label" for="demo-new-password">Новый пароль</label><div class="tg-input-group"><input class="tg-input-group__control" id="demo-new-password" name="new_password" type="password" autocomplete="new-password" aria-describedby="demo-password-rules"><button class="tg-icon-btn tg-icon-btn--ghost tg-input-group__action" type="button" aria-pressed="false" aria-label="Показать пароль" id="demo-reveal"><svg class="tg-icon" viewBox="0 0 24 24" aria-hidden="true"><use href="../dist/icons/eye.svg#eye"></use></svg></button></div>
+<ul class="tg-requirements" id="demo-password-rules"><li class="tg-requirements__item" data-met="false" data-rule="length">Не короче 10 символов</li><li class="tg-requirements__item" data-met="false" data-rule="digit">Хотя бы одна цифра</li></ul></div>
+  </div>
+  <p class="example-rule">Группа полей — одно поле с приставкой, единицей, кодом страны или кнопкой внутри. Рамку, заливку и фокус несёт обёртка, поэтому кольцо фокуса одно. Требования к паролю — подсказка во время ввода: выполненное правило отмечается галочкой, а ошибкой список становится только после неудачной отправки.</p></div>
+</section>
+
+<section id="choices" class="catalog-section" data-search-keywords="выбор чекбокс радио переключатель диапазон .tg-choice .tg-check .tg-radio .tg-switch .tg-range .tg-fieldset вложенные группа выбрать все описание .tg-choice-group .tg-choice-group--nested .tg-choice__description">
+  <div class="section-heading"><div><h2>Выбор и переключатели</h2><p>Нативные элементы сохраняют клавиатуру, сброс формы и доступность.</p></div><code translate="no" class="class-tag">.tg-check · .tg-radio · .tg-switch</code></div>
+  <div class="example-panel"><div class="example-body tg-row choice-row" data-ui data-example>
+<fieldset class="radio-group tg-col"><legend class="choice-legend">Что присылать</legend><label class="tg-choice"><input class="tg-check" type="checkbox" name="notify" value="orders" checked> Новые заказы</label><label class="tg-choice"><input class="tg-check" type="checkbox" name="notify" value="comments"> Комментарии</label><label class="tg-choice"><input class="tg-check" type="checkbox" name="notify" value="system" disabled> Служебные события</label></fieldset>
+<fieldset class="radio-group tg-col"><legend class="choice-legend">План</legend><label class="tg-choice"><input class="tg-radio" type="radio" name="plan" value="personal" checked> Личный</label><label class="tg-choice"><input class="tg-radio" type="radio" name="plan" value="team"> Командный</label></fieldset>
+<div class="tg-row"><span id="notifications-label">Уведомления</span><button class="tg-switch" role="switch" aria-checked="false" aria-labelledby="notifications-label"><span class="tg-switch__knob"></span></button></div>
+  </div>
+  <p class="example-rule">Checkbox подходит для независимого решения, radio для одного варианта из группы, switch для настройки, которая применяется сразу. Невыбранный вариант всегда виден: у него есть граница. Нажимается вся подпись, а не только маленький индикатор.</p></div>
+  <div class="example-panel"><div class="example-body tg-col" data-ui data-example>
+<fieldset class="tg-fieldset tg-no-border"><legend>Условия заказа</legend><div class="tg-field"><label class="tg-label" for="demo-range">Чаевые: <output id="range-output" for="demo-range">10%</output></label><input class="tg-range" id="demo-range" name="tips" type="range" min="0" max="30" step="5" value="10"></div><label class="tg-choice"><input class="tg-check" type="checkbox" name="receipt_copy"> Получить копию чека</label></fieldset>
+  </div>
+  <p class="example-rule">Диапазон подходит для приблизительного значения; текущее значение показывает связанный <code translate="no">output</code>. Для точного числа дайте обычное поле ввода.</p></div>
+  <div class="example-panel"><div class="example-body tg-col" data-ui data-example>
+<fieldset class="tg-fieldset tg-choice-group" aria-describedby="demo-export-count">
+  <legend>Что выгрузить</legend>
+  <label class="tg-choice"><input class="tg-check" type="checkbox" id="demo-export-all" name="export_all" aria-controls="demo-export-1 demo-export-2 demo-export-3"><span>Все данные</span></label>
+  <div class="tg-choice-group tg-choice-group--nested">
+    <label class="tg-choice"><input class="tg-check" type="checkbox" id="demo-export-1" name="export" value="posts" data-export checked><span>Записи<span class="tg-choice__description">Тексты, черновики и вложения</span></span></label>
+    <label class="tg-choice"><input class="tg-check" type="checkbox" id="demo-export-2" name="export" value="comments" data-export><span>Комментарии</span></label>
+    <label class="tg-choice"><input class="tg-check" type="checkbox" id="demo-export-3" name="export" value="members" data-export><span>Участники и роли</span></label>
+  </div>
+  <p class="tg-help" id="demo-export-count">Выбрано 1 из 3</p>
+</fieldset>
+  </div>
+  <p class="example-rule">Вложенные варианты начинаются под текстом родителя, а не под его флажком. Флажок «Все данные» показывает частичный выбор через <code translate="no">indeterminate</code>; это состояние задаёт приложение. Вторая строка варианта — <code translate="no">.tg-choice__description</code>.</p></div>
+</section>
+
+<section id="upload" class="catalog-section" data-search-keywords="загрузка файлов изображение предпросмотр .tg-upload .tg-upload--dashed .tg-upload__preview .tg-upload__status">
+  <div class="section-heading"><div><h2>Загрузка файлов</h2><p>Настоящий file input, локальный предпросмотр и честный статус.</p></div><code translate="no" class="class-tag">.tg-upload</code></div>
+  <div class="example-panel"><div class="example-body tg-col" data-ui data-example>
+<label class="tg-upload tg-upload--dashed" for="demo-file"><svg viewBox="0 0 24 24" class="tg-icon tg-upload__icon" aria-hidden="true"><use href="../dist/icons/upload.svg#upload"></use></svg><span>Добавить изображение<br><span class="tg-text-sm tg-text-muted">Файл останется только в этом браузере</span></span><input class="tg-sr-only" type="file" id="demo-file" name="image" accept="image/*"></label>
+<img id="demo-upload-preview" class="tg-upload__preview" alt="Предпросмотр выбранного изображения" hidden>
+<p class="tg-upload__status" id="demo-upload-status" role="status">Файл не выбран</p>
+  </div>
+  <p class="example-rule">Рамка обозначает область выбора файла: вся область служит <code translate="no">label</code> для скрытого input. Не обещайте перетаскивание без реализации. <code translate="no">accept</code> помогает выбору, но не заменяет проверку типа и размера на сервере.</p></div>
+</section>
+
+<section id="surfaces" class="catalog-section" data-search-keywords="поверхности карточки проект переключатель разделитель .tg-card .tg-header__title .tg-header__subtitle .tg-divider медиа футер карточка-ссылка показатель метрика kpi .tg-card__media .tg-card__body .tg-card__footer .tg-card--link .tg-card__link .tg-card--interactive .tg-stat .tg-stat__value">
+  <div class="section-heading"><div><h2>Карточки</h2><p>Карточка собирает сведения об одном объекте. Действия внутри остаются отдельными элементами.</p></div><code translate="no" class="class-tag">.tg-card · .tg-divider · .tg-stat</code></div>
+  <div class="example-panel"><div class="example-body surface-grid" data-ui data-example>
+<article class="tg-card tg-col" id="space-switch-example">
+  <span class="tg-badge tg-badge--primary card-status">Новый проект</span>
+  <h3 class="tg-header__title">Пространство для идей</h3>
+  <p class="tg-header__subtitle">Объединяйте задачи, заметки и людей в одном месте.</p>
+  <hr class="tg-divider"><!-- taste-skill-ignore: public divider component demonstration -->
+  <div class="tg-row"><span class="tg-avatar"><span class="tg-avatar__initials">АК</span></span><div><div class="tg-list-item__title">Александр</div><div class="tg-list-item__subtitle">Владелец проекта</div></div></div>
+  <div class="tg-row"><span class="tg-grow" id="space-notifications-label">Уведомления проекта</span><button type="button" class="tg-switch" role="switch" aria-checked="false" aria-labelledby="space-notifications-label"><span class="tg-switch__knob"></span></button></div>
+  <div class="tg-row"><a class="tg-btn tg-btn--primary" href="#lists">Открыть проект</a><button class="tg-btn tg-btn--ghost" type="button">Пригласить</button></div>
+</article>
+<article class="tg-card tg-col">
+  <h3 class="tg-header__title">Ужин с командой</h3>
+  <p class="tg-header__subtitle">Счёт разделён между двумя участниками.</p>
+  <dl class="tg-summary"><div class="tg-summary__row"><dt>Всего</dt><dd class="tg-num">4 000 ₽</dd></div><div class="tg-summary__row"><dt>На человека</dt><dd class="tg-num">2 000 ₽</dd></div></dl>
+  <span class="tg-badge tg-badge--secondary card-status">Ожидает оплаты</span>
+</article>
+  </div>
+  <p class="example-rule">Карточка является панелью: её рамка отделяет объект от фона. Интерактивны только элементы внутри: ссылка, кнопка, переключатель. Статус «Новый проект» без рамки: на него нельзя нажать. Внутри карточки одно главное действие.</p></div>
+  <div class="example-panel"><div class="example-body surface-grid" data-ui data-example>
+<article class="tg-card tg-card--link">
+  <figure class="tg-card__media tg-mt-0 tg-mb-0"><img src="composition-media.svg" alt="" width="1200" height="800"></figure>
+  <div class="tg-card__body"><h3 class="tg-header__title"><a class="tg-card__link" href="#surfaces">Горный маршрут</a></h3><p class="tg-text-muted">Шесть часов пути, восемь километров, средняя сложность.</p></div>
+  <div class="tg-card__footer"><span class="tg-badge tg-badge--secondary">12 мест</span><span class="tg-text-sm tg-text-muted tg-ms-auto">с 14 июня</span></div>
+</article>
+<div class="tg-card tg-stat">
+  <p class="tg-stat__label">Выручка за квартал</p>
+  <p class="tg-stat__value">1 120 500 ₽</p>
+  <p class="tg-stat__meta"><span class="tg-badge tg-badge--primary tg-stat__delta">+12,4%</span>к прошлому кварталу</p>
+</div>
+  </div>
+  <p class="example-rule">Зоны карточки: медиа доходит до краёв, футер прижат к низу, поэтому карточки в сетке выравнивают свои действия. Карточка-ссылка растягивает единственную ссылку заголовка на всю площадь и при наведении получает рамку действия. Показатель — одно число с подписью и изменением; знак в тексте важнее цвета.</p></div>
+</section>
+
+<section id="lists" class="catalog-section" data-search-keywords="списки строки заказы раскрытие details summary ссылка .tg-list .tg-list-item .tg-list-item__title .tg-list-item__subtitle .tg-disclosure .tg-num аккордеон вопросы развернуть всё .tg-accordion .tg-accordion__controls .tg-disclosure__meta">
+  <div class="section-heading"><div><h2>Списки и раскрытие</h2><p>Строки-ссылки, строки данных и раскрывающиеся подробности.</p></div><code translate="no" class="class-tag">.tg-list · .tg-disclosure</code></div>
+  <div class="example-panel"><div class="example-body tg-col" data-ui data-example>
+<nav class="tg-list" aria-label="Настройки пространства">
+  <a class="tg-list-item" href="#forms"><div class="tg-grow"><div class="tg-list-item__title">Общие настройки</div><div class="tg-list-item__subtitle">Название и описание</div></div><svg viewBox="0 0 24 24" class="tg-icon" aria-hidden="true"><use href="../dist/icons/chevron-right.svg#chevron-right"></use></svg></a>
+  <a class="tg-list-item" href="#avatars"><div class="tg-grow"><div class="tg-list-item__title">Участники</div><div class="tg-list-item__subtitle">Приглашения и доступ</div></div><span class="tg-badge">12</span><svg viewBox="0 0 24 24" class="tg-icon" aria-hidden="true"><use href="../dist/icons/chevron-right.svg#chevron-right"></use></svg></a>
+  <a class="tg-list-item" href="#empty"><div class="tg-grow"><div class="tg-list-item__title">Архив</div><div class="tg-list-item__subtitle">Завершённые проекты</div></div><svg viewBox="0 0 24 24" class="tg-icon" aria-hidden="true"><use href="../dist/icons/chevron-right.svg#chevron-right"></use></svg></a>
+</nav>
+  </div>
+  <p class="example-rule">Строка, которая куда-то ведёт, делается настоящей ссылкой на всю ширину: отклик при наведении, видимый фокус и стрелка в конце. Внутрь такой строки не кладут другие кнопки и ссылки. Счётчик в строке остаётся статусом, без рамки.</p></div>
+  <div class="example-panel"><div class="example-body tg-col" data-ui data-example>
+<div class="tg-list" id="orders-example" aria-label="Мои заказы">
+  <div class="tg-list-item tg-row"><span class="tg-grow">Паста с грибами</span><span class="tg-num">1 200 ₽</span></div>
+  <div class="tg-list-item tg-row"><span class="tg-grow">Овощи на гриле</span><span class="tg-num">800 ₽</span></div>
+  <div class="tg-list-item tg-row"><span class="tg-grow">Лимонад</span><span class="tg-num">400 ₽</span></div>
+  <div class="tg-list-item tg-row"><span class="tg-grow">Итого с меня</span><strong class="tg-num">2 400 ₽</strong></div>
+  <div class="tg-list-item tg-help">Стоимость обслуживания включена.</div>
+</div>
+  </div>
+  <p class="example-rule">Строки данных не кликабельны: у них нет наведения и стрелок. Разделители помогают читать, суммы набраны <code translate="no">.tg-num</code>, итог выделен начертанием, а не цветом.</p></div>
+  <div class="example-panel"><div class="example-body tg-col" data-ui data-example>
+<details class="tg-disclosure"><summary class="tg-disclosure__trigger">Что входит в раскрывающийся блок?</summary><div class="tg-disclosure__content"><p>Любой контент: текст, список или форма. Нативные details и summary работают мышью и с клавиатуры без JavaScript.</p><a class="tg-link" href="#start">Как подключить</a></div></details>
+  </div>
+  <p class="example-rule">Раскрытие строится на нативных <code translate="no">details</code> и <code translate="no">summary</code>: Enter и Space работают без JavaScript. Заголовок нажимается целиком и откликается на наведение, а содержимое остаётся обычным текстом.</p></div>
+  <div class="example-panel"><div class="example-body tg-col" data-ui data-example>
+<div class="tg-row tg-justify-between"><h3 class="tg-header__title">Частые вопросы</h3><div class="tg-accordion__controls"><button class="tg-btn tg-btn--ghost tg-btn--sm" type="button" id="demo-faq-expand" aria-controls="demo-faq">Развернуть всё</button></div></div>
+<div class="tg-accordion" id="demo-faq">
+  <details class="tg-disclosure"><summary class="tg-disclosure__trigger">Можно ли сменить тариф позже?<span class="tg-disclosure__meta">1 мин</span></summary><div class="tg-disclosure__content">Да, в любой момент в настройках пространства.</div></details>
+  <details class="tg-disclosure"><summary class="tg-disclosure__trigger">Где найти счета?<span class="tg-disclosure__meta">2 мин</span></summary><div class="tg-disclosure__content">В разделе «Оплата», они хранятся три года.</div></details>
+  <details class="tg-disclosure"><summary class="tg-disclosure__trigger">Как удалить пространство?</summary><div class="tg-disclosure__content">Владелец удаляет его в настройках; данные можно выгрузить заранее.</div></details>
+</div>
+  </div>
+  <p class="example-rule">Аккордеон — несколько нативных <code translate="no">details</code> одной панелью; шеврон стоит в конце строки и поворачивается при раскрытии. Чтобы открытым оставался один раздел, задайте одинаковый атрибут <code translate="no">name</code>. «Развернуть всё» — кнопка приложения.</p></div>
+</section>
+
+<section id="empty" class="catalog-section" data-search-keywords="пустое состояние нет данных первый шаг .tg-empty .tg-empty__title .tg-empty__description">
+  <div class="section-heading"><div><h2>Пустое состояние</h2><p>Причина и следующий шаг вместо пустоты.</p></div><code translate="no" class="class-tag">.tg-empty</code></div>
+  <div class="example-panel"><div class="example-body tg-col" data-ui data-example>
+<div class="tg-empty"><svg class="tg-icon" viewBox="0 0 24 24" aria-hidden="true"><use href="../dist/icons/inbox.svg#inbox"></use></svg><h3 class="tg-empty__title">Пока нет заказов</h3><p class="tg-empty__description">Добавьте первый заказ, чтобы собрать общую сумму.</p><a class="tg-btn tg-btn--secondary" href="#lists">Посмотреть пример заказа</a></div>
+  </div>
+  <p class="example-rule">Пустое состояние объясняет, почему здесь ничего нет, и предлагает одно действие. Оно не заменяет ошибку загрузки или «ничего не найдено» в поиске.</p></div>
+</section>
+
+<section id="avatars" class="catalog-section" data-search-keywords="аватары участники инициалы выбор счётчик .tg-avatar .tg-avatar--outlined .tg-avatar__initials .tg-avatar__clip группа стек перекрытие .tg-avatar-group .tg-avatar-group__more">
+  <div class="section-heading"><div><h2>Аватары</h2><p>Инициалы, счётчики и выбор участника.</p></div><code translate="no" class="class-tag">.tg-avatar</code></div>
+  <div class="example-panel"><div class="example-body tg-row" data-ui data-example>
+<span class="tg-avatar"><span class="tg-avatar__initials">МК</span></span>
+<span class="tg-avatar"><span class="tg-avatar__initials">ИП</span><span class="tg-badge tg-badge--secondary" aria-label="3 уведомления">3</span></span>
+<span class="tg-avatar tg-avatar-initials"><span class="tg-avatar__clip" aria-label="Ещё 5 участников">+5</span></span>
+  </div>
+  <p class="example-rule">Аватар сам по себе остаётся изображением без рамки. Счётчик в углу показывает статус и не нажимается. Пунктир у «+5» обозначает свёрнутую группу, а не действие.</p></div>
+  <div class="example-panel"><div class="example-body tg-row" data-ui data-example>
+<button class="tg-avatar tg-avatar--outlined" role="checkbox" aria-checked="true" aria-label="Выбрать Марию"><span class="tg-avatar__initials" aria-hidden="true">МК</span></button>
+<button class="tg-avatar tg-avatar--outlined" role="checkbox" aria-checked="false" aria-label="Выбрать Александра"><span class="tg-avatar__initials" aria-hidden="true">АК</span></button>
+<span class="tg-text-sm tg-text-muted">Кто участвует в заказе</span>
+  </div>
+  <p class="example-rule">Когда аватар можно нажать, например чтобы выбрать участника, он становится кнопкой с доступным именем и получает рамку. Выбранный участник отмечен акцентным кольцом и <code translate="no">aria-checked</code>.</p></div>
+  <div class="example-panel"><div class="example-body tg-row" data-ui data-example>
+<div class="tg-avatar-group" role="group" aria-label="Команда проекта: 7 участников">
+  <span class="tg-avatar"><span class="tg-avatar__initials">АК</span></span>
+  <span class="tg-avatar"><span class="tg-avatar__initials">МП</span></span>
+  <span class="tg-avatar"><span class="tg-avatar__initials">ВС</span></span>
+  <span class="tg-avatar tg-avatar-group__more">+4</span>
+</div>
+  </div>
+  <p class="example-rule">Группа аватаров перекрывается на четверть; каждое изображение отделено кольцом цвета фона, последний элемент считает остальных. Имя всей группе даёт <code translate="no">aria-label</code>, отдельные аватары остаются декоративными.</p></div>
+</section>
+
+<section id="data" class="catalog-section" data-search-keywords="данные таблица сводка суммы заказы .tg-table .tg-table__num .tg-num .tg-summary выбор строк сортировка массовые действия карточки на телефоне .tg-table__select .tg-table__sort .tg-table__cell-main .tg-table__cell-meta .tg-table--stack .tg-table--compact .tg-table--caption-bottom .tg-bulk-bar">
+<div class="section-heading"><div><h2>Данные и сводки</h2><p>Таблица для сравнения строк, сводка — для свойств одного объекта.</p></div><code translate="no" class="class-tag">.tg-table · .tg-summary · .tg-bulk-bar</code></div>
+<div class="example-panel"><div class="example-body tg-col" data-ui data-example>
+<div class="tg-table-wrap" role="region" aria-label="Заказы участников" tabindex="0"><table class="tg-table"><caption>Заказы участников</caption><thead><tr><th scope="col">Участник</th><th scope="col" class="tg-table__num">Позиции</th><th scope="col" class="tg-table__num">Сумма</th><th scope="col">Статус</th></tr></thead><tbody><tr><th scope="row">Анна</th><td class="tg-table__num">3</td><td class="tg-table__num">2 400 ₽</td><td><span class="tg-badge tg-badge--secondary">Ожидает</span></td></tr><tr><th scope="row">Михаил</th><td class="tg-table__num">2</td><td class="tg-table__num">1 600 ₽</td><td><span class="tg-badge tg-badge--primary">Подтверждён</span></td></tr></tbody><tfoot><tr><th scope="row" colspan="2">Итого</th><td colspan="2" class="tg-table__num">4 000 ₽</td></tr></tfoot></table></div>
+</div>
+<p class="example-rule">Таблица сохраняет нативную семантику: <code translate="no">caption</code>, <code translate="no">th</code> и <code translate="no">scope</code>. На узком экране прокручивается только её область. Числа выровнены к концу строки и набраны табличными цифрами. Сортировку и фильтрацию обеспечивает приложение.</p></div>
+<div class="example-panel"><div class="example-body tg-col" data-ui data-example>
+<dl class="tg-summary"><div class="tg-summary__row"><dt>Заказ</dt><dd>Ужин с командой</dd></div><div class="tg-summary__row"><dt>Участники</dt><dd>Анна и Михаил</dd></div><div class="tg-summary__row"><dt>Сумма</dt><dd class="tg-num">4 000 ₽</dd></div></dl>
+</div>
+<p class="example-rule">Сводка показывает список «название → значение» для одного объекта (<code translate="no">dl</code>). Если строк нужно сравнивать между собой, это таблица.</p></div>
+  <div class="example-panel"><div class="example-body tg-col" data-ui data-example>
+<div class="tg-bulk-bar" role="region" aria-label="Действия с выбранными" id="demo-bulk" hidden><span role="status" id="demo-bulk-count">Выбрано 0</span><button class="tg-btn tg-btn--secondary tg-btn--sm" type="button">Напомнить</button><button class="tg-btn tg-btn--ghost tg-btn--sm" type="button" id="demo-bulk-clear">Снять выбор</button></div>
+<div class="tg-table-wrap" role="region" aria-labelledby="demo-payments-caption" tabindex="0"><table class="tg-table tg-table--stack tg-table--caption-bottom" id="demo-payments">
+<caption id="demo-payments-caption">Взносы участников · пример</caption>
+<thead><tr><th scope="col" class="tg-table__select"><input class="tg-check" type="checkbox" id="demo-payments-all" name="select_all" aria-label="Выбрать всех"></th><th scope="col">Участник</th><th scope="col">Статус</th><th scope="col" aria-sort="none" data-sort="due"><button class="tg-table__sort" type="button">Срок<svg class="tg-icon" viewBox="0 0 24 24" aria-hidden="true"><use href="../dist/icons/arrow-down.svg#arrow-down"></use></svg></button></th><th scope="col" class="tg-table__num" aria-sort="descending" data-sort="amount"><button class="tg-table__sort" type="button">Сумма<svg class="tg-icon" viewBox="0 0 24 24" aria-hidden="true"><use href="../dist/icons/arrow-down.svg#arrow-down"></use></svg></button></th></tr></thead>
+<tbody>
+<tr data-amount="24000" data-due="2026-11-02"><td class="tg-table__select"><input class="tg-check" type="checkbox" name="selected" aria-label="Выбрать: Анна Ким"></td><th scope="row" data-label="Участник"><span class="tg-table__cell-main"><span class="tg-avatar" aria-hidden="true"><span class="tg-avatar__initials">АК</span></span><span><span>Анна Ким</span><span class="tg-table__cell-meta">anna@example.com</span></span></span></th><td data-label="Статус"><span class="tg-badge tg-badge--secondary"><span class="tg-badge__dot" aria-hidden="true"></span>Отправлен</span></td><td data-label="Срок"><time datetime="2026-11-02">2 нояб.</time></td><td class="tg-table__num" data-label="Сумма">24 000 ₽</td></tr>
+<tr data-amount="9600" data-due="2026-10-20"><td class="tg-table__select"><input class="tg-check" type="checkbox" name="selected" aria-label="Выбрать: Михаил Петров"></td><th scope="row" data-label="Участник"><span class="tg-table__cell-main"><span class="tg-avatar" aria-hidden="true"><span class="tg-avatar__initials">МП</span></span><span><span>Михаил Петров</span><span class="tg-table__cell-meta">mikhail@example.com</span></span></span></th><td data-label="Статус"><span class="tg-badge tg-badge--destructive"><span class="tg-badge__dot" aria-hidden="true"></span>Просрочен</span></td><td data-label="Срок"><time datetime="2026-10-20">20 окт.</time></td><td class="tg-table__num" data-label="Сумма">9 600 ₽</td></tr>
+<tr data-amount="17800" data-due="2026-11-14"><td class="tg-table__select"><input class="tg-check" type="checkbox" name="selected" aria-label="Выбрать: Вера Соколова"></td><th scope="row" data-label="Участник"><span class="tg-table__cell-main"><span class="tg-avatar" aria-hidden="true"><span class="tg-avatar__initials">ВС</span></span><span><span>Вера Соколова</span><span class="tg-table__cell-meta">vera@example.com</span></span></span></th><td data-label="Статус"><span class="tg-badge tg-badge--primary"><span class="tg-badge__dot" aria-hidden="true"></span>Оплачен</span></td><td data-label="Срок"><time datetime="2026-11-14">14 нояб.</time></td><td class="tg-table__num" data-label="Сумма">17 800 ₽</td></tr>
+</tbody>
+<tfoot><tr><th scope="row" colspan="4">Итого</th><td class="tg-table__num">51 400 ₽</td></tr></tfoot>
+</table></div>
+<span class="tg-sr-only" role="status" id="demo-payments-status"></span>
+  </div>
+  <p class="example-rule">Выбор строк делает флажок, выбранная строка подсвечивается мягким акцентом сама, а действия с выбранным появляются над таблицей. Сортировка — кнопка в заголовке столбца, направление хранит <code translate="no">aria-sort</code> на <code translate="no">th</code>. На узком экране <code translate="no">--stack</code> превращает строки в карточки, и каждая ячейка подписывает свой столбец через <code translate="no">data-label</code>.</p></div>
+</section>
+
+<section id="navigation" class="catalog-section" data-search-keywords="навигация вкладки нижняя панель хлебные крошки пагинация страницы .tg-tabs .tg-tab .tg-tabbar .tg-tabbar__item .tg-pagination .tg-dot .tg-breadcrumbs навигация сайта шапка подчёркнутые вкладки нумерованная пагинация .tg-site-nav .tg-site-nav__link .tg-tabs--underline .tg-page-header--sticky .tg-pager .tg-pager__link">
+  <div class="section-heading"><div><h2>Навигация и вкладки</h2><p>Вкладки, нижняя панель, страницы и путь.</p></div><code translate="no" class="class-tag">.tg-tabs · .tg-tabbar · .tg-pager</code></div>
+  <div class="example-panel"><div class="example-body tg-col" data-ui data-example>
+<div class="tg-tabs" role="tablist" aria-label="Пример разделов"><button id="tab-overview" class="tg-tab" role="tab" aria-selected="true" aria-controls="panel-overview">Обзор</button><button id="tab-activity" class="tg-tab" role="tab" aria-selected="false" aria-controls="panel-activity" tabindex="-1">Активность</button><button id="tab-settings" class="tg-tab" role="tab" aria-selected="false" aria-controls="panel-settings" tabindex="-1">Настройки</button></div>
+<div class="tab-panel" id="panel-overview" role="tabpanel" aria-labelledby="tab-overview" tabindex="0">Здесь начинается ваш проект. Все основные данные собраны в одном месте.</div>
+<div class="tab-panel" id="panel-activity" role="tabpanel" aria-labelledby="tab-activity" tabindex="0" hidden>Последнее изменение было сегодня. История команды всегда под рукой.</div>
+<div class="tab-panel" id="panel-settings" role="tabpanel" aria-labelledby="tab-settings" tabindex="0" hidden>Управляйте названием, уведомлениями и доступом к проекту.</div>
+  </div>
+  <p class="example-rule">Вкладки переключают содержимое на месте: стрелки, Home и End двигают фокус, выбранная вкладка отмечена <code translate="no">aria-selected</code>. Для перехода на другую страницу нужна ссылка, а не <code translate="no">role="tab"</code>.</p></div>
+  <div class="example-panel"><div class="example-body tg-col" data-ui data-example>
+<nav class="tg-tabbar demo-tabbar" aria-label="Пример нижней навигации"><a class="tg-tabbar__item" aria-current="page" href="#overview"><svg viewBox="0 0 24 24" class="tg-icon" aria-hidden="true"><use href="../dist/icons/layout.svg#layout"></use></svg>Обзор</a><a class="tg-tabbar__item" href="#surfaces"><svg viewBox="0 0 24 24" class="tg-icon" aria-hidden="true"><use href="../dist/icons/folder.svg#folder"></use></svg>Проекты</a><a class="tg-tabbar__item" href="#forms"><svg viewBox="0 0 24 24" class="tg-icon" aria-hidden="true"><use href="../dist/icons/user.svg#user"></use></svg>Профиль</a></nav>
+  </div>
+  <p class="example-rule">Нижняя панель состоит из ссылок; текущий раздел отмечен <code translate="no">aria-current="page"</code>. Подпись под иконкой обязательна: одной иконки недостаточно.</p></div>
+  <div class="example-panel"><div class="example-body tg-col" data-ui data-example>
+<nav class="tg-pagination" aria-label="Страницы примера"><button class="tg-dot" aria-label="Страница 1" aria-current="page"></button><button class="tg-dot" aria-label="Страница 2" aria-current="false"></button><button class="tg-dot" aria-label="Страница 3" aria-current="false"></button></nav>
+<p id="demo-page-status" class="tg-help tg-text-center" role="status">Страница 1 из 3</p>
+<nav class="tg-breadcrumbs" aria-label="Путь к заказу"><ol><li><a href="#overview">Каталог</a></li><li><a href="#lists">Списки</a></li><li><span aria-current="page">Мои заказы</span></li></ol></nav>
+  </div>
+  <p class="example-rule">Точки страниц являются кнопками с доступным именем; текущая страница отмечена <code translate="no">aria-current</code> и продублирована текстом. В пути последний пункт не является ссылкой: это место, где вы находитесь.</p></div>
+  <div class="example-panel"><div class="example-body tg-col" data-ui data-example>
+<nav class="tg-site-nav" aria-label="Пример навигации сайта"><a class="tg-site-nav__link" href="#navigation" aria-current="page">Обзор</a><a class="tg-site-nav__link" href="#data">Отчёты</a><a class="tg-site-nav__link" href="#forms">Настройки</a></nav>
+<div class="tg-tabs tg-tabs--underline" role="tablist" aria-label="Код примера"><button class="tg-tab" role="tab" id="demo-code-js" aria-selected="true" aria-controls="demo-code-js-panel">JavaScript</button><button class="tg-tab" role="tab" id="demo-code-css" aria-selected="false" aria-controls="demo-code-css-panel" tabindex="-1">CSS</button></div>
+<div role="tabpanel" id="demo-code-js-panel" aria-labelledby="demo-code-js" tabindex="0" class="tg-text-muted">Подключите <code translate="no">ui.js</code> один раз на странице.</div>
+<div role="tabpanel" id="demo-code-css-panel" aria-labelledby="demo-code-css" tabindex="0" class="tg-text-muted" hidden>Подключите <code translate="no">t-design-system.css</code>.</div>
+<nav class="tg-pager" aria-label="Страницы результатов"><a class="tg-pager__link" aria-disabled="true">Назад</a><a class="tg-pager__link" href="#navigation" aria-current="page" aria-label="Страница 1">1</a><a class="tg-pager__link" href="#navigation" aria-label="Страница 2">2</a><a class="tg-pager__link" href="#navigation" aria-label="Страница 3">3</a><span class="tg-pager__ellipsis" aria-hidden="true">…</span><a class="tg-pager__link" href="#navigation" aria-label="Страница 9">9</a><a class="tg-pager__link" href="#navigation" rel="next">Вперёд</a></nav>
+  </div>
+  <p class="example-rule">Навигация сайта — обычные ссылки, текущая стоит на тоновой подложке и отмечена <code translate="no">aria-current</code>. Подчёркнутые вкладки переключают панели внутри страницы, сегментные остаются видом по умолчанию. Нумерованная пагинация нужна для данных; точки <code translate="no">.tg-pagination</code> — для каруселей.</p></div>
+</section>
+
+<section id="feedback" class="catalog-section" data-search-keywords="обратная связь статусы уведомления сообщения прогресс загрузка скелетон .tg-notice .tg-notice--accent .tg-notice--destructive .tg-progress .tg-skeleton .tg-spinner действия закрыть сообщение .tg-notice__actions .tg-notice__dismiss">
+  <div class="section-heading"><div><h2>Статусы и обратная связь</h2><p>Сообщения, прогресс и ожидание без лишнего шума.</p></div><code translate="no" class="class-tag">.tg-notice · .tg-progress</code></div>
+  <div class="example-panel"><div class="example-body tg-col" data-ui data-example>
+<div class="tg-notice"><strong>Всё готово к работе</strong><div class="tg-text-sm tg-text-muted">Изменения сохранены. Можно продолжать.</div></div>
+<div class="tg-notice tg-notice--accent"><strong>Команда на связи</strong><div class="tg-text-sm">Акцентное сообщение в стиле исходного приложения.</div></div>
+<div class="tg-notice tg-notice--destructive tg-notice--with-icon"><svg viewBox="0 0 24 24" class="tg-icon tg-notice__icon" aria-hidden="true"><use href="../dist/icons/alert-circle.svg#alert-circle"></use></svg><div class="tg-notice__content"><strong class="tg-notice__title">Не удалось загрузить файл</strong><div class="tg-text-sm tg-text-muted">Проверьте соединение и попробуйте ещё раз.</div></div></div>
+  </div>
+  <p class="example-rule">Уведомление сообщает сведения и не является действием: на него нельзя нажать. Смысл передаёт заголовок, цвет только поддерживает его. <code translate="no">role="alert"</code> нужен лишь для срочных ошибок; ошибка подсказывает, как её исправить.</p></div>
+  <div class="example-panel"><div class="example-body tg-col" data-ui data-example>
+<div class="tg-field"><label class="tg-label" for="upload-progress">Загрузка файлов · 64%</label><progress id="upload-progress" class="tg-progress" max="100" value="64">64%</progress></div>
+<div class="tg-progress tg-progress--striped" role="progressbar" aria-label="Обработка" aria-valuenow="42" aria-valuemin="0" aria-valuemax="100"><span class="tg-progress__bar" style="--progress:42%"></span></div>
+  </div>
+  <p class="example-rule">Прогресс показывает известную долю, подпись дублирует значение. Полосы обозначают идущую обработку. Если длительность неизвестна, используйте spinner.</p></div>
+  <div class="example-panel"><div class="example-body tg-col" data-ui data-example>
+<div role="status"><span class="tg-sr-only">Загружаем данные заказа</span><div class="tg-row" aria-hidden="true"><span class="tg-skeleton tg-skeleton--circle"></span><div class="tg-grow tg-col"><span class="tg-skeleton tg-skeleton--text"></span><span class="tg-skeleton tg-skeleton--text" style="inline-size:60%"></span></div></div></div>
+  </div>
+  <p class="example-rule">Skeleton повторяет структуру будущего содержимого при первой загрузке. Для обновления данных поставьте <code translate="no">aria-busy="true"</code> на область и снимите после загрузки.</p></div>
+  <div class="example-panel"><div class="example-body tg-col" data-ui data-example>
+<div class="tg-notice tg-notice--with-icon" id="demo-verify-notice">
+  <svg class="tg-icon tg-notice__icon" viewBox="0 0 24 24" aria-hidden="true"><use href="../dist/icons/mail.svg#mail"></use></svg>
+  <div class="tg-notice__content"><strong class="tg-notice__title">Подтвердите почту</strong><p class="tg-mt-0 tg-mb-0">Ссылка отправлена на hello@example.com.</p></div>
+  <div class="tg-notice__actions"><button class="tg-btn tg-btn--secondary tg-btn--sm" type="button">Отправить снова</button></div>
+  <button class="tg-icon-btn tg-icon-btn--ghost tg-notice__dismiss" type="button" aria-label="Скрыть сообщение" data-dismiss="demo-verify-notice"><svg class="tg-icon" viewBox="0 0 24 24" aria-hidden="true"><use href="../dist/icons/x.svg#x"></use></svg></button>
+</div>
+  </div>
+  <p class="example-rule">Сообщение может предложить шаг восстановления и способ закрыться. Действия стоят в конце строки и переносятся под текст на узком экране. Запомнить, что пользователь закрыл сообщение, должно приложение.</p></div>
+</section>
+
+<section id="overlays" class="catalog-section" data-search-keywords="диалог модальное окно всплывающее уведомление toast snackbar .tg-modal .tg-modal--sheet .tg-toast .tg-snackbar боковая панель прокрутка .tg-modal--side .tg-modal__body">
+  <div class="section-heading"><div><h2>Диалоги и всплывающие сообщения</h2><p>Окно прерывает задачу; уведомление сообщает о результате и исчезает.</p></div><code translate="no" class="class-tag">.tg-modal · .tg-toast · .tg-snackbar</code></div>
+  <div class="example-panel"><div class="example-body tg-row" data-ui data-example>
+<button class="tg-btn tg-btn--primary" id="open-dialog">Открыть диалог</button><button class="tg-btn tg-btn--secondary" id="show-toast">Показать уведомление</button><button class="tg-btn tg-btn--secondary" id="show-snackbar">Уведомление сверху</button>
+  </div>
+  <p class="example-rule">Диалог строится на нативном <code translate="no">dialog</code>: удерживает фокус, Escape закрывает его, после закрытия фокус возвращается. Toast и snackbar получают <code translate="no">role="status"</code> и не содержат кнопок: важное действие не должно исчезать по таймеру.</p></div>
+  <div class="example-panel"><div class="example-body tg-row" data-ui data-example>
+<button class="tg-btn tg-btn--secondary" type="button" id="open-side-dialog">Открыть боковую панель</button>
+<dialog class="tg-modal tg-modal--side" id="demo-side-dialog" aria-labelledby="demo-side-title">
+  <div class="tg-modal__sheet">
+    <header class="tg-modal__header"><h2 class="tg-header__title" id="demo-side-title">Фильтры отчёта</h2><button class="tg-icon-btn tg-icon-btn--ghost" type="button" aria-label="Закрыть" data-close-side><svg class="tg-icon" viewBox="0 0 24 24" aria-hidden="true"><use href="../dist/icons/x.svg#x"></use></svg></button></header>
+    <div class="tg-modal__body tg-col" tabindex="0" aria-label="Параметры фильтра">
+      <div class="tg-field"><label class="tg-label" for="demo-side-period">Период</label><select class="tg-select" id="demo-side-period" name="period"><option>Этот месяц</option><option>Прошлый месяц</option></select></div>
+      <fieldset class="tg-fieldset tg-choice-group"><legend>Статусы</legend><label class="tg-choice"><input class="tg-check" type="checkbox" name="status" value="paid" checked><span>Оплачен</span></label><label class="tg-choice"><input class="tg-check" type="checkbox" name="status" value="overdue"><span>Просрочен</span></label></fieldset>
+    </div>
+    <form method="dialog" class="tg-modal__footer"><button class="tg-btn tg-btn--secondary" value="reset">Сбросить</button><button class="tg-btn tg-btn--primary" value="apply">Применить</button></form>
+  </div>
+</dialog>
+  </div>
+  <p class="example-rule">Боковая панель — тот же нативный <code translate="no">dialog</code>, прижатый к концу строки на всю высоту. Длинное содержимое прокручивается внутри <code translate="no">.tg-modal__body</code>, а заголовок и действия остаются на месте.</p></div>
+</section>
+
+<section id="compositions" class="catalog-section" data-search-keywords="композиции экраны комментарии сообщения .tg-page-shell .tg-page-header .tg-comment .tg-thread .tg-composer .tg-media чат ассистент сообщения рабочий экран счета .tg-chat .tg-chat__log .tg-message .tg-message--user .tg-message--assistant .tg-composer__toolbar .tg-composer__attachments">
+  <div class="section-heading"><div><h2>Готовые композиции экранов</h2><p>Каркас страницы, комментарии и панель ввода. В примере нет собственного CSS: оформление полностью задаёт TDS.</p></div><code translate="no" class="class-tag">.tg-page-shell · .tg-comment · .tg-composer</code></div>
+  <div class="tg-row"><a class="tg-btn tg-btn--primary" href="compositions.html" target="_blank" rel="noopener">Открыть полный пример <svg class="tg-icon" viewBox="0 0 24 24" aria-hidden="true"><use href="../dist/icons/arrow-up-right.svg#arrow-up-right"></use></svg></a><span class="tg-text-sm tg-text-muted">Попробуйте ответ, отправку сообщения и просмотр медиа.</span></div>
+  <div class="example-panel"><div class="example-body"><iframe class="composition-preview" id="composition-preview" src="compositions.html" title="Интерактивный пример композиций TDS"></iframe></div>
+  <details class="example-code"><summary>Посмотреть HTML</summary><pre translate="no"><code translate="no">&lt;div class="tg-page-shell"&gt;
+  &lt;header class="tg-page-header"&gt;
+    &lt;div class="tg-container tg-row"&gt;
+      &lt;a class="tg-brand tg-header__title tg-text" href="#demo-content"&gt;&lt;svg class="tg-icon" viewBox="0 0 24 24" aria-hidden="true"&gt;&lt;use href="../dist/icons/message-square.svg#message-square"&gt;&lt;/use&gt;&lt;/svg&gt;Обсуждение&lt;/a&gt;
+      &lt;label class="tg-ms-auto" id="demo-theme-control"&gt;Тема примера&lt;select id="demo-theme" class="tg-select" aria-label="Тема примера"&gt;&lt;option value="auto"&gt;Авто&lt;/option&gt;&lt;option value="light"&gt;Светлая&lt;/option&gt;&lt;option value="dark"&gt;Тёмная&lt;/option&gt;&lt;option value="ios-dark"&gt;Тёмная iOS&lt;/option&gt;&lt;/select&gt;&lt;/label&gt;
+      &lt;span class="tg-badge tg-ms-auto"&gt;Демо TDS&lt;/span&gt;
+    &lt;/div&gt;
+  &lt;/header&gt;
+  &lt;main class="tg-container tg-page-content" id="demo-content"&gt;
+    &lt;section class="tg-card tg-col" aria-labelledby="demo-title"&gt;
+      &lt;h1 class="tg-header__title" id="demo-title"&gt;Готовый экран без CSS приложения&lt;/h1&gt;
+      &lt;p class="tg-mt-0 tg-mb-0"&gt;Шапка, контейнер, комментарии и панель ввода используют публичные классы TDS. Измените ширину окна или тему.&lt;/p&gt;
+      &lt;div class="tg-toolbar tg-toolbar--responsive"&gt;&lt;span class="tg-text-sm tg-text-muted"&gt;Адаптивная панель действий&lt;/span&gt;&lt;button class="tg-btn tg-btn--secondary" id="demo-open-media"&gt;&lt;svg class="tg-icon" viewBox="0 0 24 24" aria-hidden="true"&gt;&lt;use href="../dist/icons/image.svg#image"&gt;&lt;/use&gt;&lt;/svg&gt;Открыть медиа&lt;/button&gt;&lt;/div&gt;
+    &lt;/section&gt;
+    &lt;section class="tg-mt-5" aria-labelledby="demo-comments-title"&gt;
+      &lt;h2 class="tg-header__title tg-mb-3" id="demo-comments-title"&gt;Комментарии&lt;/h2&gt;
+      &lt;div class="tg-list" id="demo-messages"&gt;
+        &lt;div class="tg-list-item"&gt;
+          &lt;article class="tg-comment"&gt;
+            &lt;span class="tg-avatar" aria-hidden="true"&gt;&lt;span class="tg-avatar__initials"&gt;АК&lt;/span&gt;&lt;/span&gt;
+            &lt;div class="tg-comment__body"&gt;
+              &lt;header class="tg-comment__meta tg-row tg-gap-2"&gt;&lt;span class="tg-list-item__title"&gt;Анна&lt;/span&gt;&lt;span class="tg-text-sm tg-text-muted"&gt;сейчас&lt;/span&gt;&lt;/header&gt;
+              &lt;p class="tg-comment__text tg-mt-2 tg-mb-2" id="demo-original"&gt;На телефоне текст занимает всю ширину, а имя остаётся рядом с аватаром. Ответьте на этот комментарий, чтобы увидеть цитату в панели ввода.&lt;/p&gt;
+              &lt;div class="tg-comment__actions tg-row tg-gap-1"&gt;&lt;button class="tg-btn tg-btn--ghost tg-btn--sm" id="demo-reply" aria-label="Ответить Анне"&gt;Ответить&lt;/button&gt;&lt;button class="tg-btn tg-btn--ghost tg-btn--sm" id="demo-toggle-replies" aria-controls="demo-replies" aria-expanded="false"&gt;Показать ответы&lt;/button&gt;&lt;/div&gt;
+            &lt;/div&gt;
+          &lt;/article&gt;
+          &lt;div class="tg-thread tg-mt-3" id="demo-replies" hidden&gt;
+            &lt;article class="tg-comment"&gt;&lt;span class="tg-avatar" aria-hidden="true"&gt;&lt;span class="tg-avatar__initials"&gt;М&lt;/span&gt;&lt;/span&gt;&lt;div class="tg-comment__body"&gt;&lt;header class="tg-comment__meta"&gt;&lt;span class="tg-list-item__title"&gt;Максим&lt;/span&gt;&lt;/header&gt;&lt;p class="tg-comment__text tg-mt-2 tg-mb-0"&gt;Вложенные ответы тоже адаптируются к ширине экрана.&lt;/p&gt;&lt;/div&gt;&lt;/article&gt;
+          &lt;/div&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+    &lt;/section&gt;
+  &lt;/main&gt;
+  &lt;footer class="tg-composer" id="demo-composer"&gt;
+    &lt;div class="tg-container tg-composer__inner tg-col tg-gap-2"&gt;
+      &lt;div class="tg-reply-preview tg-text-sm" id="demo-reply-preview" hidden&gt;&lt;svg class="tg-icon" viewBox="0 0 24 24" aria-hidden="true"&gt;&lt;use href="../dist/icons/corner-down-right.svg#corner-down-right"&gt;&lt;/use&gt;&lt;/svg&gt;&lt;div class="tg-grow"&gt;&lt;span class="tg-text-accent"&gt;Ответ для Анны&lt;/span&gt;&lt;p class="tg-truncate tg-text-muted tg-mt-1 tg-mb-0" id="demo-excerpt"&gt;&lt;/p&gt;&lt;/div&gt;&lt;button class="tg-icon-btn tg-icon-btn--ghost" id="demo-cancel-reply" aria-label="Отменить ответ"&gt;&lt;svg class="tg-icon" viewBox="0 0 24 24" aria-hidden="true"&gt;&lt;use href="../dist/icons/x.svg#x"&gt;&lt;/use&gt;&lt;/svg&gt;&lt;/button&gt;&lt;/div&gt;
+      &lt;form class="tg-composer__form" id="demo-message-form"&gt;
+        &lt;span class="tg-avatar-size" aria-hidden="true"&gt;&lt;span class="tg-avatar"&gt;&lt;span class="tg-avatar__initials"&gt;В&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+        &lt;div class="tg-composer__input"&gt;&lt;textarea class="tg-textarea tg-composer__textarea" id="demo-message" rows="1" maxlength="2000" placeholder="Написать сообщение…" aria-label="Текст сообщения"&gt;&lt;/textarea&gt;&lt;button class="tg-icon-btn tg-icon-btn--primary" id="demo-send" aria-label="Отправить сообщение" disabled&gt;&lt;svg class="tg-icon" viewBox="0 0 24 24" aria-hidden="true"&gt;&lt;use href="../dist/icons/arrow-up.svg#arrow-up"&gt;&lt;/use&gt;&lt;/svg&gt;&lt;/button&gt;&lt;/div&gt;
+      &lt;/form&gt;
+      &lt;div class="tg-composer__caption tg-text-sm tg-text-muted"&gt;&lt;span&gt;Сообщения существуют только в этом примере&lt;/span&gt;&lt;span&gt;Ctrl / ⌘ + Enter&lt;/span&gt;&lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/footer&gt;
+&lt;/div&gt;
+</code></pre></details>
+  </div>
+  <div class="example-panel"><div class="example-body tg-col">
+    <h3 class="tg-header__title">Что входит в TDS</h3>
+    <dl class="tg-col">
+      <div><dt><code translate="no">tg-page-shell · tg-page-header · tg-page-content</code></dt><dd class="tg-mt-1 tg-text-sm tg-text-muted">Шапка с safe area и область контента с резервом под composer. Узкая колонка: tg-container tg-container--reading.</dd></div>
+      <div><dt><code translate="no">tg-toolbar · tg-toolbar--responsive</code></dt><dd class="tg-mt-1 tg-text-sm tg-text-muted">Панель с действиями по краям. На мобильном элементы растягиваются; tg-tabs--responsive занимает всю ширину.</dd></div>
+      <div><dt><code translate="no">tg-comment · tg-thread</code></dt><dd class="tg-mt-1 tg-text-sm tg-text-muted">Аватар, метаданные, текст и действия. На телефоне текст на всю ширину, вложенные ответы с компактным отступом.</dd></div>
+      <div><dt><code translate="no">tg-composer · tg-reply-preview</code></dt><dd class="tg-mt-1 tg-text-sm tg-text-muted">Закреплённая панель, растущее поле, кнопка отправки, подпись и обрезаемая цитата ответа.</dd></div>
+      <div><dt><code translate="no">tg-media · tg-source-link</code></dt><dd class="tg-mt-1 tg-text-sm tg-text-muted">Изображение без обрезки в пределах окна и строка ссылки на источник. Используют существующий tg-modal.</dd></div>
+    </dl>
+    <h3 class="tg-header__title">Граница CSS и поведения</h3>
+    <p class="tg-mt-0 tg-mb-0">TDS определяет размеры, цвета, отступы и адаптивность. Приложение хранит данные, отправляет сообщения и управляет фокусом. JavaScript измеряет высоту composer и клавиатуры через <code translate="no">--tg-composer-height</code> и <code translate="no">--tg-keyboard-inset</code>, а также подстраивает высоту textarea.</p>
+    <p class="tg-text-sm tg-text-muted tg-mt-0 tg-mb-0">Токены: <code translate="no">--layout-reading-width</code> (48rem), <code translate="no">--composer-reserved-size</code> (10rem), <code translate="no">--composer-input-max-size</code> (2 × space-16), <code translate="no">--media-max-size</code> (55dvh). Типографика и существующие контролы не переопределяются.</p>
+    <p class="tg-text-sm tg-mt-0 tg-mb-0"><a class="tg-link" href="compositions-demo.js">JavaScript примера</a> · Слоты и ограничения интеграции описаны в README → Screen compositions.</p>
+  </div></div>
+
+  <div class="example-panel"><div class="example-body tg-col" data-ui data-example>
+<section class="tg-chat" aria-labelledby="demo-chat-title">
+  <h3 class="tg-header__title" id="demo-chat-title">Помощник</h3>
+  <div class="tg-chat__log" role="log" aria-live="polite">
+    <article class="tg-message tg-message--user" aria-label="Вы"><div class="tg-message__body"><p>Сколько стоит доставка?</p></div></article>
+    <article class="tg-message tg-message--assistant" data-state="done" aria-label="Помощник"><div class="tg-message__body"><p>Доставка бесплатна от 3 000 ₽. Для меньших заказов — 290 ₽.</p></div><div class="tg-message__actions"><button class="tg-icon-btn tg-icon-btn--ghost" type="button" aria-label="Скопировать ответ"><svg class="tg-icon" viewBox="0 0 24 24" aria-hidden="true"><use href="../dist/icons/copy.svg#copy"></use></svg></button></div></article>
+  </div>
+  <form class="tg-composer__form" id="demo-chat-form">
+    <div class="tg-composer__input"><textarea class="tg-textarea tg-composer__textarea" name="prompt" rows="1" aria-label="Сообщение помощнику" placeholder="Спросите о заказе…"></textarea></div>
+    <div class="tg-composer__toolbar"><button class="tg-icon-btn tg-icon-btn--ghost" type="button" aria-label="Прикрепить файл"><svg class="tg-icon" viewBox="0 0 24 24" aria-hidden="true"><use href="../dist/icons/paperclip.svg#paperclip"></use></svg></button><button class="tg-icon-btn tg-icon-btn--primary tg-ms-auto" type="submit" aria-label="Отправить"><svg class="tg-icon" viewBox="0 0 24 24" aria-hidden="true"><use href="../dist/icons/arrow-up.svg#arrow-up"></use></svg></button></div>
+  </form>
+</section>
+<a class="tg-btn tg-btn--secondary" href="workspace.html" target="_blank" rel="noopener">Открыть рабочий экран «Счета» <svg class="tg-icon" viewBox="0 0 24 24" aria-hidden="true"><use href="../dist/icons/arrow-up-right.svg#arrow-up-right"></use></svg></a>
+  </div>
+  <p class="example-rule">Реплики пользователя стоят в пузырях у конца строки, ассистент отвечает обычным текстом — так длинные ответы читаются легче. Лента — <code translate="no">role="log"</code>; во время ответа сообщение получает <code translate="no">data-state="streaming"</code>, а стриминг, остановку и объявления выполняет приложение. Полный рабочий экран собран из тех же классов без CSS приложения.</p></div>
+</section>
+
+
+<section id="effects" class="catalog-section" data-search-keywords="эффекты анимации переходы стекло прозрачность .tg-ripple .tg-glass .tg-overlay .tg-transition .tg-fade-in .tg-fade-out">
+  <div class="section-heading"><div><h2>Эффекты и анимации</h2><p>Полупрозрачные поверхности и мягкое появление из исходного проекта. Отклик на нажатие включён у всех кнопок.</p></div><code translate="no" class="class-tag">.tg-ripple · .tg-glass</code></div>
+  <div class="example-panel"><div class="example-body glass-demo-stage" data-ui data-example>
+<article class="tg-card tg-glass tg-col"><div class="tg-header"><h3 class="tg-header__title">Лёгкая поверхность</h3></div><p class="tg-header__subtitle">Фон просвечивает сквозь панель. Размытие и насыщенность повторяют исходные настройки.</p><span class="tg-badge tg-badge--secondary">backdrop-filter · 15px</span></article>
+  </div>
+  <p class="example-rule">Стекло подходит плавающим слоям поверх насыщенного фона и не заменяет обычную поверхность. Текст на нём сохраняет контраст; если фон пёстрый, выберите обычную карточку.</p></div>
+  <div class="example-panel"><div class="example-body loader-demo-stage" data-ui data-example>
+<div class="tg-overlay tg-overlay--absolute"><div class="tg-col tg-text-center" role="status"><span class="tg-spinner tg-spinner--lg" aria-hidden="true"></span><span class="tg-text-sm">Идёт обработка</span></div></div>
+  </div>
+  <p class="example-rule">Затемнение блокирует область, пока идёт операция. Подпись объясняет, что происходит; spinner декоративен, состояние сообщает <code translate="no">role="status"</code>.</p></div>
+<div class="example-panel"><div class="example-body tg-col" data-ui data-example>
+<button type="button" class="tg-btn tg-btn--secondary" id="transition-toggle" aria-expanded="true" aria-controls="transition-demo">Скрыть описание</button><div class="tg-transition" id="transition-demo"><p>Переход подходит для дополнительной информации. При скрытии контент исключается из взаимодействия.</p></div>
+</div>
+<p class="example-rule">Анимируются только прозрачность и сдвиг, длительность берётся из общего <code translate="no">--duration</code>. Скрытый блок получает <code translate="no">inert</code>, кнопка сообщает состояние через <code translate="no">aria-expanded</code>. При reduced motion переход мгновенный.</p></div>
+
+</section>
+
+<section id="start" class="catalog-section start-section" data-search-keywords="подключение установка настройка css scss telegram t-design-system.css --button-color --button-text-color --radius --space-4">
+  <div class="section-heading"><div><h2>Подключение и настройка</h2><p>Подключите CSS. Добавьте разметку. Настройте под себя.</p></div><code translate="no" class="class-tag">t-design-system.css</code></div>
+  <div class="install-grid"><div><span class="mini-label">Обычный HTML</span><pre translate="no"><code translate="no">&lt;link rel="stylesheet"
+  href="t-design-system.min.css"&gt;
+
+&lt;button class="tg-btn tg-btn--primary"&gt;
+  Начать
+&lt;/button&gt;</code></pre></div><div><span class="mini-label">Ваши настройки</span><pre translate="no"><code translate="no">:root {
+  --button-color: #18745b;
+  --button-text-color: #fff;
+  --radius: .75rem;
+  --space-4: 1rem;
+}</code></pre></div></div>
+  <div class="cascade-map" aria-label="Порядок CSS-слоёв"><span>reset</span><b>→</b><span>tokens</span><b>→</b><span>themes</span><b>→</b><span>base</span><b>→</b><span>components</span><b>→</b><span>utilities</span><b>→</b><span>visibility</span></div>
+  <p class="tg-text-sm tg-text-muted">Ваш CSS вне слоёв имеет приоритет. Для Telegram подключите <code translate="no">telegram.css</code> после основного файла. Подробности, SCSS-модули и интеграция Angular — в README.</p>
+  <div class="download-row"><a class="tg-btn tg-btn--primary" href="../dist/t-design-system.min.css" download>Скачать CSS <svg viewBox="0 0 24 24" class="tg-icon" aria-hidden="true"><use href="../dist/icons/arrow-down.svg#arrow-down"></use></svg></a><a class="tg-btn tg-btn--ghost" href="../dist/telegram.min.css" download>Адаптер Telegram <svg viewBox="0 0 24 24" class="tg-icon" aria-hidden="true"><use href="../dist/icons/arrow-down.svg#arrow-down"></use></svg></a></div>
+</section>
+<footer class="site-footer"><a class="brand" href="#overview"><span class="brand-mark small">t<span>·</span></span> t-design-system</a><span>Основан на ai-splitter · v0.1.0</span></footer>
+</main>
+</div>
+<div class="tg-toast" id="demo-toast" role="status" aria-live="polite" aria-atomic="true"></div>
+<div id="demo-snackbar" class="tg-snackbar" role="status" aria-live="polite" aria-atomic="true"><div class="tg-snackbar__content tg-notice tg-notice--accent"></div></div>
+<dialog class="tg-modal tg-modal--sheet" id="demo-dialog" aria-labelledby="dialog-title" aria-describedby="dialog-description"><div class="tg-modal__sheet"><div class="tg-modal__header"><div><span class="mini-label">Новое пространство</span><h2 id="dialog-title" class="tg-header__title tg-mt-2">Для следующей большой идеи</h2></div><button class="tg-icon-btn tg-icon-btn--ghost" id="close-dialog" aria-label="Закрыть диалог"><svg viewBox="0 0 24 24" class="tg-icon" aria-hidden="true"><use href="../dist/icons/x.svg#x"></use></svg></button></div><p id="dialog-description" class="tg-text-muted">Это нативный dialog: фокус остаётся внутри, а Escape закрывает окно.</p><form method="dialog"><div class="tg-field"><label class="tg-label" for="project-name">Название пространства</label><input class="tg-input" id="project-name" name="space_name" autocomplete="off" placeholder="Например, «Новый проект»…" autofocus></div><div class="tg-modal__footer"><button class="tg-btn tg-btn--ghost" value="cancel">Отмена</button><button class="tg-btn tg-btn--primary" value="create">Создать пространство</button></div></form></div></dialog>
+<dialog class="catalog-search" id="catalog-search" aria-labelledby="catalog-search-title">
+  <div class="catalog-search__header"><div><span class="mini-label">Быстрый переход</span><h2 id="catalog-search-title">Поиск по каталогу</h2></div><button class="tg-icon-btn tg-icon-btn--ghost" type="button" data-catalog-search-close aria-label="Закрыть поиск"><svg class="tg-icon" viewBox="0 0 24 24" aria-hidden="true"><use href="../dist/icons/x.svg#x"></use></svg></button></div>
+  <div class="tg-field"><label class="tg-sr-only" for="catalog-search-input">Название раздела, класс или токен</label><input class="tg-input" id="catalog-search-input" type="search" role="combobox" aria-autocomplete="list" aria-controls="catalog-search-results" aria-expanded="true" autocomplete="off" placeholder="Например, кнопки, .tg-switch или --accent-main"></div>
+  <p class="catalog-search__hint">↑↓ выбрать · Enter перейти · Esc закрыть</p>
+  <ul class="catalog-search__results" id="catalog-search-results" role="listbox" aria-label="Разделы каталога"></ul>
+  <p class="catalog-search__status" id="catalog-search-status" role="status" aria-live="polite" aria-atomic="true"></p>
+</dialog>
+</body>
+</html>

@@ -39,7 +39,7 @@ try {
   // Example forms are copied as reference markup, so they behave like real forms.
   const fields = await page.locator('main :is(input, select, textarea)').evaluateAll(elements => elements.map(el => ({ id: el.id, name: el.name, type: el.type, autocomplete: el.getAttribute('autocomplete'), spellcheck: el.getAttribute('spellcheck') })));
   assert.deepEqual(fields.filter(field => !field.name).map(field => field.id), [], 'every example field has a name');
-  assert.ok(fields.filter(field => field.type === 'email').every(field => field.autocomplete === 'email' && field.spellcheck === 'false'), 'email fields autocomplete and skip spellcheck');
+  assert.ok(fields.filter(field => field.type === 'email').every(field => ['email', 'username'].includes(field.autocomplete) && field.spellcheck === 'false'), 'email fields autocomplete (sign-in ones as username) and skip spellcheck');
   assert.equal(await page.locator('main code').evaluateAll(codes => codes.filter(code => !code.closest('[translate="no"]')).length), 0, 'code tokens are excluded from machine translation');
   assert.equal(await page.locator('.example-meta').count(), 0, 'examples have no decorative metadata rows');
   const panelStructures = await page.locator('.example-panel').evaluateAll(panels => panels.map(panel =>
@@ -56,17 +56,17 @@ try {
   assert.equal(await page.locator('#orders-example > .tg-list-item').count(), 5);
   assert.equal(await page.locator('iframe[src="bottom-panel.html"]').count(), 0);
   assert.equal(await page.locator('#orders-example').evaluate(el => getComputedStyle(el).position), 'static');
-  assert.equal(await page.locator('#data .tg-table').count(), 1, 'catalog demonstrates actual data table');
-  assert.equal(await page.locator('#data thead .tg-table__num').count(), 2, 'numeric columns include quantity and sum');
-  assert.equal(await page.locator('#data tbody td.tg-table__num').count(), 4);
-  assert.equal(await page.locator('#data tfoot .tg-table__num').count(), 1);
+  assert.equal(await page.locator('#data #demo-orders-table, #data #demo-payments').count(), 2, 'catalog demonstrates a plain and an interactive data table');
+  assert.equal(await page.locator('#demo-orders-table thead .tg-table__num').count(), 2, 'numeric columns include quantity and sum');
+  assert.equal(await page.locator('#demo-orders-table tbody td.tg-table__num').count(), 4);
+  assert.equal(await page.locator('#demo-orders-table tfoot .tg-table__num').count(), 1);
   assert.equal(await page.locator('#orders-example .tg-num').count(), 4, 'monetary list values use tabular numbers');
   assert.equal(await page.locator('#orders-example .tg-grow').first().evaluate(el => getComputedStyle(el).textAlign), 'start', 'ordinary labels remain start-aligned');
-  const rowEdges = await page.locator('#data tbody tr').last().locator('th, td').evaluateAll(cells => cells.map(el => getComputedStyle(el).borderBottomWidth));
+  const rowEdges = await page.locator('#demo-orders-table tbody tr').last().locator('th, td').evaluateAll(cells => cells.map(el => getComputedStyle(el).borderBottomWidth));
   assert.equal(new Set(rowEdges).size, 1, 'last body row retains a complete separator before totals');
   assert.notEqual(rowEdges[0], '0px');
-  await page.locator('#lists .tg-disclosure__trigger').click();
-  assert.equal(await page.locator('#lists .tg-disclosure').getAttribute('open'), '');
+  await page.locator('#lists .tg-disclosure:not(.tg-accordion *) .tg-disclosure__trigger').click();
+  assert.equal(await page.locator('#lists .tg-disclosure:not(.tg-accordion *)').getAttribute('open'), '');
   await page.locator('#transition-toggle').click();
   await page.locator('#transition-demo').waitFor({ state: 'hidden' });
   assert.equal(await page.locator('#transition-demo').isVisible(), false);
