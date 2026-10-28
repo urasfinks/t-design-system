@@ -10,6 +10,7 @@
   border: var(--border);
   border-radius: $radius;
   background: var(--surface-bg);
+  --ring-bg: var(--surface-bg);
   color: var(--text-color);
   box-shadow: var(--shadow-overlay);
 }

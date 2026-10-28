@@ -37,9 +37,11 @@
     > .tg-icon, > .tg-avatar { flex: 0 0 auto; }
     > .tg-avatar { --icon-avatar: 1.75rem; margin-block: calc(var(--space-1) * -1); padding: 0; border-width: 0; font-size: var(--fs-xs); }
     > :not(.tg-icon, .tg-avatar) { min-inline-size: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+    // While its list is open the trigger keeps the hovered and focused look, like a field in focus.
     &:focus-visible, &[aria-expanded='true'] {
       outline: none;
       border-color: var(--accent-main);
+      background-color: var(--control-hover-bg);
       box-shadow: var(--focus);
     }
     &[aria-invalid='true'] { border-color: var(--danger-main); }
@@ -58,7 +60,7 @@
     list-style: none;
     overflow-y: auto;
     overscroll-behavior: contain;
-    @include floating.surface;
+    @include option.list;
     font-size: var(--fs);
     line-height: 1.4;
 
@@ -83,20 +85,16 @@
   @include floating.sheet('.tg-listbox[popover]', --tg-listbox-origin);
 
   .tg-listbox__option {
-    --control-hover-filter: none;
-    --control-paint-duration: 0s;
-    @include option.row(var(--listbox-option-h));
+    @include option.dropdown-row(var(--listbox-option-h));
     padding-inline-end: calc(var(--space-3) + 1rem + var(--space-3));
     position: relative;
     -webkit-user-select: none;
     user-select: none;
 
     > .tg-avatar { --icon-avatar: var(--icon-btn-prep); flex: 0 0 auto; padding: 0; border-width: 0; }
-    // The active option (keyboard, aria-activedescendant) and the hovered one share paint.
-    &[data-active], &:hover { background: var(--control-hover-bg); }
     // A ring only while the keyboard drives the list; the pointer gets the tint alone.
     .tg-listbox:not([data-pointer]) &[data-active] { @include option.active; }
-    &[aria-selected='true'] { color: var(--accent-readable); font-weight: var(--fw-medium); }
+    &[aria-selected='true'] { @include option.chosen; }
     &[aria-selected='true']::after {
       @include option.mark;
       position: absolute;
@@ -153,6 +151,7 @@
     border: 1px solid var(--border-color);
     border-radius: var(--radius-pill);
     background: var(--surface-bg);
+    --ring-bg: var(--surface-bg);
     color: var(--text-color);
     font-size: var(--fs-sm);
     font-weight: var(--fw-medium);
@@ -306,6 +305,7 @@
     border: var(--border);
     border-radius: var(--radius-lg);
     background: var(--surface-bg);
+    --ring-bg: var(--surface-bg);
     color: var(--text-color);
     cursor: pointer;
     transition: border-color var(--duration) var(--ease), box-shadow var(--duration) var(--ease);
@@ -382,8 +382,9 @@
       pointer-events: none;
       &::-webkit-slider-runnable-track { background: transparent; }
       &::-moz-range-track, &::-moz-range-progress { background: transparent; }
-      &::-webkit-slider-thumb { pointer-events: auto; box-shadow: 0 0 0 3px var(--surface-bg); }
-      &::-moz-range-thumb { pointer-events: auto; box-shadow: 0 0 0 3px var(--surface-bg); }
+      // The thumb itself is the shared .tg-range thumb; only its hit area changes here.
+      &::-webkit-slider-thumb { pointer-events: auto; }
+      &::-moz-range-thumb { pointer-events: auto; }
     }
   }
 
@@ -399,6 +400,7 @@
     border: var(--border);
     border-radius: var(--radius-lg);
     background: var(--surface-bg);
+    --ring-bg: var(--surface-bg);
     &::before {
       content: '';
       position: absolute;
@@ -483,6 +485,7 @@
     border: var(--border);
     border-radius: var(--radius-lg);
     background: var(--surface-bg);
+    --ring-bg: var(--surface-bg);
   }
   .tg-color-picker__area {
     position: relative;
@@ -542,6 +545,7 @@
     border: var(--border);
     border-radius: var(--radius-lg);
     background: var(--surface-bg);
+    --ring-bg: var(--surface-bg);
   }
   .tg-emoji-picker__search { position: sticky; inset-block-start: 0; }
   .tg-emoji-picker__group { margin: var(--space-1) var(--space-1) 0; color: var(--text-secondary); font-size: var(--fs-xs); font-weight: var(--fw-semibold); }
@@ -565,6 +569,7 @@
     line-height: 1;
     cursor: pointer;
     &:focus-visible { outline: 2px solid var(--text-link); outline-offset: -2px; }
-    &[aria-selected='true'] { background: var(--accent-soft); }
+    // Chosen emoji: the shared soft-accent state of the selected engine.
+    &[aria-selected='true'] { @include selected.soft; }
   }
 }

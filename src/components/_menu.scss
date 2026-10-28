@@ -16,7 +16,7 @@
     overflow-y: auto;
     overscroll-behavior: contain;
     padding: var(--space-1);
-    @include floating.surface;
+    @include option.list;
     font-size: var(--fs);
     line-height: 1.4;
     overflow-wrap: anywhere;
@@ -27,9 +27,7 @@
   @include floating.anchored('.tg-menu[popover]');
 
   .tg-menu__item {
-    --control-hover-filter: none;
-    --control-paint-duration: 0s;
-    @include option.row(var(--menu-item-h));
+    @include option.dropdown-row(var(--menu-item-h));
 
     // Keyboard focus moves through items: the row lights up and keeps a ring.
     &:focus { outline: none; }
@@ -52,6 +50,7 @@
         inset-inline-start: var(--space-3);
         opacity: 0;
       }
+      &[aria-checked='true'] { @include option.chosen; }
       &[aria-checked='true']::before { opacity: 1; }
     }
     &[role='menuitemradio']::before {

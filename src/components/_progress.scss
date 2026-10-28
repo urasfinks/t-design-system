@@ -221,6 +221,7 @@
     border: var(--border);
     border-radius: var(--radius-lg);
     background: var(--surface-bg);
+    --ring-bg: var(--surface-bg);
     overflow: clip;
   }
   .tg-schedule__axis {

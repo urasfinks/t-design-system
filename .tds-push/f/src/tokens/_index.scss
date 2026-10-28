@@ -1,0 +1,172 @@
+@use '../layers';
+@layer tds.tokens {
+  :root {
+    --layout-reading-width: 48rem;
+    --composer-reserved-size: 10rem;
+    --composer-input-max-size: calc(var(--space-16) * 2);
+    --media-max-size: 55dvh;
+    --fs-xs: clamp(.75rem, .7rem + .2vw, .8125rem);
+    --fs-sm: clamp(.8125rem, .78rem + .25vw, .875rem);
+    --fs: 1rem;
+    --fs-lg: clamp(1rem, .98rem + .35vw, 1.125rem);
+    --fw-regular: 400;
+    --fw-medium: 500;
+    --fw-semibold: 600;
+    --font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    // Code, keys and machine values only; never a costume for interface text.
+    --font-family-mono: ui-monospace, SFMono-Regular, Menlo, Consolas, 'Liberation Mono', monospace;
+    // One display step above --fs-lg: key figures in stat tiles.
+    --fs-display: clamp(1.5rem, 1.3rem + 1vw, 2rem);
+    --radius-xs: .5rem;
+    --radius-sm: .625rem;
+    --radius: .75rem;
+    --radius-lg: 1rem;
+    --radius-pill: 9999px;
+    --radius-control: var(--radius);
+    --radius-inset: calc(var(--radius-control) - var(--space-1));
+    --control-h: clamp(2.75rem, 2.6rem + .8vw, 3rem);
+    --choice-size: 1.5rem;
+    --chip-h: clamp(2rem, 1.9rem + .5vw, 2.25rem);
+    --icon-btn-prep: clamp(2.25rem, 2.1rem + .6vw, 2.5rem);
+    --icon-btn: calc(var(--icon-btn-prep) + .25rem);
+    --icon-avatar: calc(var(--icon-btn-prep) + 1.5rem);
+    --icon-size: 1.25rem;
+    --icon-stroke: 2;
+    --select-arrow-light: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-opacity='.65' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
+    --select-arrow-dark: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23fff' stroke-opacity='.7' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
+    --select-arrow-hover-light: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
+    --select-arrow-hover-dark: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23fff' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
+    --select-arrow: var(--select-arrow-light);
+    // Feather glyphs as masks: components paint them with currentColor, so they follow every theme.
+    --icon-mask-check: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M20 6 9 17l-5-5'/%3E%3C/svg%3E");
+    --icon-mask-star: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23000'%3E%3Cpath d='M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z'/%3E%3C/svg%3E");
+    --icon-mask-chevron-right: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m9 18 6-6-6-6'/%3E%3C/svg%3E");
+    // A picture, not a mask, for places that cannot take a mask (a range thumb): drawn in
+    // the text colour on an action fill (--button-text-color, white).
+    --icon-chevron-right-on-action: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23fff' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m9 18 6-6-6-6'/%3E%3C/svg%3E");
+    --icon-mask-chevron-down: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
+    --switch-knob-color: #fff;
+    --avatar-initials-color: var(--text-color);
+    --spinner-color: var(--progress-color);
+    --spinner-track-color: var(--accent-soft);
+    --space-1: .25rem;
+    --space-2: .5rem;
+    --space-3: .75rem;
+    --space-4: 1rem;
+    --space-5: 1.25rem;
+    --space-6: 1.5rem;
+    --space-8: 2rem;
+    --space-10: 2.5rem;
+    --space-12: 3rem;
+    --space-16: 4rem;
+    --duration-fast: 120ms;
+    --duration: 180ms;
+    --ease: cubic-bezier(.23, 1, .32, 1);
+    // Opacity of layers that appear and leave (toast, snackbar, dialog). Exit is faster than entry.
+    // Reduced motion keeps these short fades: they explain a change without moving anything.
+    --duration-fade-in: var(--duration);
+    --duration-fade-out: var(--duration-fast);
+    --z-sticky: 20;
+    --z-overlay: 100;
+    --z-toast: 120;
+    --progress-duration: 1s;
+    --progress-stripe-speed: 1s;
+    --progress-stripe-size: 1.5rem;
+    --progress-stripe-blur: 3px;
+    --progress-stripe-color: rgb(255 255 255 / .12);
+    --safe-area-bottom: env(safe-area-inset-bottom, 0px);
+    --ios-h: 0px;
+    --border-color: light-dark(rgba(0, 0, 0, .08), rgba(255, 255, 255, .08));
+    --border-subtle-color: light-dark(rgba(0, 0, 0, .04), rgba(255, 255, 255, .04));
+    --border: 1px solid var(--border-color);
+    --border-transparent: 1px solid var(--border-subtle-color);
+    // Four source families with shared surface, state and readable foreground roles.
+    --background-main: var(--bg-color);
+    --background-raised: color-mix(in srgb, var(--bg-color) var(--background-panel-weight), #fff);
+    --background-panel: var(--background-raised);
+    --background-muted-derived: color-mix(in srgb, var(--bg-color) var(--background-muted-weight), var(--background-muted-target));
+    --background-muted: var(--background-muted-derived);
+    --text-main: var(--text-color);
+    --text-secondary: color-mix(in srgb, var(--text-main) 70%, var(--background-panel));
+    --text-muted: color-mix(in srgb, var(--text-main) 55%, var(--background-panel));
+    --accent-main: var(--button-color);
+    --accent-strong: color-mix(in srgb, var(--accent-main) 72%, #000);
+    --accent-soft: color-mix(in srgb, var(--accent-main) 12%, var(--surface-bg));
+    --accent-readable: light-dark(color-mix(in srgb, var(--accent-main) 72%, #000), color-mix(in srgb, var(--accent-main) 65%, #fff));
+    --danger-main: var(--destructive-text-color);
+    --danger-strong: color-mix(in srgb, var(--danger-main) 72%, #000);
+    --danger-soft: color-mix(in srgb, var(--danger-main) 10%, var(--surface-bg));
+    --danger-readable: light-dark(color-mix(in srgb, var(--danger-main) 72%, #000), color-mix(in srgb, var(--danger-main) 65%, #fff));
+    --border-active: 1px solid var(--accent-main);
+    --focus: 0 0 0 .25rem var(--accent-soft);
+    // Compatibility names are aliases, never additional shades.
+    --section-bg-color: var(--background-panel);
+    --secondary-bg-color: var(--background-muted);
+    --header-bg-color: var(--background-muted);
+    --bottom-bar-bg-color: var(--background-muted);
+    --section-separator-color: var(--border-color);
+    --hint-color: var(--text-muted);
+    --subtitle-text-color: var(--text-secondary);
+    --section-header-text-color: var(--text-secondary);
+    --accent-text-color: var(--accent-main);
+    --link-color: var(--accent-main);
+    --button-text-color: #fff;
+    --highlight-bg-color: var(--background-panel);
+    --highlight-ficus-color: var(--background-muted);
+    --shadow-soft: var(--shadow-overlay);
+    --shadow-elev: var(--shadow-control);
+    --bg-body: var(--background-main);
+    --section-color: var(--background-panel);
+    --section-color2: var(--background-muted);
+    --field-bg: var(--background-muted);
+    --field-bg-hover: var(--background-panel);
+    --secondary-bg-color-transparent: var(--background-muted);
+    --button-color-transparent: var(--accent-strong);
+    --destructive-text-color-transparent: var(--danger-strong);
+    --section-bg-color-transparent: var(--background-panel);
+    --text-link: var(--accent-readable);
+    --progress-color: var(--accent-readable);
+    --progress-track-color: var(--background-muted);
+    --text-danger: var(--danger-readable);
+    --action-bg: var(--accent-strong);
+    --action-hover-bg: var(--accent-strong);
+    --action-danger-bg: var(--danger-strong);
+    --control-border-color: light-dark(rgba(0, 0, 0, .5), rgba(255, 255, 255, .5));
+    // Radio, checkbox and switch are actions too: the same outline as every button.
+    --choice-border-color: var(--action-border-color);
+    --disabled-opacity: .5;
+    --border-control: 1px solid var(--control-border-color);
+    // Quiet resting controls; the stronger boundary is reserved for contrast preferences.
+    --field-border-color: var(--border-color);
+    --border-field: 1px solid var(--field-border-color);
+    // A button joined to a field or to other buttons (attached group, split button, copy
+    // field) draws the field's outline, so the whole joined control has one edge.
+    --group-border-color: var(--field-border-color);
+    // One outline for everything the reader can act on: buttons of every variant, filters,
+    // link badges, avatar buttons. It is barely there: the fill or the content carries the
+    // shape, the hairline marks the edge. A contrast preference makes it a full outline.
+    --action-border-color: light-dark(rgba(0, 0, 0, .04), rgba(255, 255, 255, .02));
+    --border-action: 1px solid var(--action-border-color);
+    // Panels the reader can act on (interactive card, choice card) answer hover with a
+    // stronger edge than their resting 8% outline.
+    --panel-hover-border-color: light-dark(rgba(0, 0, 0, .24), rgba(255, 255, 255, .24));
+    --switch-track-color: var(--field-bg);
+    --switch-border-color: var(--action-border-color);
+    --notice-danger-bg: var(--danger-soft);
+    --surface-bg: var(--section-color);
+    // The background a ring cuts out of (range thumb, avatar group). On the page it is the
+    // page; every surface sets it to its own fill, so rings match what is under them.
+    --ring-bg: var(--background-main);
+    --surface-muted: var(--secondary-bg-color);
+    --overlay-bg: rgb(0 0 0 / .66);
+    --overlay-text: #fff;
+    --shadow-control: 0 1px 3px rgb(0 0 0 / .12);
+    --shadow-overlay: 0 .75rem 3rem rgb(0 0 0 / .2);
+  }
+  @media (prefers-contrast: more) {
+    :root {
+      --field-border-color: var(--control-border-color);
+      --action-border-color: var(--control-border-color);
+    }
+  }
+}

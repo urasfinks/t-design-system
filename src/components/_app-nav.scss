@@ -18,6 +18,7 @@
     padding: var(--space-3);
     border-inline-end: 1px solid var(--border-subtle-color);
     background: var(--background-panel);
+    --ring-bg: var(--background-panel);
     overflow-y: auto;
     overscroll-behavior: contain;
     font-size: var(--fs-sm);
@@ -137,7 +138,8 @@
       mask: var(--icon-mask-chevron-down) center / contain no-repeat;
       transition: transform var(--duration) var(--ease);
     }
-    &[aria-expanded='true'] { --control-idle-bg: var(--background-muted); }
+    // While its panel is open the trigger keeps the hover look.
+    &[aria-expanded='true'] { --control-idle-bg: var(--control-hover-bg); }
     &[aria-expanded='true']::after { transform: rotate(180deg); }
   }
   .tg-nav-menu__panel {
@@ -150,7 +152,7 @@
     gap: var(--space-3) var(--space-4);
     inline-size: min(44rem, calc(100vw - var(--space-8)));
     padding: var(--space-3);
-    @include floating.surface(var(--radius-lg));
+    @include option.list(var(--radius-lg));
     transform-origin: top left;
     animation: tg-nav-panel-in var(--duration) var(--ease);
     &:dir(rtl) { transform-origin: top right; }
@@ -166,12 +168,11 @@
     letter-spacing: .02em;
   }
   .tg-nav-menu__link {
-    --control-hover-filter: none;
-    @include option.row;
+    @include option.dropdown-row;
     align-items: flex-start;
     > .tg-icon { margin-block-start: .125rem; color: var(--text-link); }
     &:focus-visible { outline: 2px solid var(--text-link); outline-offset: -2px; }
-    &[aria-current='page'] { --control-idle-bg: var(--background-muted); }
+    &[aria-current='page'] { @include option.chosen; }
   }
   .tg-nav-menu__text { display: grid; gap: .125rem; min-inline-size: 0; font-weight: var(--fw-medium); }
   .tg-nav-menu__description { @include option.meta; font-weight: var(--fw-regular); }
@@ -198,6 +199,7 @@
     border: var(--border);
     border-radius: var(--radius-control);
     background: var(--surface-bg);
+    --ring-bg: var(--surface-bg);
     overflow-x: auto;
     scrollbar-width: none;
   }

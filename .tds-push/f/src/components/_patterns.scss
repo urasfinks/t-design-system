@@ -1,0 +1,449 @@
+@use '../base';
+@use 'error-surface';
+@use 'field-surface';
+
+@layer tds.components {
+  .tg-search {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    min-inline-size: 0;
+    padding-inline: var(--space-3) 0;
+    @include field-surface.surface('.tg-search__input');
+
+    // The wrapper owns the surface and focus ring, including when tg-input is composed.
+    .tg-search__input {
+      &, &:hover, &:focus, &[readonly], &[aria-invalid='true']:focus {
+        border: 0;
+        background: transparent;
+        box-shadow: none;
+      }
+      &:disabled { opacity: 1; cursor: not-allowed; }
+    }
+    &__icon { flex: 0 0 auto; color: var(--text-secondary); }
+    &__input {
+      @include field-surface.bare-control;
+      flex: 1 1 0%;
+      inline-size: 100%;
+      padding: var(--space-2) 0;
+      &::-webkit-search-cancel-button { appearance: none; }
+    }
+    &__clear {
+      flex: 0 0 auto;
+      min-inline-size: var(--control-h);
+      min-block-size: var(--control-h);
+      border: 0;
+      background: transparent;
+      color: var(--text-secondary);
+    }
+  }
+
+  .tg-empty {
+    display: grid;
+    justify-items: center;
+    gap: var(--space-3);
+    padding: var(--space-8) var(--space-4);
+    text-align: center;
+    overflow-wrap: anywhere;
+    &__title { margin: 0; font-size: var(--fs-lg); font-weight: var(--fw-semibold); }
+    &__description { max-inline-size: var(--layout-reading-width); margin: 0; color: var(--text-secondary); }
+    &__icon { color: var(--text-secondary); }
+    &__action { margin-block-start: var(--space-2); }
+  }
+
+  // Corner radii are parameters: a summary inherits from the details' internal slot, so
+  // `border-radius: inherit` gives it nothing, while custom properties do reach it. The
+  // trigger's hover and press paint uses the same corners, inside the 1px border.
+  .tg-disclosure {
+    --disclosure-radius-start: var(--radius);
+    --disclosure-radius-end: var(--radius);
+    min-inline-size: 0;
+    border: var(--border);
+    border-radius: var(--disclosure-radius-start) var(--disclosure-radius-start) var(--disclosure-radius-end) var(--disclosure-radius-end);
+    background: var(--surface-bg);
+    --ring-bg: var(--surface-bg);
+    &__trigger {
+      --disclosure-inner-start: max(0px, calc(var(--disclosure-radius-start, var(--radius)) - 1px));
+      --disclosure-inner-end: max(0px, calc(var(--disclosure-radius-end, var(--radius)) - 1px));
+      min-block-size: var(--control-h);
+      padding: var(--space-3) var(--space-4);
+      border-radius: var(--disclosure-inner-start) var(--disclosure-inner-start) var(--disclosure-inner-end) var(--disclosure-inner-end);
+      font-weight: var(--fw-medium);
+      cursor: pointer;
+      overflow-wrap: anywhere;
+      &::marker { color: var(--text-secondary); }
+    }
+    &[open] > &__trigger {
+      border-end-start-radius: 0;
+      border-end-end-radius: 0;
+    }
+    &__content { padding: 0 var(--space-4) var(--space-4); overflow-wrap: anywhere; }
+  }
+
+  .tg-skeleton {
+    display: block;
+    inline-size: 100%;
+    block-size: var(--control-h);
+    border-radius: var(--radius-sm);
+    background: var(--background-muted);
+    &--text { block-size: 1em; border-radius: var(--radius-xs); }
+    &--circle { inline-size: var(--control-h); aspect-ratio: 1; border-radius: 50%; }
+  }
+
+  .tg-table-wrap {
+    min-inline-size: 0;
+    max-inline-size: 100%;
+    overflow-x: auto;
+    border: var(--border);
+    border-radius: var(--radius);
+    background: var(--surface-bg);
+    --ring-bg: var(--surface-bg);
+  }
+  .tg-table {
+    inline-size: 100%;
+    min-inline-size: var(--table-min-width, 32rem);
+    border-collapse: collapse;
+    background: var(--surface-bg);
+    --ring-bg: var(--surface-bg);
+    color: var(--text-color);
+    text-align: start;
+    caption { padding: var(--space-3) var(--space-4); text-align: start; color: var(--text-secondary); }
+    :is(th, td) { padding: var(--space-3) var(--space-4); text-align: start; border-block-end: var(--border); vertical-align: top; }
+    th { font-weight: var(--fw-semibold); }
+    thead th { background: var(--background-main); }
+    :is(thead, tbody, tfoot):last-child > tr:last-child > :is(th, td) { border-block-end: 0; }
+    tfoot :is(th, td) { border-block-start: var(--border); font-weight: var(--fw-semibold); }
+  }
+
+  // Table density and parts. Rows stay rows: keyboard users move with Tab, not arrows.
+  .tg-table {
+    &--compact :is(th, td) { padding: var(--space-2) var(--space-3); }
+    &--caption-bottom caption { caption-side: bottom; font-size: var(--fs-sm); }
+    thead th[aria-sort] { padding-block: var(--space-1); }
+    // Rows with pictures, checkboxes or sort buttons centre their cells on one line.
+    &:has(.tg-table__cell-main, .tg-table__select, .tg-table__sort) :is(th, td) { vertical-align: middle; }
+  }
+  // A cell with a picture and two lines: name and e-mail, product and SKU.
+  .tg-table__cell-main {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    min-inline-size: 0;
+    > .tg-avatar { --icon-avatar: var(--icon-btn-prep); padding: 0; border-width: 0; }
+    > :last-child { display: grid; min-inline-size: 0; }
+  }
+  .tg-table__cell-meta { font-size: var(--fs-sm); color: var(--text-secondary); }
+
+  // Row selection: the checkbox column is narrow, a chosen row takes the soft accent.
+  .tg-table .tg-table__select {
+    inline-size: calc(var(--choice-size) + var(--space-8));
+    padding-inline-end: 0;
+    vertical-align: middle;
+  }
+  .tg-table tr:is([aria-selected='true'], :has(> .tg-table__select :checked)) > :is(th, td) {
+    background: var(--accent-soft);
+  }
+
+  // Sorting lives in a real button inside the header cell; aria-sort sits on the th.
+  .tg-table__sort {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-1);
+    min-block-size: var(--control-h);
+    margin-inline: calc(var(--space-2) * -1);
+    padding: var(--space-1) var(--space-2);
+    border: 0;
+    border-radius: var(--radius-inset);
+    background: var(--control-idle-bg, transparent);
+    font-weight: inherit;
+    text-align: start;
+    cursor: pointer;
+    --control-hover-filter: none;
+
+    > .tg-icon {
+      --icon-size: 1rem;
+      color: var(--text-secondary);
+      opacity: 0;
+      transition: opacity var(--duration) var(--ease), transform var(--duration) var(--ease);
+    }
+    &:is(:hover, :focus-visible) > .tg-icon { opacity: 1; }
+    th:is([aria-sort='ascending'], [aria-sort='descending']) & > .tg-icon { opacity: 1; color: var(--text-color); }
+    th[aria-sort='ascending'] & > .tg-icon { transform: rotate(180deg); }
+  }
+
+  // Actions for the selected rows. It sits above the table, or sticks to the
+  // bottom of the screen on a phone where the header has scrolled away.
+  // The bar keeps its place whether or not rows are chosen, so the table never jumps and
+  // the status stays in the document to announce the first choice. With nothing chosen
+  // (data-empty) it says so quietly and the host disables its actions.
+  .tg-bulk-bar {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--space-2);
+    padding: var(--space-2) var(--space-2) var(--space-2) var(--space-4);
+    border-radius: var(--radius-control);
+    background: var(--background-muted);
+    > [role='status'] { margin-inline-end: auto; font-weight: var(--fw-medium); font-variant-numeric: tabular-nums; }
+    &[data-empty] > [role='status'] { color: var(--text-secondary); font-weight: var(--fw-regular); }
+  }
+
+  // Narrow tables become one card per row; each cell names its column.
+  @media (max-width: 36rem) {
+    .tg-table--stack {
+      display: flex;
+      flex-direction: column;
+      min-inline-size: 0;
+      & caption { display: block; }
+      &.tg-table--caption-bottom caption { order: 1; }
+      & tbody, & tr, & :is(th, td) { display: block; }
+      & tbody tr { position: relative; }
+      & tbody td:not([data-label]) { display: flex; align-items: center; }
+      // Row actions move to the card's top corner, beside the selection checkbox.
+      & tbody td:last-child:not([data-label]):not(:first-child) { position: absolute; inset-block-start: var(--space-2); inset-inline-end: var(--space-2); padding: 0; }
+      & thead { position: absolute; inline-size: 1px; block-size: 1px; overflow: hidden; clip-path: inset(50%); }
+      & tbody tr { padding-block: var(--space-2); border-block-end: var(--border); }
+      & tbody tr:last-child { border-block-end: 0; }
+      & tbody :is(th, td) { display: grid; grid-template-columns: minmax(5rem, 30%) minmax(0, 1fr); gap: var(--space-3); justify-items: start; padding-block: var(--space-1); border: 0; text-align: start; }
+      & tbody :is(th, td)[data-label]::before { content: attr(data-label); color: var(--text-secondary); font-weight: var(--fw-regular); }
+      & tfoot { display: block; }
+      & tfoot tr { display: flex; justify-content: space-between; padding: var(--space-3) var(--space-4); border-block-start: var(--border); }
+      & tfoot :is(th, td) { padding: 0; border: 0; }
+      &.tg-table .tg-table__num { text-align: start; }
+    }
+    .tg-table-wrap:has(> .tg-table--stack) { overflow-x: visible; }
+    // Sticky does not change the layout, so lifting the bar only while rows are chosen
+    // moves nothing.
+    .tg-bulk-bar:not([data-empty]) { position: sticky; inset-block-end: calc(var(--space-2) + var(--safe-area-bottom)); z-index: var(--z-sticky); box-shadow: var(--shadow-overlay); }
+  }
+
+  // Several disclosures in a row read as one panel; the chevron sits at the inline end.
+  .tg-accordion {
+    display: grid;
+    min-inline-size: 0;
+
+    // Items join into one block: only the outer corners of the first and last are round.
+    > .tg-disclosure {
+      --disclosure-radius-start: 0px;
+      --disclosure-radius-end: 0px;
+      & + .tg-disclosure { border-block-start: 0; }
+      &:first-of-type { --disclosure-radius-start: var(--radius); }
+      &:last-of-type { --disclosure-radius-end: var(--radius); }
+    }
+    &--separate { gap: var(--space-2); }
+    &--separate > .tg-disclosure { --disclosure-radius-start: var(--radius); --disclosure-radius-end: var(--radius); & + .tg-disclosure { border-block-start: var(--border); } }
+  }
+  :is(.tg-accordion, .tg-card--disclosure) .tg-disclosure__trigger {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    list-style: none;
+    &::-webkit-details-marker { display: none; }
+    &::after {
+      content: '';
+      flex: 0 0 auto;
+      inline-size: var(--icon-size);
+      block-size: var(--icon-size);
+      margin-inline-start: auto;
+      background: var(--text-secondary);
+      mask: var(--icon-mask-chevron-down) center / contain no-repeat;
+      transition: transform var(--duration) var(--ease);
+    }
+  }
+  .tg-accordion .tg-disclosure[open] > .tg-disclosure__trigger::after, .tg-card--disclosure[open] > .tg-disclosure__trigger::after { transform: rotate(180deg); }
+  .tg-accordion__controls { display: flex; flex-wrap: wrap; justify-content: flex-end; gap: var(--space-2); }
+  .tg-disclosure__meta {
+    margin-inline-start: auto;
+    font-size: var(--fs-sm);
+    font-weight: var(--fw-regular);
+    color: var(--text-secondary);
+    white-space: nowrap;
+  }
+  .tg-disclosure__trigger:has(.tg-disclosure__meta)::after { margin-inline-start: 0; }
+
+  .tg-num, .tg-table .tg-table__num {
+    font-variant-numeric: tabular-nums;
+    text-align: end;
+  }
+
+  .tg-breadcrumbs {
+    min-inline-size: 0;
+    ol { display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-2); margin: 0; padding: 0; list-style: none; }
+    li { display: flex; align-items: center; min-inline-size: 0; gap: var(--space-2); overflow-wrap: anywhere; }
+    li + li::before { content: '/'; color: var(--text-secondary); }
+    a { display: inline-flex; align-items: center; min-block-size: var(--control-h); color: var(--text-link); text-underline-offset: .2em; }
+    [aria-current='page'] { color: var(--text-secondary); }
+  }
+
+  .tg-summary {
+    margin: 0;
+    min-inline-size: 0;
+    &__row { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 2fr); gap: var(--space-4); padding-block: var(--space-3); border-block-end: var(--border); }
+    dt { color: var(--text-secondary); }
+    dd { margin: 0; }
+    :is(dt, dd) { min-inline-size: 0; overflow-wrap: anywhere; }
+  }
+
+  .tg-fieldset {
+    min-inline-size: 0;
+    margin: 0;
+    padding: var(--space-4);
+    border: var(--border);
+    border-radius: var(--radius);
+    legend { padding-inline: var(--space-2); font-weight: var(--fw-semibold); overflow-wrap: anywhere; max-inline-size: 100%; }
+  }
+
+  .tg-error-summary {
+    @include error-surface.surface;
+    &:has(> .tg-error-summary__icon) { @include error-surface.layout; }
+    &__icon { @include error-surface.icon; color: var(--text-danger); }
+    &__content { @include error-surface.content; }
+    &__title { @include error-surface.title; }
+    ul { margin: 0; padding: 0; list-style: none; font-size: var(--fs-sm); color: var(--text-secondary); }
+    > ul { margin-block-start: var(--space-1); }
+    a { color: inherit; text-underline-offset: .2em; }
+  }
+
+  input[type='range'].tg-range {
+    display: block;
+    border: 0;
+    appearance: none;
+    background: transparent;
+    inline-size: 100%;
+    min-inline-size: 0;
+    min-block-size: var(--control-h);
+    margin: 0;
+    accent-color: var(--accent-main);
+    cursor: pointer;
+    &::-webkit-slider-runnable-track {
+      block-size: 6px;
+      border: 0;
+      border-radius: var(--radius-pill);
+      background: var(--range-track-bg, linear-gradient(to right, var(--accent-main) var(--range-progress, 50%), var(--background-muted) var(--range-progress, 50%)));
+    }
+    // One thumb for every range (single, dual, hue): an accent circle with a ring cut out of
+    // the background under it (--range-thumb-ring, by default the surface's --ring-bg).
+    &::-webkit-slider-thumb {
+      appearance: none;
+      inline-size: 16px;
+      block-size: 16px;
+      margin-block-start: -5px;
+      border: 0;
+      border-radius: 50%;
+      background: var(--range-thumb-bg, var(--accent-main));
+      box-shadow: 0 0 0 3px var(--range-thumb-ring, var(--ring-bg));
+    }
+    &::-moz-range-track {
+      block-size: 6px;
+      border: 0;
+      border-radius: var(--radius-pill);
+      background: var(--range-track-bg, var(--background-muted));
+    }
+    &::-moz-range-thumb {
+      inline-size: 16px;
+      block-size: 16px;
+      border: 0;
+      border-radius: 50%;
+      background: var(--range-thumb-bg, var(--accent-main));
+      box-shadow: 0 0 0 3px var(--range-thumb-ring, var(--ring-bg));
+    }
+    &::-moz-range-progress {
+      block-size: 6px;
+      border: 0;
+      border-radius: var(--radius-pill);
+      background: var(--range-progress-bg, var(--accent-main));
+    }
+    &:disabled { cursor: not-allowed; opacity: var(--disabled-opacity, .5); }
+  }
+
+  :is(.tg-disclosure__trigger, .tg-table-wrap, .tg-breadcrumbs a, .tg-error-summary, .tg-error-summary a, .tg-range):focus-visible {
+    outline: 2px solid var(--text-link);
+    outline-offset: 3px;
+  }
+  @media (forced-colors: active) {
+    .tg-search:focus-within { outline: 2px solid Highlight; outline-offset: 2px; }
+    .tg-skeleton { border: 1px solid CanvasText; }
+  }
+  @media (max-width: 36rem) {
+    .tg-summary__row { grid-template-columns: minmax(0, 1fr); gap: var(--space-1); }
+  }
+
+  // The toolbar above a data table: search, filters, column menu, export, result count.
+  .tg-table-toolbar {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--space-2) var(--space-3);
+    min-inline-size: 0;
+    > .tg-search { flex: 1 1 14rem; max-inline-size: 22rem; }
+    > .tg-table-toolbar__filters { display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-2); }
+    > .tg-table-toolbar__end { display: flex; align-items: center; gap: var(--space-2); margin-inline-start: auto; }
+  }
+  .tg-table-toolbar__count { color: var(--text-secondary); font-size: var(--fs-sm); font-variant-numeric: tabular-nums; white-space: nowrap; }
+
+  // Sortable list: rows with a 44px handle. The lifted row floats on the overlay shadow,
+  // a 2px accent line marks where it will land. Keyboard: Space lifts, arrows move,
+  // Space drops, Escape cancels; the host announces each step.
+  .tg-sortable {
+    display: grid;
+    gap: 0;
+    margin: 0;
+    padding: 0;
+    border: var(--border);
+    border-radius: var(--radius-lg);
+    background: var(--surface-bg);
+    --ring-bg: var(--surface-bg);
+    list-style: none;
+  }
+  .tg-sortable__item {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    min-block-size: var(--control-h);
+    padding: var(--space-1) var(--space-4) var(--space-1) var(--space-1);
+    background: var(--surface-bg);
+    --ring-bg: var(--surface-bg);
+    transition: transform var(--duration) var(--ease), box-shadow var(--duration) var(--ease);
+    & + & { border-block-start: var(--border); }
+    &:first-child { border-start-start-radius: inherit; border-start-end-radius: inherit; }
+    &:last-child { border-end-start-radius: inherit; border-end-end-radius: inherit; }
+    > .tg-num, > .tg-badge { margin-inline-start: auto; }
+    &[data-grabbed] {
+      z-index: 2;
+      border-radius: var(--radius-control);
+      box-shadow: var(--shadow-overlay);
+      transform: scale(1.01);
+    }
+    &[data-drop='before']::before, &[data-drop='after']::after {
+      content: '';
+      position: absolute;
+      inset-inline: var(--space-2);
+      block-size: 2px;
+      border-radius: 1px;
+      background: var(--accent-main);
+    }
+    &[data-drop='before']::before { inset-block-start: -1px; }
+    &[data-drop='after']::after { inset-block-end: -1px; }
+  }
+  .tg-sortable__handle {
+    --control-hover-filter: none;
+    display: grid;
+    flex: 0 0 auto;
+    place-items: center;
+    inline-size: var(--control-h);
+    block-size: var(--control-h);
+    padding: 0;
+    border: 0;
+    border-radius: var(--radius-inset);
+    background: var(--control-idle-bg, transparent);
+    color: var(--text-secondary);
+    cursor: grab;
+    touch-action: none;
+    &:focus-visible { outline: 2px solid var(--text-link); outline-offset: -2px; }
+    &[aria-pressed='true'] { cursor: grabbing; color: var(--text-link); }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .tg-sortable__item[data-grabbed] { transform: none; }
+  }
+}

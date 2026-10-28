@@ -73,6 +73,7 @@
     border: var(--border);
     border-radius: var(--radius-lg);
     background: var(--surface-bg);
+    --ring-bg: var(--surface-bg);
     list-style: none;
     overflow: clip;
   }

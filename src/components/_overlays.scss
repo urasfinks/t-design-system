@@ -249,12 +249,11 @@
     letter-spacing: .02em;
   }
   .tg-command__item {
-    --control-hover-filter: none;
-    --control-paint-duration: 0s;
-    @include option.row;
+    @include option.dropdown-row;
     -webkit-user-select: none;
     user-select: none;
-    &:is([aria-selected='true'], [data-active]) { background: var(--control-hover-bg); }
+    // In the palette aria-selected marks the row the keyboard is on, not a chosen value.
+    &[aria-selected='true'] { background: var(--control-hover-bg); }
     > .tg-command__text { display: grid; flex: 1 1 auto; min-inline-size: 0; }
   }
   .tg-command__meta { @include option.meta; }

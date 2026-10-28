@@ -1,0 +1,68 @@
+// Option row engine: one 44 px row for menus, listboxes, command palettes, sidebars and
+// tables of contents. Owners include it and set only their parameters.
+@use 'floating';
+@use 'selected';
+
+// Every dropdown (menu, listbox, combobox, navigation panel) is one look: a floating
+// surface whose fill is a trough on the page tone; rows rise from it when chosen.
+@mixin list($radius: var(--radius-control)) {
+  --surface-bg: var(--background-main);
+  @include floating.surface($radius);
+}
+
+// A row inside a dropdown: paint follows the pointer and the keyboard at once, without the
+// darkening filter; the row the script marks active is lit like hover.
+@mixin dropdown-row($height: var(--control-h)) {
+  --control-hover-filter: none;
+  --control-paint-duration: 0s;
+  @include row($height);
+  &[data-active] { background: var(--control-hover-bg); }
+}
+
+// The chosen row rises like a segment above its trough.
+@mixin chosen {
+  @include selected.segment-current;
+  font-weight: var(--fw-medium);
+}
+
+// The row itself: leading icon, text, trailing meta; paint follows the control-states engine.
+@mixin row($height: var(--control-h)) {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  inline-size: 100%;
+  min-block-size: $height;
+  padding: var(--space-2) var(--space-3);
+  border: 0;
+  border-radius: var(--radius-inset);
+  background: var(--control-idle-bg, transparent);
+  color: inherit;
+  font: inherit;
+  text-align: start;
+  text-decoration: none;
+  cursor: pointer;
+
+  > .tg-icon { color: var(--text-secondary); }
+}
+
+// The row the keyboard is on: lit like hover and ringed inside the row.
+@mixin active {
+  background: var(--control-hover-bg);
+  outline: 2px solid var(--text-link);
+  outline-offset: -2px;
+}
+
+// A check mark drawn with the shared Feather mask, in a column that stays reserved.
+@mixin mark($size: 1rem) {
+  content: '';
+  inline-size: $size;
+  block-size: $size;
+  background: currentColor;
+  mask: var(--icon-mask-check) center / contain no-repeat;
+}
+
+// Secondary text inside a row.
+@mixin meta {
+  font-size: var(--fs-sm);
+  color: var(--text-secondary);
+}

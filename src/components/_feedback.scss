@@ -6,6 +6,7 @@
     color: var(--text-color);
     border-radius: var(--radius);
     background: var(--section-bg-color);
+    --ring-bg: var(--section-bg-color);
     overflow-wrap: anywhere;
 
     &--accent {
@@ -172,6 +173,7 @@
     border: var(--border);
     border-radius: var(--radius);
     background: var(--section-bg-color);
+    --ring-bg: var(--section-bg-color);
     color: var(--text-color);
     box-shadow: var(--shadow-overlay);
     opacity: 0;
@@ -222,6 +224,7 @@
     border: var(--border);
     border-radius: var(--radius-lg);
     background: var(--section-bg-color);
+    --ring-bg: var(--section-bg-color);
     color: var(--text-color);
     box-shadow: var(--shadow-overlay);
     overflow: auto;

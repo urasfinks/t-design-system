@@ -1,0 +1,178 @@
+@use '../base';
+
+// Media controls: audio/video player, before/after comparison, waveform and the
+// selection box of a canvas. Positions are native ranges; visuals follow them.
+@layer tds.components {
+  .tg-player {
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr);
+    align-items: center;
+    gap: var(--space-2) var(--space-4);
+    min-inline-size: 0;
+    padding: var(--space-3);
+    border: var(--border);
+    border-radius: var(--radius-lg);
+    background: var(--surface-bg);
+    --ring-bg: var(--surface-bg);
+  }
+  .tg-player__cover {
+    inline-size: 4rem;
+    block-size: 4rem;
+    margin: 0;
+    border-radius: var(--radius);
+    background: var(--background-muted);
+    overflow: clip;
+    > img { display: block; inline-size: 100%; block-size: 100%; object-fit: cover; }
+  }
+  .tg-player__meta {
+    display: grid;
+    min-inline-size: 0;
+    > strong { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-weight: var(--fw-semibold); }
+    > span { color: var(--text-secondary); font-size: var(--fs-sm); }
+  }
+  .tg-player__progress {
+    grid-column: 1 / -1;
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr) auto;
+    align-items: center;
+    gap: var(--space-3);
+    color: var(--text-secondary);
+    font-size: var(--fs-xs);
+    font-variant-numeric: tabular-nums;
+  }
+  .tg-player__controls {
+    grid-column: 1 / -1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-2);
+  }
+
+  // Before/after: the range sets --compare (0…100%); the after image is clipped to it.
+  .tg-compare {
+    --compare: 50%;
+    position: relative;
+    display: grid;
+    min-inline-size: 0;
+    border-radius: var(--radius-lg);
+    overflow: clip;
+    background: var(--background-muted);
+    > img, > picture { grid-area: 1 / 1; display: block; inline-size: 100%; block-size: auto; }
+  }
+  .tg-compare__before, .tg-compare__after { grid-area: 1 / 1; margin: 0; > img { display: block; inline-size: 100%; block-size: auto; } }
+  .tg-compare__after { clip-path: inset(0 0 0 var(--compare)); }
+  .tg-compare:dir(rtl) .tg-compare__after { clip-path: inset(0 var(--compare) 0 0); }
+  .tg-compare__label {
+    position: absolute;
+    inset-block-start: var(--space-3);
+    padding: var(--space-1) var(--space-2);
+    border-radius: var(--radius-sm);
+    background: var(--overlay-bg);
+    color: var(--overlay-text);
+    font-size: var(--fs-xs);
+    pointer-events: none;
+    &:nth-child(1 of .tg-compare__label) { inset-inline-start: var(--space-3); }
+    &:nth-last-child(1 of .tg-compare__label) { inset-inline-end: var(--space-3); }
+  }
+  .tg-compare__handle {
+    position: absolute;
+    inset: 0;
+    inline-size: 100%;
+    block-size: 100%;
+    margin: 0;
+    appearance: none;
+    background: none;
+    cursor: ew-resize;
+    &::-webkit-slider-runnable-track { block-size: 100%; background: none; }
+    &::-webkit-slider-thumb { appearance: none; inline-size: var(--control-h); block-size: 100%; background: linear-gradient(var(--overlay-text), var(--overlay-text)) center / 2px 100% no-repeat; }
+    &::-moz-range-track { background: none; }
+    &::-moz-range-thumb { inline-size: 2px; block-size: 100%; border: 0; border-radius: 0; background: var(--overlay-text); }
+    &:focus-visible { outline: 2px solid var(--text-link); outline-offset: -2px; }
+  }
+  .tg-compare__grip {
+    position: absolute;
+    inset-block-start: 50%;
+    inset-inline-start: var(--compare);
+    display: grid;
+    place-items: center;
+    inline-size: var(--control-h);
+    block-size: var(--control-h);
+    border-radius: 50%;
+    background: var(--overlay-text);
+    color: var(--overlay-bg);
+    box-shadow: var(--shadow-overlay);
+    translate: -50% -50%;
+    pointer-events: none;
+    &:dir(rtl) { translate: 50% -50%; }
+  }
+
+  // Waveform: decorative bars scaled by --level, with the played part in the accent.
+  // The position is a native range over them.
+  .tg-waveform {
+    position: relative;
+    display: grid;
+    min-inline-size: 0;
+  }
+  .tg-waveform__track {
+    grid-area: 1 / 1;
+    display: flex;
+    align-items: center;
+    gap: 2px;
+    block-size: 3rem;
+    pointer-events: none;
+  }
+  .tg-waveform__bar {
+    flex: 1 1 0;
+    min-inline-size: 1px;
+    block-size: 100%;
+    border-radius: 1px;
+    // Opaque: the quiet text tone for what is still to play, the accent for what was played.
+    background: var(--text-muted);
+    transform: scaleY(var(--level, .5));
+    &[data-played] { background: var(--accent-main); }
+  }
+  .tg-waveform__progress {
+    grid-area: 1 / 1;
+    inline-size: 100%;
+    block-size: 3rem;
+    margin: 0;
+    appearance: none;
+    background: none;
+    cursor: pointer;
+    &::-webkit-slider-runnable-track { block-size: 100%; background: none; }
+    &::-webkit-slider-thumb { appearance: none; inline-size: 2px; block-size: 100%; background: var(--text-color); }
+    &::-moz-range-track { background: none; }
+    &::-moz-range-thumb { inline-size: 2px; block-size: 100%; border: 0; border-radius: 0; background: var(--text-color); }
+    &:focus-visible { outline: 2px solid var(--text-link); outline-offset: 2px; border-radius: var(--radius-xs); }
+  }
+
+  // Selection box on a canvas: a 2px accent frame with 12px handles (44px targets).
+  .tg-selection-box {
+    position: absolute;
+    inset-inline-start: var(--box-x, 0);
+    inset-block-start: var(--box-y, 0);
+    inline-size: var(--box-w, 8rem);
+    block-size: var(--box-h, 6rem);
+    border: 2px solid var(--accent-main);
+    border-radius: 2px;
+    cursor: move;
+    // Dragging the frame must not scroll the page on touch screens.
+    touch-action: none;
+    &:focus-visible { outline: 2px solid var(--text-link); outline-offset: 3px; }
+  }
+  .tg-selection-box__handle {
+    position: absolute;
+    inline-size: 12px;
+    block-size: 12px;
+    border: 2px solid var(--accent-main);
+    border-radius: 2px;
+    background: var(--surface-bg);
+    --ring-bg: var(--surface-bg);
+    translate: -50% -50%;
+    &::before { content: ''; position: absolute; inset: calc((12px - var(--control-h)) / 2); }
+    &[data-corner='nw'] { inset-inline-start: 0; inset-block-start: 0; cursor: nwse-resize; }
+    &[data-corner='ne'] { inset-inline-start: 100%; inset-block-start: 0; cursor: nesw-resize; }
+    &[data-corner='sw'] { inset-inline-start: 0; inset-block-start: 100%; cursor: nesw-resize; }
+    &[data-corner='se'] { inset-inline-start: 100%; inset-block-start: 100%; cursor: nwse-resize; }
+  }
+}

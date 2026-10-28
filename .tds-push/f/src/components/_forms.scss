@@ -1,0 +1,466 @@
+@use '../base';
+@use 'field-surface';
+@layer tds.components {
+  .tg-field {
+    display: grid;
+    gap: var(--space-2);
+    min-inline-size: 0;
+  }
+
+  .tg-label {
+    font-size: var(--fs-sm);
+    font-weight: var(--fw-medium);
+  }
+  // The visual mark of a required field; `required` on the control is what is announced.
+  .tg-label__required {
+    margin-inline-start: .125em;
+    color: var(--text-danger);
+    font-weight: var(--fw-semibold);
+  }
+
+  .tg-help {
+    margin: 0;
+    font-size: var(--fs-sm);
+    color: var(--text-secondary);
+
+    &--error {
+      color: var(--text-danger);
+    }
+  }
+
+  :is(.tg-input, .tg-select, .tg-textarea) {
+    inline-size: 100%;
+    min-inline-size: 0;
+    min-block-size: var(--control-h);
+    padding: var(--space-2) var(--space-3);
+    border: var(--border-field);
+    border-radius: var(--radius-control);
+    background-color: var(--field-bg);
+    color: var(--text-color);
+    font-size: max(1rem, var(--fs));
+    line-height: 1.5;
+    transition: box-shadow var(--duration) var(--ease), border-color var(--duration) var(--ease), background-color var(--duration) var(--ease);
+
+    &:where(:not(:disabled, [readonly])):hover {
+      background-color: var(--field-bg-hover);
+    }
+
+    &:focus {
+      outline: none;
+      background-color: var(--field-bg-hover);
+      border-color: var(--accent-main);
+      box-shadow: var(--focus);
+    }
+
+    @media (forced-colors: active) {
+      &:focus {
+        outline: 2px solid Highlight;
+        outline-offset: 2px;
+      }
+    }
+
+    &[aria-invalid='true'] {
+      border-color: var(--danger-main);
+
+      &:focus {
+        box-shadow: 0 0 0 .25rem var(--danger-soft);
+      }
+    }
+
+    &:disabled {
+      opacity: var(--disabled-opacity);
+      cursor: not-allowed;
+    }
+  }
+
+  .tg-textarea {
+    min-block-size: calc(var(--control-h) * 2.5);
+    resize: vertical;
+  }
+
+  .tg-input::placeholder, .tg-textarea::placeholder {
+    color: var(--text-secondary);
+    opacity: 1;
+  }
+
+  :is(.tg-input, .tg-textarea)[readonly] {
+    background: var(--section-bg-color);
+    --ring-bg: var(--section-bg-color);
+  }
+
+  .tg-select:not([multiple]):is(:not([size]), [size='1']) {
+    appearance: none;
+    padding-inline-end: var(--space-10);
+    background-image: var(--select-arrow);
+    background-repeat: no-repeat;
+    background-size: var(--icon-size) var(--icon-size);
+    background-position: right var(--space-3) center;
+    text-overflow: ellipsis;
+    cursor: pointer;
+
+    @media (hover: hover) and (pointer: fine) and (forced-colors: none) {
+      &:where(:not(:disabled, [readonly], [aria-disabled='true'], [aria-disabled='true'] *, [inert], [inert] *)):hover {
+        background-image: var(--select-arrow-hover);
+      }
+    }
+
+    &:dir(rtl) {
+      background-position: left var(--space-3) center;
+    }
+
+    &:disabled {
+      cursor: not-allowed;
+    }
+
+    @media (forced-colors: active) {
+      appearance: auto;
+      background-image: none;
+      padding-inline-end: var(--space-3);
+    }
+  }
+
+  .tg-check, .tg-radio {
+    appearance: none;
+    display: inline-grid;
+    place-content: center;
+    flex: 0 0 var(--choice-size);
+    inline-size: var(--choice-size);
+    block-size: var(--choice-size);
+    margin: 0;
+    // Paint as parameters of the shared state engine: hover darkens the current fill.
+    --control-idle-bg: var(--field-bg);
+    --control-hover-bg: var(--control-idle-bg);
+    border: var(--border-field);
+    background-color: var(--control-idle-bg);
+    accent-color: var(--accent-main);
+    vertical-align: middle;
+    cursor: pointer;
+
+    &:not(:checked) {
+      border-color: var(--choice-border-color);
+    }
+
+    &:checked, &.tg-check:indeterminate {
+      --control-idle-bg: var(--accent-main);
+      border-color: var(--accent-main);
+    }
+
+    &:disabled {
+      opacity: var(--disabled-opacity);
+      cursor: not-allowed;
+    }
+  }
+
+  .tg-check {
+    border-radius: calc(var(--choice-size) / 4);
+
+    &:checked::before {
+      content: '';
+      inline-size: calc(var(--choice-size) * .25);
+      block-size: calc(var(--choice-size) * .45);
+      border: solid var(--button-text-color);
+      border-width: 0 2px 2px 0;
+      transform: translateY(-1px) rotate(45deg);
+    }
+
+    &:indeterminate::before {
+      content: '';
+      inline-size: calc(var(--choice-size) * .5);
+      block-size: 2px;
+      background: var(--button-text-color);
+    }
+  }
+
+  .tg-radio {
+    border-radius: 50%;
+
+    &:checked::before {
+      content: '';
+      inline-size: calc(var(--choice-size) * .42);
+      block-size: calc(var(--choice-size) * .42);
+      border-radius: inherit;
+      background: var(--button-text-color);
+    }
+  }
+
+  @media (forced-colors: active) {
+    .tg-check, .tg-radio {
+      appearance: auto;
+
+      &, &:not(:checked), &:checked, &.tg-check:indeterminate {
+        border: revert;
+        background-color: revert;
+      }
+
+      &::before, &:checked::before, &:indeterminate::before {
+        content: none;
+      }
+    }
+  }
+
+  .tg-choice {
+    display: inline-flex;
+    gap: var(--space-3);
+    align-items: center;
+    min-block-size: var(--control-h);
+    cursor: pointer;
+  }
+
+  .tg-switch {
+    --w: calc(var(--h) * 1.75);
+    --h: calc(var(--choice-size) + .125rem);
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: flex-start;
+    inline-size: var(--w);
+    block-size: var(--control-h);
+    flex: 0 0 var(--w);
+    padding: 0 .125rem;
+    border: 0;
+    border-radius: var(--radius-pill);
+    background: transparent;
+    cursor: pointer;
+    isolation: isolate;
+
+    &::before {
+      content: '';
+      position: absolute;
+      inset-inline: 0;
+      block-size: var(--h);
+      z-index: -1;
+      border: 1px solid var(--switch-border-color);
+      border-radius: inherit;
+      background: var(--switch-track-color);
+      transition: background-color var(--duration) var(--ease), border-color var(--duration) var(--ease);
+    }
+
+    &:not([aria-checked='true'], .tg-switch--on)::before {
+      border-color: var(--switch-border-color);
+    }
+
+    &__knob {
+      --switch-shift: 0px;
+      position: absolute;
+      inset-inline-start: .125rem;
+      inset-block-start: 50%;
+      transform: translate(var(--switch-shift), -50%);
+      inline-size: calc(var(--h) - .25rem);
+      block-size: calc(var(--h) - .25rem);
+      border-radius: 50%;
+      background: var(--switch-knob-color);
+      box-shadow: 0 1px 3px #0003;
+      transition: transform var(--duration) var(--ease);
+    }
+
+    &:is([aria-checked='true'], .tg-switch--on)::before {
+      background: var(--accent-main);
+      border-color: var(--switch-border-color);
+    }
+
+    &:is([aria-checked='true'], .tg-switch--on) .tg-switch__knob {
+      --switch-shift: calc(var(--w) - var(--h));
+    }
+
+    &:dir(rtl):is([aria-checked='true'], .tg-switch--on) .tg-switch__knob {
+      --switch-shift: calc(var(--h) - var(--w));
+    }
+  }
+
+  .tg-component-size {
+    inline-size: 3.25rem;
+    min-block-size: var(--control-h);
+    display: inline-flex;
+    align-items: center;
+  }
+
+  // A choice can carry a second line. The control aligns to the first line of text.
+  .tg-choice:has(.tg-choice__description) {
+    align-items: flex-start;
+    padding-block: var(--space-2);
+  }
+  .tg-choice__description {
+    display: block;
+    margin-block-start: var(--space-1);
+    font-size: var(--fs-sm);
+    color: var(--text-secondary);
+  }
+
+  // Related independent choices. Nested children start under the parent label's text.
+  .tg-choice-group {
+    display: grid;
+    justify-items: start;
+    min-inline-size: 0;
+
+    &--nested {
+      padding-inline-start: calc(var(--choice-size) + var(--space-3));
+    }
+  }
+
+  // A field with prefixes, suffixes, a unit picker or an inline action.
+  .tg-input-group {
+    display: flex;
+    align-items: stretch;
+    min-inline-size: 0;
+    min-block-size: var(--control-h);
+    @include field-surface.surface('.tg-input-group__control');
+    transition: box-shadow var(--duration) var(--ease), border-color var(--duration) var(--ease), background-color var(--duration) var(--ease);
+
+    &:where(:not(:focus-within, :has(.tg-input-group__control:disabled), :has(.tg-input-group__control[readonly]))):hover {
+      background-color: var(--field-bg-hover);
+    }
+
+    &__control {
+      @include field-surface.bare-control;
+      flex: 1 1 0%;
+      inline-size: 100%;
+      padding: var(--space-2) var(--space-3);
+      line-height: 1.5;
+      &:disabled { cursor: not-allowed; }
+    }
+
+    // Text and icons around the value. A select addon keeps its native picker.
+    &__addon {
+      display: flex;
+      align-items: center;
+      flex: 0 0 auto;
+      gap: var(--space-2);
+      padding-inline: var(--space-3);
+      color: var(--text-secondary);
+      white-space: nowrap;
+
+      &:first-child { padding-inline-end: 0; }
+      &:last-child { padding-inline-start: 0; }
+    }
+    select.tg-input-group__addon {
+      appearance: none;
+      min-block-size: var(--control-h);
+      margin: 0;
+      padding-inline: var(--space-3) var(--space-8);
+      border: 0;
+      border-inline-end: var(--border-field);
+      border-radius: 0;
+      background: var(--select-arrow) no-repeat right var(--space-2) center / 1rem 1rem;
+      color: var(--text-color);
+      font-size: max(1rem, var(--fs));
+      // The group's frame shows focus (field-surface); the part draws no ring of its own.
+      &:focus { outline: none; box-shadow: none; }
+      cursor: pointer;
+      &:dir(rtl) { background-position: left var(--space-2) center; }
+    }
+
+    // An inline action fills the field height; its corners follow the field's.
+    &__action {
+      align-self: stretch;
+      block-size: auto;
+      min-block-size: 0;
+      border: 0;
+      border-radius: 0 calc(var(--radius-control) - 1px) calc(var(--radius-control) - 1px) 0;
+      &:dir(rtl) { border-radius: calc(var(--radius-control) - 1px) 0 0 calc(var(--radius-control) - 1px); }
+      &:focus-visible { outline-offset: -3px; }
+    }
+  }
+
+  // Copy a short value: the value is selectable text in a field frame, the action joins the
+  // frame at its end. Like every field, the frame shows focus; the parts draw no ring of
+  // their own. The host writes to the clipboard and announces it.
+  .tg-copy {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    min-inline-size: 0;
+    max-inline-size: 100%;
+    min-block-size: var(--control-h);
+    padding: var(--space-1);
+    padding-inline-start: var(--space-3);
+    @include field-surface.surface('.tg-copy__value');
+    transition: border-color var(--duration) var(--ease), box-shadow var(--duration) var(--ease);
+
+    &[data-state='copied'] { border-color: var(--accent-main); }
+    &[data-state='error'] { border-color: var(--danger-main); }
+  }
+  .tg-copy__value {
+    flex: 1 1 auto;
+    min-inline-size: 0;
+    overflow: hidden;
+    color: var(--text-color);
+    font-family: var(--font-family-mono);
+    font-size: var(--fs-sm);
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    user-select: all;
+    background: none;
+  }
+  // The action joins the frame at its end, one control height like every button.
+  .tg-copy:has(> .tg-copy__action) { padding-block: 0; padding-inline-end: 0; }
+  .tg-copy__action {
+    flex: 0 0 auto;
+    // Its outer edges lie on the frame's edge and follow the frame's colour (focus, copied,
+    // error); the side facing the value is the group's dividing line.
+    border-color: inherit;
+    border-inline-start-color: var(--group-border-color);
+    &:focus-visible { outline: none; }
+    align-self: stretch;
+    margin-block: -1px;
+    margin-inline-end: -1px;
+    border-start-start-radius: 0;
+    border-end-start-radius: 0;
+  }
+  // On the narrowest screens the action moves under the value.
+  @media (max-width: 22.5rem) {
+    .tg-copy:has(> .tg-btn.tg-copy__action) {
+      flex-wrap: wrap;
+      padding: var(--space-2);
+      padding-inline-start: var(--space-3);
+      > .tg-copy__value { flex-basis: 100%; }
+      > .tg-copy__action { inline-size: 100%; margin: 0; border-radius: var(--radius-inset); }
+    }
+  }
+
+  // Rules that light up while typing: information, never an error before submit.
+  .tg-requirements {
+    display: grid;
+    gap: var(--space-1);
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    font-size: var(--fs-sm);
+    color: var(--text-secondary);
+
+    &__item {
+      display: flex;
+      align-items: flex-start;
+      gap: var(--space-2);
+      transition: color var(--duration) var(--ease);
+
+      &::before {
+        content: '';
+        flex: 0 0 auto;
+        inline-size: 1rem;
+        block-size: 1rem;
+        margin-block-start: calc((1lh - 1rem) / 2);
+        border: 2px solid currentColor;
+        border-radius: 50%;
+        opacity: .6;
+      }
+
+      &[data-met='true'] {
+        color: var(--accent-readable);
+        &::before {
+          border: 0;
+          border-radius: 0;
+          background: currentColor;
+          opacity: 1;
+          mask: var(--icon-mask-check) center / contain no-repeat;
+        }
+      }
+    }
+
+    // After a failed submit the unmet rules become the error.
+    &--invalid &__item:not([data-met='true']) { color: var(--text-danger); }
+  }
+
+  @media (forced-colors: active) {
+    .tg-input-group:focus-within { outline: 2px solid Highlight; outline-offset: 2px; }
+  }
+}

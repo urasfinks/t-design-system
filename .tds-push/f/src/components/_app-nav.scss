@@ -1,0 +1,250 @@
+@use '../base';
+@use 'floating';
+@use 'option';
+
+// Application navigation: sidebar, site mega menu (disclosure navigation), editor
+// menubar, table of contents. Rows come from the option engine, panels from floating.
+@layer tds.components {
+  // Sidebar: the main navigation of an application, grouped, with nesting by details.
+  .tg-sidebar {
+    --sidebar-width: 17rem;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+    inline-size: var(--sidebar-width);
+    max-inline-size: 100%;
+    min-block-size: 0;
+    padding: var(--space-3);
+    border-inline-end: 1px solid var(--border-subtle-color);
+    background: var(--background-panel);
+    --ring-bg: var(--background-panel);
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    font-size: var(--fs-sm);
+  }
+  .tg-sidebar__header {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    min-block-size: var(--control-h);
+    padding-inline: var(--space-2);
+    > .tg-brand { min-inline-size: 0; color: var(--text-color); font-size: var(--fs); font-weight: var(--fw-semibold); }
+  }
+  .tg-sidebar__section {
+    display: grid;
+    gap: 2px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    ul { display: grid; gap: 2px; margin: 2px 0 0; padding: 0 0 0 calc(var(--space-3) + var(--icon-size) + var(--space-3) - var(--space-2)); list-style: none; }
+    .tg-disclosure { border: 0; border-radius: 0; background: transparent; }
+    .tg-disclosure__content { padding: 0; }
+  }
+  .tg-sidebar__label {
+    padding: var(--space-2) var(--space-2) var(--space-1);
+    color: var(--text-secondary);
+    font-size: var(--fs-xs);
+    font-weight: var(--fw-semibold);
+    letter-spacing: .02em;
+  }
+  .tg-sidebar__link {
+    --control-hover-filter: none;
+    @include option.row(2.5rem);
+    padding-inline: var(--space-2);
+    color: var(--text-secondary);
+    font-weight: var(--fw-medium);
+    > .tg-icon { flex: 0 0 auto; color: inherit; }
+    > .tg-badge { margin-inline-start: auto; }
+    &[aria-current='page'] { --control-idle-bg: var(--background-muted); --control-hover-bg: var(--background-muted); color: var(--text-color); }
+    &:focus-visible { outline: 2px solid var(--text-link); outline-offset: -2px; }
+  }
+  // A group that nests links: the summary is a row with a chevron at the end.
+  summary.tg-sidebar__link {
+    list-style: none;
+    &::-webkit-details-marker { display: none; }
+    &::after {
+      content: '';
+      flex: 0 0 auto;
+      inline-size: 1rem;
+      block-size: 1rem;
+      margin-inline-start: auto;
+      background: currentColor;
+      mask: var(--icon-mask-chevron-down) center / contain no-repeat;
+      transform: rotate(-90deg);
+      transition: transform var(--duration) var(--ease);
+    }
+    &:dir(rtl)::after { transform: rotate(90deg); }
+    details[open] > &::after { transform: none; }
+  }
+  .tg-sidebar__text { min-inline-size: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .tg-sidebar__footer {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    margin-block-start: auto;
+    padding-block-start: var(--space-3);
+    border-block-start: 1px solid var(--border-subtle-color);
+    > .tg-avatar { --icon-avatar: 2rem; padding: 0; border-width: 0; font-size: var(--fs-xs); }
+  }
+  // Collapsed: icons only. Labels stay in the DOM as accessible names.
+  .tg-sidebar--collapsed {
+    --sidebar-width: calc(2.5rem + var(--space-3) * 2);
+    .tg-sidebar__text, .tg-sidebar__label, .tg-sidebar__link > .tg-badge, summary.tg-sidebar__link::after, .tg-sidebar__section ul {
+      position: absolute;
+      inline-size: 1px;
+      block-size: 1px;
+      overflow: hidden;
+      clip-path: inset(50%);
+      white-space: nowrap;
+    }
+    .tg-sidebar__link { justify-content: center; padding-inline: 0; }
+    .tg-sidebar__header, .tg-sidebar__footer { justify-content: center; padding-inline: 0; }
+  }
+
+  // Site navigation with panels (APG disclosure navigation): buttons open panels of
+  // links with descriptions. Not a menu: Tab walks the links.
+  .tg-nav-menu {
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--space-1);
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+  .tg-nav-menu__trigger, a.tg-nav-menu__top {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-1);
+    min-block-size: var(--control-h);
+    padding: 0 var(--space-3);
+    border: 0;
+    border-radius: var(--radius-inset);
+    background: var(--control-idle-bg, transparent);
+    color: var(--text-color);
+    font-weight: var(--fw-medium);
+    text-decoration: none;
+    cursor: pointer;
+    &:focus-visible { outline: 2px solid var(--text-link); outline-offset: -2px; }
+  }
+  .tg-nav-menu__trigger {
+    &::after {
+      content: '';
+      inline-size: 1rem;
+      block-size: 1rem;
+      background: var(--text-secondary);
+      mask: var(--icon-mask-chevron-down) center / contain no-repeat;
+      transition: transform var(--duration) var(--ease);
+    }
+    // While its panel is open the trigger keeps the hover look.
+    &[aria-expanded='true'] { --control-idle-bg: var(--control-hover-bg); }
+    &[aria-expanded='true']::after { transform: rotate(180deg); }
+  }
+  .tg-nav-menu__panel {
+    position: absolute;
+    inset-inline-start: 0;
+    inset-block-start: calc(100% + var(--space-2));
+    z-index: var(--z-overlay);
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr));
+    gap: var(--space-3) var(--space-4);
+    inline-size: min(44rem, calc(100vw - var(--space-8)));
+    padding: var(--space-3);
+    @include option.list(var(--radius-lg));
+    transform-origin: top left;
+    animation: tg-nav-panel-in var(--duration) var(--ease);
+    &:dir(rtl) { transform-origin: top right; }
+    &[data-instant] { animation: none; }
+  }
+  @keyframes tg-nav-panel-in { from { opacity: 0; transform: translateY(-.25rem); } }
+  .tg-nav-menu__group { display: grid; align-content: start; gap: 2px; margin: 0; padding: 0; list-style: none; }
+  .tg-nav-menu__title {
+    padding: var(--space-1) var(--space-3);
+    color: var(--text-secondary);
+    font-size: var(--fs-xs);
+    font-weight: var(--fw-semibold);
+    letter-spacing: .02em;
+  }
+  .tg-nav-menu__link {
+    @include option.dropdown-row;
+    align-items: flex-start;
+    > .tg-icon { margin-block-start: .125rem; color: var(--text-link); }
+    &:focus-visible { outline: 2px solid var(--text-link); outline-offset: -2px; }
+    &[aria-current='page'] { @include option.chosen; }
+  }
+  .tg-nav-menu__text { display: grid; gap: .125rem; min-inline-size: 0; font-weight: var(--fw-medium); }
+  .tg-nav-menu__description { @include option.meta; font-weight: var(--fw-regular); }
+  // Phones: the panels open in the flow, one under another.
+  @media (max-width: 48rem) {
+    .tg-nav-menu { flex-direction: column; align-items: stretch; }
+    .tg-nav-menu__trigger, a.tg-nav-menu__top { justify-content: space-between; inline-size: 100%; }
+    .tg-nav-menu__panel {
+      position: static;
+      inline-size: auto;
+      margin-block: var(--space-1) var(--space-2);
+      box-shadow: none;
+    }
+  }
+
+  // Menubar: File / Edit / View of an editor. Items are 36px to the eye, 44px to the finger.
+  .tg-menubar {
+    display: flex;
+    align-items: center;
+    gap: 2px;
+    inline-size: max-content;
+    max-inline-size: 100%;
+    padding: var(--space-1);
+    border: var(--border);
+    border-radius: var(--radius-control);
+    background: var(--surface-bg);
+    --ring-bg: var(--surface-bg);
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+  .tg-menubar__item {
+    --control-hover-filter: none;
+    position: relative;
+    flex: 0 0 auto;
+    min-block-size: 2.25rem;
+    padding: 0 var(--space-3);
+    border: 0;
+    border-radius: var(--radius-inset);
+    background: var(--control-idle-bg, transparent);
+    color: var(--text-color);
+    font-size: var(--fs-sm);
+    font-weight: var(--fw-medium);
+    cursor: pointer;
+    &::before { content: ''; position: absolute; inset: calc((2.25rem - var(--control-h)) / 2) 0; }
+    &[aria-expanded='true'] { --control-idle-bg: var(--background-muted); --control-hover-bg: var(--background-muted); }
+    &:focus-visible { outline: 2px solid var(--text-link); outline-offset: -2px; }
+  }
+
+  // Table of contents: anchors along a quiet rule; the current section takes the accent.
+  .tg-toc {
+    display: grid;
+    margin: 0;
+    padding: 0;
+    border-inline-start: 1px solid var(--border-subtle-color);
+    list-style: none;
+    ul { display: grid; margin: 0; padding: 0; list-style: none; }
+  }
+  .tg-toc__title { margin: 0 0 var(--space-2); color: var(--text-color); font-size: var(--fs-sm); font-weight: var(--fw-semibold); }
+  .tg-toc__link {
+    display: block;
+    margin-inline-start: -1px;
+    padding: var(--space-1) var(--space-3);
+    border-inline-start: 2px solid transparent;
+    color: var(--text-secondary);
+    font-size: var(--fs-sm);
+    line-height: 1.45;
+    text-decoration: none;
+    transition: color var(--duration-fast) var(--ease), border-color var(--duration-fast) var(--ease);
+    @media (hover: hover) and (pointer: fine) { &:hover { color: var(--text-color); } }
+    &:is([aria-current='location'], [aria-current='true']) { border-inline-start-color: var(--accent-main); color: var(--text-color); font-weight: var(--fw-medium); }
+    &--nested { padding-inline-start: calc(var(--space-3) + var(--space-4)); }
+    &:focus-visible { outline: 2px solid var(--text-link); outline-offset: -2px; border-radius: var(--radius-xs); }
+    @media (pointer: coarse) { padding-block: var(--space-2); }
+  }
+}

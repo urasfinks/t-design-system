@@ -29,7 +29,8 @@ test('the legacy control-hover entry retains reset, focus and visibility foundat
 
 test('new components plug into shared tokens and the state engine instead of local paint', async () => {
   const menu = await read('src/components/_menu.scss');
-  assert.match(menu, /--control-paint-duration:\s*0s/);
+  assert.match(menu, /@include option\.dropdown-row/);
+  assert.match(await read('src/components/_option.scss'), /--control-paint-duration:\s*0s/);
   assert.match(menu, /@include option\.mark/);
   assert.match(await read('src/components/_option.scss'), /var\(--icon-mask-check\)/);
   assert.doesNotMatch(menu, /#[0-9a-f]{3,8}\b|rgba?\(/i);
@@ -53,9 +54,18 @@ test('shared engines own surfaces, rows, selection and steps; owners only includ
     assert.doesNotMatch(source, /#[0-9a-f]{3,8}\b|rgba?\(|color-mix/i, `${name} uses palette roles only`);
   }
   const menu = await read('src/components/_menu.scss');
-  assert.match(menu, /@include floating\.surface/);
   assert.match(menu, /@include floating\.popover/);
-  assert.match(menu, /@include option\.row/);
+  // Every dropdown is one look: the list, its rows and the chosen row come from the option engine.
+  const option = await read('src/components/_option.scss');
+  assert.match(option, /@mixin list[\s\S]*--surface-bg: var\(--background-main\)[\s\S]*@include floating\.surface/);
+  assert.match(option, /@mixin chosen \{\s*@include selected\.segment-current/);
+  const owners = { menu, pickers: await read('src/components/_pickers.scss'), 'app-nav': await read('src/components/_app-nav.scss') };
+  for (const [name, source] of Object.entries(owners)) {
+    assert.match(source, /@include option\.list/, `${name} uses the dropdown list`);
+    assert.match(source, /@include option\.dropdown-row/, `${name} uses the dropdown row`);
+    assert.match(source, /@include option\.chosen/, `${name} uses the chosen row`);
+    assert.doesNotMatch(source, /--control-paint-duration|@include floating\.surface/, `${name} does not repeat the dropdown look`);
+  }
   const overlays = await read('src/components/_overlays.scss');
   assert.match(overlays, /\.tg-tooltip\[popover\] \{\s*@include floating\.popover/);
   const navigation = await read('src/components/_navigation.scss');

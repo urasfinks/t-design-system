@@ -110,6 +110,7 @@
   .tg-glass {
     --blur: 15px;
     background: var(--background-panel);
+    --ring-bg: var(--background-panel);
     border-radius: var(--radius-lg);
     -webkit-tap-highlight-color: transparent;
 

@@ -1,0 +1,146 @@
+@use '../base';
+
+// Inline content elements: keys, prices, feature lists, quotes. Text roles only.
+@mixin key {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: .25em;
+    min-inline-size: 1.5em;
+    padding: .125em .4em;
+    border: 1px solid var(--border-subtle-color);
+    border-radius: var(--radius-xs);
+    background: var(--background-muted);
+    color: var(--text-color);
+    font-family: var(--font-family-mono);
+    font-size: var(--fs-xs);
+    font-weight: var(--fw-medium);
+    line-height: 1.3;
+    white-space: nowrap;
+    vertical-align: .1em;
+}
+
+@layer tds.components {
+  // A key or a shortcut. Nested kbd elements are the keys of one combination.
+  .tg-kbd {
+    @include key;
+
+    // A combination: each key is its own cap, the plus between them stays quiet.
+    &:has(> kbd) { gap: .25em; padding: 0; border: 0; background: none; color: var(--text-secondary); }
+    > kbd { @include key; }
+  }
+
+  // Price: a large figure and its period on one baseline.
+  .tg-price {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 0 var(--space-1);
+    margin: 0;
+    color: var(--text-color);
+  }
+  .tg-price__value { font-size: var(--fs-display); font-weight: var(--fw-semibold); line-height: 1.1; letter-spacing: -.02em; }
+  .tg-price__period { color: var(--text-secondary); font-size: var(--fs-sm); }
+  .tg-price__old { color: var(--text-secondary); font-size: var(--fs-sm); text-decoration: line-through; }
+
+  // Feature list: a check for included, a dash for not included (said in words too).
+  .tg-feature-list {
+    display: grid;
+    gap: var(--space-2);
+    margin: 0;
+    padding: 0;
+    font-size: var(--fs-sm);
+    list-style: none;
+  }
+  .tg-feature-list__item {
+    display: grid;
+    grid-template-columns: 1rem minmax(0, 1fr);
+    gap: var(--space-2);
+    align-items: start;
+    &::before {
+      content: '';
+      inline-size: 1rem;
+      block-size: 1rem;
+      margin-block-start: .125rem;
+      background: var(--text-link);
+      mask: var(--icon-mask-check) center / contain no-repeat;
+    }
+    &--off { color: var(--text-secondary); }
+    &--off::before { block-size: 2px; margin-block-start: .5625rem; border-radius: 1px; background: var(--text-secondary); mask: none; }
+  }
+
+  // Testimonial: a quote with its author. The quote mark is decoration; the rating is
+  // stars in the accent role with the score in text.
+  .tg-testimonial {
+    display: grid;
+    align-content: start;
+    gap: var(--space-4);
+    min-inline-size: 0;
+    margin: 0;
+    padding: var(--space-5);
+    border: var(--border);
+    border-radius: var(--radius-lg);
+    background: var(--surface-bg);
+    --ring-bg: var(--surface-bg);
+    &:has(> .tg-testimonial__media) {
+      grid-template-columns: minmax(0, 14rem) minmax(0, 1fr);
+      padding: 0;
+      overflow: clip;
+      > :not(.tg-testimonial__media) { grid-column: 2; margin-inline-end: var(--space-5); }
+      > :nth-child(2) { margin-block-start: var(--space-5); }
+      > :last-child { margin-block-end: var(--space-5); }
+    }
+  }
+  .tg-testimonial__media {
+    grid-row: 1 / span 4;
+    margin: 0;
+    background: var(--background-muted);
+    > img { display: block; inline-size: 100%; block-size: 100%; min-block-size: 12rem; object-fit: cover; }
+  }
+  .tg-testimonial__quote {
+    position: relative;
+    margin: 0;
+    color: var(--text-color);
+    font-size: var(--fs-lg);
+    line-height: 1.5;
+    > p { margin: 0; }
+    > p + p { margin-block-start: var(--space-2); }
+  }
+  .tg-testimonial__author {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    font-size: var(--fs-sm);
+    font-style: normal;
+    > .tg-avatar { --icon-avatar: 2.5rem; padding: 0; border-width: 0; }
+    > span:not(.tg-avatar) { display: grid; min-inline-size: 0; }
+    cite { color: var(--text-color); font-style: normal; font-weight: var(--fw-semibold); }
+    span > span { color: var(--text-secondary); }
+  }
+  .tg-testimonial__rating {
+    display: inline-flex;
+    align-items: center;
+    gap: 2px;
+    margin: 0;
+    color: var(--text-secondary);
+    font-size: var(--fs-sm);
+    > span:not(.tg-testimonial__stars, .tg-sr-only) { margin-inline-start: var(--space-2); }
+  }
+  // Stars: --rating (0…5, fractions allowed) fills the accent across five star masks.
+  .tg-testimonial__stars {
+    display: inline-block;
+    inline-size: 5.5rem;
+    block-size: 1rem;
+    background: linear-gradient(to right, var(--accent-main) calc(var(--rating, 5) / 5 * 100%), var(--border-color) 0);
+    mask: var(--icon-mask-star) left center / 1.1rem 1rem repeat-x;
+    &:dir(rtl) { background: linear-gradient(to left, var(--accent-main) calc(var(--rating, 5) / 5 * 100%), var(--border-color) 0); }
+  }
+  @media (forced-colors: active) { .tg-testimonial__stars { background: CanvasText; } }
+  @media (max-width: 36rem) {
+    .tg-testimonial:has(> .tg-testimonial__media) {
+      grid-template-columns: minmax(0, 1fr);
+      > :not(.tg-testimonial__media) { grid-column: 1; margin-inline: var(--space-5); }
+      > .tg-testimonial__media { grid-row: auto; > img { min-block-size: 0; aspect-ratio: 16 / 9; } }
+    }
+  }
+}

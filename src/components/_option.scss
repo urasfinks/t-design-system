@@ -1,5 +1,29 @@
 // Option row engine: one 44 px row for menus, listboxes, command palettes, sidebars and
 // tables of contents. Owners include it and set only their parameters.
+@use 'floating';
+@use 'selected';
+
+// Every dropdown (menu, listbox, combobox, navigation panel) is one look: a floating
+// surface whose fill is a trough on the page tone; rows rise from it when chosen.
+@mixin list($radius: var(--radius-control)) {
+  --surface-bg: var(--background-main);
+  @include floating.surface($radius);
+}
+
+// A row inside a dropdown: paint follows the pointer and the keyboard at once, without the
+// darkening filter; the row the script marks active is lit like hover.
+@mixin dropdown-row($height: var(--control-h)) {
+  --control-hover-filter: none;
+  --control-paint-duration: 0s;
+  @include row($height);
+  &[data-active] { background: var(--control-hover-bg); }
+}
+
+// The chosen row rises like a segment above its trough.
+@mixin chosen {
+  @include selected.segment-current;
+  font-weight: var(--fw-medium);
+}
 
 // The row itself: leading icon, text, trailing meta; paint follows the control-states engine.
 @mixin row($height: var(--control-h)) {

@@ -1,0 +1,324 @@
+@use '../base';
+
+// Reusable screen compositions. Content and runtime measurements stay with the host.
+@layer tds.components {
+  .tg-page-shell { display: block; }
+  .tg-page-header {
+    padding-block-start: max(env(safe-area-inset-top, 0px), var(--tg-content-safe-area-inset-top, 0px));
+    border-block-end: var(--border);
+  }
+  // A header that stays while the page scrolls needs its own background.
+  .tg-page-header--sticky {
+    position: sticky;
+    inset-block-start: 0;
+    z-index: var(--z-sticky);
+    background: var(--background-main);
+  }
+  .tg-page-content {
+    --tg-container-padding-end: calc(var(--tg-composer-height, var(--composer-reserved-size)) + var(--space-6));
+  }
+  .tg-brand { display: inline-flex; align-items: center; gap: var(--space-3); text-decoration: none; white-space: nowrap; }
+  .tg-toolbar { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: var(--space-3); }
+  .tg-toolbar--compact { gap: var(--space-1); }
+  // A toolbar that floats over a canvas or content: the floating-layer surface, snug padding.
+  .tg-toolbar--floating {
+    display: inline-flex;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    max-inline-size: 100%;
+    padding: var(--space-1);
+    border: var(--border);
+    border-radius: var(--radius-control);
+    background: var(--surface-bg);
+    --ring-bg: var(--surface-bg);
+    box-shadow: var(--shadow-overlay);
+    overflow-x: auto;
+    scrollbar-width: none;
+    > :is(.tg-btn, .tg-icon-btn) { flex: 0 0 auto; }
+  }
+  .tg-toolbar__separator {
+    flex: 0 0 auto;
+    align-self: stretch;
+    inline-size: 1px;
+    margin: var(--space-2) var(--space-1);
+    background: var(--border-subtle-color);
+  }
+  .tg-source-link { display: flex; flex-wrap: nowrap; align-items: center; gap: var(--space-3); color: var(--text-color); text-decoration: none; }
+
+  .tg-composer {
+    position: fixed;
+    z-index: var(--z-sticky);
+    inset-inline: 0;
+    inset-block-end: var(--tg-keyboard-inset, 0px);
+    background: var(--section-bg-color);
+    --ring-bg: var(--section-bg-color);
+    border-block-start: var(--border);
+    padding-block-end: var(--safe-area-bottom);
+    &__form, &__input { display: flex; flex-wrap: nowrap; align-items: flex-end; gap: var(--space-3); }
+    &__input { flex: 1 1 0%; min-inline-size: 0; }
+    // The author avatar sits on the field's line: same height as the field and send button.
+    // No selection ring here, so the visible circle fills the whole control height.
+    &__form > .tg-avatar-size { --icon-avatar: var(--control-h); }
+    &__form > .tg-avatar-size > .tg-avatar { padding: 0; border-width: 0; }
+    &__textarea { flex: 1 1 0%; min-block-size: var(--control-h); resize: none; max-block-size: var(--composer-input-max-size);
+      padding-block: max(0px, calc((var(--control-h) - 1lh - 2px) / 2));
+      &:placeholder-shown { white-space: pre; }
+    }
+    &__caption { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: var(--space-3); }
+    // The reply quote and the caption belong to the field, so they start at its edge, after the avatar.
+    &__inner:has(> .tg-composer__form > .tg-avatar-size) > :is(.tg-reply-preview, .tg-composer__caption) {
+      margin-inline-start: calc(var(--control-h) + var(--space-3));
+    }
+  }
+  // Composer parts for assistants: attachments above the field, tools under it.
+  .tg-composer__attachments {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2);
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    &:empty { display: none; }
+  }
+  .tg-composer__toolbar {
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: center;
+    gap: var(--space-1);
+    min-inline-size: 0;
+  }
+  .tg-composer__form:has(> .tg-composer__toolbar) { flex-wrap: wrap; }
+  .tg-composer__form:has(> .tg-composer__toolbar) > :is(.tg-composer__input, .tg-composer__toolbar, .tg-composer__attachments) { flex: 1 0 100%; }
+
+  // A conversation with an assistant. The user's turns sit in bubbles at the inline
+  // end; the assistant answers in running text, which reads better at length.
+  .tg-chat {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+    min-inline-size: 0;
+  }
+  .tg-chat__log {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-5);
+    min-inline-size: 0;
+    overflow-wrap: anywhere;
+  }
+  .tg-message {
+    display: grid;
+    gap: var(--space-2);
+    min-inline-size: 0;
+    max-inline-size: 100%;
+    scroll-margin-block-end: calc(var(--tg-composer-height, var(--composer-reserved-size)) + var(--space-6));
+
+    &__body {
+      min-inline-size: 0;
+      line-height: 1.6;
+      > :first-child { margin-block-start: 0; }
+      > :last-child { margin-block-end: 0; }
+      :is(p, ul, ol, pre, blockquote, table) { margin-block: 0 var(--space-3); }
+      :is(ul, ol) { padding-inline-start: var(--space-6); }
+      code { padding: .1em .35em; border-radius: var(--radius-xs); background: var(--background-muted); font-family: var(--font-family-mono); font-size: .875em; }
+      pre {
+        overflow-x: auto;
+        padding: var(--space-3) var(--space-4);
+        border-radius: var(--radius-control);
+        background: var(--background-muted);
+        font-family: var(--font-family-mono);
+        font-size: var(--fs-sm);
+        line-height: 1.5;
+        > code { padding: 0; background: none; font-size: inherit; }
+      }
+    }
+    &--user {
+      align-self: flex-end;
+      justify-self: end;
+      max-inline-size: min(85%, 36rem);
+      > .tg-message__body {
+        padding: var(--space-2) var(--space-4);
+        border-radius: var(--radius-lg);
+        border-end-end-radius: var(--radius-xs);
+        background: var(--background-muted);
+      }
+    }
+    &__meta { font-size: var(--fs-xs); color: var(--text-secondary); }
+    &__actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-1);
+      margin-inline-start: calc(var(--space-2) * -1);
+    }
+    // While the answer streams, a caret marks where text arrives.
+    &[data-state='streaming'] > .tg-message__body > :last-child::after {
+      content: '';
+      display: inline-block;
+      inline-size: .5em;
+      block-size: 1.1em;
+      margin-inline-start: .125em;
+      vertical-align: text-bottom;
+      border-radius: 1px;
+      background: currentColor;
+      animation: tg-caret 1s steps(2, jump-none) infinite;
+    }
+    &[data-state='error'] > .tg-message__body { color: var(--text-secondary); }
+  }
+  @keyframes tg-caret { 50% { opacity: 0; } }
+  @media (hover: hover) and (pointer: fine) {
+    .tg-message--assistant:not(:last-child) > .tg-message__actions { opacity: 0; transition: opacity var(--duration) var(--ease); }
+    .tg-message--assistant:is(:hover, :focus-within) > .tg-message__actions { opacity: 1; }
+  }
+
+  .tg-reply-preview {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    flex-wrap: nowrap;
+    border-inline-start: var(--border-active);
+    padding-inline-start: var(--space-3);
+  }
+  .tg-reply-preview > * { min-inline-size: 0; }
+  .tg-comment {
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: flex-start;
+    gap: var(--space-3);
+    scroll-margin-block: var(--space-6) calc(var(--tg-composer-height, var(--composer-reserved-size)) + var(--space-6));
+    &__body { flex: 1 1 0%; min-inline-size: 0; }
+    &__text { white-space: pre-wrap; overflow-wrap: anywhere; }
+    // Optical alignment: a leading ghost action's label sits on the text's edge;
+    // its padding and hover fill extend into the gutter instead.
+    &__actions > .tg-btn--ghost:first-child { margin-inline-start: calc(-1 * (var(--space-4) + 1px)); }
+    &__actions > .tg-btn--ghost.tg-btn--sm:first-child { margin-inline-start: calc(-1 * (var(--space-3) + 1px)); }
+  }
+  .tg-thread {
+    margin-inline-start: calc(var(--icon-avatar) + var(--space-3));
+    padding-inline-start: var(--space-4);
+    border-inline-start: var(--border);
+  }
+  .tg-media {
+    margin-inline: 0;
+    & > img { display: block; inline-size: 100%; max-block-size: var(--media-max-size); object-fit: contain; }
+  }
+  @media (min-width: 48rem) {
+    .tg-page-content { --tg-container-padding-start: var(--space-8); }
+  }
+  @media (max-width: 36rem) {
+    .tg-composer__inner { --tg-container-padding-start: var(--space-3); --tg-container-padding-end: var(--space-3); }
+    .tg-composer__caption, .tg-composer__form > .tg-avatar-size { display: none; }
+    // The avatar is hidden here, so the quote returns to the field's edge.
+    .tg-composer__inner:has(> .tg-composer__form > .tg-avatar-size) > .tg-reply-preview { margin-inline-start: 0; }
+    .tg-toolbar--responsive { align-items: stretch; }
+    .tg-tabs--responsive { inline-size: 100%; }
+    .tg-tabs--responsive .tg-tab { justify-content: center; }
+    .tg-comment {
+      display: grid;
+      grid-template-columns: var(--icon-avatar) minmax(0, 1fr);
+      gap: var(--space-1) var(--space-3);
+      &__body { display: contents; }
+      &__meta { grid-column: 2; grid-row: 1; align-self: center; }
+      &__text, &__actions, &__recipient { grid-column: 1 / -1; }
+    }
+    .tg-thread { margin-inline-start: var(--space-3); padding-inline-start: var(--space-2); }
+  }
+}
+@layer tds.base {
+  :where(html:has(.tg-composer)) { scroll-padding-bottom: calc(var(--tg-composer-height, var(--composer-reserved-size)) + var(--space-6)); }
+  :where(body:has(dialog.tg-modal[open])) { overflow: hidden; }
+}
+@layer tds.utilities {
+  .tg-container.tg-container--reading { max-inline-size: var(--layout-reading-width); }
+  .tg-block { display: block; }
+  .tg-contents { display: contents; }
+  .tg-nowrap { flex-wrap: nowrap; }
+  .tg-text-nowrap { white-space: nowrap; }
+  .tg-truncate { overflow: hidden; white-space: nowrap; text-overflow: ellipsis; }
+  .tg-ms-auto { margin-inline-start: auto; }
+  .tg-justify-center { justify-content: center; }
+  .tg-align-center { align-items: center; }
+  .tg-justify-between { justify-content: space-between; }
+  @media (max-width: 36rem) { .tg-hide-mobile { display: none; } }
+
+  // Agent progress: what the assistant is doing now and what its tools returned.
+  // State is text plus an icon (spinner, check, cross); details are a native disclosure.
+  .tg-agent-steps { display: grid; gap: var(--space-1); margin: 0; padding: 0; list-style: none; }
+  .tg-agent-step {
+    display: grid;
+    grid-template-columns: 1.25rem minmax(0, 1fr) auto;
+    align-items: center;
+    column-gap: var(--space-2);
+    min-block-size: 2rem;
+    color: var(--text-secondary);
+    font-size: var(--fs-sm);
+    > details { grid-column: 2 / -1; }
+    &[data-state='done'] .tg-agent-step__icon { color: var(--text-link); }
+    &[data-state='error'] { color: var(--text-danger); .tg-agent-step__icon { color: var(--text-danger); } }
+    &[data-state='running'] .tg-agent-step__label { color: var(--text-color); }
+  }
+  .tg-agent-step__icon {
+    display: grid;
+    place-items: center;
+    inline-size: 1.25rem;
+    block-size: 1.25rem;
+    > .tg-icon { inline-size: 1rem; block-size: 1rem; }
+    > .tg-spinner { inline-size: .875rem; block-size: .875rem; }
+  }
+  .tg-agent-step__label { min-inline-size: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .tg-agent-step__label code { font-family: var(--font-family-mono); font-size: .9em; }
+  .tg-agent-step__time { font-variant-numeric: tabular-nums; font-size: var(--fs-xs); }
+  .tg-agent-step__detail {
+    margin-block: var(--space-1) var(--space-2);
+    > summary {
+      display: inline-flex;
+      align-items: center;
+      min-block-size: 2rem;
+      color: var(--text-link);
+      cursor: pointer;
+      &:focus-visible { outline: 2px solid var(--text-link); outline-offset: 2px; border-radius: var(--radius-xs); }
+    }
+    > ul, > ol {
+      display: grid;
+      gap: var(--space-1);
+      margin: var(--space-1) 0 0;
+      padding: var(--space-2) var(--space-3);
+      border-inline-start: 2px solid var(--border-subtle-color);
+      list-style: none;
+      color: var(--text-color);
+    }
+    a { color: var(--text-link); text-underline-offset: .2em; }
+  }
+
+  // Approval: the assistant asks before an action with consequences. The app decides;
+  // TDS only lays out the question. After the decision it becomes a static record.
+  .tg-approval {
+    display: grid;
+    gap: var(--space-3);
+    max-inline-size: var(--layout-reading-width);
+    padding: var(--space-4);
+    border: var(--border);
+    border-radius: var(--radius-lg);
+    background: var(--surface-bg);
+    --ring-bg: var(--surface-bg);
+    &[data-state='danger'] { border-color: var(--danger-main); }
+    &[data-state='decided'] { padding-block: var(--space-3); color: var(--text-secondary); font-size: var(--fs-sm); }
+  }
+  .tg-approval__title {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    margin: 0;
+    font-size: var(--fs);
+    font-weight: var(--fw-semibold);
+    > .tg-icon { flex: 0 0 auto; color: var(--text-link); }
+    .tg-approval[data-state='danger'] & > .tg-icon { color: var(--text-danger); }
+  }
+  .tg-approval__description { margin: 0; color: var(--text-secondary); font-size: var(--fs-sm); }
+  .tg-approval__options { display: grid; gap: var(--space-2); margin: 0; padding: 0; border: 0; min-inline-size: 0; > legend { padding: 0; margin-block-end: var(--space-1); font-size: var(--fs-sm); font-weight: var(--fw-medium); } }
+  .tg-approval__actions {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    gap: var(--space-2);
+    @media (max-width: 36rem) { > .tg-btn { flex: 1 1 100%; } }
+  }
+}

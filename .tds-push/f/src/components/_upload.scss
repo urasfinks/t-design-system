@@ -1,0 +1,103 @@
+@use '../base';
+@layer tds.components {
+  .tg-upload {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-3);
+    position: relative;
+    min-inline-size: 0;
+    min-block-size: 6rem;
+    padding: var(--space-4);
+    border: var(--border);
+    border-radius: var(--radius);
+    background: var(--secondary-bg-color);
+    color: var(--text-color);
+    text-align: center;
+    overflow-wrap: anywhere;
+    cursor: pointer;
+
+    &--dashed {
+      border: .2rem dashed var(--section-separator-color);
+      border-radius: var(--radius-lg);
+    }
+
+    &:focus-within {
+      outline: 2px solid var(--text-link);
+      outline-offset: 3px;
+    }
+
+    &--disabled, &[aria-disabled='true'] {
+      opacity: var(--disabled-opacity);
+      cursor: not-allowed;
+    }
+
+    &__icon {
+      inline-size: 2rem;
+      block-size: 2rem;
+      flex-shrink: 0;
+    }
+
+    &__preview {
+      display: block;
+      inline-size: 10rem;
+      max-inline-size: 100%;
+      block-size: 10rem;
+      object-fit: cover;
+      border-radius: var(--radius);
+    }
+
+    &__actions {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: var(--space-2);
+      margin-block-start: var(--space-2);
+    }
+
+    &__status {
+      margin: var(--space-2) 0 0;
+      color: var(--text-secondary);
+      font-size: var(--fs-xs);
+      text-align: end;
+      overflow-wrap: anywhere;
+    }
+  }
+
+  // Selected files as rows: icon, name and size, progress, status, action.
+  .tg-upload__list {
+    display: grid;
+    gap: 0;
+    margin: 0;
+    padding: 0;
+    border: var(--border);
+    border-radius: var(--radius-lg);
+    background: var(--surface-bg);
+    --ring-bg: var(--surface-bg);
+    list-style: none;
+    overflow: clip;
+  }
+  .tg-upload__item {
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr) auto;
+    align-items: center;
+    gap: var(--space-1) var(--space-3);
+    min-block-size: var(--control-h);
+    padding: var(--space-3) var(--space-2) var(--space-3) var(--space-4);
+    & + & { border-block-start: var(--border); }
+    > .tg-icon { color: var(--text-secondary); }
+    > .tg-progress, > progress { grid-column: 2 / -1; block-size: .375rem; }
+    &[data-state='error'] > .tg-icon { color: var(--text-danger); }
+    &[data-state='done'] > .tg-icon { color: var(--text-link); }
+  }
+  .tg-upload__name {
+    display: grid;
+    min-inline-size: 0;
+    > :first-child { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-weight: var(--fw-medium); }
+    > :not(:first-child) { color: var(--text-secondary); font-size: var(--fs-sm); font-variant-numeric: tabular-nums; }
+  }
+  .tg-upload__item[data-state='error'] .tg-upload__name > :not(:first-child) { color: var(--text-danger); }
+  @media (pointer: coarse) {
+    .tg-upload__drag-hint { display: none; }
+  }
+}

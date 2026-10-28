@@ -1,0 +1,379 @@
+@use '../base';
+
+// Decorative effects (opt-in, never required): one key button, card or section per screen.
+// Layers sit behind content (isolation + z-index -1), animate only transform/opacity
+// (the beam rotates a registered angle), stay still on touch and with reduced
+// motion, and switch off for disabled or busy hosts. Colours: accent roles and the
+// overlay text role as a neutral highlight.
+@property --effect-angle { syntax: '<angle>'; inherits: false; initial-value: 0deg; }
+
+@layer tds.components {
+  .tg-ripple {
+    // Press feedback answers within ~300ms; scale(.98) on :active carries the first 100ms.
+    --ripple-duration: 300ms;
+    --ring-duration: 300ms;
+    --wash-duration: 300ms;
+    --ring-width: 1px;
+    --ripple-color: rgb(255 255 255 / .25);
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+    -webkit-tap-highlight-color: transparent;
+
+    &--dark {
+      --ripple-color: rgb(255 255 255 / .25);
+    }
+
+    &--light {
+      --ripple-color: rgb(0 0 0 / .25);
+    }
+
+    &--inline {
+      display: inline-flex;
+      border-radius: var(--radius-pill);
+    }
+
+    &__wave, &__ring, &__wash {
+      position: absolute;
+      pointer-events: none;
+      z-index: -1;
+    }
+
+    &__wave {
+      border-radius: 50%;
+      background: var(--ripple-color);
+      transform: translate(-50%, -50%) scale(0);
+      inline-size: var(--ripple-size, 0px);
+      block-size: var(--ripple-size, 0px);
+      animation: tg-ripple-wave var(--ripple-duration) ease-out forwards;
+    }
+
+    &__ring, &__wash {
+      inset: 0;
+      border-radius: inherit;
+      opacity: 0;
+    }
+
+    &__ring {
+      box-shadow: inset 0 0 0 var(--ring-width) var(--ripple-border-color, var(--ripple-color));
+      animation: tg-ripple-ring var(--ring-duration) ease-out forwards;
+    }
+
+    &__wash {
+      background: var(--ripple-hover-color, var(--ripple-color));
+      animation: tg-ripple-wash var(--wash-duration) ease-out forwards;
+    }
+  }
+
+  // Composited only: transform and opacity, never the wave's layout size.
+  @keyframes tg-ripple-wave {
+    from {
+      transform: translate(-50%, -50%) scale(0);
+      opacity: .6;
+    }
+    to {
+      transform: translate(-50%, -50%) scale(1);
+      opacity: 0;
+    }
+  }
+
+  @keyframes tg-ripple-ring {
+    0% {
+      opacity: 0;
+      filter: blur(4px);
+    }
+    10%, 60% {
+      opacity: 1;
+      filter: blur(0);
+    }
+    100% {
+      opacity: 0;
+      filter: blur(4px);
+    }
+  }
+
+  @keyframes tg-ripple-wash {
+    0% {
+      opacity: 0;
+      transform: scale(.96);
+    }
+    40% {
+      opacity: .6;
+      transform: scale(1);
+    }
+    100% {
+      opacity: 0;
+      transform: scale(1.02);
+    }
+  }
+
+  .tg-glass {
+    --blur: 15px;
+    background: var(--background-panel);
+    --ring-bg: var(--background-panel);
+    border-radius: var(--radius-lg);
+    -webkit-tap-highlight-color: transparent;
+
+    & > * {
+      isolation: isolate;
+    }
+
+    &--backdrop {
+      --blur: 25px;
+      background: var(--background-main);
+    }
+
+    & .tg-header {
+      background-color: transparent;
+    }
+  }
+
+  @supports ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+    .tg-glass {
+      backdrop-filter: blur(var(--blur)) saturate(120%);
+      -webkit-backdrop-filter: blur(var(--blur)) saturate(120%);
+    }
+  }
+
+  .tg-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: var(--z-overlay);
+    display: grid;
+    place-items: center;
+    background: var(--overlay-bg);
+    color: var(--overlay-text);
+
+    &--absolute {
+      position: absolute;
+    }
+  }
+
+  .tg-fade-in {
+    animation: tg-effect-in var(--duration) var(--ease) both;
+  }
+
+  .tg-fade-out {
+    animation: tg-effect-out var(--duration) var(--ease) both;
+  }
+
+  @keyframes tg-effect-in {
+    from {
+      opacity: 0;
+      transform: scale(.96);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+
+  @keyframes tg-effect-out {
+    from {
+      opacity: 1;
+      transform: scale(1);
+    }
+    to {
+      opacity: 0;
+      transform: scale(.96);
+      visibility: hidden;
+    }
+  }
+
+  .tg-transition {
+    opacity: 1;
+    transform: scale(1);
+    transform-origin: center;
+    visibility: visible;
+    transition: opacity var(--duration) var(--ease), transform var(--duration) var(--ease), visibility 0s;
+
+    &:is(.is-hidden, [aria-hidden='true']) {
+      opacity: 0;
+      transform: scale(.96);
+      pointer-events: none;
+      visibility: hidden;
+      transition: opacity var(--duration) var(--ease), transform var(--duration) var(--ease), visibility 0s linear var(--duration);
+    }
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .tg-glass {
+      animation: tg-glass-in 160ms ease-out both;
+    }
+
+    @keyframes tg-glass-in {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .tg-ripple__wave, .tg-ripple__ring, .tg-ripple__wash {
+      display: none;
+      animation: none;
+    }
+
+    .tg-glass, .tg-fade-in, .tg-fade-out {
+      animation: none;
+    }
+
+    .tg-fade-out {
+      opacity: 0;
+      visibility: hidden;
+    }
+
+    .tg-transition, .tg-transition:is(.is-hidden, [aria-hidden='true']) {
+      transition: none;
+    }
+  }
+
+  // ---- Shared layer geometry -------------------------------------------------------
+  :is(.tg-effect-glow, .tg-effect-sheen, .tg-effect-border-beam, .tg-effect-tilt, .tg-effect-glare,
+    .tg-effect-spotlight) {
+    --effect-intensity: 1;
+    position: relative;
+    isolation: isolate;
+  }
+  :is(.tg-effect-sheen, .tg-effect-glare, .tg-effect-spotlight) { overflow: clip; }
+  :is(.tg-effect-glow, .tg-effect-sheen, .tg-effect-border-beam, .tg-effect-glare, .tg-effect-spotlight)::before,
+  .tg-effect-sheen::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    border-radius: inherit;
+    pointer-events: none;
+  }
+  // A disabled or busy host keeps its plain look.
+  :is(.tg-effect-glow, .tg-effect-sheen, .tg-effect-border-beam, .tg-effect-glare, .tg-effect-spotlight):is(:disabled, [aria-disabled='true'], [aria-busy='true'], :has(:disabled))::before,
+  .tg-effect-sheen:is(:disabled, [aria-disabled='true'], [aria-busy='true'])::after,
+  :is(:disabled, [aria-disabled='true'], [aria-busy='true']) > .tg-effect-layer { display: none; }
+
+  // ---- B19: halo ------------------------------------------------------------------
+  // An accent glow outside the edge only: the inner rectangle is masked out, so the
+  // control's own fill and text contrast never change.
+  :is(.tg-effect-glow)::before {
+    inset: calc(var(--space-4) * -1);
+    padding: var(--space-4);
+    border-radius: calc(var(--radius-control) + var(--space-4));
+    background: var(--accent-main);
+    filter: blur(var(--space-3));
+    mask: linear-gradient(black 0 0) content-box exclude, linear-gradient(black 0 0);
+    opacity: 0;
+    transform: scale(.92);
+    transition: opacity var(--duration-fade-out) var(--ease), transform var(--duration) var(--ease);
+  }
+
+
+  // ---- B19: sheen -------------------------------------------------------------------
+  .tg-effect-sheen::after {
+    background: linear-gradient(105deg, transparent 35%, var(--overlay-text) 50%, transparent 65%);
+    opacity: calc(.32 * var(--effect-intensity));
+    transform: translateX(-100%);
+  }
+  .tg-effect-sheen::before { display: none; }
+  .tg-effect-sheen:dir(rtl)::after { transform: translateX(100%); }
+
+  // ---- B19: border beam -------------------------------------------------------------
+  .tg-effect-border-beam::before {
+    z-index: 0;
+    padding: 2px;
+    background: conic-gradient(from var(--effect-angle), transparent 0 52%, var(--accent-main) 82%, var(--accent-readable) 90%, transparent 97%);
+    mask: linear-gradient(black 0 0) content-box exclude, linear-gradient(black 0 0);
+    opacity: var(--effect-intensity);
+  }
+
+  // ---- B19: magnetic (effects.mjs sets the offset, at most 4px) -----------------------
+  .tg-effect-magnetic {
+    translate: var(--magnet-x, 0px) var(--magnet-y, 0px);
+    transition: translate var(--duration) var(--ease);
+  }
+
+  // ---- C18: tilt, glare, spotlight (effects.mjs sets --pointer-*) ---------------------
+  .tg-effect-tilt {
+    transform: perspective(60rem) rotateX(var(--tilt-x, 0deg)) rotateY(var(--tilt-y, 0deg));
+    transition: transform var(--duration) var(--ease);
+    &[data-effect-active] { transition-duration: var(--duration-fast); }
+  }
+  .tg-effect-glare::before {
+    inset-inline: -50%;
+    background: linear-gradient(115deg, transparent 38%, var(--overlay-text) 50%, transparent 62%);
+    opacity: 0;
+    transform: translateX(calc((var(--pointer-rx, .5) - .5) * 60%));
+    transition: opacity var(--duration-fade-out) var(--ease);
+  }
+  .tg-effect-spotlight::before {
+    // Pointer coordinates are physical, so this layer is placed physically on purpose.
+    inset: 0 auto auto 0;
+    inline-size: 22rem;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    background: radial-gradient(closest-side, var(--accent-main), transparent);
+    opacity: 0;
+    translate: calc(var(--pointer-x, 0px) - 50%) calc(var(--pointer-y, 0px) - 50%);
+    transition: opacity var(--duration-fade-out) var(--ease);
+  }
+
+  // ---- SH1: background layer ----------------------------------------------------------
+  // A canvas or element behind the section's content; the module draws into it.
+  // Without the module (or WebGL/canvas) it is a still fill.
+  .tg-effect-layer {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    display: block;
+    inline-size: 100%;
+    block-size: 100%;
+    border-radius: inherit;
+    background: var(--effect-layer-bg, var(--background-main));
+    color: var(--accent-main);
+    pointer-events: none;
+  }
+  :where(:has(> .tg-effect-layer)) { position: relative; isolation: isolate; }
+
+  // ---- SH4: ripple between slides ----------------------------------------------------------
+  // The canvas covers the viewport only; slides and captions stay in the DOM as usual.
+  .tg-carousel[data-tg-effect='ripple'] {
+    > .tg-carousel__viewport { grid-area: 1 / 1; }
+    > .tg-effect-layer {
+      position: relative;
+      inset: auto;
+      grid-area: 1 / 1;
+      z-index: 1;
+      border-radius: var(--radius-lg);
+      background: none;
+      opacity: 0;
+      &[data-state='transitioning'] { opacity: 1; }
+    }
+  }
+
+  // ---- Motion and pointer gates --------------------------------------------------------
+  @media (hover: hover) and (pointer: fine) {
+    .tg-effect-glow:where(:not(:disabled, [aria-disabled='true'], [aria-busy='true'])):is(:hover, :focus-visible)::before {
+      opacity: calc(.5 * var(--effect-intensity));
+      transform: none;
+      transition-duration: var(--duration-fade-in), var(--duration);
+    }
+    :is(.tg-effect-glare, .tg-effect-spotlight):hover::before { transition-duration: var(--duration-fade-in); }
+    .tg-effect-glare:hover::before { opacity: calc(.18 * var(--effect-intensity)); }
+    .tg-effect-spotlight:hover::before { opacity: calc(.16 * var(--effect-intensity)); }
+  }
+  @media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
+    .tg-effect-sheen:where(:not(:disabled, [aria-disabled='true'], [aria-busy='true'])):is(:hover, :focus-visible)::after {
+      transform: translateX(100%);
+      transition: transform 700ms var(--ease);
+    }
+    .tg-effect-sheen:dir(rtl):is(:hover, :focus-visible)::after { transform: translateX(-100%); }
+  }
+  @media (prefers-reduced-motion: no-preference) {
+    .tg-effect-border-beam::before { animation: tg-effect-turn 3.2s linear infinite; }
+  }
+  @keyframes tg-effect-turn { to { --effect-angle: 360deg; } }
+  @media (prefers-reduced-motion: reduce) {
+    .tg-effect-magnetic, .tg-effect-tilt { translate: none; transform: none; transition: none; }
+  }
+  @media (forced-colors: active) {
+    :is(.tg-effect-glow, .tg-effect-sheen, .tg-effect-border-beam, .tg-effect-glare, .tg-effect-spotlight)::before,
+    .tg-effect-sheen::after { display: none; }
+  }
+}

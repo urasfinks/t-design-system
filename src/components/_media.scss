@@ -13,6 +13,7 @@
     border: var(--border);
     border-radius: var(--radius-lg);
     background: var(--surface-bg);
+    --ring-bg: var(--surface-bg);
   }
   .tg-player__cover {
     inline-size: 4rem;
@@ -166,6 +167,7 @@
     border: 2px solid var(--accent-main);
     border-radius: 2px;
     background: var(--surface-bg);
+    --ring-bg: var(--surface-bg);
     translate: -50% -50%;
     &::before { content: ''; position: absolute; inset: calc((12px - var(--control-h)) / 2); }
     &[data-corner='nw'] { inset-inline-start: 0; inset-block-start: 0; cursor: nwse-resize; }

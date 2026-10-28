@@ -30,6 +30,7 @@
     border: var(--border);
     border-radius: var(--radius-control);
     background: var(--surface-bg);
+    --ring-bg: var(--surface-bg);
     box-shadow: var(--shadow-overlay);
     overflow-x: auto;
     scrollbar-width: none;
@@ -50,6 +51,7 @@
     inset-inline: 0;
     inset-block-end: var(--tg-keyboard-inset, 0px);
     background: var(--section-bg-color);
+    --ring-bg: var(--section-bg-color);
     border-block-start: var(--border);
     padding-block-end: var(--safe-area-bottom);
     &__form, &__input { display: flex; flex-wrap: nowrap; align-items: flex-end; gap: var(--space-3); }
@@ -296,6 +298,7 @@
     border: var(--border);
     border-radius: var(--radius-lg);
     background: var(--surface-bg);
+    --ring-bg: var(--surface-bg);
     &[data-state='danger'] { border-color: var(--danger-main); }
     &[data-state='decided'] { padding-block: var(--space-3); color: var(--text-secondary); font-size: var(--fs-sm); }
   }

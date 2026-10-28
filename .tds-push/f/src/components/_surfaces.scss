@@ -1,0 +1,291 @@
+@use '../base';
+@layer tds.components {
+  .tg-card, .tg-list {
+    min-inline-size: 0;
+    border: var(--border);
+    border-radius: var(--radius-lg);
+    background: var(--surface-bg);
+    --ring-bg: var(--surface-bg);
+    overflow-wrap: anywhere;
+  }
+
+  .tg-card {
+    --card-padding: var(--space-4);
+    padding: var(--card-padding);
+  }
+
+  // Card zones. A card with zones is a column: media meets the edges, the footer
+  // settles at the bottom so cards in a grid align their actions.
+  .tg-card:has(> :is(.tg-card__media, .tg-card__body, .tg-card__footer)) {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+  }
+  .tg-card__media {
+    margin: calc(var(--card-padding) * -1) calc(var(--card-padding) * -1) 0;
+    border-radius: calc(var(--radius-lg) - 1px) calc(var(--radius-lg) - 1px) 0 0;
+    overflow: clip;
+    background: var(--background-muted);
+
+    > :is(img, video, picture) {
+      display: block;
+      inline-size: 100%;
+      block-size: auto;
+      aspect-ratio: var(--card-media-ratio, 16 / 9);
+      object-fit: cover;
+    }
+  }
+  .tg-card__media--video > video { background: var(--background-muted); }
+  // Featured card: a 2px accent frame drawn inside the 1px border, so the size stays.
+  .tg-card--featured {
+    border-color: var(--accent-main);
+    box-shadow: inset 0 0 0 1px var(--accent-main);
+  }
+  // Media first: the text sits on the image over a one-colour shade (the overlay role
+  // fading to transparent), so it keeps contrast on light photos.
+  .tg-card--overlay {
+    position: relative;
+    isolation: isolate;
+    justify-content: flex-end;
+    min-block-size: 16rem;
+    padding: var(--card-padding);
+    border-color: transparent;
+    background: var(--overlay-bg);
+    color: var(--overlay-text);
+    overflow: clip;
+
+    > .tg-card__media {
+      position: absolute;
+      inset: 0;
+      z-index: -1;
+      margin: 0;
+      border-radius: inherit;
+      > :is(img, video, picture) { block-size: 100%; aspect-ratio: auto; }
+      &::after {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(to top, var(--overlay-bg) 0%, var(--overlay-bg) 18%, transparent 72%);
+      }
+    }
+    > .tg-card__body, > .tg-card__footer { position: relative; margin-block-start: 0; }
+    :is(.tg-header__subtitle, .tg-text-muted, p) { color: inherit; }
+    .tg-card__link { color: inherit; }
+    // The photo leans in a little on hover; the text never moves.
+    @media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
+      > .tg-card__media > :is(img, video, picture) { transition: transform var(--duration) var(--ease); }
+      &:is(:hover, :focus-within) > .tg-card__media > :is(img, video, picture) { transform: scale(1.03); }
+    }
+  }
+  // A card that opens in place: a native details element with the card surface.
+  // The card gives the shared disclosure trigger its corners (see .tg-disclosure).
+  details.tg-card--disclosure {
+    --disclosure-radius-start: var(--radius-lg);
+    --disclosure-radius-end: var(--radius-lg);
+    padding: 0;
+    > .tg-disclosure__trigger {
+      padding: var(--card-padding);
+      font-size: var(--fs);
+    }
+    &[open] > .tg-disclosure__trigger { border-end-start-radius: 0; border-end-end-radius: 0; }
+    > .tg-disclosure__content, > .tg-card__body { padding: 0 var(--card-padding) var(--card-padding); }
+  }
+  // Card to dialog: the shared element keeps its place while the dialog opens.
+  @media (prefers-reduced-motion: no-preference) {
+    ::view-transition-group(tg-card-morph) { animation-duration: var(--duration); animation-timing-function: var(--ease); }
+  }
+  .tg-card__body {
+    display: grid;
+    gap: var(--space-2);
+    min-inline-size: 0;
+    > * { margin: 0; }
+    > .tg-badge { justify-self: start; }
+  }
+  .tg-card__footer {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--space-2) var(--space-3);
+    margin-block-start: auto;
+  }
+
+  // A card the reader acts on answers hover with a stronger edge;
+  // a whole-card link stretches the one link in its heading over the card.
+  .tg-card--interactive, .tg-card--link {
+    position: relative;
+    transition: border-color var(--duration) var(--ease);
+    @media (hover: hover) and (pointer: fine) {
+      &:hover { border-color: var(--panel-hover-border-color); }
+    }
+  }
+  .tg-card--link:has(.tg-card__link:focus-visible) { outline: 2px solid var(--text-link); outline-offset: 3px; }
+  .tg-card__link {
+    color: inherit;
+    text-decoration: none;
+    &:focus-visible { outline: none; }
+    .tg-card--link &::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+      border-radius: inherit;
+    }
+  }
+
+  // One figure with its label and change. The change is text with a sign, never colour alone.
+  .tg-stat {
+    display: grid;
+    align-content: start;
+    gap: var(--space-1);
+    min-inline-size: 0;
+
+    &__label { margin: 0; font-size: var(--fs-sm); color: var(--text-secondary); }
+    &__value {
+      margin: 0;
+      font-size: var(--fs-display);
+      font-weight: var(--fw-semibold);
+      line-height: 1.15;
+      letter-spacing: -.02em;
+      font-variant-numeric: tabular-nums;
+    }
+    &__meta {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: var(--space-2);
+      margin: var(--space-1) 0 0;
+      font-size: var(--fs-sm);
+      color: var(--text-secondary);
+    }
+    &__delta { flex: 0 0 auto; }
+  }
+
+  .tg-list {
+    overflow: clip;
+
+    &-item {
+      padding: var(--space-3) var(--space-4);
+
+      & + .tg-list-item {
+        border-block-start: var(--border);
+      }
+
+      &--wrap {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: stretch;
+        gap: var(--space-3);
+      }
+
+      &--wrap > * {
+        min-inline-size: 0;
+      }
+
+      &-break {
+        flex: 0 0 100%;
+        margin-block-start: var(--space-3);
+      }
+
+      &-border-dashed {
+        border-block-start-style: dashed;
+      }
+
+      &__title {
+        font-size: var(--fs);
+        font-weight: var(--fw-semibold);
+      }
+
+      &__subtitle {
+        font-size: var(--fs-sm);
+        color: var(--text-secondary);
+      }
+    }
+  }
+
+  // A row that navigates or acts is a real link/button. The list panel keeps
+  // its outline; the row adds hover, focus and a full-width target.
+  :where(a[href], button).tg-list-item {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    inline-size: 100%;
+    min-block-size: var(--control-h);
+    border: 0;
+    background: var(--control-idle-bg, transparent);
+    color: inherit;
+    font: inherit;
+    text-align: start;
+    text-decoration: none;
+    cursor: pointer;
+
+    &:focus-visible { outline: 2px solid var(--text-link); outline-offset: -2px; }
+    > .tg-icon:last-child { margin-inline-start: auto; color: var(--text-secondary); }
+  }
+
+  .tg-header {
+    &, &-secondary {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: var(--space-3);
+      padding: var(--space-3) var(--space-4);
+      border-radius: var(--radius);
+      background: var(--header-bg-color);
+    }
+
+    &-secondary {
+      background: var(--background-muted);
+      border: var(--border-transparent);
+    }
+
+    &__title {
+      margin: 0;
+      font-size: var(--fs-lg);
+      font-weight: var(--fw-semibold);
+      line-height: 1.35;
+    }
+
+    &__subtitle {
+      margin: 0;
+      font-size: var(--fs-sm);
+      color: var(--text-secondary);
+    }
+  }
+
+  .tg-section {
+    &__title {
+      padding: var(--space-2);
+      color: var(--section-header-text-color);
+      font-size: var(--fs-sm);
+      font-weight: var(--fw-medium);
+    }
+  }
+
+  .tg-divider {
+    inline-size: 100%;
+    block-size: 0;
+    border: 0;
+    border-block-start: 1px dashed var(--section-separator-color);
+    margin-block: var(--space-3);
+
+    &-transparent {
+      block-size: var(--space-4);
+    }
+  }
+  // A divider that names the choice between two ways ("или"). The text is read once:
+  // the element is a separator with a label, the lines are decoration.
+  .tg-divider--label {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    block-size: auto;
+    border-block-start: 0;
+    color: var(--text-secondary);
+    font-size: var(--fs-sm);
+    &::before, &::after {
+      content: '';
+      flex: 1 1 0;
+      border-block-start: 1px dashed var(--section-separator-color);
+    }
+  }
+}

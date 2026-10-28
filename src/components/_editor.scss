@@ -11,6 +11,7 @@
     border: var(--border);
     border-radius: var(--radius-lg);
     background: var(--surface-bg);
+    --ring-bg: var(--surface-bg);
     overflow: clip;
     transition: border-color var(--duration) var(--ease), box-shadow var(--duration) var(--ease);
     &:has(.tg-editor__content:focus) { border-color: var(--accent-main); box-shadow: var(--focus); }

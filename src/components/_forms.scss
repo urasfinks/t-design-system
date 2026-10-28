@@ -85,6 +85,7 @@
 
   :is(.tg-input, .tg-textarea)[readonly] {
     background: var(--section-bg-color);
+    --ring-bg: var(--section-bg-color);
   }
 
   .tg-select:not([multiple]):is(:not([size]), [size='1']) {

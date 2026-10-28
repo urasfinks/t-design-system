@@ -61,6 +61,7 @@
     border: var(--border);
     border-radius: var(--disclosure-radius-start) var(--disclosure-radius-start) var(--disclosure-radius-end) var(--disclosure-radius-end);
     background: var(--surface-bg);
+    --ring-bg: var(--surface-bg);
     &__trigger {
       --disclosure-inner-start: max(0px, calc(var(--disclosure-radius-start, var(--radius)) - 1px));
       --disclosure-inner-end: max(0px, calc(var(--disclosure-radius-end, var(--radius)) - 1px));
@@ -96,12 +97,14 @@
     border: var(--border);
     border-radius: var(--radius);
     background: var(--surface-bg);
+    --ring-bg: var(--surface-bg);
   }
   .tg-table {
     inline-size: 100%;
     min-inline-size: var(--table-min-width, 32rem);
     border-collapse: collapse;
     background: var(--surface-bg);
+    --ring-bg: var(--surface-bg);
     color: var(--text-color);
     text-align: start;
     caption { padding: var(--space-3) var(--space-4); text-align: start; color: var(--text-secondary); }
@@ -318,6 +321,8 @@
       border-radius: var(--radius-pill);
       background: var(--range-track-bg, linear-gradient(to right, var(--accent-main) var(--range-progress, 50%), var(--background-muted) var(--range-progress, 50%)));
     }
+    // One thumb for every range (single, dual, hue): an accent circle with a ring cut out of
+    // the background under it (--range-thumb-ring, by default the surface's --ring-bg).
     &::-webkit-slider-thumb {
       appearance: none;
       inline-size: 16px;
@@ -325,7 +330,8 @@
       margin-block-start: -5px;
       border: 0;
       border-radius: 50%;
-      background: var(--accent-main);
+      background: var(--range-thumb-bg, var(--accent-main));
+      box-shadow: 0 0 0 3px var(--range-thumb-ring, var(--ring-bg));
     }
     &::-moz-range-track {
       block-size: 6px;
@@ -338,7 +344,8 @@
       block-size: 16px;
       border: 0;
       border-radius: 50%;
-      background: var(--accent-main);
+      background: var(--range-thumb-bg, var(--accent-main));
+      box-shadow: 0 0 0 3px var(--range-thumb-ring, var(--ring-bg));
     }
     &::-moz-range-progress {
       block-size: 6px;
@@ -385,6 +392,7 @@
     border: var(--border);
     border-radius: var(--radius-lg);
     background: var(--surface-bg);
+    --ring-bg: var(--surface-bg);
     list-style: none;
   }
   .tg-sortable__item {
@@ -395,6 +403,7 @@
     min-block-size: var(--control-h);
     padding: var(--space-1) var(--space-4) var(--space-1) var(--space-1);
     background: var(--surface-bg);
+    --ring-bg: var(--surface-bg);
     transition: transform var(--duration) var(--ease), box-shadow var(--duration) var(--ease);
     & + & { border-block-start: var(--border); }
     &:first-child { border-start-start-radius: inherit; border-start-end-radius: inherit; }

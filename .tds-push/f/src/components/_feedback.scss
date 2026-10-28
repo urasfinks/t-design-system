@@ -1,0 +1,345 @@
+@use '../base';
+@layer tds.components {
+  .tg-notice {
+    padding: var(--space-3) var(--space-4);
+    border: var(--border);
+    color: var(--text-color);
+    border-radius: var(--radius);
+    background: var(--section-bg-color);
+    --ring-bg: var(--section-bg-color);
+    overflow-wrap: anywhere;
+
+    &--accent {
+      background: var(--action-bg);
+      color: var(--button-text-color);
+      border-color: transparent;
+      border-radius: var(--radius-lg);
+    }
+
+    &--destructive {
+      background: var(--notice-danger-bg);
+      color: var(--text-color);
+      border-color: transparent;
+
+      .tg-notice__icon { color: var(--text-danger); }
+    }
+
+    &--with-icon {
+      display: flex;
+      align-items: flex-start;
+      gap: var(--space-3);
+    }
+
+    &__icon {
+      inline-size: 1.25rem;
+      block-size: 1.25rem;
+      flex: 0 0 auto;
+      margin-block-start: .125rem;
+    }
+
+    &__content {
+      min-inline-size: 0;
+    }
+
+    &__title {
+      display: block;
+      font-weight: var(--fw-semibold);
+    }
+
+    &__content > :not(:first-child) {
+      margin-block-start: var(--space-1);
+    }
+
+    // A recovery step and a way to close. Actions wrap under the text on narrow screens.
+    &:has(> .tg-notice__actions) { flex-wrap: wrap; }
+    &:has(> .tg-notice__actions) > .tg-notice__content { flex: 1 1 16rem; }
+    &__actions {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: var(--space-2);
+      margin-inline-start: auto;
+    }
+    &__dismiss {
+      flex: 0 0 auto;
+      margin-block: calc(var(--space-2) * -1);
+      margin-inline-end: calc(var(--space-2) * -1);
+    }
+  }
+
+  .tg-progress {
+    display: block;
+    inline-size: 100%;
+    block-size: .825rem;
+    appearance: none;
+    border: 0;
+    border-radius: var(--radius-pill);
+    background: var(--progress-track-color);
+    overflow: hidden;
+    color: var(--progress-color);
+
+    &::-webkit-progress-bar {
+      background: var(--progress-track-color);
+      border-radius: inherit;
+    }
+
+    &::-webkit-progress-value {
+      background: var(--progress-color);
+      border-radius: inherit;
+    }
+
+    &::-moz-progress-bar {
+      background: var(--progress-color);
+      border-radius: inherit;
+    }
+
+    &__bar {
+      display: block;
+      inline-size: 100%;
+      block-size: 100%;
+      background: var(--progress-color);
+      border-radius: inherit;
+      transform: scaleX(clamp(0%, var(--progress, 0%), 100%));
+      transform-origin: left center;
+      transition: transform var(--progress-duration);
+    }
+
+    &:dir(rtl) &__bar {
+      transform-origin: right center;
+    }
+
+    // A failed or over-quota bar keeps the same shape in the danger role.
+    &--destructive { --progress-color: var(--danger-main); }
+
+    &--striped {
+      & .tg-progress__bar {
+        position: relative;
+        overflow: hidden;
+      }
+
+      & .tg-progress__bar::after {
+        content: '';
+        position: absolute;
+        inset: calc(var(--progress-stripe-blur) * -1.5);
+        pointer-events: none;
+        background: repeating-linear-gradient(45deg, var(--progress-stripe-color) 0 10px, transparent 10px var(--progress-stripe-size));
+        background-size: var(--progress-stripe-size) var(--progress-stripe-size);
+        filter: blur(var(--progress-stripe-blur));
+        animation: tg-stripes var(--progress-stripe-speed) linear infinite;
+      }
+    }
+  }
+
+  @keyframes tg-stripes {
+    to {
+      background-position: calc(var(--progress-stripe-size) * -1) 0;
+    }
+  }
+
+  .tg-spinner {
+    display: inline-block;
+    inline-size: 1.25em;
+    block-size: 1.25em;
+    border: 2px solid currentColor;
+    border-inline-end-color: transparent;
+    border-radius: 50%;
+    animation: tg-spin .8s linear infinite;
+    vertical-align: middle;
+
+    &--lg {
+      inline-size: 4rem;
+      block-size: 4rem;
+      border: 6px solid var(--spinner-track-color);
+      border-block-start-color: var(--spinner-color);
+    }
+  }
+
+  @keyframes tg-spin {
+    to {
+      transform: rotate(1turn);
+    }
+  }
+
+  .tg-toast {
+    position: fixed;
+    inset-inline: var(--space-4);
+    margin-inline: auto;
+    inset-block-end: calc(var(--space-5) + var(--safe-area-bottom));
+    z-index: var(--z-toast);
+    inline-size: fit-content;
+    overflow-wrap: anywhere;
+    max-inline-size: calc(100% - var(--space-8));
+    padding: var(--space-3) var(--space-5);
+    border: var(--border);
+    border-radius: var(--radius);
+    background: var(--section-bg-color);
+    --ring-bg: var(--section-bg-color);
+    color: var(--text-color);
+    box-shadow: var(--shadow-overlay);
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(.5rem);
+    pointer-events: none;
+    transition: opacity var(--duration-fade-out) var(--ease), transform var(--duration-fast) var(--ease), visibility 0s linear var(--duration-fade-out);
+
+    &--show {
+      opacity: 1;
+      visibility: visible;
+      transform: none;
+      pointer-events: auto;
+      transition: opacity var(--duration-fade-in) var(--ease), transform var(--duration) var(--ease), visibility 0s;
+    }
+  }
+
+  .tg-snackbar {
+    position: fixed;
+    inset-block-start: env(safe-area-inset-top, 0px);
+    inset-inline: 0;
+    z-index: var(--z-toast);
+    padding: var(--space-3);
+    visibility: hidden;
+    opacity: 0;
+    transform: translateY(-100%);
+    transition: opacity var(--duration-fade-out) var(--ease), transform var(--duration-fast) var(--ease), visibility 0s linear var(--duration-fade-out);
+    pointer-events: none;
+
+    &--show {
+      visibility: visible;
+      opacity: 1;
+      transform: none;
+      transition: opacity var(--duration-fade-in) var(--ease), transform var(--duration) var(--ease), visibility 0s;
+    }
+
+    &__content {
+      max-inline-size: 40rem;
+      margin-inline: auto;
+      overflow-wrap: anywhere;
+    }
+  }
+
+  dialog.tg-modal {
+    inline-size: min(40rem, calc(100% - var(--space-8)));
+    max-block-size: calc(100dvh - var(--space-8));
+    padding: 0;
+    border: var(--border);
+    border-radius: var(--radius-lg);
+    background: var(--section-bg-color);
+    --ring-bg: var(--section-bg-color);
+    color: var(--text-color);
+    box-shadow: var(--shadow-overlay);
+    overflow: auto;
+    overscroll-behavior: contain;
+
+    &::backdrop {
+      background: var(--overlay-bg);
+      backdrop-filter: blur(4px);
+    }
+
+    &[open] {
+      animation: tg-pop var(--duration) var(--ease);
+    }
+  }
+
+  .tg-modal {
+    &__sheet {
+      padding: var(--space-5);
+    }
+
+    &__header {
+      display: flex;
+      align-items: start;
+      justify-content: space-between;
+      gap: var(--space-4);
+      margin-block-end: var(--space-4);
+    }
+
+    &__footer {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: end;
+      gap: var(--space-2);
+      margin-block-start: var(--space-5);
+    }
+  }
+
+  // Long content scrolls inside the dialog while its header and actions stay put.
+  .tg-modal__sheet:has(> .tg-modal__body) {
+    display: flex;
+    flex-direction: column;
+    max-block-size: inherit;
+    padding-block: var(--space-5) 0;
+    > .tg-modal__header, > .tg-modal__footer { flex: 0 0 auto; }
+    > .tg-modal__footer { margin-block-start: 0; padding-block: var(--space-4) var(--space-5); border-block-start: var(--border); }
+  }
+  dialog.tg-modal:has(> .tg-modal__sheet > .tg-modal__body) { overflow: hidden; }
+  .tg-modal__body {
+    flex: 1 1 auto;
+    min-block-size: 0;
+    margin-inline: calc(var(--space-5) * -1);
+    padding: 0 var(--space-5) var(--space-5);
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    &:focus-visible { outline: 2px solid var(--text-link); outline-offset: -2px; }
+  }
+
+  // A panel along the inline end: details, filters, a profile.
+  dialog.tg-modal--side {
+    inline-size: min(28rem, 100%);
+    block-size: 100dvh;
+    max-block-size: 100dvh;
+    margin: 0;
+    margin-inline-start: auto;
+    border-block: 0;
+    border-inline-end: 0;
+    border-radius: 0;
+    border-start-start-radius: var(--radius-lg);
+    border-end-start-radius: var(--radius-lg);
+    &[open] { animation: tg-slide-in var(--duration) var(--ease); }
+    &:dir(rtl)[open] { --tg-slide-from: -1rem; }
+    > .tg-modal__sheet { block-size: 100%; }
+  }
+  @keyframes tg-slide-in {
+    from { opacity: 0; transform: translateX(var(--tg-slide-from, 1rem)); }
+    to { opacity: 1; transform: none; }
+  }
+
+  @keyframes tg-pop {
+    from {
+      opacity: 0;
+      transform: translateY(.5rem);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+
+  @media (max-width: 36rem) {
+    dialog.tg-modal--sheet {
+      inline-size: 100%;
+      max-block-size: 90dvh;
+      margin: auto 0 0;
+      border-end-start-radius: 0;
+      border-end-end-radius: 0;
+    }
+
+    .tg-modal--sheet .tg-modal__sheet {
+      padding-block-end: calc(var(--space-5) + var(--safe-area-bottom));
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .tg-progress--striped .tg-progress__bar::after, .tg-spinner {
+      animation: none;
+    }
+
+    // No travel, but the dialog still fades in so its arrival is legible.
+    dialog.tg-modal[open], dialog.tg-modal--side[open] {
+      animation: tg-fade-in var(--duration-fade-in) var(--ease);
+    }
+  }
+
+  @keyframes tg-fade-in {
+    from { opacity: 0; }
+  }
+}

@@ -41,6 +41,9 @@
     --icon-mask-check: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M20 6 9 17l-5-5'/%3E%3C/svg%3E");
     --icon-mask-star: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23000'%3E%3Cpath d='M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z'/%3E%3C/svg%3E");
     --icon-mask-chevron-right: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m9 18 6-6-6-6'/%3E%3C/svg%3E");
+    // A picture, not a mask, for places that cannot take a mask (a range thumb): drawn in
+    // the text colour on an action fill (--button-text-color, white).
+    --icon-chevron-right-on-action: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23fff' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m9 18 6-6-6-6'/%3E%3C/svg%3E");
     --icon-mask-chevron-down: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
     --switch-knob-color: #fff;
     --avatar-initials-color: var(--text-color);
@@ -151,6 +154,9 @@
     --switch-border-color: var(--action-border-color);
     --notice-danger-bg: var(--danger-soft);
     --surface-bg: var(--section-color);
+    // The background a ring cuts out of (range thumb, avatar group). On the page it is the
+    // page; every surface sets it to its own fill, so rings match what is under them.
+    --ring-bg: var(--background-main);
     --surface-muted: var(--secondary-bg-color);
     --overlay-bg: rgb(0 0 0 / .66);
     --overlay-text: #fff;

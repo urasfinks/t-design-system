@@ -112,7 +112,7 @@
     > .tg-avatar {
       padding: 0;
       border-width: 0;
-      > :is(.tg-avatar__initials, .tg-avatar__clip) { box-shadow: 0 0 0 2px var(--avatar-group-ring, var(--surface-bg)); }
+      > :is(.tg-avatar__initials, .tg-avatar__clip) { box-shadow: 0 0 0 2px var(--avatar-group-ring, var(--ring-bg)); }
       & + .tg-avatar { margin-inline-start: calc(var(--icon-avatar) * -.25); }
     }
   }
@@ -122,7 +122,7 @@
     font-size: var(--fs-xs);
     font-weight: var(--fw-semibold);
     font-variant-numeric: tabular-nums;
-    box-shadow: 0 0 0 2px var(--avatar-group-ring, var(--surface-bg));
+    box-shadow: 0 0 0 2px var(--avatar-group-ring, var(--ring-bg));
   }
 
   // The outline marks an avatar the reader can act on (select, open a profile).
