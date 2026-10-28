@@ -66,20 +66,20 @@ try {
       const pick = selector => ratio(document.querySelector(selector));
       return {
         actions: ['#selection .tg-chip[aria-pressed="false"]', '#selection a.tg-badge', '#avatars button.tg-avatar[aria-checked="false"]'].map(s => [s, pick(s)]),
-        // Secondary and icon buttons are told apart by their fill, not an outline.
-        filled: ['#buttons .tg-btn--secondary', '#buttons .tg-icon-btn:not(.tg-icon-btn--ghost)'].map(s => { const el = document.querySelector(s), cs = getComputedStyle(el); return [s, cs.borderTopColor, rgba(cs.backgroundColor)[3]]; }),
+        // Secondary and icon buttons: the fill carries the shape, a barely visible outline marks the edge.
+        filled: ['#buttons .tg-btn--secondary', '#buttons .tg-icon-btn:not(.tg-icon-btn--ghost)'].map(s => { const el = document.querySelector(s), cs = getComputedStyle(el); return [s, rgba(cs.borderTopColor)[3], rgba(cs.backgroundColor)[3]]; }),
         panels: ['#surfaces .tg-card', '#lists .tg-list', '#feedback .tg-notice'].map(s => [s, pick(s)]),
       };
     });
     for (const [selector, value] of outlines.actions) { assert.ok(value >= 1.5, `${theme}: action outline ${selector} ${value.toFixed(2)}:1 ≥ 1.5`); checks++; }
-    for (const [selector, border, fill] of outlines.filled) { assert.ok(border === 'rgba(0, 0, 0, 0)' && fill > 0, `${theme}: ${selector} has a fill and no outline (${border}, alpha ${fill})`); checks++; }
+    for (const [selector, border, fill] of outlines.filled) { assert.ok(border > 0 && border <= .05 && fill > 0, `${theme}: ${selector} has a fill and a barely visible outline (alpha ${border.toFixed(3)})`); checks++; }
     for (const [selector, value] of outlines.panels) { assert.ok(value <= 1.35, `${theme}: panel outline ${selector} ${value.toFixed(2)}:1 stays quiet`); checks++; }
     assert.ok(report.staticBadges.length >= 5 && report.actionBadges.length >= 1 && report.chips.length >= 3 && report.actionAvatars.length >= 2 && report.linkRows.length >= 3);
   }
 
   // With a contrast preference the button outline comes back.
   await page.emulateMedia({ contrast: 'more' });
-  assert.notEqual(await page.locator('#buttons .tg-btn--secondary').first().evaluate(el => getComputedStyle(el).borderTopColor), 'rgba(0, 0, 0, 0)', 'prefers-contrast: more restores the secondary outline');
+  assert.ok(await page.locator('#buttons .tg-btn--secondary').first().evaluate(el => { const c = getComputedStyle(el).borderTopColor.match(/[\d.]+/g).map(Number); return (c[3] ?? 1) >= .2; }), 'prefers-contrast: more makes the secondary outline a full action outline');
   await page.emulateMedia({ contrast: 'no-preference' });
   checks++;
 

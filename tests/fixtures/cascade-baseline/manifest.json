@@ -2,7 +2,7 @@
   "sourceCommit": "a767356+catalog-workspace-components",
   "description": "Reviewed visual reference after adding the cascade-built workspace components to the catalog, 2026-10-27. Before the update, the previous catalog markup rendered pixel-identically with the new CSS (27 comparisons). Since the full component implementation, the reference also stores the catalog markup of that moment: tests render this saved markup, so new catalog examples do not require a new reference. 2026-10-28: the reference CSS was refreshed once for a fix — closed popover menus kept display:grid with opacity 0 and occupied layout (page overflow at 200% text); only the closed menus of the saved catalog changed computed style, no pixels.",
   "files": {
-    "t-design-system.css": "2095179c660125217d7f9596b0b9f7ee972489025b3b552b97868864e4a68b33",
+    "t-design-system.css": "c2b939d89c8c1d2f2cce86e5c318dae82167aeefd2de618d7285e6a6c3e4d592",
     "catalog.css": "f81d4971616c630eb6fbe5eb9bfee8115566fdd29553954e271ef08c61b1b2aa",
     "index.html": "48b48910dc72de13dc24e1574dc96403027acd439a018b168563b5ddae99a3fa"
   }

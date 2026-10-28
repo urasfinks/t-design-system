@@ -22,6 +22,7 @@ try {
   check('M15 a key uses the mono family token', (await css(key, 'font-family')).includes(await page.evaluate(() => getComputedStyle(document.documentElement).getPropertyValue('--font-family-mono').split(',')[0].trim())));
   check('M15 a key is at least 1.5em wide', (await box(key)).width >= (await px(key, 'font-size')) * 1.5 - .5);
   check('M15 a key never wraps', await css(key, 'white-space') === 'nowrap');
+  check('M15 a key has an even edge, no heavier bottom', await css(key, 'border-bottom-width') === await css(key, 'border-top-width'));
   check('M15 a combination draws each key, not the wrapper', await css(`${ex('M15')} .tg-kbd:has(> kbd)`, 'border-top-width') === '0px' && await css(`${ex('M15')} .tg-kbd > kbd`, 'border-top-width') === '1px');
   await contrast(`${ex('M15')} .tg-kbd > kbd`, 'M15 key');
 

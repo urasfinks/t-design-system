@@ -130,7 +130,7 @@
     --border-field: 1px solid var(--field-border-color);
     --action-border-color: light-dark(rgba(0, 0, 0, .24), rgba(255, 255, 255, .24));
     --border-action: 1px solid var(--action-border-color);
-    --button-border-color: transparent;
+    --button-border-color: light-dark(rgba(0, 0, 0, .04), rgba(255, 255, 255, .02));
     --switch-track-color: var(--field-bg);
     --switch-border-color: transparent;
     --notice-danger-bg: var(--danger-soft);
@@ -5045,7 +5045,6 @@
     min-inline-size: 1.5em;
     padding: 0.125em 0.4em;
     border: 1px solid var(--border-subtle-color);
-    border-block-end-width: 2px;
     border-radius: var(--radius-xs);
     background: var(--background-muted);
     color: var(--text-color);
@@ -5071,7 +5070,6 @@
     min-inline-size: 1.5em;
     padding: 0.125em 0.4em;
     border: 1px solid var(--border-subtle-color);
-    border-block-end-width: 2px;
     border-radius: var(--radius-xs);
     background: var(--background-muted);
     color: var(--text-color);
