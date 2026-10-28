@@ -60,7 +60,7 @@ separates content from the page and is outside this rule.
 | Filter | — | `button.tg-chip[aria-pressed]` — outline; pressed filters are filled |
 | Avatar | `span.tg-avatar` — a picture of a person | `button.tg-avatar` / `a.tg-avatar` — outline; selected gets the accent ring |
 | List row | `div.tg-list-item` — data, no hover | `a.tg-list-item[href]`, `button.tg-list-item` — full-width target, hover, focus, trailing chevron |
-| Button | — | secondary and icon buttons are outlined; primary and destructive are filled; ghost relies on text colour and context |
+| Button | — | secondary and icon buttons are tonal: a quiet fill, no outline (it returns with `prefers-contrast: more`); primary and destructive are filled; ghost relies on text colour and context |
 
 The action outline is its own token, `--action-border-color` (24% black or
 white, about 1.7:1 against the stage), so it reads as stronger than the 8% panel

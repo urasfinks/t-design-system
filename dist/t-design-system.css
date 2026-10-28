@@ -130,6 +130,7 @@
     --border-field: 1px solid var(--field-border-color);
     --action-border-color: light-dark(rgba(0, 0, 0, .24), rgba(255, 255, 255, .24));
     --border-action: 1px solid var(--action-border-color);
+    --button-border-color: transparent;
     --switch-track-color: var(--field-bg);
     --switch-border-color: transparent;
     --notice-danger-bg: var(--danger-soft);
@@ -145,6 +146,7 @@
       --field-border-color: var(--control-border-color);
       --switch-border-color: var(--control-border-color);
       --action-border-color: var(--control-border-color);
+      --button-border-color: var(--action-border-color);
     }
   }
 }
@@ -431,7 +433,7 @@
     border-radius: var(--radius-control);
   }
   .tg-btn--secondary {
-    border: var(--border-action);
+    border-color: var(--button-border-color);
   }
   .tg-btn--ghost {
     --control-idle-bg: transparent;
@@ -468,7 +470,7 @@
   .tg-icon-btn {
     min-inline-size: var(--control-h);
     padding-inline: var(--space-2);
-    border: var(--border-action);
+    border-color: var(--button-border-color);
     border-radius: var(--radius-control);
   }
   .tg-btn--pill, .tg-icon-btn--pill {
@@ -567,15 +569,8 @@
   :is(.tg-btn-group--attached, .tg-split-btn) > :is(.tg-btn--secondary, .tg-icon-btn:not(.tg-icon-btn--primary, .tg-icon-btn--ghost), .tg-select, .tg-input) + :is(.tg-btn--secondary, .tg-icon-btn:not(.tg-icon-btn--primary, .tg-icon-btn--ghost), .tg-select, .tg-input) {
     margin-inline-start: -1px;
   }
-  .tg-split-btn > .tg-split-btn__main {
-    min-inline-size: 0;
-  }
-  .tg-split-btn > .tg-split-btn__menu {
-    inline-size: auto;
-    min-inline-size: var(--control-h);
-    padding-inline: var(--space-3);
-  }
-  .tg-split-btn > :is(.tg-btn--primary, .tg-icon-btn--primary, .tg-btn--destructive) + :is(.tg-btn--primary, .tg-icon-btn--primary, .tg-btn--destructive)::before {
+  :is(.tg-btn-group--attached, .tg-split-btn) > :is(.tg-btn--secondary, .tg-icon-btn:not(.tg-icon-btn--primary, .tg-icon-btn--ghost), .tg-select, .tg-input) + :is(.tg-btn--secondary, .tg-icon-btn:not(.tg-icon-btn--primary, .tg-icon-btn--ghost))::before,
+  :is(.tg-btn-group--attached, .tg-split-btn) > :is(.tg-btn--primary, .tg-icon-btn--primary, .tg-btn--destructive) + :is(.tg-btn--primary, .tg-icon-btn--primary, .tg-btn--destructive)::before {
     content: "";
     position: absolute;
     inset-block: 25%;
@@ -583,6 +578,14 @@
     inline-size: 1px;
     background: currentColor;
     opacity: 0.32;
+  }
+  .tg-split-btn > .tg-split-btn__main {
+    min-inline-size: 0;
+  }
+  .tg-split-btn > .tg-split-btn__menu {
+    inline-size: auto;
+    min-inline-size: var(--control-h);
+    padding-inline: var(--space-3);
   }
   @media (max-width: 22.5rem) {
     .tg-btn-group--attached {
@@ -604,6 +607,12 @@
     .tg-btn-group--attached > :last-child {
       border-end-start-radius: var(--radius-control);
       border-end-end-radius: var(--radius-control);
+    }
+    .tg-btn-group--attached > *::before {
+      inset-block: 0 auto;
+      inset-inline: 25%;
+      inline-size: auto;
+      block-size: 1px;
     }
   }
 }

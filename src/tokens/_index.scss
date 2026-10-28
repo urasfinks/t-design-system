@@ -139,6 +139,9 @@
     // stronger than the 8% panel outline (about 1.7:1 against the stage).
     --action-border-color: light-dark(rgba(0, 0, 0, .24), rgba(255, 255, 255, .24));
     --border-action: 1px solid var(--action-border-color);
+    // Secondary and icon buttons are told apart by their fill alone; the outline returns
+    // only for a contrast preference. The 1px transparent border keeps the size.
+    --button-border-color: transparent;
     --switch-track-color: var(--field-bg);
     --switch-border-color: transparent;
     --notice-danger-bg: var(--danger-soft);
@@ -154,6 +157,7 @@
       --field-border-color: var(--control-border-color);
       --switch-border-color: var(--control-border-color);
       --action-border-color: var(--control-border-color);
+      --button-border-color: var(--action-border-color);
     }
   }
 }

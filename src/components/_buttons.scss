@@ -46,7 +46,7 @@
     padding-inline: var(--space-4);
     border-radius: var(--radius-control);
 
-    &--secondary { border: var(--border-action); }
+    &--secondary { border-color: var(--button-border-color); }
     &--ghost {
       --control-idle-bg: transparent;
       --control-hover-bg: transparent;
@@ -68,7 +68,7 @@
   .tg-icon-btn {
     min-inline-size: var(--control-h);
     padding-inline: var(--space-2);
-    border: var(--border-action);
+    border-color: var(--button-border-color);
     border-radius: var(--radius-control);
   }
   .tg-btn--pill, .tg-icon-btn--pill { border-radius: var(--radius-pill); }
@@ -148,15 +148,9 @@
     > :is(.tg-btn--secondary, .tg-icon-btn:not(.tg-icon-btn--primary, .tg-icon-btn--ghost), .tg-select, .tg-input) + :is(.tg-btn--secondary, .tg-icon-btn:not(.tg-icon-btn--primary, .tg-icon-btn--ghost), .tg-select, .tg-input) {
       margin-inline-start: -1px;
     }
-  }
-  // Filled parts are divided by a hairline of the text colour on the fill.
-  .tg-split-btn {
-    > .tg-split-btn__main { min-inline-size: 0; }
-    > .tg-split-btn__menu {
-      inline-size: auto;
-      min-inline-size: var(--control-h);
-      padding-inline: var(--space-3);
-    }
+    // Filled neighbours (secondary on secondary, primary on primary) are divided by a
+    // hairline of the text colour on the fill.
+    > :is(.tg-btn--secondary, .tg-icon-btn:not(.tg-icon-btn--primary, .tg-icon-btn--ghost), .tg-select, .tg-input) + :is(.tg-btn--secondary, .tg-icon-btn:not(.tg-icon-btn--primary, .tg-icon-btn--ghost))::before,
     > :is(.tg-btn--primary, .tg-icon-btn--primary, .tg-btn--destructive) + :is(.tg-btn--primary, .tg-icon-btn--primary, .tg-btn--destructive)::before {
       content: '';
       position: absolute;
@@ -165,6 +159,14 @@
       inline-size: 1px;
       background: currentColor;
       opacity: .32;
+    }
+  }
+  .tg-split-btn {
+    > .tg-split-btn__main { min-inline-size: 0; }
+    > .tg-split-btn__menu {
+      inline-size: auto;
+      min-inline-size: var(--control-h);
+      padding-inline: var(--space-3);
     }
   }
   @media (max-width: 22.5rem) {
@@ -176,6 +178,8 @@
       > :not(:first-child), > :not(:last-child) { border-radius: 0; }
       > :first-child { border-start-start-radius: var(--radius-control); border-start-end-radius: var(--radius-control); }
       > :last-child { border-end-start-radius: var(--radius-control); border-end-end-radius: var(--radius-control); }
+      // Stacked parts: the hairline turns horizontal.
+      > *::before { inset-block: 0 auto; inset-inline: 25%; inline-size: auto; block-size: 1px; }
     }
   }
 }
