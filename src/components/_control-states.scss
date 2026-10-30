@@ -1,7 +1,7 @@
 @use '../themes';
 
 // Loaded by base before components. Owners declare only their resting/hover roles.
-$controls: ":is(button[class*='tg-'], .tg-btn, .tg-icon-btn, .tg-chip, .tg-tab, .tg-dot, .tg-tabbar__item, a[href][class*='tg-'], summary[class*='tg-'], [role='button'][class*='tg-'], a.tg-badge[href], a.tg-list-item[href], a.tg-menu__item[href], a.tg-pager__link[href], a.tg-site-nav__link[href], .tg-disclosure__trigger, .tg-bottom-panel__header, .tg-bottom-panel__trigger, .tg-segmented__item, a.tg-sidebar__link[href], summary.tg-sidebar__link, a.tg-nav-menu__link[href], a.tg-nav-menu__top[href], .tg-command__item, .tg-listbox__option, .tg-check, .tg-radio):not(.tg-switch, [role='switch'])";
+$controls: ":is(button[class*='tg-'], .tg-btn, .tg-icon-btn, .tg-chip, .tg-tab, .tg-dot, .tg-tabbar__item, a.tg-badge[href], a.tg-list-item[href], a.tg-menu__item[href], a.tg-pager__link[href], a.tg-site-nav__link[href], .tg-disclosure__trigger, .tg-bottom-panel__header, .tg-bottom-panel__trigger, .tg-segmented__item, a.tg-sidebar__link[href], summary.tg-sidebar__link, a.tg-nav-menu__link[href], a.tg-nav-menu__top[href], .tg-command__item, .tg-listbox__option, .tg-check, .tg-radio):not(.tg-switch, [role='switch'])";
 $available: ":not([inert]):where(:not(:disabled, [disabled], [aria-disabled='true'], [disabled] *, [aria-disabled='true'] *, [inert] *))";
 // Buttons without a container: ghosts and actions inside a field (clear a search, remove a
 // tag). No fill at rest or on hover; hover and press change the colour only.
@@ -13,8 +13,6 @@ $ghosts: ':is(.tg-btn--ghost, .tg-icon-btn--ghost, .tg-search__clear, .tg-tag-in
     --control-hover-bg: var(--surface-muted);
   }
   #{$controls} {
-    // Action boundary is owned here, independently of fill and selection.
-    border: var(--border-action);
     touch-action: manipulation;
     // Owners may make paint instant (menu rows follow the keyboard) without redefining the engine.
     transition: background-color var(--control-paint-duration, var(--duration)) var(--ease), color var(--control-paint-duration, var(--duration)) var(--ease),
@@ -27,7 +25,8 @@ $ghosts: ':is(.tg-btn--ghost, .tg-icon-btn--ghost, .tg-search__clear, .tg-tag-in
     --control-idle-bg: transparent;
     --control-hover-bg: transparent;
     --control-hover-filter: none;
-    // Transparent fill still represents an action: keep the shared boundary.
+    // No container, so no outline either; the 1px stays so sizes match.
+    border-color: transparent;
   }
   #{$ghosts} {
     &#{$available}:is(:active, [data-pressed='true']) {

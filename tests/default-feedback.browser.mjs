@@ -32,7 +32,7 @@ try {
     await page.locator('#dynamic-feedback').click();
     assert.equal(await page.locator('#dynamic-feedback .tg-ripple__wave, #dynamic-feedback .tg-feedback-layer').count(), 0, `${classes}: no pointer ripple`);
   }
-  assert.ok(await page.locator('#dynamic-feedback').evaluate(el => { const s = getComputedStyle(el); return parseFloat(s.borderTopWidth) >= 1 && s.borderTopColor !== 'rgba(0, 0, 0, 0)'; }), 'a ghost icon button keeps its action outline');
+  assert.equal(await page.locator('#dynamic-feedback').evaluate(el => getComputedStyle(el).borderTopColor), 'rgba(0, 0, 0, 0)', 'a ghost icon button draws no outline');
   await page.locator('#interactive-avatar').click();
   assert.equal(await page.locator('#interactive-avatar .tg-feedback-layer').count(), 1);
   assert.notEqual(await page.locator('#interactive-avatar').evaluate(el => getComputedStyle(el).overflow), 'hidden', 'badge and focus are not clipped');

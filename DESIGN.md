@@ -55,13 +55,13 @@ On small elements an outline means “you can act on this”. Panels — cards,
 lists, tables, notices, fieldsets, disclosures — keep their own outline: it
 separates content from the page and is outside this rule.
 
-| Element | Information (no outline) | Action (outline in every state) |
+| Element | Information (no outline) | Action (outline, or fill when selected) |
 | --- | --- | --- |
 | Badge | `span.tg-badge` — a status or counter | `a.tg-badge[href]`, `button.tg-badge` — outline, 44 px target, focus |
 | Filter | — | `button.tg-chip[aria-pressed]` — outline; pressed filters are filled |
 | Avatar | `span.tg-avatar` — a picture of a person | `button.tg-avatar` / `a.tg-avatar` — outline; selected gets the accent ring |
 | List row | `div.tg-list-item` — data, no hover | `a.tg-list-item[href]`, `button.tg-list-item` — full-width target, hover, focus, trailing chevron |
-| Button | — | secondary and icon buttons are tonal: a quiet fill with the one action outline every clickable element shares (24% in every theme; full with `prefers-contrast: more`); primary and destructive are filled; ghost has transparent fill and retains the shared outline |
+| Button | — | secondary and icon buttons are tonal: a quiet fill with the one action outline every clickable element shares (4% light, 2% dark; full with `prefers-contrast: more`); primary and destructive are filled; ghost relies on text colour and context |
 
 The action outline is its own token, `--action-border-color` (24% black or
 white, about 1.7:1 against the stage), so it reads as stronger than the 8% panel
@@ -168,8 +168,8 @@ secondary or destructive modifiers. In badge compositions, an outline signals
 interaction; use a semantic button/link for the actual action. The “Пространство”
 label uses the neutral secondary modifier; “Новый проект” uses the accent primary
 modifier. Both are borderless.
-The base badge is borderless too; a badge that is a link or button, or is inside an action,
-(`a.tg-badge[href]`, `button.tg-badge`, nested badge) gets an outline (see Outline semantics). Direct avatar
+The base badge is borderless too; only a badge that is a link or button
+(`a.tg-badge[href]`, `button.tg-badge`) gets an outline (see Outline semantics). Direct avatar
 badge children retain a surface-separation border and shadow for overlapping
 geometry. Quantity overlays use the secondary badge.
 `tg-avatar--outlined` keeps the filled initials circle and a single neutral outer

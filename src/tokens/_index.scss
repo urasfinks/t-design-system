@@ -144,9 +144,9 @@
     // field) draws the field's outline, so the whole joined control has one edge.
     --group-border-color: var(--field-border-color);
     // One outline for everything the reader can act on: buttons of every variant, filters,
-    // link badges, avatar buttons. The outline stays visible for every variant; the fill and content
-    // retain their semantic meaning. A contrast preference makes it a full outline.
-    --action-border-color: light-dark(rgba(0, 0, 0, .24), rgba(255, 255, 255, .24));
+    // link badges, avatar buttons. It is barely there: the fill or the content carries the
+    // shape, the hairline marks the edge. A contrast preference makes it a full outline.
+    --action-border-color: light-dark(rgba(0, 0, 0, .04), rgba(255, 255, 255, .02));
     --border-action: 1px solid var(--action-border-color);
     // Panels the reader can act on (interactive card, choice card) answer hover with a
     // stronger edge than their resting 8% outline.

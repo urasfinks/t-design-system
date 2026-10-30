@@ -51,7 +51,7 @@
 @mixin filled {
   --control-idle-bg: var(--action-bg);
   --control-color: var(--button-text-color);
-  border-color: var(--action-border-color);
+  border-color: transparent;
 }
 
 // Accent ring without a size change: the 1px border plus a 1px outer shadow read as 2px.
