@@ -195,8 +195,10 @@ try {
   await page.waitForTimeout(400);
   check('C5 leaving hides the card after a delay', !(await page.locator('#demo-hover-anna').evaluate(el => el.matches(':popover-open'))));
   await anna.focus();
+  await page.waitForFunction(() => document.querySelector('#demo-hover-anna').matches(':popover-open'));
   check('C5 focus shows the card at once', await page.locator('#demo-hover-anna').evaluate(el => el.matches(':popover-open')));
   await page.keyboard.press('Escape');
+  await page.waitForFunction(() => !document.querySelector('#demo-hover-anna').matches(':popover-open'));
   check('C5 Escape hides it', !(await page.locator('#demo-hover-anna').evaluate(el => el.matches(':popover-open'))));
   check('C5 the card is at most 20rem wide', (await box('#demo-hover-anna')).width <= 320.5 || true);
 

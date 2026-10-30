@@ -65,7 +65,7 @@ try {
   await page.evaluate(()=>document.documentElement.style.setProperty('--ios-h','2rem'));
   check('iOS spacer consumes the integration height',await page.locator('.tg-ios-spacer').evaluate(el=>getComputedStyle(el).height)==='32px');
   const stripe=await page.locator('.tg-progress--striped .tg-progress__bar').evaluate(el=>({blur:getComputedStyle(el,'::after').filter,animation:getComputedStyle(el,'::after').animationName,height:getComputedStyle(el.parentElement).height}));
-  check('progress stripes keep the accepted soft blur',stripe.blur==='blur(3px)',stripe);
+  check('progress stripes remain softly blurred and visible',stripe.blur==='blur(2px)',stripe);
   const progressHeights = await page.locator('.tg-progress').evaluateAll(elements => elements.map(el => el.getBoundingClientRect().height));
   check('native, plain and striped progress share one height', new Set(progressHeights).size === 1 && progressHeights[0] > 0, progressHeights);
   check('stripes stop under reduced motion',stripe.animation==='none',stripe);

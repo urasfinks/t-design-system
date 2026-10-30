@@ -63,11 +63,12 @@
     --z-sticky: 20;
     --z-overlay: 100;
     --z-toast: 120;
+    --progress-height: .875rem;
     --progress-duration: 1s;
-    --progress-stripe-speed: 1s;
+    --progress-stripe-speed: .8s;
     --progress-stripe-size: 1.5rem;
-    --progress-stripe-blur: 3px;
-    --progress-stripe-color: rgb(255 255 255 / .12);
+    --progress-stripe-blur: 2px;
+    --progress-stripe-color: rgb(255 255 255 / .32);
     --safe-area-bottom: env(safe-area-inset-bottom, 0px);
     --ios-h: 0px;
     --border-color: light-dark(rgba(0, 0, 0, .08), rgba(255, 255, 255, .08));
@@ -117,7 +118,7 @@
     --destructive-text-color-transparent: var(--danger-strong);
     --section-bg-color-transparent: var(--background-panel);
     --text-link: var(--accent-readable);
-    --progress-color: var(--accent-readable);
+    --progress-color: var(--accent-main);
     --progress-track-color: var(--background-muted);
     --text-danger: var(--danger-readable);
     --action-bg: var(--accent-strong);
@@ -2321,7 +2322,7 @@
   .tg-progress {
     display: block;
     inline-size: 100%;
-    block-size: 0.825rem;
+    block-size: var(--progress-height);
     appearance: none;
     border: 0;
     border-radius: var(--radius-pill);
@@ -2331,28 +2332,27 @@
   }
   .tg-progress::-webkit-progress-bar {
     background: var(--progress-track-color);
-    border-radius: inherit;
+    border-radius: var(--radius-pill);
   }
   .tg-progress::-webkit-progress-value {
     background: var(--progress-color);
-    border-radius: inherit;
+    border-radius: var(--radius-pill);
   }
   .tg-progress::-moz-progress-bar {
     background: var(--progress-color);
-    border-radius: inherit;
+    border-radius: var(--radius-pill);
   }
   .tg-progress__bar {
     display: block;
     inline-size: 100%;
     block-size: 100%;
     background: var(--progress-color);
-    border-radius: inherit;
-    transform: scaleX(clamp(0%, var(--progress, 0%), 100%));
-    transform-origin: left center;
-    transition: transform var(--progress-duration);
+    border-radius: 0;
+    clip-path: inset(0 calc(100% - clamp(0%, var(--progress, 0%), 100%)) 0 0 round var(--radius-pill));
+    transition: clip-path var(--progress-duration);
   }
   .tg-progress:dir(rtl) .tg-progress__bar {
-    transform-origin: right center;
+    clip-path: inset(0 0 0 calc(100% - clamp(0%, var(--progress, 0%), 100%)) round var(--radius-pill));
   }
   .tg-progress--destructive {
     --progress-color: var(--danger-main);
@@ -2364,9 +2364,9 @@
   .tg-progress--striped .tg-progress__bar::after {
     content: "";
     position: absolute;
-    inset: calc(var(--progress-stripe-blur) * -1.5);
+    inset: 0;
     pointer-events: none;
-    background: repeating-linear-gradient(45deg, var(--progress-stripe-color) 0 10px, transparent 10px var(--progress-stripe-size));
+    background: linear-gradient(45deg, var(--progress-stripe-color) 25%, transparent 25%, transparent 50%, var(--progress-stripe-color) 50%, var(--progress-stripe-color) 75%, transparent 75%);
     background-size: var(--progress-stripe-size) var(--progress-stripe-size);
     filter: blur(var(--progress-stripe-blur));
     animation: tg-stripes var(--progress-stripe-speed) linear infinite;
@@ -5450,11 +5450,10 @@
     font-variant-numeric: tabular-nums;
   }
   .tg-timeline__item > .tg-timeline__time {
-    line-height: 1.35;
-    text-box: trim-start cap alphabetic;
-  }
-  .tg-timeline__item > .tg-timeline__time {
     grid-row: 1;
+    align-self: center;
+    line-height: 1.35;
+    text-box: trim-both cap alphabetic;
   }
   @media (min-width: 48rem) {
     .tg-timeline--horizontal {
@@ -5470,7 +5469,9 @@
       grid-template-columns: minmax(0, 1fr);
       row-gap: var(--space-1);
       padding-block-end: 0;
-      padding-inline-end: var(--space-6);
+      padding-inline: var(--space-3);
+      justify-items: center;
+      text-align: center;
       scroll-snap-align: start;
     }
     .tg-timeline--horizontal > .tg-timeline__item > * {
@@ -5483,12 +5484,15 @@
     .tg-timeline--horizontal > .tg-timeline__item > .tg-timeline__time {
       grid-row: 2;
     }
+    .tg-timeline--horizontal > .tg-timeline__item > .tg-badge {
+      justify-self: center;
+    }
     .tg-timeline--horizontal > .tg-timeline__item:not(:last-child)::before {
       content: "";
       position: absolute;
       z-index: 0;
       background: var(--step-line-color, var(--border-color));
-      inset-inline: calc(var(--timeline-marker) / 2) calc(var(--timeline-marker) / -2);
+      inset-inline: 50% calc(50% * -1);
       inset-block: calc(var(--timeline-marker) / 2 - 1px) auto;
       inline-size: auto;
       block-size: 2px;

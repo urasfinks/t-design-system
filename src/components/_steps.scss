@@ -54,9 +54,10 @@ $error: "[data-state='error']";
 }
 
 // A line through the marker centres: from this step's centre to the next step's centre,
-// under the markers (they sit above it and paint their own fill). Steps follow each other
+// under the markers (they sit above it and paint their own fill). $inline-center can
+// place horizontal markers at the column centre instead of its leading edge. Steps follow each other
 // with no gap on that axis; $size is the marker size.
-@mixin through-line($axis: block, $size: 1.25rem) {
+@mixin through-line($axis: block, $size: 1.25rem, $inline-center: null) {
   content: '';
   position: absolute;
   z-index: 0;
@@ -69,7 +70,8 @@ $error: "[data-state='error']";
     inline-size: 2px;
     block-size: auto;
   } @else {
-    inset-inline: calc(#{$size} / 2) calc(#{$size} / -2);
+    $center: if($inline-center == null, calc(#{$size} / 2), $inline-center);
+    inset-inline: $center calc(#{$center} * -1);
     inset-block: calc(#{$size} / 2 - 1px) auto;
     inline-size: auto;
     block-size: 2px;

@@ -71,7 +71,7 @@
   .tg-progress {
     display: block;
     inline-size: 100%;
-    block-size: .825rem;
+    block-size: var(--progress-height);
     appearance: none;
     border: 0;
     border-radius: var(--radius-pill);
@@ -81,17 +81,17 @@
 
     &::-webkit-progress-bar {
       background: var(--progress-track-color);
-      border-radius: inherit;
+      border-radius: var(--radius-pill);
     }
 
     &::-webkit-progress-value {
       background: var(--progress-color);
-      border-radius: inherit;
+      border-radius: var(--radius-pill);
     }
 
     &::-moz-progress-bar {
       background: var(--progress-color);
-      border-radius: inherit;
+      border-radius: var(--radius-pill);
     }
 
     &__bar {
@@ -99,14 +99,15 @@
       inline-size: 100%;
       block-size: 100%;
       background: var(--progress-color);
-      border-radius: inherit;
-      transform: scaleX(clamp(0%, var(--progress, 0%), 100%));
-      transform-origin: left center;
-      transition: transform var(--progress-duration);
+      border-radius: 0;
+      // Reveal the fill without scaling its pixels: caps stay circular and the
+      // stripe texture keeps its original angle and spacing at every value.
+      clip-path: inset(0 calc(100% - clamp(0%, var(--progress, 0%), 100%)) 0 0 round var(--radius-pill));
+      transition: clip-path var(--progress-duration);
     }
 
     &:dir(rtl) &__bar {
-      transform-origin: right center;
+      clip-path: inset(0 0 0 calc(100% - clamp(0%, var(--progress, 0%), 100%)) round var(--radius-pill));
     }
 
     // A failed or over-quota bar keeps the same shape in the danger role.
@@ -121,9 +122,10 @@
       & .tg-progress__bar::after {
         content: '';
         position: absolute;
-        inset: calc(var(--progress-stripe-blur) * -1.5);
+        inset: 0;
         pointer-events: none;
-        background: repeating-linear-gradient(45deg, var(--progress-stripe-color) 0 10px, transparent 10px var(--progress-stripe-size));
+        background: linear-gradient(45deg, var(--progress-stripe-color) 25%, transparent 25%, transparent 50%,
+          var(--progress-stripe-color) 50%, var(--progress-stripe-color) 75%, transparent 75%);
         background-size: var(--progress-stripe-size) var(--progress-stripe-size);
         filter: blur(var(--progress-stripe-blur));
         animation: tg-stripes var(--progress-stripe-speed) linear infinite;

@@ -99,9 +99,13 @@
     font-size: var(--fs-sm);
     font-variant-numeric: tabular-nums;
   }
-  // In a column the first text line starts at the marker's top edge.
-  .tg-timeline__item > .tg-timeline__time { @include steps.text-at-marker-top; }
-  .tg-timeline__item > .tg-timeline__time { grid-row: 1; }
+  // Centre the visible digits on the marker, not a stretched line box.
+  .tg-timeline__item > .tg-timeline__time {
+    grid-row: 1;
+    align-self: center;
+    line-height: 1.35;
+    text-box: trim-both cap alphabetic;
+  }
 
   // Horizontal: markers on one row at the top, the text of each event under its marker.
   @media (min-width: 48rem) {
@@ -118,13 +122,16 @@
         grid-template-columns: minmax(0, 1fr);
         row-gap: var(--space-1);
         padding-block-end: 0;
-        padding-inline-end: var(--space-6);
+        padding-inline: var(--space-3);
+        justify-items: center;
+        text-align: center;
         scroll-snap-align: start;
 
         > * { grid-column: 1; }
         > .tg-timeline__marker { grid-row: 1; margin-block-end: var(--space-2); }
         > .tg-timeline__time { grid-row: 2; }
-        &:not(:last-child)::before { @include steps.through-line(inline, var(--timeline-marker)); }
+        > .tg-badge { justify-self: center; }
+        &:not(:last-child)::before { @include steps.through-line(inline, var(--timeline-marker), 50%); }
       }
     }
   }

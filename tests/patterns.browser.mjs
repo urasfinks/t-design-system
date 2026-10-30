@@ -100,15 +100,18 @@ try {
   assert.equal(await page.locator('td').first().evaluate(el => getComputedStyle(el).textAlign), 'start');
   for (const direction of ['ltr', 'rtl']) {
     await page.locator('#numeric-progress').evaluate((el, direction) => el.dir = direction, direction);
+    await page.locator('#numeric-progress .tg-progress__bar').evaluate(bar=>{
+      getComputedStyle(bar).clipPath;for(const a of bar.getAnimations())if('transitionProperty' in a)a.finish();
+    });
     const progress = await page.locator('#numeric-progress').evaluate(el => {
       const bar = el.querySelector('.tg-progress__bar');
       return { transition: getComputedStyle(bar).transitionProperty, track: el.getBoundingClientRect().width,
-        fill: bar.getBoundingClientRect().width, origin: parseFloat(getComputedStyle(bar).transformOrigin) };
+        fill: bar.getBoundingClientRect().width, clip: getComputedStyle(bar).clipPath };
     });
-    assert.equal(progress.transition.includes('transform'), true, JSON.stringify(progress));
+    assert.equal(progress.transition.includes('clip-path'), true, JSON.stringify(progress));
     assert.equal(progress.transition.includes('inline-size'), false, JSON.stringify(progress));
-    assert.equal(progress.fill, progress.track / 2);
-    assert.equal(progress.origin, direction === 'rtl' ? progress.track : 0);
+    assert.equal(progress.fill, progress.track);
+    assert.match(progress.clip, direction === 'rtl' ? /^inset\(0px 0px 0px 50% round/ : /^inset\(0px 50% 0px 0px round/);
   }
   const knob = page.locator('#numeric-switch .tg-switch__knob');
   const idleTransform = await knob.evaluate(el => getComputedStyle(el).transform);

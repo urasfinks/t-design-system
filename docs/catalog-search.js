@@ -1,3 +1,4 @@
+import { scrollWithin } from './demo-navigation.js';
 const normalize = value => value.toLocaleLowerCase('ru').trim().replace(/\s+/g, ' ');
 // textContent drops <br>; read headings with line breaks as spaces.
 const headingText = heading => {
@@ -36,7 +37,7 @@ export function initCatalogSearch({ root = document, navigate } = {}) {
       option.setAttribute('aria-selected', String(active));
       if (active) {
         input.setAttribute('aria-activedescendant', option.id);
-        option.scrollIntoView({ block: 'nearest' });
+        scrollWithin(results, option);
       }
     }
   }
@@ -82,7 +83,7 @@ export function initCatalogSearch({ root = document, navigate } = {}) {
     input.value = '';
     render();
     dialog.showModal();
-    input.focus();
+    input.focus({ preventScroll: true });
   }
 
   function finishClose() {

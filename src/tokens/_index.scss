@@ -69,11 +69,12 @@
     --z-sticky: 20;
     --z-overlay: 100;
     --z-toast: 120;
+    --progress-height: .875rem;
     --progress-duration: 1s;
-    --progress-stripe-speed: 1s;
+    --progress-stripe-speed: .8s;
     --progress-stripe-size: 1.5rem;
-    --progress-stripe-blur: 3px;
-    --progress-stripe-color: rgb(255 255 255 / .12);
+    --progress-stripe-blur: 2px;
+    --progress-stripe-color: rgb(255 255 255 / .32);
     --safe-area-bottom: env(safe-area-inset-bottom, 0px);
     --ios-h: 0px;
     --border-color: light-dark(rgba(0, 0, 0, .08), rgba(255, 255, 255, .08));
@@ -125,7 +126,7 @@
     --destructive-text-color-transparent: var(--danger-strong);
     --section-bg-color-transparent: var(--background-panel);
     --text-link: var(--accent-readable);
-    --progress-color: var(--accent-readable);
+    --progress-color: var(--accent-main);
     --progress-track-color: var(--background-muted);
     --text-danger: var(--danger-readable);
     --action-bg: var(--accent-strong);

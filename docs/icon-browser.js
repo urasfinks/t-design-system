@@ -6,6 +6,7 @@ export async function initIconBrowser(scope = document) {
   const root = scope.matches?.('[data-icon-browser]') ? scope : scope.querySelector('[data-icon-browser]');
   if (!root || root.dataset.initialized) return;
   root.dataset.initialized = 'true';
+  const focusOptions = { preventScroll: !!root.closest('.example-body') };
   const get = id => root.querySelector(`#icon-${id}`);
   const search = get('search'), size = get('size'), grid = get('grid'), count = get('count');
   const markup = get('markup'), status = get('copy-status');
@@ -75,11 +76,11 @@ export async function initIconBrowser(scope = document) {
     event.target.tabIndex = -1;
     buttons[next].tabIndex = 0;
     activeName = buttons[next].getAttribute('aria-label');
-    buttons[next].focus();
+    buttons[next].focus(focusOptions);
   });
   search.addEventListener('input', render);
   size.addEventListener('change', () => { render(); updateMarkup(); });
-  get('reset').addEventListener('click', () => { search.value = ''; render(); search.focus(); });
+  get('reset').addEventListener('click', () => { search.value = ''; render(); search.focus(focusOptions); });
   get('copy').addEventListener('click', async () => {
     try {
       await navigator.clipboard.writeText(markup.textContent);
@@ -87,7 +88,7 @@ export async function initIconBrowser(scope = document) {
     } catch {
       const selection = window.getSelection();
       const range = document.createRange(); range.selectNodeContents(markup);
-      selection.removeAllRanges(); selection.addRange(range); markup.focus();
+      selection.removeAllRanges(); selection.addRange(range); markup.focus(focusOptions);
       status.textContent = 'Разметка выделена. Нажмите Ctrl+C или ⌘C, чтобы скопировать.';
     }
   });

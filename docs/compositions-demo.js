@@ -1,6 +1,8 @@
 import '../dist/ui.js';
 // Demo behavior only. All presentation comes from TDS.
 const root = document.documentElement;
+const embedded = window.parent !== window;
+const focusOptions = { preventScroll: embedded };
 const theme = document.querySelector('#demo-theme');
 theme.addEventListener('change', () => {
   if (theme.value === 'auto') delete root.dataset.theme;
@@ -53,9 +55,9 @@ updateViewport();
 document.querySelector('#demo-reply').addEventListener('click', () => {
   document.querySelector('#demo-excerpt').textContent = document.querySelector('#demo-original').textContent;
   preview.hidden = false;
-  input.focus();
+  input.focus(focusOptions);
 });
-document.querySelector('#demo-cancel-reply').addEventListener('click', () => { preview.hidden = true; input.focus(); });
+document.querySelector('#demo-cancel-reply').addEventListener('click', () => { preview.hidden = true; input.focus(focusOptions); });
 const toggle = document.querySelector('#demo-toggle-replies');
 toggle.addEventListener('click', () => {
   const replies = document.querySelector('#demo-replies');
@@ -86,7 +88,8 @@ form.addEventListener('submit', event => {
   preview.hidden = true;
   input.value = '';
   resizeInput();
-  item.scrollIntoView({ block: 'center' });
+  // Embedded examples must never pull the catalog page to their new message.
+  if (!embedded) item.scrollIntoView({ block: 'center' });
   document.querySelector('#demo-status').textContent = isReply ? 'Ответ добавлен' : 'Сообщение добавлено';
 });
 input.addEventListener('keydown', event => {

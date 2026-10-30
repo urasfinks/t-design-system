@@ -193,7 +193,8 @@ import 't-design-system/ui/js';
 Фокус поля: активный фон `--field-bg-hover`, рамка основным акцентом и внешнее
 кольцо `--accent-soft` толщиной 4px. При `aria-invalid="true"` рамка и внешнее
 кольцо используют `--danger-main` и `--danger-soft`.
-Полосатый progress сохраняет размытие `--progress-stripe-blur: 3px`.
+Высота progress общая для всех вариантов: `--progress-height` (14 px по умолчанию).
+Полосы заметные, с мягкими краями: `--progress-stripe-blur: 2px`; их размер и скорость не меняются при изменении процента.
 Кнопки используют `--accent-strong` со светлым текстом. Primary-бейджи используют
 `--accent-soft` с текстом `--accent-strong` в светлой теме и `--accent-strong`
 с текстом `--text-main` в тёмных. Destructive-бейджи следуют той же схеме

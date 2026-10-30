@@ -1,3 +1,4 @@
+import { scrollWithin } from './demo-navigation.js';
 // Behaviour for the component examples of the catalog: what a host application does
 // around the TDS styles. Each widget has its own init function; all are scoped to `root`.
 const anchorSupported = typeof CSS !== 'undefined' && CSS.supports('position-area: block-end');
@@ -92,7 +93,7 @@ export function initToolbars({ root = document } = {}) {
       const next = { [vertical ? 'ArrowDown' : (rtl ? 'ArrowLeft' : 'ArrowRight')]: index + 1, [vertical ? 'ArrowUp' : (rtl ? 'ArrowRight' : 'ArrowLeft')]: index - 1, Home: 0, End: list.length - 1 }[event.key];
       if (next === undefined) return;
       event.preventDefault();
-      list[(next + list.length) % list.length].focus();
+      list[(next + list.length) % list.length].focus({ preventScroll: true });
     });
   }
 }
@@ -156,7 +157,7 @@ export function initToastRegion({ root = document } = {}) {
     const hadFocus = toast.contains(document.activeElement);
     toast.classList.remove('tg-toast--show');
     setTimeout(() => { toast.remove(); layout(); }, 200);
-    if (hadFocus) root.querySelector('[data-toast-demo]')?.focus();
+    if (hadFocus) root.querySelector('[data-toast-demo]')?.focus({ preventScroll: true });
   };
   const icon = name => `<svg class="tg-icon" viewBox="0 0 24 24" aria-hidden="true"><use href="../dist/icons/${name}.svg#${name}"></use></svg>`;
   for (const button of root.querySelectorAll('[data-toast-demo]')) {
@@ -186,7 +187,7 @@ export function initBanners({ root = document } = {}) {
       banner.hidden = true;
       // Focus returns to the start of the content the banner sat above.
       const target = banner.parentElement.querySelector('.tg-banner:not([hidden]) .tg-banner__dismiss') ?? banner.closest('section')?.querySelector('h2');
-      if (target) { if (!target.matches('button, a, [tabindex]')) target.tabIndex = -1; target.focus(); }
+      if (target) { if (!target.matches('button, a, [tabindex]')) target.tabIndex = -1; target.focus({ preventScroll: true }); }
     });
   }
 }
@@ -230,7 +231,7 @@ export function initMorphDialogs({ root = document } = {}) {
     };
     button.addEventListener('click', () => swap(card, dialog, () => dialog.showModal()));
     dialog.querySelector('[data-dialog-close]')?.addEventListener('click', () => swap(dialog, card, () => dialog.close()));
-    dialog.addEventListener('close', () => button.focus());
+    dialog.addEventListener('close', () => button.focus({ preventScroll: true }));
   }
 }
 
@@ -249,7 +250,7 @@ export function initListboxes({ root = document } = {}) {
     const setActive = option => {
       for (const o of options()) o.toggleAttribute('data-active', o === option);
       active = option;
-      if (option) { trigger.setAttribute('aria-activedescendant', option.id); option.scrollIntoView({ block: 'nearest' }); }
+      if (option) { trigger.setAttribute('aria-activedescendant', option.id); scrollWithin(list, option); }
       else trigger.removeAttribute('aria-activedescendant');
     };
     const open = () => {
@@ -312,7 +313,7 @@ export function initListboxes({ root = document } = {}) {
       }
     });
     list.addEventListener('pointermove', event => { list.dataset.pointer = ''; const option = event.target.closest('[role="option"]'); if (option && option !== active && option.getAttribute('aria-disabled') !== 'true') setActive(option); });
-    list.addEventListener('click', event => { const option = event.target.closest('[role="option"]'); if (option) { choose(option); trigger.focus(); } });
+    list.addEventListener('click', event => { const option = event.target.closest('[role="option"]'); if (option) { choose(option); trigger.focus({ preventScroll: true }); } });
   }
 }
 
@@ -345,7 +346,7 @@ export function initComboboxes({ root = document } = {}) {
       active = (index + options.length) % options.length;
       options.forEach((option, i) => option.toggleAttribute('data-active', i === active));
       input.setAttribute('aria-activedescendant', options[active].id);
-      options[active].scrollIntoView({ block: 'nearest' });
+      scrollWithin(list, options[active]);
     };
     const addTag = value => {
       if (chosen().includes(value)) { tagBox.querySelector(`[data-value="${CSS.escape(value)}"] .tg-tag-input__remove`)?.click(); return; }
@@ -358,7 +359,7 @@ export function initComboboxes({ root = document } = {}) {
     const choose = index => {
       const value = items[index];
       if (value === undefined) return;
-      if (multiple) { addTag(value); input.value = ''; render(); input.focus(); }
+      if (multiple) { addTag(value); input.value = ''; render(); input.focus({ preventScroll: true }); }
       else { input.value = value; close(); announce(status, `Выбрано: ${value}`); }
     };
     input.addEventListener('input', open);
@@ -377,8 +378,8 @@ export function initComboboxes({ root = document } = {}) {
     list.addEventListener('click', event => { const option = event.target.closest('[role="option"]'); if (option) choose([...list.children].indexOf(option)); });
     tagBox?.addEventListener('click', event => {
       const remove = event.target.closest('.tg-tag-input__remove');
-      if (remove) { const tag = remove.closest('.tg-tag-input__tag'); announce(status, `Удалено: ${tag.dataset.value}`); tag.remove(); render(); input.focus(); }
-      else if (event.target === tagBox) input.focus();
+      if (remove) { const tag = remove.closest('.tg-tag-input__tag'); announce(status, `Удалено: ${tag.dataset.value}`); tag.remove(); render(); input.focus({ preventScroll: true }); }
+      else if (event.target === tagBox) input.focus({ preventScroll: true });
     });
     box.addEventListener('focusout', event => { if (!box.contains(event.relatedTarget)) close(); });
   }
@@ -410,21 +411,21 @@ export function initTagInputs({ root = document } = {}) {
     field.addEventListener('keydown', event => {
       if ((event.key === 'Enter' || event.key === ',') && field.value.trim()) { event.preventDefault(); add(field.value); field.value = ''; }
       else if (event.key === 'Backspace' && !field.value && tags().length) remove(tags().at(-1));
-      else if (event.key === 'ArrowLeft' && field.selectionStart === 0 && tags().length) { event.preventDefault(); tags().at(-1).querySelector('button').focus(); }
+      else if (event.key === 'ArrowLeft' && field.selectionStart === 0 && tags().length) { event.preventDefault(); tags().at(-1).querySelector('button').focus({ preventScroll: true }); }
     });
     field.addEventListener('paste', event => { const text = event.clipboardData?.getData('text') ?? ''; if (text.includes(',')) { event.preventDefault(); add(text); } });
     box.addEventListener('click', event => {
       const button = event.target.closest('.tg-tag-input__remove');
-      if (button) { remove(button.closest('.tg-tag-input__tag')); field.focus(); }
-      else if (event.target === box) field.focus();
+      if (button) { remove(button.closest('.tg-tag-input__tag')); field.focus({ preventScroll: true }); }
+      else if (event.target === box) field.focus({ preventScroll: true });
     });
     box.addEventListener('keydown', event => {
       const button = event.target.closest('.tg-tag-input__remove');
       if (!button) return;
       const list = tags(), index = list.indexOf(button.closest('.tg-tag-input__tag'));
-      if (event.key === 'ArrowLeft' && index > 0) { event.preventDefault(); list[index - 1].querySelector('button').focus(); }
-      if (event.key === 'ArrowRight') { event.preventDefault(); (list[index + 1]?.querySelector('button') ?? field).focus(); }
-      if (event.key === 'Backspace' || event.key === 'Delete') { event.preventDefault(); const next = list[index + 1]?.querySelector('button') ?? field; remove(list[index]); next.focus(); }
+      if (event.key === 'ArrowLeft' && index > 0) { event.preventDefault(); list[index - 1].querySelector('button').focus({ preventScroll: true }); }
+      if (event.key === 'ArrowRight') { event.preventDefault(); (list[index + 1]?.querySelector('button') ?? field).focus({ preventScroll: true }); }
+      if (event.key === 'Backspace' || event.key === 'Delete') { event.preventDefault(); const next = list[index + 1]?.querySelector('button') ?? field; remove(list[index]); next.focus({ preventScroll: true }); }
     });
     sync();
   }
@@ -438,7 +439,7 @@ export function initNumberFields({ root = document } = {}) {
     for (const button of [down, up]) button.addEventListener('click', () => {
       button.dataset.step === '1' ? input.stepUp() : input.stepDown();
       input.dispatchEvent(new Event('input', { bubbles: true }));
-      if (button.disabled) input.focus();
+      if (button.disabled) input.focus({ preventScroll: true });
     });
     input.addEventListener('input', sync);
     sync();
@@ -555,7 +556,7 @@ export function initTableFilters({ root = document } = {}) {
   search.addEventListener('input', () => { clearTimeout(timer); timer = setTimeout(apply, 150); });
   // The catalog already flips aria-pressed on every chip; here the filter follows it.
   for (const chip of chips) chip.addEventListener('click', apply);
-  for (const reset of resets) reset.addEventListener('click', () => { search.value = ''; for (const chip of chips) chip.setAttribute('aria-pressed', 'false'); apply(); search.focus(); });
+  for (const reset of resets) reset.addEventListener('click', () => { search.value = ''; for (const chip of chips) chip.setAttribute('aria-pressed', 'false'); apply(); search.focus({ preventScroll: true }); });
   const menu = root.getElementById('demo-columns-menu');
   new MutationObserver(() => {
     for (const item of menu.querySelectorAll('[data-column]')) {
@@ -597,7 +598,7 @@ export function initCarousels({ root = document } = {}) {
       if (prev) prev.disabled = index === 0;
       if (next) next.disabled = index === slides.length - 1;
       if (manual && status) status.textContent = slides[index].getAttribute('aria-label');
-      pickers[index]?.scrollIntoView({ block: 'nearest', inline: 'nearest' });
+      scrollWithin(pickers[index]?.parentElement, pickers[index]);
     };
     prev?.addEventListener('click', () => goTo(current - 1));
     next?.addEventListener('click', () => goTo(current + 1));
@@ -637,7 +638,7 @@ export function initOrientedTabs({ root = document } = {}) {
         if (panel && tabs.filter(x => x.getAttribute('aria-controls') === t.getAttribute('aria-controls')).length === 1) panel.hidden = !on;
         if (panel && on) { panel.setAttribute('aria-labelledby', t.id); panel.hidden = false; }
       }
-      tab.focus();
+      tab.focus({ preventScroll: true });
     };
     list.addEventListener('click', event => { const tab = event.target.closest('[role="tab"]'); if (tab) select(tab); });
     list.addEventListener('keydown', event => {
@@ -694,7 +695,7 @@ export function initNavMenus({ root = document } = {}) {
     nav.addEventListener('keydown', event => {
       if (event.key !== 'Escape') return;
       const open = triggers.find(t => t.getAttribute('aria-expanded') === 'true');
-      if (open) { event.preventDefault(); set(open, false); open.focus(); }
+      if (open) { event.preventDefault(); set(open, false); open.focus({ preventScroll: true }); }
     });
     nav.addEventListener('focusout', event => { if (!nav.contains(event.relatedTarget)) for (const t of triggers) if (t.getAttribute('aria-expanded') === 'true') set(t, false); });
     document.addEventListener('pointerdown', event => { if (!nav.contains(event.target)) for (const t of triggers) if (t.getAttribute('aria-expanded') === 'true') set(t, false); });
@@ -709,7 +710,7 @@ export function initMenubars({ root = document } = {}) {
     const menuOf = item => root.getElementById(item.getAttribute('aria-controls'));
     const entries = menu => [...menu.querySelectorAll('[role^="menuitem"]')];
     let openItem = null;
-    const rove = item => { for (const i of items) i.tabIndex = i === item ? 0 : -1; item.focus(); };
+    const rove = item => { for (const i of items) i.tabIndex = i === item ? 0 : -1; item.focus({ preventScroll: true }); };
     const close = (focusItem = true) => {
       if (!openItem) return;
       const item = openItem; openItem = null;
@@ -749,7 +750,7 @@ export function initMenubars({ root = document } = {}) {
       menu.addEventListener('keydown', event => {
         const list = entries(menu), index = list.indexOf(document.activeElement);
         const rtl = getComputedStyle(bar).direction === 'rtl';
-        const move = n => { event.preventDefault(); list[(n + list.length) % list.length].focus(); };
+        const move = n => { event.preventDefault(); list[(n + list.length) % list.length].focus({ preventScroll: true }); };
         switch (event.key) {
           case 'ArrowDown': return move(index + 1);
           case 'ArrowUp': return move(index - 1);
@@ -833,7 +834,7 @@ export function initCommandPalette({ root = document } = {}) {
     active = (index + shown.length) % shown.length;
     shown.forEach((option, i) => option.setAttribute('aria-selected', String(i === active)));
     input.setAttribute('aria-activedescendant', shown[active].id);
-    shown[active].scrollIntoView({ block: 'nearest' });
+    scrollWithin(list, shown[active]);
   };
   const open = () => {
     opener = document.activeElement;
@@ -841,7 +842,7 @@ export function initCommandPalette({ root = document } = {}) {
     input.value = '';
     dialog.showModal();
     render();
-    input.focus();
+    input.focus({ preventScroll: true });
   };
   const run = option => { if (!option) return; dialog.close(); announce(root.getElementById('demo-copy-status'), `Выполнено: ${option.textContent.trim()}`); };
   root.querySelectorAll('[data-command-open]').forEach(button => button.addEventListener('click', open));
@@ -860,7 +861,7 @@ export function initCommandPalette({ root = document } = {}) {
   });
   list.addEventListener('pointermove', event => { const option = event.target.closest('[role="option"]'); if (option) setActive(shown.indexOf(option)); });
   list.addEventListener('click', event => run(event.target.closest('[role="option"]')));
-  dialog.addEventListener('close', () => opener?.focus());
+  dialog.addEventListener('close', () => opener?.focus({ preventScroll: true }));
   dialog.addEventListener('click', event => { if (event.target === dialog) dialog.close(); });
 }
 
@@ -945,7 +946,7 @@ export function initCalendars({ root = document } = {}) {
     const move = date => {
       if (date.getMonth() !== month || date.getFullYear() !== year) { year = date.getFullYear(); month = date.getMonth(); draw(date); }
       else { focus = date; for (const b of table.querySelectorAll('.tg-calendar__day')) b.tabIndex = b.dataset.date === iso(date) ? 0 : -1; }
-      table.querySelector(`[data-date="${iso(date)}"]`).focus();
+      table.querySelector(`[data-date="${iso(date)}"]`).focus({ preventScroll: true });
     };
     const select = date => {
       selected = date;
@@ -1002,7 +1003,7 @@ export function initRangeCalendars({ root = document } = {}) {
       for (const p of presets) p.setAttribute('aria-pressed', 'false');
       focus = date;
       paint();
-      cal.querySelector(`[data-date="${iso(date)}"]:not(:disabled)`)?.focus();
+      cal.querySelector(`[data-date="${iso(date)}"]:not(:disabled)`)?.focus({ preventScroll: true });
     };
     const move = date => {
       const first = new Date(year, month, 1), lastShown = new Date(year, month + 2, 0);
@@ -1010,7 +1011,7 @@ export function initRangeCalendars({ root = document } = {}) {
       const shown = cal.querySelector(`[data-date="${iso(date)}"]:not(:disabled)`);
       focus = date;
       if (shown) paint(picking ? date : null); else draw(picking ? date : null);
-      cal.querySelector(`[data-date="${iso(date)}"]:not(:disabled)`).focus();
+      cal.querySelector(`[data-date="${iso(date)}"]:not(:disabled)`).focus({ preventScroll: true });
     };
     for (const table of tables) {
       table.addEventListener('click', event => { const b = event.target.closest('.tg-calendar__day'); if (b && !b.disabled) choose(parse(b.dataset.date)); });
@@ -1062,14 +1063,14 @@ export function initDateFields({ root = document } = {}) {
         const rtl = getComputedStyle(field).direction === 'rtl';
         if (event.key === 'ArrowUp') { event.preventDefault(); set(segment, value(segment) + 1); }
         else if (event.key === 'ArrowDown') { event.preventDefault(); set(segment, value(segment) - 1); }
-        else if (event.key === (rtl ? 'ArrowLeft' : 'ArrowRight')) { event.preventDefault(); segments[index + 1]?.focus(); }
-        else if (event.key === (rtl ? 'ArrowRight' : 'ArrowLeft')) { event.preventDefault(); segments[index - 1]?.focus(); }
+        else if (event.key === (rtl ? 'ArrowLeft' : 'ArrowRight')) { event.preventDefault(); segments[index + 1]?.focus({ preventScroll: true }); }
+        else if (event.key === (rtl ? 'ArrowRight' : 'ArrowLeft')) { event.preventDefault(); segments[index - 1]?.focus({ preventScroll: true }); }
         else if (/^\d$/.test(event.key)) {
           event.preventDefault();
           typed += event.key;
           const width = segment.dataset.part === 'year' ? 4 : 2;
           if (typed.length >= width || Number(typed + '0') > Number(segment.getAttribute('aria-valuemax'))) {
-            set(segment, Number(typed)); typed = ''; segments[index + 1]?.focus();
+            set(segment, Number(typed)); typed = ''; segments[index + 1]?.focus({ preventScroll: true });
           } else segment.textContent = typed.padStart(width, '0');
         }
       });
@@ -1212,13 +1213,13 @@ export function initSortables({ root = document } = {}) {
         const index = items().indexOf(item);
         if (event.key === 'ArrowUp' && index > 0) list.insertBefore(item, items()[index - 1]);
         if (event.key === 'ArrowDown' && index < items().length - 1) list.insertBefore(items()[index + 1], item);
-        handle.focus();
+        handle.focus({ preventScroll: true });
         say(`${name(item)}, позиция ${items().indexOf(item) + 1} из ${items().length}`);
       } else if (grabbed === item && event.key === 'Escape') {
         event.preventDefault();
         list.insertBefore(item, items().filter(i => i !== item)[origin] ?? null);
         delete item.dataset.grabbed; handle.setAttribute('aria-pressed', 'false'); grabbed = null;
-        handle.focus();
+        handle.focus({ preventScroll: true });
         say(`Отменено, ${name(item)} на позиции ${origin + 1}`);
       }
     });
@@ -1307,7 +1308,7 @@ export function initEditor({ root = document } = {}) {
   const blocks = () => [...content.querySelectorAll('.tg-editor__block')];
   let saveTimer = 0;
   const run = command => {
-    content.focus();
+    content.focus({ preventScroll: true });
     if (command === 'link') { const url = 'https://example.com'; document.execCommand('createLink', false, url); }
     else if (command === 'quote') document.execCommand('formatBlock', false, 'blockquote');
     else document.execCommand(command);
@@ -1338,14 +1339,14 @@ export function initEditor({ root = document } = {}) {
     if (button?.getAttribute('aria-disabled') === 'true') { event.preventDefault(); return; }
     if (button) { event.preventDefault(); run(button.dataset.command); }
     const action = event.target.closest('[data-selection-action]');
-    if (action) { announce(status, action.dataset.selectionAction === 'improve' ? 'Предложение применено' : 'Комментарий добавлен'); floating.hidden = true; content.focus(); }
+    if (action) { announce(status, action.dataset.selectionAction === 'improve' ? 'Предложение применено' : 'Комментарий добавлен'); floating.hidden = true; content.focus({ preventScroll: true }); }
   });
   editor.addEventListener('mousedown', event => { if (event.target.closest('[data-command], [data-selection-action]')) event.preventDefault(); });
   content.addEventListener('input', () => { changed(); sync(); });
   content.addEventListener('keydown', event => {
     const selected = blocks().filter(b => b.getAttribute('aria-selected') === 'true');
     if ((event.ctrlKey || event.metaKey) && ['b', 'i', 'u'].includes(event.key.toLowerCase())) { event.preventDefault(); run({ b: 'bold', i: 'italic', u: 'underline' }[event.key.toLowerCase()]); return; }
-    if (event.altKey && event.key === 'F10') { event.preventDefault(); (floating.hidden ? toolbar : floating).querySelector('button').focus(); return; }
+    if (event.altKey && event.key === 'F10') { event.preventDefault(); (floating.hidden ? toolbar : floating).querySelector('button').focus({ preventScroll: true }); return; }
     if (event.key === 'Escape') {
       const node = getSelection().anchorNode;
       const block = (node?.nodeType === 1 ? node : node?.parentElement)?.closest('.tg-editor__block');
@@ -1380,9 +1381,9 @@ export function initEditor({ root = document } = {}) {
   });
   floating.addEventListener('keydown', event => {
     const items = [...floating.querySelectorAll('button')], index = items.indexOf(document.activeElement);
-    if (event.key === 'Escape') { event.preventDefault(); floating.hidden = true; content.focus(); }
-    if (event.key === 'ArrowRight') { event.preventDefault(); items[(index + 1) % items.length].focus(); }
-    if (event.key === 'ArrowLeft') { event.preventDefault(); items[(index - 1 + items.length) % items.length].focus(); }
+    if (event.key === 'Escape') { event.preventDefault(); floating.hidden = true; content.focus({ preventScroll: true }); }
+    if (event.key === 'ArrowRight') { event.preventDefault(); items[(index + 1) % items.length].focus({ preventScroll: true }); }
+    if (event.key === 'ArrowLeft') { event.preventDefault(); items[(index - 1 + items.length) % items.length].focus({ preventScroll: true }); }
   });
 }
 
@@ -1421,10 +1422,10 @@ export function initGestures({ root = document } = {}) {
 export function initFab({ root = document } = {}) {
   for (const fab of root.querySelectorAll('[data-fab]')) {
     const menu = root.getElementById(fab.getAttribute('aria-controls'));
-    const set = open => { fab.setAttribute('aria-expanded', String(open)); menu.hidden = !open; if (open) menu.querySelector('button').focus(); };
+    const set = open => { fab.setAttribute('aria-expanded', String(open)); menu.hidden = !open; if (open) menu.querySelector('button').focus({ preventScroll: true }); };
     fab.addEventListener('click', () => set(fab.getAttribute('aria-expanded') !== 'true'));
-    menu.addEventListener('keydown', event => { if (event.key === 'Escape') { set(false); fab.focus(); } });
-    menu.addEventListener('click', event => { if (event.target.closest('button')) { set(false); fab.focus(); } });
+    menu.addEventListener('keydown', event => { if (event.key === 'Escape') { set(false); fab.focus({ preventScroll: true }); } });
+    menu.addEventListener('click', event => { if (event.target.closest('button')) { set(false); fab.focus({ preventScroll: true }); } });
     document.addEventListener('pointerdown', event => { if (!menu.hidden && !menu.contains(event.target) && !fab.contains(event.target)) set(false); });
   }
 }
@@ -1537,7 +1538,7 @@ export function initEmojiPickers({ root = document } = {}) {
       event.preventDefault();
       const target = list[Math.max(0, Math.min(list.length - 1, next))];
       list.forEach(o => { o.tabIndex = o === target ? 0 : -1; });
-      target.focus();
+      target.focus({ preventScroll: true });
     });
     grid.addEventListener('click', event => { const o = event.target.closest('.tg-emoji-picker__option'); if (o) { all.forEach(x => x.setAttribute('aria-selected', String(x === o))); announce(status, `Выбрано: ${o.dataset.name}`); } });
   }

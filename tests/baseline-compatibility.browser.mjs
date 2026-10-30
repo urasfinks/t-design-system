@@ -28,6 +28,32 @@ const navigationMigration = `
   font-weight: 600;
 }
 `;
+// Approved progress refresh: shared whole-pixel height and readable, unscaled stripes.
+const progressMigration = `
+:root {
+  --progress-color: var(--accent-main); --spinner-color: var(--progress-color);
+  --progress-height: .875rem; --progress-stripe-speed: .8s;
+  --progress-stripe-blur: 2px; --progress-stripe-color: rgb(255 255 255 / .32);
+}
+.tg-progress { block-size: var(--progress-height); }
+.tg-progress::-webkit-progress-bar { border-radius: var(--radius-pill); }
+.tg-progress::-webkit-progress-value { border-radius: var(--radius-pill); }
+.tg-progress::-moz-progress-bar { border-radius: var(--radius-pill); }
+.tg-progress__bar {
+  border-radius: 0;
+  transform: none;
+  clip-path: inset(0 calc(100% - clamp(0%, var(--progress, 0%), 100%)) 0 0 round var(--radius-pill));
+  transition: clip-path var(--progress-duration);
+}
+.tg-progress:dir(rtl) .tg-progress__bar { clip-path: inset(0 0 0 calc(100% - clamp(0%, var(--progress, 0%), 100%)) round var(--radius-pill)); }
+.tg-progress--striped .tg-progress__bar::after {
+  inset: 0;
+  background: linear-gradient(45deg, var(--progress-stripe-color) 25%, transparent 25%, transparent 50%, var(--progress-stripe-color) 50%, var(--progress-stripe-color) 75%, transparent 75%);
+  background-size: var(--progress-stripe-size) var(--progress-stripe-size);
+  filter: blur(2px);
+  transform: none;
+}
+`;
 const current = await readFile('dist/t-design-system.css','utf8') + await readFile('docs/catalog.css','utf8');
 // The saved catalog markup is rendered, so new examples never change what is compared.
 const html = (await readFile(fixture+'index.html','utf8'))
@@ -45,7 +71,7 @@ const properties = ['display','position','color','backgroundColor','backgroundIm
 try {
   const page = await browser.newPage({reducedMotion:'reduce'});
   await page.setContent(html);
-  await page.addStyleTag({content:baseline + mediaMigration + navigationMigration});
+  await page.addStyleTag({content:baseline + mediaMigration + navigationMigration + progressMigration});
   const sheet = page.locator('style').last();
   // Chromium's first full-page capture can settle balanced text and change page height.
   // Compare consecutive stable paints, rather than an intermediate layout frame.
@@ -78,7 +104,7 @@ try {
           else document.documentElement.style.removeProperty('--button-color');
         },{theme,accent});
         await page.mouse.move(0,0);
-        await sheet.evaluate((el,css)=>el.textContent=css,baseline + mediaMigration + navigationMigration);
+        await sheet.evaluate((el,css)=>el.textContent=css,baseline + mediaMigration + navigationMigration + progressMigration);
         await page.evaluate(async()=>{await document.fonts.ready;await new Promise(resolve=>requestAnimationFrame(()=>requestAnimationFrame(resolve)));});
         const pixels = await stablePixels();
         const expected = await snapshot();
@@ -120,7 +146,7 @@ try {
     const badge=page.locator('.tg-badge');
     for(const hovered of [false,true]) {
       if(hovered) await badge.hover({force:true}); else await page.mouse.move(0,0);
-      await stateSheet.evaluate((el,css)=>el.textContent=css,baseline + mediaMigration + navigationMigration);
+      await stateSheet.evaluate((el,css)=>el.textContent=css,baseline + mediaMigration + navigationMigration + progressMigration);
       const expected=await snapshot();
       await stateSheet.evaluate((el,css)=>el.textContent=css,current);
       assert.deepEqual(await snapshot(),expected,`${engine}/${theme}: secondary badge custom aliases, hover=${hovered}`);

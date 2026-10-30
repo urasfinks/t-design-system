@@ -48,7 +48,7 @@ export function initCatalogDemos({ root = document } = {}) {
       item.tabIndex = active ? 0 : -1;
       root.getElementById(item.getAttribute('aria-controls')).hidden = !active;
     }
-    if (focus) tab.focus();
+    if (focus) tab.focus({ preventScroll: true });
   }
   for (const [index, tab] of tabs.entries()) {
     tab.addEventListener('click', () => selectTab(tab));
@@ -120,7 +120,7 @@ export function initCatalogDemos({ root = document } = {}) {
   const range = root.querySelector('#demo-range');
   range.addEventListener('input', () => root.querySelector('#range-output').value = `${range.value}%`);
   for (const link of root.querySelectorAll('.tg-error-summary a')) {
-    link.addEventListener('click', () => root.querySelector(link.hash)?.focus());
+    link.addEventListener('click', () => root.querySelector(link.hash)?.focus({ preventScroll: true }));
   }
   const transitionToggle = root.querySelector('#transition-toggle');
   transitionToggle.addEventListener('click', () => {
@@ -209,7 +209,7 @@ function initWorkspaceDemos(root) {
   };
   all.addEventListener('change', () => { for (const box of rowChecks()) box.checked = all.checked; syncRows(); });
   table.addEventListener('change', event => { if (event.target.closest('tbody .tg-table__select')) syncRows(); });
-  root.querySelector('#demo-bulk-clear').addEventListener('click', () => { for (const box of rowChecks()) box.checked = false; syncRows(); all.focus(); });
+  root.querySelector('#demo-bulk-clear').addEventListener('click', () => { for (const box of rowChecks()) box.checked = false; syncRows(); all.focus({ preventScroll: true }); });
   const sortNames = { due: 'сроку', amount: 'сумме' };
   table.addEventListener('click', event => {
     const button = event.target.closest('.tg-table__sort');
@@ -232,7 +232,7 @@ function initWorkspaceDemos(root) {
       notice.hidden = true;
       const heading = section.querySelector('h2');
       heading.tabIndex = -1;
-      heading.focus();
+      heading.focus({ preventScroll: true });
     });
   }
 

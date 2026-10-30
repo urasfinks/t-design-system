@@ -41,6 +41,29 @@ try {
   const tl = `${ex('C11')} .tg-timeline:not(.tg-timeline--horizontal)`;
   check('C11 timeline is an ordered list', await page.locator(tl).evaluate(el => el.tagName) === 'OL');
   check('C11 time sits above the text', (await box(`${tl} > li:first-child .tg-timeline__time`)).bottom <= (await box(`${tl} > li:first-child strong`)).top + 1);
+  const timeOffsets = [];
+  for (const item of await page.locator(`${tl} > li`).all()) {
+    const time = item.locator('.tg-timeline__time');
+    await time.scrollIntoViewIfNeeded();
+    const marker = await item.locator('.tg-timeline__marker').boundingBox();
+    const rect = await time.boundingBox();
+    const color = await time.evaluate(el => getComputedStyle(el).color);
+    const png = await page.screenshot({clip: rect});
+    const inkCenter = await page.evaluate(async ({base64,color}) => {
+      const image=new Image();image.src='data:image/png;base64,'+base64;await image.decode();
+      const canvas=document.createElement('canvas');canvas.width=image.width;canvas.height=image.height;
+      const ctx=canvas.getContext('2d');ctx.fillStyle=color;ctx.fillRect(0,0,1,1);
+      const target=[...ctx.getImageData(0,0,1,1).data];ctx.drawImage(image,0,0);
+      const {data}=ctx.getImageData(0,0,canvas.width,canvas.height);let min=Infinity,max=-1;
+      for(let y=0;y<canvas.height;y++)for(let x=0;x<canvas.width;x++) {
+        const n=(y*canvas.width+x)*4;
+        if([0,1,2].every(c=>Math.abs(data[n+c]-target[c])<45)){min=Math.min(min,y);max=Math.max(max,y);}
+      }
+      return (min+max+1)/2;
+    },{base64:png.toString('base64'),color});
+    timeOffsets.push(Math.abs(rect.y+inkCenter-(marker.y+marker.height/2)));
+  }
+  check('C11 visible time digits are centred on their markers', timeOffsets.every(offset=>offset<=1.25),JSON.stringify(timeOffsets));
   check('C11 done marker is filled with the action role', await css(`${tl} > li[data-state="done"] .tg-timeline__marker`, 'background-color') === await page.evaluate(() => { const p = document.createElement('i'); p.style.background = 'var(--action-bg)'; document.body.append(p); const c = getComputedStyle(p).backgroundColor; p.remove(); return c; }));
   check('C11 current marker is a ring', (await css(`${tl} > li[aria-current="step"] .tg-timeline__marker`, 'box-shadow')).includes('0px 0px 0px'));
   check('C11 done markers carry an icon (not colour alone)', await page.locator(`${tl} > li[data-state="done"] .tg-timeline__marker svg`).count() === 2);
@@ -56,6 +79,13 @@ try {
   const road = `${ex('M10')} .tg-timeline--horizontal`;
   check('M10 horizontal timeline is a row on wide screens', await css(road, 'grid-auto-flow') === 'column');
   check('M10 horizontal timeline scrolls inside a focusable region', await css(road, 'overflow-x') === 'auto' && await page.locator(road).getAttribute('tabindex') === '0');
+  const horizontalOffsets = await page.locator(`${road} > li`).evaluateAll(items => items.flatMap(item => {
+    const marker=item.querySelector('.tg-timeline__marker').getBoundingClientRect();
+    return [...item.querySelectorAll(':scope > time, :scope > strong, :scope > .tg-badge')].map(el=>{
+      const rect=el.getBoundingClientRect();return Math.abs((rect.left+rect.right-marker.left-marker.right)/2);
+    });
+  }));
+  check('M10 event labels are centred beneath their markers', horizontalOffsets.every(offset=>offset<=.5),JSON.stringify(horizontalOffsets));
   const hc = await centres(road), hl = await lineOf(`${road} > li:first-child`);
   check('M10 the line runs through the marker centres', Math.abs(hl.y1 + hl.h / 2 - hc[0].y) < .6 && Math.abs(hl.x1 - hc[0].x) < .6 && Math.abs(hl.x2 - hc[1].x) < .6);
   check('M10 a done step draws the accent line on the row too', await css(`${road} > li[data-state="done"]`, 'background-color', '::before') === await css(`${tl} > li[data-state="done"]`, 'background-color', '::before'));

@@ -36,8 +36,9 @@ The signature is the system itself: live components, clear examples, readable co
 - Touch controls keep a minimum 44 px target; long labels wrap. Hover requires
   hover capability. Keyboard focus stays visible; reduced motion removes movement.
 - Motion uses the shared easing, 120 ms press feedback and 180 ms state changes.
-  Avoid entrance choreography and scaling hidden content to zero. Animate
-  `transform` and `opacity` only: the progress bar uses `scaleX()`, the switch
+  Avoid entrance choreography and scaling hidden content to zero. Movement uses
+  `transform` and `opacity`; progress uses a rounded `clip-path` reveal without layout
+  changes so its ends stay circular. The switch
   knob an inline-aware `translateX()`, the press wave `scale()`, fades use
   `--duration`/`--ease`. Press feedback finishes within 300 ms. Layers that
   appear (toast, snackbar, dialog) enter on `--duration-fade-in` and leave faster
@@ -202,7 +203,7 @@ roles explicitly. Light and iOS Dark derive both surfaces from the background.
 Focused fields use the active field background and
 a main-accent border with a 4px soft-accent outer ring. Invalid focused fields
 use danger-main for the border and danger-soft for the outer ring. Buttons keep saturated strong fills and white text, and all action
-variants share `--control-h`. File progress keeps its accepted 3px stripe blur.
+variants share `--control-h`. Progress variants share `--progress-height` (14px at the default root size). Animated stripes use a soft 2px blur and keep their spacing as the fill is revealed.
 
 Primary and destructive badges use soft backgrounds with strong text in Light,
 and strong backgrounds with main text in dark themes through `light-dark()`.
