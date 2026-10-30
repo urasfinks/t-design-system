@@ -1,0 +1,429 @@
+{
+  "fingerprint": "9aff20bc51a63ab8e5a045d09acbd7b97f5f80fd326b75e279c790706d9d93c2",
+  "graph": {
+    "nodes": [
+      {
+        "id": "html:nth-child(1) > body:nth-child(2) > div:nth-child(4) > main:nth-child(2) > section:nth-child(23) > div:nth-child(6) > div:nth-child(1) > div:nth-child(1) > div:nth-child(1) > button:nth-child(3) > span:nth-child(2)::border-top-color",
+        "property": "border-top-color",
+        "context": {
+          "tag": "SPAN",
+          "id": "",
+          "classes": [
+            "tg-badge",
+            "tg-badge--primary"
+          ],
+          "path": "html:nth-child(1) > body:nth-child(2) > div:nth-child(4) > main:nth-child(2) > section:nth-child(23) > div:nth-child(6) > div:nth-child(1) > div:nth-child(1) > div:nth-child(1) > button:nth-child(3) > span:nth-child(2)"
+        },
+        "kind": "computed-property",
+        "value": "rgba(255, 255, 255, 0.24)"
+      },
+      {
+        "id": "html:nth-child(1) > body:nth-child(2) > div:nth-child(4) > main:nth-child(2) > section:nth-child(23) > div:nth-child(6) > div:nth-child(1) > div:nth-child(1) > div:nth-child(1) > button:nth-child(3) > span:nth-child(2)::border-top-color:source:0",
+        "kind": "declaration",
+        "selector": ":where(a[href], button, summary) .tg-badge",
+        "source": "src/components/_avatar.scss",
+        "line": 186,
+        "ancestor": 0,
+        "origin": "regular",
+        "important": false,
+        "specificity": [
+          {
+            "a": 0,
+            "b": 1,
+            "c": 0,
+            "components": [
+              {
+                "text": ".tg-badge",
+                "a": 0,
+                "b": 1,
+                "c": 0
+              }
+            ]
+          }
+        ],
+        "layers": [
+          "tds.components"
+        ],
+        "declaration": {
+          "name": "border",
+          "value": "var(--border-action)"
+        },
+        "controlsValue": true,
+        "families": []
+      },
+      {
+        "id": "html:nth-child(1) > body:nth-child(2) > div:nth-child(4) > main:nth-child(2) > section:nth-child(23) > div:nth-child(6) > div:nth-child(1) > div:nth-child(1) > div:nth-child(1) > button:nth-child(3) > span:nth-child(2)::--border-action",
+        "property": "--border-action",
+        "context": {
+          "tag": "SPAN",
+          "id": "",
+          "classes": [
+            "tg-badge",
+            "tg-badge--primary"
+          ],
+          "path": "html:nth-child(1) > body:nth-child(2) > div:nth-child(4) > main:nth-child(2) > section:nth-child(23) > div:nth-child(6) > div:nth-child(1) > div:nth-child(1) > div:nth-child(1) > button:nth-child(3) > span:nth-child(2)"
+        },
+        "kind": "computed-property",
+        "value": "1px solid light-dark(rgba(0, 0, 0, .24), rgba(255, 255, 255, .24))"
+      },
+      {
+        "id": "html:nth-child(1) > body:nth-child(2) > div:nth-child(4) > main:nth-child(2) > section:nth-child(23) > div:nth-child(6) > div:nth-child(1) > div:nth-child(1) > div:nth-child(1) > button:nth-child(3) > span:nth-child(2)::--border-action:source:0",
+        "kind": "declaration",
+        "selector": ":root",
+        "source": "src/tokens/_index.scss",
+        "line": 150,
+        "ancestor": 10,
+        "origin": "regular",
+        "important": false,
+        "specificity": [
+          {
+            "a": 0,
+            "b": 1,
+            "c": 0,
+            "components": [
+              {
+                "text": ":root",
+                "a": 0,
+                "b": 1,
+                "c": 0
+              }
+            ]
+          }
+        ],
+        "layers": [
+          "tds.tokens"
+        ],
+        "declaration": {
+          "name": "--border-action",
+          "value": "1px solid var(--action-border-color)"
+        },
+        "controlsValue": true,
+        "families": []
+      },
+      {
+        "id": "html:nth-child(1)::--action-border-color",
+        "property": "--action-border-color",
+        "context": {
+          "tag": "HTML",
+          "id": "",
+          "classes": [],
+          "path": "html:nth-child(1)"
+        },
+        "kind": "computed-property",
+        "value": "light-dark(rgba(0, 0, 0, .24), rgba(255, 255, 255, .24))"
+      },
+      {
+        "id": "html:nth-child(1)::--action-border-color:source:0",
+        "kind": "declaration",
+        "selector": ":root",
+        "source": "src/tokens/_index.scss",
+        "line": 149,
+        "ancestor": 0,
+        "origin": "regular",
+        "important": false,
+        "specificity": [
+          {
+            "a": 0,
+            "b": 1,
+            "c": 0,
+            "components": [
+              {
+                "text": ":root",
+                "a": 0,
+                "b": 1,
+                "c": 0
+              }
+            ]
+          }
+        ],
+        "layers": [
+          "tds.tokens"
+        ],
+        "declaration": {
+          "name": "--action-border-color",
+          "value": "light-dark(rgba(0, 0, 0, .24), rgba(255, 255, 255, .24))"
+        },
+        "controlsValue": true,
+        "families": []
+      }
+    ],
+    "edges": [
+      {
+        "from": "html:nth-child(1) > body:nth-child(2) > div:nth-child(4) > main:nth-child(2) > section:nth-child(23) > div:nth-child(6) > div:nth-child(1) > div:nth-child(1) > div:nth-child(1) > button:nth-child(3) > span:nth-child(2)::border-top-color:source:0",
+        "to": "html:nth-child(1) > body:nth-child(2) > div:nth-child(4) > main:nth-child(2) > section:nth-child(23) > div:nth-child(6) > div:nth-child(1) > div:nth-child(1) > div:nth-child(1) > button:nth-child(3) > span:nth-child(2)::border-top-color",
+        "kind": "determines"
+      },
+      {
+        "from": "html:nth-child(1) > body:nth-child(2) > div:nth-child(4) > main:nth-child(2) > section:nth-child(23) > div:nth-child(6) > div:nth-child(1) > div:nth-child(1) > div:nth-child(1) > button:nth-child(3) > span:nth-child(2)::--border-action",
+        "to": "html:nth-child(1) > body:nth-child(2) > div:nth-child(4) > main:nth-child(2) > section:nth-child(23) > div:nth-child(6) > div:nth-child(1) > div:nth-child(1) > div:nth-child(1) > button:nth-child(3) > span:nth-child(2)::border-top-color:source:0",
+        "kind": "references-token-in-definition-context"
+      },
+      {
+        "from": "html:nth-child(1) > body:nth-child(2) > div:nth-child(4) > main:nth-child(2) > section:nth-child(23) > div:nth-child(6) > div:nth-child(1) > div:nth-child(1) > div:nth-child(1) > button:nth-child(3) > span:nth-child(2)::--border-action:source:0",
+        "to": "html:nth-child(1) > body:nth-child(2) > div:nth-child(4) > main:nth-child(2) > section:nth-child(23) > div:nth-child(6) > div:nth-child(1) > div:nth-child(1) > div:nth-child(1) > button:nth-child(3) > span:nth-child(2)::--border-action",
+        "kind": "determines"
+      },
+      {
+        "from": "html:nth-child(1)::--action-border-color",
+        "to": "html:nth-child(1) > body:nth-child(2) > div:nth-child(4) > main:nth-child(2) > section:nth-child(23) > div:nth-child(6) > div:nth-child(1) > div:nth-child(1) > div:nth-child(1) > button:nth-child(3) > span:nth-child(2)::--border-action:source:0",
+        "kind": "references-token-in-definition-context"
+      },
+      {
+        "from": "html:nth-child(1)::--action-border-color:source:0",
+        "to": "html:nth-child(1)::--action-border-color",
+        "kind": "determines"
+      }
+    ]
+  },
+  "selector": "#demo-vtab-notify .tg-badge",
+  "context": {
+    "page": "index.html",
+    "theme": "dark",
+    "width": 1440,
+    "state": "rest",
+    "browser": "Chromium"
+  },
+  "element": {
+    "tag": "SPAN",
+    "classes": [
+      "tg-badge",
+      "tg-badge--primary"
+    ],
+    "parent": {
+      "tag": "BUTTON",
+      "classes": [
+        "tg-tab"
+      ]
+    },
+    "html": "<span class=\"tg-badge tg-badge--primary\">3</span>"
+  },
+  "method": "Reversible isolated-browser probes identify controlling declaration blocks; source maps resolve compiled CSS to Sass. Overridden lists contain matching candidate declarations, not inferred winners.",
+  "limitations": [
+    "Inherited CSS-wide keywords, revert/revert-layer, and coupled properties may require manual inspection. Unresolved provenance is explicitly marked.",
+    "Probing identifies the controlling declaration block. Multiple declarations inside that block retain their source order; no claim of a unique declaration is made when they are ambiguous."
+  ],
+  "explanations": [
+    {
+      "property": "border-top-color",
+      "inherited": false,
+      "computed": "rgba(255, 255, 255, 0.24)",
+      "dependencySemantics": "Syntactic var() references, including possibly inactive light-dark or fallback branches; not all references affect the final used value in this context.",
+      "status": "browser-confirmed-source-block",
+      "controlling": [
+        {
+          "selector": ":where(a[href], button, summary) .tg-badge",
+          "source": "src/components/_avatar.scss",
+          "line": 186,
+          "ancestor": 0,
+          "origin": "regular",
+          "important": false,
+          "specificity": [
+            {
+              "a": 0,
+              "b": 1,
+              "c": 0,
+              "components": [
+                {
+                  "text": ".tg-badge",
+                  "a": 0,
+                  "b": 1,
+                  "c": 0
+                }
+              ]
+            }
+          ],
+          "layers": [
+            "tds.components"
+          ],
+          "declaration": {
+            "name": "border",
+            "value": "var(--border-action)"
+          },
+          "controlsValue": true,
+          "families": []
+        }
+      ],
+      "overridden": [
+        {
+          "selector": ".tg-badge",
+          "source": "src/components/_avatar.scss",
+          "line": 146,
+          "ancestor": 0,
+          "origin": "regular",
+          "important": false,
+          "specificity": [
+            {
+              "a": 0,
+              "b": 1,
+              "c": 0,
+              "components": [
+                {
+                  "text": ".tg-badge",
+                  "a": 0,
+                  "b": 1,
+                  "c": 0
+                }
+              ]
+            }
+          ],
+          "layers": [
+            "tds.components"
+          ],
+          "declaration": {
+            "name": "border",
+            "value": "0"
+          },
+          "controlsValue": false,
+          "reason": "later-source-order",
+          "families": []
+        }
+      ],
+      "dependencies": [
+        "--border-action"
+      ],
+      "dependencyContexts": [
+        {
+          "property": "--border-action",
+          "context": {
+            "tag": "SPAN",
+            "id": "",
+            "classes": [
+              "tg-badge",
+              "tg-badge--primary"
+            ],
+            "path": "html:nth-child(1) > body:nth-child(2) > div:nth-child(4) > main:nth-child(2) > section:nth-child(23) > div:nth-child(6) > div:nth-child(1) > div:nth-child(1) > div:nth-child(1) > button:nth-child(3) > span:nth-child(2)"
+          },
+          "id": "html:nth-child(1) > body:nth-child(2) > div:nth-child(4) > main:nth-child(2) > section:nth-child(23) > div:nth-child(6) > div:nth-child(1) > div:nth-child(1) > div:nth-child(1) > button:nth-child(3) > span:nth-child(2)::--border-action"
+        }
+      ],
+      "id": "html:nth-child(1) > body:nth-child(2) > div:nth-child(4) > main:nth-child(2) > section:nth-child(23) > div:nth-child(6) > div:nth-child(1) > div:nth-child(1) > div:nth-child(1) > button:nth-child(3) > span:nth-child(2)::border-top-color",
+      "context": {
+        "tag": "SPAN",
+        "id": "",
+        "classes": [
+          "tg-badge",
+          "tg-badge--primary"
+        ],
+        "path": "html:nth-child(1) > body:nth-child(2) > div:nth-child(4) > main:nth-child(2) > section:nth-child(23) > div:nth-child(6) > div:nth-child(1) > div:nth-child(1) > div:nth-child(1) > button:nth-child(3) > span:nth-child(2)"
+      }
+    },
+    {
+      "property": "--border-action",
+      "inherited": true,
+      "computed": "1px solid light-dark(rgba(0, 0, 0, .24), rgba(255, 255, 255, .24))",
+      "dependencySemantics": "Syntactic var() references, including possibly inactive light-dark or fallback branches; not all references affect the final used value in this context.",
+      "status": "browser-confirmed-source-block",
+      "controlling": [
+        {
+          "selector": ":root",
+          "source": "src/tokens/_index.scss",
+          "line": 150,
+          "ancestor": 10,
+          "origin": "regular",
+          "important": false,
+          "specificity": [
+            {
+              "a": 0,
+              "b": 1,
+              "c": 0,
+              "components": [
+                {
+                  "text": ":root",
+                  "a": 0,
+                  "b": 1,
+                  "c": 0
+                }
+              ]
+            }
+          ],
+          "layers": [
+            "tds.tokens"
+          ],
+          "declaration": {
+            "name": "--border-action",
+            "value": "1px solid var(--action-border-color)"
+          },
+          "controlsValue": true,
+          "families": []
+        }
+      ],
+      "overridden": [],
+      "dependencies": [
+        "--action-border-color"
+      ],
+      "dependencyContexts": [
+        {
+          "property": "--action-border-color",
+          "context": {
+            "tag": "HTML",
+            "id": "",
+            "classes": [],
+            "path": "html:nth-child(1)"
+          },
+          "id": "html:nth-child(1)::--action-border-color"
+        }
+      ],
+      "id": "html:nth-child(1) > body:nth-child(2) > div:nth-child(4) > main:nth-child(2) > section:nth-child(23) > div:nth-child(6) > div:nth-child(1) > div:nth-child(1) > div:nth-child(1) > button:nth-child(3) > span:nth-child(2)::--border-action",
+      "context": {
+        "tag": "SPAN",
+        "id": "",
+        "classes": [
+          "tg-badge",
+          "tg-badge--primary"
+        ],
+        "path": "html:nth-child(1) > body:nth-child(2) > div:nth-child(4) > main:nth-child(2) > section:nth-child(23) > div:nth-child(6) > div:nth-child(1) > div:nth-child(1) > div:nth-child(1) > button:nth-child(3) > span:nth-child(2)"
+      }
+    },
+    {
+      "property": "--action-border-color",
+      "inherited": true,
+      "computed": "light-dark(rgba(0, 0, 0, .24), rgba(255, 255, 255, .24))",
+      "dependencySemantics": "Syntactic var() references, including possibly inactive light-dark or fallback branches; not all references affect the final used value in this context.",
+      "status": "browser-confirmed-source-block",
+      "controlling": [
+        {
+          "selector": ":root",
+          "source": "src/tokens/_index.scss",
+          "line": 149,
+          "ancestor": 0,
+          "origin": "regular",
+          "important": false,
+          "specificity": [
+            {
+              "a": 0,
+              "b": 1,
+              "c": 0,
+              "components": [
+                {
+                  "text": ":root",
+                  "a": 0,
+                  "b": 1,
+                  "c": 0
+                }
+              ]
+            }
+          ],
+          "layers": [
+            "tds.tokens"
+          ],
+          "declaration": {
+            "name": "--action-border-color",
+            "value": "light-dark(rgba(0, 0, 0, .24), rgba(255, 255, 255, .24))"
+          },
+          "controlsValue": true,
+          "families": []
+        }
+      ],
+      "overridden": [],
+      "dependencies": [],
+      "dependencyContexts": [],
+      "id": "html:nth-child(1)::--action-border-color",
+      "context": {
+        "tag": "HTML",
+        "id": "",
+        "classes": [],
+        "path": "html:nth-child(1)"
+      }
+    }
+  ]
+}

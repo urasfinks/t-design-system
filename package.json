@@ -38,12 +38,18 @@
     "test": "npm run build && node --test tests/*.test.mjs",
     "test:browser": "npm run build && node scripts/test-browser.mjs",
     "analyze:styles": "npm run build && node scripts/analyze-styles.mjs",
-    "prepack": "npm run build"
+    "prepack": "npm run build",
+    "graph:styles": "node scripts/style-graph.mjs",
+    "check:style-graph": "node scripts/style-graph.mjs --check",
+    "graph:reality": "npm run build && node scripts/style-reality.mjs",
+    "check:style-reality": "node scripts/style-reality.mjs --check",
+    "explain:style": "node scripts/explain-style.mjs"
   },
   "devDependencies": {
     "feather-icons": "4.29.2",
     "playwright": "1.62.1",
-    "sass": "1.93.2"
+    "sass": "1.93.2",
+    "source-map-js": "1.2.2"
   },
   "engines": {
     "node": ">=20"

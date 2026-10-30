@@ -131,7 +131,7 @@
     --field-border-color: var(--border-color);
     --border-field: 1px solid var(--field-border-color);
     --group-border-color: var(--field-border-color);
-    --action-border-color: light-dark(rgba(0, 0, 0, .04), rgba(255, 255, 255, .02));
+    --action-border-color: light-dark(rgba(0, 0, 0, .24), rgba(255, 255, 255, .24));
     --border-action: 1px solid var(--action-border-color);
     --panel-hover-border-color: light-dark(rgba(0, 0, 0, .24), rgba(255, 255, 255, .24));
     --switch-track-color: var(--field-bg);
@@ -262,11 +262,12 @@
   }
 }
 @layer tds.components {
-  :where(:is(button[class*=tg-], .tg-btn, .tg-icon-btn, .tg-chip, .tg-tab, .tg-dot, .tg-tabbar__item, a.tg-badge[href], a.tg-list-item[href], a.tg-menu__item[href], a.tg-pager__link[href], a.tg-site-nav__link[href], .tg-disclosure__trigger, .tg-bottom-panel__header, .tg-bottom-panel__trigger, .tg-segmented__item, a.tg-sidebar__link[href], summary.tg-sidebar__link, a.tg-nav-menu__link[href], a.tg-nav-menu__top[href], .tg-command__item, .tg-listbox__option, .tg-check, .tg-radio):not(.tg-switch, [role=switch])) {
+  :where(:is(button[class*=tg-], .tg-btn, .tg-icon-btn, .tg-chip, .tg-tab, .tg-dot, .tg-tabbar__item, a[href][class*=tg-], summary[class*=tg-], [role=button][class*=tg-], a.tg-badge[href], a.tg-list-item[href], a.tg-menu__item[href], a.tg-pager__link[href], a.tg-site-nav__link[href], .tg-disclosure__trigger, .tg-bottom-panel__header, .tg-bottom-panel__trigger, .tg-segmented__item, a.tg-sidebar__link[href], summary.tg-sidebar__link, a.tg-nav-menu__link[href], a.tg-nav-menu__top[href], .tg-command__item, .tg-listbox__option, .tg-check, .tg-radio):not(.tg-switch, [role=switch])) {
     --control-idle-bg: transparent;
     --control-hover-bg: var(--surface-muted);
   }
-  :is(button[class*=tg-], .tg-btn, .tg-icon-btn, .tg-chip, .tg-tab, .tg-dot, .tg-tabbar__item, a.tg-badge[href], a.tg-list-item[href], a.tg-menu__item[href], a.tg-pager__link[href], a.tg-site-nav__link[href], .tg-disclosure__trigger, .tg-bottom-panel__header, .tg-bottom-panel__trigger, .tg-segmented__item, a.tg-sidebar__link[href], summary.tg-sidebar__link, a.tg-nav-menu__link[href], a.tg-nav-menu__top[href], .tg-command__item, .tg-listbox__option, .tg-check, .tg-radio):not(.tg-switch, [role=switch]) {
+  :is(button[class*=tg-], .tg-btn, .tg-icon-btn, .tg-chip, .tg-tab, .tg-dot, .tg-tabbar__item, a[href][class*=tg-], summary[class*=tg-], [role=button][class*=tg-], a.tg-badge[href], a.tg-list-item[href], a.tg-menu__item[href], a.tg-pager__link[href], a.tg-site-nav__link[href], .tg-disclosure__trigger, .tg-bottom-panel__header, .tg-bottom-panel__trigger, .tg-segmented__item, a.tg-sidebar__link[href], summary.tg-sidebar__link, a.tg-nav-menu__link[href], a.tg-nav-menu__top[href], .tg-command__item, .tg-listbox__option, .tg-check, .tg-radio):not(.tg-switch, [role=switch]) {
+    border: var(--border-action);
     touch-action: manipulation;
     transition: background-color var(--control-paint-duration, var(--duration)) var(--ease), color var(--control-paint-duration, var(--duration)) var(--ease), border-color var(--duration) var(--ease), transform var(--duration-fast) var(--ease), filter var(--duration-fast) var(--ease);
   }
@@ -274,7 +275,6 @@
     --control-idle-bg: transparent;
     --control-hover-bg: transparent;
     --control-hover-filter: none;
-    border-color: transparent;
   }
   :is(.tg-btn--ghost, .tg-icon-btn--ghost, .tg-search__clear, .tg-tag-input__remove, .tg-wheel__option):not([inert]):where(:not(:disabled, [disabled], [aria-disabled=true], [disabled] *, [aria-disabled=true] *, [inert] *)):is(:active, [data-pressed=true]) {
     background-color: transparent;
@@ -282,7 +282,7 @@
     filter: none;
   }
   @media (hover: hover) and (pointer: fine) {
-    :is(button[class*=tg-], .tg-btn, .tg-icon-btn, .tg-chip, .tg-tab, .tg-dot, .tg-tabbar__item, a.tg-badge[href], a.tg-list-item[href], a.tg-menu__item[href], a.tg-pager__link[href], a.tg-site-nav__link[href], .tg-disclosure__trigger, .tg-bottom-panel__header, .tg-bottom-panel__trigger, .tg-segmented__item, a.tg-sidebar__link[href], summary.tg-sidebar__link, a.tg-nav-menu__link[href], a.tg-nav-menu__top[href], .tg-command__item, .tg-listbox__option, .tg-check, .tg-radio):not(.tg-switch, [role=switch]):not([inert]):where(:not(:disabled, [disabled], [aria-disabled=true], [disabled] *, [aria-disabled=true] *, [inert] *)):hover, .tg-choice:hover > :is(button[class*=tg-], .tg-btn, .tg-icon-btn, .tg-chip, .tg-tab, .tg-dot, .tg-tabbar__item, a.tg-badge[href], a.tg-list-item[href], a.tg-menu__item[href], a.tg-pager__link[href], a.tg-site-nav__link[href], .tg-disclosure__trigger, .tg-bottom-panel__header, .tg-bottom-panel__trigger, .tg-segmented__item, a.tg-sidebar__link[href], summary.tg-sidebar__link, a.tg-nav-menu__link[href], a.tg-nav-menu__top[href], .tg-command__item, .tg-listbox__option, .tg-check, .tg-radio):not(.tg-switch, [role=switch]):not([inert]):where(:not(:disabled, [disabled], [aria-disabled=true], [disabled] *, [aria-disabled=true] *, [inert] *)) {
+    :is(button[class*=tg-], .tg-btn, .tg-icon-btn, .tg-chip, .tg-tab, .tg-dot, .tg-tabbar__item, a[href][class*=tg-], summary[class*=tg-], [role=button][class*=tg-], a.tg-badge[href], a.tg-list-item[href], a.tg-menu__item[href], a.tg-pager__link[href], a.tg-site-nav__link[href], .tg-disclosure__trigger, .tg-bottom-panel__header, .tg-bottom-panel__trigger, .tg-segmented__item, a.tg-sidebar__link[href], summary.tg-sidebar__link, a.tg-nav-menu__link[href], a.tg-nav-menu__top[href], .tg-command__item, .tg-listbox__option, .tg-check, .tg-radio):not(.tg-switch, [role=switch]):not([inert]):where(:not(:disabled, [disabled], [aria-disabled=true], [disabled] *, [aria-disabled=true] *, [inert] *)):hover, .tg-choice:hover > :is(button[class*=tg-], .tg-btn, .tg-icon-btn, .tg-chip, .tg-tab, .tg-dot, .tg-tabbar__item, a[href][class*=tg-], summary[class*=tg-], [role=button][class*=tg-], a.tg-badge[href], a.tg-list-item[href], a.tg-menu__item[href], a.tg-pager__link[href], a.tg-site-nav__link[href], .tg-disclosure__trigger, .tg-bottom-panel__header, .tg-bottom-panel__trigger, .tg-segmented__item, a.tg-sidebar__link[href], summary.tg-sidebar__link, a.tg-nav-menu__link[href], a.tg-nav-menu__top[href], .tg-command__item, .tg-listbox__option, .tg-check, .tg-radio):not(.tg-switch, [role=switch]):not([inert]):where(:not(:disabled, [disabled], [aria-disabled=true], [disabled] *, [aria-disabled=true] *, [inert] *)) {
       background-color: var(--control-hover-bg);
       filter: var(--control-hover-filter, brightness(var(--control-hover-brightness, 0.92)));
       cursor: pointer;
@@ -293,14 +293,14 @@
     :is(.tg-btn--ghost, .tg-icon-btn--ghost, .tg-search__clear, .tg-tag-input__remove, .tg-wheel__option):not([inert]):where(:not(:disabled, [disabled], [aria-disabled=true], [disabled] *, [aria-disabled=true] *, [inert] *)):hover:where(:not(:active, [data-pressed=true])) {
       color: var(--text-color);
     }
-    :is(button[class*=tg-], .tg-btn, .tg-icon-btn, .tg-chip, .tg-tab, .tg-dot, .tg-tabbar__item, a.tg-badge[href], a.tg-list-item[href], a.tg-menu__item[href], a.tg-pager__link[href], a.tg-site-nav__link[href], .tg-disclosure__trigger, .tg-bottom-panel__header, .tg-bottom-panel__trigger, .tg-segmented__item, a.tg-sidebar__link[href], summary.tg-sidebar__link, a.tg-nav-menu__link[href], a.tg-nav-menu__top[href], .tg-command__item, .tg-listbox__option, .tg-check, .tg-radio):not(.tg-switch, [role=switch]):is(:disabled, [disabled], [aria-disabled=true], [disabled] *, [aria-disabled=true] *):hover {
+    :is(button[class*=tg-], .tg-btn, .tg-icon-btn, .tg-chip, .tg-tab, .tg-dot, .tg-tabbar__item, a[href][class*=tg-], summary[class*=tg-], [role=button][class*=tg-], a.tg-badge[href], a.tg-list-item[href], a.tg-menu__item[href], a.tg-pager__link[href], a.tg-site-nav__link[href], .tg-disclosure__trigger, .tg-bottom-panel__header, .tg-bottom-panel__trigger, .tg-segmented__item, a.tg-sidebar__link[href], summary.tg-sidebar__link, a.tg-nav-menu__link[href], a.tg-nav-menu__top[href], .tg-command__item, .tg-listbox__option, .tg-check, .tg-radio):not(.tg-switch, [role=switch]):is(:disabled, [disabled], [aria-disabled=true], [disabled] *, [aria-disabled=true] *):hover {
       background-color: var(--control-idle-bg);
       filter: none;
       cursor: not-allowed;
     }
   }
   @media (prefers-reduced-motion: reduce) {
-    :is(button[class*=tg-], .tg-btn, .tg-icon-btn, .tg-chip, .tg-tab, .tg-dot, .tg-tabbar__item, a.tg-badge[href], a.tg-list-item[href], a.tg-menu__item[href], a.tg-pager__link[href], a.tg-site-nav__link[href], .tg-disclosure__trigger, .tg-bottom-panel__header, .tg-bottom-panel__trigger, .tg-segmented__item, a.tg-sidebar__link[href], summary.tg-sidebar__link, a.tg-nav-menu__link[href], a.tg-nav-menu__top[href], .tg-command__item, .tg-listbox__option, .tg-check, .tg-radio):not(.tg-switch, [role=switch]) {
+    :is(button[class*=tg-], .tg-btn, .tg-icon-btn, .tg-chip, .tg-tab, .tg-dot, .tg-tabbar__item, a[href][class*=tg-], summary[class*=tg-], [role=button][class*=tg-], a.tg-badge[href], a.tg-list-item[href], a.tg-menu__item[href], a.tg-pager__link[href], a.tg-site-nav__link[href], .tg-disclosure__trigger, .tg-bottom-panel__header, .tg-bottom-panel__trigger, .tg-segmented__item, a.tg-sidebar__link[href], summary.tg-sidebar__link, a.tg-nav-menu__link[href], a.tg-nav-menu__top[href], .tg-command__item, .tg-listbox__option, .tg-check, .tg-radio):not(.tg-switch, [role=switch]) {
       transition: none;
     }
   }
@@ -534,7 +534,7 @@
   .tg-chip:is([aria-pressed=true], [aria-checked=true]) {
     --control-idle-bg: var(--action-bg);
     --control-color: var(--button-text-color);
-    border-color: transparent;
+    border-color: var(--action-border-color);
   }
   .tg-btn-group {
     display: inline-flex;

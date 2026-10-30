@@ -70,13 +70,13 @@ try {
       return {
         shared: (() => { const probe = document.createElement('i'); probe.style.color = 'var(--action-border-color)'; document.body.append(probe); const c = getComputedStyle(probe).color; probe.remove(); return c; })(),
         actionColors: ['#selection .tg-chip[aria-pressed="false"]', '#selection a.tg-badge', '#avatars button.tg-avatar[aria-checked="false"]', '#buttons .tg-btn--secondary', '#choices .tg-check:not(:checked)', '#choices .tg-radio:not(:checked)'].map(s => [s, getComputedStyle(document.querySelector(s)).borderTopColor]),
-        // Secondary and icon buttons: the fill carries the shape, a barely visible outline marks the edge.
+        // Secondary and icon buttons: the fill carries the shape, a visible shared outline marks the edge.
         filled: ['#buttons .tg-btn--secondary', '#buttons .tg-icon-btn:not(.tg-icon-btn--ghost)'].map(s => { const el = document.querySelector(s), cs = getComputedStyle(el); return [s, rgba(cs.borderTopColor)[3], rgba(cs.backgroundColor)[3]]; }),
         panels: ['#surfaces .tg-card', '#lists .tg-list', '#feedback .tg-notice'].map(s => [s, pick(s)]),
       };
     });
     for (const [selector, color] of outlines.actionColors) { assert.equal(color, outlines.shared, `${theme}: action outline ${selector} is the one shared action outline`); checks++; }
-    for (const [selector, border, fill] of outlines.filled) { assert.ok(border > 0 && border <= .05 && fill > 0, `${theme}: ${selector} has a fill and a barely visible outline (alpha ${border.toFixed(3)})`); checks++; }
+    for (const [selector, border, fill] of outlines.filled) { assert.ok(border >= .2 && fill > 0, `${theme}: ${selector} has a fill and a visible shared outline (alpha ${border.toFixed(3)})`); checks++; }
     for (const [selector, value] of outlines.panels) { assert.ok(value <= 1.35, `${theme}: panel outline ${selector} ${value.toFixed(2)}:1 stays quiet`); checks++; }
     assert.ok(report.staticBadges.length >= 5 && report.actionBadges.length >= 1 && report.chips.length >= 3 && report.actionAvatars.length >= 2 && report.linkRows.length >= 3);
   }
@@ -127,7 +127,7 @@ try {
     if (avatar.initials) assert.notEqual(avatar.initials, 'text', 'initials do not show a text cursor');
     checks += 2;
   }
-  // Dismiss actions (close, cancel) are auxiliary: transparent, no outline, wherever they appear.
+  // Dismiss actions (close, cancel) are auxiliary: transparent, with the shared action outline, wherever they appear.
   for (const path of ['docs/', 'docs/compositions.html']) {
     const view = await browser.newPage({ viewport: { width: 1280, height: 900 } });
     await view.goto(`http://127.0.0.1:4192/${path}`);
@@ -136,7 +136,7 @@ try {
       .map(button => { const style = getComputedStyle(button); return [button.getAttribute('aria-label'), style.borderTopColor, style.backgroundColor]; }));
     assert.ok(dismiss.length >= (path.endsWith('compositions.html') ? 2 : 1), `${path}: dismiss buttons found`);
     for (const [label, width, background] of dismiss) {
-      assert.equal(width, 'rgba(0, 0, 0, 0)', `${path}: «${label}» has no outline`);
+      assert.notEqual(width, 'rgba(0, 0, 0, 0)', `${path}: «${label}» retains its action outline`);
       assert.equal(background, 'rgba(0, 0, 0, 0)', `${path}: «${label}» is transparent`);
       checks += 2;
     }
