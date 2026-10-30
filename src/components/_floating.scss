@@ -7,12 +7,12 @@
 
 // The raised surface every floating layer shares.
 @mixin surface($radius: var(--radius-control)) {
-  border: var(--border);
+  border: var(--floating-border);
   border-radius: $radius;
-  background: var(--surface-bg);
-  --ring-bg: var(--surface-bg);
-  color: var(--text-color);
-  box-shadow: var(--shadow-overlay);
+  background: var(--floating-bg);
+  --ring-bg: var(--floating-bg);
+  color: var(--floating-color);
+  box-shadow: var(--floating-shadow);
 }
 
 // A popover in the top layer: placed by the host or by CSS anchors, grows from its

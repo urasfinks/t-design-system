@@ -4,9 +4,8 @@
 @use 'selected';
 
 // Every dropdown (menu, listbox, combobox, navigation panel) is one look: a floating
-// surface whose fill is a trough on the page tone; rows rise from it when chosen.
+// surface; rows rise from it when chosen.
 @mixin list($radius: var(--radius-control)) {
-  --surface-bg: var(--background-main);
   @include floating.surface($radius);
 }
 
@@ -65,4 +64,14 @@
 @mixin meta {
   font-size: var(--fs-sm);
   color: var(--text-secondary);
+}
+
+// Section names in every option collection use one compact label.
+@mixin group-label {
+  padding: var(--space-2) var(--space-3) var(--space-1);
+  color: var(--text-secondary);
+  font-size: var(--fs-xs);
+  font-weight: var(--fw-semibold);
+  line-height: 1.4;
+  letter-spacing: .02em;
 }

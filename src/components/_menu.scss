@@ -80,12 +80,7 @@
     min-inline-size: 0;
   }
   .tg-menu__item-meta { @include option.meta; }
-  .tg-menu__label {
-    padding: var(--space-2) var(--space-3) var(--space-1);
-    font-size: var(--fs-sm);
-    font-weight: var(--fw-medium);
-    color: var(--text-secondary);
-  }
+  .tg-menu__label { @include option.group-label; }
   .tg-menu__separator {
     block-size: 1px;
     margin: var(--space-1) calc(var(--space-1) * -1);

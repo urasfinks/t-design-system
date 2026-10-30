@@ -3,10 +3,14 @@ import {readFile, mkdir, writeFile} from 'node:fs/promises';
 import {chromium, webkit} from 'playwright';
 import {compareCatalogPaint} from './helpers/catalog-paint.mjs';
 const fixture = 'tests/fixtures/cascade-baseline/';
-const baseline = await readFile(fixture+'t-design-system.css','utf8') + await readFile(fixture+'catalog.css','utf8');
+// Explicit approved visual migration: dropdowns now use the same raised fill as dialogs.
+// Keep the immutable reference; adapt only this intentional change for comparison.
+const baseline = await readFile(fixture+'t-design-system.css','utf8') + await readFile(fixture+'catalog.css','utf8')
+  + '\n.tg-menu { --surface-bg: var(--section-color); } .tg-menu__label { font-size: var(--fs-xs); font-weight: var(--fw-semibold); letter-spacing: .02em; }';
 const current = await readFile('dist/t-design-system.css','utf8') + await readFile('docs/catalog.css','utf8');
 // The saved catalog markup is rendered, so new examples never change what is compared.
 const html = (await readFile(fixture+'index.html','utf8'))
+  .replace('class="catalog-search"', 'class="tg-modal catalog-search"')
   .replace(/<script\b[\s\S]*?<\/script>/g,'')
   .replace(/<link\b[^>]*>/g,'')
   .replace(/<iframe\b[\s\S]*?<\/iframe>/g,'')

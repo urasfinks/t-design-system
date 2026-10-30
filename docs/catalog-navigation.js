@@ -54,20 +54,28 @@ export function initCatalogNavigation({ root = document } = {}) {
   sync();
   holdInitialHash();
   addEventListener('hashchange', sync);
-  if ('IntersectionObserver' in window) {
-    const observer = new IntersectionObserver(entries => {
-      for (const entry of entries) if (entry.isIntersecting) {
-        sectionSelect.value = entry.target.id;
-        for (const link of links) {
-          const active = link.hash === `#${entry.target.id}`;
-          link.classList.toggle('is-active', active);
-          if (active) link.setAttribute('aria-current', 'location');
-          else link.removeAttribute('aria-current');
-        }
-      }
-    }, { rootMargin: '-100px 0px -60% 0px', threshold: 0 });
-    for (const section of sections) observer.observe(section);
+  // Observer batches describe intersection changes, not the current viewport order.
+  // A full-page capture or resize can leave an old section active at scrollY=0.
+  // Derive the active section from current geometry on scroll and resize instead.
+  let frame = 0;
+  function updateVisibleSection() {
+    frame = 0;
+    const section = sections.findLast(section => section.getBoundingClientRect().top <= 100) || sections[0];
+    if (!section) return;
+    sectionSelect.value = section.id;
+    for (const link of links) {
+      const active = link.hash === `#${section.id}`;
+      link.classList.toggle('is-active', active);
+      if (active) link.setAttribute('aria-current', 'location');
+      else link.removeAttribute('aria-current');
+    }
   }
+  function scheduleVisibleSection() {
+    if (!frame) frame = requestAnimationFrame(updateVisibleSection);
+  }
+  addEventListener('scroll', scheduleVisibleSection, { passive: true });
+  addEventListener('resize', scheduleVisibleSection);
+  scheduleVisibleSection();
 
   return { navigate, sync };
 }

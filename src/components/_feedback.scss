@@ -1,3 +1,4 @@
+@use 'floating';
 @use '../base';
 @layer tds.components {
   .tg-notice {
@@ -170,12 +171,7 @@
     overflow-wrap: anywhere;
     max-inline-size: calc(100% - var(--space-8));
     padding: var(--space-3) var(--space-5);
-    border: var(--border);
-    border-radius: var(--radius);
-    background: var(--section-bg-color);
-    --ring-bg: var(--section-bg-color);
-    color: var(--text-color);
-    box-shadow: var(--shadow-overlay);
+    @include floating.surface(var(--radius));
     opacity: 0;
     visibility: hidden;
     transform: translateY(.5rem);
@@ -221,12 +217,7 @@
     inline-size: min(40rem, calc(100% - var(--space-8)));
     max-block-size: calc(100dvh - var(--space-8));
     padding: 0;
-    border: var(--border);
-    border-radius: var(--radius-lg);
-    background: var(--section-bg-color);
-    --ring-bg: var(--section-bg-color);
-    color: var(--text-color);
-    box-shadow: var(--shadow-overlay);
+    @include floating.surface(var(--radius-lg));
     overflow: auto;
     overscroll-behavior: contain;
 

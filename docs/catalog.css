@@ -226,17 +226,11 @@ dialog.catalog-search {
   max-block-size: min(44rem, calc(100dvh - var(--space-8)));
   margin: auto;
   padding: var(--space-5);
-  border: var(--border);
-  border-radius: var(--radius-lg);
-  background: var(--surface-bg);
-  color: var(--text-color);
-  box-shadow: var(--shadow-overlay);
   overflow: auto;
 }
 dialog.catalog-search[open] { animation: catalog-search-in var(--duration) var(--ease) both; }
 dialog.catalog-search.is-closing { animation: catalog-search-out var(--duration-fast) var(--ease) both; pointer-events: none; }
 dialog.catalog-search.is-instant[open] { animation: none; }
-dialog.catalog-search::backdrop { background: var(--overlay-bg); backdrop-filter: blur(3px); }
 .catalog-search__header { display: flex; flex-wrap: wrap; align-items: start; justify-content: space-between; gap: var(--space-3); margin-block-end: var(--space-4); }
 .catalog-search__header > div { min-inline-size: 0; flex: 1 1 12rem; }
 .catalog-search__header h2 { margin: var(--space-1) 0 0; font-size: var(--fs-xl); line-height: 1.25; }

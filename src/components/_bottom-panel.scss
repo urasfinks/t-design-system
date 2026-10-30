@@ -1,3 +1,4 @@
+@use 'floating';
 @layer tds.components {
   .tg-bottom-panel {
     position: fixed;
@@ -10,19 +11,20 @@
     padding-block-end: var(--safe-area-bottom);
     overflow: auto;
     overscroll-behavior: contain;
-    border: var(--border);
+    @include floating.surface(0);
     border-block-end: 0;
     border-start-start-radius: var(--radius-lg);
     border-start-end-radius: var(--radius-lg);
     border-end-start-radius: 0;
     border-end-end-radius: 0;
-    background: var(--surface-bg);
-    --ring-bg: var(--surface-bg);
-    color: var(--text-color);
-    box-shadow: var(--shadow-overlay);
 
     // Layout only: the nested tg-list owns every visible surface and row.
     &--list {
+      // The list is the visible surface; propagate its role instead of repainting it.
+      --surface-bg: var(--floating-bg);
+      --panel-border: var(--floating-border);
+      --panel-color: var(--floating-color);
+      --panel-shadow: var(--floating-shadow);
       inline-size: min(100%, var(--bottom-panel-width, var(--layout-reading-width)));
       padding: var(--space-4);
       padding-block-end: max(var(--space-4), var(--safe-area-bottom));
@@ -33,7 +35,7 @@
     }
 
     &__trigger, &__header {
-      --control-idle-bg: var(--surface-bg);
+      --control-idle-bg: var(--floating-bg);
       --control-hover-bg: var(--control-idle-bg);
       background: var(--control-idle-bg);
     }

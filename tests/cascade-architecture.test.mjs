@@ -57,7 +57,7 @@ test('shared engines own surfaces, rows, selection and steps; owners only includ
   assert.match(menu, /@include floating\.popover/);
   // Every dropdown is one look: the list, its rows and the chosen row come from the option engine.
   const option = await read('src/components/_option.scss');
-  assert.match(option, /@mixin list[\s\S]*--surface-bg: var\(--background-main\)[\s\S]*@include floating\.surface/);
+  assert.match(option, /@mixin list[\s\S]*@include floating\.surface/);
   assert.match(option, /@mixin chosen \{\s*@include selected\.segment-current/);
   const owners = { menu, pickers: await read('src/components/_pickers.scss'), 'app-nav': await read('src/components/_app-nav.scss') };
   for (const [name, source] of Object.entries(owners)) {
@@ -75,4 +75,36 @@ test('shared engines own surfaces, rows, selection and steps; owners only includ
   const buttons = await read('src/components/_buttons.scss');
   assert.match(buttons, /@include selected\.soft/);
   assert.match(buttons, /@include selected\.filled/);
+});
+
+
+test('floating paint has one owner and no component replaces its global roles', async () => {
+  const {readdir} = await import('node:fs/promises');
+  for (const file of await readdir(new URL('../src/components/', import.meta.url))) {
+    const source = await read(`src/components/${file}`);
+    assert.doesNotMatch(source, /--floating-(?:bg|color|border|shadow)\s*:/, file);
+    assert.doesNotMatch(source, /!important/, file);
+  }
+  const option = await read('src/components/_option.scss');
+  assert.doesNotMatch(option, /--surface-bg\s*:/);
+  const catalog = await read('docs/catalog.css');
+  const search = catalog.match(/dialog\.catalog-search \{([^}]+)\}/)[1];
+  assert.doesNotMatch(search, /(?:background|box-shadow|border|color)\s*:/);
+  assert.match(await read('docs/index.html'), /class="tg-modal catalog-search"/);
+});
+
+
+test('approximate metadata footer cluster has a canonical owner', async () => {
+  for (const name of ['editor', 'overlays']) {
+    assert.match(await read(`src/components/_${name}.scss`), /@include panel-parts\.meta-footer/);
+  }
+  const parts = await read('src/components/_panel-parts.scss');
+  assert.match(parts, /border-block-start: var\(--border-transparent\)/);
+  assert.doesNotMatch(parts, /@layer|!important/);
+});
+
+test('menu, navigation and command section labels share one canonical label', async () => {
+  for (const name of ['menu', 'app-nav', 'overlays']) {
+    assert.match(await read(`src/components/_${name}.scss`), /@include option\.group-label/);
+  }
 });

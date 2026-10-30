@@ -41,13 +41,7 @@
     .tg-disclosure { border: 0; border-radius: 0; background: transparent; }
     .tg-disclosure__content { padding: 0; }
   }
-  .tg-sidebar__label {
-    padding: var(--space-2) var(--space-2) var(--space-1);
-    color: var(--text-secondary);
-    font-size: var(--fs-xs);
-    font-weight: var(--fw-semibold);
-    letter-spacing: .02em;
-  }
+  .tg-sidebar__label { @include option.group-label; }
   .tg-sidebar__link {
     --control-hover-filter: none;
     @include option.row(2.5rem);
@@ -160,13 +154,7 @@
   }
   @keyframes tg-nav-panel-in { from { opacity: 0; transform: translateY(-.25rem); } }
   .tg-nav-menu__group { display: grid; align-content: start; gap: 2px; margin: 0; padding: 0; list-style: none; }
-  .tg-nav-menu__title {
-    padding: var(--space-1) var(--space-3);
-    color: var(--text-secondary);
-    font-size: var(--fs-xs);
-    font-weight: var(--fw-semibold);
-    letter-spacing: .02em;
-  }
+  .tg-nav-menu__title { @include option.group-label; }
   .tg-nav-menu__link {
     @include option.dropdown-row;
     align-items: flex-start;

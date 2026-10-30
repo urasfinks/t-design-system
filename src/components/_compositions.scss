@@ -1,4 +1,5 @@
 @use '../base';
+@use 'floating';
 
 // Reusable screen compositions. Content and runtime measurements stay with the host.
 @layer tds.components {
@@ -27,11 +28,7 @@
     justify-content: flex-start;
     max-inline-size: 100%;
     padding: var(--space-1);
-    border: var(--border);
-    border-radius: var(--radius-control);
-    background: var(--surface-bg);
-    --ring-bg: var(--surface-bg);
-    box-shadow: var(--shadow-overlay);
+    @include floating.surface;
     overflow-x: auto;
     scrollbar-width: none;
     > :is(.tg-btn, .tg-icon-btn) { flex: 0 0 auto; }

@@ -1390,7 +1390,7 @@ export function initEditor({ root = document } = {}) {
 export function initGestures({ root = document } = {}) {
   const status = root.getElementById('demo-gesture-status');
   for (const button of root.querySelectorAll('[data-hold]')) {
-    let frame = 0, start = 0, lastEnter = 0;
+    let frame = 0, start = 0, lastEnter = -Infinity;
     const label = button.querySelector('.tg-btn__label');
     const reset = () => { cancelAnimationFrame(frame); delete button.dataset.state; button.style.setProperty('--hold-progress', 0); };
     const confirm = () => { cancelAnimationFrame(frame); button.dataset.state = 'confirmed'; label.textContent = 'Удалено'; announce(status, 'Удалено'); setTimeout(() => { reset(); label.textContent = 'Удалить удержанием'; }, 1600); };

@@ -154,6 +154,11 @@
     --switch-border-color: var(--action-border-color);
     --notice-danger-bg: var(--danger-soft);
     --surface-bg: var(--section-color);
+    // Canonical paint for every floating surface; never redefine in a component.
+    --floating-bg: var(--section-color);
+    --floating-color: var(--text-color);
+    --floating-border: var(--border);
+    --floating-shadow: var(--shadow-overlay);
     // The background a ring cuts out of (range thumb, avatar group). On the page it is the
     // page; every surface sets it to its own fill, so rings match what is under them.
     --ring-bg: var(--background-main);

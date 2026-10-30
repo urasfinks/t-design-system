@@ -6,7 +6,7 @@ import { verify } from '../scripts/verify-implementation.mjs';
 const { specs } = JSON.parse(readFileSync('references/21st-dev-1000/implementation.json', 'utf8'));
 
 test('the registry lists every spec heading of the 17 reference folders', () => {
-  const folders = readdirSync('references/21st-dev-1000/images');
+  const folders = readdirSync('references/21st-dev-1000/images', {withFileTypes: true}).filter(entry => entry.isDirectory()).map(entry => entry.name);
   const ids = folders.flatMap(folder => [...readFileSync(`references/21st-dev-1000/images/${folder}/components.md`, 'utf8').matchAll(/^### ([A-Z]+\d+)\. /gm)].map(match => match[1]));
   assert.equal(ids.length, 192);
   assert.deepEqual(specs.map(spec => spec.id).sort(), ids.sort());
