@@ -7,6 +7,17 @@ const fixture = 'tests/fixtures/cascade-baseline/';
 // Keep the immutable reference; adapt only this intentional change for comparison.
 const baseline = await readFile(fixture+'t-design-system.css','utf8') + await readFile(fixture+'catalog.css','utf8')
   + '\n.tg-menu { --surface-bg: var(--section-color); } .tg-menu__label { font-size: var(--fs-xs); font-weight: var(--fw-semibold); letter-spacing: .02em; }';
+// Rounded media now composite before clipping. This is an intentional corner-paint
+// migration; retain the immutable fixture and adapt only these known boundaries.
+const mediaMigration = `
+.tg-card__media, .tg-avatar__clip, .tg-carousel__slide, .tg-carousel__thumbs > button,
+.tg-player__cover, .tg-compare, .tg-choice-card__media,
+.tg-testimonial:has(> .tg-testimonial__media) {
+  overflow: visible; clip-path: border-box; mask-image: linear-gradient(#000,#000);
+}
+.tg-card--overlay { overflow: visible; }
+.tg-carousel__viewport { border-radius: 0; }
+`;
 const current = await readFile('dist/t-design-system.css','utf8') + await readFile('docs/catalog.css','utf8');
 // The saved catalog markup is rendered, so new examples never change what is compared.
 const html = (await readFile(fixture+'index.html','utf8'))
@@ -24,7 +35,7 @@ const properties = ['display','position','color','backgroundColor','backgroundIm
 try {
   const page = await browser.newPage({reducedMotion:'reduce'});
   await page.setContent(html);
-  await page.addStyleTag({content:baseline});
+  await page.addStyleTag({content:baseline + mediaMigration});
   const sheet = page.locator('style').last();
   // Chromium's first full-page capture can settle balanced text and change page height.
   // Compare consecutive stable paints, rather than an intermediate layout frame.
@@ -57,7 +68,7 @@ try {
           else document.documentElement.style.removeProperty('--button-color');
         },{theme,accent});
         await page.mouse.move(0,0);
-        await sheet.evaluate((el,css)=>el.textContent=css,baseline);
+        await sheet.evaluate((el,css)=>el.textContent=css,baseline + mediaMigration);
         await page.evaluate(async()=>{await document.fonts.ready;await new Promise(resolve=>requestAnimationFrame(()=>requestAnimationFrame(resolve)));});
         const pixels = await stablePixels();
         const expected = await snapshot();
@@ -99,7 +110,7 @@ try {
     const badge=page.locator('.tg-badge');
     for(const hovered of [false,true]) {
       if(hovered) await badge.hover({force:true}); else await page.mouse.move(0,0);
-      await stateSheet.evaluate((el,css)=>el.textContent=css,baseline);
+      await stateSheet.evaluate((el,css)=>el.textContent=css,baseline + mediaMigration);
       const expected=await snapshot();
       await stateSheet.evaluate((el,css)=>el.textContent=css,current);
       assert.deepEqual(await snapshot(),expected,`${engine}/${theme}: secondary badge custom aliases, hover=${hovered}`);

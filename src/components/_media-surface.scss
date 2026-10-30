@@ -1,0 +1,9 @@
+// One rounded boundary for composited media: image, fill, shade and caption.
+// The opaque alpha mask groups the layers before clipping, preventing bright
+// antialiasing fringes. border-box reads the owner's existing border-radius.
+// 3D stages use their own parameter scope so opting out cannot disable nested
+// card/media clipping. Transformed images can then leave the stage.
+@mixin clip($scope: media) {
+  clip-path: var(--#{$scope}-clip, border-box);
+  mask-image: var(--#{$scope}-mask, linear-gradient(#000, #000));
+}

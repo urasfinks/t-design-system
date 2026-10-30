@@ -1,3 +1,4 @@
+@use 'media-surface';
 @use '../base';
 @layer tds.components {
   .tg-card, .tg-list {
@@ -26,7 +27,7 @@
   .tg-card__media {
     margin: calc(var(--card-padding) * -1) calc(var(--card-padding) * -1) 0;
     border-radius: calc(var(--radius-lg) - 1px) calc(var(--radius-lg) - 1px) 0 0;
-    overflow: clip;
+    @include media-surface.clip;
     background: var(--background-muted);
 
     > :is(img, video, picture) {
@@ -54,7 +55,6 @@
     border-color: transparent;
     background: var(--overlay-bg);
     color: var(--overlay-text);
-    overflow: clip;
 
     > .tg-card__media {
       position: absolute;

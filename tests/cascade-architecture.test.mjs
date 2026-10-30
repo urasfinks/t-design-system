@@ -108,3 +108,21 @@ test('menu, navigation and command section labels share one canonical label', as
     assert.match(await read(`src/components/_${name}.scss`), /@include option\.group-label/);
   }
 });
+
+
+test('rounded media share one compositing engine instead of isolated corner fixes', async () => {
+  for (const name of ['carousel', 'surfaces', 'media', 'avatar', 'pickers', 'content']) {
+    const source = await read(`src/components/_${name}.scss`);
+    assert.match(source, /@include media-surface\.clip/, name);
+    assert.doesNotMatch(source, /clip-path:\s*border-box|mask-image:\s*linear-gradient\(#000/, name);
+  }
+  const engine = await read('src/components/_media-surface.scss');
+  const {compileString} = await import('sass');
+  const {css} = compileString('@use "components/media-surface"; .media { @include media-surface.clip; } .stage { @include media-surface.clip(carousel-slide); }', {loadPaths:['src']});
+  assert.match(css, /clip-path: var\(--media-clip, border-box\)/);
+  assert.match(css, /mask-image: var\(--media-mask, linear-gradient/);
+  assert.match(css, /clip-path: var\(--carousel-slide-clip, border-box\)/);
+  assert.doesNotMatch(engine, /@layer|!important/);
+  const carousel = await read('src/components/_carousel.scss');
+  assert.match(carousel, /--carousel-slide-clip: none;\s*--carousel-slide-mask: none/);
+});

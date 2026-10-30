@@ -1,3 +1,4 @@
+@use 'media-surface';
 @use '../base';
 
 // Media controls: audio/video player, before/after comparison, waveform and the
@@ -21,7 +22,7 @@
     margin: 0;
     border-radius: var(--radius);
     background: var(--background-muted);
-    overflow: clip;
+    @include media-surface.clip;
     > img { display: block; inline-size: 100%; block-size: 100%; object-fit: cover; }
   }
   .tg-player__meta {
@@ -55,7 +56,7 @@
     display: grid;
     min-inline-size: 0;
     border-radius: var(--radius-lg);
-    overflow: clip;
+    @include media-surface.clip;
     background: var(--background-muted);
     > img, > picture { grid-area: 1 / 1; display: block; inline-size: 100%; block-size: auto; }
   }

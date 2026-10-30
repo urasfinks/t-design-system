@@ -1,3 +1,4 @@
+@use 'media-surface';
 @use '../base';
 
 // Inline content elements: keys, prices, feature lists, quotes. Text roles only.
@@ -85,7 +86,7 @@
     &:has(> .tg-testimonial__media) {
       grid-template-columns: minmax(0, 14rem) minmax(0, 1fr);
       padding: 0;
-      overflow: clip;
+      @include media-surface.clip;
       > :not(.tg-testimonial__media) { grid-column: 2; margin-inline-end: var(--space-5); }
       > :nth-child(2) { margin-block-start: var(--space-5); }
       > :last-child { margin-block-end: var(--space-5); }

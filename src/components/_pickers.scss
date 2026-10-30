@@ -1,3 +1,4 @@
+@use 'media-surface';
 @use '../base';
 @use 'floating';
 @use 'option';
@@ -322,7 +323,7 @@
     grid-column: 1 / -1;
     margin: calc(var(--space-4) * -1) calc(var(--space-4) * -1) var(--space-2);
     border-radius: calc(var(--radius-lg) - 1px) calc(var(--radius-lg) - 1px) 0 0;
-    overflow: clip;
+    @include media-surface.clip;
     &:has(> .tg-icon) { display: flex; margin: 0 0 var(--space-1); color: var(--text-link); }
     > .tg-icon { inline-size: 1.5rem; block-size: 1.5rem; }
     > img { display: block; inline-size: 100%; block-size: auto; aspect-ratio: 16 / 9; object-fit: cover; }

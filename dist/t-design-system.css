@@ -1452,7 +1452,8 @@
   .tg-card__media {
     margin: calc(var(--card-padding) * -1) calc(var(--card-padding) * -1) 0;
     border-radius: calc(var(--radius-lg) - 1px) calc(var(--radius-lg) - 1px) 0 0;
-    overflow: clip;
+    clip-path: var(--media-clip, border-box);
+    mask-image: var(--media-mask, linear-gradient(#000, #000));
     background: var(--background-muted);
   }
   .tg-card__media > :is(img, video, picture) {
@@ -1478,7 +1479,6 @@
     border-color: transparent;
     background: var(--overlay-bg);
     color: var(--overlay-text);
-    overflow: clip;
   }
   .tg-card--overlay > .tg-card__media {
     position: absolute;
@@ -2117,7 +2117,8 @@
     inline-size: 100%;
     block-size: 100%;
     border-radius: inherit;
-    overflow: hidden;
+    clip-path: var(--media-clip, border-box);
+    mask-image: var(--media-mask, linear-gradient(#000, #000));
   }
   .tg-avatar__clip img {
     display: block;
@@ -5189,7 +5190,8 @@
   .tg-testimonial:has(> .tg-testimonial__media) {
     grid-template-columns: minmax(0, 14rem) minmax(0, 1fr);
     padding: 0;
-    overflow: clip;
+    clip-path: var(--media-clip, border-box);
+    mask-image: var(--media-mask, linear-gradient(#000, #000));
   }
   .tg-testimonial:has(> .tg-testimonial__media) > :not(.tg-testimonial__media) {
     grid-column: 2;
@@ -6329,7 +6331,8 @@
     grid-column: 1/-1;
     margin: calc(var(--space-4) * -1) calc(var(--space-4) * -1) var(--space-2);
     border-radius: calc(var(--radius-lg) - 1px) calc(var(--radius-lg) - 1px) 0 0;
-    overflow: clip;
+    clip-path: var(--media-clip, border-box);
+    mask-image: var(--media-mask, linear-gradient(#000, #000));
   }
   .tg-choice-card__media:has(> .tg-icon) {
     display: flex;
@@ -6725,7 +6728,6 @@
     display: flex;
     gap: var(--carousel-gap);
     min-inline-size: 0;
-    border-radius: var(--radius-lg);
     overscroll-behavior-inline: contain;
     scrollbar-width: none;
   }
@@ -6754,7 +6756,8 @@
     margin: 0;
     border-radius: var(--radius-lg);
     background: var(--background-muted);
-    overflow: clip;
+    clip-path: var(--carousel-slide-clip, border-box);
+    mask-image: var(--carousel-slide-mask, linear-gradient(#000, #000));
     scroll-snap-align: start;
     scroll-snap-stop: always;
   }
@@ -6810,7 +6813,6 @@
   .tg-carousel--peek > .tg-carousel__viewport {
     padding-inline: var(--space-8);
     scroll-padding-inline: var(--space-8);
-    border-radius: 0;
   }
   .tg-carousel--peek > .tg-carousel__viewport > .tg-carousel__slide {
     flex-basis: calc(100% - var(--space-4));
@@ -6845,7 +6847,8 @@
     border: 2px solid transparent;
     border-radius: var(--radius-inset);
     background: var(--background-muted);
-    overflow: clip;
+    clip-path: var(--media-clip, border-box);
+    mask-image: var(--media-mask, linear-gradient(#000, #000));
     opacity: 0.72;
     cursor: pointer;
     transition: opacity var(--duration) var(--ease), border-color var(--duration) var(--ease);
@@ -6862,7 +6865,7 @@
   }
   .tg-carousel__thumbs > button:focus-visible {
     outline: 2px solid var(--text-link);
-    outline-offset: 2px;
+    outline-offset: -4px;
   }
   @media (hover: hover) and (pointer: fine) {
     .tg-carousel__thumbs > button:hover {
@@ -6968,7 +6971,8 @@
     flex: 1 1 0;
     min-inline-size: var(--control-h);
     border-radius: var(--radius-lg);
-    overflow: clip;
+    clip-path: var(--media-clip, border-box);
+    mask-image: var(--media-mask, linear-gradient(#000, #000));
     background: var(--background-muted);
   }
   .tg-image-accordion__item:has(> [aria-expanded=true]) {
@@ -6996,7 +7000,7 @@
     align-items: flex-end;
     padding: var(--space-3);
     border: 0;
-    border-radius: inherit;
+    border-radius: 0;
     background: linear-gradient(to top, var(--overlay-bg), transparent 55%);
     color: var(--overlay-text);
     font: inherit;
@@ -7214,10 +7218,13 @@
         scroll-snap-align: center;
         view-timeline: --tg-carousel-slide inline;
         background: none;
-        overflow: visible;
+        --carousel-slide-clip: none;
+        --carousel-slide-mask: none;
       }
       .tg-carousel:is(.tg-carousel--coverflow, .tg-carousel--fan, .tg-carousel--ring) > .tg-carousel__viewport > .tg-carousel__slide > img, .tg-carousel:is(.tg-carousel--coverflow, .tg-carousel--fan, .tg-carousel--ring) > .tg-carousel__viewport > .tg-carousel__slide > picture, .tg-carousel:is(.tg-carousel--coverflow, .tg-carousel--fan, .tg-carousel--ring) > .tg-carousel__viewport > .tg-carousel__slide > video {
         border-radius: var(--radius-lg);
+        clip-path: var(--media-clip, border-box);
+        mask-image: var(--media-mask, linear-gradient(#000, #000));
         animation: tg-carousel-coverflow linear both;
         animation-timeline: --tg-carousel-slide;
       }
@@ -8703,7 +8710,8 @@
     margin: 0;
     border-radius: var(--radius);
     background: var(--background-muted);
-    overflow: clip;
+    clip-path: var(--media-clip, border-box);
+    mask-image: var(--media-mask, linear-gradient(#000, #000));
   }
   .tg-player__cover > img {
     display: block;
@@ -8748,7 +8756,8 @@
     display: grid;
     min-inline-size: 0;
     border-radius: var(--radius-lg);
-    overflow: clip;
+    clip-path: var(--media-clip, border-box);
+    mask-image: var(--media-mask, linear-gradient(#000, #000));
     background: var(--background-muted);
   }
   .tg-compare > img, .tg-compare > picture {
