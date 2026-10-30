@@ -18,6 +18,16 @@ const mediaMigration = `
 .tg-card--overlay { overflow: visible; }
 .tg-carousel__viewport { border-radius: 0; }
 `;
+// Approved catalog navigation change: headings have separators and breathing room.
+const navigationMigration = `
+.nav-group + .nav-group { margin-block-start: var(--space-6); }
+.nav-group-label {
+  margin: 0 var(--space-3) var(--space-2);
+  padding: var(--space-2) 0;
+  border-block-end: var(--border);
+  font-weight: 600;
+}
+`;
 const current = await readFile('dist/t-design-system.css','utf8') + await readFile('docs/catalog.css','utf8');
 // The saved catalog markup is rendered, so new examples never change what is compared.
 const html = (await readFile(fixture+'index.html','utf8'))
@@ -35,7 +45,7 @@ const properties = ['display','position','color','backgroundColor','backgroundIm
 try {
   const page = await browser.newPage({reducedMotion:'reduce'});
   await page.setContent(html);
-  await page.addStyleTag({content:baseline + mediaMigration});
+  await page.addStyleTag({content:baseline + mediaMigration + navigationMigration});
   const sheet = page.locator('style').last();
   // Chromium's first full-page capture can settle balanced text and change page height.
   // Compare consecutive stable paints, rather than an intermediate layout frame.
@@ -68,7 +78,7 @@ try {
           else document.documentElement.style.removeProperty('--button-color');
         },{theme,accent});
         await page.mouse.move(0,0);
-        await sheet.evaluate((el,css)=>el.textContent=css,baseline + mediaMigration);
+        await sheet.evaluate((el,css)=>el.textContent=css,baseline + mediaMigration + navigationMigration);
         await page.evaluate(async()=>{await document.fonts.ready;await new Promise(resolve=>requestAnimationFrame(()=>requestAnimationFrame(resolve)));});
         const pixels = await stablePixels();
         const expected = await snapshot();
@@ -110,7 +120,7 @@ try {
     const badge=page.locator('.tg-badge');
     for(const hovered of [false,true]) {
       if(hovered) await badge.hover({force:true}); else await page.mouse.move(0,0);
-      await stateSheet.evaluate((el,css)=>el.textContent=css,baseline + mediaMigration);
+      await stateSheet.evaluate((el,css)=>el.textContent=css,baseline + mediaMigration + navigationMigration);
       const expected=await snapshot();
       await stateSheet.evaluate((el,css)=>el.textContent=css,current);
       assert.deepEqual(await snapshot(),expected,`${engine}/${theme}: secondary badge custom aliases, hover=${hovered}`);
