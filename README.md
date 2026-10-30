@@ -957,8 +957,8 @@ const dispose = initEffects(); // указатель для .tg-effect-*, хол
 | G4 | Аккордеон изображений | `.tg-image-accordion`, `.tg-image-accordion__item`, `.tg-image-accordion__trigger`, `.tg-image-accordion__panel` |
 | TS4 | Бегущая лента отзывов | `.tg-marquee`, `.tg-marquee__track`, `.tg-marquee--vertical`, `.tg-marquee__pause` |
 | **8. Эффекты** | | |
-| B19 | Декоративные эффекты кнопок | `.tg-effect-glow`, `.tg-effect-sheen`, `.tg-effect-border-beam`, `.tg-effect-magnetic` |
-| C18 | Декоративные эффекты карточек | `.tg-effect-tilt`, `.tg-effect-glare`, `.tg-effect-spotlight` |
+| B19 | Декоративные эффекты кнопок | `.tg-effect-sheen`, `.tg-effect-border-beam`, `.tg-effect-magnetic` |
+| C18 | Декоративные эффекты карточек | `.tg-effect-tilt`, `.tg-effect-spotlight` |
 | G2 | 3D-карусели и coverflow | `.tg-carousel--coverflow`, `.tg-carousel--fan`, `.tg-carousel--ring` |
 | SH1 | Декоративный слой фона | `.tg-effect-layer` |
 | SH4 | Переход слайдов с эффектом | `.tg-carousel[data-tg-effect]` |

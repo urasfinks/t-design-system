@@ -111,7 +111,7 @@ test('menu, navigation and command section labels share one canonical label', as
 
 
 test('rounded media share one compositing engine instead of isolated corner fixes', async () => {
-  for (const name of ['carousel', 'surfaces', 'media', 'avatar', 'pickers', 'content']) {
+  for (const name of ['carousel', 'surfaces', 'media', 'avatar', 'pickers', 'content', 'effects']) {
     const source = await read(`src/components/_${name}.scss`);
     assert.match(source, /@include media-surface\.clip/, name);
     assert.doesNotMatch(source, /clip-path:\s*border-box|mask-image:\s*linear-gradient\(#000/, name);

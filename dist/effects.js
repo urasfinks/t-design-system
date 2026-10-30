@@ -61,7 +61,7 @@ export function initRipple(root = globalThis.document) {
 
 /**
  * Opt-in decorative effects. Returns cleanup.
- * - Pointer: .tg-effect-spotlight / -glare (pointer coordinates), -tilt (≤ 6°),
+ * - Pointer: .tg-effect-spotlight (pointer coordinates), -tilt (≤ 6°),
  *   -magnetic (≤ 4px). Only with a fine hovering pointer; tilt and magnet also need motion.
  * - Layers: canvas.tg-effect-layer[data-tg-effect="field|waveform"] draws behind a section.
  *   States on the canvas: running, paused (off screen or hidden tab), static (reduced
@@ -80,7 +80,7 @@ export function initEffects(root = globalThis.document) {
   const cleanups = [];
 
   // ---- Pointer effects --------------------------------------------------------------
-  const pointerHosts = '.tg-effect-spotlight, .tg-effect-glare, .tg-effect-tilt, .tg-effect-magnetic';
+  const pointerHosts = '.tg-effect-spotlight, .tg-effect-tilt, .tg-effect-magnetic';
   let frame = 0, pending = null, current = null;
   const reset = host => {
     host.removeAttribute('data-effect-active');

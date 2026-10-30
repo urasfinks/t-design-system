@@ -29,15 +29,8 @@ try {
   await contrast(`${ex('SH1')} .effect-stage--accent p`, 'SH1 text over the waveform section');
 
   // B19 — button effects
-  const glow = `${ex('B19')} a.tg-effect-glow`;
-  check('B19 the glow is hidden at rest', await opacity(glow) === 0);
-  await page.locator(glow).hover();
-  await page.waitForTimeout(300);
-  check('B19 hover shows the glow outside the edge', await opacity(glow) > .3 && (await css(glow, 'mask-image', '::before')).includes('gradient'));
-  const glowFill = await css(glow, 'background-color');
-  check('B19 the glow does not change the fill', glowFill === await css(`${ex('B19')} .tg-effect-sheen`, 'background-color') || glowFill !== '');
-  check('B19 a disabled button has no effect layer', await css(`${ex('B19')} button.tg-effect-glow`, 'display', '::before') === 'none');
-  const sheen = `${ex('B19')} .tg-effect-sheen`;
+  check('B19 a disabled button has no effect layer', await css(`${ex('B19')} button.tg-effect-sheen`, 'display', '::after') === 'none');
+  const sheen = `${ex('B19')} a.tg-effect-sheen`;
   check('B19 the sheen rests outside the button', (await css(sheen, 'transform', '::after')).includes('matrix(1, 0, 0, 1, -'));
   await page.locator(sheen).hover();
   await page.waitForTimeout(800);
@@ -69,10 +62,6 @@ try {
   await page.waitForTimeout(300);
   check('C18 the spotlight follows the pointer', await page.locator(spot).evaluate(el => el.style.getPropertyValue('--pointer-x')) === '40px' && await opacity(spot) > 0);
   check('C18 the spotlight layer is under the text', await css(spot, 'z-index', '::before') === '-1');
-  const glare = `${ex('C18')} .tg-effect-glare`;
-  await page.locator(glare).hover();
-  await page.waitForTimeout(300);
-  check('C18 the glare shows on hover', await opacity(glare) > 0);
   await page.mouse.move(5, 5);
   await contrast(`${ex('C18')} .tg-effect-spotlight p`, 'C18 card text');
 

@@ -1,3 +1,4 @@
+@use 'media-surface';
 @use '../base';
 
 // Decorative effects (opt-in, never required): one key button, card or section per screen.
@@ -228,14 +229,14 @@
   }
 
   // ---- Shared layer geometry -------------------------------------------------------
-  :is(.tg-effect-glow, .tg-effect-sheen, .tg-effect-border-beam, .tg-effect-tilt, .tg-effect-glare,
+  :is(.tg-effect-sheen, .tg-effect-border-beam, .tg-effect-tilt,
     .tg-effect-spotlight) {
     --effect-intensity: 1;
     position: relative;
     isolation: isolate;
   }
-  :is(.tg-effect-sheen, .tg-effect-glare, .tg-effect-spotlight) { overflow: clip; }
-  :is(.tg-effect-glow, .tg-effect-sheen, .tg-effect-border-beam, .tg-effect-glare, .tg-effect-spotlight)::before,
+  :is(.tg-effect-sheen, .tg-effect-spotlight) { overflow: clip; }
+  :is(.tg-effect-sheen, .tg-effect-border-beam, .tg-effect-spotlight)::before,
   .tg-effect-sheen::after {
     content: '';
     position: absolute;
@@ -245,25 +246,9 @@
     pointer-events: none;
   }
   // A disabled or busy host keeps its plain look.
-  :is(.tg-effect-glow, .tg-effect-sheen, .tg-effect-border-beam, .tg-effect-glare, .tg-effect-spotlight):is(:disabled, [aria-disabled='true'], [aria-busy='true'], :has(:disabled))::before,
+  :is(.tg-effect-sheen, .tg-effect-border-beam, .tg-effect-spotlight):is(:disabled, [aria-disabled='true'], [aria-busy='true'], :has(:disabled))::before,
   .tg-effect-sheen:is(:disabled, [aria-disabled='true'], [aria-busy='true'])::after,
   :is(:disabled, [aria-disabled='true'], [aria-busy='true']) > .tg-effect-layer { display: none; }
-
-  // ---- B19: halo ------------------------------------------------------------------
-  // An accent glow outside the edge only: the inner rectangle is masked out, so the
-  // control's own fill and text contrast never change.
-  :is(.tg-effect-glow)::before {
-    inset: calc(var(--space-4) * -1);
-    padding: var(--space-4);
-    border-radius: calc(var(--radius-control) + var(--space-4));
-    background: var(--accent-main);
-    filter: blur(var(--space-3));
-    mask: linear-gradient(black 0 0) content-box exclude, linear-gradient(black 0 0);
-    opacity: 0;
-    transform: scale(.92);
-    transition: opacity var(--duration-fade-out) var(--ease), transform var(--duration) var(--ease);
-  }
-
 
   // ---- B19: sheen -------------------------------------------------------------------
   .tg-effect-sheen::after {
@@ -289,18 +274,11 @@
     transition: translate var(--duration) var(--ease);
   }
 
-  // ---- C18: tilt, glare, spotlight (effects.mjs sets --pointer-*) ---------------------
+  // ---- C18: tilt, spotlight (effects.mjs sets --pointer-*) ---------------------
   .tg-effect-tilt {
     transform: perspective(60rem) rotateX(var(--tilt-x, 0deg)) rotateY(var(--tilt-y, 0deg));
     transition: transform var(--duration) var(--ease);
     &[data-effect-active] { transition-duration: var(--duration-fast); }
-  }
-  .tg-effect-glare::before {
-    inset-inline: -50%;
-    background: linear-gradient(115deg, transparent 38%, var(--overlay-text) 50%, transparent 62%);
-    opacity: 0;
-    transform: translateX(calc((var(--pointer-rx, .5) - .5) * 60%));
-    transition: opacity var(--duration-fade-out) var(--ease);
   }
   .tg-effect-spotlight::before {
     // Pointer coordinates are physical, so this layer is placed physically on purpose.
@@ -334,13 +312,20 @@
   // ---- SH4: ripple between slides ----------------------------------------------------------
   // The canvas covers the viewport only; slides and captions stay in the DOM as usual.
   .tg-carousel[data-tg-effect='ripple'] {
-    > .tg-carousel__viewport { grid-area: 1 / 1; }
+    > .tg-carousel__viewport {
+      grid-area: 1 / 1;
+      // During scroll, the viewport edge crosses the middle of a slide. Keep the
+      // transition frame rounded independently of each slide's moving corners.
+      border-radius: var(--radius-lg);
+      @include media-surface.clip;
+    }
     > .tg-effect-layer {
       position: relative;
       inset: auto;
       grid-area: 1 / 1;
       z-index: 1;
       border-radius: var(--radius-lg);
+      @include media-surface.clip;
       background: none;
       opacity: 0;
       &[data-state='transitioning'] { opacity: 1; }
@@ -349,13 +334,7 @@
 
   // ---- Motion and pointer gates --------------------------------------------------------
   @media (hover: hover) and (pointer: fine) {
-    .tg-effect-glow:where(:not(:disabled, [aria-disabled='true'], [aria-busy='true'])):is(:hover, :focus-visible)::before {
-      opacity: calc(.5 * var(--effect-intensity));
-      transform: none;
-      transition-duration: var(--duration-fade-in), var(--duration);
-    }
-    :is(.tg-effect-glare, .tg-effect-spotlight):hover::before { transition-duration: var(--duration-fade-in); }
-    .tg-effect-glare:hover::before { opacity: calc(.18 * var(--effect-intensity)); }
+    :is(.tg-effect-spotlight):hover::before { transition-duration: var(--duration-fade-in); }
     .tg-effect-spotlight:hover::before { opacity: calc(.16 * var(--effect-intensity)); }
   }
   @media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
@@ -373,7 +352,7 @@
     .tg-effect-magnetic, .tg-effect-tilt { translate: none; transform: none; transition: none; }
   }
   @media (forced-colors: active) {
-    :is(.tg-effect-glow, .tg-effect-sheen, .tg-effect-border-beam, .tg-effect-glare, .tg-effect-spotlight)::before,
+    :is(.tg-effect-sheen, .tg-effect-border-beam, .tg-effect-spotlight)::before,
     .tg-effect-sheen::after { display: none; }
   }
 }

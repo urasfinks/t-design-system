@@ -2778,16 +2778,16 @@
       transition: none;
     }
   }
-  :is(.tg-effect-glow, .tg-effect-sheen, .tg-effect-border-beam, .tg-effect-tilt, .tg-effect-glare,
+  :is(.tg-effect-sheen, .tg-effect-border-beam, .tg-effect-tilt,
   .tg-effect-spotlight) {
     --effect-intensity: 1;
     position: relative;
     isolation: isolate;
   }
-  :is(.tg-effect-sheen, .tg-effect-glare, .tg-effect-spotlight) {
+  :is(.tg-effect-sheen, .tg-effect-spotlight) {
     overflow: clip;
   }
-  :is(.tg-effect-glow, .tg-effect-sheen, .tg-effect-border-beam, .tg-effect-glare, .tg-effect-spotlight)::before,
+  :is(.tg-effect-sheen, .tg-effect-border-beam, .tg-effect-spotlight)::before,
   .tg-effect-sheen::after {
     content: "";
     position: absolute;
@@ -2796,21 +2796,10 @@
     border-radius: inherit;
     pointer-events: none;
   }
-  :is(.tg-effect-glow, .tg-effect-sheen, .tg-effect-border-beam, .tg-effect-glare, .tg-effect-spotlight):is(:disabled, [aria-disabled=true], [aria-busy=true], :has(:disabled))::before,
+  :is(.tg-effect-sheen, .tg-effect-border-beam, .tg-effect-spotlight):is(:disabled, [aria-disabled=true], [aria-busy=true], :has(:disabled))::before,
   .tg-effect-sheen:is(:disabled, [aria-disabled=true], [aria-busy=true])::after,
   :is(:disabled, [aria-disabled=true], [aria-busy=true]) > .tg-effect-layer {
     display: none;
-  }
-  :is(.tg-effect-glow)::before {
-    inset: calc(var(--space-4) * -1);
-    padding: var(--space-4);
-    border-radius: calc(var(--radius-control) + var(--space-4));
-    background: var(--accent-main);
-    filter: blur(var(--space-3));
-    mask: linear-gradient(black 0 0) content-box exclude, linear-gradient(black 0 0);
-    opacity: 0;
-    transform: scale(0.92);
-    transition: opacity var(--duration-fade-out) var(--ease), transform var(--duration) var(--ease);
   }
   .tg-effect-sheen::after {
     background: linear-gradient(105deg, transparent 35%, var(--overlay-text) 50%, transparent 65%);
@@ -2841,13 +2830,6 @@
   .tg-effect-tilt[data-effect-active] {
     transition-duration: var(--duration-fast);
   }
-  .tg-effect-glare::before {
-    inset-inline: -50%;
-    background: linear-gradient(115deg, transparent 38%, var(--overlay-text) 50%, transparent 62%);
-    opacity: 0;
-    transform: translateX(calc((var(--pointer-rx, 0.5) - 0.5) * 60%));
-    transition: opacity var(--duration-fade-out) var(--ease);
-  }
   .tg-effect-spotlight::before {
     inset: 0 auto auto 0;
     inline-size: 22rem;
@@ -2876,6 +2858,9 @@
   }
   .tg-carousel[data-tg-effect=ripple] > .tg-carousel__viewport {
     grid-area: 1/1;
+    border-radius: var(--radius-lg);
+    clip-path: var(--media-clip, border-box);
+    mask-image: var(--media-mask, linear-gradient(#000, #000));
   }
   .tg-carousel[data-tg-effect=ripple] > .tg-effect-layer {
     position: relative;
@@ -2883,6 +2868,8 @@
     grid-area: 1/1;
     z-index: 1;
     border-radius: var(--radius-lg);
+    clip-path: var(--media-clip, border-box);
+    mask-image: var(--media-mask, linear-gradient(#000, #000));
     background: none;
     opacity: 0;
   }
@@ -2890,16 +2877,8 @@
     opacity: 1;
   }
   @media (hover: hover) and (pointer: fine) {
-    .tg-effect-glow:where(:not(:disabled, [aria-disabled=true], [aria-busy=true])):is(:hover, :focus-visible)::before {
-      opacity: calc(0.5 * var(--effect-intensity));
-      transform: none;
-      transition-duration: var(--duration-fade-in), var(--duration);
-    }
-    :is(.tg-effect-glare, .tg-effect-spotlight):hover::before {
+    :is(.tg-effect-spotlight):hover::before {
       transition-duration: var(--duration-fade-in);
-    }
-    .tg-effect-glare:hover::before {
-      opacity: calc(0.18 * var(--effect-intensity));
     }
     .tg-effect-spotlight:hover::before {
       opacity: calc(0.16 * var(--effect-intensity));
@@ -2932,7 +2911,7 @@
     }
   }
   @media (forced-colors: active) {
-    :is(.tg-effect-glow, .tg-effect-sheen, .tg-effect-border-beam, .tg-effect-glare, .tg-effect-spotlight)::before,
+    :is(.tg-effect-sheen, .tg-effect-border-beam, .tg-effect-spotlight)::before,
     .tg-effect-sheen::after {
       display: none;
     }

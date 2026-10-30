@@ -397,7 +397,6 @@
       "wave": 8,
       "state": "done",
       "classes": [
-        ".tg-effect-glow",
         ".tg-effect-sheen",
         ".tg-effect-border-beam",
         ".tg-effect-magnetic"
@@ -666,7 +665,6 @@
       "state": "done",
       "classes": [
         ".tg-effect-tilt",
-        ".tg-effect-glare",
         ".tg-effect-spotlight"
       ]
     },
