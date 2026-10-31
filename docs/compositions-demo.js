@@ -4,6 +4,7 @@ const root = document.documentElement;
 const embedded = window.parent !== window;
 const focusOptions = { preventScroll: embedded };
 const theme = document.querySelector('#demo-theme');
+theme.value = root.dataset.theme || 'auto';
 theme.addEventListener('change', () => {
   if (theme.value === 'auto') delete root.dataset.theme;
   else root.dataset.theme = theme.value;

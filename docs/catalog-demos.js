@@ -5,8 +5,12 @@ export function initCatalogDemos({ root = document } = {}) {
   themeSelect.addEventListener('pointerdown', () => themeSelect.focus({ preventScroll: true }));
   let storage;
   try { storage = localStorage; } catch { /* The file preview can disable storage. */ }
-  const savedTheme = storage?.getItem('tds-theme');
-  if (['auto', 'light', 'dark', 'ios-dark'].includes(savedTheme)) themeSelect.value = savedTheme;
+  // The head bootstrap already applied the preference before the first paint.
+  let initialTheme = documentRoot.dataset.theme;
+  if (!initialTheme) {
+    try { initialTheme = storage?.getItem('tds-theme'); } catch { /* Storage may reject reads too. */ }
+  }
+  if (['auto', 'light', 'dark', 'ios-dark'].includes(initialTheme)) themeSelect.value = initialTheme;
   function applyTheme(value) {
     if (value === 'auto') delete documentRoot.dataset.theme;
     else documentRoot.dataset.theme = value;
