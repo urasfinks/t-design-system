@@ -283,7 +283,7 @@
     @media (prefers-reduced-motion: no-preference) and (min-width: 36rem) {
       .tg-carousel:is(.tg-carousel--coverflow, .tg-carousel--fan, .tg-carousel--ring) > .tg-carousel__viewport {
         // The first and last slides can reach the centre, where they are flat.
-        padding: var(--space-4) 30%;
+        padding: var(--space-4) var(--carousel-side-space, 30%);
         // The slide stays flat: it is the snap target, so it lands exactly in the centre
         // (a turned box is lopsided and would pull the snap off centre). Its picture turns,
         // driven by the slide's own view timeline; perspective lives in that transform, so
@@ -329,5 +329,18 @@
     from { transform: perspective(60rem) translateZ(-14rem) rotateY(calc(55deg * var(--carousel-flow))); opacity: .45; }
     50% { transform: perspective(60rem) translateZ(0) rotateY(0deg); opacity: 1; }
     to { transform: perspective(60rem) translateZ(-14rem) rotateY(calc(-55deg * var(--carousel-flow))); opacity: .45; }
+  }
+}
+
+// A gallery inside a popup gives the active image the entire viewport width.
+// Coverflow still turns the pictures during travel, without reserved side gutters.
+@layer tds.components {
+  .tg-carousel--fullwidth { --carousel-side-space: 0px; }
+  .tg-carousel.tg-carousel--fullwidth > .tg-carousel__viewport {
+    padding-inline: 0;
+    > .tg-carousel__slide {
+      flex-basis: 100%;
+      > img, > picture > img, > video { block-size: auto; aspect-ratio: auto; max-block-size: var(--media-max-size); object-fit: contain; }
+    }
   }
 }

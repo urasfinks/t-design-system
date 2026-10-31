@@ -7235,7 +7235,7 @@
   @supports (animation-timeline: view()) {
     @media (prefers-reduced-motion: no-preference) and (min-width: 36rem) {
       .tg-carousel:is(.tg-carousel--coverflow, .tg-carousel--fan, .tg-carousel--ring) > .tg-carousel__viewport {
-        padding: var(--space-4) 30%;
+        padding: var(--space-4) var(--carousel-side-space, 30%);
       }
       .tg-carousel:is(.tg-carousel--coverflow, .tg-carousel--fan, .tg-carousel--ring) > .tg-carousel__viewport > .tg-carousel__slide {
         flex-basis: 100%;
@@ -7317,6 +7317,23 @@
       transform: perspective(60rem) translateZ(-14rem) rotateY(calc(-55deg * var(--carousel-flow)));
       opacity: 0.45;
     }
+  }
+}
+@layer tds.components {
+  .tg-carousel--fullwidth {
+    --carousel-side-space: 0px;
+  }
+  .tg-carousel.tg-carousel--fullwidth > .tg-carousel__viewport {
+    padding-inline: 0;
+  }
+  .tg-carousel.tg-carousel--fullwidth > .tg-carousel__viewport > .tg-carousel__slide {
+    flex-basis: 100%;
+  }
+  .tg-carousel.tg-carousel--fullwidth > .tg-carousel__viewport > .tg-carousel__slide > img, .tg-carousel.tg-carousel--fullwidth > .tg-carousel__viewport > .tg-carousel__slide > picture > img, .tg-carousel.tg-carousel--fullwidth > .tg-carousel__viewport > .tg-carousel__slide > video {
+    block-size: auto;
+    aspect-ratio: auto;
+    max-block-size: var(--media-max-size);
+    object-fit: contain;
   }
 }
 @layer tds.components {
