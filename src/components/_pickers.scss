@@ -87,7 +87,7 @@
 
   .tg-listbox__option {
     @include option.dropdown-row(var(--listbox-option-h));
-    padding-inline-end: calc(var(--space-3) + 1rem + var(--space-3));
+    padding-inline-end: calc(var(--space-3) + var(--icon-size) + var(--space-3));
     position: relative;
     -webkit-user-select: none;
     user-select: none;
@@ -97,7 +97,8 @@
     .tg-listbox:not([data-pointer]) &[data-active] { @include option.active; }
     &[aria-selected='true'] { @include option.chosen; }
     &[aria-selected='true']::after {
-      @include option.mark;
+      @include option.mark(var(--icon-size));
+      color: var(--text-link);
       position: absolute;
       inset-inline-end: var(--space-3);
     }

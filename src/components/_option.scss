@@ -4,7 +4,7 @@
 @use 'selected';
 
 // Every dropdown (menu, listbox, combobox, navigation panel) is one look: a floating
-// surface; rows rise from it when chosen.
+// surface; chosen rows use the shared soft-accent selection.
 @mixin list($radius: var(--radius-control)) {
   @include floating.surface($radius);
 }
@@ -18,9 +18,9 @@
   &[data-active] { background: var(--control-hover-bg); }
 }
 
-// The chosen row rises like a segment above its trough.
+// Chosen options use the same quiet surface and elevation as existing controls.
 @mixin chosen {
-  @include selected.segment-current;
+  @include selected.segment-current(var(--surface-muted));
   font-weight: var(--fw-medium);
 }
 

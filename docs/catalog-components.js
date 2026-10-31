@@ -282,8 +282,9 @@ export function initListboxes({ root = document } = {}) {
     // the trigger's click; remember it so that click does not reopen the list.
     list.addEventListener('beforetoggle', event => { if (event.newState === 'closed' && !closing) closedAt = performance.now(); });
     list.addEventListener('toggle', event => { if (event.newState === 'closed') { trigger.setAttribute('aria-expanded', 'false'); setActive(null); } });
-    trigger.addEventListener('click', () => {
+    trigger.addEventListener('click', event => {
       if (performance.now() - closedAt < 200) return; // the light dismiss of this same click
+      if (event.detail > 0) list.dataset.pointer = '';
       trigger.getAttribute('aria-expanded') === 'true' ? close() : open();
     });
     trigger.addEventListener('keydown', event => {

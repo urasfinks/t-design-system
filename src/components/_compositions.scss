@@ -1,3 +1,4 @@
+@use 'disclosure-indicator';
 @use '../base';
 @use 'floating';
 
@@ -195,7 +196,7 @@
   }
   .tg-media {
     margin-inline: 0;
-    & > img { display: block; inline-size: 100%; max-block-size: var(--media-max-size); object-fit: contain; }
+    & > img { display: block; inline-size: 100%; block-size: auto; max-block-size: var(--media-max-size); object-fit: contain; }
   }
   @media (min-width: 48rem) {
     .tg-page-content { --tg-container-padding-start: var(--space-8); }
@@ -266,8 +267,7 @@
   .tg-agent-step__detail {
     margin-block: var(--space-1) var(--space-2);
     > summary {
-      display: inline-flex;
-      align-items: center;
+      @include disclosure-indicator.trigger(inline-flex, currentColor);
       min-block-size: 2rem;
       color: var(--text-link);
       cursor: pointer;

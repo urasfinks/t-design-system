@@ -738,7 +738,7 @@
     opacity: 0;
   }
   .tg-menu__item:is([role=menuitemcheckbox], [role=menuitemradio])[aria-checked=true] {
-    --control-idle-bg: var(--section-bg-color);
+    --control-idle-bg: var(--surface-muted);
     --control-hover-bg: var(--control-idle-bg);
     color: var(--text-color);
     box-shadow: var(--shadow-control);
@@ -3019,6 +3019,9 @@
   .tg-text-sm {
     font-size: var(--fs-sm);
   }
+  .tg-fw-regular {
+    font-weight: var(--fw-regular);
+  }
   .tg-text-center {
     text-align: center;
   }
@@ -3428,6 +3431,7 @@
   .tg-media > img {
     display: block;
     inline-size: 100%;
+    block-size: auto;
     max-block-size: var(--media-max-size);
     object-fit: contain;
   }
@@ -3589,6 +3593,34 @@
   .tg-agent-step__detail > summary {
     display: inline-flex;
     align-items: center;
+    gap: var(--space-3);
+    list-style: none;
+  }
+  .tg-agent-step__detail > summary::marker {
+    content: "";
+  }
+  .tg-agent-step__detail > summary::-webkit-details-marker {
+    display: none;
+  }
+  .tg-agent-step__detail > summary::after {
+    content: "";
+    flex: 0 0 auto;
+    inline-size: var(--icon-size);
+    block-size: var(--icon-size);
+    margin-inline-start: auto;
+    background: currentColor;
+    mask: var(--icon-mask-chevron-down) center/contain no-repeat;
+    transition: transform var(--duration) var(--ease);
+  }
+  .tg-agent-step__detail > summary:is(details[open] > summary)::after {
+    transform: rotate(180deg);
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .tg-agent-step__detail > summary::after {
+      transition: none;
+    }
+  }
+  .tg-agent-step__detail > summary {
     min-block-size: 2rem;
     color: var(--text-link);
     cursor: pointer;
@@ -3891,6 +3923,36 @@
     --ring-bg: var(--surface-bg);
   }
   .tg-disclosure__trigger {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    list-style: none;
+  }
+  .tg-disclosure__trigger::marker {
+    content: "";
+  }
+  .tg-disclosure__trigger::-webkit-details-marker {
+    display: none;
+  }
+  .tg-disclosure__trigger::after {
+    content: "";
+    flex: 0 0 auto;
+    inline-size: var(--icon-size);
+    block-size: var(--icon-size);
+    margin-inline-start: auto;
+    background: var(--text-secondary);
+    mask: var(--icon-mask-chevron-down) center/contain no-repeat;
+    transition: transform var(--duration) var(--ease);
+  }
+  .tg-disclosure__trigger:is(details[open] > summary)::after {
+    transform: rotate(180deg);
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .tg-disclosure__trigger::after {
+      transition: none;
+    }
+  }
+  .tg-disclosure__trigger {
     --disclosure-inner-start: max(0px, calc(var(--disclosure-radius-start, var(--radius)) - 1px));
     --disclosure-inner-end: max(0px, calc(var(--disclosure-radius-end, var(--radius)) - 1px));
     min-block-size: var(--control-h);
@@ -3900,8 +3962,8 @@
     cursor: pointer;
     overflow-wrap: anywhere;
   }
-  .tg-disclosure__trigger::marker {
-    color: var(--text-secondary);
+  .tg-disclosure__trigger--regular {
+    font-weight: var(--fw-regular);
   }
   .tg-disclosure[open] > .tg-disclosure__trigger {
     border-end-start-radius: 0;
@@ -4151,10 +4213,10 @@
   .tg-accordion > .tg-disclosure + .tg-disclosure {
     border-block-start: 0;
   }
-  .tg-accordion > .tg-disclosure:first-of-type {
+  .tg-accordion > .tg-disclosure:first-child {
     --disclosure-radius-start: var(--radius);
   }
-  .tg-accordion > .tg-disclosure:last-of-type {
+  .tg-accordion > .tg-disclosure:last-child {
     --disclosure-radius-end: var(--radius);
   }
   .tg-accordion--separate {
@@ -4166,28 +4228,6 @@
   }
   .tg-accordion--separate > .tg-disclosure + .tg-disclosure {
     border-block-start: var(--border);
-  }
-  :is(.tg-accordion, .tg-card--disclosure) .tg-disclosure__trigger {
-    display: flex;
-    align-items: center;
-    gap: var(--space-3);
-    list-style: none;
-  }
-  :is(.tg-accordion, .tg-card--disclosure) .tg-disclosure__trigger::-webkit-details-marker {
-    display: none;
-  }
-  :is(.tg-accordion, .tg-card--disclosure) .tg-disclosure__trigger::after {
-    content: "";
-    flex: 0 0 auto;
-    inline-size: var(--icon-size);
-    block-size: var(--icon-size);
-    margin-inline-start: auto;
-    background: var(--text-secondary);
-    mask: var(--icon-mask-chevron-down) center/contain no-repeat;
-    transition: transform var(--duration) var(--ease);
-  }
-  .tg-accordion .tg-disclosure[open] > .tg-disclosure__trigger::after, .tg-card--disclosure[open] > .tg-disclosure__trigger::after {
-    transform: rotate(180deg);
   }
   .tg-accordion__controls {
     display: flex;
@@ -5919,7 +5959,7 @@
     background: var(--control-hover-bg);
   }
   .tg-listbox__option {
-    padding-inline-end: calc(var(--space-3) + 1rem + var(--space-3));
+    padding-inline-end: calc(var(--space-3) + var(--icon-size) + var(--space-3));
     position: relative;
     -webkit-user-select: none;
     user-select: none;
@@ -5936,7 +5976,7 @@
     outline-offset: -2px;
   }
   .tg-listbox__option[aria-selected=true] {
-    --control-idle-bg: var(--section-bg-color);
+    --control-idle-bg: var(--surface-muted);
     --control-hover-bg: var(--control-idle-bg);
     color: var(--text-color);
     box-shadow: var(--shadow-control);
@@ -5944,10 +5984,11 @@
   }
   .tg-listbox__option[aria-selected=true]::after {
     content: "";
-    inline-size: 1rem;
-    block-size: 1rem;
+    inline-size: var(--icon-size);
+    block-size: var(--icon-size);
     background: currentColor;
     mask: var(--icon-mask-check) center/contain no-repeat;
+    color: var(--text-link);
     position: absolute;
     inset-inline-end: var(--space-3);
   }
@@ -7567,7 +7608,7 @@
     outline-offset: -2px;
   }
   .tg-nav-menu__link[aria-current=page] {
-    --control-idle-bg: var(--section-bg-color);
+    --control-idle-bg: var(--surface-muted);
     --control-hover-bg: var(--control-idle-bg);
     color: var(--text-color);
     box-shadow: var(--shadow-control);
@@ -8198,6 +8239,34 @@
   .tg-chart__data > summary {
     display: inline-flex;
     align-items: center;
+    gap: var(--space-3);
+    list-style: none;
+  }
+  .tg-chart__data > summary::marker {
+    content: "";
+  }
+  .tg-chart__data > summary::-webkit-details-marker {
+    display: none;
+  }
+  .tg-chart__data > summary::after {
+    content: "";
+    flex: 0 0 auto;
+    inline-size: var(--icon-size);
+    block-size: var(--icon-size);
+    margin-inline-start: auto;
+    background: currentColor;
+    mask: var(--icon-mask-chevron-down) center/contain no-repeat;
+    transition: transform var(--duration) var(--ease);
+  }
+  .tg-chart__data > summary:is(details[open] > summary)::after {
+    transform: rotate(180deg);
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .tg-chart__data > summary::after {
+      transition: none;
+    }
+  }
+  .tg-chart__data > summary {
     min-block-size: var(--control-h);
     color: var(--text-link);
     font-size: var(--fs-sm);

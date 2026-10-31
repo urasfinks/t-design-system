@@ -44,6 +44,7 @@ try {
   await page.keyboard.press('Escape');
   await trigger.click();
   await page.waitForTimeout(250);
+  check('F8 pointer opening has no keyboard ring on an option', await css('#demo-model-fast', 'outline-style') === 'none' && await css('#demo-model-balanced', 'outline-style') === 'none');
   const lb = await box('#demo-model-list'), tb = await box('#demo-model-trigger');
   check('F8 the list opens next to the trigger (below, or above near the edge) and is at least as wide', (lb.top >= tb.bottom - 1 || lb.bottom <= tb.top + 1) && lb.width >= tb.width - 1);
   await page.locator('#demo-model-fast').click();

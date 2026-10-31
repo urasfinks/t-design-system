@@ -1,3 +1,4 @@
+@use 'disclosure-indicator';
 @use '../base';
 @use 'floating';
 
@@ -124,8 +125,7 @@
   // The table view: the same numbers as text, closed by default.
   .tg-chart__data {
     > summary {
-      display: inline-flex;
-      align-items: center;
+      @include disclosure-indicator.trigger(inline-flex, currentColor);
       min-block-size: var(--control-h);
       color: var(--text-link);
       font-size: var(--fs-sm);

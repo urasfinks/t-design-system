@@ -1,0 +1,27 @@
+// One disclosure affordance: Feather chevron, a real text gap, native details state.
+@mixin trigger($display: flex, $color: var(--text-secondary)) {
+  display: $display;
+  align-items: center;
+  gap: var(--space-3);
+  list-style: none;
+
+  &::marker { content: ''; }
+  &::-webkit-details-marker { display: none; }
+  &::after {
+    content: '';
+    flex: 0 0 auto;
+    inline-size: var(--icon-size);
+    block-size: var(--icon-size);
+    margin-inline-start: auto;
+    background: $color;
+    mask: var(--icon-mask-chevron-down) center / contain no-repeat;
+    transition: transform var(--duration) var(--ease);
+  }
+
+  // Match the summary's own details, including when callers use descendant selectors.
+  &:is(details[open] > summary)::after { transform: rotate(180deg); }
+
+  @media (prefers-reduced-motion: reduce) {
+    &::after { transition: none; }
+  }
+}

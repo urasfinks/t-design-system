@@ -24,8 +24,8 @@
 }
 
 // The chosen segment rises to the surface above the trough.
-@mixin segment-current {
-  --control-idle-bg: var(--section-bg-color);
+@mixin segment-current($background: var(--section-bg-color)) {
+  --control-idle-bg: #{$background};
   --control-hover-bg: var(--control-idle-bg);
   color: var(--text-color);
   box-shadow: var(--shadow-control);
