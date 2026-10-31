@@ -66,7 +66,7 @@ export function initUI(root = globalThis.document) {
     if (!host || host.closest('.tg-ripple') || (root !== doc && !root.contains(host))) return;
     if (host.matches('input, select, textarea') || target.closest('input, select, textarea') ||
         host.matches(':disabled') || host.closest('[disabled], [aria-disabled="true"]') ||
-        view.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+        !view.matchMedia || view.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
     handled.add(event);
     host.classList.add('tg-feedback-host');
     const rect = host.getBoundingClientRect();
@@ -106,3 +106,64 @@ export function initUI(root = globalThis.document) {
 }
 
 if (globalThis.document?.addEventListener) initUI(globalThis.document);
+
+const positionedMenus = new WeakMap();
+/** Viewport-safe placement for a menu that is already in the popover top layer. */
+export function positionMenu(menu, trigger) {
+  const view = menu.ownerDocument.defaultView;
+  if (!view) return () => {};
+  const token = {};
+  positionedMenus.set(menu, token);
+  let frame = 0;
+  const place = () => {
+    frame = 0;
+    if (!menu.isConnected || !trigger.isConnected || !menu.matches(':popover-open')) return;
+    const visual = view.visualViewport;
+    const leftEdge = visual?.offsetLeft ?? 0, topEdge = visual?.offsetTop ?? 0;
+    const width = visual?.width ?? view.innerWidth, height = visual?.height ?? view.innerHeight;
+    const anchor = trigger.getBoundingClientRect();
+    if (anchor.bottom < topEdge || anchor.top > topEdge + height || anchor.right < leftEdge || anchor.left > leftEdge + width) {
+      menu.hidePopover(); return;
+    }
+    const css = view.getComputedStyle(menu);
+    const gap = Number.parseFloat(css.paddingBlockStart) || 4;
+    const margin = gap * 2;
+    const rtl = view.getComputedStyle(trigger).direction === 'rtl';
+    menu.setAttribute('data-positioned', '');
+    menu.style.setProperty('--tg-menu-available-inline', `${Math.max(1, width - margin * 2)}px`);
+    menu.style.setProperty('--tg-menu-available-block', `${Math.max(1, height - margin * 2)}px`);
+    const w = menu.offsetWidth, h = menu.offsetHeight;
+    const belowSpace = topEdge + height - margin - anchor.bottom - gap;
+    const aboveSpace = anchor.top - topEdge - margin - gap;
+    const below = belowSpace >= h || belowSpace >= aboveSpace;
+    const x = Math.max(leftEdge + margin, Math.min(rtl ? anchor.left : anchor.right - w, leftEdge + width - margin - w));
+    const y = Math.max(topEdge + margin, Math.min(below ? anchor.bottom + gap : anchor.top - gap - h, topEdge + height - margin - h));
+    menu.style.setProperty('--tg-anchor-block', `${y}px`);
+    menu.style.setProperty('--tg-anchor-inline', `${rtl ? menu.ownerDocument.documentElement.clientWidth - x - w : x}px`);
+    menu.style.setProperty('--tg-menu-origin', `${below ? 'top' : 'bottom'} ${rtl ? 'left' : 'right'}`);
+  };
+  const schedule = () => { if (!frame) frame = view.requestAnimationFrame(place); };
+  place();
+  view.addEventListener('resize', schedule);
+  view.addEventListener('scroll', schedule, true);
+  view.visualViewport?.addEventListener('resize', schedule);
+  view.visualViewport?.addEventListener('scroll', schedule);
+  const observer = new view.ResizeObserver(schedule);
+  observer.observe(trigger); observer.observe(menu);
+  return () => {
+    view.cancelAnimationFrame(frame);
+    view.removeEventListener('resize', schedule);
+    view.removeEventListener('scroll', schedule, true);
+    view.visualViewport?.removeEventListener('resize', schedule);
+    view.visualViewport?.removeEventListener('scroll', schedule);
+    observer.disconnect();
+    // Keep the exit transition anchored. A rapid reopen owns a new token.
+    Promise.allSettled(menu.getAnimations().map(animation => animation.finished)).then(() => {
+      if (positionedMenus.get(menu) !== token || menu.matches(':popover-open')) return;
+      for (const name of ['--tg-menu-available-inline', '--tg-menu-available-block', '--tg-anchor-block', '--tg-anchor-inline', '--tg-menu-origin']) menu.style.removeProperty(name);
+      menu.removeAttribute('data-positioned');
+      if (!menu.getAttribute('style')?.trim()) menu.removeAttribute('style');
+      positionedMenus.delete(menu);
+    });
+  };
+}

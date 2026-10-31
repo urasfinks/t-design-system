@@ -10,9 +10,9 @@
     display: grid;
     align-content: start;
     gap: 0;
-    min-inline-size: 12rem;
-    max-inline-size: min(22rem, calc(100vw - var(--space-8)));
-    max-block-size: min(28rem, calc(100dvh - var(--space-8)));
+    min-inline-size: min(12rem, var(--tg-menu-available-inline, 100vw));
+    max-inline-size: min(22rem, calc(100vw - var(--space-8)), var(--tg-menu-available-inline, 100vw));
+    max-block-size: min(28rem, calc(100dvh - var(--space-8)), var(--tg-menu-available-block, 100dvh));
     overflow-y: auto;
     overscroll-behavior: contain;
     padding: var(--space-1);
