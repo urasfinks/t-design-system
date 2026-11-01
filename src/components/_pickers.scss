@@ -1,3 +1,4 @@
+@use '../tokens/color-formulas' as color;
 @use 'media-surface';
 @use '../base';
 @use 'floating';
@@ -420,7 +421,7 @@
     overscroll-behavior: contain;
     scroll-snap-type: y mandatory;
     scrollbar-width: none;
-    mask-image: linear-gradient(to bottom, transparent, black 35%, black 65%, transparent);
+    mask-image: linear-gradient(to bottom, transparent, var(--mask-opaque) 35%, var(--mask-opaque) 65%, transparent);
     &::-webkit-scrollbar { display: none; }
     &:focus-visible { outline: 2px solid var(--text-link); outline-offset: -2px; border-radius: var(--radius-inset); }
     @media (prefers-reduced-motion: no-preference) { scroll-behavior: smooth; }
@@ -487,7 +488,7 @@
     position: relative;
     aspect-ratio: 3 / 2;
     border-radius: var(--radius-inset);
-    background: linear-gradient(to top, black, transparent), linear-gradient(to right, white, hsl(var(--picker-hue, 210) 100% 50%));
+    background: #{color.spectrum(var(--picker-hue, 210))};
     touch-action: none;
     cursor: crosshair;
     &:focus-within { outline: 2px solid var(--text-link); outline-offset: 2px; }
@@ -498,9 +499,9 @@
     inset-block-start: calc((1 - var(--picker-v, .5)) * 100%);
     inline-size: 1.125rem;
     block-size: 1.125rem;
-    border: 2px solid white;
+    border: 2px solid var(--color-white);
     border-radius: 50%;
-    box-shadow: 0 0 0 1px black;
+    box-shadow: 0 0 0 1px var(--color-black);
     translate: -50% -50%;
     pointer-events: none;
   }
@@ -516,7 +517,7 @@
   }
   // Content colour, not interface colour: the hue track shows the whole circle.
   .tg-color-picker__hue {
-    --range-track-bg: linear-gradient(to right, red, yellow, lime, cyan, blue, magenta, red);
+    --range-track-bg: #{color.hue-spectrum()};
     --range-progress-bg: transparent;
   }
   .tg-color-picker__swatches {

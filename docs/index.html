@@ -113,6 +113,18 @@
       </tbody>
     </table>
   </div>
+  <div class="example-panel"><div class="example-body tg-col" data-ui data-example>
+<h3 class="tg-header__title">Единые формулы цветов</h3>
+<div class="tg-table-wrap"><table class="tg-table"><thead><tr><th>Роль</th><th>Общий расчёт</th></tr></thead><tbody>
+<tr><td>Поверхность панели</td><td>OKLCH: L = clamp(.215, L фона + .06, 1)</td></tr>
+<tr><td>Нейтральные контролы и switch</td><td>L панели + i × .065975</td></tr>
+<tr><td>Наведение</td><td>L фона контрола + i × .023861</td></tr>
+<tr><td>Текст и семантические заливки</td><td>Общие смеси исходного цвета с поверхностью или чёрным/белым</td></tr>
+<tr><td>Границы и эффекты</td><td>Общая роль исходного цвета с заданной прозрачностью</td></tr>
+</tbody></table></div>
+<p class="tg-help">i = −1 в светлой теме и +1 в обеих тёмных. Все шаги светлоты ограничены диапазоном [0, 1]; цветность и тон сохраняются до отображения в цветовом охвате.</p>
+<a class="tg-link" href="color-system.md">Полный контракт формул, ролей и проверок</a>
+  </div><p class="example-rule">Компоненты выбирают общие цветовые роли и не рассчитывают собственные оттенки. <code translate="no" class="class-tag">--background-panel · --background-muted · --control-hover-lightness-step</code> задаются централизованно; темы меняют только исходную палитру и направление инверсии.</p></div>
   <div class="foundation-grid"><div class="foundation-card"><span class="mini-label">Типографика</span><div class="type-specimen">Aa Бб 123</div><div class="tg-row tg-text-muted tg-text-sm"><span>System UI</span><span>400 / 500 / 600</span></div></div><div class="foundation-card"><span class="mini-label">Отступы</span><div class="spacing-scale" aria-label="Отступы 4, 8, 12, 16, 20, 24 пикселя"><span style="--size:4">4</span><span style="--size:8">8</span><span style="--size:12">12</span><span style="--size:16">16</span><span style="--size:20">20</span><span style="--size:24">24</span></div><div class="tg-text-muted tg-text-sm">Один ритм для всех компонентов</div></div><div class="foundation-card"><span class="mini-label">Радиусы</span><div class="radius-scale"><span style="border-radius:8px">8</span><span style="border-radius:12px">12</span><span style="border-radius:16px">16</span><span style="border-radius:999px">∞</span></div><div class="tg-text-muted tg-text-sm">От поля ввода до кнопки</div></div></div>
 </section>
 
@@ -466,7 +478,7 @@
   <div class="example-panel"><div class="example-body tg-col" data-ui data-example data-spec="F10">
 <div class="tg-field tag-demo"><label class="tg-label" for="demo-tags-suggest">Теги с подсказками</label>
 <div class="tg-combobox" id="demo-tags-suggest-box" data-combobox data-multiple data-allow-custom data-name="tags[]" data-options="счета|октябрь|срочно|договоры|оплата|отчёты">
-<div class="tg-tag-input"><input class="tg-tag-input__field tg-combobox__input" id="demo-tags-suggest" role="combobox" aria-autocomplete="list" aria-expanded="false" aria-controls="demo-tags-suggest-list" aria-describedby="demo-tags-suggest-help" autocomplete="off" placeholder="Выберите или добавьте тег"></div>
+<div class="tg-tag-input"><input class="tg-tag-input__field tg-combobox__input" id="demo-tags-suggest" name="tag-draft" role="combobox" aria-autocomplete="list" aria-expanded="false" aria-controls="demo-tags-suggest-list" aria-describedby="demo-tags-suggest-help" autocomplete="off" placeholder="Выберите или добавьте тег"></div>
 <ul class="tg-listbox tg-combobox__list" id="demo-tags-suggest-list" role="listbox" aria-label="Подсказки тегов" aria-multiselectable="true" data-empty="Все подходящие теги уже добавлены" hidden></ul>
 </div>
 <p class="tg-help" id="demo-tags-suggest-help">Выберите подсказку или введите свой тег и нажмите Enter.</p><p class="tg-sr-only" role="status" id="demo-tags-suggest-status"></p></div>
@@ -681,6 +693,10 @@
 <details class="tg-disclosure"><summary class="tg-disclosure__trigger">Что входит в раскрывающийся блок?</summary><div class="tg-disclosure__content"><p>Любой контент: текст, список или форма. Нативные details и summary работают мышью и с клавиатуры без JavaScript.</p><a class="tg-link" href="#start">Как подключить</a></div></details>
   </div>
   <p class="example-rule">Раскрытие строится на нативных <code translate="no">details</code> и <code translate="no">summary</code>: Enter и Space работают без JavaScript. Заголовок нажимается целиком и откликается на наведение, а содержимое остаётся обычным текстом.</p></div>
+  <div class="example-panel"><div class="example-body tg-col" data-ui data-example>
+<details class="tg-disclosure"><summary class="tg-disclosure__trigger tg-disclosure__trigger--no-hover"><span class="tg-badge tg-badge--primary">Раскрыть новость</span></summary><div class="tg-disclosure__content">Текст новости или другое содержимое раскрывающегося блока.</div></details>
+  </div>
+  <p class="example-rule"><code translate="no" class="class-tag">.tg-disclosure__trigger--no-hover</code> отключает заливку и затемнение строки при наведении — например, когда действие уже выделено бейджем. Добавьте модификатор к <code translate="no">summary.tg-disclosure__trigger</code> отдельного раскрывающегося блока или элемента аккордеона. Вся строка остаётся кликабельной; Enter, Space, стрелка раскрытия и видимый клавиатурный фокус сохраняются. По умолчанию остальные строки продолжают реагировать на наведение.</p></div>
   <div class="example-panel"><div class="example-body tg-col" data-ui data-example data-spec="M1">
 <div class="tg-row tg-justify-between"><h3 class="tg-header__title">Частые вопросы</h3><div class="tg-accordion__controls"><button class="tg-btn tg-btn--ghost tg-btn--sm" type="button" id="demo-faq-expand" aria-controls="demo-faq">Развернуть всё</button></div></div>
 <div class="tg-accordion" id="demo-faq">

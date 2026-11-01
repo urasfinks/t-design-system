@@ -1,0 +1,6432 @@
+{
+  "componentFiles": 38,
+  "foundationFiles": 2,
+  "declarations": 798,
+  "consumers": [
+    {
+      "file": "base/_index.scss",
+      "property": "background",
+      "roles": [
+        "--bg-body"
+      ],
+      "value": "var(--bg-body)"
+    },
+    {
+      "file": "base/_index.scss",
+      "property": "color",
+      "roles": [
+        "--text-color"
+      ],
+      "value": "var(--text-color)"
+    },
+    {
+      "file": "base/_index.scss",
+      "property": "outline",
+      "roles": [
+        "--text-link"
+      ],
+      "value": "2px solid var(--text-link)"
+    },
+    {
+      "file": "base/_index.scss",
+      "property": "color",
+      "roles": [
+        "--text-link"
+      ],
+      "value": "var(--text-link)"
+    },
+    {
+      "file": "components/_actions.scss",
+      "property": "border-radius",
+      "roles": [
+        "--radius-pill"
+      ],
+      "value": "var(--radius-pill)"
+    },
+    {
+      "file": "components/_actions.scss",
+      "property": "background",
+      "roles": [
+        "--background-muted"
+      ],
+      "value": "var(--background-muted)"
+    },
+    {
+      "file": "components/_actions.scss",
+      "property": "background",
+      "roles": [
+        "--accent-soft"
+      ],
+      "value": "var(--accent-soft)"
+    },
+    {
+      "file": "components/_actions.scss",
+      "property": "background",
+      "roles": [
+        "--accent-soft"
+      ],
+      "value": "var(--accent-soft)"
+    },
+    {
+      "file": "components/_actions.scss",
+      "property": "color",
+      "roles": [
+        "--text-secondary"
+      ],
+      "value": "var(--text-secondary)"
+    },
+    {
+      "file": "components/_actions.scss",
+      "property": "background",
+      "roles": [
+        "--icon-chevron-right-on-action",
+        "--action-bg"
+      ],
+      "value": "var(--icon-chevron-right-on-action) center / 1.25rem no-repeat, var(--action-bg)"
+    },
+    {
+      "file": "components/_actions.scss",
+      "property": "background",
+      "roles": [
+        "--icon-chevron-right-on-action",
+        "--action-bg"
+      ],
+      "value": "var(--icon-chevron-right-on-action) center / 1.25rem no-repeat, var(--action-bg)"
+    },
+    {
+      "file": "components/_actions.scss",
+      "property": "outline",
+      "roles": [
+        "--text-link"
+      ],
+      "value": "2px solid var(--text-link)"
+    },
+    {
+      "file": "components/_actions.scss",
+      "property": "outline",
+      "roles": [
+        "--text-link"
+      ],
+      "value": "2px solid var(--text-link)"
+    },
+    {
+      "file": "components/_actions.scss",
+      "property": "border-radius",
+      "roles": [
+        "--radius-pill"
+      ],
+      "value": "var(--radius-pill)"
+    },
+    {
+      "file": "components/_actions.scss",
+      "property": "box-shadow",
+      "roles": [
+        "--shadow-overlay"
+      ],
+      "value": "var(--shadow-overlay)"
+    },
+    {
+      "file": "components/_actions.scss",
+      "property": "border",
+      "roles": [
+        "--border"
+      ],
+      "value": "var(--border)"
+    },
+    {
+      "file": "components/_actions.scss",
+      "property": "border-radius",
+      "roles": [
+        "--radius-pill"
+      ],
+      "value": "var(--radius-pill)"
+    },
+    {
+      "file": "components/_actions.scss",
+      "property": "background",
+      "roles": [
+        "--surface-bg"
+      ],
+      "value": "var(--surface-bg)"
+    },
+    {
+      "file": "components/_actions.scss",
+      "property": "--ring-bg",
+      "roles": [
+        "--surface-bg"
+      ],
+      "value": "var(--surface-bg)"
+    },
+    {
+      "file": "components/_actions.scss",
+      "property": "color",
+      "roles": [
+        "--text-color"
+      ],
+      "value": "var(--text-color)"
+    },
+    {
+      "file": "components/_actions.scss",
+      "property": "box-shadow",
+      "roles": [
+        "--shadow-overlay"
+      ],
+      "value": "var(--shadow-overlay)"
+    },
+    {
+      "file": "components/_actions.scss",
+      "property": "color",
+      "roles": [
+        "--text-link"
+      ],
+      "value": "var(--text-link)"
+    },
+    {
+      "file": "components/_actions.scss",
+      "property": "outline",
+      "roles": [
+        "--text-link"
+      ],
+      "value": "2px solid var(--text-link)"
+    },
+    {
+      "file": "components/_app-nav.scss",
+      "property": "border-inline-end",
+      "roles": [
+        "--border-subtle-color"
+      ],
+      "value": "1px solid var(--border-subtle-color)"
+    },
+    {
+      "file": "components/_app-nav.scss",
+      "property": "background",
+      "roles": [
+        "--background-panel"
+      ],
+      "value": "var(--background-panel)"
+    },
+    {
+      "file": "components/_app-nav.scss",
+      "property": "--ring-bg",
+      "roles": [
+        "--background-panel"
+      ],
+      "value": "var(--background-panel)"
+    },
+    {
+      "file": "components/_app-nav.scss",
+      "property": "color",
+      "roles": [
+        "--text-color"
+      ],
+      "value": "var(--text-color)"
+    },
+    {
+      "file": "components/_app-nav.scss",
+      "property": "color",
+      "roles": [
+        "--text-secondary"
+      ],
+      "value": "var(--text-secondary)"
+    },
+    {
+      "file": "components/_app-nav.scss",
+      "property": "--control-idle-bg",
+      "roles": [
+        "--background-muted"
+      ],
+      "value": "var(--background-muted)"
+    },
+    {
+      "file": "components/_app-nav.scss",
+      "property": "--control-hover-bg",
+      "roles": [
+        "--background-muted"
+      ],
+      "value": "var(--background-muted)"
+    },
+    {
+      "file": "components/_app-nav.scss",
+      "property": "color",
+      "roles": [
+        "--text-color"
+      ],
+      "value": "var(--text-color)"
+    },
+    {
+      "file": "components/_app-nav.scss",
+      "property": "outline",
+      "roles": [
+        "--text-link"
+      ],
+      "value": "2px solid var(--text-link)"
+    },
+    {
+      "file": "components/_app-nav.scss",
+      "property": "mask",
+      "roles": [
+        "--icon-mask-chevron-down"
+      ],
+      "value": "var(--icon-mask-chevron-down) center / contain no-repeat"
+    },
+    {
+      "file": "components/_app-nav.scss",
+      "property": "border-block-start",
+      "roles": [
+        "--border-subtle-color"
+      ],
+      "value": "1px solid var(--border-subtle-color)"
+    },
+    {
+      "file": "components/_app-nav.scss",
+      "property": "border-radius",
+      "roles": [
+        "--radius-inset"
+      ],
+      "value": "var(--radius-inset)"
+    },
+    {
+      "file": "components/_app-nav.scss",
+      "property": "background",
+      "roles": [
+        "--control-idle-bg"
+      ],
+      "value": "var(--control-idle-bg, transparent)"
+    },
+    {
+      "file": "components/_app-nav.scss",
+      "property": "color",
+      "roles": [
+        "--text-color"
+      ],
+      "value": "var(--text-color)"
+    },
+    {
+      "file": "components/_app-nav.scss",
+      "property": "outline",
+      "roles": [
+        "--text-link"
+      ],
+      "value": "2px solid var(--text-link)"
+    },
+    {
+      "file": "components/_app-nav.scss",
+      "property": "background",
+      "roles": [
+        "--text-secondary"
+      ],
+      "value": "var(--text-secondary)"
+    },
+    {
+      "file": "components/_app-nav.scss",
+      "property": "mask",
+      "roles": [
+        "--icon-mask-chevron-down"
+      ],
+      "value": "var(--icon-mask-chevron-down) center / contain no-repeat"
+    },
+    {
+      "file": "components/_app-nav.scss",
+      "property": "--control-idle-bg",
+      "roles": [
+        "--control-hover-bg"
+      ],
+      "value": "var(--control-hover-bg)"
+    },
+    {
+      "file": "components/_app-nav.scss",
+      "property": "color",
+      "roles": [
+        "--text-link"
+      ],
+      "value": "var(--text-link)"
+    },
+    {
+      "file": "components/_app-nav.scss",
+      "property": "outline",
+      "roles": [
+        "--text-link"
+      ],
+      "value": "2px solid var(--text-link)"
+    },
+    {
+      "file": "components/_app-nav.scss",
+      "property": "border",
+      "roles": [
+        "--border"
+      ],
+      "value": "var(--border)"
+    },
+    {
+      "file": "components/_app-nav.scss",
+      "property": "border-radius",
+      "roles": [
+        "--radius-control"
+      ],
+      "value": "var(--radius-control)"
+    },
+    {
+      "file": "components/_app-nav.scss",
+      "property": "background",
+      "roles": [
+        "--surface-bg"
+      ],
+      "value": "var(--surface-bg)"
+    },
+    {
+      "file": "components/_app-nav.scss",
+      "property": "--ring-bg",
+      "roles": [
+        "--surface-bg"
+      ],
+      "value": "var(--surface-bg)"
+    },
+    {
+      "file": "components/_app-nav.scss",
+      "property": "border-radius",
+      "roles": [
+        "--radius-inset"
+      ],
+      "value": "var(--radius-inset)"
+    },
+    {
+      "file": "components/_app-nav.scss",
+      "property": "background",
+      "roles": [
+        "--control-idle-bg"
+      ],
+      "value": "var(--control-idle-bg, transparent)"
+    },
+    {
+      "file": "components/_app-nav.scss",
+      "property": "color",
+      "roles": [
+        "--text-color"
+      ],
+      "value": "var(--text-color)"
+    },
+    {
+      "file": "components/_app-nav.scss",
+      "property": "--control-idle-bg",
+      "roles": [
+        "--background-muted"
+      ],
+      "value": "var(--background-muted)"
+    },
+    {
+      "file": "components/_app-nav.scss",
+      "property": "--control-hover-bg",
+      "roles": [
+        "--background-muted"
+      ],
+      "value": "var(--background-muted)"
+    },
+    {
+      "file": "components/_app-nav.scss",
+      "property": "outline",
+      "roles": [
+        "--text-link"
+      ],
+      "value": "2px solid var(--text-link)"
+    },
+    {
+      "file": "components/_app-nav.scss",
+      "property": "border-inline-start",
+      "roles": [
+        "--border-subtle-color"
+      ],
+      "value": "1px solid var(--border-subtle-color)"
+    },
+    {
+      "file": "components/_app-nav.scss",
+      "property": "color",
+      "roles": [
+        "--text-color"
+      ],
+      "value": "var(--text-color)"
+    },
+    {
+      "file": "components/_app-nav.scss",
+      "property": "color",
+      "roles": [
+        "--text-secondary"
+      ],
+      "value": "var(--text-secondary)"
+    },
+    {
+      "file": "components/_app-nav.scss",
+      "property": "color",
+      "roles": [
+        "--text-color"
+      ],
+      "value": "var(--text-color)"
+    },
+    {
+      "file": "components/_app-nav.scss",
+      "property": "border-inline-start-color",
+      "roles": [
+        "--accent-main"
+      ],
+      "value": "var(--accent-main)"
+    },
+    {
+      "file": "components/_app-nav.scss",
+      "property": "color",
+      "roles": [
+        "--text-color"
+      ],
+      "value": "var(--text-color)"
+    },
+    {
+      "file": "components/_app-nav.scss",
+      "property": "outline",
+      "roles": [
+        "--text-link"
+      ],
+      "value": "2px solid var(--text-link)"
+    },
+    {
+      "file": "components/_app-nav.scss",
+      "property": "border-radius",
+      "roles": [
+        "--radius-xs"
+      ],
+      "value": "var(--radius-xs)"
+    },
+    {
+      "file": "components/_avatar.scss",
+      "property": "border-color",
+      "roles": [
+        "--accent-main"
+      ],
+      "value": "var(--accent-main)"
+    },
+    {
+      "file": "components/_avatar.scss",
+      "property": "background",
+      "roles": [
+        "--surface-muted"
+      ],
+      "value": "var(--surface-muted)"
+    },
+    {
+      "file": "components/_avatar.scss",
+      "property": "color",
+      "roles": [
+        "--avatar-initials-color"
+      ],
+      "value": "var(--avatar-initials-color)"
+    },
+    {
+      "file": "components/_avatar.scss",
+      "property": "border-color",
+      "roles": [
+        "--border-color"
+      ],
+      "value": "var(--border-color)"
+    },
+    {
+      "file": "components/_avatar.scss",
+      "property": "border-color",
+      "roles": [
+        "--avatar-selection-ring-color",
+        "--control-border-color"
+      ],
+      "value": "var(--avatar-selection-ring-color, var(--control-border-color))"
+    },
+    {
+      "file": "components/_avatar.scss",
+      "property": "border",
+      "roles": [
+        "--border-color"
+      ],
+      "value": "2px dashed var(--border-color)"
+    },
+    {
+      "file": "components/_avatar.scss",
+      "property": "border-color",
+      "roles": [
+        "--border-color"
+      ],
+      "value": "var(--border-color)"
+    },
+    {
+      "file": "components/_avatar.scss",
+      "property": "border",
+      "roles": [
+        "--section-bg-color-transparent"
+      ],
+      "value": "1px solid var(--section-bg-color-transparent)"
+    },
+    {
+      "file": "components/_avatar.scss",
+      "property": "box-shadow",
+      "roles": [
+        "--avatar-group-ring",
+        "--ring-bg"
+      ],
+      "value": "0 0 0 2px var(--avatar-group-ring, var(--ring-bg))"
+    },
+    {
+      "file": "components/_avatar.scss",
+      "property": "background",
+      "roles": [
+        "--background-muted"
+      ],
+      "value": "var(--background-muted)"
+    },
+    {
+      "file": "components/_avatar.scss",
+      "property": "color",
+      "roles": [
+        "--text-secondary"
+      ],
+      "value": "var(--text-secondary)"
+    },
+    {
+      "file": "components/_avatar.scss",
+      "property": "box-shadow",
+      "roles": [
+        "--avatar-group-ring",
+        "--ring-bg"
+      ],
+      "value": "0 0 0 2px var(--avatar-group-ring, var(--ring-bg))"
+    },
+    {
+      "file": "components/_avatar.scss",
+      "property": "border-color",
+      "roles": [
+        "--action-border-color"
+      ],
+      "value": "var(--action-border-color)"
+    },
+    {
+      "file": "components/_avatar.scss",
+      "property": "--control-idle-bg",
+      "roles": [
+        "--surface-muted"
+      ],
+      "value": "var(--surface-muted)"
+    },
+    {
+      "file": "components/_avatar.scss",
+      "property": "--control-hover-bg",
+      "roles": [
+        "--control-idle-bg"
+      ],
+      "value": "var(--control-idle-bg)"
+    },
+    {
+      "file": "components/_avatar.scss",
+      "property": "border-radius",
+      "roles": [
+        "--radius-pill"
+      ],
+      "value": "var(--radius-pill)"
+    },
+    {
+      "file": "components/_avatar.scss",
+      "property": "background",
+      "roles": [
+        "--control-idle-bg"
+      ],
+      "value": "var(--control-idle-bg)"
+    },
+    {
+      "file": "components/_avatar.scss",
+      "property": "color",
+      "roles": [
+        "--text-color"
+      ],
+      "value": "var(--text-color)"
+    },
+    {
+      "file": "components/_avatar.scss",
+      "property": "--control-idle-bg",
+      "roles": [
+        "--badge-primary-bg"
+      ],
+      "value": "var(--badge-primary-bg)"
+    },
+    {
+      "file": "components/_avatar.scss",
+      "property": "color",
+      "roles": [
+        "--badge-primary-text"
+      ],
+      "value": "var(--badge-primary-text)"
+    },
+    {
+      "file": "components/_avatar.scss",
+      "property": "background",
+      "roles": [
+        "--secondary-bg-color-transparent"
+      ],
+      "value": "var(--secondary-bg-color-transparent)"
+    },
+    {
+      "file": "components/_avatar.scss",
+      "property": "color",
+      "roles": [
+        "--text-main"
+      ],
+      "value": "var(--text-main)"
+    },
+    {
+      "file": "components/_avatar.scss",
+      "property": "--control-idle-bg",
+      "roles": [
+        "--badge-danger-bg"
+      ],
+      "value": "var(--badge-danger-bg)"
+    },
+    {
+      "file": "components/_avatar.scss",
+      "property": "color",
+      "roles": [
+        "--badge-danger-text"
+      ],
+      "value": "var(--badge-danger-text)"
+    },
+    {
+      "file": "components/_avatar.scss",
+      "property": "border",
+      "roles": [
+        "--border-action"
+      ],
+      "value": "var(--border-action)"
+    },
+    {
+      "file": "components/_avatar.scss",
+      "property": "border",
+      "roles": [
+        "--border-action"
+      ],
+      "value": "var(--border-action)"
+    },
+    {
+      "file": "components/_avatar.scss",
+      "property": "outline",
+      "roles": [
+        "--text-link"
+      ],
+      "value": "2px solid var(--text-link)"
+    },
+    {
+      "file": "components/_bottom-panel.scss",
+      "property": "border-start-start-radius",
+      "roles": [
+        "--radius-lg"
+      ],
+      "value": "var(--radius-lg)"
+    },
+    {
+      "file": "components/_bottom-panel.scss",
+      "property": "border-start-end-radius",
+      "roles": [
+        "--radius-lg"
+      ],
+      "value": "var(--radius-lg)"
+    },
+    {
+      "file": "components/_bottom-panel.scss",
+      "property": "--surface-bg",
+      "roles": [
+        "--floating-bg"
+      ],
+      "value": "var(--floating-bg)"
+    },
+    {
+      "file": "components/_bottom-panel.scss",
+      "property": "--panel-color",
+      "roles": [
+        "--floating-color"
+      ],
+      "value": "var(--floating-color)"
+    },
+    {
+      "file": "components/_bottom-panel.scss",
+      "property": "--control-idle-bg",
+      "roles": [
+        "--floating-bg"
+      ],
+      "value": "var(--floating-bg)"
+    },
+    {
+      "file": "components/_bottom-panel.scss",
+      "property": "--control-hover-bg",
+      "roles": [
+        "--control-idle-bg"
+      ],
+      "value": "var(--control-idle-bg)"
+    },
+    {
+      "file": "components/_bottom-panel.scss",
+      "property": "background",
+      "roles": [
+        "--control-idle-bg"
+      ],
+      "value": "var(--control-idle-bg)"
+    },
+    {
+      "file": "components/_bottom-panel.scss",
+      "property": "outline",
+      "roles": [
+        "--text-link"
+      ],
+      "value": "2px solid var(--text-link)"
+    },
+    {
+      "file": "components/_bottom-panel.scss",
+      "property": "border-block-end",
+      "roles": [
+        "--border"
+      ],
+      "value": "var(--border)"
+    },
+    {
+      "file": "components/_bottom-panel.scss",
+      "property": "border-block-start",
+      "roles": [
+        "--border"
+      ],
+      "value": "var(--border)"
+    },
+    {
+      "file": "components/_button-feedback.scss",
+      "property": "background",
+      "roles": [
+        "--ripple-color"
+      ],
+      "value": "var(--ripple-color, currentColor)"
+    },
+    {
+      "file": "components/_button-feedback.scss",
+      "property": "box-shadow",
+      "roles": [
+        "--ring-width",
+        "--ripple-border-color",
+        "--ripple-color"
+      ],
+      "value": "inset 0 0 0 var(--ring-width, 1px) var(--ripple-border-color, var(--ripple-color, currentColor))"
+    },
+    {
+      "file": "components/_button-feedback.scss",
+      "property": "background",
+      "roles": [
+        "--ripple-hover-color",
+        "--ripple-color"
+      ],
+      "value": "var(--ripple-hover-color, var(--ripple-color, currentColor))"
+    },
+    {
+      "file": "components/_button-feedback.scss",
+      "property": "background",
+      "roles": [
+        "--accent-main"
+      ],
+      "value": "var(--accent-main)"
+    },
+    {
+      "file": "components/_buttons.scss",
+      "property": "--control-idle-bg",
+      "roles": [
+        "--surface-muted"
+      ],
+      "value": "var(--surface-muted)"
+    },
+    {
+      "file": "components/_buttons.scss",
+      "property": "--control-hover-bg",
+      "roles": [
+        "--control-idle-bg"
+      ],
+      "value": "var(--control-idle-bg)"
+    },
+    {
+      "file": "components/_buttons.scss",
+      "property": "--control-color",
+      "roles": [
+        "--text-color"
+      ],
+      "value": "var(--text-color)"
+    },
+    {
+      "file": "components/_buttons.scss",
+      "property": "border",
+      "roles": [
+        "--border-action"
+      ],
+      "value": "var(--border-action)"
+    },
+    {
+      "file": "components/_buttons.scss",
+      "property": "background",
+      "roles": [
+        "--control-idle-bg"
+      ],
+      "value": "var(--control-idle-bg)"
+    },
+    {
+      "file": "components/_buttons.scss",
+      "property": "color",
+      "roles": [
+        "--control-color"
+      ],
+      "value": "var(--control-color)"
+    },
+    {
+      "file": "components/_buttons.scss",
+      "property": "border-radius",
+      "roles": [
+        "--radius-control"
+      ],
+      "value": "var(--radius-control)"
+    },
+    {
+      "file": "components/_buttons.scss",
+      "property": "--control-color",
+      "roles": [
+        "--text-link"
+      ],
+      "value": "var(--text-link)"
+    },
+    {
+      "file": "components/_buttons.scss",
+      "property": "--control-idle-bg",
+      "roles": [
+        "--action-danger-bg"
+      ],
+      "value": "var(--action-danger-bg)"
+    },
+    {
+      "file": "components/_buttons.scss",
+      "property": "--control-color",
+      "roles": [
+        "--button-text-color"
+      ],
+      "value": "var(--button-text-color)"
+    },
+    {
+      "file": "components/_buttons.scss",
+      "property": "border-radius",
+      "roles": [
+        "--radius-control"
+      ],
+      "value": "var(--radius-control)"
+    },
+    {
+      "file": "components/_buttons.scss",
+      "property": "border-radius",
+      "roles": [
+        "--radius-pill"
+      ],
+      "value": "var(--radius-pill)"
+    },
+    {
+      "file": "components/_buttons.scss",
+      "property": "--control-idle-bg",
+      "roles": [
+        "--action-bg"
+      ],
+      "value": "var(--action-bg)"
+    },
+    {
+      "file": "components/_buttons.scss",
+      "property": "--control-color",
+      "roles": [
+        "--button-text-color"
+      ],
+      "value": "var(--button-text-color)"
+    },
+    {
+      "file": "components/_buttons.scss",
+      "property": "--control-color",
+      "roles": [
+        "--text-secondary"
+      ],
+      "value": "var(--text-secondary)"
+    },
+    {
+      "file": "components/_buttons.scss",
+      "property": "border-radius",
+      "roles": [
+        "--radius-pill"
+      ],
+      "value": "var(--radius-pill)"
+    },
+    {
+      "file": "components/_buttons.scss",
+      "property": "border-color",
+      "roles": [
+        "--group-border-color"
+      ],
+      "value": "var(--group-border-color)"
+    },
+    {
+      "file": "components/_buttons.scss",
+      "property": "border-start-start-radius",
+      "roles": [
+        "--radius-control"
+      ],
+      "value": "var(--radius-control)"
+    },
+    {
+      "file": "components/_buttons.scss",
+      "property": "border-start-end-radius",
+      "roles": [
+        "--radius-control"
+      ],
+      "value": "var(--radius-control)"
+    },
+    {
+      "file": "components/_buttons.scss",
+      "property": "border-end-start-radius",
+      "roles": [
+        "--radius-control"
+      ],
+      "value": "var(--radius-control)"
+    },
+    {
+      "file": "components/_buttons.scss",
+      "property": "border-end-end-radius",
+      "roles": [
+        "--radius-control"
+      ],
+      "value": "var(--radius-control)"
+    },
+    {
+      "file": "components/_calendar.scss",
+      "property": "color",
+      "roles": [
+        "--text-color"
+      ],
+      "value": "var(--text-color)"
+    },
+    {
+      "file": "components/_calendar.scss",
+      "property": "border-color",
+      "roles": [
+        "--accent-main"
+      ],
+      "value": "var(--accent-main)"
+    },
+    {
+      "file": "components/_calendar.scss",
+      "property": "box-shadow",
+      "roles": [
+        "--focus"
+      ],
+      "value": "var(--focus)"
+    },
+    {
+      "file": "components/_calendar.scss",
+      "property": "border-color",
+      "roles": [
+        "--danger-main"
+      ],
+      "value": "var(--danger-main)"
+    },
+    {
+      "file": "components/_calendar.scss",
+      "property": "color",
+      "roles": [
+        "--text-secondary"
+      ],
+      "value": "var(--text-secondary)"
+    },
+    {
+      "file": "components/_calendar.scss",
+      "property": "border-radius",
+      "roles": [
+        "--radius-xs"
+      ],
+      "value": "var(--radius-xs)"
+    },
+    {
+      "file": "components/_calendar.scss",
+      "property": "color",
+      "roles": [
+        "--text-secondary"
+      ],
+      "value": "var(--text-secondary)"
+    },
+    {
+      "file": "components/_calendar.scss",
+      "property": "background",
+      "roles": [
+        "--accent-soft"
+      ],
+      "value": "var(--accent-soft)"
+    },
+    {
+      "file": "components/_calendar.scss",
+      "property": "color",
+      "roles": [
+        "--text-color"
+      ],
+      "value": "var(--text-color)"
+    },
+    {
+      "file": "components/_calendar.scss",
+      "property": "color",
+      "roles": [
+        "--text-secondary"
+      ],
+      "value": "var(--text-secondary)"
+    },
+    {
+      "file": "components/_calendar.scss",
+      "property": "color",
+      "roles": [
+        "--text-color"
+      ],
+      "value": "var(--text-color)"
+    },
+    {
+      "file": "components/_calendar.scss",
+      "property": "color",
+      "roles": [
+        "--text-secondary"
+      ],
+      "value": "var(--text-secondary)"
+    },
+    {
+      "file": "components/_calendar.scss",
+      "property": "border-radius",
+      "roles": [
+        "--radius-inset"
+      ],
+      "value": "var(--radius-inset)"
+    },
+    {
+      "file": "components/_calendar.scss",
+      "property": "background",
+      "roles": [
+        "--control-idle-bg"
+      ],
+      "value": "var(--control-idle-bg, transparent)"
+    },
+    {
+      "file": "components/_calendar.scss",
+      "property": "outline",
+      "roles": [
+        "--text-link"
+      ],
+      "value": "2px solid var(--text-link)"
+    },
+    {
+      "file": "components/_calendar.scss",
+      "property": "color",
+      "roles": [
+        "--text-secondary"
+      ],
+      "value": "var(--text-secondary)"
+    },
+    {
+      "file": "components/_calendar.scss",
+      "property": "box-shadow",
+      "roles": [
+        "--accent-main"
+      ],
+      "value": "inset 0 0 0 1.5px var(--accent-main)"
+    },
+    {
+      "file": "components/_calendar.scss",
+      "property": "--control-idle-bg",
+      "roles": [
+        "--action-bg"
+      ],
+      "value": "var(--action-bg)"
+    },
+    {
+      "file": "components/_calendar.scss",
+      "property": "--control-hover-bg",
+      "roles": [
+        "--action-bg"
+      ],
+      "value": "var(--action-bg)"
+    },
+    {
+      "file": "components/_calendar.scss",
+      "property": "color",
+      "roles": [
+        "--button-text-color"
+      ],
+      "value": "var(--button-text-color)"
+    },
+    {
+      "file": "components/_calendar.scss",
+      "property": "background",
+      "roles": [
+        "--accent-main"
+      ],
+      "value": "var(--accent-main)"
+    },
+    {
+      "file": "components/_calendar.scss",
+      "property": "background",
+      "roles": [
+        "--danger-main"
+      ],
+      "value": "var(--danger-main)"
+    },
+    {
+      "file": "components/_calendar.scss",
+      "property": "background",
+      "roles": [
+        "--text-secondary"
+      ],
+      "value": "var(--text-secondary)"
+    },
+    {
+      "file": "components/_calendar.scss",
+      "property": "color",
+      "roles": [
+        "--text-secondary"
+      ],
+      "value": "var(--text-secondary)"
+    },
+    {
+      "file": "components/_calendar.scss",
+      "property": "background",
+      "roles": [
+        "--accent-soft"
+      ],
+      "value": "var(--accent-soft)"
+    },
+    {
+      "file": "components/_calendar.scss",
+      "property": "background",
+      "roles": [
+        "--accent-soft"
+      ],
+      "value": "linear-gradient(to right, transparent 50%, var(--accent-soft) 50%)"
+    },
+    {
+      "file": "components/_calendar.scss",
+      "property": "background",
+      "roles": [
+        "--accent-soft"
+      ],
+      "value": "linear-gradient(to left, transparent 50%, var(--accent-soft) 50%)"
+    },
+    {
+      "file": "components/_calendar.scss",
+      "property": "background",
+      "roles": [
+        "--accent-soft"
+      ],
+      "value": "linear-gradient(to left, transparent 50%, var(--accent-soft) 50%)"
+    },
+    {
+      "file": "components/_calendar.scss",
+      "property": "background",
+      "roles": [
+        "--accent-soft"
+      ],
+      "value": "linear-gradient(to right, transparent 50%, var(--accent-soft) 50%)"
+    },
+    {
+      "file": "components/_calendar.scss",
+      "property": "border-start-start-radius",
+      "roles": [
+        "--radius-inset"
+      ],
+      "value": "var(--radius-inset)"
+    },
+    {
+      "file": "components/_calendar.scss",
+      "property": "border-end-start-radius",
+      "roles": [
+        "--radius-inset"
+      ],
+      "value": "var(--radius-inset)"
+    },
+    {
+      "file": "components/_calendar.scss",
+      "property": "border-start-end-radius",
+      "roles": [
+        "--radius-inset"
+      ],
+      "value": "var(--radius-inset)"
+    },
+    {
+      "file": "components/_calendar.scss",
+      "property": "border-end-end-radius",
+      "roles": [
+        "--radius-inset"
+      ],
+      "value": "var(--radius-inset)"
+    },
+    {
+      "file": "components/_calendar.scss",
+      "property": "--control-hover-bg",
+      "roles": [
+        "--accent-soft"
+      ],
+      "value": "var(--accent-soft)"
+    },
+    {
+      "file": "components/_calendar.scss",
+      "property": "color",
+      "roles": [
+        "--accent-readable"
+      ],
+      "value": "var(--accent-readable)"
+    },
+    {
+      "file": "components/_calendar.scss",
+      "property": "color",
+      "roles": [
+        "--text-secondary"
+      ],
+      "value": "var(--text-secondary)"
+    },
+    {
+      "file": "components/_calendar.scss",
+      "property": "--control-idle-bg",
+      "roles": [
+        "--action-bg"
+      ],
+      "value": "var(--action-bg)"
+    },
+    {
+      "file": "components/_calendar.scss",
+      "property": "--control-hover-bg",
+      "roles": [
+        "--action-bg"
+      ],
+      "value": "var(--action-bg)"
+    },
+    {
+      "file": "components/_calendar.scss",
+      "property": "color",
+      "roles": [
+        "--button-text-color"
+      ],
+      "value": "var(--button-text-color)"
+    },
+    {
+      "file": "components/_calendar.scss",
+      "property": "background",
+      "roles": [
+        "--accent-soft"
+      ],
+      "value": "var(--accent-soft)"
+    },
+    {
+      "file": "components/_calendar.scss",
+      "property": "border-inline-end",
+      "roles": [
+        "--border-subtle-color"
+      ],
+      "value": "1px solid var(--border-subtle-color)"
+    },
+    {
+      "file": "components/_calendar.scss",
+      "property": "--control-idle-bg",
+      "roles": [
+        "--background-muted"
+      ],
+      "value": "var(--background-muted)"
+    },
+    {
+      "file": "components/_carousel.scss",
+      "property": "outline",
+      "roles": [
+        "--text-link"
+      ],
+      "value": "2px solid var(--text-link)"
+    },
+    {
+      "file": "components/_carousel.scss",
+      "property": "border-radius",
+      "roles": [
+        "--radius-lg"
+      ],
+      "value": "var(--radius-lg)"
+    },
+    {
+      "file": "components/_carousel.scss",
+      "property": "background",
+      "roles": [
+        "--background-muted"
+      ],
+      "value": "var(--background-muted)"
+    },
+    {
+      "file": "components/_carousel.scss",
+      "property": "border-radius",
+      "roles": [
+        "--radius-sm"
+      ],
+      "value": "var(--radius-sm)"
+    },
+    {
+      "file": "components/_carousel.scss",
+      "property": "background",
+      "roles": [
+        "--overlay-bg"
+      ],
+      "value": "var(--overlay-bg)"
+    },
+    {
+      "file": "components/_carousel.scss",
+      "property": "color",
+      "roles": [
+        "--overlay-text"
+      ],
+      "value": "var(--overlay-text)"
+    },
+    {
+      "file": "components/_carousel.scss",
+      "property": "color",
+      "roles": [
+        "--text-secondary"
+      ],
+      "value": "var(--text-secondary)"
+    },
+    {
+      "file": "components/_carousel.scss",
+      "property": "border-radius",
+      "roles": [
+        "--radius-inset"
+      ],
+      "value": "var(--radius-inset)"
+    },
+    {
+      "file": "components/_carousel.scss",
+      "property": "background",
+      "roles": [
+        "--background-muted"
+      ],
+      "value": "var(--background-muted)"
+    },
+    {
+      "file": "components/_carousel.scss",
+      "property": "border-color",
+      "roles": [
+        "--accent-main"
+      ],
+      "value": "var(--accent-main)"
+    },
+    {
+      "file": "components/_carousel.scss",
+      "property": "outline",
+      "roles": [
+        "--text-link"
+      ],
+      "value": "2px solid var(--text-link)"
+    },
+    {
+      "file": "components/_carousel.scss",
+      "property": "box-shadow",
+      "roles": [
+        "--shadow-control"
+      ],
+      "value": "var(--shadow-control)"
+    },
+    {
+      "file": "components/_carousel.scss",
+      "property": "border-radius",
+      "roles": [
+        "--radius-lg"
+      ],
+      "value": "var(--radius-lg)"
+    },
+    {
+      "file": "components/_carousel.scss",
+      "property": "background",
+      "roles": [
+        "--background-muted"
+      ],
+      "value": "var(--background-muted)"
+    },
+    {
+      "file": "components/_carousel.scss",
+      "property": "background",
+      "roles": [
+        "--overlay-bg"
+      ],
+      "value": "linear-gradient(to top, var(--overlay-bg), transparent 55%)"
+    },
+    {
+      "file": "components/_carousel.scss",
+      "property": "color",
+      "roles": [
+        "--overlay-text"
+      ],
+      "value": "var(--overlay-text)"
+    },
+    {
+      "file": "components/_carousel.scss",
+      "property": "outline",
+      "roles": [
+        "--text-link"
+      ],
+      "value": "2px solid var(--text-link)"
+    },
+    {
+      "file": "components/_carousel.scss",
+      "property": "border-radius",
+      "roles": [
+        "--radius-sm"
+      ],
+      "value": "var(--radius-sm)"
+    },
+    {
+      "file": "components/_carousel.scss",
+      "property": "background",
+      "roles": [
+        "--overlay-bg"
+      ],
+      "value": "var(--overlay-bg)"
+    },
+    {
+      "file": "components/_carousel.scss",
+      "property": "color",
+      "roles": [
+        "--overlay-text"
+      ],
+      "value": "var(--overlay-text)"
+    },
+    {
+      "file": "components/_carousel.scss",
+      "property": "mask-image",
+      "roles": [
+        "--mask-opaque",
+        "--space-8"
+      ],
+      "value": "linear-gradient(to right, transparent, var(--mask-opaque) var(--space-8), var(--mask-opaque) calc(100% - var(--space-8)), transparent)"
+    },
+    {
+      "file": "components/_carousel.scss",
+      "property": "mask-image",
+      "roles": [
+        "--mask-opaque",
+        "--space-8"
+      ],
+      "value": "linear-gradient(to bottom, transparent, var(--mask-opaque) var(--space-8), var(--mask-opaque) calc(100% - var(--space-8)), transparent)"
+    },
+    {
+      "file": "components/_carousel.scss",
+      "property": "outline",
+      "roles": [
+        "--text-link"
+      ],
+      "value": "2px solid var(--text-link)"
+    },
+    {
+      "file": "components/_carousel.scss",
+      "property": "border-radius",
+      "roles": [
+        "--radius-lg"
+      ],
+      "value": "var(--radius-lg)"
+    },
+    {
+      "file": "components/_charts.scss",
+      "property": "--chart-surface",
+      "roles": [
+        "--surface-bg"
+      ],
+      "value": "var(--surface-bg)"
+    },
+    {
+      "file": "components/_charts.scss",
+      "property": "color",
+      "roles": [
+        "--text-color"
+      ],
+      "value": "var(--text-color)"
+    },
+    {
+      "file": "components/_charts.scss",
+      "property": "color",
+      "roles": [
+        "--text-secondary"
+      ],
+      "value": "var(--text-secondary)"
+    },
+    {
+      "file": "components/_charts.scss",
+      "property": "stroke",
+      "roles": [
+        "--chart-grid"
+      ],
+      "value": "var(--chart-grid)"
+    },
+    {
+      "file": "components/_charts.scss",
+      "property": "stroke",
+      "roles": [
+        "--border-color"
+      ],
+      "value": "var(--border-color)"
+    },
+    {
+      "file": "components/_charts.scss",
+      "property": "fill",
+      "roles": [
+        "--text-secondary"
+      ],
+      "value": "var(--text-secondary)"
+    },
+    {
+      "file": "components/_charts.scss",
+      "property": "stroke",
+      "roles": [
+        "--series"
+      ],
+      "value": "var(--series)"
+    },
+    {
+      "file": "components/_charts.scss",
+      "property": "fill",
+      "roles": [
+        "--series"
+      ],
+      "value": "var(--series)"
+    },
+    {
+      "file": "components/_charts.scss",
+      "property": "fill",
+      "roles": [
+        "--series"
+      ],
+      "value": "var(--series)"
+    },
+    {
+      "file": "components/_charts.scss",
+      "property": "stroke",
+      "roles": [
+        "--chart-surface"
+      ],
+      "value": "var(--chart-surface)"
+    },
+    {
+      "file": "components/_charts.scss",
+      "property": "fill",
+      "roles": [
+        "--text-color"
+      ],
+      "value": "var(--text-color)"
+    },
+    {
+      "file": "components/_charts.scss",
+      "property": "fill",
+      "roles": [
+        "--text-secondary"
+      ],
+      "value": "var(--text-secondary)"
+    },
+    {
+      "file": "components/_charts.scss",
+      "property": "stroke",
+      "roles": [
+        "--text-secondary"
+      ],
+      "value": "var(--text-secondary)"
+    },
+    {
+      "file": "components/_charts.scss",
+      "property": "color",
+      "roles": [
+        "--text-secondary"
+      ],
+      "value": "var(--text-secondary)"
+    },
+    {
+      "file": "components/_charts.scss",
+      "property": "background",
+      "roles": [
+        "--series"
+      ],
+      "value": "var(--series)"
+    },
+    {
+      "file": "components/_charts.scss",
+      "property": "background",
+      "roles": [
+        "--series"
+      ],
+      "value": "repeating-linear-gradient(to right, var(--series) 0 5px, transparent 5px 8px)"
+    },
+    {
+      "file": "components/_charts.scss",
+      "property": "color",
+      "roles": [
+        "--text-color"
+      ],
+      "value": "var(--text-color)"
+    },
+    {
+      "file": "components/_charts.scss",
+      "property": "color",
+      "roles": [
+        "--text-secondary"
+      ],
+      "value": "var(--text-secondary)"
+    },
+    {
+      "file": "components/_charts.scss",
+      "property": "color",
+      "roles": [
+        "--text-color"
+      ],
+      "value": "var(--text-color)"
+    },
+    {
+      "file": "components/_charts.scss",
+      "property": "color",
+      "roles": [
+        "--text-link"
+      ],
+      "value": "var(--text-link)"
+    },
+    {
+      "file": "components/_charts.scss",
+      "property": "outline",
+      "roles": [
+        "--text-link"
+      ],
+      "value": "2px solid var(--text-link)"
+    },
+    {
+      "file": "components/_charts.scss",
+      "property": "border-radius",
+      "roles": [
+        "--radius-xs"
+      ],
+      "value": "var(--radius-xs)"
+    },
+    {
+      "file": "components/_charts.scss",
+      "property": "fill",
+      "roles": [
+        "--series"
+      ],
+      "value": "var(--series)"
+    },
+    {
+      "file": "components/_charts.scss",
+      "property": "stroke",
+      "roles": [
+        "--series"
+      ],
+      "value": "var(--series)"
+    },
+    {
+      "file": "components/_charts.scss",
+      "property": "color",
+      "roles": [
+        "--series"
+      ],
+      "value": "var(--series)"
+    },
+    {
+      "file": "components/_charts.scss",
+      "property": "color",
+      "roles": [
+        "--text-secondary"
+      ],
+      "value": "var(--text-secondary)"
+    },
+    {
+      "file": "components/_charts.scss",
+      "property": "background",
+      "roles": [
+        "--series"
+      ],
+      "value": "repeating-linear-gradient(45deg, var(--series) 0 1.5px, transparent 1.5px 3.5px)"
+    },
+    {
+      "file": "components/_charts.scss",
+      "property": "box-shadow",
+      "roles": [
+        "--series"
+      ],
+      "value": "inset 0 0 0 1px var(--series)"
+    },
+    {
+      "file": "components/_compositions.scss",
+      "property": "border-block-end",
+      "roles": [
+        "--border"
+      ],
+      "value": "var(--border)"
+    },
+    {
+      "file": "components/_compositions.scss",
+      "property": "background",
+      "roles": [
+        "--background-main"
+      ],
+      "value": "var(--background-main)"
+    },
+    {
+      "file": "components/_compositions.scss",
+      "property": "background",
+      "roles": [
+        "--border-subtle-color"
+      ],
+      "value": "var(--border-subtle-color)"
+    },
+    {
+      "file": "components/_compositions.scss",
+      "property": "color",
+      "roles": [
+        "--text-color"
+      ],
+      "value": "var(--text-color)"
+    },
+    {
+      "file": "components/_compositions.scss",
+      "property": "background",
+      "roles": [
+        "--section-bg-color"
+      ],
+      "value": "var(--section-bg-color)"
+    },
+    {
+      "file": "components/_compositions.scss",
+      "property": "--ring-bg",
+      "roles": [
+        "--section-bg-color"
+      ],
+      "value": "var(--section-bg-color)"
+    },
+    {
+      "file": "components/_compositions.scss",
+      "property": "border-block-start",
+      "roles": [
+        "--border"
+      ],
+      "value": "var(--border)"
+    },
+    {
+      "file": "components/_compositions.scss",
+      "property": "border-radius",
+      "roles": [
+        "--radius-xs"
+      ],
+      "value": "var(--radius-xs)"
+    },
+    {
+      "file": "components/_compositions.scss",
+      "property": "background",
+      "roles": [
+        "--background-muted"
+      ],
+      "value": "var(--background-muted)"
+    },
+    {
+      "file": "components/_compositions.scss",
+      "property": "border-radius",
+      "roles": [
+        "--radius-control"
+      ],
+      "value": "var(--radius-control)"
+    },
+    {
+      "file": "components/_compositions.scss",
+      "property": "background",
+      "roles": [
+        "--background-muted"
+      ],
+      "value": "var(--background-muted)"
+    },
+    {
+      "file": "components/_compositions.scss",
+      "property": "border-radius",
+      "roles": [
+        "--radius-lg"
+      ],
+      "value": "var(--radius-lg)"
+    },
+    {
+      "file": "components/_compositions.scss",
+      "property": "border-end-end-radius",
+      "roles": [
+        "--radius-xs"
+      ],
+      "value": "var(--radius-xs)"
+    },
+    {
+      "file": "components/_compositions.scss",
+      "property": "background",
+      "roles": [
+        "--background-muted"
+      ],
+      "value": "var(--background-muted)"
+    },
+    {
+      "file": "components/_compositions.scss",
+      "property": "color",
+      "roles": [
+        "--text-secondary"
+      ],
+      "value": "var(--text-secondary)"
+    },
+    {
+      "file": "components/_compositions.scss",
+      "property": "color",
+      "roles": [
+        "--text-secondary"
+      ],
+      "value": "var(--text-secondary)"
+    },
+    {
+      "file": "components/_compositions.scss",
+      "property": "border-inline-start",
+      "roles": [
+        "--border-active"
+      ],
+      "value": "var(--border-active)"
+    },
+    {
+      "file": "components/_compositions.scss",
+      "property": "border-inline-start",
+      "roles": [
+        "--border"
+      ],
+      "value": "var(--border)"
+    },
+    {
+      "file": "components/_compositions.scss",
+      "property": "color",
+      "roles": [
+        "--text-secondary"
+      ],
+      "value": "var(--text-secondary)"
+    },
+    {
+      "file": "components/_compositions.scss",
+      "property": "color",
+      "roles": [
+        "--text-link"
+      ],
+      "value": "var(--text-link)"
+    },
+    {
+      "file": "components/_compositions.scss",
+      "property": "color",
+      "roles": [
+        "--text-danger"
+      ],
+      "value": "var(--text-danger)"
+    },
+    {
+      "file": "components/_compositions.scss",
+      "property": "color",
+      "roles": [
+        "--text-danger"
+      ],
+      "value": "var(--text-danger)"
+    },
+    {
+      "file": "components/_compositions.scss",
+      "property": "color",
+      "roles": [
+        "--text-color"
+      ],
+      "value": "var(--text-color)"
+    },
+    {
+      "file": "components/_compositions.scss",
+      "property": "color",
+      "roles": [
+        "--text-link"
+      ],
+      "value": "var(--text-link)"
+    },
+    {
+      "file": "components/_compositions.scss",
+      "property": "outline",
+      "roles": [
+        "--text-link"
+      ],
+      "value": "2px solid var(--text-link)"
+    },
+    {
+      "file": "components/_compositions.scss",
+      "property": "border-radius",
+      "roles": [
+        "--radius-xs"
+      ],
+      "value": "var(--radius-xs)"
+    },
+    {
+      "file": "components/_compositions.scss",
+      "property": "border-inline-start",
+      "roles": [
+        "--border-subtle-color"
+      ],
+      "value": "2px solid var(--border-subtle-color)"
+    },
+    {
+      "file": "components/_compositions.scss",
+      "property": "color",
+      "roles": [
+        "--text-color"
+      ],
+      "value": "var(--text-color)"
+    },
+    {
+      "file": "components/_compositions.scss",
+      "property": "color",
+      "roles": [
+        "--text-link"
+      ],
+      "value": "var(--text-link)"
+    },
+    {
+      "file": "components/_compositions.scss",
+      "property": "border",
+      "roles": [
+        "--border"
+      ],
+      "value": "var(--border)"
+    },
+    {
+      "file": "components/_compositions.scss",
+      "property": "border-radius",
+      "roles": [
+        "--radius-lg"
+      ],
+      "value": "var(--radius-lg)"
+    },
+    {
+      "file": "components/_compositions.scss",
+      "property": "background",
+      "roles": [
+        "--surface-bg"
+      ],
+      "value": "var(--surface-bg)"
+    },
+    {
+      "file": "components/_compositions.scss",
+      "property": "--ring-bg",
+      "roles": [
+        "--surface-bg"
+      ],
+      "value": "var(--surface-bg)"
+    },
+    {
+      "file": "components/_compositions.scss",
+      "property": "border-color",
+      "roles": [
+        "--danger-main"
+      ],
+      "value": "var(--danger-main)"
+    },
+    {
+      "file": "components/_compositions.scss",
+      "property": "color",
+      "roles": [
+        "--text-secondary"
+      ],
+      "value": "var(--text-secondary)"
+    },
+    {
+      "file": "components/_compositions.scss",
+      "property": "color",
+      "roles": [
+        "--text-link"
+      ],
+      "value": "var(--text-link)"
+    },
+    {
+      "file": "components/_compositions.scss",
+      "property": "color",
+      "roles": [
+        "--text-danger"
+      ],
+      "value": "var(--text-danger)"
+    },
+    {
+      "file": "components/_compositions.scss",
+      "property": "color",
+      "roles": [
+        "--text-secondary"
+      ],
+      "value": "var(--text-secondary)"
+    },
+    {
+      "file": "components/_content.scss",
+      "property": "border",
+      "roles": [
+        "--border-subtle-color"
+      ],
+      "value": "1px solid var(--border-subtle-color)"
+    },
+    {
+      "file": "components/_content.scss",
+      "property": "border-radius",
+      "roles": [
+        "--radius-xs"
+      ],
+      "value": "var(--radius-xs)"
+    },
+    {
+      "file": "components/_content.scss",
+      "property": "background",
+      "roles": [
+        "--background-muted"
+      ],
+      "value": "var(--background-muted)"
+    },
+    {
+      "file": "components/_content.scss",
+      "property": "color",
+      "roles": [
+        "--text-color"
+      ],
+      "value": "var(--text-color)"
+    },
+    {
+      "file": "components/_content.scss",
+      "property": "color",
+      "roles": [
+        "--text-secondary"
+      ],
+      "value": "var(--text-secondary)"
+    },
+    {
+      "file": "components/_content.scss",
+      "property": "color",
+      "roles": [
+        "--text-color"
+      ],
+      "value": "var(--text-color)"
+    },
+    {
+      "file": "components/_content.scss",
+      "property": "color",
+      "roles": [
+        "--text-secondary"
+      ],
+      "value": "var(--text-secondary)"
+    },
+    {
+      "file": "components/_content.scss",
+      "property": "color",
+      "roles": [
+        "--text-secondary"
+      ],
+      "value": "var(--text-secondary)"
+    },
+    {
+      "file": "components/_content.scss",
+      "property": "background",
+      "roles": [
+        "--text-link"
+      ],
+      "value": "var(--text-link)"
+    },
+    {
+      "file": "components/_content.scss",
+      "property": "mask",
+      "roles": [
+        "--icon-mask-check"
+      ],
+      "value": "var(--icon-mask-check) center / contain no-repeat"
+    },
+    {
+      "file": "components/_content.scss",
+      "property": "color",
+      "roles": [
+        "--text-secondary"
+      ],
+      "value": "var(--text-secondary)"
+    },
+    {
+      "file": "components/_content.scss",
+      "property": "background",
+      "roles": [
+        "--text-secondary"
+      ],
+      "value": "var(--text-secondary)"
+    },
+    {
+      "file": "components/_content.scss",
+      "property": "border",
+      "roles": [
+        "--border"
+      ],
+      "value": "var(--border)"
+    },
+    {
+      "file": "components/_content.scss",
+      "property": "border-radius",
+      "roles": [
+        "--radius-lg"
+      ],
+      "value": "var(--radius-lg)"
+    },
+    {
+      "file": "components/_content.scss",
+      "property": "background",
+      "roles": [
+        "--surface-bg"
+      ],
+      "value": "var(--surface-bg)"
+    },
+    {
+      "file": "components/_content.scss",
+      "property": "--ring-bg",
+      "roles": [
+        "--surface-bg"
+      ],
+      "value": "var(--surface-bg)"
+    },
+    {
+      "file": "components/_content.scss",
+      "property": "background",
+      "roles": [
+        "--background-muted"
+      ],
+      "value": "var(--background-muted)"
+    },
+    {
+      "file": "components/_content.scss",
+      "property": "color",
+      "roles": [
+        "--text-color"
+      ],
+      "value": "var(--text-color)"
+    },
+    {
+      "file": "components/_content.scss",
+      "property": "color",
+      "roles": [
+        "--text-color"
+      ],
+      "value": "var(--text-color)"
+    },
+    {
+      "file": "components/_content.scss",
+      "property": "color",
+      "roles": [
+        "--text-secondary"
+      ],
+      "value": "var(--text-secondary)"
+    },
+    {
+      "file": "components/_content.scss",
+      "property": "color",
+      "roles": [
+        "--text-secondary"
+      ],
+      "value": "var(--text-secondary)"
+    },
+    {
+      "file": "components/_content.scss",
+      "property": "background",
+      "roles": [
+        "--accent-main",
+        "--rating",
+        "--border-color"
+      ],
+      "value": "linear-gradient(to right, var(--accent-main) calc(var(--rating, 5) / 5 * 100%), var(--border-color) 0)"
+    },
+    {
+      "file": "components/_content.scss",
+      "property": "mask",
+      "roles": [
+        "--icon-mask-star"
+      ],
+      "value": "var(--icon-mask-star) left center / 1.1rem 1rem repeat-x"
+    },
+    {
+      "file": "components/_content.scss",
+      "property": "background",
+      "roles": [
+        "--accent-main",
+        "--rating",
+        "--border-color"
+      ],
+      "value": "linear-gradient(to left, var(--accent-main) calc(var(--rating, 5) / 5 * 100%), var(--border-color) 0)"
+    },
+    {
+      "file": "components/_control-states.scss",
+      "property": "--control-hover-bg",
+      "roles": [
+        "--control-hover-surface"
+      ],
+      "value": "var(--control-hover-surface)"
+    },
+    {
+      "file": "components/_control-states.scss",
+      "property": "color",
+      "roles": [
+        "--accent-strong"
+      ],
+      "value": "var(--accent-strong)"
+    },
+    {
+      "file": "components/_control-states.scss",
+      "property": "color",
+      "roles": [
+        "--text-color"
+      ],
+      "value": "var(--text-color)"
+    },
+    {
+      "file": "components/_control-states.scss",
+      "property": "background-color",
+      "roles": [
+        "--control-idle-bg"
+      ],
+      "value": "var(--control-idle-bg)"
+    },
+    {
+      "file": "components/_disclosure-indicator.scss",
+      "property": "mask",
+      "roles": [
+        "--icon-mask-chevron-down"
+      ],
+      "value": "var(--icon-mask-chevron-down) center / contain no-repeat"
+    },
+    {
+      "file": "components/_editor.scss",
+      "property": "border",
+      "roles": [
+        "--border"
+      ],
+      "value": "var(--border)"
+    },
+    {
+      "file": "components/_editor.scss",
+      "property": "border-radius",
+      "roles": [
+        "--radius-lg"
+      ],
+      "value": "var(--radius-lg)"
+    },
+    {
+      "file": "components/_editor.scss",
+      "property": "background",
+      "roles": [
+        "--surface-bg"
+      ],
+      "value": "var(--surface-bg)"
+    },
+    {
+      "file": "components/_editor.scss",
+      "property": "--ring-bg",
+      "roles": [
+        "--surface-bg"
+      ],
+      "value": "var(--surface-bg)"
+    },
+    {
+      "file": "components/_editor.scss",
+      "property": "border-color",
+      "roles": [
+        "--accent-main"
+      ],
+      "value": "var(--accent-main)"
+    },
+    {
+      "file": "components/_editor.scss",
+      "property": "box-shadow",
+      "roles": [
+        "--focus"
+      ],
+      "value": "var(--focus)"
+    },
+    {
+      "file": "components/_editor.scss",
+      "property": "border-block-end",
+      "roles": [
+        "--border-subtle-color"
+      ],
+      "value": "1px solid var(--border-subtle-color)"
+    },
+    {
+      "file": "components/_editor.scss",
+      "property": "border-block-end",
+      "roles": [
+        "--border-subtle-color"
+      ],
+      "value": "1px solid var(--border-subtle-color)"
+    },
+    {
+      "file": "components/_editor.scss",
+      "property": "border-block",
+      "roles": [
+        "--border-subtle-color"
+      ],
+      "value": "1px solid var(--border-subtle-color) 0"
+    },
+    {
+      "file": "components/_editor.scss",
+      "property": "color",
+      "roles": [
+        "--text-color"
+      ],
+      "value": "var(--text-color)"
+    },
+    {
+      "file": "components/_editor.scss",
+      "property": "border-radius",
+      "roles": [
+        "--radius-xs"
+      ],
+      "value": "var(--radius-xs)"
+    },
+    {
+      "file": "components/_editor.scss",
+      "property": "background",
+      "roles": [
+        "--background-muted"
+      ],
+      "value": "var(--background-muted)"
+    },
+    {
+      "file": "components/_editor.scss",
+      "property": "border-radius",
+      "roles": [
+        "--radius"
+      ],
+      "value": "var(--radius)"
+    },
+    {
+      "file": "components/_editor.scss",
+      "property": "background",
+      "roles": [
+        "--background-muted"
+      ],
+      "value": "var(--background-muted)"
+    },
+    {
+      "file": "components/_editor.scss",
+      "property": "border-inline-start",
+      "roles": [
+        "--border-color"
+      ],
+      "value": "3px solid var(--border-color)"
+    },
+    {
+      "file": "components/_editor.scss",
+      "property": "color",
+      "roles": [
+        "--text-secondary"
+      ],
+      "value": "var(--text-secondary)"
+    },
+    {
+      "file": "components/_editor.scss",
+      "property": "color",
+      "roles": [
+        "--text-link"
+      ],
+      "value": "var(--text-link)"
+    },
+    {
+      "file": "components/_editor.scss",
+      "property": "background",
+      "roles": [
+        "--accent-soft"
+      ],
+      "value": "var(--accent-soft)"
+    },
+    {
+      "file": "components/_editor.scss",
+      "property": "border-radius",
+      "roles": [
+        "--radius-inset"
+      ],
+      "value": "var(--radius-inset)"
+    },
+    {
+      "file": "components/_editor.scss",
+      "property": "background",
+      "roles": [
+        "--accent-soft"
+      ],
+      "value": "var(--accent-soft)"
+    },
+    {
+      "file": "components/_editor.scss",
+      "property": "box-shadow",
+      "roles": [
+        "--accent-main"
+      ],
+      "value": "inset 0 0 0 2px var(--accent-main)"
+    },
+    {
+      "file": "components/_editor.scss",
+      "property": "color",
+      "roles": [
+        "--text-danger"
+      ],
+      "value": "var(--text-danger)"
+    },
+    {
+      "file": "components/_effects.scss",
+      "property": "--ripple-color",
+      "roles": [
+        "--ripple-on-dark"
+      ],
+      "value": "var(--ripple-on-dark)"
+    },
+    {
+      "file": "components/_effects.scss",
+      "property": "--ripple-color",
+      "roles": [
+        "--ripple-on-dark"
+      ],
+      "value": "var(--ripple-on-dark)"
+    },
+    {
+      "file": "components/_effects.scss",
+      "property": "--ripple-color",
+      "roles": [
+        "--ripple-on-light"
+      ],
+      "value": "var(--ripple-on-light)"
+    },
+    {
+      "file": "components/_effects.scss",
+      "property": "border-radius",
+      "roles": [
+        "--radius-pill"
+      ],
+      "value": "var(--radius-pill)"
+    },
+    {
+      "file": "components/_effects.scss",
+      "property": "background",
+      "roles": [
+        "--ripple-color"
+      ],
+      "value": "var(--ripple-color)"
+    },
+    {
+      "file": "components/_effects.scss",
+      "property": "box-shadow",
+      "roles": [
+        "--ring-width",
+        "--ripple-border-color",
+        "--ripple-color"
+      ],
+      "value": "inset 0 0 0 var(--ring-width) var(--ripple-border-color, var(--ripple-color))"
+    },
+    {
+      "file": "components/_effects.scss",
+      "property": "background",
+      "roles": [
+        "--ripple-hover-color",
+        "--ripple-color"
+      ],
+      "value": "var(--ripple-hover-color, var(--ripple-color))"
+    },
+    {
+      "file": "components/_effects.scss",
+      "property": "background",
+      "roles": [
+        "--background-panel"
+      ],
+      "value": "var(--background-panel)"
+    },
+    {
+      "file": "components/_effects.scss",
+      "property": "--ring-bg",
+      "roles": [
+        "--background-panel"
+      ],
+      "value": "var(--background-panel)"
+    },
+    {
+      "file": "components/_effects.scss",
+      "property": "border-radius",
+      "roles": [
+        "--radius-lg"
+      ],
+      "value": "var(--radius-lg)"
+    },
+    {
+      "file": "components/_effects.scss",
+      "property": "background",
+      "roles": [
+        "--background-main"
+      ],
+      "value": "var(--background-main)"
+    },
+    {
+      "file": "components/_effects.scss",
+      "property": "background",
+      "roles": [
+        "--overlay-bg"
+      ],
+      "value": "var(--overlay-bg)"
+    },
+    {
+      "file": "components/_effects.scss",
+      "property": "color",
+      "roles": [
+        "--overlay-text"
+      ],
+      "value": "var(--overlay-text)"
+    },
+    {
+      "file": "components/_effects.scss",
+      "property": "background",
+      "roles": [
+        "--overlay-text"
+      ],
+      "value": "linear-gradient(105deg, transparent 35%, var(--overlay-text) 50%, transparent 65%)"
+    },
+    {
+      "file": "components/_effects.scss",
+      "property": "background",
+      "roles": [
+        "--effect-angle",
+        "--accent-main",
+        "--accent-readable"
+      ],
+      "value": "conic-gradient(from var(--effect-angle), transparent 0 52%, var(--accent-main) 82%, var(--accent-readable) 90%, transparent 97%)"
+    },
+    {
+      "file": "components/_effects.scss",
+      "property": "mask",
+      "roles": [
+        "--mask-opaque"
+      ],
+      "value": "linear-gradient(var(--mask-opaque) 0 0) content-box exclude, linear-gradient(var(--mask-opaque) 0 0)"
+    },
+    {
+      "file": "components/_effects.scss",
+      "property": "background",
+      "roles": [
+        "--accent-main"
+      ],
+      "value": "radial-gradient(closest-side, var(--accent-main), transparent)"
+    },
+    {
+      "file": "components/_effects.scss",
+      "property": "background",
+      "roles": [
+        "--effect-layer-bg",
+        "--background-main"
+      ],
+      "value": "var(--effect-layer-bg, var(--background-main))"
+    },
+    {
+      "file": "components/_effects.scss",
+      "property": "color",
+      "roles": [
+        "--accent-main"
+      ],
+      "value": "var(--accent-main)"
+    },
+    {
+      "file": "components/_effects.scss",
+      "property": "border-radius",
+      "roles": [
+        "--radius-lg"
+      ],
+      "value": "var(--radius-lg)"
+    },
+    {
+      "file": "components/_effects.scss",
+      "property": "border-radius",
+      "roles": [
+        "--radius-lg"
+      ],
+      "value": "var(--radius-lg)"
+    },
+    {
+      "file": "components/_error-surface.scss",
+      "property": "border-radius",
+      "roles": [
+        "--radius"
+      ],
+      "value": "var(--radius)"
+    },
+    {
+      "file": "components/_error-surface.scss",
+      "property": "background",
+      "roles": [
+        "--notice-danger-bg"
+      ],
+      "value": "var(--notice-danger-bg)"
+    },
+    {
+      "file": "components/_error-surface.scss",
+      "property": "color",
+      "roles": [
+        "--text-color"
+      ],
+      "value": "var(--text-color)"
+    },
+    {
+      "file": "components/_error-surface.scss",
+      "property": "color",
+      "roles": [
+        "--text-secondary"
+      ],
+      "value": "var(--text-secondary)"
+    },
+    {
+      "file": "components/_feedback.scss",
+      "property": "border",
+      "roles": [
+        "--border"
+      ],
+      "value": "var(--border)"
+    },
+    {
+      "file": "components/_feedback.scss",
+      "property": "color",
+      "roles": [
+        "--text-color"
+      ],
+      "value": "var(--text-color)"
+    },
+    {
+      "file": "components/_feedback.scss",
+      "property": "border-radius",
+      "roles": [
+        "--radius"
+      ],
+      "value": "var(--radius)"
+    },
+    {
+      "file": "components/_feedback.scss",
+      "property": "background",
+      "roles": [
+        "--section-bg-color"
+      ],
+      "value": "var(--section-bg-color)"
+    },
+    {
+      "file": "components/_feedback.scss",
+      "property": "--ring-bg",
+      "roles": [
+        "--section-bg-color"
+      ],
+      "value": "var(--section-bg-color)"
+    },
+    {
+      "file": "components/_feedback.scss",
+      "property": "background",
+      "roles": [
+        "--action-bg"
+      ],
+      "value": "var(--action-bg)"
+    },
+    {
+      "file": "components/_feedback.scss",
+      "property": "color",
+      "roles": [
+        "--button-text-color"
+      ],
+      "value": "var(--button-text-color)"
+    },
+    {
+      "file": "components/_feedback.scss",
+      "property": "border-radius",
+      "roles": [
+        "--radius-lg"
+      ],
+      "value": "var(--radius-lg)"
+    },
+    {
+      "file": "components/_feedback.scss",
+      "property": "background",
+      "roles": [
+        "--notice-danger-bg"
+      ],
+      "value": "var(--notice-danger-bg)"
+    },
+    {
+      "file": "components/_feedback.scss",
+      "property": "color",
+      "roles": [
+        "--text-color"
+      ],
+      "value": "var(--text-color)"
+    },
+    {
+      "file": "components/_feedback.scss",
+      "property": "color",
+      "roles": [
+        "--text-danger"
+      ],
+      "value": "var(--text-danger)"
+    },
+    {
+      "file": "components/_feedback.scss",
+      "property": "border-radius",
+      "roles": [
+        "--radius-pill"
+      ],
+      "value": "var(--radius-pill)"
+    },
+    {
+      "file": "components/_feedback.scss",
+      "property": "background",
+      "roles": [
+        "--progress-track-color"
+      ],
+      "value": "var(--progress-track-color)"
+    },
+    {
+      "file": "components/_feedback.scss",
+      "property": "color",
+      "roles": [
+        "--progress-color"
+      ],
+      "value": "var(--progress-color)"
+    },
+    {
+      "file": "components/_feedback.scss",
+      "property": "background",
+      "roles": [
+        "--progress-track-color"
+      ],
+      "value": "var(--progress-track-color)"
+    },
+    {
+      "file": "components/_feedback.scss",
+      "property": "border-radius",
+      "roles": [
+        "--radius-pill"
+      ],
+      "value": "var(--radius-pill)"
+    },
+    {
+      "file": "components/_feedback.scss",
+      "property": "background",
+      "roles": [
+        "--progress-color"
+      ],
+      "value": "var(--progress-color)"
+    },
+    {
+      "file": "components/_feedback.scss",
+      "property": "border-radius",
+      "roles": [
+        "--radius-pill"
+      ],
+      "value": "var(--radius-pill)"
+    },
+    {
+      "file": "components/_feedback.scss",
+      "property": "background",
+      "roles": [
+        "--progress-color"
+      ],
+      "value": "var(--progress-color)"
+    },
+    {
+      "file": "components/_feedback.scss",
+      "property": "border-radius",
+      "roles": [
+        "--radius-pill"
+      ],
+      "value": "var(--radius-pill)"
+    },
+    {
+      "file": "components/_feedback.scss",
+      "property": "background",
+      "roles": [
+        "--progress-color"
+      ],
+      "value": "var(--progress-color)"
+    },
+    {
+      "file": "components/_feedback.scss",
+      "property": "--progress-color",
+      "roles": [
+        "--danger-main"
+      ],
+      "value": "var(--danger-main)"
+    },
+    {
+      "file": "components/_feedback.scss",
+      "property": "background",
+      "roles": [
+        "--progress-stripe-color"
+      ],
+      "value": "linear-gradient(45deg, var(--progress-stripe-color) 25%, transparent 25%, transparent 50%,\n          var(--progress-stripe-color) 50%, var(--progress-stripe-color) 75%, transparent 75%)"
+    },
+    {
+      "file": "components/_feedback.scss",
+      "property": "border",
+      "roles": [
+        "--spinner-track-color"
+      ],
+      "value": "6px solid var(--spinner-track-color)"
+    },
+    {
+      "file": "components/_feedback.scss",
+      "property": "border-block-start-color",
+      "roles": [
+        "--spinner-color"
+      ],
+      "value": "var(--spinner-color)"
+    },
+    {
+      "file": "components/_feedback.scss",
+      "property": "background",
+      "roles": [
+        "--overlay-bg"
+      ],
+      "value": "var(--overlay-bg)"
+    },
+    {
+      "file": "components/_feedback.scss",
+      "property": "border-block-start",
+      "roles": [
+        "--border"
+      ],
+      "value": "var(--border)"
+    },
+    {
+      "file": "components/_feedback.scss",
+      "property": "outline",
+      "roles": [
+        "--text-link"
+      ],
+      "value": "2px solid var(--text-link)"
+    },
+    {
+      "file": "components/_feedback.scss",
+      "property": "border-start-start-radius",
+      "roles": [
+        "--radius-lg"
+      ],
+      "value": "var(--radius-lg)"
+    },
+    {
+      "file": "components/_feedback.scss",
+      "property": "border-end-start-radius",
+      "roles": [
+        "--radius-lg"
+      ],
+      "value": "var(--radius-lg)"
+    },
+    {
+      "file": "components/_field-surface.scss",
+      "property": "border",
+      "roles": [
+        "--border-field"
+      ],
+      "value": "var(--border-field)"
+    },
+    {
+      "file": "components/_field-surface.scss",
+      "property": "border-radius",
+      "roles": [
+        "--radius-control"
+      ],
+      "value": "var(--radius-control)"
+    },
+    {
+      "file": "components/_field-surface.scss",
+      "property": "background",
+      "roles": [
+        "--field-bg"
+      ],
+      "value": "var(--field-bg)"
+    },
+    {
+      "file": "components/_field-surface.scss",
+      "property": "background-color",
+      "roles": [
+        "--field-bg-hover"
+      ],
+      "value": "var(--field-bg-hover)"
+    },
+    {
+      "file": "components/_field-surface.scss",
+      "property": "border-color",
+      "roles": [
+        "--accent-main"
+      ],
+      "value": "var(--accent-main)"
+    },
+    {
+      "file": "components/_field-surface.scss",
+      "property": "box-shadow",
+      "roles": [
+        "--focus"
+      ],
+      "value": "var(--focus)"
+    },
+    {
+      "file": "components/_field-surface.scss",
+      "property": "background",
+      "roles": [
+        "--section-bg-color"
+      ],
+      "value": "var(--section-bg-color)"
+    },
+    {
+      "file": "components/_field-surface.scss",
+      "property": "border-color",
+      "roles": [
+        "--danger-main"
+      ],
+      "value": "var(--danger-main)"
+    },
+    {
+      "file": "components/_field-surface.scss",
+      "property": "box-shadow",
+      "roles": [
+        "--danger-soft"
+      ],
+      "value": "0 0 0 .25rem var(--danger-soft)"
+    },
+    {
+      "file": "components/_field-surface.scss",
+      "property": "color",
+      "roles": [
+        "--text-color"
+      ],
+      "value": "var(--text-color)"
+    },
+    {
+      "file": "components/_field-surface.scss",
+      "property": "color",
+      "roles": [
+        "--text-secondary"
+      ],
+      "value": "var(--text-secondary)"
+    },
+    {
+      "file": "components/_floating.scss",
+      "property": "border",
+      "roles": [
+        "--floating-border"
+      ],
+      "value": "var(--floating-border)"
+    },
+    {
+      "file": "components/_floating.scss",
+      "property": "background",
+      "roles": [
+        "--floating-bg"
+      ],
+      "value": "var(--floating-bg)"
+    },
+    {
+      "file": "components/_floating.scss",
+      "property": "--ring-bg",
+      "roles": [
+        "--floating-bg"
+      ],
+      "value": "var(--floating-bg)"
+    },
+    {
+      "file": "components/_floating.scss",
+      "property": "color",
+      "roles": [
+        "--floating-color"
+      ],
+      "value": "var(--floating-color)"
+    },
+    {
+      "file": "components/_floating.scss",
+      "property": "box-shadow",
+      "roles": [
+        "--floating-shadow"
+      ],
+      "value": "var(--floating-shadow)"
+    },
+    {
+      "file": "components/_floating.scss",
+      "property": "border-radius",
+      "roles": [
+        "--radius-lg"
+      ],
+      "value": "var(--radius-lg)"
+    },
+    {
+      "file": "components/_forms.scss",
+      "property": "color",
+      "roles": [
+        "--text-danger"
+      ],
+      "value": "var(--text-danger)"
+    },
+    {
+      "file": "components/_forms.scss",
+      "property": "color",
+      "roles": [
+        "--text-secondary"
+      ],
+      "value": "var(--text-secondary)"
+    },
+    {
+      "file": "components/_forms.scss",
+      "property": "color",
+      "roles": [
+        "--text-danger"
+      ],
+      "value": "var(--text-danger)"
+    },
+    {
+      "file": "components/_forms.scss",
+      "property": "border",
+      "roles": [
+        "--border-field"
+      ],
+      "value": "var(--border-field)"
+    },
+    {
+      "file": "components/_forms.scss",
+      "property": "border-radius",
+      "roles": [
+        "--radius-control"
+      ],
+      "value": "var(--radius-control)"
+    },
+    {
+      "file": "components/_forms.scss",
+      "property": "background-color",
+      "roles": [
+        "--field-bg"
+      ],
+      "value": "var(--field-bg)"
+    },
+    {
+      "file": "components/_forms.scss",
+      "property": "color",
+      "roles": [
+        "--text-color"
+      ],
+      "value": "var(--text-color)"
+    },
+    {
+      "file": "components/_forms.scss",
+      "property": "background-color",
+      "roles": [
+        "--field-bg-hover"
+      ],
+      "value": "var(--field-bg-hover)"
+    },
+    {
+      "file": "components/_forms.scss",
+      "property": "background-color",
+      "roles": [
+        "--field-bg-hover"
+      ],
+      "value": "var(--field-bg-hover)"
+    },
+    {
+      "file": "components/_forms.scss",
+      "property": "border-color",
+      "roles": [
+        "--accent-main"
+      ],
+      "value": "var(--accent-main)"
+    },
+    {
+      "file": "components/_forms.scss",
+      "property": "box-shadow",
+      "roles": [
+        "--focus"
+      ],
+      "value": "var(--focus)"
+    },
+    {
+      "file": "components/_forms.scss",
+      "property": "border-color",
+      "roles": [
+        "--danger-main"
+      ],
+      "value": "var(--danger-main)"
+    },
+    {
+      "file": "components/_forms.scss",
+      "property": "box-shadow",
+      "roles": [
+        "--danger-soft"
+      ],
+      "value": "0 0 0 .25rem var(--danger-soft)"
+    },
+    {
+      "file": "components/_forms.scss",
+      "property": "color",
+      "roles": [
+        "--text-secondary"
+      ],
+      "value": "var(--text-secondary)"
+    },
+    {
+      "file": "components/_forms.scss",
+      "property": "background",
+      "roles": [
+        "--section-bg-color"
+      ],
+      "value": "var(--section-bg-color)"
+    },
+    {
+      "file": "components/_forms.scss",
+      "property": "--ring-bg",
+      "roles": [
+        "--section-bg-color"
+      ],
+      "value": "var(--section-bg-color)"
+    },
+    {
+      "file": "components/_forms.scss",
+      "property": "background-image",
+      "roles": [
+        "--select-arrow"
+      ],
+      "value": "var(--select-arrow)"
+    },
+    {
+      "file": "components/_forms.scss",
+      "property": "background-image",
+      "roles": [
+        "--select-arrow-hover"
+      ],
+      "value": "var(--select-arrow-hover)"
+    },
+    {
+      "file": "components/_forms.scss",
+      "property": "--control-idle-bg",
+      "roles": [
+        "--field-bg"
+      ],
+      "value": "var(--field-bg)"
+    },
+    {
+      "file": "components/_forms.scss",
+      "property": "--control-hover-bg",
+      "roles": [
+        "--control-idle-bg"
+      ],
+      "value": "var(--control-idle-bg)"
+    },
+    {
+      "file": "components/_forms.scss",
+      "property": "border",
+      "roles": [
+        "--border-field"
+      ],
+      "value": "var(--border-field)"
+    },
+    {
+      "file": "components/_forms.scss",
+      "property": "background-color",
+      "roles": [
+        "--control-idle-bg"
+      ],
+      "value": "var(--control-idle-bg)"
+    },
+    {
+      "file": "components/_forms.scss",
+      "property": "border-color",
+      "roles": [
+        "--choice-border-color"
+      ],
+      "value": "var(--choice-border-color)"
+    },
+    {
+      "file": "components/_forms.scss",
+      "property": "--control-idle-bg",
+      "roles": [
+        "--accent-main"
+      ],
+      "value": "var(--accent-main)"
+    },
+    {
+      "file": "components/_forms.scss",
+      "property": "border-color",
+      "roles": [
+        "--accent-main"
+      ],
+      "value": "var(--accent-main)"
+    },
+    {
+      "file": "components/_forms.scss",
+      "property": "border-radius",
+      "roles": [
+        "--choice-size"
+      ],
+      "value": "calc(var(--choice-size) / 4)"
+    },
+    {
+      "file": "components/_forms.scss",
+      "property": "border",
+      "roles": [
+        "--button-text-color"
+      ],
+      "value": "solid var(--button-text-color)"
+    },
+    {
+      "file": "components/_forms.scss",
+      "property": "background",
+      "roles": [
+        "--button-text-color"
+      ],
+      "value": "var(--button-text-color)"
+    },
+    {
+      "file": "components/_forms.scss",
+      "property": "background",
+      "roles": [
+        "--button-text-color"
+      ],
+      "value": "var(--button-text-color)"
+    },
+    {
+      "file": "components/_forms.scss",
+      "property": "border-radius",
+      "roles": [
+        "--radius-pill"
+      ],
+      "value": "var(--radius-pill)"
+    },
+    {
+      "file": "components/_forms.scss",
+      "property": "border",
+      "roles": [
+        "--switch-border-color"
+      ],
+      "value": "1px solid var(--switch-border-color)"
+    },
+    {
+      "file": "components/_forms.scss",
+      "property": "background",
+      "roles": [
+        "--switch-track-color"
+      ],
+      "value": "var(--switch-track-color)"
+    },
+    {
+      "file": "components/_forms.scss",
+      "property": "border-color",
+      "roles": [
+        "--switch-border-color"
+      ],
+      "value": "var(--switch-border-color)"
+    },
+    {
+      "file": "components/_forms.scss",
+      "property": "background",
+      "roles": [
+        "--switch-knob-color"
+      ],
+      "value": "var(--switch-knob-color)"
+    },
+    {
+      "file": "components/_forms.scss",
+      "property": "background",
+      "roles": [
+        "--accent-main"
+      ],
+      "value": "var(--accent-main)"
+    },
+    {
+      "file": "components/_forms.scss",
+      "property": "border-color",
+      "roles": [
+        "--switch-border-color"
+      ],
+      "value": "var(--switch-border-color)"
+    },
+    {
+      "file": "components/_forms.scss",
+      "property": "color",
+      "roles": [
+        "--text-secondary"
+      ],
+      "value": "var(--text-secondary)"
+    },
+    {
+      "file": "components/_forms.scss",
+      "property": "background-color",
+      "roles": [
+        "--field-bg-hover"
+      ],
+      "value": "var(--field-bg-hover)"
+    },
+    {
+      "file": "components/_forms.scss",
+      "property": "color",
+      "roles": [
+        "--text-secondary"
+      ],
+      "value": "var(--text-secondary)"
+    },
+    {
+      "file": "components/_forms.scss",
+      "property": "border-inline-end",
+      "roles": [
+        "--border-field"
+      ],
+      "value": "var(--border-field)"
+    },
+    {
+      "file": "components/_forms.scss",
+      "property": "background",
+      "roles": [
+        "--select-arrow",
+        "--space-2"
+      ],
+      "value": "var(--select-arrow) no-repeat right var(--space-2) center / 1rem 1rem"
+    },
+    {
+      "file": "components/_forms.scss",
+      "property": "color",
+      "roles": [
+        "--text-color"
+      ],
+      "value": "var(--text-color)"
+    },
+    {
+      "file": "components/_forms.scss",
+      "property": "border-radius",
+      "roles": [
+        "--radius-control"
+      ],
+      "value": "0 calc(var(--radius-control) - 1px) calc(var(--radius-control) - 1px) 0"
+    },
+    {
+      "file": "components/_forms.scss",
+      "property": "border-radius",
+      "roles": [
+        "--radius-control"
+      ],
+      "value": "calc(var(--radius-control) - 1px) 0 0 calc(var(--radius-control) - 1px)"
+    },
+    {
+      "file": "components/_forms.scss",
+      "property": "border-color",
+      "roles": [
+        "--accent-main"
+      ],
+      "value": "var(--accent-main)"
+    },
+    {
+      "file": "components/_forms.scss",
+      "property": "border-color",
+      "roles": [
+        "--danger-main"
+      ],
+      "value": "var(--danger-main)"
+    },
+    {
+      "file": "components/_forms.scss",
+      "property": "color",
+      "roles": [
+        "--text-color"
+      ],
+      "value": "var(--text-color)"
+    },
+    {
+      "file": "components/_forms.scss",
+      "property": "border-inline-start-color",
+      "roles": [
+        "--group-border-color"
+      ],
+      "value": "var(--group-border-color)"
+    },
+    {
+      "file": "components/_forms.scss",
+      "property": "border-radius",
+      "roles": [
+        "--radius-inset"
+      ],
+      "value": "var(--radius-inset)"
+    },
+    {
+      "file": "components/_forms.scss",
+      "property": "color",
+      "roles": [
+        "--text-secondary"
+      ],
+      "value": "var(--text-secondary)"
+    },
+    {
+      "file": "components/_forms.scss",
+      "property": "color",
+      "roles": [
+        "--accent-readable"
+      ],
+      "value": "var(--accent-readable)"
+    },
+    {
+      "file": "components/_forms.scss",
+      "property": "mask",
+      "roles": [
+        "--icon-mask-check"
+      ],
+      "value": "var(--icon-mask-check) center / contain no-repeat"
+    },
+    {
+      "file": "components/_forms.scss",
+      "property": "color",
+      "roles": [
+        "--text-danger"
+      ],
+      "value": "var(--text-danger)"
+    },
+    {
+      "file": "components/_media.scss",
+      "property": "border",
+      "roles": [
+        "--border"
+      ],
+      "value": "var(--border)"
+    },
+    {
+      "file": "components/_media.scss",
+      "property": "border-radius",
+      "roles": [
+        "--radius-lg"
+      ],
+      "value": "var(--radius-lg)"
+    },
+    {
+      "file": "components/_media.scss",
+      "property": "background",
+      "roles": [
+        "--surface-bg"
+      ],
+      "value": "var(--surface-bg)"
+    },
+    {
+      "file": "components/_media.scss",
+      "property": "--ring-bg",
+      "roles": [
+        "--surface-bg"
+      ],
+      "value": "var(--surface-bg)"
+    },
+    {
+      "file": "components/_media.scss",
+      "property": "border-radius",
+      "roles": [
+        "--radius"
+      ],
+      "value": "var(--radius)"
+    },
+    {
+      "file": "components/_media.scss",
+      "property": "background",
+      "roles": [
+        "--background-muted"
+      ],
+      "value": "var(--background-muted)"
+    },
+    {
+      "file": "components/_media.scss",
+      "property": "color",
+      "roles": [
+        "--text-secondary"
+      ],
+      "value": "var(--text-secondary)"
+    },
+    {
+      "file": "components/_media.scss",
+      "property": "color",
+      "roles": [
+        "--text-secondary"
+      ],
+      "value": "var(--text-secondary)"
+    },
+    {
+      "file": "components/_media.scss",
+      "property": "border-radius",
+      "roles": [
+        "--radius-lg"
+      ],
+      "value": "var(--radius-lg)"
+    },
+    {
+      "file": "components/_media.scss",
+      "property": "background",
+      "roles": [
+        "--background-muted"
+      ],
+      "value": "var(--background-muted)"
+    },
+    {
+      "file": "components/_media.scss",
+      "property": "border-radius",
+      "roles": [
+        "--radius-sm"
+      ],
+      "value": "var(--radius-sm)"
+    },
+    {
+      "file": "components/_media.scss",
+      "property": "background",
+      "roles": [
+        "--overlay-bg"
+      ],
+      "value": "var(--overlay-bg)"
+    },
+    {
+      "file": "components/_media.scss",
+      "property": "color",
+      "roles": [
+        "--overlay-text"
+      ],
+      "value": "var(--overlay-text)"
+    },
+    {
+      "file": "components/_media.scss",
+      "property": "background",
+      "roles": [
+        "--overlay-text"
+      ],
+      "value": "linear-gradient(var(--overlay-text), var(--overlay-text)) center / 2px 100% no-repeat"
+    },
+    {
+      "file": "components/_media.scss",
+      "property": "background",
+      "roles": [
+        "--overlay-text"
+      ],
+      "value": "var(--overlay-text)"
+    },
+    {
+      "file": "components/_media.scss",
+      "property": "outline",
+      "roles": [
+        "--text-link"
+      ],
+      "value": "2px solid var(--text-link)"
+    },
+    {
+      "file": "components/_media.scss",
+      "property": "background",
+      "roles": [
+        "--overlay-text"
+      ],
+      "value": "var(--overlay-text)"
+    },
+    {
+      "file": "components/_media.scss",
+      "property": "color",
+      "roles": [
+        "--overlay-bg"
+      ],
+      "value": "var(--overlay-bg)"
+    },
+    {
+      "file": "components/_media.scss",
+      "property": "border",
+      "roles": [
+        "--border-action"
+      ],
+      "value": "var(--border-action)"
+    },
+    {
+      "file": "components/_media.scss",
+      "property": "background",
+      "roles": [
+        "--text-muted"
+      ],
+      "value": "var(--text-muted)"
+    },
+    {
+      "file": "components/_media.scss",
+      "property": "background",
+      "roles": [
+        "--accent-main"
+      ],
+      "value": "var(--accent-main)"
+    },
+    {
+      "file": "components/_media.scss",
+      "property": "background",
+      "roles": [
+        "--text-color"
+      ],
+      "value": "var(--text-color)"
+    },
+    {
+      "file": "components/_media.scss",
+      "property": "background",
+      "roles": [
+        "--text-color"
+      ],
+      "value": "var(--text-color)"
+    },
+    {
+      "file": "components/_media.scss",
+      "property": "outline",
+      "roles": [
+        "--text-link"
+      ],
+      "value": "2px solid var(--text-link)"
+    },
+    {
+      "file": "components/_media.scss",
+      "property": "border-radius",
+      "roles": [
+        "--radius-xs"
+      ],
+      "value": "var(--radius-xs)"
+    },
+    {
+      "file": "components/_media.scss",
+      "property": "border",
+      "roles": [
+        "--accent-main"
+      ],
+      "value": "2px solid var(--accent-main)"
+    },
+    {
+      "file": "components/_media.scss",
+      "property": "outline",
+      "roles": [
+        "--text-link"
+      ],
+      "value": "2px solid var(--text-link)"
+    },
+    {
+      "file": "components/_media.scss",
+      "property": "border",
+      "roles": [
+        "--accent-main"
+      ],
+      "value": "2px solid var(--accent-main)"
+    },
+    {
+      "file": "components/_media.scss",
+      "property": "background",
+      "roles": [
+        "--surface-bg"
+      ],
+      "value": "var(--surface-bg)"
+    },
+    {
+      "file": "components/_media.scss",
+      "property": "--ring-bg",
+      "roles": [
+        "--surface-bg"
+      ],
+      "value": "var(--surface-bg)"
+    },
+    {
+      "file": "components/_menu.scss",
+      "property": "--control-hover-bg",
+      "roles": [
+        "--danger-soft"
+      ],
+      "value": "var(--danger-soft)"
+    },
+    {
+      "file": "components/_menu.scss",
+      "property": "color",
+      "roles": [
+        "--text-danger"
+      ],
+      "value": "var(--text-danger)"
+    },
+    {
+      "file": "components/_menu.scss",
+      "property": "background",
+      "roles": [
+        "--text-secondary"
+      ],
+      "value": "var(--text-secondary)"
+    },
+    {
+      "file": "components/_menu.scss",
+      "property": "mask",
+      "roles": [
+        "--icon-mask-chevron-right"
+      ],
+      "value": "var(--icon-mask-chevron-right) center / contain no-repeat"
+    },
+    {
+      "file": "components/_menu.scss",
+      "property": "background",
+      "roles": [
+        "--border-color"
+      ],
+      "value": "var(--border-color)"
+    },
+    {
+      "file": "components/_menu.scss",
+      "property": "color",
+      "roles": [
+        "--text-secondary"
+      ],
+      "value": "var(--text-secondary)"
+    },
+    {
+      "file": "components/_navigation.scss",
+      "property": "outline",
+      "roles": [
+        "--text-link"
+      ],
+      "value": "2px solid var(--text-link)"
+    },
+    {
+      "file": "components/_navigation.scss",
+      "property": "border-block-end",
+      "roles": [
+        "--border"
+      ],
+      "value": "var(--border)"
+    },
+    {
+      "file": "components/_navigation.scss",
+      "property": "box-shadow",
+      "roles": [
+        "--accent-main"
+      ],
+      "value": "inset 0 -2px 0 var(--accent-main)"
+    },
+    {
+      "file": "components/_navigation.scss",
+      "property": "border-radius",
+      "roles": [
+        "--radius-control"
+      ],
+      "value": "var(--radius-control)"
+    },
+    {
+      "file": "components/_navigation.scss",
+      "property": "background",
+      "roles": [
+        "--control-idle-bg"
+      ],
+      "value": "var(--control-idle-bg, transparent)"
+    },
+    {
+      "file": "components/_navigation.scss",
+      "property": "color",
+      "roles": [
+        "--text-secondary"
+      ],
+      "value": "var(--text-secondary)"
+    },
+    {
+      "file": "components/_navigation.scss",
+      "property": "--control-idle-bg",
+      "roles": [
+        "--surface-muted"
+      ],
+      "value": "var(--surface-muted)"
+    },
+    {
+      "file": "components/_navigation.scss",
+      "property": "color",
+      "roles": [
+        "--text-color"
+      ],
+      "value": "var(--text-color)"
+    },
+    {
+      "file": "components/_navigation.scss",
+      "property": "color",
+      "roles": [
+        "--text-color"
+      ],
+      "value": "var(--text-color)"
+    },
+    {
+      "file": "components/_navigation.scss",
+      "property": "border-radius",
+      "roles": [
+        "--radius-control"
+      ],
+      "value": "var(--radius-control)"
+    },
+    {
+      "file": "components/_navigation.scss",
+      "property": "background",
+      "roles": [
+        "--control-idle-bg"
+      ],
+      "value": "var(--control-idle-bg, transparent)"
+    },
+    {
+      "file": "components/_navigation.scss",
+      "property": "color",
+      "roles": [
+        "--text-color"
+      ],
+      "value": "var(--text-color)"
+    },
+    {
+      "file": "components/_navigation.scss",
+      "property": "--control-idle-bg",
+      "roles": [
+        "--accent-soft"
+      ],
+      "value": "var(--accent-soft)"
+    },
+    {
+      "file": "components/_navigation.scss",
+      "property": "--control-hover-bg",
+      "roles": [
+        "--accent-soft"
+      ],
+      "value": "var(--accent-soft)"
+    },
+    {
+      "file": "components/_navigation.scss",
+      "property": "color",
+      "roles": [
+        "--text-link"
+      ],
+      "value": "var(--text-link)"
+    },
+    {
+      "file": "components/_navigation.scss",
+      "property": "color",
+      "roles": [
+        "--text-secondary"
+      ],
+      "value": "var(--text-secondary)"
+    },
+    {
+      "file": "components/_navigation.scss",
+      "property": "color",
+      "roles": [
+        "--text-secondary"
+      ],
+      "value": "var(--text-secondary)"
+    },
+    {
+      "file": "components/_navigation.scss",
+      "property": "border-block-start",
+      "roles": [
+        "--border"
+      ],
+      "value": "var(--border)"
+    },
+    {
+      "file": "components/_navigation.scss",
+      "property": "background",
+      "roles": [
+        "--bottom-bar-bg-color"
+      ],
+      "value": "var(--bottom-bar-bg-color)"
+    },
+    {
+      "file": "components/_navigation.scss",
+      "property": "border-radius",
+      "roles": [
+        "--radius-sm"
+      ],
+      "value": "var(--radius-sm)"
+    },
+    {
+      "file": "components/_navigation.scss",
+      "property": "background",
+      "roles": [
+        "--control-idle-bg"
+      ],
+      "value": "var(--control-idle-bg)"
+    },
+    {
+      "file": "components/_navigation.scss",
+      "property": "color",
+      "roles": [
+        "--text-secondary"
+      ],
+      "value": "var(--text-secondary)"
+    },
+    {
+      "file": "components/_navigation.scss",
+      "property": "color",
+      "roles": [
+        "--text-link"
+      ],
+      "value": "var(--text-link)"
+    },
+    {
+      "file": "components/_navigation.scss",
+      "property": "--control-idle-bg",
+      "roles": [
+        "--secondary-bg-color"
+      ],
+      "value": "var(--secondary-bg-color)"
+    },
+    {
+      "file": "components/_navigation.scss",
+      "property": "--control-hover-bg",
+      "roles": [
+        "--control-idle-bg"
+      ],
+      "value": "var(--control-idle-bg)"
+    },
+    {
+      "file": "components/_navigation.scss",
+      "property": "color",
+      "roles": [
+        "--text-link"
+      ],
+      "value": "var(--text-link)"
+    },
+    {
+      "file": "components/_navigation.scss",
+      "property": "background",
+      "roles": [
+        "--section-separator-color"
+      ],
+      "value": "var(--section-separator-color)"
+    },
+    {
+      "file": "components/_navigation.scss",
+      "property": "background",
+      "roles": [
+        "--text-link"
+      ],
+      "value": "var(--text-link)"
+    },
+    {
+      "file": "components/_option.scss",
+      "property": "background",
+      "roles": [
+        "--control-hover-bg"
+      ],
+      "value": "var(--control-hover-bg)"
+    },
+    {
+      "file": "components/_option.scss",
+      "property": "--control-idle-bg",
+      "roles": [
+        "--surface-muted"
+      ],
+      "value": "var(--surface-muted)"
+    },
+    {
+      "file": "components/_option.scss",
+      "property": "--control-hover-bg",
+      "roles": [
+        "--control-idle-bg"
+      ],
+      "value": "var(--control-idle-bg)"
+    },
+    {
+      "file": "components/_option.scss",
+      "property": "color",
+      "roles": [
+        "--text-color"
+      ],
+      "value": "var(--text-color)"
+    },
+    {
+      "file": "components/_option.scss",
+      "property": "border-radius",
+      "roles": [
+        "--radius-inset"
+      ],
+      "value": "var(--radius-inset)"
+    },
+    {
+      "file": "components/_option.scss",
+      "property": "background",
+      "roles": [
+        "--control-idle-bg"
+      ],
+      "value": "var(--control-idle-bg, transparent)"
+    },
+    {
+      "file": "components/_option.scss",
+      "property": "color",
+      "roles": [
+        "--text-secondary"
+      ],
+      "value": "var(--text-secondary)"
+    },
+    {
+      "file": "components/_option.scss",
+      "property": "background",
+      "roles": [
+        "--control-hover-bg"
+      ],
+      "value": "var(--control-hover-bg)"
+    },
+    {
+      "file": "components/_option.scss",
+      "property": "outline",
+      "roles": [
+        "--text-link"
+      ],
+      "value": "2px solid var(--text-link)"
+    },
+    {
+      "file": "components/_option.scss",
+      "property": "mask",
+      "roles": [
+        "--icon-mask-check"
+      ],
+      "value": "var(--icon-mask-check) center / contain no-repeat"
+    },
+    {
+      "file": "components/_option.scss",
+      "property": "color",
+      "roles": [
+        "--text-secondary"
+      ],
+      "value": "var(--text-secondary)"
+    },
+    {
+      "file": "components/_option.scss",
+      "property": "color",
+      "roles": [
+        "--text-secondary"
+      ],
+      "value": "var(--text-secondary)"
+    },
+    {
+      "file": "components/_overlays.scss",
+      "property": "color",
+      "roles": [
+        "--text-secondary"
+      ],
+      "value": "var(--text-secondary)"
+    },
+    {
+      "file": "components/_overlays.scss",
+      "property": "color",
+      "roles": [
+        "--text-secondary"
+      ],
+      "value": "var(--text-secondary)"
+    },
+    {
+      "file": "components/_overlays.scss",
+      "property": "background",
+      "roles": [
+        "--background-muted"
+      ],
+      "value": "var(--background-muted)"
+    },
+    {
+      "file": "components/_overlays.scss",
+      "property": "color",
+      "roles": [
+        "--text-color"
+      ],
+      "value": "var(--text-color)"
+    },
+    {
+      "file": "components/_overlays.scss",
+      "property": "background",
+      "roles": [
+        "--accent-soft"
+      ],
+      "value": "var(--accent-soft)"
+    },
+    {
+      "file": "components/_overlays.scss",
+      "property": "color",
+      "roles": [
+        "--text-secondary"
+      ],
+      "value": "var(--text-secondary)"
+    },
+    {
+      "file": "components/_overlays.scss",
+      "property": "color",
+      "roles": [
+        "--text-link"
+      ],
+      "value": "var(--text-link)"
+    },
+    {
+      "file": "components/_overlays.scss",
+      "property": "border-block-end",
+      "roles": [
+        "--border"
+      ],
+      "value": "var(--border)"
+    },
+    {
+      "file": "components/_overlays.scss",
+      "property": "color",
+      "roles": [
+        "--text-secondary"
+      ],
+      "value": "var(--text-secondary)"
+    },
+    {
+      "file": "components/_overlays.scss",
+      "property": "color",
+      "roles": [
+        "--text-color"
+      ],
+      "value": "var(--text-color)"
+    },
+    {
+      "file": "components/_overlays.scss",
+      "property": "color",
+      "roles": [
+        "--text-secondary"
+      ],
+      "value": "var(--text-secondary)"
+    },
+    {
+      "file": "components/_overlays.scss",
+      "property": "background",
+      "roles": [
+        "--control-hover-bg"
+      ],
+      "value": "var(--control-hover-bg)"
+    },
+    {
+      "file": "components/_overlays.scss",
+      "property": "color",
+      "roles": [
+        "--text-secondary"
+      ],
+      "value": "var(--text-secondary)"
+    },
+    {
+      "file": "components/_panel-parts.scss",
+      "property": "border-block-start",
+      "roles": [
+        "--border-transparent"
+      ],
+      "value": "var(--border-transparent)"
+    },
+    {
+      "file": "components/_panel-parts.scss",
+      "property": "color",
+      "roles": [
+        "--text-secondary"
+      ],
+      "value": "var(--text-secondary)"
+    },
+    {
+      "file": "components/_patterns.scss",
+      "property": "color",
+      "roles": [
+        "--text-secondary"
+      ],
+      "value": "var(--text-secondary)"
+    },
+    {
+      "file": "components/_patterns.scss",
+      "property": "color",
+      "roles": [
+        "--text-secondary"
+      ],
+      "value": "var(--text-secondary)"
+    },
+    {
+      "file": "components/_patterns.scss",
+      "property": "color",
+      "roles": [
+        "--text-secondary"
+      ],
+      "value": "var(--text-secondary)"
+    },
+    {
+      "file": "components/_patterns.scss",
+      "property": "color",
+      "roles": [
+        "--text-secondary"
+      ],
+      "value": "var(--text-secondary)"
+    },
+    {
+      "file": "components/_patterns.scss",
+      "property": "border",
+      "roles": [
+        "--border"
+      ],
+      "value": "var(--border)"
+    },
+    {
+      "file": "components/_patterns.scss",
+      "property": "border-radius",
+      "roles": [
+        "--disclosure-radius-start",
+        "--disclosure-radius-end"
+      ],
+      "value": "var(--disclosure-radius-start) var(--disclosure-radius-start) var(--disclosure-radius-end) var(--disclosure-radius-end)"
+    },
+    {
+      "file": "components/_patterns.scss",
+      "property": "background",
+      "roles": [
+        "--surface-bg"
+      ],
+      "value": "var(--surface-bg)"
+    },
+    {
+      "file": "components/_patterns.scss",
+      "property": "--ring-bg",
+      "roles": [
+        "--surface-bg"
+      ],
+      "value": "var(--surface-bg)"
+    },
+    {
+      "file": "components/_patterns.scss",
+      "property": "border-radius",
+      "roles": [
+        "--disclosure-inner-start",
+        "--disclosure-inner-end"
+      ],
+      "value": "var(--disclosure-inner-start) var(--disclosure-inner-start) var(--disclosure-inner-end) var(--disclosure-inner-end)"
+    },
+    {
+      "file": "components/_patterns.scss",
+      "property": "--control-hover-bg",
+      "roles": [
+        "--control-idle-bg"
+      ],
+      "value": "var(--control-idle-bg)"
+    },
+    {
+      "file": "components/_patterns.scss",
+      "property": "border-radius",
+      "roles": [
+        "--radius-sm"
+      ],
+      "value": "var(--radius-sm)"
+    },
+    {
+      "file": "components/_patterns.scss",
+      "property": "background",
+      "roles": [
+        "--background-muted"
+      ],
+      "value": "var(--background-muted)"
+    },
+    {
+      "file": "components/_patterns.scss",
+      "property": "border-radius",
+      "roles": [
+        "--radius-xs"
+      ],
+      "value": "var(--radius-xs)"
+    },
+    {
+      "file": "components/_patterns.scss",
+      "property": "border",
+      "roles": [
+        "--border"
+      ],
+      "value": "var(--border)"
+    },
+    {
+      "file": "components/_patterns.scss",
+      "property": "border-radius",
+      "roles": [
+        "--radius"
+      ],
+      "value": "var(--radius)"
+    },
+    {
+      "file": "components/_patterns.scss",
+      "property": "background",
+      "roles": [
+        "--surface-bg"
+      ],
+      "value": "var(--surface-bg)"
+    },
+    {
+      "file": "components/_patterns.scss",
+      "property": "--ring-bg",
+      "roles": [
+        "--surface-bg"
+      ],
+      "value": "var(--surface-bg)"
+    },
+    {
+      "file": "components/_patterns.scss",
+      "property": "background",
+      "roles": [
+        "--surface-bg"
+      ],
+      "value": "var(--surface-bg)"
+    },
+    {
+      "file": "components/_patterns.scss",
+      "property": "--ring-bg",
+      "roles": [
+        "--surface-bg"
+      ],
+      "value": "var(--surface-bg)"
+    },
+    {
+      "file": "components/_patterns.scss",
+      "property": "color",
+      "roles": [
+        "--text-color"
+      ],
+      "value": "var(--text-color)"
+    },
+    {
+      "file": "components/_patterns.scss",
+      "property": "color",
+      "roles": [
+        "--text-secondary"
+      ],
+      "value": "var(--text-secondary)"
+    },
+    {
+      "file": "components/_patterns.scss",
+      "property": "border-block-end",
+      "roles": [
+        "--border"
+      ],
+      "value": "var(--border)"
+    },
+    {
+      "file": "components/_patterns.scss",
+      "property": "background",
+      "roles": [
+        "--background-main"
+      ],
+      "value": "var(--background-main)"
+    },
+    {
+      "file": "components/_patterns.scss",
+      "property": "border-block-start",
+      "roles": [
+        "--border"
+      ],
+      "value": "var(--border)"
+    },
+    {
+      "file": "components/_patterns.scss",
+      "property": "color",
+      "roles": [
+        "--text-secondary"
+      ],
+      "value": "var(--text-secondary)"
+    },
+    {
+      "file": "components/_patterns.scss",
+      "property": "background",
+      "roles": [
+        "--accent-soft"
+      ],
+      "value": "var(--accent-soft)"
+    },
+    {
+      "file": "components/_patterns.scss",
+      "property": "border-radius",
+      "roles": [
+        "--radius-inset"
+      ],
+      "value": "var(--radius-inset)"
+    },
+    {
+      "file": "components/_patterns.scss",
+      "property": "background",
+      "roles": [
+        "--control-idle-bg"
+      ],
+      "value": "var(--control-idle-bg, transparent)"
+    },
+    {
+      "file": "components/_patterns.scss",
+      "property": "color",
+      "roles": [
+        "--text-secondary"
+      ],
+      "value": "var(--text-secondary)"
+    },
+    {
+      "file": "components/_patterns.scss",
+      "property": "color",
+      "roles": [
+        "--text-color"
+      ],
+      "value": "var(--text-color)"
+    },
+    {
+      "file": "components/_patterns.scss",
+      "property": "border-radius",
+      "roles": [
+        "--radius-control"
+      ],
+      "value": "var(--radius-control)"
+    },
+    {
+      "file": "components/_patterns.scss",
+      "property": "background",
+      "roles": [
+        "--background-muted"
+      ],
+      "value": "var(--background-muted)"
+    },
+    {
+      "file": "components/_patterns.scss",
+      "property": "color",
+      "roles": [
+        "--text-secondary"
+      ],
+      "value": "var(--text-secondary)"
+    },
+    {
+      "file": "components/_patterns.scss",
+      "property": "border-block-end",
+      "roles": [
+        "--border"
+      ],
+      "value": "var(--border)"
+    },
+    {
+      "file": "components/_patterns.scss",
+      "property": "color",
+      "roles": [
+        "--text-secondary"
+      ],
+      "value": "var(--text-secondary)"
+    },
+    {
+      "file": "components/_patterns.scss",
+      "property": "border-block-start",
+      "roles": [
+        "--border"
+      ],
+      "value": "var(--border)"
+    },
+    {
+      "file": "components/_patterns.scss",
+      "property": "box-shadow",
+      "roles": [
+        "--shadow-overlay"
+      ],
+      "value": "var(--shadow-overlay)"
+    },
+    {
+      "file": "components/_patterns.scss",
+      "property": "border-block-start",
+      "roles": [
+        "--border"
+      ],
+      "value": "var(--border)"
+    },
+    {
+      "file": "components/_patterns.scss",
+      "property": "color",
+      "roles": [
+        "--text-secondary"
+      ],
+      "value": "var(--text-secondary)"
+    },
+    {
+      "file": "components/_patterns.scss",
+      "property": "color",
+      "roles": [
+        "--text-secondary"
+      ],
+      "value": "var(--text-secondary)"
+    },
+    {
+      "file": "components/_patterns.scss",
+      "property": "color",
+      "roles": [
+        "--text-link"
+      ],
+      "value": "var(--text-link)"
+    },
+    {
+      "file": "components/_patterns.scss",
+      "property": "color",
+      "roles": [
+        "--text-secondary"
+      ],
+      "value": "var(--text-secondary)"
+    },
+    {
+      "file": "components/_patterns.scss",
+      "property": "border-block-end",
+      "roles": [
+        "--border"
+      ],
+      "value": "var(--border)"
+    },
+    {
+      "file": "components/_patterns.scss",
+      "property": "color",
+      "roles": [
+        "--text-secondary"
+      ],
+      "value": "var(--text-secondary)"
+    },
+    {
+      "file": "components/_patterns.scss",
+      "property": "border",
+      "roles": [
+        "--border"
+      ],
+      "value": "var(--border)"
+    },
+    {
+      "file": "components/_patterns.scss",
+      "property": "border-radius",
+      "roles": [
+        "--radius"
+      ],
+      "value": "var(--radius)"
+    },
+    {
+      "file": "components/_patterns.scss",
+      "property": "color",
+      "roles": [
+        "--text-danger"
+      ],
+      "value": "var(--text-danger)"
+    },
+    {
+      "file": "components/_patterns.scss",
+      "property": "color",
+      "roles": [
+        "--text-secondary"
+      ],
+      "value": "var(--text-secondary)"
+    },
+    {
+      "file": "components/_patterns.scss",
+      "property": "border-radius",
+      "roles": [
+        "--radius-pill"
+      ],
+      "value": "var(--radius-pill)"
+    },
+    {
+      "file": "components/_patterns.scss",
+      "property": "background",
+      "roles": [
+        "--range-track-bg",
+        "--accent-main",
+        "--range-progress",
+        "--background-muted"
+      ],
+      "value": "var(--range-track-bg, linear-gradient(to right, var(--accent-main) var(--range-progress, 50%), var(--background-muted) var(--range-progress, 50%)))"
+    },
+    {
+      "file": "components/_patterns.scss",
+      "property": "background",
+      "roles": [
+        "--range-thumb-bg",
+        "--accent-main"
+      ],
+      "value": "var(--range-thumb-bg, var(--accent-main))"
+    },
+    {
+      "file": "components/_patterns.scss",
+      "property": "box-shadow",
+      "roles": [
+        "--range-thumb-ring",
+        "--ring-bg"
+      ],
+      "value": "0 0 0 3px var(--range-thumb-ring, var(--ring-bg))"
+    },
+    {
+      "file": "components/_patterns.scss",
+      "property": "border-radius",
+      "roles": [
+        "--radius-pill"
+      ],
+      "value": "var(--radius-pill)"
+    },
+    {
+      "file": "components/_patterns.scss",
+      "property": "background",
+      "roles": [
+        "--range-track-bg",
+        "--background-muted"
+      ],
+      "value": "var(--range-track-bg, var(--background-muted))"
+    },
+    {
+      "file": "components/_patterns.scss",
+      "property": "background",
+      "roles": [
+        "--range-thumb-bg",
+        "--accent-main"
+      ],
+      "value": "var(--range-thumb-bg, var(--accent-main))"
+    },
+    {
+      "file": "components/_patterns.scss",
+      "property": "box-shadow",
+      "roles": [
+        "--range-thumb-ring",
+        "--ring-bg"
+      ],
+      "value": "0 0 0 3px var(--range-thumb-ring, var(--ring-bg))"
+    },
+    {
+      "file": "components/_patterns.scss",
+      "property": "border-radius",
+      "roles": [
+        "--radius-pill"
+      ],
+      "value": "var(--radius-pill)"
+    },
+    {
+      "file": "components/_patterns.scss",
+      "property": "background",
+      "roles": [
+        "--range-progress-bg",
+        "--accent-main"
+      ],
+      "value": "var(--range-progress-bg, var(--accent-main))"
+    },
+    {
+      "file": "components/_patterns.scss",
+      "property": "outline",
+      "roles": [
+        "--text-link"
+      ],
+      "value": "2px solid var(--text-link)"
+    },
+    {
+      "file": "components/_patterns.scss",
+      "property": "color",
+      "roles": [
+        "--text-secondary"
+      ],
+      "value": "var(--text-secondary)"
+    },
+    {
+      "file": "components/_patterns.scss",
+      "property": "border",
+      "roles": [
+        "--border"
+      ],
+      "value": "var(--border)"
+    },
+    {
+      "file": "components/_patterns.scss",
+      "property": "border-radius",
+      "roles": [
+        "--radius-lg"
+      ],
+      "value": "var(--radius-lg)"
+    },
+    {
+      "file": "components/_patterns.scss",
+      "property": "background",
+      "roles": [
+        "--surface-bg"
+      ],
+      "value": "var(--surface-bg)"
+    },
+    {
+      "file": "components/_patterns.scss",
+      "property": "--ring-bg",
+      "roles": [
+        "--surface-bg"
+      ],
+      "value": "var(--surface-bg)"
+    },
+    {
+      "file": "components/_patterns.scss",
+      "property": "background",
+      "roles": [
+        "--surface-bg"
+      ],
+      "value": "var(--surface-bg)"
+    },
+    {
+      "file": "components/_patterns.scss",
+      "property": "--ring-bg",
+      "roles": [
+        "--surface-bg"
+      ],
+      "value": "var(--surface-bg)"
+    },
+    {
+      "file": "components/_patterns.scss",
+      "property": "border-block-start",
+      "roles": [
+        "--border"
+      ],
+      "value": "var(--border)"
+    },
+    {
+      "file": "components/_patterns.scss",
+      "property": "border-radius",
+      "roles": [
+        "--radius-control"
+      ],
+      "value": "var(--radius-control)"
+    },
+    {
+      "file": "components/_patterns.scss",
+      "property": "box-shadow",
+      "roles": [
+        "--shadow-overlay"
+      ],
+      "value": "var(--shadow-overlay)"
+    },
+    {
+      "file": "components/_patterns.scss",
+      "property": "background",
+      "roles": [
+        "--accent-main"
+      ],
+      "value": "var(--accent-main)"
+    },
+    {
+      "file": "components/_patterns.scss",
+      "property": "border-radius",
+      "roles": [
+        "--radius-inset"
+      ],
+      "value": "var(--radius-inset)"
+    },
+    {
+      "file": "components/_patterns.scss",
+      "property": "background",
+      "roles": [
+        "--control-idle-bg"
+      ],
+      "value": "var(--control-idle-bg, transparent)"
+    },
+    {
+      "file": "components/_patterns.scss",
+      "property": "color",
+      "roles": [
+        "--text-secondary"
+      ],
+      "value": "var(--text-secondary)"
+    },
+    {
+      "file": "components/_patterns.scss",
+      "property": "outline",
+      "roles": [
+        "--text-link"
+      ],
+      "value": "2px solid var(--text-link)"
+    },
+    {
+      "file": "components/_patterns.scss",
+      "property": "color",
+      "roles": [
+        "--text-link"
+      ],
+      "value": "var(--text-link)"
+    },
+    {
+      "file": "components/_pickers.scss",
+      "property": "background-image",
+      "roles": [
+        "--select-arrow"
+      ],
+      "value": "var(--select-arrow)"
+    },
+    {
+      "file": "components/_pickers.scss",
+      "property": "color",
+      "roles": [
+        "--text-color"
+      ],
+      "value": "var(--text-color)"
+    },
+    {
+      "file": "components/_pickers.scss",
+      "property": "--control-idle-bg",
+      "roles": [
+        "--field-bg"
+      ],
+      "value": "var(--field-bg)"
+    },
+    {
+      "file": "components/_pickers.scss",
+      "property": "--control-hover-bg",
+      "roles": [
+        "--field-bg-hover"
+      ],
+      "value": "var(--field-bg-hover)"
+    },
+    {
+      "file": "components/_pickers.scss",
+      "property": "border-color",
+      "roles": [
+        "--accent-main"
+      ],
+      "value": "var(--accent-main)"
+    },
+    {
+      "file": "components/_pickers.scss",
+      "property": "background-color",
+      "roles": [
+        "--control-hover-bg"
+      ],
+      "value": "var(--control-hover-bg)"
+    },
+    {
+      "file": "components/_pickers.scss",
+      "property": "box-shadow",
+      "roles": [
+        "--focus"
+      ],
+      "value": "var(--focus)"
+    },
+    {
+      "file": "components/_pickers.scss",
+      "property": "border-color",
+      "roles": [
+        "--danger-main"
+      ],
+      "value": "var(--danger-main)"
+    },
+    {
+      "file": "components/_pickers.scss",
+      "property": "color",
+      "roles": [
+        "--text-secondary"
+      ],
+      "value": "var(--text-secondary)"
+    },
+    {
+      "file": "components/_pickers.scss",
+      "property": "color",
+      "roles": [
+        "--text-link"
+      ],
+      "value": "var(--text-link)"
+    },
+    {
+      "file": "components/_pickers.scss",
+      "property": "color",
+      "roles": [
+        "--text-danger"
+      ],
+      "value": "var(--text-danger)"
+    },
+    {
+      "file": "components/_pickers.scss",
+      "property": "border",
+      "roles": [
+        "--border-color"
+      ],
+      "value": "1px solid var(--border-color)"
+    },
+    {
+      "file": "components/_pickers.scss",
+      "property": "border-radius",
+      "roles": [
+        "--radius-pill"
+      ],
+      "value": "var(--radius-pill)"
+    },
+    {
+      "file": "components/_pickers.scss",
+      "property": "background",
+      "roles": [
+        "--surface-bg"
+      ],
+      "value": "var(--surface-bg)"
+    },
+    {
+      "file": "components/_pickers.scss",
+      "property": "--ring-bg",
+      "roles": [
+        "--surface-bg"
+      ],
+      "value": "var(--surface-bg)"
+    },
+    {
+      "file": "components/_pickers.scss",
+      "property": "color",
+      "roles": [
+        "--text-color"
+      ],
+      "value": "var(--text-color)"
+    },
+    {
+      "file": "components/_pickers.scss",
+      "property": "background",
+      "roles": [
+        "--danger-soft"
+      ],
+      "value": "var(--danger-soft)"
+    },
+    {
+      "file": "components/_pickers.scss",
+      "property": "color",
+      "roles": [
+        "--text-danger"
+      ],
+      "value": "var(--text-danger)"
+    },
+    {
+      "file": "components/_pickers.scss",
+      "property": "outline",
+      "roles": [
+        "--text-link"
+      ],
+      "value": "2px solid var(--text-link)"
+    },
+    {
+      "file": "components/_pickers.scss",
+      "property": "border",
+      "roles": [
+        "--space-2"
+      ],
+      "value": "var(--space-2) solid transparent"
+    },
+    {
+      "file": "components/_pickers.scss",
+      "property": "color",
+      "roles": [
+        "--text-secondary"
+      ],
+      "value": "var(--text-secondary)"
+    },
+    {
+      "file": "components/_pickers.scss",
+      "property": "border-radius",
+      "roles": [
+        "--radius-pill"
+      ],
+      "value": "var(--radius-pill)"
+    },
+    {
+      "file": "components/_pickers.scss",
+      "property": "border-radius",
+      "roles": [
+        "--radius-pill"
+      ],
+      "value": "var(--radius-pill)"
+    },
+    {
+      "file": "components/_pickers.scss",
+      "property": "border-radius",
+      "roles": [
+        "--radius-control"
+      ],
+      "value": "calc(var(--radius-control) - 1px)"
+    },
+    {
+      "file": "components/_pickers.scss",
+      "property": "color",
+      "roles": [
+        "--text-color"
+      ],
+      "value": "var(--text-color)"
+    },
+    {
+      "file": "components/_pickers.scss",
+      "property": "color",
+      "roles": [
+        "--text-secondary"
+      ],
+      "value": "var(--text-secondary)"
+    },
+    {
+      "file": "components/_pickers.scss",
+      "property": "border-color",
+      "roles": [
+        "--accent-main"
+      ],
+      "value": "var(--accent-main)"
+    },
+    {
+      "file": "components/_pickers.scss",
+      "property": "box-shadow",
+      "roles": [
+        "--focus"
+      ],
+      "value": "var(--focus)"
+    },
+    {
+      "file": "components/_pickers.scss",
+      "property": "background",
+      "roles": [
+        "--text-link"
+      ],
+      "value": "var(--text-link)"
+    },
+    {
+      "file": "components/_pickers.scss",
+      "property": "background",
+      "roles": [
+        "--border-color"
+      ],
+      "value": "var(--border-color)"
+    },
+    {
+      "file": "components/_pickers.scss",
+      "property": "border-color",
+      "roles": [
+        "--danger-main"
+      ],
+      "value": "var(--danger-main)"
+    },
+    {
+      "file": "components/_pickers.scss",
+      "property": "border-color",
+      "roles": [
+        "--accent-main"
+      ],
+      "value": "var(--accent-main)"
+    },
+    {
+      "file": "components/_pickers.scss",
+      "property": "background",
+      "roles": [
+        "--accent-soft"
+      ],
+      "value": "var(--accent-soft)"
+    },
+    {
+      "file": "components/_pickers.scss",
+      "property": "border",
+      "roles": [
+        "--border"
+      ],
+      "value": "var(--border)"
+    },
+    {
+      "file": "components/_pickers.scss",
+      "property": "border-radius",
+      "roles": [
+        "--radius-lg"
+      ],
+      "value": "var(--radius-lg)"
+    },
+    {
+      "file": "components/_pickers.scss",
+      "property": "background",
+      "roles": [
+        "--surface-bg"
+      ],
+      "value": "var(--surface-bg)"
+    },
+    {
+      "file": "components/_pickers.scss",
+      "property": "--ring-bg",
+      "roles": [
+        "--surface-bg"
+      ],
+      "value": "var(--surface-bg)"
+    },
+    {
+      "file": "components/_pickers.scss",
+      "property": "color",
+      "roles": [
+        "--text-color"
+      ],
+      "value": "var(--text-color)"
+    },
+    {
+      "file": "components/_pickers.scss",
+      "property": "border-color",
+      "roles": [
+        "--panel-hover-border-color"
+      ],
+      "value": "var(--panel-hover-border-color)"
+    },
+    {
+      "file": "components/_pickers.scss",
+      "property": "outline",
+      "roles": [
+        "--text-link"
+      ],
+      "value": "2px solid var(--text-link)"
+    },
+    {
+      "file": "components/_pickers.scss",
+      "property": "border-radius",
+      "roles": [
+        "--radius-lg"
+      ],
+      "value": "calc(var(--radius-lg) - 1px) calc(var(--radius-lg) - 1px) 0 0"
+    },
+    {
+      "file": "components/_pickers.scss",
+      "property": "color",
+      "roles": [
+        "--text-link"
+      ],
+      "value": "var(--text-link)"
+    },
+    {
+      "file": "components/_pickers.scss",
+      "property": "color",
+      "roles": [
+        "--text-secondary"
+      ],
+      "value": "var(--text-secondary)"
+    },
+    {
+      "file": "components/_pickers.scss",
+      "property": "color",
+      "roles": [
+        "--text-color"
+      ],
+      "value": "var(--text-color)"
+    },
+    {
+      "file": "components/_pickers.scss",
+      "property": "color",
+      "roles": [
+        "--text-secondary"
+      ],
+      "value": "var(--text-secondary)"
+    },
+    {
+      "file": "components/_pickers.scss",
+      "property": "border-radius",
+      "roles": [
+        "--radius-pill"
+      ],
+      "value": "var(--radius-pill)"
+    },
+    {
+      "file": "components/_pickers.scss",
+      "property": "background",
+      "roles": [
+        "--background-muted",
+        "--range-start",
+        "--accent-main",
+        "--range-end"
+      ],
+      "value": "linear-gradient(to right, var(--background-muted) var(--range-start, 0%), var(--accent-main) var(--range-start, 0%), var(--accent-main) var(--range-end, 100%), var(--background-muted) var(--range-end, 100%))"
+    },
+    {
+      "file": "components/_pickers.scss",
+      "property": "background",
+      "roles": [
+        "--background-muted",
+        "--range-start",
+        "--accent-main",
+        "--range-end"
+      ],
+      "value": "linear-gradient(to left, var(--background-muted) var(--range-start, 0%), var(--accent-main) var(--range-start, 0%), var(--accent-main) var(--range-end, 100%), var(--background-muted) var(--range-end, 100%))"
+    },
+    {
+      "file": "components/_pickers.scss",
+      "property": "border",
+      "roles": [
+        "--border"
+      ],
+      "value": "var(--border)"
+    },
+    {
+      "file": "components/_pickers.scss",
+      "property": "border-radius",
+      "roles": [
+        "--radius-lg"
+      ],
+      "value": "var(--radius-lg)"
+    },
+    {
+      "file": "components/_pickers.scss",
+      "property": "background",
+      "roles": [
+        "--surface-bg"
+      ],
+      "value": "var(--surface-bg)"
+    },
+    {
+      "file": "components/_pickers.scss",
+      "property": "--ring-bg",
+      "roles": [
+        "--surface-bg"
+      ],
+      "value": "var(--surface-bg)"
+    },
+    {
+      "file": "components/_pickers.scss",
+      "property": "border-radius",
+      "roles": [
+        "--radius-inset"
+      ],
+      "value": "var(--radius-inset)"
+    },
+    {
+      "file": "components/_pickers.scss",
+      "property": "background",
+      "roles": [
+        "--background-muted"
+      ],
+      "value": "var(--background-muted)"
+    },
+    {
+      "file": "components/_pickers.scss",
+      "property": "mask-image",
+      "roles": [
+        "--mask-opaque"
+      ],
+      "value": "linear-gradient(to bottom, transparent, var(--mask-opaque) 35%, var(--mask-opaque) 65%, transparent)"
+    },
+    {
+      "file": "components/_pickers.scss",
+      "property": "outline",
+      "roles": [
+        "--text-link"
+      ],
+      "value": "2px solid var(--text-link)"
+    },
+    {
+      "file": "components/_pickers.scss",
+      "property": "border-radius",
+      "roles": [
+        "--radius-inset"
+      ],
+      "value": "var(--radius-inset)"
+    },
+    {
+      "file": "components/_pickers.scss",
+      "property": "color",
+      "roles": [
+        "--text-secondary"
+      ],
+      "value": "var(--text-secondary)"
+    },
+    {
+      "file": "components/_pickers.scss",
+      "property": "color",
+      "roles": [
+        "--text-color"
+      ],
+      "value": "var(--text-color)"
+    },
+    {
+      "file": "components/_pickers.scss",
+      "property": "border-radius",
+      "roles": [
+        "--radius-inset"
+      ],
+      "value": "var(--radius-inset)"
+    },
+    {
+      "file": "components/_pickers.scss",
+      "property": "border",
+      "roles": [
+        "--border-color"
+      ],
+      "value": "1px solid var(--border-color)"
+    },
+    {
+      "file": "components/_pickers.scss",
+      "property": "border-radius",
+      "roles": [
+        "--radius-inset"
+      ],
+      "value": "var(--radius-inset)"
+    },
+    {
+      "file": "components/_pickers.scss",
+      "property": "border",
+      "roles": [
+        "--border-color"
+      ],
+      "value": "1px solid var(--border-color)"
+    },
+    {
+      "file": "components/_pickers.scss",
+      "property": "border-radius",
+      "roles": [
+        "--radius-inset"
+      ],
+      "value": "var(--radius-inset)"
+    },
+    {
+      "file": "components/_pickers.scss",
+      "property": "outline",
+      "roles": [
+        "--text-link"
+      ],
+      "value": "2px solid var(--text-link)"
+    },
+    {
+      "file": "components/_pickers.scss",
+      "property": "border",
+      "roles": [
+        "--border"
+      ],
+      "value": "var(--border)"
+    },
+    {
+      "file": "components/_pickers.scss",
+      "property": "border-radius",
+      "roles": [
+        "--radius-lg"
+      ],
+      "value": "var(--radius-lg)"
+    },
+    {
+      "file": "components/_pickers.scss",
+      "property": "background",
+      "roles": [
+        "--surface-bg"
+      ],
+      "value": "var(--surface-bg)"
+    },
+    {
+      "file": "components/_pickers.scss",
+      "property": "--ring-bg",
+      "roles": [
+        "--surface-bg"
+      ],
+      "value": "var(--surface-bg)"
+    },
+    {
+      "file": "components/_pickers.scss",
+      "property": "border-radius",
+      "roles": [
+        "--radius-inset"
+      ],
+      "value": "var(--radius-inset)"
+    },
+    {
+      "file": "components/_pickers.scss",
+      "property": "outline",
+      "roles": [
+        "--text-link"
+      ],
+      "value": "2px solid var(--text-link)"
+    },
+    {
+      "file": "components/_pickers.scss",
+      "property": "border",
+      "roles": [
+        "--color-white"
+      ],
+      "value": "2px solid var(--color-white)"
+    },
+    {
+      "file": "components/_pickers.scss",
+      "property": "box-shadow",
+      "roles": [
+        "--color-black"
+      ],
+      "value": "0 0 0 1px var(--color-black)"
+    },
+    {
+      "file": "components/_pickers.scss",
+      "property": "background",
+      "roles": [
+        "--swatch"
+      ],
+      "value": "var(--swatch, transparent)"
+    },
+    {
+      "file": "components/_pickers.scss",
+      "property": "box-shadow",
+      "roles": [
+        "--border-color"
+      ],
+      "value": "inset 0 0 0 1px var(--border-color)"
+    },
+    {
+      "file": "components/_pickers.scss",
+      "property": "box-shadow",
+      "roles": [
+        "--surface-bg",
+        "--accent-main"
+      ],
+      "value": "0 0 0 2px var(--surface-bg), 0 0 0 4px var(--accent-main)"
+    },
+    {
+      "file": "components/_pickers.scss",
+      "property": "outline",
+      "roles": [
+        "--text-link"
+      ],
+      "value": "2px solid var(--text-link)"
+    },
+    {
+      "file": "components/_pickers.scss",
+      "property": "border",
+      "roles": [
+        "--border"
+      ],
+      "value": "var(--border)"
+    },
+    {
+      "file": "components/_pickers.scss",
+      "property": "border-radius",
+      "roles": [
+        "--radius-lg"
+      ],
+      "value": "var(--radius-lg)"
+    },
+    {
+      "file": "components/_pickers.scss",
+      "property": "background",
+      "roles": [
+        "--surface-bg"
+      ],
+      "value": "var(--surface-bg)"
+    },
+    {
+      "file": "components/_pickers.scss",
+      "property": "--ring-bg",
+      "roles": [
+        "--surface-bg"
+      ],
+      "value": "var(--surface-bg)"
+    },
+    {
+      "file": "components/_pickers.scss",
+      "property": "color",
+      "roles": [
+        "--text-secondary"
+      ],
+      "value": "var(--text-secondary)"
+    },
+    {
+      "file": "components/_pickers.scss",
+      "property": "border-radius",
+      "roles": [
+        "--radius-inset"
+      ],
+      "value": "var(--radius-inset)"
+    },
+    {
+      "file": "components/_pickers.scss",
+      "property": "background",
+      "roles": [
+        "--control-idle-bg"
+      ],
+      "value": "var(--control-idle-bg, transparent)"
+    },
+    {
+      "file": "components/_pickers.scss",
+      "property": "outline",
+      "roles": [
+        "--text-link"
+      ],
+      "value": "2px solid var(--text-link)"
+    },
+    {
+      "file": "components/_progress.scss",
+      "property": "color",
+      "roles": [
+        "--progress-color"
+      ],
+      "value": "var(--progress-color)"
+    },
+    {
+      "file": "components/_progress.scss",
+      "property": "--progress-color",
+      "roles": [
+        "--danger-main"
+      ],
+      "value": "var(--danger-main)"
+    },
+    {
+      "file": "components/_progress.scss",
+      "property": "stroke",
+      "roles": [
+        "--progress-track-color"
+      ],
+      "value": "var(--progress-track-color)"
+    },
+    {
+      "file": "components/_progress.scss",
+      "property": "color",
+      "roles": [
+        "--text-color"
+      ],
+      "value": "var(--text-color)"
+    },
+    {
+      "file": "components/_progress.scss",
+      "property": "color",
+      "roles": [
+        "--text-secondary"
+      ],
+      "value": "var(--text-secondary)"
+    },
+    {
+      "file": "components/_progress.scss",
+      "property": "--step-line-color",
+      "roles": [
+        "--accent-main"
+      ],
+      "value": "var(--accent-main)"
+    },
+    {
+      "file": "components/_progress.scss",
+      "property": "color",
+      "roles": [
+        "--text-secondary"
+      ],
+      "value": "var(--text-secondary)"
+    },
+    {
+      "file": "components/_progress.scss",
+      "property": "color",
+      "roles": [
+        "--text-secondary"
+      ],
+      "value": "var(--text-secondary)"
+    },
+    {
+      "file": "components/_progress.scss",
+      "property": "background",
+      "roles": [
+        "--border-color"
+      ],
+      "value": "var(--border-color)"
+    },
+    {
+      "file": "components/_progress.scss",
+      "property": "background",
+      "roles": [
+        "--accent-main"
+      ],
+      "value": "var(--accent-main)"
+    },
+    {
+      "file": "components/_progress.scss",
+      "property": "color",
+      "roles": [
+        "--text-color"
+      ],
+      "value": "var(--text-color)"
+    },
+    {
+      "file": "components/_progress.scss",
+      "property": "color",
+      "roles": [
+        "--text-danger"
+      ],
+      "value": "var(--text-danger)"
+    },
+    {
+      "file": "components/_progress.scss",
+      "property": "color",
+      "roles": [
+        "--text-secondary"
+      ],
+      "value": "var(--text-secondary)"
+    },
+    {
+      "file": "components/_progress.scss",
+      "property": "--step-line-color",
+      "roles": [
+        "--accent-main"
+      ],
+      "value": "var(--accent-main)"
+    },
+    {
+      "file": "components/_progress.scss",
+      "property": "border",
+      "roles": [
+        "--border"
+      ],
+      "value": "var(--border)"
+    },
+    {
+      "file": "components/_progress.scss",
+      "property": "border-radius",
+      "roles": [
+        "--radius-lg"
+      ],
+      "value": "var(--radius-lg)"
+    },
+    {
+      "file": "components/_progress.scss",
+      "property": "background",
+      "roles": [
+        "--surface-bg"
+      ],
+      "value": "var(--surface-bg)"
+    },
+    {
+      "file": "components/_progress.scss",
+      "property": "--ring-bg",
+      "roles": [
+        "--surface-bg"
+      ],
+      "value": "var(--surface-bg)"
+    },
+    {
+      "file": "components/_progress.scss",
+      "property": "border-inline-end",
+      "roles": [
+        "--border-subtle-color"
+      ],
+      "value": "1px solid var(--border-subtle-color)"
+    },
+    {
+      "file": "components/_progress.scss",
+      "property": "color",
+      "roles": [
+        "--text-secondary"
+      ],
+      "value": "var(--text-secondary)"
+    },
+    {
+      "file": "components/_progress.scss",
+      "property": "background-image",
+      "roles": [
+        "--border-subtle-color"
+      ],
+      "value": "linear-gradient(to bottom, var(--border-subtle-color) 1px, transparent 1px)"
+    },
+    {
+      "file": "components/_progress.scss",
+      "property": "border-inline-start",
+      "roles": [
+        "--accent-main"
+      ],
+      "value": "3px solid var(--accent-main)"
+    },
+    {
+      "file": "components/_progress.scss",
+      "property": "border-radius",
+      "roles": [
+        "--radius-xs"
+      ],
+      "value": "var(--radius-xs)"
+    },
+    {
+      "file": "components/_progress.scss",
+      "property": "background",
+      "roles": [
+        "--accent-soft"
+      ],
+      "value": "var(--accent-soft)"
+    },
+    {
+      "file": "components/_progress.scss",
+      "property": "color",
+      "roles": [
+        "--text-color"
+      ],
+      "value": "var(--text-color)"
+    },
+    {
+      "file": "components/_progress.scss",
+      "property": "color",
+      "roles": [
+        "--text-secondary"
+      ],
+      "value": "var(--text-secondary)"
+    },
+    {
+      "file": "components/_progress.scss",
+      "property": "border-inline-start-color",
+      "roles": [
+        "--danger-main"
+      ],
+      "value": "var(--danger-main)"
+    },
+    {
+      "file": "components/_progress.scss",
+      "property": "background",
+      "roles": [
+        "--danger-soft"
+      ],
+      "value": "var(--danger-soft)"
+    },
+    {
+      "file": "components/_progress.scss",
+      "property": "outline",
+      "roles": [
+        "--text-link"
+      ],
+      "value": "2px solid var(--text-link)"
+    },
+    {
+      "file": "components/_progress.scss",
+      "property": "background",
+      "roles": [
+        "--danger-main"
+      ],
+      "value": "var(--danger-main)"
+    },
+    {
+      "file": "components/_selected.scss",
+      "property": "border",
+      "roles": [
+        "--border"
+      ],
+      "value": "var(--border)"
+    },
+    {
+      "file": "components/_selected.scss",
+      "property": "border-radius",
+      "roles": [
+        "--radius-control"
+      ],
+      "value": "var(--radius-control)"
+    },
+    {
+      "file": "components/_selected.scss",
+      "property": "background",
+      "roles": [
+        "--secondary-bg-color"
+      ],
+      "value": "var(--secondary-bg-color)"
+    },
+    {
+      "file": "components/_selected.scss",
+      "property": "border-radius",
+      "roles": [
+        "--radius-inset"
+      ],
+      "value": "var(--radius-inset)"
+    },
+    {
+      "file": "components/_selected.scss",
+      "property": "background",
+      "roles": [
+        "--control-idle-bg"
+      ],
+      "value": "var(--control-idle-bg)"
+    },
+    {
+      "file": "components/_selected.scss",
+      "property": "color",
+      "roles": [
+        "--text-secondary"
+      ],
+      "value": "var(--text-secondary)"
+    },
+    {
+      "file": "components/_selected.scss",
+      "property": "--control-hover-bg",
+      "roles": [
+        "--control-idle-bg"
+      ],
+      "value": "var(--control-idle-bg)"
+    },
+    {
+      "file": "components/_selected.scss",
+      "property": "color",
+      "roles": [
+        "--text-color"
+      ],
+      "value": "var(--text-color)"
+    },
+    {
+      "file": "components/_selected.scss",
+      "property": "color",
+      "roles": [
+        "--text-color"
+      ],
+      "value": "var(--text-color)"
+    },
+    {
+      "file": "components/_selected.scss",
+      "property": "--control-idle-bg",
+      "roles": [
+        "--accent-soft"
+      ],
+      "value": "var(--accent-soft)"
+    },
+    {
+      "file": "components/_selected.scss",
+      "property": "--control-color",
+      "roles": [
+        "--text-link"
+      ],
+      "value": "var(--text-link)"
+    },
+    {
+      "file": "components/_selected.scss",
+      "property": "border-color",
+      "roles": [
+        "--accent-main"
+      ],
+      "value": "var(--accent-main)"
+    },
+    {
+      "file": "components/_selected.scss",
+      "property": "--control-idle-bg",
+      "roles": [
+        "--action-bg"
+      ],
+      "value": "var(--action-bg)"
+    },
+    {
+      "file": "components/_selected.scss",
+      "property": "--control-color",
+      "roles": [
+        "--button-text-color"
+      ],
+      "value": "var(--button-text-color)"
+    },
+    {
+      "file": "components/_selected.scss",
+      "property": "border-color",
+      "roles": [
+        "--accent-main"
+      ],
+      "value": "var(--accent-main)"
+    },
+    {
+      "file": "components/_selected.scss",
+      "property": "box-shadow",
+      "roles": [
+        "--accent-main"
+      ],
+      "value": "0 0 0 1px var(--accent-main)"
+    },
+    {
+      "file": "components/_steps.scss",
+      "property": "border",
+      "roles": [
+        "--border-color"
+      ],
+      "value": "2px solid var(--border-color)"
+    },
+    {
+      "file": "components/_steps.scss",
+      "property": "background",
+      "roles": [
+        "--surface-bg"
+      ],
+      "value": "var(--surface-bg)"
+    },
+    {
+      "file": "components/_steps.scss",
+      "property": "color",
+      "roles": [
+        "--text-secondary"
+      ],
+      "value": "var(--text-secondary)"
+    },
+    {
+      "file": "components/_steps.scss",
+      "property": "background",
+      "roles": [
+        "--action-bg"
+      ],
+      "value": "var(--action-bg)"
+    },
+    {
+      "file": "components/_steps.scss",
+      "property": "color",
+      "roles": [
+        "--button-text-color"
+      ],
+      "value": "var(--button-text-color)"
+    },
+    {
+      "file": "components/_steps.scss",
+      "property": "border-color",
+      "roles": [
+        "--accent-main"
+      ],
+      "value": "var(--accent-main)"
+    },
+    {
+      "file": "components/_steps.scss",
+      "property": "color",
+      "roles": [
+        "--text-link"
+      ],
+      "value": "var(--text-link)"
+    },
+    {
+      "file": "components/_steps.scss",
+      "property": "box-shadow",
+      "roles": [
+        "--accent-soft"
+      ],
+      "value": "0 0 0 .25rem var(--accent-soft)"
+    },
+    {
+      "file": "components/_steps.scss",
+      "property": "background",
+      "roles": [
+        "--action-danger-bg"
+      ],
+      "value": "var(--action-danger-bg)"
+    },
+    {
+      "file": "components/_steps.scss",
+      "property": "color",
+      "roles": [
+        "--button-text-color"
+      ],
+      "value": "var(--button-text-color)"
+    },
+    {
+      "file": "components/_steps.scss",
+      "property": "background",
+      "roles": [
+        "--step-line-color",
+        "--border-color"
+      ],
+      "value": "var(--step-line-color, var(--border-color))"
+    },
+    {
+      "file": "components/_steps.scss",
+      "property": "background",
+      "roles": [
+        "--border-color"
+      ],
+      "value": "var(--border-color)"
+    },
+    {
+      "file": "components/_surfaces.scss",
+      "property": "border",
+      "roles": [
+        "--panel-border",
+        "--border"
+      ],
+      "value": "var(--panel-border, var(--border))"
+    },
+    {
+      "file": "components/_surfaces.scss",
+      "property": "border-radius",
+      "roles": [
+        "--radius-lg"
+      ],
+      "value": "var(--radius-lg)"
+    },
+    {
+      "file": "components/_surfaces.scss",
+      "property": "background",
+      "roles": [
+        "--surface-bg"
+      ],
+      "value": "var(--surface-bg)"
+    },
+    {
+      "file": "components/_surfaces.scss",
+      "property": "--ring-bg",
+      "roles": [
+        "--surface-bg"
+      ],
+      "value": "var(--surface-bg)"
+    },
+    {
+      "file": "components/_surfaces.scss",
+      "property": "color",
+      "roles": [
+        "--panel-color"
+      ],
+      "value": "var(--panel-color, inherit)"
+    },
+    {
+      "file": "components/_surfaces.scss",
+      "property": "box-shadow",
+      "roles": [
+        "--panel-shadow"
+      ],
+      "value": "var(--panel-shadow, none)"
+    },
+    {
+      "file": "components/_surfaces.scss",
+      "property": "border-radius",
+      "roles": [
+        "--radius-lg"
+      ],
+      "value": "calc(var(--radius-lg) - 1px) calc(var(--radius-lg) - 1px) 0 0"
+    },
+    {
+      "file": "components/_surfaces.scss",
+      "property": "background",
+      "roles": [
+        "--background-muted"
+      ],
+      "value": "var(--background-muted)"
+    },
+    {
+      "file": "components/_surfaces.scss",
+      "property": "background",
+      "roles": [
+        "--background-muted"
+      ],
+      "value": "var(--background-muted)"
+    },
+    {
+      "file": "components/_surfaces.scss",
+      "property": "border-color",
+      "roles": [
+        "--accent-main"
+      ],
+      "value": "var(--accent-main)"
+    },
+    {
+      "file": "components/_surfaces.scss",
+      "property": "box-shadow",
+      "roles": [
+        "--accent-main"
+      ],
+      "value": "inset 0 0 0 1px var(--accent-main)"
+    },
+    {
+      "file": "components/_surfaces.scss",
+      "property": "background",
+      "roles": [
+        "--overlay-bg"
+      ],
+      "value": "var(--overlay-bg)"
+    },
+    {
+      "file": "components/_surfaces.scss",
+      "property": "color",
+      "roles": [
+        "--overlay-text"
+      ],
+      "value": "var(--overlay-text)"
+    },
+    {
+      "file": "components/_surfaces.scss",
+      "property": "background",
+      "roles": [
+        "--overlay-bg"
+      ],
+      "value": "linear-gradient(to top, var(--overlay-bg) 0%, var(--overlay-bg) 18%, transparent 72%)"
+    },
+    {
+      "file": "components/_surfaces.scss",
+      "property": "border-color",
+      "roles": [
+        "--panel-hover-border-color"
+      ],
+      "value": "var(--panel-hover-border-color)"
+    },
+    {
+      "file": "components/_surfaces.scss",
+      "property": "outline",
+      "roles": [
+        "--text-link"
+      ],
+      "value": "2px solid var(--text-link)"
+    },
+    {
+      "file": "components/_surfaces.scss",
+      "property": "color",
+      "roles": [
+        "--text-secondary"
+      ],
+      "value": "var(--text-secondary)"
+    },
+    {
+      "file": "components/_surfaces.scss",
+      "property": "color",
+      "roles": [
+        "--text-secondary"
+      ],
+      "value": "var(--text-secondary)"
+    },
+    {
+      "file": "components/_surfaces.scss",
+      "property": "border-block-start",
+      "roles": [
+        "--border"
+      ],
+      "value": "var(--border)"
+    },
+    {
+      "file": "components/_surfaces.scss",
+      "property": "color",
+      "roles": [
+        "--text-secondary"
+      ],
+      "value": "var(--text-secondary)"
+    },
+    {
+      "file": "components/_surfaces.scss",
+      "property": "background",
+      "roles": [
+        "--control-idle-bg"
+      ],
+      "value": "var(--control-idle-bg, transparent)"
+    },
+    {
+      "file": "components/_surfaces.scss",
+      "property": "outline",
+      "roles": [
+        "--text-link"
+      ],
+      "value": "2px solid var(--text-link)"
+    },
+    {
+      "file": "components/_surfaces.scss",
+      "property": "color",
+      "roles": [
+        "--text-secondary"
+      ],
+      "value": "var(--text-secondary)"
+    },
+    {
+      "file": "components/_surfaces.scss",
+      "property": "border-radius",
+      "roles": [
+        "--radius"
+      ],
+      "value": "var(--radius)"
+    },
+    {
+      "file": "components/_surfaces.scss",
+      "property": "background",
+      "roles": [
+        "--header-bg-color"
+      ],
+      "value": "var(--header-bg-color)"
+    },
+    {
+      "file": "components/_surfaces.scss",
+      "property": "background",
+      "roles": [
+        "--background-muted"
+      ],
+      "value": "var(--background-muted)"
+    },
+    {
+      "file": "components/_surfaces.scss",
+      "property": "border",
+      "roles": [
+        "--border-transparent"
+      ],
+      "value": "var(--border-transparent)"
+    },
+    {
+      "file": "components/_surfaces.scss",
+      "property": "color",
+      "roles": [
+        "--text-secondary"
+      ],
+      "value": "var(--text-secondary)"
+    },
+    {
+      "file": "components/_surfaces.scss",
+      "property": "color",
+      "roles": [
+        "--section-header-text-color"
+      ],
+      "value": "var(--section-header-text-color)"
+    },
+    {
+      "file": "components/_surfaces.scss",
+      "property": "border-block-start",
+      "roles": [
+        "--section-separator-color"
+      ],
+      "value": "1px dashed var(--section-separator-color)"
+    },
+    {
+      "file": "components/_surfaces.scss",
+      "property": "color",
+      "roles": [
+        "--text-secondary"
+      ],
+      "value": "var(--text-secondary)"
+    },
+    {
+      "file": "components/_surfaces.scss",
+      "property": "border-block-start",
+      "roles": [
+        "--section-separator-color"
+      ],
+      "value": "1px dashed var(--section-separator-color)"
+    },
+    {
+      "file": "components/_upload.scss",
+      "property": "border",
+      "roles": [
+        "--border"
+      ],
+      "value": "var(--border)"
+    },
+    {
+      "file": "components/_upload.scss",
+      "property": "border-radius",
+      "roles": [
+        "--radius"
+      ],
+      "value": "var(--radius)"
+    },
+    {
+      "file": "components/_upload.scss",
+      "property": "background",
+      "roles": [
+        "--secondary-bg-color"
+      ],
+      "value": "var(--secondary-bg-color)"
+    },
+    {
+      "file": "components/_upload.scss",
+      "property": "color",
+      "roles": [
+        "--text-color"
+      ],
+      "value": "var(--text-color)"
+    },
+    {
+      "file": "components/_upload.scss",
+      "property": "border",
+      "roles": [
+        "--section-separator-color"
+      ],
+      "value": ".2rem dashed var(--section-separator-color)"
+    },
+    {
+      "file": "components/_upload.scss",
+      "property": "border-radius",
+      "roles": [
+        "--radius-lg"
+      ],
+      "value": "var(--radius-lg)"
+    },
+    {
+      "file": "components/_upload.scss",
+      "property": "outline",
+      "roles": [
+        "--text-link"
+      ],
+      "value": "2px solid var(--text-link)"
+    },
+    {
+      "file": "components/_upload.scss",
+      "property": "border-radius",
+      "roles": [
+        "--radius"
+      ],
+      "value": "var(--radius)"
+    },
+    {
+      "file": "components/_upload.scss",
+      "property": "color",
+      "roles": [
+        "--text-secondary"
+      ],
+      "value": "var(--text-secondary)"
+    },
+    {
+      "file": "components/_upload.scss",
+      "property": "border",
+      "roles": [
+        "--border"
+      ],
+      "value": "var(--border)"
+    },
+    {
+      "file": "components/_upload.scss",
+      "property": "border-radius",
+      "roles": [
+        "--radius-lg"
+      ],
+      "value": "var(--radius-lg)"
+    },
+    {
+      "file": "components/_upload.scss",
+      "property": "background",
+      "roles": [
+        "--surface-bg"
+      ],
+      "value": "var(--surface-bg)"
+    },
+    {
+      "file": "components/_upload.scss",
+      "property": "--ring-bg",
+      "roles": [
+        "--surface-bg"
+      ],
+      "value": "var(--surface-bg)"
+    },
+    {
+      "file": "components/_upload.scss",
+      "property": "border-block-start",
+      "roles": [
+        "--border"
+      ],
+      "value": "var(--border)"
+    },
+    {
+      "file": "components/_upload.scss",
+      "property": "color",
+      "roles": [
+        "--text-secondary"
+      ],
+      "value": "var(--text-secondary)"
+    },
+    {
+      "file": "components/_upload.scss",
+      "property": "color",
+      "roles": [
+        "--text-danger"
+      ],
+      "value": "var(--text-danger)"
+    },
+    {
+      "file": "components/_upload.scss",
+      "property": "color",
+      "roles": [
+        "--text-link"
+      ],
+      "value": "var(--text-link)"
+    },
+    {
+      "file": "components/_upload.scss",
+      "property": "color",
+      "roles": [
+        "--text-secondary"
+      ],
+      "value": "var(--text-secondary)"
+    },
+    {
+      "file": "components/_upload.scss",
+      "property": "color",
+      "roles": [
+        "--text-danger"
+      ],
+      "value": "var(--text-danger)"
+    },
+    {
+      "file": "utilities/_index.scss",
+      "property": "color",
+      "roles": [
+        "--text-secondary"
+      ],
+      "value": "var(--text-secondary)"
+    },
+    {
+      "file": "utilities/_index.scss",
+      "property": "color",
+      "roles": [
+        "--text-color"
+      ],
+      "value": "var(--text-color)"
+    },
+    {
+      "file": "utilities/_index.scss",
+      "property": "color",
+      "roles": [
+        "--text-link"
+      ],
+      "value": "var(--text-link)"
+    },
+    {
+      "file": "utilities/_index.scss",
+      "property": "color",
+      "roles": [
+        "--text-danger"
+      ],
+      "value": "var(--text-danger)"
+    },
+    {
+      "file": "utilities/_index.scss",
+      "property": "box-shadow",
+      "roles": [
+        "--shadow-soft"
+      ],
+      "value": "var(--shadow-soft)"
+    },
+    {
+      "file": "utilities/_index.scss",
+      "property": "border",
+      "roles": [
+        "--border"
+      ],
+      "value": "var(--border)"
+    },
+    {
+      "file": "utilities/_index.scss",
+      "property": "border-radius",
+      "roles": [
+        "--radius-lg"
+      ],
+      "value": "var(--radius-lg)"
+    }
+  ]
+}

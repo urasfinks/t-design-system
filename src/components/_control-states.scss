@@ -1,4 +1,5 @@
 @use '../themes';
+@use '../tokens/color-formulas' as color;
 
 // Loaded by base before components. Owners declare only their resting/hover roles.
 $controls: ":is(button[class*='tg-'], .tg-btn, .tg-icon-btn, .tg-chip, .tg-tab, .tg-dot, .tg-tabbar__item, a.tg-badge[href], a.tg-list-item[href], a.tg-menu__item[href], a.tg-pager__link[href], a.tg-site-nav__link[href], .tg-disclosure__trigger, .tg-bottom-panel__header, .tg-bottom-panel__trigger, .tg-segmented__item, a.tg-sidebar__link[href], summary.tg-sidebar__link, a.tg-nav-menu__link[href], a.tg-nav-menu__top[href], .tg-command__item, .tg-listbox__option, .tg-check, .tg-radio):not(.tg-switch, [role='switch'])";
@@ -10,7 +11,7 @@ $ghosts: ':is(.tg-btn--ghost, .tg-icon-btn--ghost, .tg-search__clear, .tg-tag-in
 @layer tds.components {
   :where(#{$controls}) {
     --control-idle-bg: transparent;
-    --control-hover-bg: var(--surface-muted);
+    --control-hover-bg: var(--control-hover-surface);
   }
   #{$controls} {
     touch-action: manipulation;
@@ -22,6 +23,7 @@ $ghosts: ':is(.tg-btn--ghost, .tg-icon-btn--ghost, .tg-search__clear, .tg-tag-in
   // :not([inert]) lifts the role one step above the owners' family rules (.tg-btn,
   // .tg-icon-btn), which load later: the role wins without repeating it in every owner.
   #{$ghosts}:not([inert]) {
+    --control-hover-lightness-step: 0;
     --control-idle-bg: transparent;
     --control-hover-bg: transparent;
     --control-hover-filter: none;
@@ -38,13 +40,13 @@ $ghosts: ':is(.tg-btn--ghost, .tg-icon-btn--ghost, .tg-search__clear, .tg-tag-in
   @media (hover: hover) and (pointer: fine) {
     // A control inside its label (radio, checkbox) answers the label's hover too.
     #{$controls}#{$available}:hover, .tg-choice:hover > #{$controls}#{$available} {
-      background-color: var(--control-hover-bg);
-      filter: var(--control-hover-filter, brightness(var(--control-hover-brightness, .92)));
+      background-color: #{color.tone(var(--control-hover-bg), var(--control-hover-lightness-step))};
+      filter: var(--control-hover-filter, brightness(var(--control-hover-brightness, 1)));
       cursor: pointer;
     }
     // The switch paints its track on ::before; the same hover darkening applies there.
     .tg-switch#{$available}:hover::before, .tg-choice:hover > .tg-switch#{$available}::before {
-      filter: brightness(var(--control-hover-brightness, .92));
+      filter: brightness(var(--control-hover-brightness, 1));
     }
     #{$ghosts}#{$available}:hover:where(:not(:active, [data-pressed='true'])) {
       color: var(--text-color);

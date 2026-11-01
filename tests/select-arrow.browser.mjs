@@ -13,7 +13,7 @@ try {
    await select.hover({force:true});
    const hovered=await select.evaluate(el=>getComputedStyle(el).backgroundImage);
    if(await select.evaluate(el=>el.matches(':disabled')||!!el.closest('[aria-disabled="true"]'))) assert.equal(hovered,idle);
-   else {assert.notEqual(hovered,idle,`${theme}: arrow changes on hover`);assert.ok(!hovered.includes('stroke-opacity'),`${theme}: full main text color on hover`);}
+   else {assert.notEqual(hovered,idle,`${theme}: arrow changes on hover`);assert.ok(decodeURIComponent(hovered).includes("stroke-opacity='1'"),`${theme}: full main text color on hover`);}
   }
  }
  console.log('Select arrow hover: 3 themes, enabled and disabled controls passed.');

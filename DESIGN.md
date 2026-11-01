@@ -17,8 +17,8 @@ The signature is the system itself: live components, clear examples, readable co
 - Cards use 16 px corners. Buttons and fields share 12 px corners; inset controls
   use 8 px. Pills are reserved for chips, badges and switches.
 - Four input colors define each theme. Each family exposes three shared roles;
-  components consume these twelve palette values. Desktop Dark uses the adjusted
-  page background #151e27 and fixed panel/muted colors #212d3b / #1d2733.
+  components consume these twelve palette values. Desktop Dark uses source background #151e27; panel and muted colors follow
+  the same formulas as the other themes.
 - Field borders are quiet at rest. Switches use their own filled track without
   an idle outline. Focus and invalid states remain distinct. Under
   `prefers-contrast: more`, field and switch boundaries use the stronger
@@ -183,32 +183,14 @@ or a requirement to reproduce its data, business logic or every visual decision.
 
 ## Four-color palette
 
-The current palette has four inputs per theme: background, accent, text,
-and danger. Surface, state and readable foreground roles are derived from these
-inputs. Only ten derived palette declarations may contain `color-mix()`, all in
-tokens. Components and catalog styles use aliases only. Readable accent and danger
-foregrounds are theme-aware; saturated action fills remain unchanged.
-Borders and shadows may use neutral RGBA transparency.
-
-Preserve the reference app's material relationships through theme-specific mixing
-weights: white panels on a light-gray page, blue-gray Desktop Dark, gray iOS panels
-on black. Do not reintroduce independent header, hint, section or secondary colors;
-their old public names alias the twelve palette values. Telegram can override the
-four source colors; it cannot expand the palette through secondary roles.
-
-Main roles alias the current input colors. Desktop Dark fixes its panel and muted
-roles independently of the background input; custom themes must override those
-roles explicitly. Light and iOS Dark derive both surfaces from the background.
-Focused fields use the active field background and
-a main-accent border with a 4px soft-accent outer ring. Invalid focused fields
-use danger-main for the border and danger-soft for the outer ring. Buttons keep saturated strong fills and white text, and all action
-variants share `--control-h`. Progress variants share `--progress-height` (14px at the default root size). Animated stripes use a soft 2px blur and keep their spacing as the fill is revealed.
-
-Primary and destructive badges use soft backgrounds with strong text in Light,
-and strong backgrounds with main text in dark themes through `light-dark()`.
-The stylesheets require browsers with `@layer`, `color-mix()` and `light-dark()` support.
-Catalog-only `.avatar-stack` / `.mini-avatar` styles are not public components.
-
+The normative color contract is [docs/color-system.md](docs/color-system.md).
+All derivations use `src/tokens/_color-formulas.scss`: TONE in OKLCH with a signed
+light/dark direction, PANEL elevation with a common floor, semantic MIX, and ALPHA.
+Themes provide four source colors and inversion only. No fixed Desktop panel,
+iOS-only mixing weight, switch-only tone formula, or per-component color literal.
+Fields, switches and neutral control surfaces share the same derived role.
+The complete component role inventory is [docs/color-consumers.json](docs/color-consumers.json).
+Run `npm run check:colors` before completion and regenerate the inventory when consumers change.
 
 ## Core cascade contract
 

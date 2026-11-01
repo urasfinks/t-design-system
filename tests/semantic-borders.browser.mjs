@@ -96,9 +96,8 @@ try {
   await page.waitForTimeout(250);
   assert.notEqual(await row.evaluate(el => getComputedStyle(el).backgroundColor), rest, 'link row reacts to hover');
   await page.mouse.move(0, 0);
-  await row.focus();
-  await page.keyboard.press('Shift+Tab');
   await page.keyboard.press('Tab');
+  await row.focus();
   assert.notEqual(await row.evaluate(el => getComputedStyle(el).outlineStyle), 'none', 'link row shows keyboard focus');
   const dataRow = page.locator('#orders-example .tg-list-item').first();
   const dataRest = await dataRow.evaluate(el => getComputedStyle(el).backgroundColor);
@@ -118,7 +117,7 @@ try {
   // Avatars are pictures, not text: no I-beam cursor, initials cannot be selected.
   const avatars = await page.locator('#avatars .tg-avatar, #surfaces .tg-avatar').evaluateAll(nodes => nodes.map(node => ({
     tag: node.tagName, cursor: getComputedStyle(node).cursor,
-    select: getComputedStyle(node).userSelect, initials: node.querySelector('.tg-avatar__initials, .tg-avatar__clip') && getComputedStyle(node.querySelector('.tg-avatar__initials, .tg-avatar__clip')).cursor,
+    select: getComputedStyle(node).userSelect || getComputedStyle(node).webkitUserSelect, initials: node.querySelector('.tg-avatar__initials, .tg-avatar__clip') && getComputedStyle(node.querySelector('.tg-avatar__initials, .tg-avatar__clip')).cursor,
   })));
   assert.ok(avatars.length >= 5);
   for (const avatar of avatars) {

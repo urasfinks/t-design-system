@@ -5,5 +5,5 @@
 // card/media clipping. Transformed images can then leave the stage.
 @mixin clip($scope: media) {
   clip-path: var(--#{$scope}-clip, border-box);
-  mask-image: var(--#{$scope}-mask, linear-gradient(#000, #000));
+  mask-image: var(--#{$scope}-mask, linear-gradient(var(--mask-opaque), var(--mask-opaque)));
 }

@@ -6,7 +6,7 @@ const browser = await (process.argv.includes('--webkit') ? webkit : chromium).la
 try {
   const page = await browser.newPage();
   const html = await readFile('docs/index.html', 'utf8');
-  const table = html.slice(html.indexOf('<div class="palette-table-wrap">'), html.indexOf('<div class="foundation-grid">'));
+  const table = html.slice(html.indexOf('<div class="palette-table-wrap">'), html.indexOf('  <div class="example-panel">', html.indexOf('<div class="palette-table-wrap">')));
   const css = await readFile('dist/t-design-system.css', 'utf8');
   const catalog = await readFile('docs/catalog.css', 'utf8');
   await page.setContent(`<style>${css}\n${catalog}</style>${table}`);
@@ -29,8 +29,11 @@ try {
     }, theme);
     assert.ok(colors.every(Boolean), `${theme}: all main colors must remain original`);
     if (theme === 'dark') {
-      const exact = await page.locator('.palette-table tbody tr').first().locator('.palette-swatch').evaluateAll(elements => elements.map(el => getComputedStyle(el).backgroundColor));
-      assert.deepEqual(exact, ['rgb(21, 30, 39)', 'rgb(33, 45, 59)', 'rgb(29, 39, 51)']);
+      const exact = await page.locator('.palette-table tbody tr').first().locator('.palette-swatch').evaluateAll(elements => {
+        const ctx = document.createElement('canvas').getContext('2d');
+        return elements.map(el => { ctx.clearRect(0, 0, 1, 1); ctx.fillStyle = getComputedStyle(el).backgroundColor; ctx.fillRect(0, 0, 1, 1); return [...ctx.getImageData(0, 0, 1, 1).data].slice(0, 3); });
+      });
+      assert.deepEqual(exact, [[21, 30, 39], [35, 45, 54], [51, 61, 71]]);
     }
     if (theme !== 'light') {
       const tones = await page.evaluate(() => {
@@ -43,7 +46,7 @@ try {
           return r * .2126 + g * .7152 + b * .0722;
         });
       });
-      assert.ok(tones[0] < tones[1] && tones[1] < tones[2], `${theme}: main < muted < panel brightness`);
+      assert.ok(tones[0] < tones[2] && tones[2] < tones[1], `${theme}: main < panel < muted brightness`);
     }
     for (const width of [320, 390, 1440]) {
       await page.setViewportSize({ width, height: 900 });

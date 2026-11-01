@@ -29,7 +29,7 @@ try {
     ['orders', '<details class="tg-list"><summary class="tg-list-item tg-row tg-bottom-panel__trigger">Orders</summary></details>'],
     ['stacked', '<button class="tg-btn tg-btn--stacked" aria-pressed="true">Stacked</button>'],
   ];
-  const inspect = el => { const s = getComputedStyle(el); return { background: s.backgroundColor, color: s.color, filter: s.filter, border: s.borderTopWidth, width: el.getBoundingClientRect().width, height: el.getBoundingClientRect().height }; };
+  const inspect = el => { const s = getComputedStyle(el); const ctx = document.createElement('canvas').getContext('2d'); ctx.fillStyle = s.backgroundColor; ctx.fillRect(0, 0, 1, 1); return { rgba: [...ctx.getImageData(0, 0, 1, 1).data], background: s.backgroundColor, color: s.color, filter: s.filter, border: s.borderTopWidth, width: el.getBoundingClientRect().width, height: el.getBoundingClientRect().height }; };
   let checks = 0;
   await mkdir('artifacts/hover', { recursive: true });
   for (const theme of ['light', 'dark', 'ios-dark']) {
@@ -49,9 +49,10 @@ try {
       }
       assert.notDeepEqual([hover.background, hover.color, hover.filter], [idle.background, idle.color, idle.filter], `${theme}/${id}: visible hover response`);
       if (['primary', 'secondary', 'destructive', 'icon', 'chip', 'chip-selected', 'tab-selected', 'navigation-selected', 'badge', 'stacked'].includes(id)) {
-        assert.equal(hover.background, idle.background, `${theme}/${id}: semantic fill and selected state remain intact`);
+        assert.ok(hover.rgba.slice(0, 3).every((channel, index) => Math.abs(channel - idle.rgba[index]) <= 14), `${theme}/${id}: semantic fill receives only a subtle tint`);
+        assert.equal(hover.rgba[3], idle.rgba[3], `${theme}/${id}: opacity is preserved`);
       }
-      assert.equal(hover.filter, ['ghost', 'icon-ghost', 'clear'].includes(id) ? 'none' : `brightness(${theme === 'light' ? '0.92' : '1.15'})`, `${theme}/${id}: shared hover mechanism`);
+      assert.equal(hover.filter, ['ghost', 'icon-ghost', 'clear'].includes(id) ? 'none' : 'brightness(1)', `${theme}/${id}: shared hover mechanism`);
       assert.deepEqual([hover.width, hover.height, hover.border], [idle.width, idle.height, idle.border], `${id}: stable geometry`);
       if (['ghost', 'icon-ghost', 'clear'].includes(id)) {
         if (id === 'clear') {
@@ -68,11 +69,11 @@ try {
         // No container, no outline: a transparent 1px keeps the family's size.
         assert.equal(await button.evaluate(el => getComputedStyle(el).borderTopColor), 'rgba(0, 0, 0, 0)', `${id}: borderless`);
         assert.equal(idle.background, 'rgba(0, 0, 0, 0)');
-        assert.equal(hover.background, idle.background, 'clear hover changes icon only');
+        assert.deepEqual(hover.rgba, idle.rgba, 'clear hover changes icon only');
         assert.notEqual(idle.color, hover.color, 'borderless label changes palette color on hover');
         await page.mouse.down();
         const pressed = await button.evaluate(inspect);
-        assert.equal(pressed.background, idle.background, 'pressed background stays transparent');
+        assert.deepEqual(pressed.rgba, idle.rgba, 'pressed background stays transparent');
         assert.equal(pressed.filter, 'none');
         assert.notEqual(pressed.color, hover.color, 'press changes label color');
         await page.mouse.up();

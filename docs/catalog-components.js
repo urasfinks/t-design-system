@@ -1186,7 +1186,10 @@ export function initCharts({ root = document } = {}) {
     draw();
     plot.append(tooltip);
     let lastWidth = plot.clientWidth;
-    new ResizeObserver(() => { if (Math.abs(plot.clientWidth - lastWidth) > 1) { lastWidth = plot.clientWidth; draw(); } }).observe(plot);
+    // Drawing changes the observed subtree: schedule writes outside observer delivery.
+    new ResizeObserver(() => requestAnimationFrame(() => {
+      if (Math.abs(plot.clientWidth - lastWidth) > 1) { lastWidth = plot.clientWidth; draw(); }
+    })).observe(plot);
     const pick = event => {
       const box = svgEl.getBoundingClientRect();
       const vx = (event.clientX - box.left) / box.width * W;

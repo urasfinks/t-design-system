@@ -35,12 +35,14 @@ test('distribution includes all stylesheets and module exports compile independe
   }
 });
 
-test('color mixing is confined to the ten derived palette variants', async () => {
+test('all component colors use canonical roles and operators', async () => {
+  const { inventory } = await import('../scripts/audit-colors.mjs');
+  assert.ok(inventory.length > 300);
+  const manifest = JSON.parse(await readFile('docs/color-consumers.json', 'utf8'));
+  assert.deepEqual(manifest.consumers, inventory, 'documented consumers match all component sources');
   const source = await readFile('src/tokens/_index.scss', 'utf8');
-  const allowed = new Set(['background-raised', 'background-muted-derived', 'accent-strong', 'accent-soft', 'accent-readable', 'text-secondary', 'text-muted', 'danger-strong', 'danger-soft', 'danger-readable']);
-  const mixed = [...source.matchAll(/--([\w-]+):[^;]*color-mix\(/g)].map(match => match[1]);
-  assert.deepEqual(new Set(mixed), allowed);
-  const components = await import('node:fs/promises').then(fs => fs.readdir('src/components'));
-  for (const file of components) assert.doesNotMatch(await readFile(`src/components/${file}`, 'utf8'), /color-mix\(/, file);
-  assert.doesNotMatch(await readFile('docs/catalog.css', 'utf8'), /color-mix\(/);
+  assert.match(source, /color\.panel\(var\(--bg-color\)\)/);
+  assert.match(source, /color\.tone\(var\(--background-panel\), var\(--surface-lightness-step\)\)/);
+  assert.match(source, /--switch-track-color: var\(--background-muted\)/);
+  assert.doesNotMatch(source, /srgb-linear|surface-muted-contrast/);
 });

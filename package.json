@@ -30,7 +30,9 @@
     "README.md",
     "docs/source-audit.md",
     "docs/component-standard.md",
-    "DESIGN.md"
+    "DESIGN.md",
+    "docs/color-system.md",
+    "docs/color-consumers.json"
   ],
   "scripts": {
     "build": "node scripts/build.mjs",
@@ -38,7 +40,9 @@
     "test": "npm run build && node --test tests/*.test.mjs",
     "test:browser": "npm run build && node scripts/test-browser.mjs",
     "analyze:styles": "npm run build && node scripts/analyze-styles.mjs",
-    "prepack": "npm run build"
+    "prepack": "npm run build",
+    "check:colors": "node scripts/audit-colors.mjs",
+    "test:colors": "npm run build && npm run check:colors && node scripts/test-colors.mjs"
   },
   "devDependencies": {
     "feather-icons": "4.29.2",

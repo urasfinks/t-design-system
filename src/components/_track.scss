@@ -22,5 +22,5 @@
 // at the ends where scroll-driven animations exist (the owner registers them).
 @mixin fade-mask($axis: inline, $size: var(--space-8)) {
   $dir: if($axis == inline, 'to right', 'to bottom');
-  mask-image: linear-gradient(#{$dir}, transparent, black var(--fade-start, #{$size}), black calc(100% - var(--fade-end, #{$size})), transparent);
+  mask-image: linear-gradient(#{$dir}, transparent, var(--mask-opaque) var(--fade-start, #{$size}), var(--mask-opaque) calc(100% - var(--fade-end, #{$size})), transparent);
 }

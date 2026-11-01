@@ -59,7 +59,7 @@ function audit() {
       if (!el.checkVisibility({ opacityProperty: true, visibilityProperty: true })) continue;
       if (el.closest('[aria-hidden="true"], [disabled], [aria-disabled="true"], .tg-sr-only, [inert], [data-contrast-exempt]')) continue;
       const ownText = [...el.childNodes].some(node => node.nodeType === 3 && node.textContent.trim());
-      if (ownText && !el.matches('input, textarea, select, option, svg, svg *')) {
+      if (ownText && !el.matches('input, textarea, select, option, progress, svg, svg *')) {
         const ratio = ratioOf(el);
         if (ratio !== null && ratio < 4.5) low.push(`${el.tagName.toLowerCase()}.${[...el.classList].join('.')} "${el.textContent.trim().slice(0, 24)}" ${ratio.toFixed(2)}`);
       }

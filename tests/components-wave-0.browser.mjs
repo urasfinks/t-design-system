@@ -78,7 +78,7 @@ try {
   await page.keyboard.press('ArrowRight');
   check('B8 arrow keys move the native radio choice', await radios.nth(1).isChecked());
   check('B8 the focused segment shows a ring', (await css(`${item}:has(input:focus-visible)`, 'outline-style')) === 'solid');
-  check('B8 the moved choice becomes the risen segment', (await css(`${item}:has(input:checked)`, 'box-shadow')) !== 'none' && await page.locator(`${item}:has(input:checked)`).textContent() === 'Доска');
+  check('B8 the moved choice remains a flat selected segment', (await css(`${item}:has(input:checked)`, 'box-shadow')) === 'none' && await page.locator(`${item}:has(input:checked)`).textContent() === 'Доска');
   const pressed = page.locator('.example-body[data-spec~="B8"] [role="group"] .tg-segmented__item').nth(1);
   await pressed.click();
   check('B8 a toggle segment flips aria-pressed', await pressed.getAttribute('aria-pressed') === 'true');

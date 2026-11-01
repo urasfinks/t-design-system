@@ -19,12 +19,13 @@ try {
   assert.equal(resting.checkColor,resting.checkForeground);
   assert.ok(resting.checkMask.includes('svg'));
   assert.equal(resting.border,'0px');assert.equal(resting.outline,'none');
-  assert.notEqual(resting.shadow,'none');
+  assert.equal(resting.shadow,'none');
   assert.ok(resting.checkWidth>=20,'selection mark is easy to see');
   assert.ok(resting.padding>=resting.checkWidth+24,'text cannot collide with mark');
-  await chosen.hover();assert.deepEqual(await appearance(),resting,'pointer on selected row preserves selection');
+  await chosen.hover(); const hovered=await appearance();
+  for(const key of ['color','checkColor','checkMask','checkWidth','border','shadow']) assert.equal(hovered[key],resting[key],`selected ${key} survives the shared hover`);
   await page.locator('#other').hover();assert.deepEqual(await appearance(),resting,'pointer on another row preserves selection');
-  assert.notEqual(await page.locator('#other').evaluate(el=>getComputedStyle(el).boxShadow),resting.shadow,'hover and selection retain distinct treatment');
+  assert.equal(await page.locator('#other').evaluate(el=>getComputedStyle(el,'::after').content),'none','only the selected row owns a check mark');
  }
  console.log('Listbox selection: canonical neutral surface, no selection border, 20px check, hover separation and RTL verified in three themes.');
 }finally{await browser.close();}

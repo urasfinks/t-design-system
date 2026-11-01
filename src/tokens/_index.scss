@@ -1,4 +1,5 @@
 @use '../layers';
+@use 'color-formulas' as color;
 @layer tds.tokens {
   :root {
     --layout-reading-width: 48rem;
@@ -32,10 +33,10 @@
     --icon-avatar: calc(var(--icon-btn-prep) + 1.5rem);
     --icon-size: 1.25rem;
     --icon-stroke: 2;
-    --select-arrow-light: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-opacity='.65' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
-    --select-arrow-dark: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23fff' stroke-opacity='.7' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
-    --select-arrow-hover-light: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
-    --select-arrow-hover-dark: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23fff' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
+    --select-arrow-light: #{color.select-arrow('%23000', .65)};
+    --select-arrow-dark: #{color.select-arrow('%23fff', .65)};
+    --select-arrow-hover-light: #{color.select-arrow('%23000', 1)};
+    --select-arrow-hover-dark: #{color.select-arrow('%23fff', 1)};
     --select-arrow: var(--select-arrow-light);
     // Feather glyphs as masks: components paint them with currentColor, so they follow every theme.
     --icon-mask-check: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M20 6 9 17l-5-5'/%3E%3C/svg%3E");
@@ -45,7 +46,10 @@
     // the text colour on an action fill (--button-text-color, white).
     --icon-chevron-right-on-action: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23fff' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m9 18 6-6-6-6'/%3E%3C/svg%3E");
     --icon-mask-chevron-down: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
-    --switch-knob-color: #fff;
+    --color-white: #fff;
+    --color-black: #000;
+    --mask-opaque: var(--color-black);
+    --switch-knob-color: var(--color-white);
     --avatar-initials-color: var(--text-color);
     --spinner-color: var(--progress-color);
     --spinner-track-color: var(--accent-soft);
@@ -79,27 +83,39 @@
     --progress-stripe-color: rgb(255 255 255 / .32);
     --safe-area-bottom: env(safe-area-inset-bottom, 0px);
     --ios-h: 0px;
-    --border-color: light-dark(rgba(0, 0, 0, .08), rgba(255, 255, 255, .08));
-    --border-subtle-color: light-dark(rgba(0, 0, 0, .04), rgba(255, 255, 255, .04));
+    // All coefficients are shared by themes. See docs/color-system.md.
+    --panel-lightness-rise: .06;
+    --panel-lightness-floor: .215;
+    --surface-lightness-step: .065975;
+    --control-hover-lightness-step: .023861;
+    --control-hover-brightness: 1;
+    --border-color: #{color.alpha(var(--text-color), .08)};
+    --border-subtle-color: #{color.alpha(var(--text-color), .04)};
     --border: 1px solid var(--border-color);
     --border-transparent: 1px solid var(--border-subtle-color);
-    // Four source families with shared surface, state and readable foreground roles.
     --background-main: var(--bg-color);
-    --background-raised: color-mix(in srgb, var(--bg-color) var(--background-panel-weight), #fff);
+    --background-raised: #{color.panel(var(--bg-color))};
     --background-panel: var(--background-raised);
-    --background-muted-derived: color-mix(in srgb, var(--bg-color) var(--background-muted-weight), var(--background-muted-target));
+    --background-muted-derived: #{color.tone(var(--background-panel), var(--surface-lightness-step))};
     --background-muted: var(--background-muted-derived);
+    --semantic-readable-dark-weight: 55%;
     --text-main: var(--text-color);
-    --text-secondary: color-mix(in srgb, var(--text-main) 70%, var(--background-panel));
-    --text-muted: color-mix(in srgb, var(--text-main) 55%, var(--background-panel));
+    --text-secondary: #{color.mix(var(--text-main), 70%, var(--background-panel))};
+    --text-muted: #{color.mix(var(--text-main), 55%, var(--background-panel))};
     --accent-main: var(--button-color);
-    --accent-strong: color-mix(in srgb, var(--accent-main) 72%, #000);
-    --accent-soft: color-mix(in srgb, var(--accent-main) 12%, var(--surface-bg));
-    --accent-readable: light-dark(color-mix(in srgb, var(--accent-main) 72%, #000), color-mix(in srgb, var(--accent-main) 65%, #fff));
+    --accent-strong: #{color.mix(var(--accent-main), 72%, var(--color-black))};
+    --accent-soft: #{color.mix(var(--accent-main), 12%, var(--surface-bg))};
+    --accent-readable: light-dark(#{color.mix(var(--accent-main), 72%, var(--color-black))}, #{color.mix(var(--accent-main), var(--semantic-readable-dark-weight), var(--color-white))});
     --danger-main: var(--destructive-text-color);
-    --danger-strong: color-mix(in srgb, var(--danger-main) 72%, #000);
-    --danger-soft: color-mix(in srgb, var(--danger-main) 10%, var(--surface-bg));
-    --danger-readable: light-dark(color-mix(in srgb, var(--danger-main) 72%, #000), color-mix(in srgb, var(--danger-main) 65%, #fff));
+    --danger-strong: #{color.mix(var(--danger-main), 72%, var(--color-black))};
+    --danger-soft: #{color.mix(var(--danger-main), 10%, var(--surface-bg))};
+    --danger-readable: light-dark(#{color.mix(var(--danger-main), 72%, var(--color-black))}, #{color.mix(var(--danger-main), var(--semantic-readable-dark-weight), var(--color-white))});
+    --badge-primary-bg: light-dark(var(--accent-soft), var(--accent-strong));
+    --badge-primary-text: light-dark(var(--accent-strong), var(--text-main));
+    --badge-danger-bg: light-dark(var(--danger-soft), var(--danger-strong));
+    --badge-danger-text: light-dark(var(--danger-strong), var(--text-main));
+    --ripple-on-dark: #{color.alpha(var(--color-white), .25)};
+    --ripple-on-light: #{color.alpha(var(--color-black), .25)};
     --border-active: 1px solid var(--accent-main);
     --focus: 0 0 0 .25rem var(--accent-soft);
     // Compatibility names are aliases, never additional shades.
@@ -113,7 +129,7 @@
     --section-header-text-color: var(--text-secondary);
     --accent-text-color: var(--accent-main);
     --link-color: var(--accent-main);
-    --button-text-color: #fff;
+    --button-text-color: var(--color-white);
     --highlight-bg-color: var(--background-panel);
     --highlight-ficus-color: var(--background-muted);
     --shadow-soft: var(--shadow-overlay);
@@ -128,13 +144,13 @@
     --destructive-text-color-transparent: var(--danger-strong);
     --section-bg-color-transparent: var(--background-panel);
     --text-link: var(--accent-readable);
-    --progress-color: var(--accent-main);
+    --progress-color: var(--accent-readable);
     --progress-track-color: var(--background-muted);
     --text-danger: var(--danger-readable);
     --action-bg: var(--accent-strong);
     --action-hover-bg: var(--accent-strong);
     --action-danger-bg: var(--danger-strong);
-    --control-border-color: light-dark(rgba(0, 0, 0, .5), rgba(255, 255, 255, .5));
+    --control-border-color: #{color.alpha(var(--text-main), .5)};
     // Radio, checkbox and switch are actions too: the same outline as every button.
     --choice-border-color: var(--action-border-color);
     --disabled-opacity: .5;
@@ -148,12 +164,13 @@
     // One outline for everything the reader can act on: buttons of every variant, filters,
     // link badges, avatar buttons. It is barely there: the fill or the content carries the
     // shape, the hairline marks the edge. A contrast preference makes it a full outline.
-    --action-border-color: light-dark(rgba(0, 0, 0, .04), rgba(255, 255, 255, .02));
+    --action-border-color: #{color.alpha(var(--text-main), .04)};
     --border-action: 1px solid var(--action-border-color);
     // Panels the reader can act on (interactive card, choice card) answer hover with a
     // stronger edge than their resting 8% outline.
-    --panel-hover-border-color: light-dark(rgba(0, 0, 0, .24), rgba(255, 255, 255, .24));
-    --switch-track-color: var(--field-bg);
+    --panel-hover-border-color: #{color.alpha(var(--text-main), .24)};
+    // D is now the shared neutral-control surface, not a switch-only formula.
+    --switch-track-color: var(--background-muted);
     --switch-border-color: var(--action-border-color);
     --notice-danger-bg: var(--danger-soft);
     --surface-bg: var(--section-color);
@@ -166,10 +183,11 @@
     // page; every surface sets it to its own fill, so rings match what is under them.
     --ring-bg: var(--background-main);
     --surface-muted: var(--secondary-bg-color);
-    --overlay-bg: rgb(0 0 0 / .66);
-    --overlay-text: #fff;
-    --shadow-control: 0 1px 3px rgb(0 0 0 / .12);
-    --shadow-overlay: 0 .75rem 3rem rgb(0 0 0 / .2);
+    --control-hover-surface: var(--surface-bg);
+    --overlay-bg: #{color.alpha(var(--color-black), .66)};
+    --overlay-text: var(--color-white);
+    --shadow-control: 0 1px 3px #{color.alpha(var(--color-black), .12)};
+    --shadow-overlay: 0 .75rem 3rem #{color.alpha(var(--color-black), .2)};
   }
   @media (prefers-contrast: more) {
     :root {

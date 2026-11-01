@@ -96,7 +96,7 @@ h1 > span { color: var(--text-link); }
   font-variant-numeric: tabular-nums;
 }
 .mini-avatar + .mini-avatar { margin-inline-start: -.5rem; }
-.mini-avatar:first-child { background: var(--accent-soft); color: light-dark(var(--accent-strong), var(--text-main)); }
+.mini-avatar:first-child { background: var(--accent-soft); color: var(--badge-primary-text); }
 .mini-avatar__label { display: block; text-box: trim-both cap alphabetic; }
 .preview-caption { text-align: center; font-size: var(--catalog-caption); color: var(--text-secondary); margin-top: var(--space-5); }
 .feature-strip { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); border-block: var(--border); padding-block: var(--space-6); gap: var(--space-6); }

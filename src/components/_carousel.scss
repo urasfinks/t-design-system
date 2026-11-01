@@ -224,7 +224,7 @@
     display: flex;
     gap: var(--marquee-gap);
     overflow: hidden;
-    mask-image: linear-gradient(to right, transparent, black var(--space-8), black calc(100% - var(--space-8)), transparent);
+    mask-image: linear-gradient(to right, transparent, var(--mask-opaque) var(--space-8), var(--mask-opaque) calc(100% - var(--space-8)), transparent);
   }
   .tg-marquee__track {
     display: flex;
@@ -242,7 +242,7 @@
   .tg-marquee:is(:hover, :focus-within, [data-paused]) .tg-marquee__track { animation-play-state: paused; }
   .tg-marquee__pause { justify-self: end; }
   .tg-marquee--vertical {
-    > .tg-marquee__viewport { flex-direction: column; block-size: var(--marquee-height, 22rem); mask-image: linear-gradient(to bottom, transparent, black var(--space-8), black calc(100% - var(--space-8)), transparent); }
+    > .tg-marquee__viewport { flex-direction: column; block-size: var(--marquee-height, 22rem); mask-image: linear-gradient(to bottom, transparent, var(--mask-opaque) var(--space-8), var(--mask-opaque) calc(100% - var(--space-8)), transparent); }
     .tg-marquee__track { flex-direction: column; min-inline-size: 0; min-block-size: 100%; animation-name: tg-marquee-y; > * { inline-size: auto; } }
   }
   @keyframes tg-marquee-y { to { transform: translateY(calc(-100% - var(--marquee-gap))); } }

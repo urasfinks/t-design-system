@@ -38,7 +38,10 @@ function resizeInput() {
 }
 input.addEventListener('input', resizeInput);
 const composer = document.querySelector('#demo-composer');
-const observer = new ResizeObserver(() => root.style.setProperty('--tg-composer-height', `${composer.getBoundingClientRect().height}px`));
+const observer = new ResizeObserver(() => requestAnimationFrame(() => {
+  const height = `${composer.getBoundingClientRect().height}px`;
+  if (root.style.getPropertyValue('--tg-composer-height') !== height) root.style.setProperty('--tg-composer-height', height);
+}));
 observer.observe(composer);
 const viewport = window.visualViewport;
 function updateViewport() {

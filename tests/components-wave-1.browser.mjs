@@ -6,7 +6,7 @@
 import { openCatalog } from './helpers/catalog-page.mjs';
 import { measureContrast } from './helpers/contrast.mjs';
 
-const { page, check, css, px, box, length, theme, rtl, close } = await openCatalog({ port: 4201 });
+const { page, check, css, px, box, length, theme, rtl, close } = await openCatalog({ port: 4271 });
 const ex = id => `.example-body[data-spec~="${id}"]`;
 const contrast = async (selector, label) => {
   for (const name of ['light', 'dark', 'ios-dark']) {

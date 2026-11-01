@@ -153,8 +153,8 @@
     vertical-align: middle;
 
     &--primary {
-      --control-idle-bg: light-dark(var(--accent-soft), var(--accent-strong));
-      color: light-dark(var(--accent-strong), var(--text-main));
+      --control-idle-bg: var(--badge-primary-bg);
+      color: var(--badge-primary-text);
     }
 
     &--secondary {
@@ -164,8 +164,8 @@
     }
 
     &--destructive {
-      --control-idle-bg: light-dark(var(--danger-soft), var(--danger-strong));
-      color: light-dark(var(--danger-strong), var(--text-main));
+      --control-idle-bg: var(--badge-danger-bg);
+      color: var(--badge-danger-text);
     }
   }
   // Badge icons stay compact: the default 20px icon plus padding and border

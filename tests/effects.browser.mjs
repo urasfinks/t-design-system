@@ -19,11 +19,12 @@ try {
     <div id="glass" class="tg-glass">Glass</div><div id="transition" class="tg-transition">Transition</div>`);
   await page.addScriptTag({ type: 'module', content: `${runtime}\nwindow.initRipple = initRipple; window.disposeRipple = initRipple(); window.rippleReady = true;` });
   await page.waitForFunction(() => window.rippleReady);
+  const rgba = el => { const ctx=document.createElement('canvas').getContext('2d'); ctx.fillStyle=getComputedStyle(el).backgroundColor; ctx.fillRect(0,0,1,1); return [...ctx.getImageData(0,0,1,1).data]; };
   const hostBox = await page.locator('#host').boundingBox();
   await page.mouse.click(hostBox.x + 30, hostBox.y + 20);
   assert.equal(await page.locator('#host > [aria-hidden="true"]').count(), 3);
   assert.deepEqual(await page.locator('.tg-ripple__wave').evaluate(el => [el.style.left, el.style.top, el.style.getPropertyValue('--ripple-size')]), ['30px', '20px', '400px']);
-  assert.match(await page.locator('.tg-ripple__wave').evaluate(el => getComputedStyle(el).backgroundColor), /255, 255, 255/);
+  assert.deepEqual(await page.locator('.tg-ripple__wave').evaluate(rgba), [255, 255, 255, 64]);
   await page.locator('#host > [aria-hidden="true"]').evaluateAll(nodes => nodes.forEach(node => node.dispatchEvent(new Event('animationend'))));
   assert.equal(await page.locator('.tg-ripple__wave').count(), 0);
   await page.locator('#host').focus();
@@ -35,7 +36,7 @@ try {
   assert.equal(await page.locator('.tg-ripple__wave').count(), 0);
   await page.evaluate(() => { window.disposeRipple = initRipple(); });
   await page.locator('#light').click();
-  assert.match(await page.locator('#light .tg-ripple__wave').evaluate(el => getComputedStyle(el).backgroundColor), /0, 0, 0/);
+  assert.deepEqual(await page.locator('#light .tg-ripple__wave').evaluate(rgba), [0, 0, 0, 64]);
   assert.deepEqual(await page.locator('#light > [aria-hidden="true"]').evaluateAll(nodes => nodes.map(node => getComputedStyle(node).animationDuration)), ['0.3s', '0.3s', '0.3s'], 'press feedback stays within 300ms');
   await page.evaluate(() => { window.disposeRipple(); window.disposeRipple = initRipple(document.getElementById('scope')); });
   await page.locator('#host').click();

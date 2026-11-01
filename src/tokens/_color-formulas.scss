@@ -1,0 +1,36 @@
+@use 'sass:string';
+
+// Canonical color operators. Components consume roles; only the shared state engine
+// may call tone with a local control background. No operators emit selectors.
+@function tone($origin, $step, $direction: var(--color-inversion)) {
+  @return string.unquote('oklch(from #{$origin} clamp(0, calc(l + #{$direction} * #{$step}), 1) c h)');
+}
+
+// Elevation always raises lightness: it is a spatial role, not an inverted state.
+// The floor prevents the raised surface from collapsing into black in iOS Dark.
+@function panel($origin) {
+  @return string.unquote('oklch(from #{$origin} clamp(var(--panel-lightness-floor), calc(l + var(--panel-lightness-rise)), 1) c h)');
+}
+
+@function mix($foreground, $weight, $background) {
+  @return string.unquote('color-mix(in srgb, #{$foreground} #{$weight}, #{$background})');
+}
+
+@function alpha($origin, $opacity) {
+  @return string.unquote('rgb(from #{$origin} r g b / #{$opacity})');
+}
+
+// A color-picker is a measurement tool: these are the actual HSV axes, not UI paint.
+@function spectrum($hue) {
+  @return string.unquote('linear-gradient(to top, var(--color-black), transparent), linear-gradient(to right, var(--color-white), hsl(#{$hue} 100% 50%))');
+}
+
+// Native select backgrounds cannot inherit currentColor into an SVG data URL.
+// Two neutral ink assets implement the same alpha formula for light/dark appearance.
+@function select-arrow($encoded-ink, $opacity) {
+  @return string.unquote('url("data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 24 24\' fill=\'none\' stroke=\'#{$encoded-ink}\' stroke-opacity=\'#{$opacity}\' stroke-width=\'2\' stroke-linecap=\'round\' stroke-linejoin=\'round\'%3E%3Cpath d=\'m6 9 6 6 6-6\'/%3E%3C/svg%3E")');
+}
+
+@function hue-spectrum() {
+  @return string.unquote('linear-gradient(to right, red, yellow, lime, cyan, blue, magenta, red)');
+}

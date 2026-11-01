@@ -75,6 +75,12 @@
       overflow-wrap: anywhere;
     }
     &__trigger--regular { font-weight: var(--fw-regular); }
+    // Quiet trigger: the shared state engine keeps resting paint, without dimming children.
+    &__trigger--no-hover {
+      --control-hover-lightness-step: 0;
+      --control-hover-bg: var(--control-idle-bg);
+      --control-hover-filter: none;
+    }
     &[open] > &__trigger {
       border-end-start-radius: 0;
       border-end-end-radius: 0;

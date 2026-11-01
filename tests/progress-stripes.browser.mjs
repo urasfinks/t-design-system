@@ -24,11 +24,11 @@ try {
     await page.evaluate(direction=>document.documentElement.dir=direction,direction);
     await page.evaluate(theme=>document.documentElement.dataset.theme=theme,theme);
     const colors=await page.evaluate(()=>{
-      const probe=document.createElement('span');probe.style.color='var(--accent-main)';document.body.append(probe);
+      const probe=document.createElement('span');probe.style.color='var(--progress-color)';document.body.append(probe);
       const expected=getComputedStyle(probe).color;probe.remove();
       return {expected,actual:[getComputedStyle(document.querySelector('.tg-progress__bar')).backgroundColor,getComputedStyle(document.querySelector('.tg-spinner')).borderTopColor,getComputedStyle(document.querySelector('.tg-progress-ring')).color]};
     });
-    assert.ok(colors.actual.every(color=>color===colors.expected),`${theme}: bar, spinner and ring use accent-main: ${JSON.stringify(colors)}`);
+    assert.ok(colors.actual.every(color=>color===colors.expected),`${theme}: bar, spinner and ring use the shared readable progress role: ${JSON.stringify(colors)}`);
     await page.evaluate(()=>{
       getComputedStyle(document.querySelector('#p25 .tg-progress__bar')).clipPath;
       for(const a of document.getAnimations())if('transitionProperty' in a)a.finish();

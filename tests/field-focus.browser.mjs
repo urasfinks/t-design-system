@@ -42,7 +42,7 @@ try {
     }));
     assert.equal(switchBackground.track, switchBackground.input, `${theme}: idle switch matches input background`);
     // The switch is an action: the same barely visible outline as every button.
-    assert.equal(switchBackground.border, await page.locator('.tg-btn--secondary, .tg-chip').first().evaluate(el => getComputedStyle(el).borderTopColor).catch(() => switchBackground.border));
+    assert.equal(switchBackground.border, await page.getByRole('switch').evaluate(el => { const probe=document.createElement('span'); probe.style.color='var(--action-border-color)'; el.append(probe); const color=getComputedStyle(probe).color; probe.remove(); return color; }));
     const toggle = page.getByRole('switch');
     await toggle.evaluate(el => el.setAttribute('aria-checked', 'true'));
     const active = await toggle.evaluate(el => {

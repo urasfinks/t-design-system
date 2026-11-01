@@ -55,9 +55,9 @@ try {
     await page.goto('http://127.0.0.1:4191/docs/#icons');
     const clear = page.locator('#icon-reset');
     assert.equal(await clear.evaluate(el => getComputedStyle(el).borderTopWidth), '0px');
-    assert.equal(await clear.evaluate(el => getComputedStyle(el).backgroundColor), 'rgba(0, 0, 0, 0)');
+    assert.equal(await clear.evaluate(el => { const ctx=document.createElement('canvas').getContext('2d'); ctx.fillStyle=getComputedStyle(el).backgroundColor; ctx.fillRect(0,0,1,1); return ctx.getImageData(0,0,1,1).data[3]; }), 0);
     await clear.hover();
-    assert.equal(await clear.evaluate(el => getComputedStyle(el).backgroundColor), 'rgba(0, 0, 0, 0)');
+    assert.equal(await clear.evaluate(el => { const ctx=document.createElement('canvas').getContext('2d'); ctx.fillStyle=getComputedStyle(el).backgroundColor; ctx.fillRect(0,0,1,1); return ctx.getImageData(0,0,1,1).data[3]; }), 0);
     assert.equal(await clear.evaluate(el => getComputedStyle(el).filter), 'none');
     assert.ok(await clear.evaluate(el => {
       const search = el.closest('.tg-search');
