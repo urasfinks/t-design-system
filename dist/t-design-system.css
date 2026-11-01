@@ -45,6 +45,7 @@
     --avatar-initials-color: var(--text-color);
     --spinner-color: var(--progress-color);
     --spinner-track-color: var(--accent-soft);
+    --option-gap: 2px;
     --space-1: .25rem;
     --space-2: .5rem;
     --space-3: .75rem;
@@ -629,7 +630,7 @@
     --menu-item-h: 2.75rem;
     display: grid;
     align-content: start;
-    gap: var(--space-1);
+    gap: var(--option-gap);
     min-inline-size: min(12rem, var(--tg-menu-available-inline, 100vw));
     max-inline-size: min(22rem, 100vw - var(--space-8), var(--tg-menu-available-inline, 100vw));
     max-block-size: min(28rem, 100dvh - var(--space-8), var(--tg-menu-available-block, 100dvh));
@@ -648,7 +649,8 @@
   }
   .tg-menu [role=group] {
     display: grid;
-    gap: var(--space-1);
+    align-content: start;
+    gap: var(--option-gap);
   }
   .tg-menu[popover] {
     position: fixed;
@@ -1790,7 +1792,7 @@
     display: inline-flex;
     flex-wrap: nowrap;
     align-items: stretch;
-    gap: var(--space-1);
+    gap: var(--option-gap);
     min-inline-size: 0;
     max-inline-size: 100%;
     margin: 0;
@@ -5005,6 +5007,9 @@
     display: none;
   }
   .tg-command__list {
+    display: grid;
+    align-content: start;
+    gap: var(--option-gap);
     flex: 1 1 auto;
     min-block-size: 0;
     padding: var(--space-2);
@@ -5013,6 +5018,11 @@
   }
   .tg-command__list > .tg-empty {
     padding-block: var(--space-6);
+  }
+  .tg-command__group {
+    display: grid;
+    align-content: start;
+    gap: var(--option-gap);
   }
   .tg-command__group + .tg-command__group {
     margin-block-start: var(--space-2);
@@ -5859,6 +5869,7 @@
     --listbox-option-h: var(--control-h);
     display: grid;
     align-content: start;
+    gap: var(--option-gap);
     min-inline-size: max(12rem, var(--tg-anchor-width, 0px));
     max-inline-size: min(26rem, 100vw - var(--space-8));
     max-block-size: min(20rem, 100dvh - var(--space-8));
@@ -6014,8 +6025,10 @@
   .tg-listbox__group {
     padding: var(--space-2) var(--space-3) var(--space-1);
     color: var(--text-secondary);
-    font-size: var(--fs-sm);
-    font-weight: var(--fw-medium);
+    font-size: var(--fs-xs);
+    font-weight: var(--fw-semibold);
+    line-height: 1.4;
+    letter-spacing: 0.02em;
   }
   .tg-combobox {
     position: relative;
@@ -7580,7 +7593,7 @@
   .tg-nav-menu__group {
     display: grid;
     align-content: start;
-    gap: 2px;
+    gap: var(--option-gap);
     margin: 0;
     padding: 0;
     list-style: none;

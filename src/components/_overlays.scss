@@ -231,6 +231,7 @@
     &::-webkit-search-cancel-button { display: none; }
   }
   .tg-command__list {
+    @include option.collection;
     flex: 1 1 auto;
     min-block-size: 0;
     padding: var(--space-2);
@@ -238,6 +239,7 @@
     overscroll-behavior: contain;
     > .tg-empty { padding-block: var(--space-6); }
   }
+  .tg-command__group { @include option.collection; }
   .tg-command__group + .tg-command__group { margin-block-start: var(--space-2); }
   .tg-command__group-label { @include option.group-label; }
   .tg-command__item {

@@ -51,8 +51,7 @@
   // The popup list shared by listbox and combobox.
   .tg-listbox {
     --listbox-option-h: var(--control-h);
-    display: grid;
-    align-content: start;
+    @include option.collection;
     min-inline-size: max(12rem, var(--tg-anchor-width, 0px));
     max-inline-size: min(26rem, calc(100vw - var(--space-8)));
     max-block-size: min(20rem, calc(100dvh - var(--space-8)));
@@ -106,12 +105,7 @@
   }
   .tg-listbox__text { display: grid; flex: 1 1 auto; min-inline-size: 0; }
   .tg-listbox__option-meta { @include option.meta; font-weight: var(--fw-regular); }
-  .tg-listbox__group {
-    padding: var(--space-2) var(--space-3) var(--space-1);
-    color: var(--text-secondary);
-    font-size: var(--fs-sm);
-    font-weight: var(--fw-medium);
-  }
+  .tg-listbox__group { @include option.group-label; }
 
   // Combobox: a text field that filters a listbox. Selected values of a multiple
   // combobox are tags before the field, inside one frame.

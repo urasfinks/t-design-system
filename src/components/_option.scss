@@ -2,6 +2,13 @@
 // tables of contents. Owners include it and set only their parameters.
 @use 'floating';
 
+// Shared vertical composition, separate from the floating surface and its columns.
+@mixin collection {
+  display: grid;
+  align-content: start;
+  gap: var(--option-gap);
+}
+
 // Every dropdown (menu, listbox, combobox, navigation panel) is one look: a floating
 // surface; chosen rows use the shared soft-accent selection.
 @mixin list($radius: var(--radius-control)) {
