@@ -208,7 +208,7 @@
 
   .tg-switch {
     --w: calc(var(--h) * 1.75);
-    --h: calc(var(--choice-size) + .125rem);
+    --h: var(--switch-h);
     position: relative;
     display: inline-flex;
     align-items: center;

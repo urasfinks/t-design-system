@@ -4,10 +4,11 @@ import { readFile, access } from 'node:fs/promises';
 import * as sass from 'sass';
 
 const css = async () => readFile(new URL('../dist/t-design-system.css', import.meta.url), 'utf8');
-test('every original tg-* class name remains available', async () => {
+test('original classes remain available except the explicitly removed zero-padding button', async () => {
   const original = JSON.parse(await readFile(new URL('fixtures/source-tg-classes.json', import.meta.url), 'utf8'));
   const current = new Set([...(await css()).matchAll(/\.(tg-[\w-]+)/g)].map(match => match[1]));
-  assert.deepEqual(original.filter(name => !current.has(name)), []);
+  assert.equal(current.has('tg-btn-s0'), false, 'zero-padding button utility was intentionally removed');
+  assert.deepEqual(original.filter(name => name !== 'tg-btn-s0' && !current.has(name)), []);
 });
 test('main stylesheet declares a predictable cascade without specificity escapes', async () => {
   const text = await css();

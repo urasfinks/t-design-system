@@ -139,7 +139,7 @@
     align-items: center;
     justify-content: center;
     min-inline-size: 1.5rem;
-    min-block-size: 1.5rem;
+    min-block-size: var(--switch-h);
     padding: .125rem .5rem;
     // A status is information, not an action: no outline at rest.
     border: 0;

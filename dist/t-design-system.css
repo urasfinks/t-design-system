@@ -25,6 +25,7 @@
     --radius-inset: calc(var(--radius-control) - var(--space-1));
     --control-h: clamp(2.75rem, 2.6rem + .8vw, 3rem);
     --choice-size: 1.5rem;
+    --switch-h: calc(var(--choice-size) + .125rem);
     --chip-h: clamp(2rem, 1.9rem + .5vw, 2.25rem);
     --icon-btn-prep: clamp(2.25rem, 2.1rem + .6vw, 2.5rem);
     --icon-btn: calc(var(--icon-btn-prep) + .25rem);
@@ -420,7 +421,7 @@
     transform: scale(0.98);
   }
   .tg-btn {
-    min-inline-size: min-content;
+    min-inline-size: var(--control-h);
     block-size: auto;
     padding-block: var(--space-2);
     padding-inline: var(--space-4);
@@ -442,10 +443,7 @@
   }
   .tg-btn-box {
     inline-size: var(--control-h);
-    padding-inline: 0;
-  }
-  .tg-btn-s0 {
-    padding-inline: 0;
+    padding-inline: var(--space-2);
   }
   .tg-btn-s1 {
     padding-inline: var(--space-1);
@@ -983,7 +981,7 @@
   }
   .tg-switch {
     --w: calc(var(--h) * 1.75);
-    --h: calc(var(--choice-size) + .125rem);
+    --h: var(--switch-h);
     position: relative;
     display: inline-flex;
     align-items: center;
@@ -2192,7 +2190,7 @@
     align-items: center;
     justify-content: center;
     min-inline-size: 1.5rem;
-    min-block-size: 1.5rem;
+    min-block-size: var(--switch-h);
     padding: 0.125rem 0.5rem;
     border: 0;
     border-radius: var(--radius-pill);

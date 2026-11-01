@@ -46,7 +46,7 @@
   // when a label cannot fit (200% text, a very narrow column) does it wrap and the button
   // grow, so no text is ever cut or pushed out of the button.
   .tg-btn {
-    min-inline-size: min-content;
+    min-inline-size: var(--control-h);
     block-size: auto;
     padding-block: var(--space-2);
     padding-inline: var(--space-4);
@@ -59,10 +59,10 @@
     }
     &--sm { padding-inline: var(--space-3); font-size: var(--fs-sm); }
     &--lg { padding-inline: var(--space-6); }
-    &-box { inline-size: var(--control-h); padding-inline: 0; }
+    &-box { inline-size: var(--control-h); padding-inline: var(--space-2); }
 
-    @for $i from 0 through 3 {
-      &-s#{$i} { padding-inline: if($i == 0, 0, var(--space-#{$i})); }
+    @for $i from 1 through 3 {
+      &-s#{$i} { padding-inline: var(--space-#{$i}); }
     }
   }
 

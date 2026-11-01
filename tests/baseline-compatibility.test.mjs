@@ -24,7 +24,7 @@ test('every section and example rule of the saved catalog is still in the catalo
     // The badge overview now owns this case; its old 44px guidance was superseded.
     if (rule.startsWith('Если метка всё-таки ведёт куда-то')) {
       assert.ok(current.includes('id="button-badges"'));
-      assert.ok(current.includes('стандартная высота бейджа — 24 px'));
+      assert.ok(current.includes('стандартная высота бейджа равна дорожке переключателя — 26 px'));
       continue;
     }
     const updated = rule
