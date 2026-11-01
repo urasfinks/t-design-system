@@ -1688,7 +1688,7 @@
 </div>
   </div>
   <p class="example-rule">Оболочка редактора даёт рамку, панель форматирования с клавиатурой панели инструментов и типографику текста внутри: заголовки, списки, код и цитаты выглядят так же, как в остальной системе. Кнопки форматирования показывают состояние выделения через <code translate="no">aria-pressed</code>. Escape внутри блока выбирает блок целиком, стрелки вверх и вниз переходят к соседнему блоку, выбранный блок отмечен рамкой акцента. Над выделенным текстом появляется панель действий; Alt+F10 переводит в неё фокус, Escape возвращает к тексту.</p></div>
-<div class="tg-row"><a class="tg-btn tg-btn--primary" href="compositions.html" target="_blank" rel="noopener">Открыть полный пример<svg class="tg-icon" viewBox="0 0 24 24" aria-hidden="true"><use href="../dist/icons/arrow-up-right.svg#arrow-up-right"></use></svg></a><span class="tg-text-sm tg-text-muted">Попробуйте ответ, отправку сообщения и просмотр медиа.</span></div>
+<div class="tg-row tg-mt-4"><a class="tg-btn tg-btn--primary" href="compositions.html" target="_blank" rel="noopener">Открыть полный пример<svg class="tg-icon" viewBox="0 0 24 24" aria-hidden="true"><use href="../dist/icons/arrow-up-right.svg#arrow-up-right"></use></svg></a><span class="tg-text-sm tg-text-muted">Попробуйте ответ, отправку сообщения и просмотр медиа.</span></div>
 <h3 id="scene-discussion" class="catalog-subheading" data-catalog-title="Обсуждение и ввод сообщения" data-catalog-parent="compositions" data-catalog-group="Сцены и экраны">Обсуждение и ввод сообщения</h3>
 <div data-catalog-example="compositions:0" class="example-panel"><div class="example-body"><iframe class="composition-preview" id="composition-preview" src="compositions.html" title="Интерактивный пример композиций TDS"></iframe></div>
   <details class="example-code"><summary>Посмотреть HTML</summary><pre translate="no"><code translate="no">&lt;div class="tg-page-shell"&gt;
@@ -1841,9 +1841,13 @@
   <div class="icon-grid icon-gallery" id="icon-grid" role="group" aria-label="Иконки Feather" aria-describedby="icon-keyboard-help"></div>
   <div class="tg-empty" id="icon-empty" hidden><h3 class="tg-empty__title">Иконки не найдены</h3><p class="tg-empty__description">Попробуйте другой запрос.</p></div>
   <p class="tg-label">Разметка выбранной иконки</p>
-  <pre translate="no" class="code-block"><code translate="no" id="icon-markup" tabindex="0" aria-label="Разметка выбранной иконки"></code></pre>
-  <button class="tg-btn tg-btn--secondary" id="icon-copy" type="button">Скопировать разметку</button>
-  <span id="icon-copy-status" role="status" aria-live="polite"></span>
+  <div class="tg-col">
+    <pre translate="no" class="code-block tg-card"><code translate="no" id="icon-markup" tabindex="0" aria-label="Разметка выбранной иконки"></code></pre>
+    <div class="tg-row">
+      <button class="tg-btn tg-btn--secondary" id="icon-copy" type="button">Скопировать разметку</button>
+      <span id="icon-copy-status" role="status" aria-live="polite"></span>
+    </div>
+  </div>
 </div>
 </div><p class="example-rule">Декоративную иконку скрывайте через <code translate="no">aria-hidden</code>. Имя действия задаёт текст кнопки или <code translate="no">aria-label</code>, а не <code translate="no">title</code> внутри SVG. Feather 4.29.2 · MIT.</p></div>
 </section>
