@@ -463,6 +463,15 @@
 <p class="tg-help" id="demo-tags-help">До 6 тегов. Enter или запятая — добавить.</p><p class="tg-sr-only" role="status" id="demo-tags-status"></p></div>
   </div>
   <p class="example-rule">Теги и поле ввода лежат в одной рамке поля и переносятся на новые строки, поле занимает остаток строки. Enter, запятая или вставка добавляют тег, повтор не добавляется, Backspace в пустом поле удаляет последний тег. Кнопка удаления — знак 24 px с областью нажатия 44 px и именем вида «Удалить тег счета»; добавление и удаление объявляются. Значения уходят с формой скрытыми полями.</p></div>
+  <div class="example-panel"><div class="example-body tg-col" data-ui data-example data-spec="F10">
+<div class="tg-field tag-demo"><label class="tg-label" for="demo-tags-suggest">Теги с подсказками</label>
+<div class="tg-combobox" id="demo-tags-suggest-box" data-combobox data-multiple data-allow-custom data-name="tags[]" data-options="счета|октябрь|срочно|договоры|оплата|отчёты">
+<div class="tg-tag-input"><input class="tg-tag-input__field tg-combobox__input" id="demo-tags-suggest" role="combobox" aria-autocomplete="list" aria-expanded="false" aria-controls="demo-tags-suggest-list" aria-describedby="demo-tags-suggest-help" autocomplete="off" placeholder="Выберите или добавьте тег"></div>
+<ul class="tg-listbox tg-combobox__list" id="demo-tags-suggest-list" role="listbox" aria-label="Подсказки тегов" aria-multiselectable="true" data-empty="Все подходящие теги уже добавлены" hidden></ul>
+</div>
+<p class="tg-help" id="demo-tags-suggest-help">Выберите подсказку или введите свой тег и нажмите Enter.</p><p class="tg-sr-only" role="status" id="demo-tags-suggest-status"></p></div>
+  </div>
+  <p class="example-rule">Теги с подсказками используют <code translate="no" class="class-tag">.tg-combobox</code> и <code translate="no" class="class-tag">.tg-tag-input</code>. Атрибут <code translate="no">data-allow-custom</code> дополняет множественный выбор строкой «Добавить „…“», когда точного совпадения нет. Стрелки и Enter выбирают подсказку; Enter без активной строки добавляет введённое значение. Пустые значения и повторы без учёта регистра не добавляются. <code translate="no">data-name="tags[]"</code> задаёт имя скрытых полей формы. Остальное поведение — <a href="#pickers">как у combobox выше</a>.</p></div>
   <div class="example-panel"><div class="example-body tg-row" data-ui data-example data-spec="F4">
 <div class="tg-row number-row">
 <div class="tg-field"><label class="tg-label" for="demo-guests">Гости</label>

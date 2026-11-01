@@ -1087,6 +1087,7 @@
     background: var(--field-bg);
   }
   .tg-input-group:focus-within {
+    background-color: var(--field-bg-hover);
     border-color: var(--accent-main);
     box-shadow: var(--focus);
   }
@@ -1201,6 +1202,7 @@
     background: var(--field-bg);
   }
   .tg-copy:focus-within {
+    background-color: var(--field-bg-hover);
     border-color: var(--accent-main);
     box-shadow: var(--focus);
   }
@@ -3832,6 +3834,7 @@
     background: var(--field-bg);
   }
   .tg-search:focus-within {
+    background-color: var(--field-bg-hover);
     border-color: var(--accent-main);
     box-shadow: var(--focus);
   }
@@ -6057,6 +6060,7 @@
     background: var(--field-bg);
   }
   .tg-tag-input:focus-within {
+    background-color: var(--field-bg-hover);
     border-color: var(--accent-main);
     box-shadow: var(--focus);
   }
@@ -6164,6 +6168,7 @@
     background: var(--field-bg);
   }
   .tg-number:focus-within {
+    background-color: var(--field-bg-hover);
     border-color: var(--accent-main);
     box-shadow: var(--focus);
   }
@@ -6548,6 +6553,7 @@
     background: var(--field-bg);
   }
   .tg-color-field:focus-within {
+    background-color: var(--field-bg-hover);
     border-color: var(--accent-main);
     box-shadow: var(--focus);
   }

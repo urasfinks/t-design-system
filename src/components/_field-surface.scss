@@ -10,7 +10,11 @@
 @mixin surface($control) {
   @include frame;
 
-  &:focus-within { border-color: var(--accent-main); box-shadow: var(--focus); }
+  &:focus-within {
+    background-color: var(--field-bg-hover);
+    border-color: var(--accent-main);
+    box-shadow: var(--focus);
+  }
   &:has(#{$control}[readonly]) { background: var(--section-bg-color); }
   &:has(#{$control}:disabled) { opacity: var(--disabled-opacity, .5); cursor: not-allowed; }
   &:has(#{$control}[aria-invalid='true']) {

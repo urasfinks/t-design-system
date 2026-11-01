@@ -325,16 +325,25 @@ export function initComboboxes({ root = document } = {}) {
     const list = box.querySelector('.tg-combobox__list');
     const status = root.getElementById(`${list.id.replace(/-list$/, '')}-status`);
     const multiple = box.hasAttribute('data-multiple');
+    const allowCustom = multiple && box.hasAttribute('data-allow-custom');
+    const normalize = value => value.trim().toLocaleLowerCase('ru');
     const all = box.dataset.options.split('|');
     const tagBox = box.querySelector('.tg-tag-input');
     // With scripts the custom list replaces the native datalist fallback.
     input.removeAttribute('list');
     const chosen = () => tagBox ? [...tagBox.querySelectorAll('.tg-tag-input__tag')].map(tag => tag.dataset.value) : [];
-    let active = -1, items = [];
+    let active = -1, items = [], createIndex = -1;
     const render = () => {
-      const query = input.value.trim().toLocaleLowerCase('ru');
-      items = all.filter(value => value.toLocaleLowerCase('ru').includes(query));
-      list.innerHTML = items.map((value, index) => `<li class="tg-listbox__option" role="option" id="${list.id}-${index}" aria-selected="${multiple ? chosen().includes(value) : value === input.value}">${escapeHTML(value)}</li>`).join('');
+      const draft = input.value.trim();
+      const query = normalize(draft);
+      const selected = chosen().map(normalize);
+      items = all.filter(value => normalize(value).includes(query) && (!allowCustom || !selected.includes(normalize(value))));
+      createIndex = -1;
+      if (allowCustom && query && !all.some(value => normalize(value) === query) && !selected.includes(query)) {
+        createIndex = items.length;
+        items.push(draft);
+      }
+      list.innerHTML = items.map((value, index) => `<li class="tg-listbox__option" role="option" id="${list.id}-${index}" aria-selected="${multiple ? chosen().includes(value) : value === input.value}">${escapeHTML(index === createIndex ? `Добавить „${value}“` : value)}</li>`).join('');
       active = -1;
       input.removeAttribute('aria-activedescendant');
       announce(status, items.length ? `Найдено: ${items.length}` : 'Ничего не найдено');
@@ -350,27 +359,43 @@ export function initComboboxes({ root = document } = {}) {
       scrollWithin(list, options[active]);
     };
     const addTag = value => {
+      if (allowCustom && chosen().some(chosenValue => normalize(chosenValue) === normalize(value))) return;
       if (chosen().includes(value)) { tagBox.querySelector(`[data-value="${CSS.escape(value)}"] .tg-tag-input__remove`)?.click(); return; }
       const tag = document.createElement('span');
       tag.className = 'tg-tag-input__tag'; tag.dataset.value = value;
       tag.innerHTML = `${escapeHTML(value)}<button class="tg-tag-input__remove" type="button" aria-label="Удалить ${escapeHTML(value)}">${icon('x')}</button>`;
+      if (box.dataset.name) {
+        const hidden = document.createElement('input');
+        hidden.type = 'hidden'; hidden.name = box.dataset.name; hidden.value = value;
+        tag.append(hidden);
+      }
       input.before(tag);
       announce(status, `Добавлено: ${value}`);
     };
     const choose = index => {
       const value = items[index];
       if (value === undefined) return;
-      if (multiple) { addTag(value); input.value = ''; render(); input.focus({ preventScroll: true }); }
+      if (multiple) {
+        const removing = !allowCustom && chosen().includes(value);
+        if (index === createIndex) all.push(value);
+        addTag(value); input.value = ''; render(); input.focus({ preventScroll: true });
+        announce(status, `${removing ? 'Удалено' : 'Добавлено'}: ${value}`);
+      }
       else { input.value = value; close(); announce(status, `Выбрано: ${value}`); }
     };
     input.addEventListener('input', open);
     input.addEventListener('focus', () => { if (multiple) open(); });
     input.addEventListener('keydown', event => {
+      if (event.isComposing) return;
       delete list.dataset.pointer;
       const isOpen = !list.hidden;
       if (event.key === 'ArrowDown') { event.preventDefault(); if (!isOpen) open(); setActive(active + 1); }
       else if (event.key === 'ArrowUp') { event.preventDefault(); if (!isOpen) open(); setActive(active - 1); }
-      else if (event.key === 'Enter' && isOpen && active >= 0) { event.preventDefault(); choose(active); }
+      else if (event.key === 'Enter' && isOpen && (active >= 0 || allowCustom)) {
+        event.preventDefault();
+        const exact = items.findIndex(value => normalize(value) === normalize(input.value));
+        choose(active >= 0 ? active : exact >= 0 ? exact : createIndex);
+      }
       else if (event.key === 'Escape') { if (isOpen) { event.preventDefault(); close(); } else if (input.value) input.value = ''; }
       else if (event.key === 'Backspace' && multiple && !input.value) { const last = [...tagBox.querySelectorAll('.tg-tag-input__tag')].at(-1); if (last) { announce(status, `Удалено: ${last.dataset.value}`); last.remove(); render(); } }
     });

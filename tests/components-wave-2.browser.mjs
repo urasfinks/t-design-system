@@ -82,29 +82,30 @@ try {
   check('F9 multiple: Backspace in the empty field removes the last tag', await page.locator(`${ex('F9')} .tg-tag-input__tag[data-value="Маркетинг"]`).count() === 0);
   await page.keyboard.press('Escape');
 
-  // F10 — tag input
+  // F10 — free tag input (the autocomplete variant has its own browser checks).
+  const freeTagsExample = '.example-body:has(#demo-tags)';
   const tags = page.locator('#demo-tags');
   await tags.fill('акт');
   await page.keyboard.press('Enter');
-  check('F10 Enter adds a tag with a named remove button', await page.locator(`${ex('F10')} .tg-tag-input__remove[aria-label="Удалить тег акт"]`).count() === 1);
-  check('F10 each tag is submitted as a hidden field', await page.locator(`${ex('F10')} input[name="tags[]"]`).count() === 4);
+  check('F10 Enter adds a tag with a named remove button', await page.locator(`${freeTagsExample} .tg-tag-input__remove[aria-label="Удалить тег акт"]`).count() === 1);
+  check('F10 each tag is submitted as a hidden field', await page.locator(`${freeTagsExample} input[name="tags[]"]`).count() === 4);
   await tags.fill('акт');
   await page.keyboard.press('Enter');
   await page.waitForTimeout(60);
-  check('F10 duplicates are not added and the reason is announced', await page.locator(`${ex('F10')} .tg-tag-input__tag`).count() === 4 && (await page.locator('#demo-tags-status').textContent()).includes('уже есть'));
+  check('F10 duplicates are not added and the reason is announced', await page.locator(`${freeTagsExample} .tg-tag-input__tag`).count() === 4 && (await page.locator('#demo-tags-status').textContent()).includes('уже есть'));
   await tags.fill('');
   await page.keyboard.press('ArrowLeft');
   check('F10 ArrowLeft at the start moves to the last tag', await page.evaluate(() => document.activeElement.getAttribute('aria-label')) === 'Удалить тег акт');
   await page.keyboard.press('ArrowRight');
   check('F10 ArrowRight from the last tag returns to the field', await tags.evaluate(el => el === document.activeElement));
   await page.keyboard.press('Backspace');
-  check('F10 Backspace in the empty field removes the last tag', await page.locator(`${ex('F10')} .tg-tag-input__tag`).count() === 3);
-  const remove = await box(`${ex('F10')} .tg-tag-input__remove`);
+  check('F10 Backspace in the empty field removes the last tag', await page.locator(`${freeTagsExample} .tg-tag-input__tag`).count() === 3);
+  const remove = await box(`${freeTagsExample} .tg-tag-input__remove`);
   check('F10 remove mark is 24px with a 44px target', Math.round(remove.width) === 40 || Math.round(remove.width) >= 40);
-  check('F10 the frame shows focus while typing', (await css(`${ex('F10')} .tg-tag-input`, 'box-shadow')) !== 'none');
-  await contrast(`${ex('F10')} .tg-tag-input__tag`, 'F10 tag');
+  check('F10 the frame shows focus while typing', (await css(`${freeTagsExample} .tg-tag-input`, 'box-shadow')) !== 'none');
+  await contrast(`${freeTagsExample} .tg-tag-input__tag`, 'F10 tag');
   for (const value of ['а', 'б', 'в', 'г']) { await tags.fill(value); await page.keyboard.press('Enter'); }
-  check('F10 the limit stops new tags', await page.locator(`${ex('F10')} .tg-tag-input__tag`).count() === 6 && await page.locator(`${ex('F10')} .tg-tag-input`).evaluate(el => el.hasAttribute('data-limit')));
+  check('F10 the limit stops new tags', await page.locator(`${freeTagsExample} .tg-tag-input__tag`).count() === 6 && await page.locator(`${freeTagsExample} .tg-tag-input`).evaluate(el => el.hasAttribute('data-limit')));
 
   // F4 — number stepper
   const guests = page.locator('#demo-guests');
