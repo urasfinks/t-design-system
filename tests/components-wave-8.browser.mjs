@@ -22,7 +22,7 @@ try {
   await page.waitForFunction(s => document.querySelector(s).dataset.state === 'running', field, { timeout: 3000 }).catch(() => {});
   check('SH1 the module runs the program on screen', await page.locator(field).getAttribute('data-state') === 'running');
   check('SH1 the layer draws pixels in the accent', await page.locator(field).evaluate(c => { const d = c.getContext('2d').getImageData(0, 0, c.width, c.height).data; for (let i = 3; i < d.length; i += 4) if (d[i]) return true; return false; }));
-  await page.locator('#start').scrollIntoViewIfNeeded();
+  await page.locator('#overview').scrollIntoViewIfNeeded();
   await page.waitForTimeout(300);
   check('SH1 off screen the layer pauses', await page.locator(field).getAttribute('data-state') === 'paused');
   check('SH1 without the module the fill is the background role', (await css(field, 'background-color')) !== 'rgba(0, 0, 0, 0)');

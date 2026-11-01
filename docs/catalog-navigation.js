@@ -1,7 +1,7 @@
 export function initCatalogNavigation({ root = document } = {}) {
   const links = [...root.querySelectorAll('.nav-link')];
   const sectionSelect = root.querySelector('#section-select');
-  const sections = [...root.querySelectorAll('main > section')];
+  const sections = [...root.querySelectorAll('main [data-catalog-title]')];
 
   function navigate(id, { focus = false } = {}) {
     const section = root.getElementById(id);
@@ -15,15 +15,21 @@ export function initCatalogNavigation({ root = document } = {}) {
     }
   }
 
-  function sync() {
-    const id = location.hash.slice(1);
+  function setActive(id) {
     if ([...sectionSelect.options].some(option => option.value === id)) sectionSelect.value = id;
     for (const link of links) {
       const active = link.hash === `#${id}`;
       link.classList.toggle('is-active', active);
-      if (active) link.setAttribute('aria-current', 'location');
-      else link.removeAttribute('aria-current');
+      if (active) {
+        link.setAttribute('aria-current', 'location');
+        const family = link.closest('details');
+        if (family) family.open = true;
+      } else link.removeAttribute('aria-current');
     }
+  }
+
+  function sync() {
+    setActive(location.hash.slice(1));
   }
 
   sectionSelect.addEventListener('change', () => navigate(sectionSelect.value));
@@ -60,16 +66,14 @@ export function initCatalogNavigation({ root = document } = {}) {
   let frame = 0;
   function updateVisibleSection() {
     frame = 0;
-    const section = sections.findLast(section => section.getBoundingClientRect().top <= 100) || sections[0];
-    if (!section) return;
-    sectionSelect.value = section.id;
-    for (const link of links) {
-      const active = link.hash === `#${section.id}`;
-      link.classList.toggle('is-active', active);
-      if (active) link.setAttribute('aria-current', 'location');
-      else link.removeAttribute('aria-current');
-    }
+    const padding = parseFloat(getComputedStyle(root.documentElement).scrollPaddingTop) || 0;
+    const section = sections.findLast(section => {
+      const margin = parseFloat(getComputedStyle(section).scrollMarginTop) || 0;
+      return section.getBoundingClientRect().top <= padding + margin + 1;
+    }) || sections[0];
+    if (section) setActive(section.id);
   }
+
   function scheduleVisibleSection() {
     if (!frame) frame = requestAnimationFrame(updateVisibleSection);
   }

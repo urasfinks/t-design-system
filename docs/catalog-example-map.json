@@ -1,0 +1,602 @@
+[
+  {
+    "source": "tokens",
+    "index": 0,
+    "destination": "tokens"
+  },
+  {
+    "source": "icons",
+    "index": 0,
+    "destination": "icons"
+  },
+  {
+    "source": "layout",
+    "index": 0,
+    "destination": "layout"
+  },
+  {
+    "source": "buttons",
+    "index": 16,
+    "destination": "text-links"
+  },
+  {
+    "source": "text",
+    "index": 0,
+    "destination": "text-keys"
+  },
+  {
+    "source": "buttons",
+    "index": 10,
+    "destination": "badge-variants"
+  },
+  {
+    "source": "avatars",
+    "index": 0,
+    "destination": "avatar-initials"
+  },
+  {
+    "source": "avatars",
+    "index": 1,
+    "destination": "avatar-actions"
+  },
+  {
+    "source": "avatars",
+    "index": 2,
+    "destination": "avatar-selection"
+  },
+  {
+    "source": "avatars",
+    "index": 3,
+    "destination": "avatar-group"
+  },
+  {
+    "source": "avatars",
+    "index": 4,
+    "destination": "avatar-large-group"
+  },
+  {
+    "source": "buttons",
+    "index": 0,
+    "destination": "button-basics"
+  },
+  {
+    "source": "buttons",
+    "index": 1,
+    "destination": "button-icons"
+  },
+  {
+    "source": "buttons",
+    "index": 2,
+    "destination": "button-states"
+  },
+  {
+    "source": "buttons",
+    "index": 3,
+    "destination": "button-content"
+  },
+  {
+    "source": "buttons",
+    "index": 5,
+    "destination": "button-groups"
+  },
+  {
+    "source": "buttons",
+    "index": 6,
+    "destination": "button-tools"
+  },
+  {
+    "source": "buttons",
+    "index": 7,
+    "destination": "button-copy"
+  },
+  {
+    "source": "buttons",
+    "index": 8,
+    "destination": "button-confirm"
+  },
+  {
+    "source": "buttons",
+    "index": 9,
+    "destination": "button-floating"
+  },
+  {
+    "source": "effects",
+    "index": 4,
+    "destination": "button-effects"
+  },
+  {
+    "source": "buttons",
+    "index": 11,
+    "destination": "selection-chips"
+  },
+  {
+    "source": "selection",
+    "index": 0,
+    "destination": "selection-chips"
+  },
+  {
+    "source": "selection",
+    "index": 1,
+    "destination": "selection-segments"
+  },
+  {
+    "source": "surfaces",
+    "index": 2,
+    "destination": "divider-label"
+  },
+  {
+    "source": "forms",
+    "index": 0,
+    "destination": "field-basics"
+  },
+  {
+    "source": "forms",
+    "index": 1,
+    "destination": "field-search"
+  },
+  {
+    "source": "forms",
+    "index": 3,
+    "destination": "field-groups"
+  },
+  {
+    "source": "choices",
+    "index": 0,
+    "destination": "choice-basics"
+  },
+  {
+    "source": "buttons",
+    "index": 15,
+    "destination": "input-switch"
+  },
+  {
+    "source": "choices",
+    "index": 2,
+    "destination": "choice-groups"
+  },
+  {
+    "source": "choices",
+    "index": 3,
+    "destination": "choice-cards"
+  },
+  {
+    "source": "choices",
+    "index": 1,
+    "destination": "range-basics"
+  },
+  {
+    "source": "choices",
+    "index": 4,
+    "destination": "range-interval"
+  },
+  {
+    "source": "pickers",
+    "index": 4,
+    "destination": "picker-number"
+  },
+  {
+    "source": "pickers",
+    "index": 5,
+    "destination": "picker-number"
+  },
+  {
+    "source": "pickers",
+    "index": 0,
+    "destination": "picker-list"
+  },
+  {
+    "source": "pickers",
+    "index": 1,
+    "destination": "picker-combobox"
+  },
+  {
+    "source": "pickers",
+    "index": 2,
+    "destination": "picker-tags"
+  },
+  {
+    "source": "pickers",
+    "index": 3,
+    "destination": "picker-tags"
+  },
+  {
+    "source": "pickers",
+    "index": 6,
+    "destination": "picker-wheel"
+  },
+  {
+    "source": "pickers",
+    "index": 7,
+    "destination": "picker-color"
+  },
+  {
+    "source": "pickers",
+    "index": 8,
+    "destination": "picker-emoji"
+  },
+  {
+    "source": "datetime",
+    "index": 0,
+    "destination": "date-fields"
+  },
+  {
+    "source": "datetime",
+    "index": 1,
+    "destination": "date-calendar"
+  },
+  {
+    "source": "datetime",
+    "index": 2,
+    "destination": "date-range"
+  },
+  {
+    "source": "upload",
+    "index": 0,
+    "destination": "upload-select"
+  },
+  {
+    "source": "upload",
+    "index": 1,
+    "destination": "upload-queue"
+  },
+  {
+    "source": "surfaces",
+    "index": 1,
+    "destination": "card-structure"
+  },
+  {
+    "source": "surfaces",
+    "index": 3,
+    "destination": "card-media"
+  },
+  {
+    "source": "surfaces",
+    "index": 4,
+    "destination": "card-disclosure"
+  },
+  {
+    "source": "surfaces",
+    "index": 5,
+    "destination": "card-hover"
+  },
+  {
+    "source": "surfaces",
+    "index": 8,
+    "destination": "card-stack"
+  },
+  {
+    "source": "effects",
+    "index": 0,
+    "destination": "card-material"
+  },
+  {
+    "source": "effects",
+    "index": 5,
+    "destination": "card-effects"
+  },
+  {
+    "source": "lists",
+    "index": 1,
+    "destination": "list-data"
+  },
+  {
+    "source": "buttons",
+    "index": 12,
+    "destination": "list-actions"
+  },
+  {
+    "source": "lists",
+    "index": 0,
+    "destination": "list-actions"
+  },
+  {
+    "source": "lists",
+    "index": 2,
+    "destination": "list-disclosure"
+  },
+  {
+    "source": "lists",
+    "index": 3,
+    "destination": "list-disclosure"
+  },
+  {
+    "source": "lists",
+    "index": 4,
+    "destination": "list-accordion"
+  },
+  {
+    "source": "data",
+    "index": 1,
+    "destination": "data-summary"
+  },
+  {
+    "source": "data",
+    "index": 0,
+    "destination": "data-tables"
+  },
+  {
+    "source": "data",
+    "index": 4,
+    "destination": "data-sortable"
+  },
+  {
+    "source": "charts",
+    "index": 0,
+    "destination": "chart-lines"
+  },
+  {
+    "source": "charts",
+    "index": 1,
+    "destination": "chart-bars"
+  },
+  {
+    "source": "charts",
+    "index": 2,
+    "destination": "chart-donut"
+  },
+  {
+    "source": "text",
+    "index": 2,
+    "destination": "testimonial-single"
+  },
+  {
+    "source": "text",
+    "index": 3,
+    "destination": "testimonial-marquee"
+  },
+  {
+    "source": "media",
+    "index": 3,
+    "destination": "media-player"
+  },
+  {
+    "source": "media",
+    "index": 4,
+    "destination": "media-voice"
+  },
+  {
+    "source": "media",
+    "index": 2,
+    "destination": "media-scroll"
+  },
+  {
+    "source": "media",
+    "index": 0,
+    "destination": "media-carousel"
+  },
+  {
+    "source": "media",
+    "index": 1,
+    "destination": "media-gallery"
+  },
+  {
+    "source": "media",
+    "index": 5,
+    "destination": "media-accordion"
+  },
+  {
+    "source": "media",
+    "index": 6,
+    "destination": "media-variants"
+  },
+  {
+    "source": "effects",
+    "index": 6,
+    "destination": "media-effects"
+  },
+  {
+    "source": "buttons",
+    "index": 13,
+    "destination": "menu-basics"
+  },
+  {
+    "source": "menus",
+    "index": 0,
+    "destination": "menu-variants"
+  },
+  {
+    "source": "navigation",
+    "index": 0,
+    "destination": "nav-tabs"
+  },
+  {
+    "source": "navigation",
+    "index": 4,
+    "destination": "nav-tab-variants"
+  },
+  {
+    "source": "navigation",
+    "index": 5,
+    "destination": "nav-tab-variants"
+  },
+  {
+    "source": "navigation",
+    "index": 2,
+    "destination": "nav-pages"
+  },
+  {
+    "source": "navigation",
+    "index": 1,
+    "destination": "nav-tabbar"
+  },
+  {
+    "source": "buttons",
+    "index": 17,
+    "destination": "nav-tabbar"
+  },
+  {
+    "source": "navigation",
+    "index": 3,
+    "destination": "nav-site"
+  },
+  {
+    "source": "app-nav",
+    "index": 0,
+    "destination": "app-sidebar"
+  },
+  {
+    "source": "app-nav",
+    "index": 1,
+    "destination": "app-site-menu"
+  },
+  {
+    "source": "app-nav",
+    "index": 2,
+    "destination": "app-menubar"
+  },
+  {
+    "source": "app-nav",
+    "index": 3,
+    "destination": "app-toc"
+  },
+  {
+    "source": "app-nav",
+    "index": 4,
+    "destination": "app-command"
+  },
+  {
+    "source": "feedback",
+    "index": 1,
+    "destination": "progress-linear"
+  },
+  {
+    "source": "progress",
+    "index": 0,
+    "destination": "progress-ring"
+  },
+  {
+    "source": "progress",
+    "index": 1,
+    "destination": "progress-timeline"
+  },
+  {
+    "source": "progress",
+    "index": 2,
+    "destination": "progress-steps"
+  },
+  {
+    "source": "progress",
+    "index": 3,
+    "destination": "progress-schedule"
+  },
+  {
+    "source": "feedback",
+    "index": 2,
+    "destination": "loading-skeleton"
+  },
+  {
+    "source": "effects",
+    "index": 1,
+    "destination": "loading-overlay"
+  },
+  {
+    "source": "feedback",
+    "index": 0,
+    "destination": "notice-basics"
+  },
+  {
+    "source": "feedback",
+    "index": 3,
+    "destination": "notice-actions"
+  },
+  {
+    "source": "feedback",
+    "index": 4,
+    "destination": "notice-banner"
+  },
+  {
+    "source": "empty",
+    "index": 0,
+    "destination": "empty"
+  },
+  {
+    "source": "buttons",
+    "index": 4,
+    "destination": "overlay-tooltip"
+  },
+  {
+    "source": "overlays",
+    "index": 0,
+    "destination": "overlay-dialog"
+  },
+  {
+    "source": "overlays",
+    "index": 1,
+    "destination": "overlay-sheet"
+  },
+  {
+    "source": "overlays",
+    "index": 2,
+    "destination": "overlay-toasts"
+  },
+  {
+    "source": "surfaces",
+    "index": 0,
+    "destination": "scene-project"
+  },
+  {
+    "source": "surfaces",
+    "index": 6,
+    "destination": "scene-dashboard"
+  },
+  {
+    "source": "surfaces",
+    "index": 7,
+    "destination": "card-pricing"
+  },
+  {
+    "source": "forms",
+    "index": 2,
+    "destination": "scene-validation"
+  },
+  {
+    "source": "data",
+    "index": 2,
+    "destination": "scene-tables"
+  },
+  {
+    "source": "data",
+    "index": 3,
+    "destination": "scene-tables"
+  },
+  {
+    "source": "buttons",
+    "index": 14,
+    "destination": "scene-tabs"
+  },
+  {
+    "source": "text",
+    "index": 1,
+    "destination": "scene-editor"
+  },
+  {
+    "source": "compositions",
+    "index": 0,
+    "destination": "scene-discussion"
+  },
+  {
+    "source": "compositions",
+    "index": 1,
+    "destination": "scene-discussion"
+  },
+  {
+    "source": "compositions",
+    "index": 2,
+    "destination": "scene-assistant"
+  },
+  {
+    "source": "compositions",
+    "index": 3,
+    "destination": "scene-assistant"
+  },
+  {
+    "source": "effects",
+    "index": 2,
+    "destination": "effect-transition"
+  },
+  {
+    "source": "effects",
+    "index": 3,
+    "destination": "effect-background"
+  }
+]

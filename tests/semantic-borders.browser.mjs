@@ -69,7 +69,7 @@ try {
       const pick = selector => ratio(document.querySelector(selector));
       return {
         shared: (() => { const probe = document.createElement('i'); probe.style.color = 'var(--action-border-color)'; document.body.append(probe); const c = getComputedStyle(probe).color; probe.remove(); return c; })(),
-        actionColors: ['#selection .tg-chip[aria-pressed="false"]', '#button-badges a.tg-badge', '#avatars button.tg-avatar[aria-checked="false"]', '#buttons .tg-btn--secondary', '#choices .tg-check:not(:checked)', '#choices .tg-radio:not(:checked)'].map(s => [s, getComputedStyle(document.querySelector(s)).borderTopColor]),
+        actionColors: ['#selection .tg-chip[aria-pressed="false"]', '#button-badges a.tg-badge', '#avatars button.tg-avatar[aria-checked="false"]', '#buttons .tg-btn--secondary', '#forms .tg-check:not(:checked)', '#forms .tg-radio:not(:checked)'].map(s => [s, getComputedStyle(document.querySelector(s)).borderTopColor]),
         // Secondary and icon buttons: the fill carries the shape, a barely visible outline marks the edge.
         filled: ['#buttons .tg-btn--secondary', '#buttons .tg-icon-btn:not(.tg-icon-btn--ghost)'].map(s => { const el = document.querySelector(s), cs = getComputedStyle(el); return [s, rgba(cs.borderTopColor)[3], rgba(cs.backgroundColor)[3]]; }),
         panels: ['#surfaces .tg-card', '#lists .tg-list', '#feedback .tg-notice'].map(s => [s, pick(s)]),

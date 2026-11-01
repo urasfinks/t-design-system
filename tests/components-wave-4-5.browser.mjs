@@ -87,6 +87,8 @@ try {
 
   // D7 — line chart
   const line = `${ex('D7')} .tg-chart`;
+  // Chromium can report an empty SVG computed style immediately after resizing.
+  await page.waitForFunction(selector => getComputedStyle(document.querySelector(selector)).strokeWidth === '2px', `${line} .tg-chart__line`);
   check('D7 lines are 2px', await page.locator(`${line} .tg-chart__line`).first().evaluate(el => getComputedStyle(el).strokeWidth) === '2px');
   check('D7 the second series is dashed, not only lighter', (await page.locator(`${line} .tg-chart__line[data-series="2"]`).evaluate(el => getComputedStyle(el).strokeDasharray)) !== 'none');
   check('D7 the area is a light wash of the series', Number(await page.locator(`${line} .tg-chart__area`).evaluate(el => getComputedStyle(el).fillOpacity)) <= .15);

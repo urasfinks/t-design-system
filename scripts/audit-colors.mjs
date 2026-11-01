@@ -20,7 +20,7 @@ for (const file of files) {
     assert.ok(allowed, `${file}: only the shared state engine and intrinsic picker may invoke color operators`);
   }
   for (const match of source.matchAll(/([\w-]+)\s*:\s*([^;{}]+);/g)) {
-    if (!/^(?:color|background(?:-color|-image)?|border(?:-[\w-]+)?|outline(?:-[\w-]+)?|box-shadow|text-shadow|fill|stroke|mask(?:-image)?|--[\w-]*(?:bg|color|surface)[\w-]*)$/.test(match[1])) continue;
+    if (!/^(?:color|background(?:-color|-image)?|border(?:-[\w-]+)?|outline(?:-[\w-]+)?|box-shadow|text-shadow|fill|stroke|mask(?:-image)?|--[\w-]*(?:bg|color|surface)[\w-]*|--[\w-]+-ring)$/.test(match[1])) continue;
     for (const word of match[2].matchAll(/(?<![-\w$])([a-z][a-z0-9-]*)(?![-\w])/gi)) colorWords.add(word[1]);
     const roles = [...new Set([...match[2].matchAll(/var\((--[\w-]+)/g)].map(item => item[1]))];
     if (roles.length || match[2].includes('color.')) inventory.push({ file, property: match[1], roles, value: match[2].trim() });

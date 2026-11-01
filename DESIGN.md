@@ -96,15 +96,28 @@ Use the library's tokens and component sizes. No miniature mock interface or
 on desktop, with an explicit section menu on small screens. Use consistent SVG
 icons. Preserve live demos, HTML disclosure, theme/accent selectors and downloads.
 
-The catalog has one section per task, in six groups (an `optgroup` per group in
-the mobile select, in page order): “Основа” (overview, colors, layout),
-“Действия” (buttons, action menus, icons, filters and statuses), “Ввод” (fields, choice,
-option lists and pickers, date and time, file upload), “Содержимое” (cards, lists and
-disclosure, text and keys, empty state, avatars, data, charts, process progress, media and
-galleries), “Навигация и отклик” (navigation, application navigation, feedback, dialogs and
-messages) and “Примеры и интеграция” (compositions, effects, setup). New components join the
-group of their task; there is no separate section per source archive. Section titles describe the task, not a slogan. Global search is a native `dialog` opened by the “Поиск” button,
-`/` or Cmd/Ctrl+K (never while typing in a field). It matches section titles,
+The catalog groups each component family in one place, from its simplest form to
+variants, states and composed variants. Panels stay with panels, buttons with
+buttons, and individual avatars with avatar groups. Mixed scenes appear only
+after the family reference. The hierarchy is semantic cluster → family →
+subsection → examples. Cluster labels are accessible group names; families use
+h2 and subsections h3. The eight clusters, in page order, are “Основы”,
+“Элементы и действия”, “Ввод и выбор”, “Панели и содержимое”, “Навигация”,
+“Состояния и обратная связь”, “Сцены и экраны” and “Эффекты и интеграция”.
+The overview explains this route and keeps the original “Всё на своих местах”
+interface preview beside the introduction (below it on mobile). Other scenes
+remain after the component families.
+The searchable icon reference is the last section, after setup and integration.
+A single standard-input overview follows buttons: native fields, textarea, select,
+checkbox, radio, switch, range, number, password, date/time, color and file.
+Specialized pickers, nested choices and range components follow this overview.
+Section/heading `data-catalog-title`, `data-catalog-group` and
+`data-catalog-parent` attributes own the navigation tree. The build generates
+static sidebar and mobile navigation from this metadata, keeping both usable
+without JavaScript. Families can expose nested subsection links; search and
+active navigation cover both levels. Preserve old section and example anchors.
+Global search is a native `dialog` opened by the “Поиск” button,
+`/` or Cmd/Ctrl+K (never while typing in a field). It matches family and subsection titles,
 `.tg-*` classes and `--*` tokens from explicit `data-search-*` metadata; arrows
 move, Enter navigates, Escape closes and focus returns to the opener. Search is
 a progressive enhancement: without JavaScript every section and example stays
@@ -177,6 +190,13 @@ initials use font-weight 400 in this variant. Selection
 strengthens this outer ring
 (`--avatar-selection-ring-color`, defaulting to `--control-border-color`). Keyboard
 focus remains separate. The default avatar still supports accent selection.
+
+Avatar-group separation rings match their immediate background. Use
+`tg-avatar-group--on-main`, `--on-panel` or `--on-muted` for the three background
+roles, including both pictures/initials and the overflow counter. Catalog table
+examples use `--on-panel`. The inherited `--avatar-group-ring` parameter remains
+available for custom surfaces; the unmodified group falls back to `--ring-bg`.
+These separation rings do not replace avatar selection borders or focus outlines.
 
 These references guide generic components, not a copy of the receipt application
 or a requirement to reproduce its data, business logic or every visual decision.

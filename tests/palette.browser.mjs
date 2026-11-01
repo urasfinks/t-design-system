@@ -6,7 +6,8 @@ const browser = await (process.argv.includes('--webkit') ? webkit : chromium).la
 try {
   const page = await browser.newPage();
   const html = await readFile('docs/index.html', 'utf8');
-  const table = html.slice(html.indexOf('<div class="palette-table-wrap">'), html.indexOf('  <div class="example-panel">', html.indexOf('<div class="palette-table-wrap">')));
+  const table = html.match(/<div class="palette-table-wrap">[\s\S]*?<\/table>\s*<\/div>/)?.[0];
+  assert.ok(table, 'palette fixture is bounded by its own table wrapper');
   const css = await readFile('dist/t-design-system.css', 'utf8');
   const catalog = await readFile('docs/catalog.css', 'utf8');
   await page.setContent(`<style>${css}\n${catalog}</style>${table}`);

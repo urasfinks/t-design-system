@@ -1,3 +1,4 @@
+import { buildCatalogNavigation } from './build-catalog-navigation.mjs';
 import { compileAsync } from 'sass';
 import feather from 'feather-icons';
 import { mkdir, writeFile, copyFile, readdir, readFile, rm } from 'node:fs/promises';
@@ -41,3 +42,5 @@ console.log('Built dist/icons/ (' + iconFiles.length + ' independent Feather SVG
 const manifest = iconFiles.map(file => ({ name: file.slice(0, -4), tags: feather.icons[file.slice(0, -4)].tags })).sort((a, b) => a.name < b.name ? -1 : a.name > b.name ? 1 : 0);
 await writeFile(new URL('dist/icons.json', root), JSON.stringify(manifest, null, 2) + '\n');
 console.log('Built dist/icons.json (searchable Feather metadata)');
+
+await buildCatalogNavigation();

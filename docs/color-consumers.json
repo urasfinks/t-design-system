@@ -1,7 +1,7 @@
 {
   "componentFiles": 38,
   "foundationFiles": 2,
-  "declarations": 799,
+  "declarations": 802,
   "consumers": [
     {
       "file": "base/_index.scss",
@@ -557,6 +557,30 @@
         "--section-bg-color-transparent"
       ],
       "value": "1px solid var(--section-bg-color-transparent)"
+    },
+    {
+      "file": "components/_avatar.scss",
+      "property": "--avatar-group-ring",
+      "roles": [
+        "--background-main"
+      ],
+      "value": "var(--background-main)"
+    },
+    {
+      "file": "components/_avatar.scss",
+      "property": "--avatar-group-ring",
+      "roles": [
+        "--background-panel"
+      ],
+      "value": "var(--background-panel)"
+    },
+    {
+      "file": "components/_avatar.scss",
+      "property": "--avatar-group-ring",
+      "roles": [
+        "--background-muted"
+      ],
+      "value": "var(--background-muted)"
     },
     {
       "file": "components/_avatar.scss",

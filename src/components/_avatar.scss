@@ -109,6 +109,12 @@
     flex-wrap: nowrap;
     vertical-align: middle;
 
+    // Match the separating ring to the containing surface; custom surfaces may
+    // still supply --avatar-group-ring without a modifier.
+    &--on-main { --avatar-group-ring: var(--background-main); }
+    &--on-panel { --avatar-group-ring: var(--background-panel); }
+    &--on-muted { --avatar-group-ring: var(--background-muted); }
+
     > .tg-avatar {
       padding: 0;
       border-width: 0;

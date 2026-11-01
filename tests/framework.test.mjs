@@ -39,6 +39,7 @@ test('distribution includes all stylesheets and module exports compile independe
 test('all component colors use canonical roles and operators', async () => {
   const { inventory } = await import('../scripts/audit-colors.mjs');
   assert.ok(inventory.length > 300);
+  assert.deepEqual(inventory.filter(item => item.property === '--avatar-group-ring').map(item => item.roles[0]).sort(), ['--background-main', '--background-muted', '--background-panel'], 'all avatar ring surface roles are documented');
   const manifest = JSON.parse(await readFile('docs/color-consumers.json', 'utf8'));
   assert.deepEqual(manifest.consumers, inventory, 'documented consumers match all component sources');
   const source = await readFile('src/tokens/_index.scss', 'utf8');

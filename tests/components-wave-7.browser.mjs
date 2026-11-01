@@ -157,7 +157,7 @@ try {
   for (const width of [320, 390]) {
     await page.setViewportSize({ width, height: 900 });
     for (const id of ['B6', 'B12', 'F24', 'F25', 'F26', 'F33', 'C15', 'C21', 'G4', 'TS4']) {
-      const over = await page.locator(ex(id)).evaluate(el => el.scrollWidth - el.clientWidth);
+      const over = await page.locator(ex(id)).evaluateAll(nodes => Math.max(...nodes.map(el => el.scrollWidth - el.clientWidth)));
       check(`${id} at ${width}px has no horizontal overflow`, over <= 1, String(over));
     }
   }

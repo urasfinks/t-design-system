@@ -33,7 +33,7 @@ try {
   ));
   assert.ok(headings.length > 0 && headings.every(Boolean), 'all section headings share title, description and class tag structure');
   assert.equal(await page.locator('h1, h2, h3, h4, h5, h6').first().evaluate(el => el.tagName), 'H1', 'the page title is the first heading; navigation groups are not headings');
-  assert.equal(await page.locator('.sidebar [role="group"][aria-labelledby]').count(), 6, 'navigation groups keep an accessible name');
+  assert.equal(await page.locator('.sidebar [role="group"][aria-labelledby]').count(), 8, 'navigation groups keep an accessible name');
   const readingSizes = await page.locator('.section-heading p, .example-rule').evaluateAll(elements => [...new Set(elements.map(el => getComputedStyle(el).fontSize))]);
   assert.deepEqual(readingSizes, ['16px'], 'running catalog text is 16px');
   // Example forms are copied as reference markup, so they behave like real forms.
@@ -56,7 +56,7 @@ try {
   assert.equal(await page.locator('#orders-example > .tg-list-item').count(), 5);
   assert.equal(await page.locator('iframe[src="bottom-panel.html"]').count(), 0);
   assert.equal(await page.locator('#orders-example').evaluate(el => getComputedStyle(el).position), 'static');
-  assert.equal(await page.locator('#data #demo-orders-table, #data #demo-payments').count(), 2, 'catalog demonstrates a plain and an interactive data table');
+  assert.equal(await page.locator('#data #demo-orders-table, #compositions #demo-payments').count(), 2, 'catalog demonstrates a plain and an interactive data table');
   assert.equal(await page.locator('#demo-orders-table thead .tg-table__num').count(), 2, 'numeric columns include quantity and sum');
   assert.equal(await page.locator('#demo-orders-table tbody td.tg-table__num').count(), 4);
   assert.equal(await page.locator('#demo-orders-table tfoot .tg-table__num').count(), 1);
@@ -65,8 +65,8 @@ try {
   const rowEdges = await page.locator('#demo-orders-table tbody tr').last().locator('th, td').evaluateAll(cells => cells.map(el => getComputedStyle(el).borderBottomWidth));
   assert.equal(new Set(rowEdges).size, 1, 'last body row retains a complete separator before totals');
   assert.notEqual(rowEdges[0], '0px');
-  await page.locator('#lists .tg-disclosure:not(.tg-accordion *) .tg-disclosure__trigger').click();
-  assert.equal(await page.locator('#lists .tg-disclosure:not(.tg-accordion *)').getAttribute('open'), '');
+  await page.locator('#lists .tg-disclosure:not(.tg-accordion *) .tg-disclosure__trigger').first().click();
+  assert.equal(await page.locator('#lists .tg-disclosure:not(.tg-accordion *)').first().getAttribute('open'), '');
   await page.locator('#transition-toggle').click();
   await page.locator('#transition-demo').waitFor({ state: 'hidden' });
   assert.equal(await page.locator('#transition-demo').isVisible(), false);
@@ -90,7 +90,7 @@ try {
       probe.remove();
       return {
         panel, main, page: getComputedStyle(document.body).backgroundColor,
-        stages: [...document.querySelectorAll('.example-body, .preview-stage')].map(el => getComputedStyle(el).backgroundColor),
+        stages: [...document.querySelectorAll('.example-panel > .example-body, .preview-stage')].map(el => getComputedStyle(el).backgroundColor),
         tableHeaders: [...document.querySelectorAll('.tg-table thead th')].map(el => getComputedStyle(el).backgroundColor),
       };
     });

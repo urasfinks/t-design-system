@@ -15,11 +15,18 @@ export function initCatalogSearch({ root = document, navigate } = {}) {
   const results = root.querySelector('#catalog-search-results');
   const status = root.querySelector('#catalog-search-status');
   const openers = [...root.querySelectorAll('[data-catalog-search-open]')];
-  const entries = [...root.querySelectorAll('main > section[id]')].map(section => ({
-    id: section.id,
-    title: headingText(section.querySelector(':scope > .section-heading h2')) || headingText(section.querySelector(':scope h1')) || section.id,
-    keywords: normalize(`${section.dataset.searchKeywords || ''} ${[...section.querySelectorAll('[data-search-tokens]')].map(row => row.dataset.searchTokens).join(' ')}`),
-  }));
+  const entries = [...root.querySelectorAll('main [data-catalog-title]')].map(section => {
+    const parent = section.dataset.catalogParent && root.getElementById(section.dataset.catalogParent);
+    const title = parent
+      ? `${parent.dataset.catalogTitle} / ${section.dataset.catalogTitle}`
+      : headingText(section.querySelector(':scope > .section-heading h2')) || headingText(section.querySelector(':scope h1')) || section.dataset.catalogTitle;
+    const tokens = [...section.querySelectorAll('[data-search-tokens]')].map(row => row.dataset.searchTokens).join(' ');
+    return {
+      id: section.id,
+      title,
+      keywords: normalize(`${section.dataset.catalogGroup || ''} ${section.dataset.searchKeywords || ''} ${tokens}`),
+    };
+  });
   let matches = [];
   let activeIndex = -1;
   let previousFocus;

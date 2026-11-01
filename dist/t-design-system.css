@@ -2161,6 +2161,15 @@
     flex-wrap: nowrap;
     vertical-align: middle;
   }
+  .tg-avatar-group--on-main {
+    --avatar-group-ring: var(--background-main);
+  }
+  .tg-avatar-group--on-panel {
+    --avatar-group-ring: var(--background-panel);
+  }
+  .tg-avatar-group--on-muted {
+    --avatar-group-ring: var(--background-muted);
+  }
   .tg-avatar-group > .tg-avatar {
     padding: 0;
     border-width: 0;

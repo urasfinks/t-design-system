@@ -12,15 +12,15 @@ try {
   const errors = [];
   page.on('pageerror', error => errors.push(error.message));
   await page.goto('http://127.0.0.1:4186/docs/');
-  const SECTIONS = 28;
-  assert.equal(await page.locator('main > section').count(), SECTIONS);
+  const SECTIONS = await page.locator('main [data-catalog-title]').count();
+  assert.ok(SECTIONS > 100, 'families and subsections are independently reachable');
   assert.equal(await page.locator('.sidebar .nav-link').count(), SECTIONS);
   assert.equal(await page.locator('#section-select option').count(), SECTIONS);
-  assert.equal(await page.locator('.nav-group-label').count(), 6);
-  assert.equal(await page.locator('#section-select optgroup').count(), 6);
+  assert.equal(await page.locator('.nav-group-label').count(), 8);
+  assert.equal(await page.locator('#section-select optgroup').count(), 8);
   // Sidebar, mobile select and page order describe the same sections.
   const order = await page.evaluate(() => ({
-    sections: [...document.querySelectorAll('main > section')].map(section => section.id),
+    sections: [...document.querySelectorAll('main [data-catalog-title]')].map(section => section.id),
     links: [...document.querySelectorAll('.sidebar .nav-link')].map(link => link.hash.slice(1)),
     options: [...document.querySelectorAll('#section-select option')].map(option => option.value),
   }));
@@ -39,10 +39,10 @@ try {
   await page.keyboard.press('Control+K');
   assert.equal(await page.locator('dialog[open]').count(), 1, 'shortcut does not reopen an active modal');
   await input.fill('  КНОПКИ  ');
-  assert.equal(await page.locator('#catalog-search-results [role="option"]').count(), 1);
+  assert.ok(await page.locator('#catalog-search-results [role="option"]').count() >= 1);
   assert.match(await page.locator('#catalog-search-results').textContent(), /Кнопки/);
   await input.fill('.tg-switch');
-  assert.match(await page.locator('#catalog-search-results').textContent(), /#choices/);
+  assert.match(await page.locator('#catalog-search-results').textContent(), /#forms/);
   await input.fill('aria-pressed');
   assert.match(await page.locator('#catalog-search-results').textContent(), /#selection/);
   await input.fill('--background-panel');
@@ -54,7 +54,7 @@ try {
   await input.fill('я'.repeat(500));
   assert.equal(await page.locator('#catalog-search-results [role="option"]').count(), 0);
 
-  await input.fill('формы');
+  await input.fill('Формы ввода');
   await input.press('ArrowDown');
   assert.match(await input.getAttribute('aria-activedescendant'), /catalog-search-result-/);
   await input.press('Enter');
@@ -65,7 +65,7 @@ try {
 
   await page.keyboard.press('/');
   assert.equal(await dialog.evaluate(el => el.open), true);
-  await input.fill('формы');
+  await input.fill('Формы ввода');
   await input.press('ArrowDown');
   await input.press('Enter');
   await page.waitForFunction(() => !document.querySelector('#catalog-search').open);
@@ -98,10 +98,13 @@ try {
   assert.deepEqual(errors, []);
   const staticPage = await browser.newPage({ javaScriptEnabled: false });
   await staticPage.goto('http://127.0.0.1:4186/docs/');
+  assert.equal(await staticPage.locator('.sidebar .nav-link').count(), SECTIONS);
+  await staticPage.locator('.catalog-nav-family > details').evaluateAll(nodes => nodes.forEach(node => { node.open = true; }));
   assert.equal(await staticPage.locator('.sidebar .nav-link:visible').count(), SECTIONS);
   assert.equal(await staticPage.locator('#buttons [data-example]:visible').count(), await staticPage.locator('#buttons [data-example]').count());
-  assert.ok(await staticPage.locator('#buttons [data-example]').count() >= 4);
-  assert.equal(await staticPage.locator('.example-rule:visible').count(), await staticPage.locator('[data-example]').count() + 1, 'rules are static text, readable without JavaScript');
+  assert.equal(await staticPage.locator('#buttons [data-example]').count(), 1);
+  assert.ok(await staticPage.locator('#buttons button').count() >= 30, 'all live button variants remain in the overview');
+  assert.ok(await staticPage.locator('[data-example]').evaluateAll(examples => examples.every(example => example.closest('.example-panel').querySelector(':scope > .example-rule'))), 'every example has a static rule without JavaScript');
 
   // Deep links must land on their section even though the icon gallery grows the page after load.
   for (const id of ['forms', 'data', 'effects']) {
