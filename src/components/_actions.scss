@@ -76,10 +76,9 @@
       border-radius: 50%;
       // The chevron sits on the action fill in the text colour of that fill.
       background: var(--icon-chevron-right-on-action) center / 1.25rem no-repeat, var(--action-bg);
-      box-shadow: var(--shadow-control);
     }
     &::-moz-range-track { block-size: var(--control-h); background: transparent; }
-    &::-moz-range-thumb { inline-size: var(--control-h); block-size: var(--control-h); border: 0; border-radius: 50%; background: var(--icon-chevron-right-on-action) center / 1.25rem no-repeat, var(--action-bg); box-shadow: var(--shadow-control); }
+    &::-moz-range-thumb { inline-size: var(--control-h); block-size: var(--control-h); border: 0; border-radius: 50%; background: var(--icon-chevron-right-on-action) center / 1.25rem no-repeat, var(--action-bg); }
     &:focus-visible { outline: none; }
     &:focus-visible::-webkit-slider-thumb { outline: 2px solid var(--text-link); outline-offset: 3px; }
     &:focus-visible::-moz-range-thumb { outline: 2px solid var(--text-link); outline-offset: 3px; }

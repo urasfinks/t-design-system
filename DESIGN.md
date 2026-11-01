@@ -30,8 +30,8 @@ The signature is the system itself: live components, clear examples, readable co
   from WCAG contrast, but the reason for unavailability stays readable nearby.
 - Numbers that are compared (amounts, quantities, totals) use `.tg-num` or
   `.tg-table__num`: tabular numerals aligned to the inline end.
-- Flat cards use a border, not a shadow. Shadows distinguish selected segmented
-  controls and floating overlays. Glass is an opt-in material demonstrated in
+- Flat cards use a border, not a shadow. Shadows distinguish floating overlays and genuinely layered or dragged surfaces.
+  Selected segments and internal controls stay flat. Glass is an opt-in material demonstrated in
   the effects catalog, not the default surface.
 - Touch controls keep a minimum 44 px target; long labels wrap. Hover requires
   hover capability. Keyboard focus stays visible; reduced motion removes movement.
@@ -170,8 +170,7 @@ label uses the neutral secondary modifier; “Новый проект” uses th
 modifier. Both are borderless.
 The base badge is borderless too; only a badge that is a link or button
 (`a.tg-badge[href]`, `button.tg-badge`) gets an outline (see Outline semantics). Direct avatar
-badge children retain a surface-separation border and shadow for overlapping
-geometry. Quantity overlays use the secondary badge.
+badge children retain a surface-separation border without a cast shadow. Quantity overlays use the secondary badge.
 `tg-avatar--outlined` keeps the filled initials circle and a single neutral outer
 2px ring across the existing padding gap, matching the source reference. Direct
 initials use font-weight 400 in this variant. Selection

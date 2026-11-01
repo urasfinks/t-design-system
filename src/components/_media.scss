@@ -101,7 +101,7 @@
     border-radius: 50%;
     background: var(--overlay-text);
     color: var(--overlay-bg);
-    box-shadow: var(--shadow-overlay);
+    border: var(--border-action);
     translate: -50% -50%;
     pointer-events: none;
     &:dir(rtl) { translate: 50% -50%; }

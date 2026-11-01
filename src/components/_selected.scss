@@ -23,12 +23,11 @@
   cursor: pointer;
 }
 
-// The chosen segment rises to the surface above the trough.
+// Selection changes fill and text on the same surface; it does not create a layer.
 @mixin segment-current($background: var(--section-bg-color)) {
   --control-idle-bg: #{$background};
   --control-hover-bg: var(--control-idle-bg);
   color: var(--text-color);
-  box-shadow: var(--shadow-control);
 }
 
 // Hovering a quiet segment brings its text to full strength (fine pointers only).

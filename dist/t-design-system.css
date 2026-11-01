@@ -629,7 +629,7 @@
     --menu-item-h: 2.75rem;
     display: grid;
     align-content: start;
-    gap: 0;
+    gap: var(--space-1);
     min-inline-size: min(12rem, var(--tg-menu-available-inline, 100vw));
     max-inline-size: min(22rem, 100vw - var(--space-8), var(--tg-menu-available-inline, 100vw));
     max-block-size: min(28rem, 100dvh - var(--space-8), var(--tg-menu-available-block, 100dvh));
@@ -645,6 +645,10 @@
     font-size: var(--fs);
     line-height: 1.4;
     overflow-wrap: anywhere;
+  }
+  .tg-menu [role=group] {
+    display: grid;
+    gap: var(--space-1);
   }
   .tg-menu[popover] {
     position: fixed;
@@ -741,7 +745,6 @@
     --control-idle-bg: var(--surface-muted);
     --control-hover-bg: var(--control-idle-bg);
     color: var(--text-color);
-    box-shadow: var(--shadow-control);
     font-weight: var(--fw-medium);
   }
   .tg-menu__item:is([role=menuitemcheckbox], [role=menuitemradio])[aria-checked=true]::before {
@@ -1036,7 +1039,6 @@
     block-size: calc(var(--h) - 0.25rem);
     border-radius: 50%;
     background: var(--switch-knob-color);
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
     transition: transform var(--duration) var(--ease);
   }
   .tg-switch:is([aria-checked=true], .tg-switch--on)::before {
@@ -1775,7 +1777,6 @@
     --control-idle-bg: var(--section-bg-color);
     --control-hover-bg: var(--control-idle-bg);
     color: var(--text-color);
-    box-shadow: var(--shadow-control);
   }
   @media (hover: hover) and (pointer: fine) {
     .tg-tab:where(:not(:disabled, [aria-disabled=true], [aria-selected=true], [disabled] *, [aria-disabled=true] *, [inert], [inert] *)):hover {
@@ -1844,7 +1845,6 @@
     --control-idle-bg: var(--section-bg-color);
     --control-hover-bg: var(--control-idle-bg);
     color: var(--text-color);
-    box-shadow: var(--shadow-control);
   }
   @media (hover: hover) and (pointer: fine) {
     .tg-segmented__item:where(:not(:disabled, [aria-disabled=true], [aria-pressed=true], :has(> input:checked), [disabled] *, [aria-disabled=true] *, [inert], [inert] *)):hover {
@@ -2169,7 +2169,6 @@
     inset-block-start: -0.5rem;
     inset-inline-end: -0.55rem;
     border: 1px solid var(--section-bg-color-transparent);
-    box-shadow: var(--shadow-soft);
     pointer-events: none;
   }
   .tg-avatar-group {
@@ -2232,6 +2231,9 @@
     --control-idle-bg: light-dark(var(--danger-soft), var(--danger-strong));
     color: light-dark(var(--danger-strong), var(--text-main));
   }
+  .tg-badge .tg-icon {
+    --icon-size: var(--space-4);
+  }
   .tg-badge:has(> .tg-badge__dot) {
     gap: var(--space-1);
   }
@@ -2250,7 +2252,6 @@
   :is(button, a[href]).tg-badge {
     border: var(--border-action);
     min-inline-size: var(--control-h);
-    min-block-size: var(--control-h);
     font-size: var(--fs-sm);
     text-decoration: none;
     cursor: pointer;
@@ -5983,7 +5984,6 @@
     --control-idle-bg: var(--surface-muted);
     --control-hover-bg: var(--control-idle-bg);
     color: var(--text-color);
-    box-shadow: var(--shadow-control);
     font-weight: var(--fw-medium);
   }
   .tg-listbox__option[aria-selected=true]::after {
@@ -6634,7 +6634,7 @@
     block-size: 1.125rem;
     border: 2px solid white;
     border-radius: 50%;
-    box-shadow: 0 0 0 1px black, var(--shadow-control);
+    box-shadow: 0 0 0 1px black;
     translate: -50% -50%;
     pointer-events: none;
   }
@@ -7632,7 +7632,6 @@
     --control-idle-bg: var(--surface-muted);
     --control-hover-bg: var(--control-idle-bg);
     color: var(--text-color);
-    box-shadow: var(--shadow-control);
     font-weight: var(--fw-medium);
   }
   .tg-nav-menu__text {
@@ -8652,7 +8651,6 @@
     block-size: var(--control-h);
     border-radius: 50%;
     background: var(--icon-chevron-right-on-action) center/1.25rem no-repeat, var(--action-bg);
-    box-shadow: var(--shadow-control);
   }
   .tg-slide-confirm__thumb::-moz-range-track {
     block-size: var(--control-h);
@@ -8664,7 +8662,6 @@
     border: 0;
     border-radius: 50%;
     background: var(--icon-chevron-right-on-action) center/1.25rem no-repeat, var(--action-bg);
-    box-shadow: var(--shadow-control);
   }
   .tg-slide-confirm__thumb:focus-visible {
     outline: none;
@@ -8915,7 +8912,7 @@
     border-radius: 50%;
     background: var(--overlay-text);
     color: var(--overlay-bg);
-    box-shadow: var(--shadow-overlay);
+    border: var(--border-action);
     translate: -50% -50%;
     pointer-events: none;
   }

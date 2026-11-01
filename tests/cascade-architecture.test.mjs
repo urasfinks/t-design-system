@@ -58,7 +58,10 @@ test('shared engines own surfaces, rows, selection and steps; owners only includ
   // Every dropdown is one look: the list, its rows and the chosen row come from the option engine.
   const option = await read('src/components/_option.scss');
   assert.match(option, /@mixin list[\s\S]*@include floating\.surface/);
-  assert.match(option, /@mixin chosen \{\s*@include selected\.segment-current/);
+  const chosen = option.match(/@mixin chosen \{([^}]+)\}/)?.[1];
+  assert.ok(chosen, 'chosen row styling is defined');
+  assert.match(chosen, /--control-idle-bg: var\(--surface-muted\)/);
+  assert.doesNotMatch(chosen, /box-shadow|segment-current/, 'selected option rows do not borrow elevation from segments');
   const owners = { menu, pickers: await read('src/components/_pickers.scss'), 'app-nav': await read('src/components/_app-nav.scss') };
   for (const [name, source] of Object.entries(owners)) {
     assert.match(source, /@include option\.list/, `${name} uses the dropdown list`);

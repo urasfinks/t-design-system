@@ -1,7 +1,6 @@
 // Option row engine: one 44 px row for menus, listboxes, command palettes, sidebars and
 // tables of contents. Owners include it and set only their parameters.
 @use 'floating';
-@use 'selected';
 
 // Every dropdown (menu, listbox, combobox, navigation panel) is one look: a floating
 // surface; chosen rows use the shared soft-accent selection.
@@ -18,9 +17,12 @@
   &[data-active] { background: var(--control-hover-bg); }
 }
 
-// Chosen options use the same quiet surface and elevation as existing controls.
+// Selection stays on the popup surface: fill and mark distinguish the row,
+// while elevation belongs to the containing floating panel.
 @mixin chosen {
-  @include selected.segment-current(var(--surface-muted));
+  --control-idle-bg: var(--surface-muted);
+  --control-hover-bg: var(--control-idle-bg);
+  color: var(--text-color);
   font-weight: var(--fw-medium);
 }
 

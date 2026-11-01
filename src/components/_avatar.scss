@@ -96,7 +96,6 @@
       inset-block-start: -.5rem;
       inset-inline-end: -.55rem;
       border: 1px solid var(--section-bg-color-transparent);
-      box-shadow: var(--shadow-soft);
       pointer-events: none;
     }
   }
@@ -169,6 +168,9 @@
       color: light-dark(var(--danger-strong), var(--text-main));
     }
   }
+  // Badge icons stay compact: the default 20px icon plus padding and border
+  // would otherwise make an interactive badge taller than a text badge.
+  .tg-badge .tg-icon { --icon-size: var(--space-4); }
   // A status dot repeats the badge text colour; the word still carries the meaning.
   .tg-badge:has(> .tg-badge__dot) { gap: var(--space-1); }
   .tg-badge__dot {
@@ -187,7 +189,6 @@
   :is(button, a[href]).tg-badge {
     border: var(--border-action);
     min-inline-size: var(--control-h);
-    min-block-size: var(--control-h);
     font-size: var(--fs-sm);
     text-decoration: none;
     cursor: pointer;
