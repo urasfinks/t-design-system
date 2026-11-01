@@ -295,13 +295,7 @@
   </div>
   <p class="example-rule">Переключатель <code translate="no">.tg-switch</code> включает функцию сразу; состояние — aria-checked. Checkbox <code translate="no">.tg-check</code> подходит для независимых настроек и множественного выбора в форме. Кнопка «Сохранить» отправляет форму; переключатель её не заменяет.</p></div>
 
-  <div class="example-panel"><div class="example-body tg-col" data-ui data-example>
-<div class="tg-row">
-<button type="button" class="tg-avatar" aria-label="Открыть профиль Анны"><span class="tg-avatar__initials">АК</span></button>
-<button type="button" class="tg-avatar" aria-label="Выбрать участника Александра" aria-pressed="true"><span class="tg-avatar__initials">А</span></button>
-</div>
-  </div>
-  <p class="example-rule">Кликабельный аватар <code translate="no">button.tg-avatar</code> открывает профиль или выбирает человека. Назовите действие и человека через aria-label. Выбор хранится в aria-pressed или aria-checked согласно роли. Обычный <code translate="no">span.tg-avatar</code> только показывает изображение и не является кнопкой.</p></div>
+  <p class="example-rule">Действия с участниками показаны в разделе <a href="#avatars">«Аватары»</a>.</p>
 
   <div class="example-panel"><div class="example-body tg-col" data-ui data-example>
 <div class="tg-row"><a class="tg-link" href="#forms">Условия отправки</a><a class="tg-btn tg-btn--secondary" href="#lists">Открыть список</a></div>
@@ -768,19 +762,30 @@
 </section>
 
 <section id="avatars" class="catalog-section" data-search-keywords="аватары участники инициалы выбор счётчик .tg-avatar .tg-avatar--outlined .tg-avatar__initials .tg-avatar__clip группа стек перекрытие .tg-avatar-group .tg-avatar-group__more">
-  <div class="section-heading"><div><h2>Аватары</h2><p>Инициалы, счётчики и выбор участника.</p></div><code translate="no" class="class-tag">.tg-avatar</code></div>
+  <div class="section-heading"><div><h2>Аватары</h2><p>Все варианты аватаров: инициалы, уведомления, действия, выбор участника и группы со счётчиками.</p></div><code translate="no" class="class-tag">.tg-avatar</code></div>
+  <h3>Инициалы и уведомления</h3>
   <div class="example-panel"><div class="example-body tg-row" data-ui data-example>
 <span class="tg-avatar"><span class="tg-avatar__initials">МК</span></span>
 <span class="tg-avatar"><span class="tg-avatar__initials">ИП</span><span class="tg-badge tg-badge--secondary" aria-label="3 уведомления">3</span></span>
 <span class="tg-avatar tg-avatar-initials"><span class="tg-avatar__clip" aria-label="Ещё 5 участников">+5</span></span>
   </div>
   <p class="example-rule">Аватар сам по себе остаётся изображением без рамки. Счётчик в углу показывает статус и не нажимается. Пунктир у «+5» обозначает свёрнутую группу, а не действие.</p></div>
+  <h3>Действия с участником</h3>
+  <div class="example-panel"><div class="example-body tg-col" data-ui data-example>
+<div class="tg-row">
+<button type="button" class="tg-avatar" aria-label="Открыть профиль Анны"><span class="tg-avatar__initials">АК</span></button>
+<button type="button" class="tg-avatar" aria-label="Выбрать участника Александра" aria-pressed="true"><span class="tg-avatar__initials">А</span></button>
+</div>
+  </div>
+  <p class="example-rule">Кликабельный аватар <code translate="no">button.tg-avatar</code> открывает профиль или выбирает человека. Назовите действие и человека через aria-label. Выбор хранится в aria-pressed или aria-checked согласно роли. Обычный <code translate="no">span.tg-avatar</code> только показывает изображение и не является кнопкой.</p></div>
+  <h3>Выбор участника</h3>
   <div class="example-panel"><div class="example-body tg-row" data-ui data-example>
 <button class="tg-avatar tg-avatar--outlined" role="checkbox" aria-checked="true" aria-label="Выбрать Марию"><span class="tg-avatar__initials" aria-hidden="true">МК</span></button>
 <button class="tg-avatar tg-avatar--outlined" role="checkbox" aria-checked="false" aria-label="Выбрать Александра"><span class="tg-avatar__initials" aria-hidden="true">АК</span></button>
 <span class="tg-text-sm tg-text-muted">Кто участвует в заказе</span>
   </div>
   <p class="example-rule">Когда аватар можно нажать, например чтобы выбрать участника, он становится кнопкой с доступным именем и получает рамку. Выбранный участник отмечен акцентным кольцом и <code translate="no">aria-checked</code>.</p></div>
+  <h3>Группа участников</h3>
   <div class="example-panel"><div class="example-body tg-row" data-ui data-example data-spec="M5">
 <div class="tg-avatar-group" role="group" aria-label="Команда проекта: 7 участников" style="--avatar-group-ring: var(--background-main)">
   <span class="tg-avatar"><span class="tg-avatar__initials">АК</span></span>
@@ -790,6 +795,17 @@
 </div>
   </div>
   <p class="example-rule">Группа аватаров перекрывается на четверть; каждое изображение отделено кольцом цвета фона, последний элемент считает остальных. Имя всей группе даёт <code translate="no">aria-label</code>, отдельные аватары остаются декоративными. Цвет кольца подбирают под фон, на котором лежит группа: <code translate="no">--avatar-group-ring</code> (здесь — <code translate="no">--background-main</code>).</p></div>
+  <h3>Большое число участников</h3>
+  <div class="example-panel"><div class="example-body tg-row" data-ui data-example>
+<div role="group" class="tg-avatar-group" aria-label="Проголосовали: 105991">
+  <span class="tg-avatar" title="Анна Ковалёва"><span class="tg-avatar__initials">АК</span></span>
+  <span class="tg-avatar" title="Максим"><span class="tg-avatar__initials">М</span></span>
+  <span class="tg-avatar" title="Дарья Л."><span class="tg-avatar__initials">ДЛ</span></span>
+  <span class="tg-avatar tg-avatar-group__more" title="Ещё участников: 105988">+105988</span>
+</div>
+  </div>
+  <p class="example-rule">Длинный счётчик расширяется в капсулу по содержимому, сохраняя высоту аватара и внутренние отступы. Полное число остаётся видимым; сокращать его или добавлять стили в приложении не нужно.</p></div>
+  <p>Аватары в составе других компонентов: <a href="#pickers">список выбора</a>, <a href="#surfaces">карточки и профиль</a>, <a href="#data">таблицы участников</a>, <a href="#app-nav">навигация приложения</a>, <a href="#compositions">комментарии и ввод сообщения</a>. Варианты самого аватара и их HTML собраны здесь.</p>
 </section>
 
 <section id="data" class="catalog-section" data-search-keywords="данные таблица сводка суммы заказы .tg-table .tg-table__num .tg-num .tg-summary выбор строк сортировка массовые действия карточки на телефоне .tg-table__select .tg-table__sort .tg-table__cell-main .tg-table__cell-meta .tg-table--stack .tg-table--compact .tg-table--caption-bottom .tg-bulk-bar фильтры поиск по таблице столбцы счётчик сбросить .tg-table-toolbar .tg-table-toolbar__filters .tg-table-toolbar__count сортируемый список перетаскивание порядок ручка .tg-sortable .tg-sortable__item .tg-sortable__handle">

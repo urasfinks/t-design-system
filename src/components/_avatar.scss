@@ -114,6 +114,12 @@
       border-width: 0;
       > :is(.tg-avatar__initials, .tg-avatar__clip) { box-shadow: 0 0 0 2px var(--avatar-group-ring, var(--ring-bg)); }
       & + .tg-avatar { margin-inline-start: calc(var(--icon-avatar) * -.25); }
+      &.tg-avatar-group__more {
+        inline-size: max-content;
+        min-inline-size: var(--icon-avatar);
+        padding-inline: var(--space-2);
+        border-radius: var(--icon-avatar);
+      }
     }
   }
   .tg-avatar-group__more {

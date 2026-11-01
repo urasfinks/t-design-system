@@ -2171,6 +2171,12 @@
   .tg-avatar-group > .tg-avatar + .tg-avatar {
     margin-inline-start: calc(var(--icon-avatar) * -0.25);
   }
+  .tg-avatar-group > .tg-avatar.tg-avatar-group__more {
+    inline-size: max-content;
+    min-inline-size: var(--icon-avatar);
+    padding-inline: var(--space-2);
+    border-radius: var(--icon-avatar);
+  }
   .tg-avatar-group__more {
     background: var(--background-muted);
     color: var(--text-secondary);

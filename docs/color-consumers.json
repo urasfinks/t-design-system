@@ -1,7 +1,7 @@
 {
   "componentFiles": 38,
   "foundationFiles": 2,
-  "declarations": 798,
+  "declarations": 799,
   "consumers": [
     {
       "file": "base/_index.scss",
@@ -566,6 +566,14 @@
         "--ring-bg"
       ],
       "value": "0 0 0 2px var(--avatar-group-ring, var(--ring-bg))"
+    },
+    {
+      "file": "components/_avatar.scss",
+      "property": "border-radius",
+      "roles": [
+        "--icon-avatar"
+      ],
+      "value": "var(--icon-avatar)"
     },
     {
       "file": "components/_avatar.scss",
