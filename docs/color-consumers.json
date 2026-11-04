@@ -1,5 +1,5 @@
 {
-  "componentFiles": 38,
+  "componentFiles": 40,
   "foundationFiles": 2,
   "declarations": 802,
   "consumers": [
@@ -860,7 +860,7 @@
       "value": "var(--accent-main)"
     },
     {
-      "file": "components/_buttons.scss",
+      "file": "components/_button-surface.scss",
       "property": "--control-idle-bg",
       "roles": [
         "--surface-muted"
@@ -868,7 +868,7 @@
       "value": "var(--surface-muted)"
     },
     {
-      "file": "components/_buttons.scss",
+      "file": "components/_button-surface.scss",
       "property": "--control-hover-bg",
       "roles": [
         "--control-idle-bg"
@@ -876,7 +876,7 @@
       "value": "var(--control-idle-bg)"
     },
     {
-      "file": "components/_buttons.scss",
+      "file": "components/_button-surface.scss",
       "property": "--control-color",
       "roles": [
         "--text-color"
@@ -884,7 +884,7 @@
       "value": "var(--text-color)"
     },
     {
-      "file": "components/_buttons.scss",
+      "file": "components/_button-surface.scss",
       "property": "border",
       "roles": [
         "--border-action"
@@ -892,7 +892,7 @@
       "value": "var(--border-action)"
     },
     {
-      "file": "components/_buttons.scss",
+      "file": "components/_button-surface.scss",
       "property": "background",
       "roles": [
         "--control-idle-bg"
@@ -900,7 +900,7 @@
       "value": "var(--control-idle-bg)"
     },
     {
-      "file": "components/_buttons.scss",
+      "file": "components/_button-surface.scss",
       "property": "color",
       "roles": [
         "--control-color"
@@ -908,7 +908,7 @@
       "value": "var(--control-color)"
     },
     {
-      "file": "components/_buttons.scss",
+      "file": "components/_button-surface.scss",
       "property": "border-radius",
       "roles": [
         "--radius-control"

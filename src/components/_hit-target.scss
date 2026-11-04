@@ -1,0 +1,17 @@
+// Compact visible controls retain their geometry; the transparent pseudo-element
+// extends pointer hit testing to the shared minimum in both logical directions.
+// Include only on hosts whose ::before is free and whose parent does not clip it.
+@mixin compact {
+  position: relative;
+  &::before {
+    content: '';
+    position: absolute;
+    // Physical centering is direction-independent. Percentages use the padding
+    // box, so centering an explicitly sized target also handles transparent borders.
+    top: 50%;
+    left: 50%;
+    inline-size: max(100%, var(--control-h));
+    block-size: max(100%, var(--control-h));
+    transform: translate(-50%, -50%);
+  }
+}

@@ -13,7 +13,7 @@ $ghosts: ':is(.tg-btn--ghost, .tg-icon-btn--ghost, .tg-search__clear, .tg-tag-in
     --control-idle-bg: transparent;
     --control-hover-bg: var(--control-hover-surface);
   }
-  #{$controls} {
+  #{$controls}, input[type='file'].tg-input::file-selector-button {
     touch-action: manipulation;
     // Owners may make paint instant (menu rows follow the keyboard) without redefining the engine.
     transition: background-color var(--control-paint-duration, var(--duration)) var(--ease), color var(--control-paint-duration, var(--duration)) var(--ease),
@@ -39,7 +39,7 @@ $ghosts: ':is(.tg-btn--ghost, .tg-icon-btn--ghost, .tg-search__clear, .tg-tag-in
   }
   @media (hover: hover) and (pointer: fine) {
     // A control inside its label (radio, checkbox) answers the label's hover too.
-    #{$controls}#{$available}:hover, .tg-choice:hover > #{$controls}#{$available} {
+    #{$controls}#{$available}:hover, .tg-choice:hover > #{$controls}#{$available}, input[type='file'].tg-input#{$available}:hover::file-selector-button {
       background-color: #{color.tone(var(--control-hover-bg), var(--control-hover-lightness-step))};
       filter: var(--control-hover-filter, brightness(var(--control-hover-brightness, 1)));
       cursor: pointer;
@@ -51,13 +51,14 @@ $ghosts: ':is(.tg-btn--ghost, .tg-icon-btn--ghost, .tg-search__clear, .tg-tag-in
     #{$ghosts}#{$available}:hover:where(:not(:active, [data-pressed='true'])) {
       color: var(--text-color);
     }
-    #{$controls}:is(:disabled, [disabled], [aria-disabled='true'], [disabled] *, [aria-disabled='true'] *):hover {
+    #{$controls}:is(:disabled, [disabled], [aria-disabled='true'], [disabled] *, [aria-disabled='true'] *):hover, input[type='file'].tg-input:disabled:hover::file-selector-button {
       background-color: var(--control-idle-bg);
       filter: none;
       cursor: not-allowed;
     }
   }
+  input[type='file'].tg-input:disabled, input[type='file'].tg-input:disabled::file-selector-button { cursor: not-allowed; }
   @media (prefers-reduced-motion: reduce) {
-    #{$controls} { transition: none; }
+    #{$controls}, input[type='file'].tg-input::file-selector-button { transition: none; }
   }
 }

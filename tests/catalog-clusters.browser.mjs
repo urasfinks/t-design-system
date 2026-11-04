@@ -31,8 +31,8 @@ try {
   }
   assert.equal(await page.locator('#buttons > .example-panel').count(), 1, 'buttons share one overview block');
   assert.equal(await page.locator('#buttons [data-example]').count(), 1, 'buttons have one HTML example');
-  assert.equal(await page.locator('#buttons .example-code').count(), 1, 'buttons have one HTML disclosure');
-  const buttonHTML = await page.locator('#buttons .example-code code').textContent();
+  assert.equal(await page.locator('#buttons-overview > .example-code').count(), 1, 'buttons retain one full HTML disclosure');
+  const buttonHTML = await page.locator('#buttons-overview > .example-code code').textContent();
   assert.ok(buttonHTML.includes('demo-async-save') && buttonHTML.includes('demo-split-trigger'), 'the shared HTML includes interactive variants');
   assert.equal(await page.locator('#buttons-overview tbody > tr').count(), 10, 'all ten button categories remain');
   assert.equal(await page.locator('.section-heading').first().evaluate(el => getComputedStyle(el).paddingTop), '0px', 'heading does not double the family spacing');
@@ -45,7 +45,7 @@ try {
   assert.equal(await page.locator('#buttons > .example-panel .tg-avatar, #buttons > .example-panel .tg-chip, #buttons > .example-panel .tg-tabs, #buttons > .example-panel .tg-list-item').count(), 0, 'unrelated families are removed from buttons');
   assert.equal(await page.locator('#avatars > .example-panel').count(), 1, 'avatars share one overview block');
   assert.equal(await page.locator('#avatars [data-example]').count(), 1, 'avatars have one HTML example');
-  assert.equal(await page.locator('#avatars .example-code').count(), 1, 'avatars have one HTML disclosure');
+  assert.equal(await page.locator('#avatars-overview > .example-code').count(), 1, 'avatars retain one full HTML disclosure');
   assert.equal(await page.locator('#avatars-overview tbody > tr').count(), 5, 'all five avatar categories remain');
   assert.equal(await page.locator('#avatars .tg-avatar-group').count(), 2, 'both avatar groups remain with avatars');
   assert.ok(await page.locator('#surfaces .tg-card--featured').count() > 0, 'featured cards stay in the card family');
@@ -104,8 +104,8 @@ try {
   assert.equal(await page.locator('#avatar-large-group').evaluate(el => el === document.activeElement), true);
   assert.equal(await page.locator('.nav-link[href="#avatar-large-group"]').evaluate(el => el.closest('details').open), true);
   const counter = page.locator('#avatars [title="Ещё участников: 105988"]');
-  await counter.locator('xpath=ancestor::div[contains(@class,"example-panel")]').locator('summary').click();
-  assert.ok((await counter.locator('xpath=ancestor::div[contains(@class,"example-panel")]').locator('.example-code code').textContent()).includes('+105988'));
+  await counter.locator('xpath=ancestor::div[contains(@class,"example-panel")]').locator(':scope > .example-code > summary').click();
+  assert.ok((await counter.locator('xpath=ancestor::div[contains(@class,"example-panel")]').locator(':scope > .example-code code').textContent()).includes('+105988'));
   assert.deepEqual(errors, []);
   console.log(`${engine}: ${map.length} preserved panels, family ownership, nested navigation, HTML, 3 themes, 320/1440px passed`);
 } finally { await browser?.close(); server.kill(); }

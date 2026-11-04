@@ -47,25 +47,23 @@ try {
   await page.keyboard.press('Escape');
   await page.waitForFunction(() => !document.querySelector('#catalog-search').open);
 
-  // «Посмотреть HTML»: the + turns into − by rotating its bars, on transform only.
+  // HTML viewers share the library's chevron and native details state.
   const summary = page.locator('#buttons .example-code summary').first();
-  const bars = () => summary.evaluate(el => ['::before', '::after'].map(pseudo => {
-    const style = getComputedStyle(el, pseudo);
-    return { transform: style.transform, property: style.transitionProperty, duration: style.transitionDuration };
-  }));
-  const vertical = 'matrix(0, 1, -1, 0, 0, 0)';
-  const flat = 'matrix(-1, 0, 0, -1, 0, 0)';
-  const closed = await bars();
-  assert.equal(closed[0].transform, 'none', 'closed: horizontal bar');
-  assert.equal(closed[1].transform, vertical, 'closed: vertical bar makes a plus');
-  assert.ok(closed.every(bar => bar.property === 'transform' && ms(bar.duration)[0] > 0 && ms(bar.duration)[0] <= 300), `plus animates transform within 300ms: ${JSON.stringify(closed)}`);
+  const indicator = () => summary.evaluate(el => {
+    const style = getComputedStyle(el, '::after');
+    return { transform: style.transform, mask: style.maskImage, property: style.transitionProperty, duration: style.transitionDuration };
+  });
+  const closed = await indicator();
+  assert.equal(closed.transform, 'none');
+  assert.notEqual(closed.mask, 'none', 'shared Feather chevron is present');
+  assert.equal(closed.property, 'transform');
+  assert.ok(ms(closed.duration)[0] > 0 && ms(closed.duration)[0] <= 300);
   await summary.click();
   await page.waitForTimeout(400);
-  const open = await bars();
-  assert.ok(open.every(bar => bar.transform === flat), `open: both bars lie flat as a minus: ${JSON.stringify(open)}`);
+  assert.equal((await indicator()).transform, 'matrix(-1, 0, 0, -1, 0, 0)', 'open disclosure rotates shared chevron');
   await summary.click();
   await page.waitForTimeout(400);
-  assert.equal((await bars())[1].transform, vertical, 'closing turns the minus back into a plus');
+  assert.equal((await indicator()).transform, 'none', 'close restores shared chevron');
 
   // Reduced motion: no travel, short fades for appearing layers.
   await page.emulateMedia({ reducedMotion: 'reduce' });

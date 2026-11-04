@@ -21,10 +21,15 @@ export function initCatalogSearch({ root = document, navigate } = {}) {
       ? `${parent.dataset.catalogTitle} / ${section.dataset.catalogTitle}`
       : headingText(section.querySelector(':scope > .section-heading h2')) || headingText(section.querySelector(':scope h1')) || section.dataset.catalogTitle;
     const tokens = [...section.querySelectorAll('[data-search-tokens]')].map(row => row.dataset.searchTokens).join(' ');
+    const classTag = section.matches('h3')
+      ? section.parentElement.querySelector(':scope > .class-tag')
+      : section.querySelector(':scope > .section-heading > .class-tag');
+    const classes = (classTag?.textContent || '').match(/\.[\w-]+/g) || [];
     return {
       id: section.id,
       title,
-      keywords: normalize(`${section.dataset.catalogGroup || ''} ${section.dataset.searchKeywords || ''} ${tokens}`),
+      classes,
+      keywords: normalize(`${section.dataset.catalogGroup || ''} ${section.dataset.searchKeywords || ''} ${tokens} ${classes.join(' ')}`),
     };
   });
   let matches = [];
@@ -51,7 +56,15 @@ export function initCatalogSearch({ root = document, navigate } = {}) {
 
   function render() {
     const query = normalize(input.value);
+    function rank(entry) {
+      if (entry.classes.includes(query)) return 0;
+      if (query.startsWith('.tg-') && entry.classes.some(name => name.startsWith(`${query}--`) || name.startsWith(`${query}__`))) return 1;
+      const title = normalize(entry.title);
+      if (title === query) return 2;
+      return title.includes(query) ? 3 : 4;
+    }
     matches = entries.filter(entry => !query || normalize(`${entry.title} ${entry.keywords}`).includes(query));
+    if (query) matches.sort((a, b) => rank(a) - rank(b));
     activeIndex = -1;
     input.removeAttribute('aria-activedescendant');
     results.replaceChildren();
@@ -67,7 +80,7 @@ export function initCatalogSearch({ root = document, navigate } = {}) {
       option.tabIndex = -1;
       title.textContent = entry.title;
       meta.className = 'catalog-search__meta';
-      meta.textContent = `#${entry.id}`;
+      meta.textContent = `#${entry.id}${query && entry.classes.includes(query) ? ` · Компонент ${query}` : ''}`;
       option.append(title, meta);
       option.addEventListener('click', event => {
         event.preventDefault();
@@ -80,12 +93,13 @@ export function initCatalogSearch({ root = document, navigate } = {}) {
   }
 
   // Keyboard commands repeat often, so a keyboard-opened search appears without animation.
-  function open({ instant = false } = {}) {
+  function open({ instant = false, trigger } = {}) {
     if (dialog.open) return;
     clearTimeout(closeTimer);
     dialog.classList.toggle('is-instant', instant);
     restoreFocus = true;
-    previousFocus = document.activeElement;
+    // Safari does not necessarily focus a button on pointer click.
+    previousFocus = trigger || document.activeElement;
     dialog.classList.remove('is-closing');
     input.value = '';
     render();
@@ -112,7 +126,7 @@ export function initCatalogSearch({ root = document, navigate } = {}) {
     navigate(id, { focus: true });
   }
 
-  for (const opener of openers) opener.addEventListener('click', event => open({ instant: event.detail === 0 }));
+  for (const opener of openers) opener.addEventListener('click', event => open({ instant: event.detail === 0, trigger: opener }));
   root.querySelector('[data-catalog-search-close]').addEventListener('click', () => close());
   input.addEventListener('input', render);
   input.addEventListener('keydown', event => {
@@ -140,12 +154,12 @@ export function initCatalogSearch({ root = document, navigate } = {}) {
       if (command) event.preventDefault();
       return;
     }
+    if (event.target instanceof Element && event.target.closest('input, textarea, select, [contenteditable]:not([contenteditable="false"])')) return;
     if (command) {
       event.preventDefault();
       open({ instant: true });
       return;
     }
-    if (event.target instanceof Element && event.target.closest('input, textarea, select, [contenteditable="true"]')) return;
     if (event.key === '/' && !event.metaKey && !event.ctrlKey && !event.altKey) {
       event.preventDefault();
       open({ instant: true });

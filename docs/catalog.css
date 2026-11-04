@@ -66,14 +66,9 @@ h1 > span { color: var(--text-link); }
 .hero-meta { display: flex; flex-wrap: wrap; gap: var(--space-2) var(--space-4); margin-top: var(--space-6); font-size: var(--catalog-caption); color: var(--text-secondary); }
 .preview-stage { padding: var(--space-6); border-radius: var(--radius-lg); background: var(--background-main); }
 .preview-label { font-size: var(--catalog-caption); color: var(--text-secondary); margin-bottom: var(--space-5); }
-.app-preview { max-width: 25rem; margin-inline: auto; padding: var(--space-5); border: 0; }
+.app-preview { max-width: 25rem; margin-inline: auto; }
 .preview-top { display: flex; align-items: center; justify-content: space-between; margin-bottom: var(--space-5); }
 .preview-icon { color: var(--text-link); display: inline-flex; }
-.app-preview h2 { font-size: 1.375rem; font-weight: 600; margin: 0 0 var(--space-2); letter-spacing: -.025em; }
-.app-preview > p { margin: 0; }
-.app-preview .tg-list { border: 0; border-radius: 0; }
-.app-preview .tg-list-item { padding-inline: 0; flex-wrap: nowrap; }
-.app-preview .tg-list-item__title { font-weight: 500; }
 .preview-item-icon { color: var(--text-secondary); }
 .preview-bottom { display: flex; flex-wrap: wrap; justify-content: space-between; gap: var(--space-3); align-items: center; padding-block: var(--space-5); }
 .preview-bottom > span { font-size: var(--catalog-caption); }
@@ -130,30 +125,27 @@ h1 > span { color: var(--text-link); }
 .spacing-scale > span { display: flex; justify-content: center; align-items: end; width: 1.5rem; height: calc(var(--size) * 2px + 1rem); padding-bottom: .125rem; border-radius: var(--space-1); background: var(--accent-soft); color: var(--text-link); font-size: var(--catalog-caption); font-variant-numeric: tabular-nums; }
 .radius-scale > span { display: grid; place-items: center; width: 2.25rem; height: 2.25rem; border: var(--border-control); color: var(--text-secondary); font-size: var(--catalog-caption); }
 .example-panel { background: var(--background-panel); border: var(--border); border-radius: var(--radius-lg); overflow: clip; margin-top: var(--space-4); }
-.example-body { padding: var(--space-6); background: var(--background-main); }
+.example-body { padding: var(--space-6); border-radius: var(--radius-lg); background: var(--background-main); }
 /* Each example states the rule it demonstrates: when to use it and why it looks this way. */
 /* Overview tables arrange live example stages without adding another panel. */
 .catalog-overview td > .example-body { padding: 0; background: transparent; }
 /* In the stacked table, labels, stages and rules each use the full row width. */
 .catalog-overview :is(th, td) > * { grid-column: 1 / -1; }
 @media (min-width: 36rem) {
+  .catalog-overview { table-layout: fixed; }
+  .catalog-overview th:first-child { inline-size: 32%; }
   .catalog-overview--fields { table-layout: fixed; }
   .catalog-overview--fields th:first-child { inline-size: 25%; }
 }
 .catalog-overview-title { margin: 0; font-size: var(--fs-sm); line-height: 1.4; scroll-margin-block-start: calc(var(--catalog-header) + var(--space-4)); }
+.catalog-overview th > .class-tag { display: block; margin-block-start: var(--space-2); }
+.class-tag > span { display: inline-block; max-inline-size: 100%; overflow-wrap: anywhere; vertical-align: top; }
+.catalog-overview td > p { max-inline-size: 65ch; font-size: var(--catalog-text); line-height: 1.6; }
+.catalog-overview td > .example-code { margin-block-start: var(--space-4); }
 .example-rule { margin: 0; padding: var(--space-4) var(--space-6); border-top: var(--border); color: var(--text-secondary); font-size: var(--catalog-text); line-height: 1.6; text-wrap: pretty; padding-inline-end: max(var(--space-6), calc(100% - 72ch - var(--space-6))); }
 .example-rule code { font: .9em/1 ui-monospace, SFMono-Regular, Consolas, monospace; color: var(--text-color); overflow-wrap: anywhere; }
-.example-code { border-top: var(--border); }
-.example-code summary { --summary-pad: var(--space-6); position: relative; min-height: 2.75rem; cursor: pointer; display: flex; align-items: center; justify-content: space-between; gap: var(--space-3); padding: var(--space-3) calc(var(--summary-pad) + 1.5rem) var(--space-3) var(--summary-pad); font-size: var(--catalog-caption); color: var(--text-secondary); list-style: none; }
-.example-code summary::-webkit-details-marker { display: none; }
-/* Plus drawn from two bars: on open the vertical bar turns flat onto the horizontal one and both spin half a turn, so + becomes −. */
-.example-code summary::before, .example-code summary::after { content: ''; position: absolute; inset-inline-end: var(--summary-pad); inset-block-start: 50%; inline-size: .75rem; block-size: 1.5px; margin-block-start: -.75px; border-radius: 1px; background: currentColor; transition: transform var(--duration) var(--ease); }
-.example-code summary::after { transform: rotate(90deg); }
-.example-code[open] summary::before { transform: rotate(180deg); }
-.example-code[open] summary::after { transform: rotate(180deg); }
-@media (prefers-reduced-motion: reduce) { .example-code summary::before, .example-code summary::after { transition: none; } }
 pre { max-width: 100%; overflow: auto; font: var(--catalog-caption)/1.7 ui-monospace, SFMono-Regular, Consolas, monospace; margin: 0; padding: var(--space-6); tab-size: 2; background: var(--surface-muted); color: var(--text-color); }
-.example-code pre { max-height: 24rem; border-top: var(--border); }
+.example-code pre { max-height: 24rem; }
 .form-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--space-6); }
 .form-wide { grid-column: 1/-1; }
 .radio-group { display: flex; flex-wrap: wrap; gap: var(--space-4); border: 0; padding: 0; margin: 0; }
@@ -185,7 +177,6 @@ pre { max-width: 100%; overflow: auto; font: var(--catalog-caption)/1.7 ui-monos
 @media (hover: hover) and (pointer: fine) {
   .nav-link:hover { color: var(--text-color); background: var(--surface-muted); }
   .quiet-link:hover { text-decoration: underline; text-underline-offset: .2em; }
-  .example-code summary:hover { background: var(--surface-muted); color: var(--text-color); }
 }
 @media (max-width: 1200px) {
   :root { --catalog-sidebar: 13rem; --catalog-gutter: 2rem; }
@@ -233,7 +224,6 @@ pre { max-width: 100%; overflow: auto; font: var(--catalog-caption)/1.7 ui-monos
   .token-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .form-grid, .surface-grid, .install-grid { grid-template-columns: 1fr; }
   .example-body { padding: var(--space-5); }
-  .example-code summary { --summary-pad: var(--space-5); }
   .example-rule { padding-inline: var(--space-5); }
   .glass-demo-stage { padding: var(--space-5); }
   .tg-tabs { gap: var(--space-1); }

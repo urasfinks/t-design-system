@@ -75,10 +75,11 @@ try {
   assert.equal(await dialog.evaluate(el => el.open), false, 'slash stays editable in form controls');
   assert.ok((await page.getByLabel('Электронная почта').inputValue()).includes('/'));
   await page.keyboard.press('Meta+K');
-  assert.equal(await dialog.evaluate(el => el.open), true);
+  assert.equal(await dialog.evaluate(el => el.open), false, 'command shortcut stays editable in form controls');
+  await opener.click();
   await page.keyboard.press('Escape');
   await page.waitForFunction(() => !document.querySelector('#catalog-search').open);
-  assert.equal(await page.getByLabel('Электронная почта').evaluate(el => el === document.activeElement), true, 'native Escape restores previous focus');
+  assert.equal(await opener.evaluate(el => el === document.activeElement), true, 'native Escape restores the explicit opener');
 
   await page.setViewportSize({ width: 320, height: 800 });
   await page.getByRole('button', { name: 'Поиск по каталогу', exact: true }).last().click();

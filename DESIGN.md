@@ -22,9 +22,9 @@ The signature is the system itself: live components, clear examples, readable co
 - Field borders are quiet at rest. Switches use their own filled track without
   an idle outline. Focus and invalid states remain distinct. Under
   `prefers-contrast: more`, field and switch boundaries use the stronger
-  control-border role. Unchecked checkbox and radio controls are the exception:
-  they use `--choice-border-color` with at least 3:1 contrast against the
-  adjacent surface, so an empty choice is visible before interaction. Search
+  control-border role. Unchecked checkbox and radio controls use
+  `--choice-border-color`, an alias of the shared action boundary; their muted
+  fill distinguishes the empty indicator. Search
   placeholders use `--text-secondary` like every other field.
 - Disabled controls share one `--disabled-opacity` token. Disabled text is exempt
   from WCAG contrast, but the reason for unavailability stays readable nearby.
@@ -61,12 +61,12 @@ separates content from the page and is outside this rule.
 | Filter | — | `button.tg-chip[aria-pressed]` — outline; pressed filters are filled |
 | Avatar | `span.tg-avatar` — a picture of a person | `button.tg-avatar` / `a.tg-avatar` — outline; selected gets the accent ring |
 | List row | `div.tg-list-item` — data, no hover | `a.tg-list-item[href]`, `button.tg-list-item` — full-width target, hover, focus, trailing chevron |
-| Button | — | secondary and icon buttons are tonal: a quiet fill with the one action outline every clickable element shares (4% light, 2% dark; full with `prefers-contrast: more`); primary and destructive are filled; ghost relies on text colour and context |
+| Button | — | secondary and icon buttons are tonal: a quiet fill with the one action outline every clickable element shares (ALPHA .04 in every theme; stronger with `prefers-contrast: more`); primary and destructive are filled; ghost relies on text colour and context |
 
-The action outline is its own token, `--action-border-color` (24% black or
-white, about 1.7:1 against the stage), so it reads as stronger than the 8% panel
-outline (about 1.2:1). Under `prefers-contrast: more` it becomes the control
-border. A test keeps actions at 1.5:1 or more and panels at 1.35:1 or less.
+The action outline uses `--action-border-color`: ALPHA of the source text at
+.04, shared by themes, as defined in `docs/color-system.md`. Panels use .08.
+Under `prefers-contrast: more` action and choice boundaries use the stronger
+control border. Do not infer a contrast ratio from an alpha coefficient.
 
 A status is never made clickable by styling alone, and a filter is never styled
 as a status. A full-width link row contains no nested links or buttons. The
@@ -116,9 +116,24 @@ Section/heading `data-catalog-title`, `data-catalog-group` and
 static sidebar and mobile navigation from this metadata, keeping both usable
 without JavaScript. Families can expose nested subsection links; search and
 active navigation cover both levels. Preserve old section and example anchors.
+Overview table rows also expose minimal HTML with copying next to their stage
+and rule. The outer disclosure retains the full example, labelled “Посмотреть HTML
+всего примера”. Both levels use the initial live markup, without generated controls.
+Every HTML viewer uses the public `tg-disclosure` with the existing
+`tg-card--disclosure` surface, `tg-disclosure__trigger` and `tg-disclosure__content`.
+Its chevron, hover, focus, motion and corners belong to TDS; catalog CSS only
+positions the viewer and limits code scrolling. Copy controls use TDS utilities.
+The preview composes public variants and utilities; `tg-list--plain` shares its
+enclosing panel without another border or horizontal row padding. Catalog CSS
+does not restyle its card, list rows or typography. The original avatar stack is
+a preserved catalog illustration with optically centred labels and tests, not a
+public component or a copyable example.
 Global search is a native `dialog` opened by the “Поиск” button,
 `/` or Cmd/Ctrl+K (never while typing in a field). It matches family and subsection titles,
-`.tg-*` classes and `--*` tokens from explicit `data-search-*` metadata; arrows
+`.tg-*` classes and `--*` tokens from explicit `data-search-*` metadata. Exact classes in
+a family or subsection’s class tag rank first, followed by its modifiers and parts,
+then titles and incidental uses; matching owners are
+labelled “Компонент”. Empty searches preserve document order. Arrows
 move, Enter navigates, Escape closes and focus returns to the opener. Search is
 a progressive enhancement: without JavaScript every section and example stays
 reachable. Catalog behavior lives in native ES modules: `catalog.js` only

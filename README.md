@@ -186,7 +186,7 @@ import 't-design-system/ui/js';
 | Ритм | `--space-1` … `--space-6`, `--space-8`, `--space-10`, `--space-12`, `--space-16` (4–64 px при 1rem = 16px) |
 | Геометрия | `--radius-xs`, `--radius-sm`, `--radius`, `--radius-lg`, `--radius-pill`, `--control-h`, `--icon-avatar` |
 | Детали | `--border-color`, `--shadow-soft`, `--shadow-elev`, `--field-bg`, `--field-bg-hover`, `--safe-area-bottom` |
-| Состояния | `--choice-border-color` (граница невыбранных checkbox/radio, ≥3:1), `--action-border-color` и `--border-action` (рамка мелких действий, ≈1.7:1, заметнее рамки панелей), `--disabled-opacity` (единая прозрачность недоступных контролов) |
+| Состояния | `--choice-border-color` (граница невыбранных checkbox/radio), `--action-border-color` и `--border-action` (общая тихая рамка действий; ALPHA .04, усиленная при повышенном контрасте), `--disabled-opacity` (единая прозрачность недоступных контролов) |
 | Движение | `--duration`, `--duration-fast`, `--ease`, `--duration-fade-in`, `--duration-fade-out` (появление и уход всплывающих слоёв; при reduced motion остаются 120 ms) |
 | Порядок | `--z-sticky`, `--z-overlay`, `--z-toast` |
 
@@ -859,7 +859,7 @@ CSS приложения вне слоёв может переопределят
 | Компонент | Классы | Состояния и обязанности приложения |
 | --- | --- | --- |
 | Меню действий | `.tg-menu` (лучше с `popover`), `__item`, `--destructive`, `__text`, `__item-meta`, `__label`, `__separator`, `__shortcut` | `role=menu/menuitem/menuitemcheckbox/menuitemradio`, `aria-checked`, `aria-disabled`, `aria-haspopup="menu"` у пункта даёт шеврон. Приложение: ↑/↓, Home/End, поиск по букве, Escape с возвратом фокуса, Tab закрывает; `data-instant` при открытии с клавиатуры. Без CSS anchor positioning хост задаёт `--tg-anchor-block`, `--tg-anchor-inline`, `--tg-menu-origin` и `data-positioned`. На узком сенсорном экране меню становится нижним листом |
-| Кнопка: части | `.tg-btn__icon`, `__label`, `__subtext`, `.tg-btn--icon-end` | Иконка после подписи — `--icon-end`, порядок логический и в RTL. Любая кнопка — ровно `--control-h` по высоте, подпись в одну строку; `__subtext` помещается в ту же высоту; не влезающая подпись в `__label` сокращается многоточием (полное имя остаётся у кнопки) |
+| Кнопка: части | `.tg-btn__icon`, `__label`, `__subtext`, `.tg-btn--icon-end` | Иконка после подписи — `--icon-end`, порядок логический и в RTL. Минимальная высота — `--control-h`; длинная подпись переносится и увеличивает кнопку. `__subtext` — вторая строка внутри той же кнопки; не обрезайте текст ради фиксированной высоты |
 | Кнопка: ход выполнения | `[aria-busy]`, `.tg-btn__states > [data-state=idle/busy/success/error]`, `data-state` на кнопке, `.tg-btn__progress` + `--progress` (0…1) | Все подписи в одной ячейке — ширина не прыгает; видна только активная. Итог объявляет приложение |
 | Кнопка-переключатель | `.tg-toggle[aria-pressed]` | Тот же вид выбора, что у `.tg-btn--stacked` |
 | Группа полей | `.tg-input-group`, `__control`, `__addon` (текст или `select`), `__action` | Рамка, фон и фокус — у обёртки; `aria-invalid`, `disabled`, `readonly` на контроле |
@@ -1130,3 +1130,14 @@ Hover работает только при наличии указателя с 
 `class="tg-carousel tg-carousel--coverflow tg-carousel--fullwidth"`.
 Изображения сохраняют естественные пропорции, вписываются без обрезки и ограничены
 по высоте токеном `--media-max-size`. Управление и reduced-motion остаются штатными.
+
+### Компактные действия и встроенные списки
+
+Самостоятельные бейджи-кнопки и удаление тегов сохраняют компактный вид,
+но общий `hit-target.compact` расширяет область нажатия до `--control-h`
+прозрачным `::before`. Родитель не должен обрезать эту область; оставляйте
+между соседями место. Статические бейджи остаются без дополнительной цели.
+
+`.tg-list--plain` внутри панели убирает вторую рамку, скругление списка и
+горизонтальные отступы строк. Это вариант библиотеки; каталог и приложение
+не переопределяют `.tg-list-item` своим CSS.

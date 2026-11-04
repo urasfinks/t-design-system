@@ -165,6 +165,13 @@
   .tg-list {
     overflow: clip;
 
+    // An embedded list shares its enclosing panel rather than drawing a second one.
+    &--plain {
+      border: 0;
+      border-radius: 0;
+      > .tg-list-item { padding-inline: 0; }
+    }
+
     &-item {
       padding: var(--space-3) var(--space-4);
 

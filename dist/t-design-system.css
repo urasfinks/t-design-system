@@ -248,7 +248,7 @@
     --control-idle-bg: transparent;
     --control-hover-bg: var(--control-hover-surface);
   }
-  :is(button[class*=tg-], .tg-btn, .tg-icon-btn, .tg-chip, .tg-tab, .tg-dot, .tg-tabbar__item, a.tg-badge[href], a.tg-list-item[href], a.tg-menu__item[href], a.tg-pager__link[href], a.tg-site-nav__link[href], .tg-disclosure__trigger, .tg-bottom-panel__header, .tg-bottom-panel__trigger, .tg-segmented__item, a.tg-sidebar__link[href], summary.tg-sidebar__link, a.tg-nav-menu__link[href], a.tg-nav-menu__top[href], .tg-command__item, .tg-listbox__option, .tg-check, .tg-radio):not(.tg-switch, [role=switch]) {
+  :is(button[class*=tg-], .tg-btn, .tg-icon-btn, .tg-chip, .tg-tab, .tg-dot, .tg-tabbar__item, a.tg-badge[href], a.tg-list-item[href], a.tg-menu__item[href], a.tg-pager__link[href], a.tg-site-nav__link[href], .tg-disclosure__trigger, .tg-bottom-panel__header, .tg-bottom-panel__trigger, .tg-segmented__item, a.tg-sidebar__link[href], summary.tg-sidebar__link, a.tg-nav-menu__link[href], a.tg-nav-menu__top[href], .tg-command__item, .tg-listbox__option, .tg-check, .tg-radio):not(.tg-switch, [role=switch]), input[type=file].tg-input::file-selector-button {
     touch-action: manipulation;
     transition: background-color var(--control-paint-duration, var(--duration)) var(--ease), color var(--control-paint-duration, var(--duration)) var(--ease), border-color var(--duration) var(--ease), transform var(--duration-fast) var(--ease), filter var(--duration-fast) var(--ease);
   }
@@ -265,7 +265,7 @@
     filter: none;
   }
   @media (hover: hover) and (pointer: fine) {
-    :is(button[class*=tg-], .tg-btn, .tg-icon-btn, .tg-chip, .tg-tab, .tg-dot, .tg-tabbar__item, a.tg-badge[href], a.tg-list-item[href], a.tg-menu__item[href], a.tg-pager__link[href], a.tg-site-nav__link[href], .tg-disclosure__trigger, .tg-bottom-panel__header, .tg-bottom-panel__trigger, .tg-segmented__item, a.tg-sidebar__link[href], summary.tg-sidebar__link, a.tg-nav-menu__link[href], a.tg-nav-menu__top[href], .tg-command__item, .tg-listbox__option, .tg-check, .tg-radio):not(.tg-switch, [role=switch]):not([inert]):where(:not(:disabled, [disabled], [aria-disabled=true], [disabled] *, [aria-disabled=true] *, [inert] *)):hover, .tg-choice:hover > :is(button[class*=tg-], .tg-btn, .tg-icon-btn, .tg-chip, .tg-tab, .tg-dot, .tg-tabbar__item, a.tg-badge[href], a.tg-list-item[href], a.tg-menu__item[href], a.tg-pager__link[href], a.tg-site-nav__link[href], .tg-disclosure__trigger, .tg-bottom-panel__header, .tg-bottom-panel__trigger, .tg-segmented__item, a.tg-sidebar__link[href], summary.tg-sidebar__link, a.tg-nav-menu__link[href], a.tg-nav-menu__top[href], .tg-command__item, .tg-listbox__option, .tg-check, .tg-radio):not(.tg-switch, [role=switch]):not([inert]):where(:not(:disabled, [disabled], [aria-disabled=true], [disabled] *, [aria-disabled=true] *, [inert] *)) {
+    :is(button[class*=tg-], .tg-btn, .tg-icon-btn, .tg-chip, .tg-tab, .tg-dot, .tg-tabbar__item, a.tg-badge[href], a.tg-list-item[href], a.tg-menu__item[href], a.tg-pager__link[href], a.tg-site-nav__link[href], .tg-disclosure__trigger, .tg-bottom-panel__header, .tg-bottom-panel__trigger, .tg-segmented__item, a.tg-sidebar__link[href], summary.tg-sidebar__link, a.tg-nav-menu__link[href], a.tg-nav-menu__top[href], .tg-command__item, .tg-listbox__option, .tg-check, .tg-radio):not(.tg-switch, [role=switch]):not([inert]):where(:not(:disabled, [disabled], [aria-disabled=true], [disabled] *, [aria-disabled=true] *, [inert] *)):hover, .tg-choice:hover > :is(button[class*=tg-], .tg-btn, .tg-icon-btn, .tg-chip, .tg-tab, .tg-dot, .tg-tabbar__item, a.tg-badge[href], a.tg-list-item[href], a.tg-menu__item[href], a.tg-pager__link[href], a.tg-site-nav__link[href], .tg-disclosure__trigger, .tg-bottom-panel__header, .tg-bottom-panel__trigger, .tg-segmented__item, a.tg-sidebar__link[href], summary.tg-sidebar__link, a.tg-nav-menu__link[href], a.tg-nav-menu__top[href], .tg-command__item, .tg-listbox__option, .tg-check, .tg-radio):not(.tg-switch, [role=switch]):not([inert]):where(:not(:disabled, [disabled], [aria-disabled=true], [disabled] *, [aria-disabled=true] *, [inert] *)), input[type=file].tg-input:not([inert]):where(:not(:disabled, [disabled], [aria-disabled=true], [disabled] *, [aria-disabled=true] *, [inert] *)):hover::file-selector-button {
       background-color: oklch(from var(--control-hover-bg) clamp(0, calc(l + var(--color-inversion) * var(--control-hover-lightness-step)), 1) c h);
       filter: var(--control-hover-filter, brightness(var(--control-hover-brightness, 1)));
       cursor: pointer;
@@ -276,14 +276,17 @@
     :is(.tg-btn--ghost, .tg-icon-btn--ghost, .tg-search__clear, .tg-tag-input__remove, .tg-wheel__option):not([inert]):where(:not(:disabled, [disabled], [aria-disabled=true], [disabled] *, [aria-disabled=true] *, [inert] *)):hover:where(:not(:active, [data-pressed=true])) {
       color: var(--text-color);
     }
-    :is(button[class*=tg-], .tg-btn, .tg-icon-btn, .tg-chip, .tg-tab, .tg-dot, .tg-tabbar__item, a.tg-badge[href], a.tg-list-item[href], a.tg-menu__item[href], a.tg-pager__link[href], a.tg-site-nav__link[href], .tg-disclosure__trigger, .tg-bottom-panel__header, .tg-bottom-panel__trigger, .tg-segmented__item, a.tg-sidebar__link[href], summary.tg-sidebar__link, a.tg-nav-menu__link[href], a.tg-nav-menu__top[href], .tg-command__item, .tg-listbox__option, .tg-check, .tg-radio):not(.tg-switch, [role=switch]):is(:disabled, [disabled], [aria-disabled=true], [disabled] *, [aria-disabled=true] *):hover {
+    :is(button[class*=tg-], .tg-btn, .tg-icon-btn, .tg-chip, .tg-tab, .tg-dot, .tg-tabbar__item, a.tg-badge[href], a.tg-list-item[href], a.tg-menu__item[href], a.tg-pager__link[href], a.tg-site-nav__link[href], .tg-disclosure__trigger, .tg-bottom-panel__header, .tg-bottom-panel__trigger, .tg-segmented__item, a.tg-sidebar__link[href], summary.tg-sidebar__link, a.tg-nav-menu__link[href], a.tg-nav-menu__top[href], .tg-command__item, .tg-listbox__option, .tg-check, .tg-radio):not(.tg-switch, [role=switch]):is(:disabled, [disabled], [aria-disabled=true], [disabled] *, [aria-disabled=true] *):hover, input[type=file].tg-input:disabled:hover::file-selector-button {
       background-color: var(--control-idle-bg);
       filter: none;
       cursor: not-allowed;
     }
   }
+  input[type=file].tg-input:disabled, input[type=file].tg-input:disabled::file-selector-button {
+    cursor: not-allowed;
+  }
   @media (prefers-reduced-motion: reduce) {
-    :is(button[class*=tg-], .tg-btn, .tg-icon-btn, .tg-chip, .tg-tab, .tg-dot, .tg-tabbar__item, a.tg-badge[href], a.tg-list-item[href], a.tg-menu__item[href], a.tg-pager__link[href], a.tg-site-nav__link[href], .tg-disclosure__trigger, .tg-bottom-panel__header, .tg-bottom-panel__trigger, .tg-segmented__item, a.tg-sidebar__link[href], summary.tg-sidebar__link, a.tg-nav-menu__link[href], a.tg-nav-menu__top[href], .tg-command__item, .tg-listbox__option, .tg-check, .tg-radio):not(.tg-switch, [role=switch]) {
+    :is(button[class*=tg-], .tg-btn, .tg-icon-btn, .tg-chip, .tg-tab, .tg-dot, .tg-tabbar__item, a.tg-badge[href], a.tg-list-item[href], a.tg-menu__item[href], a.tg-pager__link[href], a.tg-site-nav__link[href], .tg-disclosure__trigger, .tg-bottom-panel__header, .tg-bottom-panel__trigger, .tg-segmented__item, a.tg-sidebar__link[href], summary.tg-sidebar__link, a.tg-nav-menu__link[href], a.tg-nav-menu__top[href], .tg-command__item, .tg-listbox__option, .tg-check, .tg-radio):not(.tg-switch, [role=switch]), input[type=file].tg-input::file-selector-button {
       transition: none;
     }
   }
@@ -388,6 +391,7 @@
 }
 @layer tds.components {
   :is(.tg-btn, .tg-icon-btn, .tg-chip) {
+    box-sizing: border-box;
     --control-idle-bg: var(--surface-muted);
     --control-hover-bg: var(--control-idle-bg);
     --control-color: var(--text-color);
@@ -808,6 +812,7 @@
 @layer tds.components {
   .tg-field {
     display: grid;
+    align-content: start;
     gap: var(--space-2);
     min-inline-size: 0;
   }
@@ -869,6 +874,45 @@
   .tg-textarea {
     min-block-size: calc(var(--control-h) * 2.5);
     resize: vertical;
+  }
+  input[type=file].tg-input {
+    padding: 0;
+    border: 0;
+    background: transparent;
+    cursor: pointer;
+  }
+  input[type=file].tg-input::file-selector-button {
+    box-sizing: border-box;
+    --control-idle-bg: var(--surface-muted);
+    --control-hover-bg: var(--control-idle-bg);
+    --control-color: var(--text-color);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-2);
+    flex: 0 0 auto;
+    max-inline-size: 100%;
+    block-size: var(--control-h);
+    min-block-size: var(--control-h);
+    padding-block: 0;
+    border: var(--border-action);
+    background: var(--control-idle-bg);
+    color: var(--control-color);
+    font-size: var(--fs);
+    font-weight: var(--fw-medium);
+    line-height: 1.3;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+    vertical-align: middle;
+    overflow-wrap: anywhere;
+    min-inline-size: var(--control-h);
+    block-size: auto;
+    padding-block: var(--space-2);
+    padding-inline: var(--space-4);
+    border-radius: var(--radius-control);
+    margin-inline: 0 var(--space-3);
+    font-family: inherit;
   }
   .tg-input::placeholder, .tg-textarea::placeholder {
     color: var(--text-secondary);
@@ -1602,6 +1646,13 @@
   .tg-list {
     overflow: clip;
   }
+  .tg-list--plain {
+    border: 0;
+    border-radius: 0;
+  }
+  .tg-list--plain > .tg-list-item {
+    padding-inline: 0;
+  }
   .tg-list-item {
     padding: var(--space-3) var(--space-4);
   }
@@ -2246,6 +2297,18 @@
 @layer tds.components {
   :where(a[href], button, summary) .tg-badge {
     border: var(--border-action);
+  }
+  :is(button, a[href]).tg-badge {
+    position: relative;
+  }
+  :is(button, a[href]).tg-badge::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    inline-size: max(100%, var(--control-h));
+    block-size: max(100%, var(--control-h));
+    transform: translate(-50%, -50%);
   }
   :is(button, a[href]).tg-badge {
     border: var(--border-action);
@@ -6090,7 +6153,7 @@
     min-inline-size: 0;
     max-inline-size: 100%;
     min-block-size: calc(var(--chip-h) - var(--space-2));
-    padding-inline: var(--space-3) var(--space-1);
+    padding-inline: var(--space-3) max(var(--space-1), (var(--control-h) - var(--space-6)) / 2 - 1px);
     border: 1px solid var(--border-color);
     border-radius: var(--radius-pill);
     background: var(--surface-bg);
@@ -6107,6 +6170,18 @@
   .tg-tag-input__tag:focus-within {
     outline: 2px solid var(--text-link);
     outline-offset: 1px;
+  }
+  .tg-tag-input__remove {
+    position: relative;
+  }
+  .tg-tag-input__remove::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    inline-size: max(100%, var(--control-h));
+    block-size: max(100%, var(--control-h));
+    transform: translate(-50%, -50%);
   }
   .tg-tag-input__remove {
     display: grid;

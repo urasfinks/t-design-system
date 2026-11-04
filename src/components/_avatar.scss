@@ -1,4 +1,5 @@
 @use 'media-surface';
+@use 'hit-target';
 @use '../base';
 @layer tds.components {
   .tg-avatar {
@@ -199,6 +200,7 @@
   // draws the same action outline. :where keeps a badge on an avatar with its own ring.
   :where(a[href], button, summary) .tg-badge { border: var(--border-action); }
   :is(button, a[href]).tg-badge {
+    @include hit-target.compact;
     border: var(--border-action);
     min-inline-size: var(--control-h);
     font-size: var(--fs-sm);

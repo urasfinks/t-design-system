@@ -13,7 +13,11 @@ test('the main entry has no late patch module and base owns common control state
 test('buttons declare shared state parameters instead of repeated hover paint and transitions', async () => {
   const buttons = await read('src/components/_buttons.scss');
   assert.doesNotMatch(buttons, /:hover|transition\s*:/);
-  assert.match(buttons, /background:\s*var\(--control-idle-bg\)/);
+  assert.match(buttons, /@include button-surface\.surface/);
+  const surface = await read('src/components/_button-surface.scss');
+  assert.match(surface, /background:\s*var\(--control-idle-bg\)/);
+  assert.doesNotMatch(surface, /@layer|:hover|transition\s*:/);
+  assert.match(await read('src/components/_forms.scss'), /@include button-surface\.surface/);
   assert.match(buttons, /--control-idle-bg:\s*var\(--action-bg\)/);
   assert.match(buttons, /--control-idle-bg:\s*var\(--action-danger-bg\)/);
 });

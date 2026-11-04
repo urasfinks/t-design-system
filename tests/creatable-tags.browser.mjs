@@ -43,7 +43,8 @@ try {
       form.before(el); form.remove();
       return entries;
     });
-    assert.deepEqual(submitted, [['tags[]', 'срочно'], ['tags[]', 'Свой тег'], ['tags[]', 'ещё один']]);
+    // The named native draft field participates in FormData, even when empty.
+    assert.deepEqual(submitted, [['tags[]', 'срочно'], ['tags[]', 'Свой тег'], ['tags[]', 'ещё один'], ['tag-draft', '']]);
     await field.fill('отмена');
     await field.press('Escape');
     assert.equal(await field.getAttribute('aria-expanded'), 'false');
