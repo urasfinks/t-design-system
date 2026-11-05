@@ -1,0 +1,94 @@
+
+> t-design-system@0.1.0 test:browser
+> npm run build && node scripts/test-browser.mjs
+
+
+> t-design-system@0.1.0 build
+> node scripts/build.mjs
+
+Built dist/t-design-system.css (266010 bytes)
+Built dist/t-design-system.min.css (215178 bytes)
+Built dist/telegram.css (1043 bytes)
+Built dist/telegram.min.css (961 bytes)
+Built dist/telegram.js (optional theme bridge)
+Built dist/effects.js (optional ripple and decorative effects)
+Built dist/ui.js (optional ripple entry)
+Built dist/icons/ (287 independent Feather SVG files, MIT)
+Built dist/icons.json (searchable Feather metadata)
+✓ search options have presentational list wrappers
+✓ badge labels include their visible count
+✓ image labels retain contrast over a white image in all themes
+✓ compact action slots retain the whole target when rows wrap and tokens change
+✓ overflow regions gain and release keyboard focus with actual overflow
+✓ carousel slides preserve native figures inside valid named groups
+✓ catalog loads the prebuilt compressed CSS
+✓ scroll region runtime handles content resize and cleanup
+✓ no script errors
+Native file button: shared geometry, typography, colors, three themes, 200% text, narrow layout, selection and focus passed.
+Field layout: aligned controls, equal height and stable geometry with changing multiline help, three themes and 200% text passed.
+✓ HTML viewers use public TDS disclosures
+✓ exact class owner leads search
+✓ canonical variants precede incidental uses
+✓ .tg-btn--primary: canonical variant leads search
+✓ .tg-avatar-group: canonical variant leads search
+✓ Meta+K never interrupts editing
+✓ Control+K never interrupts editing
+✓ button-badges: every variant has minimal HTML
+✓ buttons-overview: every variant has minimal HTML
+✓ avatars-overview: every variant has minimal HTML
+✓ inputs-overview: every variant has minimal HTML
+✓ minimal HTML excludes catalog structure
+✓ copy writes only the minimal example
+✓ copy announces success
+✓ clipboard refusal selects HTML for manual copy
+✓ full example remains
+✓ setup links README
+✓ setup explains JS
+✓ class names stay intact when they fit the column
+✓ 48px: delete targets never cover adjacent field or tag
+✓ 64px: delete targets never cover adjacent field or tag
+✓ light: compact actions expose 44px targets
+✓ dark: compact actions expose 44px targets
+✓ ios-dark: compact actions expose 44px targets
+✓ 48px: extended target receives hits outside visible #hit-test .tg-badge:not(:disabled)
+✓ click reaches the intended compact action
+✓ 48px: extended target receives hits outside visible #hit-test .tg-tag-input__remove
+✓ click reaches the intended compact action
+✓ disabled compact action stays disabled
+✓ 64px: extended target receives hits outside visible #hit-test .tg-badge:not(:disabled)
+✓ click reaches the intended compact action
+✓ 64px: extended target receives hits outside visible #hit-test .tg-tag-input__remove
+✓ click reaches the intended compact action
+✓ disabled compact action stays disabled
+✓ 320px: page stays within viewport
+✓ 390px: page stays within viewport
+✓ 768px: page stays within viewport
+✓ 1440px: page stays within viewport
+✓ no script errors
+Button padding: 9 variants have positive inline padding and ≥44×44px targets at 3 widths in 3 themes.
+33 color-formula checks: panel, D surface, all control aliases, theme inversion and hover.
+✓ no script errors
+Switch panel/track relations: {"light":{"panel":[255,255,255],"track":[233,233,233],"ratio":1.2140881790274751,"lightnessStep":-0.065975},"dark":{"panel":[35,45,54],"track":[51,61,71],"ratio":1.2660894721487757,"lightnessStep":0.065975},"ios-dark":{"panel":[25,25,25],"track":[41,41,41],"ratio":1.2085132894457875,"lightnessStep":0.06597499999999998}}
+✓ no script errors
+No-hover disclosure stays flat; default hover, click, Space and visible keyboard focus work in three themes.
+Option collections share 2px spacing, follow token changes, and the owner picker has a measured 2px gap.
+Option rows, tabs, segments, switch knobs, avatar badges and color handles are flat; popup shadows remain in all three themes.
+Theme first paint: delayed modules, saved/system themes, iframe startup and blocked storage passed.
+Listbox selection: canonical neutral surface, no selection border, 20px check, hover separation and RTL verified in three themes.
+Disclosure indicators: native keyboard, shared SVG, spacing, wrapping, RTL, 3 themes, 2 widths and reduced motion verified.
+Progress caps: native, plain and striped match a round reference in LTR/RTL at DPR 1/2.
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+AssertionError [ERR_ASSERTION]: dark: moving stripes have visible contrast (17.02860000000001)
+    at file:///Users/sfinks/Documents/ChatGPT/t-design-system/tests/progress-stripes.browser.mjs:39:12 {
+  generatedMessage: false,
+  code: 'ERR_ASSERTION',
+  actual: false,
+  expected: true,
+  operator: '==',
+  diff: 'simple'
+}
+
+Node.js v26.0.0

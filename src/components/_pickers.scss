@@ -479,16 +479,40 @@
     font-family: var(--font-family-mono);
     text-transform: uppercase;
   }
+  button.tg-color-field__swatch {
+    @include hit-target.compact;
+    // This is selected content, not a theme surface: hover must not change its hue.
+    --control-idle-bg: var(--swatch, transparent);
+    --control-hover-bg: var(--control-idle-bg);
+    --control-hover-lightness-step: 0;
+    --control-hover-filter: none;
+    background: var(--control-idle-bg);
+    border: 1px solid var(--border-color);
+    &:disabled { opacity: var(--disabled-opacity); }
+  }
   .tg-color-picker {
     display: grid;
     gap: var(--space-3);
     inline-size: min(100%, 18rem);
     padding: var(--space-3);
-    border: var(--border);
-    border-radius: var(--radius-lg);
-    background: var(--surface-bg);
-    --ring-bg: var(--surface-bg);
+    &:not([popover]) {
+      border: var(--border);
+      border-radius: var(--radius-lg);
+      background: var(--surface-bg);
+      --ring-bg: var(--surface-bg);
+    }
+    &[popover] {
+      // A color canvas is not a dropdown option collection. It uses the common
+      // floating surface directly; listbox/combobox still belong to option.list.
+      @include floating.surface(var(--radius-lg));
+      @include floating.popover;
+      inline-size: min(18rem, calc(100vw - var(--space-8)));
+      max-block-size: calc(100dvh - var(--space-8));
+      overflow: auto;
+    }
   }
+  @include floating.anchored('.tg-color-picker[popover]');
+  @include floating.sheet('.tg-color-picker[popover]');
   .tg-color-picker__area {
     position: relative;
     aspect-ratio: 3 / 2;

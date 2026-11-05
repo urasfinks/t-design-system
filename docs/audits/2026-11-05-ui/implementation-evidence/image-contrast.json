@@ -1,0 +1,122 @@
+[
+  {
+    "engine": "chromium",
+    "theme": "light",
+    "style": {
+      "font": "16px",
+      "weight": "600",
+      "color": "rgb(255, 255, 255)"
+    },
+    "rect": {
+      "x": 53,
+      "y": 445.59375,
+      "width": 59.078125,
+      "height": 32
+    },
+    "measured": {
+      "min": 1.1994589610640312,
+      "median": 11.738600748170652,
+      "max": 15.546544505769978
+    }
+  },
+  {
+    "engine": "chromium",
+    "theme": "dark",
+    "style": {
+      "font": "16px",
+      "weight": "600",
+      "color": "rgb(255, 255, 255)"
+    },
+    "rect": {
+      "x": 53,
+      "y": 445.59375,
+      "width": 59.078125,
+      "height": 32
+    },
+    "measured": {
+      "min": 1.1994589610640312,
+      "median": 11.738600748170652,
+      "max": 15.546544505769978
+    }
+  },
+  {
+    "engine": "chromium",
+    "theme": "ios-dark",
+    "style": {
+      "font": "16px",
+      "weight": "600",
+      "color": "rgb(255, 255, 255)"
+    },
+    "rect": {
+      "x": 53,
+      "y": 445.59375,
+      "width": 59.078125,
+      "height": 32
+    },
+    "measured": {
+      "min": 1.1994589610640312,
+      "median": 11.738600748170652,
+      "max": 15.546544505769978
+    }
+  },
+  {
+    "engine": "webkit",
+    "theme": "light",
+    "style": {
+      "font": "16px",
+      "weight": "600",
+      "color": "rgb(255, 255, 255)"
+    },
+    "rect": {
+      "x": 53,
+      "y": 445.578125,
+      "width": 59.078125,
+      "height": 32
+    },
+    "measured": {
+      "min": 1.1994589610640312,
+      "median": 11.513337866551838,
+      "max": 15.299497233437119
+    }
+  },
+  {
+    "engine": "webkit",
+    "theme": "dark",
+    "style": {
+      "font": "16px",
+      "weight": "600",
+      "color": "rgb(255, 255, 255)"
+    },
+    "rect": {
+      "x": 53,
+      "y": 445.578125,
+      "width": 59.078125,
+      "height": 32
+    },
+    "measured": {
+      "min": 1.1994589610640312,
+      "median": 11.513337866551838,
+      "max": 15.299497233437119
+    }
+  },
+  {
+    "engine": "webkit",
+    "theme": "ios-dark",
+    "style": {
+      "font": "16px",
+      "weight": "600",
+      "color": "rgb(255, 255, 255)"
+    },
+    "rect": {
+      "x": 53,
+      "y": 445.578125,
+      "width": 59.078125,
+      "height": 32
+    },
+    "measured": {
+      "min": 1.1994589610640312,
+      "median": 11.513337866551838,
+      "max": 15.299497233437119
+    }
+  }
+]

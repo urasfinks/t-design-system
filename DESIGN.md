@@ -35,6 +35,13 @@ The signature is the system itself: live components, clear examples, readable co
   the effects catalog, not the default surface.
 - Touch controls keep a minimum 44 px target; long labels wrap. Hover requires
   hover capability. Keyboard focus stays visible; reduced motion removes movement.
+  Compact actions keep their visible size; `.tg-action-slot` reserves each extended
+  hit target in wrapping groups. Named `.tg-scroll-region` containers become Tab
+  stops only while overflowing when the optional UI runtime is connected.
+- Small labels over images share `media-surface.caption` with the existing overlay
+  roles, including carousel captions, image-accordion labels and compare labels.
+  Their text remains protected over white images. Full overlay cards keep their
+  separate content composition; a small caption rule does not restyle card bodies.
 - Motion uses the shared easing, 120 ms press feedback and 180 ms state changes.
   Avoid entrance choreography and scaling hidden content to zero. Movement uses
   `transform` and `opacity`; progress uses a rounded `clip-path` reveal without layout
@@ -120,7 +127,10 @@ Overview table rows also expose minimal HTML with copying next to their stage
 and rule. The outer disclosure retains the full example, labelled “Посмотреть HTML
 всего примера”. Both levels use the initial live markup, without generated controls.
 Every HTML viewer uses the public `tg-disclosure` with the existing
-`tg-card--disclosure` surface, `tg-disclosure__trigger` and `tg-disclosure__content`.
+`tg-disclosure--embedded` variant, `tg-disclosure__trigger` and `tg-disclosure__content`.
+Code viewers use `tg-disclosure--compact`, a borderless `tg-code-block` and a
+separate copy-action row with a shared gap. One native details name group keeps
+only one viewer open. The code is frozen before demo-specific enhancements.
 Its chevron, hover, focus, motion and corners belong to TDS; catalog CSS only
 positions the viewer and limits code scrolling. Copy controls use TDS utilities.
 The preview composes public variants and utilities; `tg-list--plain` shares its

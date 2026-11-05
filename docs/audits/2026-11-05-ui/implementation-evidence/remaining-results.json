@@ -1,0 +1,442 @@
+[
+  {
+    "file": "demo-page-scroll.browser",
+    "engine": "chromium",
+    "status": 0
+  },
+  {
+    "file": "ripple-corners.browser",
+    "engine": "chromium",
+    "status": 0
+  },
+  {
+    "file": "illustration-edges.browser",
+    "engine": "chromium",
+    "status": 0
+  },
+  {
+    "file": "rounded-media.browser",
+    "engine": "chromium",
+    "status": 0
+  },
+  {
+    "file": "floating-inheritance.browser",
+    "engine": "chromium",
+    "status": 0
+  },
+  {
+    "file": "icon-sizing.browser",
+    "engine": "chromium",
+    "status": 0
+  },
+  {
+    "file": "select-arrow.browser",
+    "engine": "chromium",
+    "status": 0
+  },
+  {
+    "file": "range.browser",
+    "engine": "chromium",
+    "status": 0
+  },
+  {
+    "file": "button-spacing.browser",
+    "engine": "chromium",
+    "status": 1
+  },
+  {
+    "file": "button-height.browser",
+    "engine": "chromium",
+    "status": 0
+  },
+  {
+    "file": "control-hover.browser",
+    "engine": "chromium",
+    "status": 0
+  },
+  {
+    "file": "default-feedback.browser",
+    "engine": "chromium",
+    "status": 0
+  },
+  {
+    "file": "component-polish.browser",
+    "engine": "chromium",
+    "status": 0
+  },
+  {
+    "file": "baseline-compatibility.browser",
+    "engine": "chromium",
+    "status": 1
+  },
+  {
+    "file": "error-surface.browser",
+    "engine": "chromium",
+    "status": 0
+  },
+  {
+    "file": "catalog-clusters.browser",
+    "engine": "chromium",
+    "status": 0
+  },
+  {
+    "file": "catalog-refresh.browser",
+    "engine": "chromium",
+    "status": 0
+  },
+  {
+    "file": "catalog-search.browser",
+    "engine": "chromium",
+    "status": 0
+  },
+  {
+    "file": "patterns.browser",
+    "engine": "chromium",
+    "status": 0
+  },
+  {
+    "file": "icon-browser.browser",
+    "engine": "chromium",
+    "status": 0
+  },
+  {
+    "file": "bottom-panel.browser",
+    "engine": "chromium",
+    "status": 0
+  },
+  {
+    "file": "catalog-compositions.browser",
+    "engine": "chromium",
+    "status": 0
+  },
+  {
+    "file": "compositions.browser",
+    "engine": "chromium",
+    "status": 0
+  },
+  {
+    "file": "browser",
+    "engine": "chromium",
+    "status": 1
+  },
+  {
+    "file": "audit.browser",
+    "engine": "chromium",
+    "status": 0
+  },
+  {
+    "file": "effects.browser",
+    "engine": "chromium",
+    "status": 0
+  },
+  {
+    "file": "design-system.browser",
+    "engine": "chromium",
+    "status": 0
+  },
+  {
+    "file": "palette.browser",
+    "engine": "chromium",
+    "status": 0
+  },
+  {
+    "file": "field-focus.browser",
+    "engine": "chromium",
+    "status": 0
+  },
+  {
+    "file": "badges.browser",
+    "engine": "chromium",
+    "status": 0
+  },
+  {
+    "file": "avatar-stack.browser",
+    "engine": "chromium",
+    "status": 0
+  },
+  {
+    "file": "avatar-ring.browser",
+    "engine": "chromium",
+    "status": 0
+  },
+  {
+    "file": "semantic-borders.browser",
+    "engine": "chromium",
+    "status": 0
+  },
+  {
+    "file": "motion.browser",
+    "engine": "chromium",
+    "status": 0
+  },
+  {
+    "file": "workspace.browser",
+    "engine": "chromium",
+    "status": 0
+  },
+  {
+    "file": "components-wave-0.browser",
+    "engine": "chromium",
+    "status": 1
+  },
+  {
+    "file": "components-wave-1.browser",
+    "engine": "chromium",
+    "status": 0
+  },
+  {
+    "file": "components-wave-2.browser",
+    "engine": "chromium",
+    "status": 0
+  },
+  {
+    "file": "components-wave-3.browser",
+    "engine": "chromium",
+    "status": 0
+  },
+  {
+    "file": "components-wave-4-5.browser",
+    "engine": "chromium",
+    "status": 0
+  },
+  {
+    "file": "components-wave-6.browser",
+    "engine": "chromium",
+    "status": 0
+  },
+  {
+    "file": "components-wave-7.browser",
+    "engine": "chromium",
+    "status": 0
+  },
+  {
+    "file": "components-wave-8.browser",
+    "engine": "chromium",
+    "status": 0
+  },
+  {
+    "file": "spec-examples.browser",
+    "engine": "chromium",
+    "status": 0
+  },
+  {
+    "file": "demo-page-scroll.browser",
+    "engine": "webkit",
+    "status": 0
+  },
+  {
+    "file": "ripple-corners.browser",
+    "engine": "webkit",
+    "status": 0
+  },
+  {
+    "file": "illustration-edges.browser",
+    "engine": "webkit",
+    "status": 0
+  },
+  {
+    "file": "rounded-media.browser",
+    "engine": "webkit",
+    "status": 0
+  },
+  {
+    "file": "floating-inheritance.browser",
+    "engine": "webkit",
+    "status": 0
+  },
+  {
+    "file": "icon-sizing.browser",
+    "engine": "webkit",
+    "status": 0
+  },
+  {
+    "file": "select-arrow.browser",
+    "engine": "webkit",
+    "status": 0
+  },
+  {
+    "file": "range.browser",
+    "engine": "webkit",
+    "status": 0
+  },
+  {
+    "file": "button-spacing.browser",
+    "engine": "webkit",
+    "status": 1
+  },
+  {
+    "file": "button-height.browser",
+    "engine": "webkit",
+    "status": 0
+  },
+  {
+    "file": "control-hover.browser",
+    "engine": "webkit",
+    "status": 0
+  },
+  {
+    "file": "default-feedback.browser",
+    "engine": "webkit",
+    "status": 0
+  },
+  {
+    "file": "component-polish.browser",
+    "engine": "webkit",
+    "status": 0
+  },
+  {
+    "file": "baseline-compatibility.browser",
+    "engine": "webkit",
+    "status": 1
+  },
+  {
+    "file": "error-surface.browser",
+    "engine": "webkit",
+    "status": 0
+  },
+  {
+    "file": "catalog-clusters.browser",
+    "engine": "webkit",
+    "status": 0
+  },
+  {
+    "file": "catalog-refresh.browser",
+    "engine": "webkit",
+    "status": 0
+  },
+  {
+    "file": "catalog-search.browser",
+    "engine": "webkit",
+    "status": 0
+  },
+  {
+    "file": "patterns.browser",
+    "engine": "webkit",
+    "status": 1
+  },
+  {
+    "file": "icon-browser.browser",
+    "engine": "webkit",
+    "status": 0
+  },
+  {
+    "file": "bottom-panel.browser",
+    "engine": "webkit",
+    "status": 0
+  },
+  {
+    "file": "catalog-compositions.browser",
+    "engine": "webkit",
+    "status": 0
+  },
+  {
+    "file": "compositions.browser",
+    "engine": "webkit",
+    "status": 0
+  },
+  {
+    "file": "browser",
+    "engine": "webkit",
+    "status": 1
+  },
+  {
+    "file": "audit.browser",
+    "engine": "webkit",
+    "status": 0
+  },
+  {
+    "file": "effects.browser",
+    "engine": "webkit",
+    "status": 0
+  },
+  {
+    "file": "design-system.browser",
+    "engine": "webkit",
+    "status": 0
+  },
+  {
+    "file": "palette.browser",
+    "engine": "webkit",
+    "status": 0
+  },
+  {
+    "file": "field-focus.browser",
+    "engine": "webkit",
+    "status": 0
+  },
+  {
+    "file": "badges.browser",
+    "engine": "webkit",
+    "status": 0
+  },
+  {
+    "file": "avatar-stack.browser",
+    "engine": "webkit",
+    "status": 0
+  },
+  {
+    "file": "avatar-ring.browser",
+    "engine": "webkit",
+    "status": 0
+  },
+  {
+    "file": "semantic-borders.browser",
+    "engine": "webkit",
+    "status": 0
+  },
+  {
+    "file": "motion.browser",
+    "engine": "webkit",
+    "status": 0
+  },
+  {
+    "file": "workspace.browser",
+    "engine": "webkit",
+    "status": 0
+  },
+  {
+    "file": "components-wave-0.browser",
+    "engine": "webkit",
+    "status": 1
+  },
+  {
+    "file": "components-wave-1.browser",
+    "engine": "webkit",
+    "status": 1
+  },
+  {
+    "file": "components-wave-2.browser",
+    "engine": "webkit",
+    "status": 1
+  },
+  {
+    "file": "components-wave-3.browser",
+    "engine": "webkit",
+    "status": 1
+  },
+  {
+    "file": "components-wave-4-5.browser",
+    "engine": "webkit",
+    "status": 0
+  },
+  {
+    "file": "components-wave-6.browser",
+    "engine": "webkit",
+    "status": 0
+  },
+  {
+    "file": "components-wave-7.browser",
+    "engine": "webkit",
+    "status": 0
+  },
+  {
+    "file": "components-wave-8.browser",
+    "engine": "webkit",
+    "status": 0
+  },
+  {
+    "file": "spec-examples.browser",
+    "engine": "webkit",
+    "status": 0
+  }
+]

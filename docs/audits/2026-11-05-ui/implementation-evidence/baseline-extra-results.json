@@ -1,0 +1,17 @@
+[
+  {
+    "file": "components-wave-1.browser",
+    "engine": "webkit",
+    "status": 1
+  },
+  {
+    "file": "components-wave-2.browser",
+    "engine": "webkit",
+    "status": 1
+  },
+  {
+    "file": "components-wave-3.browser",
+    "engine": "webkit",
+    "status": 1
+  }
+]

@@ -84,17 +84,13 @@
   details.tg-card--disclosure {
     --disclosure-radius-start: var(--radius-lg);
     --disclosure-radius-end: var(--radius-lg);
+    --disclosure-default-padding: var(--card-padding);
     padding: 0;
     > .tg-disclosure__trigger {
-      padding: var(--card-padding);
-      font-size: var(--fs);
+      font-size: var(--disclosure-trigger-font-size, var(--fs));
     }
     &[open] > .tg-disclosure__trigger { border-end-start-radius: 0; border-end-end-radius: 0; }
-    > .tg-disclosure__content, > .tg-card__body { padding: 0 var(--card-padding) var(--card-padding); }
-  }
-  // Card to dialog: the shared element keeps its place while the dialog opens.
-  @media (prefers-reduced-motion: no-preference) {
-    ::view-transition-group(tg-card-morph) { animation-duration: var(--duration); animation-timing-function: var(--ease); }
+    > .tg-disclosure__content, > .tg-card__body { padding: var(--space-3) var(--card-padding) var(--card-padding); }
   }
   .tg-card__body {
     display: grid;

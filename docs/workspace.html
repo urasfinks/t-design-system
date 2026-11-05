@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="color-scheme" content="light dark">
   <title>Рабочее пространство — T Design System</title>
-  <link rel="stylesheet" href="../dist/t-design-system.css">
+  <link rel="stylesheet" href="../dist/t-design-system.min.css">
   <script type="module" src="workspace-demo.js"></script>
 </head>
 <body>
@@ -182,7 +182,7 @@
       <div role="tabpanel" id="ws-panel-templates" aria-labelledby="ws-tab-templates" hidden>
         <ul class="tg-grid tg-p-0 tg-mt-0 tg-mb-0" role="list">
           <li class="tg-card tg-card--link">
-            <figure class="tg-card__media tg-mt-0 tg-mb-0"><img src="composition-media.svg" alt="" width="1200" height="800"></figure>
+            <figure class="tg-card__media"><img src="composition-media.svg" alt="" width="1200" height="800"></figure>
             <div class="tg-card__body">
               <h3 class="tg-header__title"><a class="tg-card__link" href="#ws-main">Ежемесячная поддержка</a></h3>
               <p class="tg-text-muted">Фиксированная сумма, автоматическая отправка первого числа.</p>
@@ -190,7 +190,7 @@
             <div class="tg-card__footer"><span class="tg-badge tg-badge--secondary">12 клиентов</span><span class="tg-text-sm tg-text-muted tg-ms-auto">Изменён вчера</span></div>
           </li>
           <li class="tg-card tg-card--link">
-            <figure class="tg-card__media tg-mt-0 tg-mb-0"><img src="composition-media.svg" alt="" width="1200" height="800"></figure>
+            <figure class="tg-card__media"><img src="composition-media.svg" alt="" width="1200" height="800"></figure>
             <div class="tg-card__body">
               <h3 class="tg-header__title"><a class="tg-card__link" href="#ws-main">Проект с предоплатой</a></h3>
               <p class="tg-text-muted">Две части: 40% при старте и остаток после сдачи этапа.</p>
@@ -198,7 +198,7 @@
             <div class="tg-card__footer"><span class="tg-badge tg-badge--secondary">3 клиента</span><span class="tg-text-sm tg-text-muted tg-ms-auto">Изменён 14 окт.</span></div>
           </li>
           <li class="tg-card tg-card--link">
-            <figure class="tg-card__media tg-mt-0 tg-mb-0"><img src="composition-media.svg" alt="" width="1200" height="800"></figure>
+            <figure class="tg-card__media"><img src="composition-media.svg" alt="" width="1200" height="800"></figure>
             <div class="tg-card__body">
               <h3 class="tg-header__title"><a class="tg-card__link" href="#ws-main">Почасовая работа с длинным названием шаблона для проверки переноса</a></h3>
               <p class="tg-text-muted">Часы из трекера, ставка по договору.</p>
@@ -296,7 +296,7 @@
             <div class="tg-message__body">
               <p>Один: <strong>INV-1037</strong> для «Студии Отражение», 96 000 ₽, срок истёк 20 октября.</p>
               <p>Напоминание можно отправить из меню строки или командой:</p>
-              <pre><code translate="no">remind INV-1037 --tone=polite</code></pre>
+              <pre class="tg-code-block"><code translate="no">remind INV-1037 --tone=polite</code></pre>
             </div>
             <div class="tg-message__actions">
               <button class="tg-icon-btn tg-icon-btn--ghost" type="button" aria-label="Скопировать ответ"><svg class="tg-icon" viewBox="0 0 24 24" aria-hidden="true"><use href="../dist/icons/copy.svg#copy"></use></svg></button>

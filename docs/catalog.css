@@ -125,7 +125,7 @@ h1 > span { color: var(--text-link); }
 .spacing-scale > span { display: flex; justify-content: center; align-items: end; width: 1.5rem; height: calc(var(--size) * 2px + 1rem); padding-bottom: .125rem; border-radius: var(--space-1); background: var(--accent-soft); color: var(--text-link); font-size: var(--catalog-caption); font-variant-numeric: tabular-nums; }
 .radius-scale > span { display: grid; place-items: center; width: 2.25rem; height: 2.25rem; border: var(--border-control); color: var(--text-secondary); font-size: var(--catalog-caption); }
 .example-panel { background: var(--background-panel); border: var(--border); border-radius: var(--radius-lg); overflow: clip; margin-top: var(--space-4); }
-.example-body { padding: var(--space-6); border-radius: var(--radius-lg); background: var(--background-main); }
+.example-body { padding: var(--space-6); background: var(--background-main); }
 /* Each example states the rule it demonstrates: when to use it and why it looks this way. */
 /* Overview tables arrange live example stages without adding another panel. */
 .catalog-overview td > .example-body { padding: 0; background: transparent; }
@@ -144,7 +144,7 @@ h1 > span { color: var(--text-link); }
 .catalog-overview td > .example-code { margin-block-start: var(--space-4); }
 .example-rule { margin: 0; padding: var(--space-4) var(--space-6); border-top: var(--border); color: var(--text-secondary); font-size: var(--catalog-text); line-height: 1.6; text-wrap: pretty; padding-inline-end: max(var(--space-6), calc(100% - 72ch - var(--space-6))); }
 .example-rule code { font: .9em/1 ui-monospace, SFMono-Regular, Consolas, monospace; color: var(--text-color); overflow-wrap: anywhere; }
-pre { max-width: 100%; overflow: auto; font: var(--catalog-caption)/1.7 ui-monospace, SFMono-Regular, Consolas, monospace; margin: 0; padding: var(--space-6); tab-size: 2; background: var(--surface-muted); color: var(--text-color); }
+pre { max-width: 100%; margin: 0; }
 .example-code pre { max-height: 24rem; }
 .form-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--space-6); }
 .form-wide { grid-column: 1/-1; }

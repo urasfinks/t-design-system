@@ -1,0 +1,401 @@
+[
+  {
+    "width": 1440,
+    "theme": "light",
+    "violations": [
+      {
+        "id": "label-content-name-mismatch",
+        "impact": "serious",
+        "nodes": [
+          {
+            "target": [
+              "a[aria-label=\"t-design-system, начало\"]"
+            ],
+            "html": "<a class=\"brand\" href=\"#overview\" aria-label=\"t-design-system, начало\"><span class=\"brand-mark\" aria-hidden=\"true\">t<span>·</span></span><span>t-design-system</span></a>",
+            "failureSummary": "Fix any of the following:\n  Text inside the element is not included in the accessible name"
+          },
+          {
+            "target": [
+              "button[aria-label=\"Открыть профиль Анны\"]"
+            ],
+            "html": "<button type=\"button\" class=\"tg-avatar\" aria-label=\"Открыть профиль Анны\"><span class=\"tg-avatar__initials\" aria-hidden=\"true\">АК</span></button>",
+            "failureSummary": "Fix any of the following:\n  Text inside the element is not included in the accessible name"
+          },
+          {
+            "target": [
+              "#demo-owner-trigger"
+            ],
+            "html": "<button class=\"tg-listbox-trigger\" type=\"button\" id=\"demo-owner-trigger\" aria-haspopup=\"listbox\" aria-expanded=\"false\" aria-labelledby=\"demo-owner-label demo-owner-trigger\" aria-controls=\"demo-owner-list\" data-listbox=\"\">",
+            "failureSummary": "Fix any of the following:\n  Text inside the element is not included in the accessible name"
+          },
+          {
+            "target": [
+              "a[aria-label=\"Счета, 12 новых\"]"
+            ],
+            "html": "<a class=\"tg-sidebar__link\" href=\"#app-nav\" aria-label=\"Счета, 12 новых\"><svg class=\"tg-icon\" viewBox=\"0 0 24 24\" aria-hidden=\"true\"><use href=\"../dist/icons/file-text.svg#file-text\"></use></svg><span class=\"tg-sidebar__text\">Счета</span><span class=\"tg-badge tg-badge--primary\">12</span></a>",
+            "failureSummary": "Fix any of the following:\n  Text inside the element is not included in the accessible name"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "width": 1440,
+    "theme": "dark",
+    "violations": [
+      {
+        "id": "label-content-name-mismatch",
+        "impact": "serious",
+        "nodes": [
+          {
+            "target": [
+              "a[aria-label=\"t-design-system, начало\"]"
+            ],
+            "html": "<a class=\"brand\" href=\"#overview\" aria-label=\"t-design-system, начало\"><span class=\"brand-mark\" aria-hidden=\"true\">t<span>·</span></span><span>t-design-system</span></a>",
+            "failureSummary": "Fix any of the following:\n  Text inside the element is not included in the accessible name"
+          },
+          {
+            "target": [
+              "button[aria-label=\"Открыть профиль Анны\"]"
+            ],
+            "html": "<button type=\"button\" class=\"tg-avatar\" aria-label=\"Открыть профиль Анны\"><span class=\"tg-avatar__initials\" aria-hidden=\"true\">АК</span></button>",
+            "failureSummary": "Fix any of the following:\n  Text inside the element is not included in the accessible name"
+          },
+          {
+            "target": [
+              "#demo-owner-trigger"
+            ],
+            "html": "<button class=\"tg-listbox-trigger\" type=\"button\" id=\"demo-owner-trigger\" aria-haspopup=\"listbox\" aria-expanded=\"false\" aria-labelledby=\"demo-owner-label demo-owner-trigger\" aria-controls=\"demo-owner-list\" data-listbox=\"\">",
+            "failureSummary": "Fix any of the following:\n  Text inside the element is not included in the accessible name"
+          },
+          {
+            "target": [
+              "a[aria-label=\"Счета, 12 новых\"]"
+            ],
+            "html": "<a class=\"tg-sidebar__link\" href=\"#app-nav\" aria-label=\"Счета, 12 новых\"><svg class=\"tg-icon\" viewBox=\"0 0 24 24\" aria-hidden=\"true\"><use href=\"../dist/icons/file-text.svg#file-text\"></use></svg><span class=\"tg-sidebar__text\">Счета</span><span class=\"tg-badge tg-badge--primary\">12</span></a>",
+            "failureSummary": "Fix any of the following:\n  Text inside the element is not included in the accessible name"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "width": 1440,
+    "theme": "ios-dark",
+    "violations": [
+      {
+        "id": "label-content-name-mismatch",
+        "impact": "serious",
+        "nodes": [
+          {
+            "target": [
+              "a[aria-label=\"t-design-system, начало\"]"
+            ],
+            "html": "<a class=\"brand\" href=\"#overview\" aria-label=\"t-design-system, начало\"><span class=\"brand-mark\" aria-hidden=\"true\">t<span>·</span></span><span>t-design-system</span></a>",
+            "failureSummary": "Fix any of the following:\n  Text inside the element is not included in the accessible name"
+          },
+          {
+            "target": [
+              "button[aria-label=\"Открыть профиль Анны\"]"
+            ],
+            "html": "<button type=\"button\" class=\"tg-avatar\" aria-label=\"Открыть профиль Анны\"><span class=\"tg-avatar__initials\" aria-hidden=\"true\">АК</span></button>",
+            "failureSummary": "Fix any of the following:\n  Text inside the element is not included in the accessible name"
+          },
+          {
+            "target": [
+              "#demo-owner-trigger"
+            ],
+            "html": "<button class=\"tg-listbox-trigger\" type=\"button\" id=\"demo-owner-trigger\" aria-haspopup=\"listbox\" aria-expanded=\"false\" aria-labelledby=\"demo-owner-label demo-owner-trigger\" aria-controls=\"demo-owner-list\" data-listbox=\"\">",
+            "failureSummary": "Fix any of the following:\n  Text inside the element is not included in the accessible name"
+          },
+          {
+            "target": [
+              "a[aria-label=\"Счета, 12 новых\"]"
+            ],
+            "html": "<a class=\"tg-sidebar__link\" href=\"#app-nav\" aria-label=\"Счета, 12 новых\"><svg class=\"tg-icon\" viewBox=\"0 0 24 24\" aria-hidden=\"true\"><use href=\"../dist/icons/file-text.svg#file-text\"></use></svg><span class=\"tg-sidebar__text\">Счета</span><span class=\"tg-badge tg-badge--primary\">12</span></a>",
+            "failureSummary": "Fix any of the following:\n  Text inside the element is not included in the accessible name"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "width": 768,
+    "theme": "light",
+    "violations": [
+      {
+        "id": "label-content-name-mismatch",
+        "impact": "serious",
+        "nodes": [
+          {
+            "target": [
+              "a[aria-label=\"t-design-system, начало\"]"
+            ],
+            "html": "<a class=\"brand\" href=\"#overview\" aria-label=\"t-design-system, начало\"><span class=\"brand-mark\" aria-hidden=\"true\">t<span>·</span></span><span>t-design-system</span></a>",
+            "failureSummary": "Fix any of the following:\n  Text inside the element is not included in the accessible name"
+          },
+          {
+            "target": [
+              "button[aria-label=\"Открыть профиль Анны\"]"
+            ],
+            "html": "<button type=\"button\" class=\"tg-avatar\" aria-label=\"Открыть профиль Анны\"><span class=\"tg-avatar__initials\" aria-hidden=\"true\">АК</span></button>",
+            "failureSummary": "Fix any of the following:\n  Text inside the element is not included in the accessible name"
+          },
+          {
+            "target": [
+              "#demo-owner-trigger"
+            ],
+            "html": "<button class=\"tg-listbox-trigger\" type=\"button\" id=\"demo-owner-trigger\" aria-haspopup=\"listbox\" aria-expanded=\"false\" aria-labelledby=\"demo-owner-label demo-owner-trigger\" aria-controls=\"demo-owner-list\" data-listbox=\"\">",
+            "failureSummary": "Fix any of the following:\n  Text inside the element is not included in the accessible name"
+          },
+          {
+            "target": [
+              "a[aria-label=\"Счета, 12 новых\"]"
+            ],
+            "html": "<a class=\"tg-sidebar__link\" href=\"#app-nav\" aria-label=\"Счета, 12 новых\"><svg class=\"tg-icon\" viewBox=\"0 0 24 24\" aria-hidden=\"true\"><use href=\"../dist/icons/file-text.svg#file-text\"></use></svg><span class=\"tg-sidebar__text\">Счета</span><span class=\"tg-badge tg-badge--primary\">12</span></a>",
+            "failureSummary": "Fix any of the following:\n  Text inside the element is not included in the accessible name"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "width": 768,
+    "theme": "dark",
+    "violations": [
+      {
+        "id": "label-content-name-mismatch",
+        "impact": "serious",
+        "nodes": [
+          {
+            "target": [
+              "a[aria-label=\"t-design-system, начало\"]"
+            ],
+            "html": "<a class=\"brand\" href=\"#overview\" aria-label=\"t-design-system, начало\"><span class=\"brand-mark\" aria-hidden=\"true\">t<span>·</span></span><span>t-design-system</span></a>",
+            "failureSummary": "Fix any of the following:\n  Text inside the element is not included in the accessible name"
+          },
+          {
+            "target": [
+              "button[aria-label=\"Открыть профиль Анны\"]"
+            ],
+            "html": "<button type=\"button\" class=\"tg-avatar\" aria-label=\"Открыть профиль Анны\"><span class=\"tg-avatar__initials\" aria-hidden=\"true\">АК</span></button>",
+            "failureSummary": "Fix any of the following:\n  Text inside the element is not included in the accessible name"
+          },
+          {
+            "target": [
+              "#demo-owner-trigger"
+            ],
+            "html": "<button class=\"tg-listbox-trigger\" type=\"button\" id=\"demo-owner-trigger\" aria-haspopup=\"listbox\" aria-expanded=\"false\" aria-labelledby=\"demo-owner-label demo-owner-trigger\" aria-controls=\"demo-owner-list\" data-listbox=\"\">",
+            "failureSummary": "Fix any of the following:\n  Text inside the element is not included in the accessible name"
+          },
+          {
+            "target": [
+              "a[aria-label=\"Счета, 12 новых\"]"
+            ],
+            "html": "<a class=\"tg-sidebar__link\" href=\"#app-nav\" aria-label=\"Счета, 12 новых\"><svg class=\"tg-icon\" viewBox=\"0 0 24 24\" aria-hidden=\"true\"><use href=\"../dist/icons/file-text.svg#file-text\"></use></svg><span class=\"tg-sidebar__text\">Счета</span><span class=\"tg-badge tg-badge--primary\">12</span></a>",
+            "failureSummary": "Fix any of the following:\n  Text inside the element is not included in the accessible name"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "width": 768,
+    "theme": "ios-dark",
+    "violations": [
+      {
+        "id": "label-content-name-mismatch",
+        "impact": "serious",
+        "nodes": [
+          {
+            "target": [
+              "a[aria-label=\"t-design-system, начало\"]"
+            ],
+            "html": "<a class=\"brand\" href=\"#overview\" aria-label=\"t-design-system, начало\"><span class=\"brand-mark\" aria-hidden=\"true\">t<span>·</span></span><span>t-design-system</span></a>",
+            "failureSummary": "Fix any of the following:\n  Text inside the element is not included in the accessible name"
+          },
+          {
+            "target": [
+              "button[aria-label=\"Открыть профиль Анны\"]"
+            ],
+            "html": "<button type=\"button\" class=\"tg-avatar\" aria-label=\"Открыть профиль Анны\"><span class=\"tg-avatar__initials\" aria-hidden=\"true\">АК</span></button>",
+            "failureSummary": "Fix any of the following:\n  Text inside the element is not included in the accessible name"
+          },
+          {
+            "target": [
+              "#demo-owner-trigger"
+            ],
+            "html": "<button class=\"tg-listbox-trigger\" type=\"button\" id=\"demo-owner-trigger\" aria-haspopup=\"listbox\" aria-expanded=\"false\" aria-labelledby=\"demo-owner-label demo-owner-trigger\" aria-controls=\"demo-owner-list\" data-listbox=\"\">",
+            "failureSummary": "Fix any of the following:\n  Text inside the element is not included in the accessible name"
+          },
+          {
+            "target": [
+              "a[aria-label=\"Счета, 12 новых\"]"
+            ],
+            "html": "<a class=\"tg-sidebar__link\" href=\"#app-nav\" aria-label=\"Счета, 12 новых\"><svg class=\"tg-icon\" viewBox=\"0 0 24 24\" aria-hidden=\"true\"><use href=\"../dist/icons/file-text.svg#file-text\"></use></svg><span class=\"tg-sidebar__text\">Счета</span><span class=\"tg-badge tg-badge--primary\">12</span></a>",
+            "failureSummary": "Fix any of the following:\n  Text inside the element is not included in the accessible name"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "width": 375,
+    "theme": "light",
+    "violations": [
+      {
+        "id": "label-content-name-mismatch",
+        "impact": "serious",
+        "nodes": [
+          {
+            "target": [
+              "a[aria-label=\"t-design-system, начало\"]"
+            ],
+            "html": "<a class=\"brand\" href=\"#overview\" aria-label=\"t-design-system, начало\"><span class=\"brand-mark\" aria-hidden=\"true\">t<span>·</span></span><span>t-design-system</span></a>",
+            "failureSummary": "Fix any of the following:\n  Text inside the element is not included in the accessible name"
+          },
+          {
+            "target": [
+              "button[aria-label=\"Открыть профиль Анны\"]"
+            ],
+            "html": "<button type=\"button\" class=\"tg-avatar\" aria-label=\"Открыть профиль Анны\"><span class=\"tg-avatar__initials\" aria-hidden=\"true\">АК</span></button>",
+            "failureSummary": "Fix any of the following:\n  Text inside the element is not included in the accessible name"
+          },
+          {
+            "target": [
+              "#demo-owner-trigger"
+            ],
+            "html": "<button class=\"tg-listbox-trigger\" type=\"button\" id=\"demo-owner-trigger\" aria-haspopup=\"listbox\" aria-expanded=\"false\" aria-labelledby=\"demo-owner-label demo-owner-trigger\" aria-controls=\"demo-owner-list\" data-listbox=\"\">",
+            "failureSummary": "Fix any of the following:\n  Text inside the element is not included in the accessible name"
+          },
+          {
+            "target": [
+              "a[aria-label=\"Счета, 12 новых\"]"
+            ],
+            "html": "<a class=\"tg-sidebar__link\" href=\"#app-nav\" aria-label=\"Счета, 12 новых\"><svg class=\"tg-icon\" viewBox=\"0 0 24 24\" aria-hidden=\"true\"><use href=\"../dist/icons/file-text.svg#file-text\"></use></svg><span class=\"tg-sidebar__text\">Счета</span><span class=\"tg-badge tg-badge--primary\">12</span></a>",
+            "failureSummary": "Fix any of the following:\n  Text inside the element is not included in the accessible name"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "width": 375,
+    "theme": "dark",
+    "violations": [
+      {
+        "id": "label-content-name-mismatch",
+        "impact": "serious",
+        "nodes": [
+          {
+            "target": [
+              "a[aria-label=\"t-design-system, начало\"]"
+            ],
+            "html": "<a class=\"brand\" href=\"#overview\" aria-label=\"t-design-system, начало\"><span class=\"brand-mark\" aria-hidden=\"true\">t<span>·</span></span><span>t-design-system</span></a>",
+            "failureSummary": "Fix any of the following:\n  Text inside the element is not included in the accessible name"
+          },
+          {
+            "target": [
+              "button[aria-label=\"Открыть профиль Анны\"]"
+            ],
+            "html": "<button type=\"button\" class=\"tg-avatar\" aria-label=\"Открыть профиль Анны\"><span class=\"tg-avatar__initials\" aria-hidden=\"true\">АК</span></button>",
+            "failureSummary": "Fix any of the following:\n  Text inside the element is not included in the accessible name"
+          },
+          {
+            "target": [
+              "#demo-owner-trigger"
+            ],
+            "html": "<button class=\"tg-listbox-trigger\" type=\"button\" id=\"demo-owner-trigger\" aria-haspopup=\"listbox\" aria-expanded=\"false\" aria-labelledby=\"demo-owner-label demo-owner-trigger\" aria-controls=\"demo-owner-list\" data-listbox=\"\">",
+            "failureSummary": "Fix any of the following:\n  Text inside the element is not included in the accessible name"
+          },
+          {
+            "target": [
+              "a[aria-label=\"Счета, 12 новых\"]"
+            ],
+            "html": "<a class=\"tg-sidebar__link\" href=\"#app-nav\" aria-label=\"Счета, 12 новых\"><svg class=\"tg-icon\" viewBox=\"0 0 24 24\" aria-hidden=\"true\"><use href=\"../dist/icons/file-text.svg#file-text\"></use></svg><span class=\"tg-sidebar__text\">Счета</span><span class=\"tg-badge tg-badge--primary\">12</span></a>",
+            "failureSummary": "Fix any of the following:\n  Text inside the element is not included in the accessible name"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "width": 375,
+    "theme": "ios-dark",
+    "violations": [
+      {
+        "id": "label-content-name-mismatch",
+        "impact": "serious",
+        "nodes": [
+          {
+            "target": [
+              "a[aria-label=\"t-design-system, начало\"]"
+            ],
+            "html": "<a class=\"brand\" href=\"#overview\" aria-label=\"t-design-system, начало\"><span class=\"brand-mark\" aria-hidden=\"true\">t<span>·</span></span><span>t-design-system</span></a>",
+            "failureSummary": "Fix any of the following:\n  Text inside the element is not included in the accessible name"
+          },
+          {
+            "target": [
+              "button[aria-label=\"Открыть профиль Анны\"]"
+            ],
+            "html": "<button type=\"button\" class=\"tg-avatar\" aria-label=\"Открыть профиль Анны\"><span class=\"tg-avatar__initials\" aria-hidden=\"true\">АК</span></button>",
+            "failureSummary": "Fix any of the following:\n  Text inside the element is not included in the accessible name"
+          },
+          {
+            "target": [
+              "#demo-owner-trigger"
+            ],
+            "html": "<button class=\"tg-listbox-trigger\" type=\"button\" id=\"demo-owner-trigger\" aria-haspopup=\"listbox\" aria-expanded=\"false\" aria-labelledby=\"demo-owner-label demo-owner-trigger\" aria-controls=\"demo-owner-list\" data-listbox=\"\">",
+            "failureSummary": "Fix any of the following:\n  Text inside the element is not included in the accessible name"
+          },
+          {
+            "target": [
+              "a[aria-label=\"Счета, 12 новых\"]"
+            ],
+            "html": "<a class=\"tg-sidebar__link\" href=\"#app-nav\" aria-label=\"Счета, 12 новых\"><svg class=\"tg-icon\" viewBox=\"0 0 24 24\" aria-hidden=\"true\"><use href=\"../dist/icons/file-text.svg#file-text\"></use></svg><span class=\"tg-sidebar__text\">Счета</span><span class=\"tg-badge tg-badge--primary\">12</span></a>",
+            "failureSummary": "Fix any of the following:\n  Text inside the element is not included in the accessible name"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "state": "search-open",
+    "violations": [
+      {
+        "id": "label-content-name-mismatch",
+        "impact": "serious",
+        "nodes": [
+          {
+            "target": [
+              "a[aria-label=\"t-design-system, начало\"]"
+            ],
+            "html": "<a class=\"brand\" href=\"#overview\" aria-label=\"t-design-system, начало\"><span class=\"brand-mark\" aria-hidden=\"true\">t<span>·</span></span><span>t-design-system</span></a>",
+            "failureSummary": "Fix any of the following:\n  Text inside the element is not included in the accessible name"
+          },
+          {
+            "target": [
+              "button[aria-label=\"Открыть профиль Анны\"]"
+            ],
+            "html": "<button type=\"button\" class=\"tg-avatar\" aria-label=\"Открыть профиль Анны\"><span class=\"tg-avatar__initials\" aria-hidden=\"true\">АК</span></button>",
+            "failureSummary": "Fix any of the following:\n  Text inside the element is not included in the accessible name"
+          },
+          {
+            "target": [
+              "#demo-owner-trigger"
+            ],
+            "html": "<button class=\"tg-listbox-trigger\" type=\"button\" id=\"demo-owner-trigger\" aria-haspopup=\"listbox\" aria-expanded=\"false\" aria-labelledby=\"demo-owner-label demo-owner-trigger\" aria-controls=\"demo-owner-list\" data-listbox=\"\">",
+            "failureSummary": "Fix any of the following:\n  Text inside the element is not included in the accessible name"
+          },
+          {
+            "target": [
+              "a[aria-label=\"Счета, 12 новых\"]"
+            ],
+            "html": "<a class=\"tg-sidebar__link\" href=\"#app-nav\" aria-label=\"Счета, 12 новых\"><svg class=\"tg-icon\" viewBox=\"0 0 24 24\" aria-hidden=\"true\"><use href=\"../dist/icons/file-text.svg#file-text\"></use></svg><span class=\"tg-sidebar__text\">Счета</span><span class=\"tg-badge tg-badge--primary\">12</span></a>",
+            "failureSummary": "Fix any of the following:\n  Text inside the element is not included in the accessible name"
+          }
+        ]
+      }
+    ]
+  }
+]

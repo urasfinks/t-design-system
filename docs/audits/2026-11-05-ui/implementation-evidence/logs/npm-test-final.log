@@ -1,0 +1,63 @@
+
+> t-design-system@0.1.0 test
+> npm run build && node --test tests/*.test.mjs
+
+
+> t-design-system@0.1.0 build
+> node scripts/build.mjs
+
+Built dist/t-design-system.css (266010 bytes)
+Built dist/t-design-system.min.css (215178 bytes)
+Built dist/telegram.css (1043 bytes)
+Built dist/telegram.min.css (961 bytes)
+Built dist/telegram.js (optional theme bridge)
+Built dist/effects.js (optional ripple and decorative effects)
+Built dist/ui.js (optional ripple entry)
+Built dist/icons/ (287 independent Feather SVG files, MIT)
+Built dist/icons.json (searchable Feather metadata)
+✔ the visual reference is immutable while core source files may be refactored (5.017834ms)
+✔ every section and example rule of the saved catalog is still in the catalog (6.596833ms)
+✔ catalog has no simultaneous locally hardcoded accent colors (1.585459ms)
+✔ the main entry has no late patch module and base owns common control states (16.98575ms)
+✔ buttons declare shared state parameters instead of repeated hover paint and transitions (5.987833ms)
+✔ the legacy control-hover entry retains reset, focus and visibility foundations (173.050875ms)
+✔ new components plug into shared tokens and the state engine instead of local paint (2.107792ms)
+✔ shared engines own surfaces, rows, selection and steps; owners only include them (2.570625ms)
+✔ floating paint has one owner and no component replaces its global roles (6.711834ms)
+✔ approximate metadata footer cluster has a canonical owner (0.645291ms)
+✔ menu, navigation and command section labels share one canonical label (1.512041ms)
+✔ rounded media share one compositing engine instead of isolated corner fixes (3.307ms)
+✔ catalog families and subsections have a unique, ordered navigation tree (3.176625ms)
+✔ desktop and mobile navigation are generated from the catalog metadata (2.001167ms)
+✔ navigation metadata is escaped as text, including quotes and markup (0.426792ms)
+✔ every Feather icon is available as a separate SVG without a combined sprite (145.485417ms)
+✔ original classes remain available except the explicitly removed zero-padding button (16.762ms)
+✔ main stylesheet declares a predictable cascade without specificity escapes (1.947375ms)
+✔ all referenced core custom properties have defaults (2.537834ms)
+✔ distribution includes all stylesheets and module exports compile independently (373.884458ms)
+Color contract: 40 component files + 2 base/utility files; 797 role consumers; no local paint formulas or theme-specific role overrides.
+✔ all component colors use canonical roles and operators (17.678083ms)
+✔ an early first Enter asks for confirmation and a distinct second Enter confirms (2.730042ms)
+✔ individual SVG assets resolve every catalog reference and ship their license (63.03575ms)
+✔ manifest includes every shipped Feather icon and its upstream search tags (1.859958ms)
+✔ distributed UI entry imports its shipped effects module (1.038875ms)
+✔ the registry lists every spec heading of the 17 reference folders (12.423541ms)
+✔ 107 component specs are in scope; compositions and landing sections are documentation; owner removals are noted (0.195375ms)
+✔ every spec marked done is in the built CSS, the catalog and a test (53.565792ms)
+✔ importing the server exposes its resolver without listening (0.717875ms)
+✔ public HTML, CSS and JavaScript assets resolve (4.579417ms)
+✔ encoded traversal cannot expose repository files (0.537959ms)
+✔ unknown paths and malformed URI encodings are rejected (1.530916ms)
+✔ symlinks must remain inside their public directory (8.037625ms)
+✔ CLI host and port override the development server defaults (133.097ms)
+✔ bridge uses the source project dark/platform selection and responds to themeChanged (3.226709ms)
+✔ bridge handles not-ready SDK and iOS browser detection without changing palettes (1.875042ms)
+✔ bridge without Telegram leaves standalone theme selection intact (0.487125ms)
+ℹ tests 37
+ℹ suites 0
+ℹ pass 37
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 632.138416

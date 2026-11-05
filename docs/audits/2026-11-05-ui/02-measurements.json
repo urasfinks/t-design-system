@@ -1,0 +1,3343 @@
+{
+  "results": [
+    {
+      "theme": "light",
+      "result": {
+        "viewport": {
+          "w": 1440,
+          "h": 900,
+          "dpr": 1
+        },
+        "checks": {
+          "contrast": {
+            "checked": 1201,
+            "failCount": 3,
+            "worst": [
+              {
+                "ratio": 1,
+                "required": 4.5,
+                "fontPx": 16,
+                "weight": 400,
+                "color": "rgb(255, 255, 255)",
+                "where": "a.skip-link — \"К содержимому\""
+              },
+              {
+                "ratio": 1.09,
+                "required": 4.5,
+                "fontPx": 16,
+                "weight": 500,
+                "color": "rgb(255, 255, 255)",
+                "where": "div#scene-preview > article.app-preview.tg-card > a.tg-btn.tg-btn--primary — \"Открыть профиль\""
+              },
+              {
+                "ratio": 1.09,
+                "required": 4.5,
+                "fontPx": 14,
+                "weight": 500,
+                "color": "rgb(255, 255, 255)",
+                "where": "div.example-panel > div.example-body.tg-row > button.tg-chip — \"Технологии\""
+              }
+            ]
+          },
+          "tapTargets": {
+            "failCount": 21,
+            "warnCount": 55,
+            "items": [
+              {
+                "size": "164.36x32",
+                "severity": "mobile-warn",
+                "label": "t-design-system, начало",
+                "where": "header.site-header > a.brand — \"t·t-design-system\""
+              },
+              {
+                "size": "1034.81x24",
+                "severity": "mobile-warn",
+                "label": "Полный контракт формул, ролей и проверок",
+                "where": "div.example-panel > div.example-body.tg-col > a.tg-link — \"Полный контракт формул, ролей и проверок\""
+              },
+              {
+                "size": "136.59x24",
+                "severity": "mobile-warn",
+                "label": "Условия отправки",
+                "where": "div.example-body.tg-col > div.tg-row > a.tg-link — \"Условия отправки\""
+              },
+              {
+                "size": "53.58x26",
+                "severity": "mobile-warn",
+                "label": "Открыть обычный",
+                "where": "div.example-body.tg-col > div.tg-row > button.tg-badge.tg-gap-1 — \"12\""
+              },
+              {
+                "size": "53.58x26",
+                "severity": "mobile-warn",
+                "label": "Открыть акцент",
+                "where": "div.example-body.tg-col > div.tg-row > button.tg-badge.tg-badge--primary — \"12\""
+              },
+              {
+                "size": "53.58x26",
+                "severity": "mobile-warn",
+                "label": "Открыть вторичный",
+                "where": "div.example-body.tg-col > div.tg-row > button.tg-badge.tg-badge--secondary — \"12\""
+              },
+              {
+                "size": "53.58x26",
+                "severity": "mobile-warn",
+                "label": "Открыть ошибка",
+                "where": "div.example-body.tg-col > div.tg-row > button.tg-badge.tg-badge--destructive — \"12\""
+              },
+              {
+                "size": "122.95x26",
+                "severity": "mobile-warn",
+                "label": "Все сообщения",
+                "where": "div.example-body.tg-col > div.tg-row > a.tg-badge.tg-badge--primary — \"Все сообщения\""
+              },
+              {
+                "size": "114.77x18",
+                "severity": "AA-fail",
+                "label": "список выбора",
+                "where": "section#avatars > p > a — \"список выбора\""
+              },
+              {
+                "size": "152.59x18",
+                "severity": "AA-fail",
+                "label": "карточки и профиль",
+                "where": "section#avatars > p > a — \"карточки и профиль\""
+              },
+              {
+                "size": "155.09x18",
+                "severity": "AA-fail",
+                "label": "таблицы участников",
+                "where": "section#avatars > p > a — \"таблицы участников\""
+              },
+              {
+                "size": "176.44x18",
+                "severity": "AA-fail",
+                "label": "навигация приложения",
+                "where": "section#avatars > p > a — \"навигация приложения\""
+              },
+              {
+                "size": "1061.8x42",
+                "severity": "mobile-warn",
+                "label": "комментарии и ввод сообщения",
+                "where": "section#avatars > p > a — \"комментарии и ввод сообщения\""
+              },
+              {
+                "size": "24x24",
+                "severity": "mobile-warn",
+                "label": "orders",
+                "where": "fieldset.radio-group.tg-col > label.tg-choice > input.tg-check"
+              },
+              {
+                "size": "24x24",
+                "severity": "mobile-warn",
+                "label": "comments",
+                "where": "fieldset.radio-group.tg-col > label.tg-choice > input.tg-check"
+              },
+              {
+                "size": "24x24",
+                "severity": "mobile-warn",
+                "label": "system",
+                "where": "fieldset.radio-group.tg-col > label.tg-choice > input.tg-check"
+              },
+              {
+                "size": "24x24",
+                "severity": "mobile-warn",
+                "label": "personal",
+                "where": "fieldset.radio-group.tg-col > label.tg-choice > input.tg-radio"
+              },
+              {
+                "size": "24x24",
+                "severity": "mobile-warn",
+                "label": "team",
+                "where": "fieldset.radio-group.tg-col > label.tg-choice > input.tg-radio"
+              },
+              {
+                "size": "24x24",
+                "severity": "mobile-warn",
+                "label": "on",
+                "where": "div.example-body.tg-col > label.tg-choice > input.tg-check"
+              },
+              {
+                "size": "24x24",
+                "severity": "mobile-warn",
+                "label": "posts",
+                "where": "div.tg-choice-group.tg-choice-group--nested > label.tg-choice > input#demo-export-1"
+              },
+              {
+                "size": "24x24",
+                "severity": "mobile-warn",
+                "label": "members",
+                "where": "div.tg-choice-group.tg-choice-group--nested > label.tg-choice > input#demo-export-3"
+              },
+              {
+                "size": "24x24",
+                "severity": "mobile-warn",
+                "label": "starter",
+                "where": "div.choice-card-grid > label.tg-choice-card > input.tg-radio.tg-choice-card__indicator"
+              },
+              {
+                "size": "24x24",
+                "severity": "mobile-warn",
+                "label": "company",
+                "where": "div.choice-card-grid > label.tg-choice-card > input.tg-radio.tg-choice-card__indicator"
+              },
+              {
+                "size": "24x24",
+                "severity": "mobile-warn",
+                "label": "pdf",
+                "where": "div.choice-card-grid > label.tg-choice-card > input.tg-check.tg-choice-card__indicator"
+              },
+              {
+                "size": "24x24",
+                "severity": "mobile-warn",
+                "label": "xlsx",
+                "where": "div.choice-card-grid > label.tg-choice-card > input.tg-check.tg-choice-card__indicator"
+              },
+              {
+                "size": "24x24",
+                "severity": "mobile-warn",
+                "label": "csv",
+                "where": "div.choice-card-grid > label.tg-choice-card > input.tg-check.tg-choice-card__indicator"
+              },
+              {
+                "size": "40x40",
+                "severity": "mobile-warn",
+                "label": "Удалить Дизайн",
+                "where": "div.tg-tag-input > span.tg-tag-input__tag > button.tg-tag-input__remove"
+              },
+              {
+                "size": "40x40",
+                "severity": "mobile-warn",
+                "label": "Удалить Финансы",
+                "where": "div.tg-tag-input > span.tg-tag-input__tag > button.tg-tag-input__remove"
+              },
+              {
+                "size": "242.55x38",
+                "severity": "mobile-warn",
+                "label": "",
+                "where": "div.tg-combobox > div.tg-tag-input > input#demo-teams"
+              },
+              {
+                "size": "40x40",
+                "severity": "mobile-warn",
+                "label": "Удалить тег счета",
+                "where": "div.tg-tag-input > span.tg-tag-input__tag > button.tg-tag-input__remove"
+              }
+            ]
+          },
+          "spacingGrid": {
+            "distinctValues": 21,
+            "off4Grid": [
+              {
+                "px": 1,
+                "uses": 246
+              },
+              {
+                "px": 2,
+                "uses": 189
+              },
+              {
+                "px": 3,
+                "uses": 47
+              },
+              {
+                "px": 14,
+                "uses": 34
+              },
+              {
+                "px": 5,
+                "uses": 16
+              },
+              {
+                "px": 11,
+                "uses": 5
+              },
+              {
+                "px": 58,
+                "uses": 2
+              }
+            ],
+            "off8Grid": [
+              {
+                "px": 12,
+                "uses": 2953
+              },
+              {
+                "px": 4,
+                "uses": 509
+              },
+              {
+                "px": 20,
+                "uses": 47
+              },
+              {
+                "px": 28,
+                "uses": 2
+              },
+              {
+                "px": 36,
+                "uses": 2
+              }
+            ]
+          },
+          "misalignment": {
+            "count": 23,
+            "items": [
+              {
+                "edge": "left",
+                "offBy": "1px",
+                "line": 298,
+                "container": "table.palette-table",
+                "item": "div.palette-table-wrap > table.palette-table > caption.tg-sr-only — \"Четыре цвета и три градации каждого\""
+              },
+              {
+                "edge": "left",
+                "offBy": "1px",
+                "line": 324,
+                "container": "table.tg-table.tg-table--stack",
+                "item": "div.tg-table-wrap > table.tg-table.tg-table--stack > caption.tg-sr-only — \"Типы бейджей, классы и соответствующие п\""
+              },
+              {
+                "edge": "left",
+                "offBy": "1px",
+                "line": 835,
+                "container": "fieldset.tg-segmented.tg-segmented--vertical",
+                "item": "div.example-body.tg-row > fieldset.tg-segmented.tg-segmented--vertical > legend.tg-sr-only — \"Выравнивание\""
+              },
+              {
+                "edge": "left",
+                "offBy": "1px",
+                "line": 670,
+                "container": "div.example-body.tg-col",
+                "item": "td > div.example-body.tg-col > span#demo-copy-status"
+              },
+              {
+                "edge": "left",
+                "offBy": "1px",
+                "line": 323,
+                "container": "div.tg-field",
+                "item": "div.example-body.tg-col > div.tg-field > p#demo-otp-status"
+              },
+              {
+                "edge": "left",
+                "offBy": "1px",
+                "line": 323,
+                "container": "div.tg-field",
+                "item": "div.spec-grid > div.tg-field > p#demo-city-status"
+              },
+              {
+                "edge": "left",
+                "offBy": "1px",
+                "line": 852,
+                "container": "div.tg-field",
+                "item": "div.spec-grid > div.tg-field > p#demo-teams-status"
+              },
+              {
+                "edge": "left",
+                "offBy": "1px",
+                "line": 323,
+                "container": "div.tg-field.tag-demo",
+                "item": "div.example-body.tg-col > div.tg-field.tag-demo > p#demo-tags-status"
+              },
+              {
+                "edge": "left",
+                "offBy": "1px",
+                "line": 323,
+                "container": "div.tg-field.tag-demo",
+                "item": "div.example-body.tg-col > div.tg-field.tag-demo > p#demo-tags-suggest-status"
+              },
+              {
+                "edge": "left",
+                "offBy": "1px",
+                "line": 323,
+                "container": "div.tg-calendar",
+                "item": "div.example-body.tg-col > div.tg-calendar > p.tg-sr-only"
+              },
+              {
+                "edge": "left",
+                "offBy": "1px",
+                "line": 323,
+                "container": "div.tg-calendar.tg-calendar--range",
+                "item": "div.example-body.tg-col > div.tg-calendar.tg-calendar--range > p.tg-sr-only"
+              },
+              {
+                "edge": "left",
+                "offBy": "1px",
+                "line": 323,
+                "container": "div.example-body.tg-col",
+                "item": "div.example-panel > div.example-body.tg-col > p#demo-sort-status"
+              },
+              {
+                "edge": "left",
+                "offBy": "1px",
+                "line": 324,
+                "container": "table#demo-line-table",
+                "item": "div.tg-table-wrap > table#demo-line-table > caption.tg-sr-only — \"Выручка по месяцам, млн ₽\""
+              },
+              {
+                "edge": "left",
+                "offBy": "1px",
+                "line": 324,
+                "container": "table#demo-bar-table",
+                "item": "div.tg-table-wrap > table#demo-bar-table > caption.tg-sr-only — \"Заказы по дням недели\""
+              },
+              {
+                "edge": "left",
+                "offBy": "1px",
+                "line": 323,
+                "container": "section.tg-carousel",
+                "item": "div.example-body.tg-col > section.tg-carousel > p.tg-sr-only"
+              },
+              {
+                "edge": "left",
+                "offBy": "1px",
+                "line": 323,
+                "container": "section.tg-carousel.tg-carousel--peek",
+                "item": "div.spec-stack > section.tg-carousel.tg-carousel--peek > p.tg-sr-only"
+              },
+              {
+                "edge": "left",
+                "offBy": "1px",
+                "line": 323,
+                "container": "section#demo-g2",
+                "item": "div.example-body.tg-col > section#demo-g2 > p.tg-sr-only"
+              },
+              {
+                "edge": "left",
+                "offBy": "1px",
+                "line": 323,
+                "container": "section.tg-carousel",
+                "item": "div.example-body.tg-col > section.tg-carousel > p.tg-sr-only"
+              },
+              {
+                "edge": "left",
+                "offBy": "4px",
+                "line": 384,
+                "container": "ol.tg-schedule__row",
+                "item": "div.tg-schedule > ol.tg-schedule__row > li.tg-schedule__now"
+              },
+              {
+                "edge": "left",
+                "offBy": "1px",
+                "line": 684,
+                "container": "li.tg-schedule__event",
+                "item": "ol.tg-schedule__row > li.tg-schedule__event > span.tg-sr-only — \", пересекается с другим событием\""
+              },
+              {
+                "edge": "left",
+                "offBy": "1px",
+                "line": 323,
+                "container": "div.example-body.tg-col",
+                "item": "div.example-panel > div.example-body.tg-col > span#demo-payments-status"
+              },
+              {
+                "edge": "left",
+                "offBy": "1px",
+                "line": 324,
+                "container": "table#demo-filter-table",
+                "item": "div.tg-table-wrap > table#demo-filter-table > caption.tg-sr-only — \"Счета с фильтрами\""
+              },
+              {
+                "edge": "left",
+                "offBy": "1px",
+                "line": 324,
+                "container": "div#demo-editor",
+                "item": "div.example-body.tg-col > div#demo-editor > p#demo-editor-status"
+              }
+            ]
+          },
+          "animation": {
+            "layoutTriggering": [],
+            "linearEasing": []
+          },
+          "cssAudit": {
+            "reducedMotionHandled": true,
+            "focusOutlineRemoved": true,
+            "focusVisiblePresent": true,
+            "focusRisk": false,
+            "rulesScanned": 2069
+          },
+          "consistency": {
+            "fontFamilies": 4,
+            "fontFamilyList": [
+              "system-ui",
+              "ui-monospace",
+              "monospace",
+              "Arial"
+            ],
+            "distinctFontSizes": 10,
+            "distinctTextColors": 6,
+            "distinctRadii": 20,
+            "distinctShadows": 9,
+            "note": "flag: >3 font families, >12 font sizes, >10 text colors, >6 radii, or >6 shadows suggests inconsistency"
+          },
+          "overflow": {
+            "horizontalOverflowPx": 0,
+            "culprits": []
+          },
+          "images": {
+            "upscaled": [
+              {
+                "displayed": 503,
+                "natural": 225,
+                "src": "http://127.0.0.1:4173/docs/composition-media.svg"
+              },
+              {
+                "displayed": 327,
+                "natural": 225,
+                "src": "http://127.0.0.1:4173/docs/composition-media.svg"
+              },
+              {
+                "displayed": 327,
+                "natural": 225,
+                "src": "http://127.0.0.1:4173/docs/composition-media.svg"
+              },
+              {
+                "displayed": 1035,
+                "natural": 640,
+                "src": "http://127.0.0.1:4173/docs/media/mountains.svg"
+              },
+              {
+                "displayed": 955,
+                "natural": 640,
+                "src": "http://127.0.0.1:4173/docs/media/mountains.svg"
+              },
+              {
+                "displayed": 955,
+                "natural": 640,
+                "src": "http://127.0.0.1:4173/docs/media/sea.svg"
+              },
+              {
+                "displayed": 955,
+                "natural": 640,
+                "src": "http://127.0.0.1:4173/docs/media/desert.svg"
+              },
+              {
+                "displayed": 955,
+                "natural": 640,
+                "src": "http://127.0.0.1:4173/docs/media/forest.svg"
+              },
+              {
+                "displayed": 955,
+                "natural": 640,
+                "src": "http://127.0.0.1:4173/docs/media/city.svg"
+              }
+            ],
+            "missingAlt": []
+          }
+        },
+        "errors": [],
+        "summary": {
+          "contrastFails": 3,
+          "tapTargetFails": 21,
+          "tapTargetMobileWarn": 55,
+          "offGridValues": 7,
+          "misalignments": 23,
+          "layoutAnimations": 0,
+          "focusRisk": false,
+          "reducedMotionHandled": true,
+          "horizontalOverflowPx": 0
+        }
+      }
+    },
+    {
+      "theme": "dark",
+      "result": {
+        "viewport": {
+          "w": 1440,
+          "h": 900,
+          "dpr": 1
+        },
+        "checks": {
+          "contrast": {
+            "checked": 1201,
+            "failCount": 8,
+            "worst": [
+              {
+                "ratio": 1,
+                "required": 4.5,
+                "fontPx": 16,
+                "weight": 400,
+                "color": "rgb(255, 255, 255)",
+                "where": "a.skip-link — \"К содержимому\""
+              },
+              {
+                "ratio": 1,
+                "required": 4.5,
+                "fontPx": 14,
+                "weight": 600,
+                "color": "rgb(255, 255, 255)",
+                "where": "div.nav-group > a.nav-link.is-active > span — \"Обзор\""
+              },
+              {
+                "ratio": 1,
+                "required": 3,
+                "fontPx": 48.96,
+                "weight": 600,
+                "color": "rgb(255, 255, 255)",
+                "where": "section#overview > div.hero-copy > h1 — \"Один языкдля интерфейсов.\""
+              },
+              {
+                "ratio": 1,
+                "required": 3,
+                "fontPx": 28.8,
+                "weight": 600,
+                "color": "rgb(255, 255, 255)",
+                "where": "div.section-heading > div > h2 — \"Цвета и токены тем\""
+              },
+              {
+                "ratio": 1,
+                "required": 4.5,
+                "fontPx": 13,
+                "weight": 400,
+                "color": "rgb(255, 255, 255)",
+                "where": "tr > td > code — \"--background-main\""
+              },
+              {
+                "ratio": 1,
+                "required": 3,
+                "fontPx": 32,
+                "weight": 400,
+                "color": "rgb(255, 255, 255)",
+                "where": "div.foundation-grid > div.foundation-card > div.type-specimen — \"Aa Бб 123\""
+              },
+              {
+                "ratio": 1,
+                "required": 4.5,
+                "fontPx": 18,
+                "weight": 600,
+                "color": "rgb(255, 255, 255)",
+                "where": "div.catalog-cluster > section#text > h3#text-basics — \"Текст и числовые значения\""
+              },
+              {
+                "ratio": 2.39,
+                "required": 4.5,
+                "fontPx": 16,
+                "weight": 400,
+                "color": "rgb(158, 158, 255)",
+                "where": "section#avatars > p > a — \"список выбора\""
+              }
+            ]
+          },
+          "tapTargets": {
+            "failCount": 21,
+            "warnCount": 55,
+            "items": [
+              {
+                "size": "164.36x32",
+                "severity": "mobile-warn",
+                "label": "t-design-system, начало",
+                "where": "header.site-header > a.brand — \"t·t-design-system\""
+              },
+              {
+                "size": "1034.81x24",
+                "severity": "mobile-warn",
+                "label": "Полный контракт формул, ролей и проверок",
+                "where": "div.example-panel > div.example-body.tg-col > a.tg-link — \"Полный контракт формул, ролей и проверок\""
+              },
+              {
+                "size": "136.59x24",
+                "severity": "mobile-warn",
+                "label": "Условия отправки",
+                "where": "div.example-body.tg-col > div.tg-row > a.tg-link — \"Условия отправки\""
+              },
+              {
+                "size": "53.58x26",
+                "severity": "mobile-warn",
+                "label": "Открыть обычный",
+                "where": "div.example-body.tg-col > div.tg-row > button.tg-badge.tg-gap-1 — \"12\""
+              },
+              {
+                "size": "53.58x26",
+                "severity": "mobile-warn",
+                "label": "Открыть акцент",
+                "where": "div.example-body.tg-col > div.tg-row > button.tg-badge.tg-badge--primary — \"12\""
+              },
+              {
+                "size": "53.58x26",
+                "severity": "mobile-warn",
+                "label": "Открыть вторичный",
+                "where": "div.example-body.tg-col > div.tg-row > button.tg-badge.tg-badge--secondary — \"12\""
+              },
+              {
+                "size": "53.58x26",
+                "severity": "mobile-warn",
+                "label": "Открыть ошибка",
+                "where": "div.example-body.tg-col > div.tg-row > button.tg-badge.tg-badge--destructive — \"12\""
+              },
+              {
+                "size": "122.95x26",
+                "severity": "mobile-warn",
+                "label": "Все сообщения",
+                "where": "div.example-body.tg-col > div.tg-row > a.tg-badge.tg-badge--primary — \"Все сообщения\""
+              },
+              {
+                "size": "114.77x18",
+                "severity": "AA-fail",
+                "label": "список выбора",
+                "where": "section#avatars > p > a — \"список выбора\""
+              },
+              {
+                "size": "152.59x18",
+                "severity": "AA-fail",
+                "label": "карточки и профиль",
+                "where": "section#avatars > p > a — \"карточки и профиль\""
+              },
+              {
+                "size": "155.09x18",
+                "severity": "AA-fail",
+                "label": "таблицы участников",
+                "where": "section#avatars > p > a — \"таблицы участников\""
+              },
+              {
+                "size": "176.44x18",
+                "severity": "AA-fail",
+                "label": "навигация приложения",
+                "where": "section#avatars > p > a — \"навигация приложения\""
+              },
+              {
+                "size": "1061.8x42",
+                "severity": "mobile-warn",
+                "label": "комментарии и ввод сообщения",
+                "where": "section#avatars > p > a — \"комментарии и ввод сообщения\""
+              },
+              {
+                "size": "24x24",
+                "severity": "mobile-warn",
+                "label": "orders",
+                "where": "fieldset.radio-group.tg-col > label.tg-choice > input.tg-check"
+              },
+              {
+                "size": "24x24",
+                "severity": "mobile-warn",
+                "label": "comments",
+                "where": "fieldset.radio-group.tg-col > label.tg-choice > input.tg-check"
+              },
+              {
+                "size": "24x24",
+                "severity": "mobile-warn",
+                "label": "system",
+                "where": "fieldset.radio-group.tg-col > label.tg-choice > input.tg-check"
+              },
+              {
+                "size": "24x24",
+                "severity": "mobile-warn",
+                "label": "personal",
+                "where": "fieldset.radio-group.tg-col > label.tg-choice > input.tg-radio"
+              },
+              {
+                "size": "24x24",
+                "severity": "mobile-warn",
+                "label": "team",
+                "where": "fieldset.radio-group.tg-col > label.tg-choice > input.tg-radio"
+              },
+              {
+                "size": "24x24",
+                "severity": "mobile-warn",
+                "label": "on",
+                "where": "div.example-body.tg-col > label.tg-choice > input.tg-check"
+              },
+              {
+                "size": "24x24",
+                "severity": "mobile-warn",
+                "label": "posts",
+                "where": "div.tg-choice-group.tg-choice-group--nested > label.tg-choice > input#demo-export-1"
+              },
+              {
+                "size": "24x24",
+                "severity": "mobile-warn",
+                "label": "members",
+                "where": "div.tg-choice-group.tg-choice-group--nested > label.tg-choice > input#demo-export-3"
+              },
+              {
+                "size": "24x24",
+                "severity": "mobile-warn",
+                "label": "starter",
+                "where": "div.choice-card-grid > label.tg-choice-card > input.tg-radio.tg-choice-card__indicator"
+              },
+              {
+                "size": "24x24",
+                "severity": "mobile-warn",
+                "label": "company",
+                "where": "div.choice-card-grid > label.tg-choice-card > input.tg-radio.tg-choice-card__indicator"
+              },
+              {
+                "size": "24x24",
+                "severity": "mobile-warn",
+                "label": "pdf",
+                "where": "div.choice-card-grid > label.tg-choice-card > input.tg-check.tg-choice-card__indicator"
+              },
+              {
+                "size": "24x24",
+                "severity": "mobile-warn",
+                "label": "xlsx",
+                "where": "div.choice-card-grid > label.tg-choice-card > input.tg-check.tg-choice-card__indicator"
+              },
+              {
+                "size": "24x24",
+                "severity": "mobile-warn",
+                "label": "csv",
+                "where": "div.choice-card-grid > label.tg-choice-card > input.tg-check.tg-choice-card__indicator"
+              },
+              {
+                "size": "40x40",
+                "severity": "mobile-warn",
+                "label": "Удалить Дизайн",
+                "where": "div.tg-tag-input > span.tg-tag-input__tag > button.tg-tag-input__remove"
+              },
+              {
+                "size": "40x40",
+                "severity": "mobile-warn",
+                "label": "Удалить Финансы",
+                "where": "div.tg-tag-input > span.tg-tag-input__tag > button.tg-tag-input__remove"
+              },
+              {
+                "size": "242.55x38",
+                "severity": "mobile-warn",
+                "label": "",
+                "where": "div.tg-combobox > div.tg-tag-input > input#demo-teams"
+              },
+              {
+                "size": "40x40",
+                "severity": "mobile-warn",
+                "label": "Удалить тег счета",
+                "where": "div.tg-tag-input > span.tg-tag-input__tag > button.tg-tag-input__remove"
+              }
+            ]
+          },
+          "spacingGrid": {
+            "distinctValues": 21,
+            "off4Grid": [
+              {
+                "px": 1,
+                "uses": 246
+              },
+              {
+                "px": 2,
+                "uses": 189
+              },
+              {
+                "px": 3,
+                "uses": 47
+              },
+              {
+                "px": 14,
+                "uses": 34
+              },
+              {
+                "px": 5,
+                "uses": 16
+              },
+              {
+                "px": 11,
+                "uses": 5
+              },
+              {
+                "px": 58,
+                "uses": 2
+              }
+            ],
+            "off8Grid": [
+              {
+                "px": 12,
+                "uses": 2953
+              },
+              {
+                "px": 4,
+                "uses": 509
+              },
+              {
+                "px": 20,
+                "uses": 47
+              },
+              {
+                "px": 28,
+                "uses": 2
+              },
+              {
+                "px": 36,
+                "uses": 2
+              }
+            ]
+          },
+          "misalignment": {
+            "count": 23,
+            "items": [
+              {
+                "edge": "left",
+                "offBy": "1px",
+                "line": 298,
+                "container": "table.palette-table",
+                "item": "div.palette-table-wrap > table.palette-table > caption.tg-sr-only — \"Четыре цвета и три градации каждого\""
+              },
+              {
+                "edge": "left",
+                "offBy": "1px",
+                "line": 324,
+                "container": "table.tg-table.tg-table--stack",
+                "item": "div.tg-table-wrap > table.tg-table.tg-table--stack > caption.tg-sr-only — \"Типы бейджей, классы и соответствующие п\""
+              },
+              {
+                "edge": "left",
+                "offBy": "1px",
+                "line": 835,
+                "container": "fieldset.tg-segmented.tg-segmented--vertical",
+                "item": "div.example-body.tg-row > fieldset.tg-segmented.tg-segmented--vertical > legend.tg-sr-only — \"Выравнивание\""
+              },
+              {
+                "edge": "left",
+                "offBy": "1px",
+                "line": 670,
+                "container": "div.example-body.tg-col",
+                "item": "td > div.example-body.tg-col > span#demo-copy-status"
+              },
+              {
+                "edge": "left",
+                "offBy": "1px",
+                "line": 323,
+                "container": "div.tg-field",
+                "item": "div.example-body.tg-col > div.tg-field > p#demo-otp-status"
+              },
+              {
+                "edge": "left",
+                "offBy": "1px",
+                "line": 323,
+                "container": "div.tg-field",
+                "item": "div.spec-grid > div.tg-field > p#demo-city-status"
+              },
+              {
+                "edge": "left",
+                "offBy": "1px",
+                "line": 852,
+                "container": "div.tg-field",
+                "item": "div.spec-grid > div.tg-field > p#demo-teams-status"
+              },
+              {
+                "edge": "left",
+                "offBy": "1px",
+                "line": 323,
+                "container": "div.tg-field.tag-demo",
+                "item": "div.example-body.tg-col > div.tg-field.tag-demo > p#demo-tags-status"
+              },
+              {
+                "edge": "left",
+                "offBy": "1px",
+                "line": 323,
+                "container": "div.tg-field.tag-demo",
+                "item": "div.example-body.tg-col > div.tg-field.tag-demo > p#demo-tags-suggest-status"
+              },
+              {
+                "edge": "left",
+                "offBy": "1px",
+                "line": 323,
+                "container": "div.tg-calendar",
+                "item": "div.example-body.tg-col > div.tg-calendar > p.tg-sr-only"
+              },
+              {
+                "edge": "left",
+                "offBy": "1px",
+                "line": 323,
+                "container": "div.tg-calendar.tg-calendar--range",
+                "item": "div.example-body.tg-col > div.tg-calendar.tg-calendar--range > p.tg-sr-only"
+              },
+              {
+                "edge": "left",
+                "offBy": "1px",
+                "line": 323,
+                "container": "div.example-body.tg-col",
+                "item": "div.example-panel > div.example-body.tg-col > p#demo-sort-status"
+              },
+              {
+                "edge": "left",
+                "offBy": "1px",
+                "line": 324,
+                "container": "table#demo-line-table",
+                "item": "div.tg-table-wrap > table#demo-line-table > caption.tg-sr-only — \"Выручка по месяцам, млн ₽\""
+              },
+              {
+                "edge": "left",
+                "offBy": "1px",
+                "line": 324,
+                "container": "table#demo-bar-table",
+                "item": "div.tg-table-wrap > table#demo-bar-table > caption.tg-sr-only — \"Заказы по дням недели\""
+              },
+              {
+                "edge": "left",
+                "offBy": "1px",
+                "line": 323,
+                "container": "section.tg-carousel",
+                "item": "div.example-body.tg-col > section.tg-carousel > p.tg-sr-only"
+              },
+              {
+                "edge": "left",
+                "offBy": "1px",
+                "line": 323,
+                "container": "section.tg-carousel.tg-carousel--peek",
+                "item": "div.spec-stack > section.tg-carousel.tg-carousel--peek > p.tg-sr-only"
+              },
+              {
+                "edge": "left",
+                "offBy": "1px",
+                "line": 323,
+                "container": "section#demo-g2",
+                "item": "div.example-body.tg-col > section#demo-g2 > p.tg-sr-only"
+              },
+              {
+                "edge": "left",
+                "offBy": "1px",
+                "line": 323,
+                "container": "section.tg-carousel",
+                "item": "div.example-body.tg-col > section.tg-carousel > p.tg-sr-only"
+              },
+              {
+                "edge": "left",
+                "offBy": "4px",
+                "line": 384,
+                "container": "ol.tg-schedule__row",
+                "item": "div.tg-schedule > ol.tg-schedule__row > li.tg-schedule__now"
+              },
+              {
+                "edge": "left",
+                "offBy": "1px",
+                "line": 684,
+                "container": "li.tg-schedule__event",
+                "item": "ol.tg-schedule__row > li.tg-schedule__event > span.tg-sr-only — \", пересекается с другим событием\""
+              },
+              {
+                "edge": "left",
+                "offBy": "1px",
+                "line": 323,
+                "container": "div.example-body.tg-col",
+                "item": "div.example-panel > div.example-body.tg-col > span#demo-payments-status"
+              },
+              {
+                "edge": "left",
+                "offBy": "1px",
+                "line": 324,
+                "container": "table#demo-filter-table",
+                "item": "div.tg-table-wrap > table#demo-filter-table > caption.tg-sr-only — \"Счета с фильтрами\""
+              },
+              {
+                "edge": "left",
+                "offBy": "1px",
+                "line": 324,
+                "container": "div#demo-editor",
+                "item": "div.example-body.tg-col > div#demo-editor > p#demo-editor-status"
+              }
+            ]
+          },
+          "animation": {
+            "layoutTriggering": [],
+            "linearEasing": []
+          },
+          "cssAudit": {
+            "reducedMotionHandled": true,
+            "focusOutlineRemoved": true,
+            "focusVisiblePresent": true,
+            "focusRisk": false,
+            "rulesScanned": 2069
+          },
+          "consistency": {
+            "fontFamilies": 4,
+            "fontFamilyList": [
+              "system-ui",
+              "ui-monospace",
+              "monospace",
+              "Arial"
+            ],
+            "distinctFontSizes": 10,
+            "distinctTextColors": 5,
+            "distinctRadii": 20,
+            "distinctShadows": 9,
+            "note": "flag: >3 font families, >12 font sizes, >10 text colors, >6 radii, or >6 shadows suggests inconsistency"
+          },
+          "overflow": {
+            "horizontalOverflowPx": 0,
+            "culprits": []
+          },
+          "images": {
+            "upscaled": [
+              {
+                "displayed": 503,
+                "natural": 225,
+                "src": "http://127.0.0.1:4173/docs/composition-media.svg"
+              },
+              {
+                "displayed": 327,
+                "natural": 225,
+                "src": "http://127.0.0.1:4173/docs/composition-media.svg"
+              },
+              {
+                "displayed": 327,
+                "natural": 225,
+                "src": "http://127.0.0.1:4173/docs/composition-media.svg"
+              },
+              {
+                "displayed": 1035,
+                "natural": 640,
+                "src": "http://127.0.0.1:4173/docs/media/mountains.svg"
+              },
+              {
+                "displayed": 955,
+                "natural": 640,
+                "src": "http://127.0.0.1:4173/docs/media/mountains.svg"
+              },
+              {
+                "displayed": 955,
+                "natural": 640,
+                "src": "http://127.0.0.1:4173/docs/media/sea.svg"
+              },
+              {
+                "displayed": 955,
+                "natural": 640,
+                "src": "http://127.0.0.1:4173/docs/media/desert.svg"
+              },
+              {
+                "displayed": 955,
+                "natural": 640,
+                "src": "http://127.0.0.1:4173/docs/media/forest.svg"
+              },
+              {
+                "displayed": 955,
+                "natural": 640,
+                "src": "http://127.0.0.1:4173/docs/media/city.svg"
+              }
+            ],
+            "missingAlt": []
+          }
+        },
+        "errors": [],
+        "summary": {
+          "contrastFails": 8,
+          "tapTargetFails": 21,
+          "tapTargetMobileWarn": 55,
+          "offGridValues": 7,
+          "misalignments": 23,
+          "layoutAnimations": 0,
+          "focusRisk": false,
+          "reducedMotionHandled": true,
+          "horizontalOverflowPx": 0
+        }
+      }
+    },
+    {
+      "theme": "ios-dark",
+      "result": {
+        "viewport": {
+          "w": 1440,
+          "h": 900,
+          "dpr": 1
+        },
+        "checks": {
+          "contrast": {
+            "checked": 1201,
+            "failCount": 8,
+            "worst": [
+              {
+                "ratio": 1,
+                "required": 4.5,
+                "fontPx": 16,
+                "weight": 400,
+                "color": "rgb(255, 255, 255)",
+                "where": "a.skip-link — \"К содержимому\""
+              },
+              {
+                "ratio": 1,
+                "required": 4.5,
+                "fontPx": 14,
+                "weight": 600,
+                "color": "rgb(255, 255, 255)",
+                "where": "div.nav-group > a.nav-link.is-active > span — \"Обзор\""
+              },
+              {
+                "ratio": 1,
+                "required": 3,
+                "fontPx": 48.96,
+                "weight": 600,
+                "color": "rgb(255, 255, 255)",
+                "where": "section#overview > div.hero-copy > h1 — \"Один языкдля интерфейсов.\""
+              },
+              {
+                "ratio": 1,
+                "required": 3,
+                "fontPx": 28.8,
+                "weight": 600,
+                "color": "rgb(255, 255, 255)",
+                "where": "div.section-heading > div > h2 — \"Цвета и токены тем\""
+              },
+              {
+                "ratio": 1,
+                "required": 4.5,
+                "fontPx": 13,
+                "weight": 400,
+                "color": "rgb(255, 255, 255)",
+                "where": "tr > td > code — \"--background-main\""
+              },
+              {
+                "ratio": 1,
+                "required": 3,
+                "fontPx": 32,
+                "weight": 400,
+                "color": "rgb(255, 255, 255)",
+                "where": "div.foundation-grid > div.foundation-card > div.type-specimen — \"Aa Бб 123\""
+              },
+              {
+                "ratio": 1,
+                "required": 4.5,
+                "fontPx": 18,
+                "weight": 600,
+                "color": "rgb(255, 255, 255)",
+                "where": "div.catalog-cluster > section#text > h3#text-basics — \"Текст и числовые значения\""
+              },
+              {
+                "ratio": 2.39,
+                "required": 4.5,
+                "fontPx": 16,
+                "weight": 400,
+                "color": "rgb(158, 158, 255)",
+                "where": "section#avatars > p > a — \"список выбора\""
+              }
+            ]
+          },
+          "tapTargets": {
+            "failCount": 21,
+            "warnCount": 55,
+            "items": [
+              {
+                "size": "164.36x32",
+                "severity": "mobile-warn",
+                "label": "t-design-system, начало",
+                "where": "header.site-header > a.brand — \"t·t-design-system\""
+              },
+              {
+                "size": "1034.81x24",
+                "severity": "mobile-warn",
+                "label": "Полный контракт формул, ролей и проверок",
+                "where": "div.example-panel > div.example-body.tg-col > a.tg-link — \"Полный контракт формул, ролей и проверок\""
+              },
+              {
+                "size": "136.59x24",
+                "severity": "mobile-warn",
+                "label": "Условия отправки",
+                "where": "div.example-body.tg-col > div.tg-row > a.tg-link — \"Условия отправки\""
+              },
+              {
+                "size": "53.58x26",
+                "severity": "mobile-warn",
+                "label": "Открыть обычный",
+                "where": "div.example-body.tg-col > div.tg-row > button.tg-badge.tg-gap-1 — \"12\""
+              },
+              {
+                "size": "53.58x26",
+                "severity": "mobile-warn",
+                "label": "Открыть акцент",
+                "where": "div.example-body.tg-col > div.tg-row > button.tg-badge.tg-badge--primary — \"12\""
+              },
+              {
+                "size": "53.58x26",
+                "severity": "mobile-warn",
+                "label": "Открыть вторичный",
+                "where": "div.example-body.tg-col > div.tg-row > button.tg-badge.tg-badge--secondary — \"12\""
+              },
+              {
+                "size": "53.58x26",
+                "severity": "mobile-warn",
+                "label": "Открыть ошибка",
+                "where": "div.example-body.tg-col > div.tg-row > button.tg-badge.tg-badge--destructive — \"12\""
+              },
+              {
+                "size": "122.95x26",
+                "severity": "mobile-warn",
+                "label": "Все сообщения",
+                "where": "div.example-body.tg-col > div.tg-row > a.tg-badge.tg-badge--primary — \"Все сообщения\""
+              },
+              {
+                "size": "114.77x18",
+                "severity": "AA-fail",
+                "label": "список выбора",
+                "where": "section#avatars > p > a — \"список выбора\""
+              },
+              {
+                "size": "152.59x18",
+                "severity": "AA-fail",
+                "label": "карточки и профиль",
+                "where": "section#avatars > p > a — \"карточки и профиль\""
+              },
+              {
+                "size": "155.09x18",
+                "severity": "AA-fail",
+                "label": "таблицы участников",
+                "where": "section#avatars > p > a — \"таблицы участников\""
+              },
+              {
+                "size": "176.44x18",
+                "severity": "AA-fail",
+                "label": "навигация приложения",
+                "where": "section#avatars > p > a — \"навигация приложения\""
+              },
+              {
+                "size": "1061.8x42",
+                "severity": "mobile-warn",
+                "label": "комментарии и ввод сообщения",
+                "where": "section#avatars > p > a — \"комментарии и ввод сообщения\""
+              },
+              {
+                "size": "24x24",
+                "severity": "mobile-warn",
+                "label": "orders",
+                "where": "fieldset.radio-group.tg-col > label.tg-choice > input.tg-check"
+              },
+              {
+                "size": "24x24",
+                "severity": "mobile-warn",
+                "label": "comments",
+                "where": "fieldset.radio-group.tg-col > label.tg-choice > input.tg-check"
+              },
+              {
+                "size": "24x24",
+                "severity": "mobile-warn",
+                "label": "system",
+                "where": "fieldset.radio-group.tg-col > label.tg-choice > input.tg-check"
+              },
+              {
+                "size": "24x24",
+                "severity": "mobile-warn",
+                "label": "personal",
+                "where": "fieldset.radio-group.tg-col > label.tg-choice > input.tg-radio"
+              },
+              {
+                "size": "24x24",
+                "severity": "mobile-warn",
+                "label": "team",
+                "where": "fieldset.radio-group.tg-col > label.tg-choice > input.tg-radio"
+              },
+              {
+                "size": "24x24",
+                "severity": "mobile-warn",
+                "label": "on",
+                "where": "div.example-body.tg-col > label.tg-choice > input.tg-check"
+              },
+              {
+                "size": "24x24",
+                "severity": "mobile-warn",
+                "label": "posts",
+                "where": "div.tg-choice-group.tg-choice-group--nested > label.tg-choice > input#demo-export-1"
+              },
+              {
+                "size": "24x24",
+                "severity": "mobile-warn",
+                "label": "members",
+                "where": "div.tg-choice-group.tg-choice-group--nested > label.tg-choice > input#demo-export-3"
+              },
+              {
+                "size": "24x24",
+                "severity": "mobile-warn",
+                "label": "starter",
+                "where": "div.choice-card-grid > label.tg-choice-card > input.tg-radio.tg-choice-card__indicator"
+              },
+              {
+                "size": "24x24",
+                "severity": "mobile-warn",
+                "label": "company",
+                "where": "div.choice-card-grid > label.tg-choice-card > input.tg-radio.tg-choice-card__indicator"
+              },
+              {
+                "size": "24x24",
+                "severity": "mobile-warn",
+                "label": "pdf",
+                "where": "div.choice-card-grid > label.tg-choice-card > input.tg-check.tg-choice-card__indicator"
+              },
+              {
+                "size": "24x24",
+                "severity": "mobile-warn",
+                "label": "xlsx",
+                "where": "div.choice-card-grid > label.tg-choice-card > input.tg-check.tg-choice-card__indicator"
+              },
+              {
+                "size": "24x24",
+                "severity": "mobile-warn",
+                "label": "csv",
+                "where": "div.choice-card-grid > label.tg-choice-card > input.tg-check.tg-choice-card__indicator"
+              },
+              {
+                "size": "40x40",
+                "severity": "mobile-warn",
+                "label": "Удалить Дизайн",
+                "where": "div.tg-tag-input > span.tg-tag-input__tag > button.tg-tag-input__remove"
+              },
+              {
+                "size": "40x40",
+                "severity": "mobile-warn",
+                "label": "Удалить Финансы",
+                "where": "div.tg-tag-input > span.tg-tag-input__tag > button.tg-tag-input__remove"
+              },
+              {
+                "size": "242.55x38",
+                "severity": "mobile-warn",
+                "label": "",
+                "where": "div.tg-combobox > div.tg-tag-input > input#demo-teams"
+              },
+              {
+                "size": "40x40",
+                "severity": "mobile-warn",
+                "label": "Удалить тег счета",
+                "where": "div.tg-tag-input > span.tg-tag-input__tag > button.tg-tag-input__remove"
+              }
+            ]
+          },
+          "spacingGrid": {
+            "distinctValues": 21,
+            "off4Grid": [
+              {
+                "px": 1,
+                "uses": 246
+              },
+              {
+                "px": 2,
+                "uses": 189
+              },
+              {
+                "px": 3,
+                "uses": 47
+              },
+              {
+                "px": 14,
+                "uses": 34
+              },
+              {
+                "px": 5,
+                "uses": 16
+              },
+              {
+                "px": 11,
+                "uses": 5
+              },
+              {
+                "px": 58,
+                "uses": 2
+              }
+            ],
+            "off8Grid": [
+              {
+                "px": 12,
+                "uses": 2953
+              },
+              {
+                "px": 4,
+                "uses": 509
+              },
+              {
+                "px": 20,
+                "uses": 47
+              },
+              {
+                "px": 28,
+                "uses": 2
+              },
+              {
+                "px": 36,
+                "uses": 2
+              }
+            ]
+          },
+          "misalignment": {
+            "count": 23,
+            "items": [
+              {
+                "edge": "left",
+                "offBy": "1px",
+                "line": 298,
+                "container": "table.palette-table",
+                "item": "div.palette-table-wrap > table.palette-table > caption.tg-sr-only — \"Четыре цвета и три градации каждого\""
+              },
+              {
+                "edge": "left",
+                "offBy": "1px",
+                "line": 324,
+                "container": "table.tg-table.tg-table--stack",
+                "item": "div.tg-table-wrap > table.tg-table.tg-table--stack > caption.tg-sr-only — \"Типы бейджей, классы и соответствующие п\""
+              },
+              {
+                "edge": "left",
+                "offBy": "1px",
+                "line": 835,
+                "container": "fieldset.tg-segmented.tg-segmented--vertical",
+                "item": "div.example-body.tg-row > fieldset.tg-segmented.tg-segmented--vertical > legend.tg-sr-only — \"Выравнивание\""
+              },
+              {
+                "edge": "left",
+                "offBy": "1px",
+                "line": 670,
+                "container": "div.example-body.tg-col",
+                "item": "td > div.example-body.tg-col > span#demo-copy-status"
+              },
+              {
+                "edge": "left",
+                "offBy": "1px",
+                "line": 323,
+                "container": "div.tg-field",
+                "item": "div.example-body.tg-col > div.tg-field > p#demo-otp-status"
+              },
+              {
+                "edge": "left",
+                "offBy": "1px",
+                "line": 323,
+                "container": "div.tg-field",
+                "item": "div.spec-grid > div.tg-field > p#demo-city-status"
+              },
+              {
+                "edge": "left",
+                "offBy": "1px",
+                "line": 852,
+                "container": "div.tg-field",
+                "item": "div.spec-grid > div.tg-field > p#demo-teams-status"
+              },
+              {
+                "edge": "left",
+                "offBy": "1px",
+                "line": 323,
+                "container": "div.tg-field.tag-demo",
+                "item": "div.example-body.tg-col > div.tg-field.tag-demo > p#demo-tags-status"
+              },
+              {
+                "edge": "left",
+                "offBy": "1px",
+                "line": 323,
+                "container": "div.tg-field.tag-demo",
+                "item": "div.example-body.tg-col > div.tg-field.tag-demo > p#demo-tags-suggest-status"
+              },
+              {
+                "edge": "left",
+                "offBy": "1px",
+                "line": 323,
+                "container": "div.tg-calendar",
+                "item": "div.example-body.tg-col > div.tg-calendar > p.tg-sr-only"
+              },
+              {
+                "edge": "left",
+                "offBy": "1px",
+                "line": 323,
+                "container": "div.tg-calendar.tg-calendar--range",
+                "item": "div.example-body.tg-col > div.tg-calendar.tg-calendar--range > p.tg-sr-only"
+              },
+              {
+                "edge": "left",
+                "offBy": "1px",
+                "line": 323,
+                "container": "div.example-body.tg-col",
+                "item": "div.example-panel > div.example-body.tg-col > p#demo-sort-status"
+              },
+              {
+                "edge": "left",
+                "offBy": "1px",
+                "line": 324,
+                "container": "table#demo-line-table",
+                "item": "div.tg-table-wrap > table#demo-line-table > caption.tg-sr-only — \"Выручка по месяцам, млн ₽\""
+              },
+              {
+                "edge": "left",
+                "offBy": "1px",
+                "line": 324,
+                "container": "table#demo-bar-table",
+                "item": "div.tg-table-wrap > table#demo-bar-table > caption.tg-sr-only — \"Заказы по дням недели\""
+              },
+              {
+                "edge": "left",
+                "offBy": "1px",
+                "line": 323,
+                "container": "section.tg-carousel",
+                "item": "div.example-body.tg-col > section.tg-carousel > p.tg-sr-only"
+              },
+              {
+                "edge": "left",
+                "offBy": "1px",
+                "line": 323,
+                "container": "section.tg-carousel.tg-carousel--peek",
+                "item": "div.spec-stack > section.tg-carousel.tg-carousel--peek > p.tg-sr-only"
+              },
+              {
+                "edge": "left",
+                "offBy": "1px",
+                "line": 323,
+                "container": "section#demo-g2",
+                "item": "div.example-body.tg-col > section#demo-g2 > p.tg-sr-only"
+              },
+              {
+                "edge": "left",
+                "offBy": "1px",
+                "line": 323,
+                "container": "section.tg-carousel",
+                "item": "div.example-body.tg-col > section.tg-carousel > p.tg-sr-only"
+              },
+              {
+                "edge": "left",
+                "offBy": "4px",
+                "line": 384,
+                "container": "ol.tg-schedule__row",
+                "item": "div.tg-schedule > ol.tg-schedule__row > li.tg-schedule__now"
+              },
+              {
+                "edge": "left",
+                "offBy": "1px",
+                "line": 684,
+                "container": "li.tg-schedule__event",
+                "item": "ol.tg-schedule__row > li.tg-schedule__event > span.tg-sr-only — \", пересекается с другим событием\""
+              },
+              {
+                "edge": "left",
+                "offBy": "1px",
+                "line": 323,
+                "container": "div.example-body.tg-col",
+                "item": "div.example-panel > div.example-body.tg-col > span#demo-payments-status"
+              },
+              {
+                "edge": "left",
+                "offBy": "1px",
+                "line": 324,
+                "container": "table#demo-filter-table",
+                "item": "div.tg-table-wrap > table#demo-filter-table > caption.tg-sr-only — \"Счета с фильтрами\""
+              },
+              {
+                "edge": "left",
+                "offBy": "1px",
+                "line": 324,
+                "container": "div#demo-editor",
+                "item": "div.example-body.tg-col > div#demo-editor > p#demo-editor-status"
+              }
+            ]
+          },
+          "animation": {
+            "layoutTriggering": [],
+            "linearEasing": []
+          },
+          "cssAudit": {
+            "reducedMotionHandled": true,
+            "focusOutlineRemoved": true,
+            "focusVisiblePresent": true,
+            "focusRisk": false,
+            "rulesScanned": 2069
+          },
+          "consistency": {
+            "fontFamilies": 4,
+            "fontFamilyList": [
+              "system-ui",
+              "ui-monospace",
+              "monospace",
+              "Arial"
+            ],
+            "distinctFontSizes": 10,
+            "distinctTextColors": 5,
+            "distinctRadii": 20,
+            "distinctShadows": 9,
+            "note": "flag: >3 font families, >12 font sizes, >10 text colors, >6 radii, or >6 shadows suggests inconsistency"
+          },
+          "overflow": {
+            "horizontalOverflowPx": 0,
+            "culprits": []
+          },
+          "images": {
+            "upscaled": [
+              {
+                "displayed": 503,
+                "natural": 225,
+                "src": "http://127.0.0.1:4173/docs/composition-media.svg"
+              },
+              {
+                "displayed": 327,
+                "natural": 225,
+                "src": "http://127.0.0.1:4173/docs/composition-media.svg"
+              },
+              {
+                "displayed": 327,
+                "natural": 225,
+                "src": "http://127.0.0.1:4173/docs/composition-media.svg"
+              },
+              {
+                "displayed": 1035,
+                "natural": 640,
+                "src": "http://127.0.0.1:4173/docs/media/mountains.svg"
+              },
+              {
+                "displayed": 955,
+                "natural": 640,
+                "src": "http://127.0.0.1:4173/docs/media/mountains.svg"
+              },
+              {
+                "displayed": 955,
+                "natural": 640,
+                "src": "http://127.0.0.1:4173/docs/media/sea.svg"
+              },
+              {
+                "displayed": 955,
+                "natural": 640,
+                "src": "http://127.0.0.1:4173/docs/media/desert.svg"
+              },
+              {
+                "displayed": 955,
+                "natural": 640,
+                "src": "http://127.0.0.1:4173/docs/media/forest.svg"
+              },
+              {
+                "displayed": 955,
+                "natural": 640,
+                "src": "http://127.0.0.1:4173/docs/media/city.svg"
+              }
+            ],
+            "missingAlt": []
+          }
+        },
+        "errors": [],
+        "summary": {
+          "contrastFails": 8,
+          "tapTargetFails": 21,
+          "tapTargetMobileWarn": 55,
+          "offGridValues": 7,
+          "misalignments": 23,
+          "layoutAnimations": 0,
+          "focusRisk": false,
+          "reducedMotionHandled": true,
+          "horizontalOverflowPx": 0
+        }
+      }
+    },
+    {
+      "theme": "light",
+      "result": {
+        "viewport": {
+          "w": 390,
+          "h": 844,
+          "dpr": 1
+        },
+        "checks": {
+          "contrast": {
+            "checked": 1201,
+            "failCount": 5,
+            "worst": [
+              {
+                "ratio": 1,
+                "required": 4.5,
+                "fontPx": 16,
+                "weight": 400,
+                "color": "rgb(255, 255, 255)",
+                "where": "a.skip-link — \"К содержимому\""
+              },
+              {
+                "ratio": 1,
+                "required": 4.5,
+                "fontPx": 13.46,
+                "weight": 500,
+                "color": "rgb(255, 255, 255)",
+                "where": "div.hero-copy > div.hero-actions > a.tg-btn.tg-btn--primary — \"Смотреть семейства\""
+              },
+              {
+                "ratio": 1.09,
+                "required": 4.5,
+                "fontPx": 16,
+                "weight": 500,
+                "color": "rgb(255, 255, 255)",
+                "where": "div#scene-preview > article.app-preview.tg-card > a.tg-btn.tg-btn--primary — \"Открыть профиль\""
+              },
+              {
+                "ratio": 1.09,
+                "required": 4.5,
+                "fontPx": 13.46,
+                "weight": 500,
+                "color": "rgb(255, 255, 255)",
+                "where": "div.example-panel > div.example-body.tg-row > button.tg-chip — \"Технологии\""
+              },
+              {
+                "ratio": 1.09,
+                "required": 4.5,
+                "fontPx": 17.05,
+                "weight": 600,
+                "color": "rgb(255, 255, 255)",
+                "where": "div.tg-card__body > h3.tg-header__title > a#demo-city-title — \"Выходные в горах\""
+              }
+            ]
+          },
+          "tapTargets": {
+            "failCount": 20,
+            "warnCount": 121,
+            "items": [
+              {
+                "size": "143.16x28",
+                "severity": "mobile-warn",
+                "label": "t-design-system, начало",
+                "where": "header.site-header > a.brand — \"t·t-design-system\""
+              },
+              {
+                "size": "136.59x24",
+                "severity": "mobile-warn",
+                "label": "Условия отправки",
+                "where": "div.example-body.tg-col > div.tg-row > a.tg-link — \"Условия отправки\""
+              },
+              {
+                "size": "52.97x26",
+                "severity": "mobile-warn",
+                "label": "Открыть обычный",
+                "where": "div.example-body.tg-col > div.tg-row > button.tg-badge.tg-gap-1 — \"12\""
+              },
+              {
+                "size": "52.97x26",
+                "severity": "mobile-warn",
+                "label": "Открыть акцент",
+                "where": "div.example-body.tg-col > div.tg-row > button.tg-badge.tg-badge--primary — \"12\""
+              },
+              {
+                "size": "52.97x26",
+                "severity": "mobile-warn",
+                "label": "Открыть вторичный",
+                "where": "div.example-body.tg-col > div.tg-row > button.tg-badge.tg-badge--secondary — \"12\""
+              },
+              {
+                "size": "52.97x26",
+                "severity": "mobile-warn",
+                "label": "Открыть ошибка",
+                "where": "div.example-body.tg-col > div.tg-row > button.tg-badge.tg-badge--destructive — \"12\""
+              },
+              {
+                "size": "119.28x26",
+                "severity": "mobile-warn",
+                "label": "Все сообщения",
+                "where": "div.example-body.tg-col > div.tg-row > a.tg-badge.tg-badge--primary — \"Все сообщения\""
+              },
+              {
+                "size": "114.77x18",
+                "severity": "AA-fail",
+                "label": "список выбора",
+                "where": "section#avatars > p > a — \"список выбора\""
+              },
+              {
+                "size": "152.59x18",
+                "severity": "AA-fail",
+                "label": "карточки и профиль",
+                "where": "section#avatars > p > a — \"карточки и профиль\""
+              },
+              {
+                "size": "349.48x42",
+                "severity": "mobile-warn",
+                "label": "таблицы участников",
+                "where": "section#avatars > p > a — \"таблицы участников\""
+              },
+              {
+                "size": "176.44x18",
+                "severity": "AA-fail",
+                "label": "навигация приложения",
+                "where": "section#avatars > p > a — \"навигация приложения\""
+              },
+              {
+                "size": "246.88x18",
+                "severity": "AA-fail",
+                "label": "комментарии и ввод сообщения",
+                "where": "section#avatars > p > a — \"комментарии и ввод сообщения\""
+              },
+              {
+                "size": "24x24",
+                "severity": "mobile-warn",
+                "label": "orders",
+                "where": "fieldset.radio-group.tg-col > label.tg-choice > input.tg-check"
+              },
+              {
+                "size": "24x24",
+                "severity": "mobile-warn",
+                "label": "comments",
+                "where": "fieldset.radio-group.tg-col > label.tg-choice > input.tg-check"
+              },
+              {
+                "size": "24x24",
+                "severity": "mobile-warn",
+                "label": "system",
+                "where": "fieldset.radio-group.tg-col > label.tg-choice > input.tg-check"
+              },
+              {
+                "size": "24x24",
+                "severity": "mobile-warn",
+                "label": "personal",
+                "where": "fieldset.radio-group.tg-col > label.tg-choice > input.tg-radio"
+              },
+              {
+                "size": "24x24",
+                "severity": "mobile-warn",
+                "label": "team",
+                "where": "fieldset.radio-group.tg-col > label.tg-choice > input.tg-radio"
+              },
+              {
+                "size": "24x24",
+                "severity": "mobile-warn",
+                "label": "on",
+                "where": "div.example-body.tg-col > label.tg-choice > input.tg-check"
+              },
+              {
+                "size": "24x24",
+                "severity": "mobile-warn",
+                "label": "posts",
+                "where": "div.tg-choice-group.tg-choice-group--nested > label.tg-choice > input#demo-export-1"
+              },
+              {
+                "size": "24x24",
+                "severity": "mobile-warn",
+                "label": "members",
+                "where": "div.tg-choice-group.tg-choice-group--nested > label.tg-choice > input#demo-export-3"
+              },
+              {
+                "size": "24x24",
+                "severity": "mobile-warn",
+                "label": "starter",
+                "where": "div.choice-card-grid > label.tg-choice-card > input.tg-radio.tg-choice-card__indicator"
+              },
+              {
+                "size": "24x24",
+                "severity": "mobile-warn",
+                "label": "company",
+                "where": "div.choice-card-grid > label.tg-choice-card > input.tg-radio.tg-choice-card__indicator"
+              },
+              {
+                "size": "24x24",
+                "severity": "mobile-warn",
+                "label": "pdf",
+                "where": "div.choice-card-grid > label.tg-choice-card > input.tg-check.tg-choice-card__indicator"
+              },
+              {
+                "size": "24x24",
+                "severity": "mobile-warn",
+                "label": "xlsx",
+                "where": "div.choice-card-grid > label.tg-choice-card > input.tg-check.tg-choice-card__indicator"
+              },
+              {
+                "size": "24x24",
+                "severity": "mobile-warn",
+                "label": "csv",
+                "where": "div.choice-card-grid > label.tg-choice-card > input.tg-check.tg-choice-card__indicator"
+              },
+              {
+                "size": "40x40",
+                "severity": "mobile-warn",
+                "label": "Удалить Дизайн",
+                "where": "div.tg-tag-input > span.tg-tag-input__tag > button.tg-tag-input__remove"
+              },
+              {
+                "size": "40x40",
+                "severity": "mobile-warn",
+                "label": "Удалить Финансы",
+                "where": "div.tg-tag-input > span.tg-tag-input__tag > button.tg-tag-input__remove"
+              },
+              {
+                "size": "290x34.72",
+                "severity": "mobile-warn",
+                "label": "",
+                "where": "div.tg-combobox > div.tg-tag-input > input#demo-teams"
+              },
+              {
+                "size": "40x40",
+                "severity": "mobile-warn",
+                "label": "Удалить тег счета",
+                "where": "div.tg-tag-input > span.tg-tag-input__tag > button.tg-tag-input__remove"
+              },
+              {
+                "size": "40x40",
+                "severity": "mobile-warn",
+                "label": "Удалить тег октябрь",
+                "where": "div.tg-tag-input > span.tg-tag-input__tag > button.tg-tag-input__remove"
+              }
+            ]
+          },
+          "spacingGrid": {
+            "distinctValues": 21,
+            "off4Grid": [
+              {
+                "px": 1,
+                "uses": 246
+              },
+              {
+                "px": 2,
+                "uses": 186
+              },
+              {
+                "px": 3,
+                "uses": 47
+              },
+              {
+                "px": 13,
+                "uses": 34
+              },
+              {
+                "px": 5,
+                "uses": 16
+              },
+              {
+                "px": 9,
+                "uses": 5
+              },
+              {
+                "px": 45,
+                "uses": 2
+              },
+              {
+                "px": 53,
+                "uses": 2
+              }
+            ],
+            "off8Grid": [
+              {
+                "px": 12,
+                "uses": 2640
+              },
+              {
+                "px": 20,
+                "uses": 1178
+              },
+              {
+                "px": 4,
+                "uses": 714
+              },
+              {
+                "px": 28,
+                "uses": 2
+              },
+              {
+                "px": 36,
+                "uses": 2
+              }
+            ]
+          },
+          "misalignment": {
+            "count": 23,
+            "items": [
+              {
+                "edge": "left",
+                "offBy": "1px",
+                "line": 20,
+                "container": "table.palette-table",
+                "item": "div.palette-table-wrap > table.palette-table > caption.tg-sr-only — \"Четыре цвета и три градации каждого\""
+              },
+              {
+                "edge": "left",
+                "offBy": "1px",
+                "line": 42,
+                "container": "table.tg-table.tg-table--stack",
+                "item": "div.tg-table-wrap > table.tg-table.tg-table--stack > caption.tg-sr-only — \"Типы бейджей, классы и соответствующие п\""
+              },
+              {
+                "edge": "left",
+                "offBy": "1px",
+                "line": 46,
+                "container": "fieldset.tg-segmented.tg-segmented--vertical",
+                "item": "div.example-body.tg-row > fieldset.tg-segmented.tg-segmented--vertical > legend.tg-sr-only — \"Выравнивание\""
+              },
+              {
+                "edge": "left",
+                "offBy": "1px",
+                "line": 58,
+                "container": "div.example-body.tg-row",
+                "item": "td > div.example-body.tg-row > span#demo-async-status"
+              },
+              {
+                "edge": "left",
+                "offBy": "1px",
+                "line": 58,
+                "container": "div.example-body.tg-col",
+                "item": "td > div.example-body.tg-col > span#demo-copy-status"
+              },
+              {
+                "edge": "left",
+                "offBy": "1px",
+                "line": 41,
+                "container": "div.tg-field",
+                "item": "div.example-body.tg-col > div.tg-field > p#demo-otp-status"
+              },
+              {
+                "edge": "left",
+                "offBy": "1px",
+                "line": 41,
+                "container": "div.tg-field",
+                "item": "div.spec-grid > div.tg-field > p#demo-city-status"
+              },
+              {
+                "edge": "left",
+                "offBy": "1px",
+                "line": 41,
+                "container": "div.tg-field",
+                "item": "div.spec-grid > div.tg-field > p#demo-teams-status"
+              },
+              {
+                "edge": "left",
+                "offBy": "1px",
+                "line": 41,
+                "container": "div.tg-field.tag-demo",
+                "item": "div.example-body.tg-col > div.tg-field.tag-demo > p#demo-tags-status"
+              },
+              {
+                "edge": "left",
+                "offBy": "1px",
+                "line": 41,
+                "container": "div.tg-field.tag-demo",
+                "item": "div.example-body.tg-col > div.tg-field.tag-demo > p#demo-tags-suggest-status"
+              },
+              {
+                "edge": "left",
+                "offBy": "1px",
+                "line": 41,
+                "container": "div.tg-calendar",
+                "item": "div.example-body.tg-col > div.tg-calendar > p.tg-sr-only"
+              },
+              {
+                "edge": "left",
+                "offBy": "1px",
+                "line": 41,
+                "container": "div.tg-calendar.tg-calendar--range",
+                "item": "div.example-body.tg-col > div.tg-calendar.tg-calendar--range > p.tg-sr-only"
+              },
+              {
+                "edge": "left",
+                "offBy": "1px",
+                "line": 41,
+                "container": "div.example-body.tg-col",
+                "item": "div.example-panel > div.example-body.tg-col > p#demo-sort-status"
+              },
+              {
+                "edge": "left",
+                "offBy": "1px",
+                "line": 42,
+                "container": "table#demo-line-table",
+                "item": "div.tg-table-wrap > table#demo-line-table > caption.tg-sr-only — \"Выручка по месяцам, млн ₽\""
+              },
+              {
+                "edge": "left",
+                "offBy": "1px",
+                "line": 42,
+                "container": "table#demo-bar-table",
+                "item": "div.tg-table-wrap > table#demo-bar-table > caption.tg-sr-only — \"Заказы по дням недели\""
+              },
+              {
+                "edge": "left",
+                "offBy": "1px",
+                "line": 41,
+                "container": "section.tg-carousel",
+                "item": "div.example-body.tg-col > section.tg-carousel > p.tg-sr-only"
+              },
+              {
+                "edge": "left",
+                "offBy": "1px",
+                "line": 41,
+                "container": "section.tg-carousel.tg-carousel--peek",
+                "item": "div.spec-stack > section.tg-carousel.tg-carousel--peek > p.tg-sr-only"
+              },
+              {
+                "edge": "left",
+                "offBy": "1px",
+                "line": 41,
+                "container": "section#demo-g2",
+                "item": "div.example-body.tg-col > section#demo-g2 > p.tg-sr-only"
+              },
+              {
+                "edge": "left",
+                "offBy": "1px",
+                "line": 41,
+                "container": "section.tg-carousel",
+                "item": "div.example-body.tg-col > section.tg-carousel > p.tg-sr-only"
+              },
+              {
+                "edge": "left",
+                "offBy": "1px",
+                "line": 61,
+                "container": "li.tg-schedule__event",
+                "item": "ol.tg-schedule__row > li.tg-schedule__event > span.tg-sr-only — \", пересекается с другим событием\""
+              },
+              {
+                "edge": "left",
+                "offBy": "1px",
+                "line": 41,
+                "container": "div.example-body.tg-col",
+                "item": "div.example-panel > div.example-body.tg-col > span#demo-payments-status"
+              },
+              {
+                "edge": "left",
+                "offBy": "1px",
+                "line": 42,
+                "container": "table#demo-filter-table",
+                "item": "div.tg-table-wrap > table#demo-filter-table > caption.tg-sr-only — \"Счета с фильтрами\""
+              },
+              {
+                "edge": "left",
+                "offBy": "1px",
+                "line": 42,
+                "container": "div#demo-editor",
+                "item": "div.example-body.tg-col > div#demo-editor > p#demo-editor-status"
+              }
+            ]
+          },
+          "animation": {
+            "layoutTriggering": [],
+            "linearEasing": []
+          },
+          "cssAudit": {
+            "reducedMotionHandled": true,
+            "focusOutlineRemoved": true,
+            "focusVisiblePresent": true,
+            "focusRisk": false,
+            "rulesScanned": 2069
+          },
+          "consistency": {
+            "fontFamilies": 4,
+            "fontFamilyList": [
+              "system-ui",
+              "ui-monospace",
+              "monospace",
+              "Arial"
+            ],
+            "distinctFontSizes": 13,
+            "distinctTextColors": 6,
+            "distinctRadii": 25,
+            "distinctShadows": 9,
+            "note": "flag: >3 font families, >12 font sizes, >10 text colors, >6 radii, or >6 shadows suggests inconsistency"
+          },
+          "overflow": {
+            "horizontalOverflowPx": 0,
+            "culprits": []
+          },
+          "images": {
+            "upscaled": [
+              {
+                "displayed": 306,
+                "natural": 225,
+                "src": "http://127.0.0.1:4173/docs/composition-media.svg"
+              },
+              {
+                "displayed": 306,
+                "natural": 225,
+                "src": "http://127.0.0.1:4173/docs/composition-media.svg"
+              },
+              {
+                "displayed": 306,
+                "natural": 225,
+                "src": "http://127.0.0.1:4173/docs/composition-media.svg"
+              }
+            ],
+            "missingAlt": []
+          }
+        },
+        "errors": [],
+        "summary": {
+          "contrastFails": 5,
+          "tapTargetFails": 20,
+          "tapTargetMobileWarn": 121,
+          "offGridValues": 8,
+          "misalignments": 23,
+          "layoutAnimations": 0,
+          "focusRisk": false,
+          "reducedMotionHandled": true,
+          "horizontalOverflowPx": 0
+        }
+      }
+    },
+    {
+      "theme": "dark",
+      "result": {
+        "viewport": {
+          "w": 390,
+          "h": 844,
+          "dpr": 1
+        },
+        "checks": {
+          "contrast": {
+            "checked": 1201,
+            "failCount": 8,
+            "worst": [
+              {
+                "ratio": 1,
+                "required": 4.5,
+                "fontPx": 16,
+                "weight": 400,
+                "color": "rgb(255, 255, 255)",
+                "where": "a.skip-link — \"К содержимому\""
+              },
+              {
+                "ratio": 1,
+                "required": 4.5,
+                "fontPx": 14,
+                "weight": 600,
+                "color": "rgb(255, 255, 255)",
+                "where": "header.site-header > a.brand > span — \"t-design-system\""
+              },
+              {
+                "ratio": 1,
+                "required": 3,
+                "fontPx": 33.15,
+                "weight": 600,
+                "color": "rgb(255, 255, 255)",
+                "where": "section#overview > div.hero-copy > h1 — \"Один языкдля интерфейсов.\""
+              },
+              {
+                "ratio": 1,
+                "required": 4.5,
+                "fontPx": 13.46,
+                "weight": 500,
+                "color": "rgb(255, 255, 255)",
+                "where": "div.hero-copy > div.hero-actions > a.tg-btn.tg-btn--primary — \"Смотреть семейства\""
+              },
+              {
+                "ratio": 1,
+                "required": 3,
+                "fontPx": 24,
+                "weight": 600,
+                "color": "rgb(255, 255, 255)",
+                "where": "div.section-heading > div > h2 — \"Цвета и токены тем\""
+              },
+              {
+                "ratio": 1,
+                "required": 3,
+                "fontPx": 32,
+                "weight": 400,
+                "color": "rgb(255, 255, 255)",
+                "where": "div.foundation-grid > div.foundation-card > div.type-specimen — \"Aa Бб 123\""
+              },
+              {
+                "ratio": 1,
+                "required": 4.5,
+                "fontPx": 17.05,
+                "weight": 600,
+                "color": "rgb(255, 255, 255)",
+                "where": "div.catalog-cluster > section#text > h3#text-basics — \"Текст и числовые значения\""
+              },
+              {
+                "ratio": 2.39,
+                "required": 4.5,
+                "fontPx": 16,
+                "weight": 400,
+                "color": "rgb(158, 158, 255)",
+                "where": "section#avatars > p > a — \"список выбора\""
+              }
+            ]
+          },
+          "tapTargets": {
+            "failCount": 20,
+            "warnCount": 121,
+            "items": [
+              {
+                "size": "143.16x28",
+                "severity": "mobile-warn",
+                "label": "t-design-system, начало",
+                "where": "header.site-header > a.brand — \"t·t-design-system\""
+              },
+              {
+                "size": "136.59x24",
+                "severity": "mobile-warn",
+                "label": "Условия отправки",
+                "where": "div.example-body.tg-col > div.tg-row > a.tg-link — \"Условия отправки\""
+              },
+              {
+                "size": "52.97x26",
+                "severity": "mobile-warn",
+                "label": "Открыть обычный",
+                "where": "div.example-body.tg-col > div.tg-row > button.tg-badge.tg-gap-1 — \"12\""
+              },
+              {
+                "size": "52.97x26",
+                "severity": "mobile-warn",
+                "label": "Открыть акцент",
+                "where": "div.example-body.tg-col > div.tg-row > button.tg-badge.tg-badge--primary — \"12\""
+              },
+              {
+                "size": "52.97x26",
+                "severity": "mobile-warn",
+                "label": "Открыть вторичный",
+                "where": "div.example-body.tg-col > div.tg-row > button.tg-badge.tg-badge--secondary — \"12\""
+              },
+              {
+                "size": "52.97x26",
+                "severity": "mobile-warn",
+                "label": "Открыть ошибка",
+                "where": "div.example-body.tg-col > div.tg-row > button.tg-badge.tg-badge--destructive — \"12\""
+              },
+              {
+                "size": "119.28x26",
+                "severity": "mobile-warn",
+                "label": "Все сообщения",
+                "where": "div.example-body.tg-col > div.tg-row > a.tg-badge.tg-badge--primary — \"Все сообщения\""
+              },
+              {
+                "size": "114.77x18",
+                "severity": "AA-fail",
+                "label": "список выбора",
+                "where": "section#avatars > p > a — \"список выбора\""
+              },
+              {
+                "size": "152.59x18",
+                "severity": "AA-fail",
+                "label": "карточки и профиль",
+                "where": "section#avatars > p > a — \"карточки и профиль\""
+              },
+              {
+                "size": "349.48x42",
+                "severity": "mobile-warn",
+                "label": "таблицы участников",
+                "where": "section#avatars > p > a — \"таблицы участников\""
+              },
+              {
+                "size": "176.44x18",
+                "severity": "AA-fail",
+                "label": "навигация приложения",
+                "where": "section#avatars > p > a — \"навигация приложения\""
+              },
+              {
+                "size": "246.88x18",
+                "severity": "AA-fail",
+                "label": "комментарии и ввод сообщения",
+                "where": "section#avatars > p > a — \"комментарии и ввод сообщения\""
+              },
+              {
+                "size": "24x24",
+                "severity": "mobile-warn",
+                "label": "orders",
+                "where": "fieldset.radio-group.tg-col > label.tg-choice > input.tg-check"
+              },
+              {
+                "size": "24x24",
+                "severity": "mobile-warn",
+                "label": "comments",
+                "where": "fieldset.radio-group.tg-col > label.tg-choice > input.tg-check"
+              },
+              {
+                "size": "24x24",
+                "severity": "mobile-warn",
+                "label": "system",
+                "where": "fieldset.radio-group.tg-col > label.tg-choice > input.tg-check"
+              },
+              {
+                "size": "24x24",
+                "severity": "mobile-warn",
+                "label": "personal",
+                "where": "fieldset.radio-group.tg-col > label.tg-choice > input.tg-radio"
+              },
+              {
+                "size": "24x24",
+                "severity": "mobile-warn",
+                "label": "team",
+                "where": "fieldset.radio-group.tg-col > label.tg-choice > input.tg-radio"
+              },
+              {
+                "size": "24x24",
+                "severity": "mobile-warn",
+                "label": "on",
+                "where": "div.example-body.tg-col > label.tg-choice > input.tg-check"
+              },
+              {
+                "size": "24x24",
+                "severity": "mobile-warn",
+                "label": "posts",
+                "where": "div.tg-choice-group.tg-choice-group--nested > label.tg-choice > input#demo-export-1"
+              },
+              {
+                "size": "24x24",
+                "severity": "mobile-warn",
+                "label": "members",
+                "where": "div.tg-choice-group.tg-choice-group--nested > label.tg-choice > input#demo-export-3"
+              },
+              {
+                "size": "24x24",
+                "severity": "mobile-warn",
+                "label": "starter",
+                "where": "div.choice-card-grid > label.tg-choice-card > input.tg-radio.tg-choice-card__indicator"
+              },
+              {
+                "size": "24x24",
+                "severity": "mobile-warn",
+                "label": "company",
+                "where": "div.choice-card-grid > label.tg-choice-card > input.tg-radio.tg-choice-card__indicator"
+              },
+              {
+                "size": "24x24",
+                "severity": "mobile-warn",
+                "label": "pdf",
+                "where": "div.choice-card-grid > label.tg-choice-card > input.tg-check.tg-choice-card__indicator"
+              },
+              {
+                "size": "24x24",
+                "severity": "mobile-warn",
+                "label": "xlsx",
+                "where": "div.choice-card-grid > label.tg-choice-card > input.tg-check.tg-choice-card__indicator"
+              },
+              {
+                "size": "24x24",
+                "severity": "mobile-warn",
+                "label": "csv",
+                "where": "div.choice-card-grid > label.tg-choice-card > input.tg-check.tg-choice-card__indicator"
+              },
+              {
+                "size": "40x40",
+                "severity": "mobile-warn",
+                "label": "Удалить Дизайн",
+                "where": "div.tg-tag-input > span.tg-tag-input__tag > button.tg-tag-input__remove"
+              },
+              {
+                "size": "40x40",
+                "severity": "mobile-warn",
+                "label": "Удалить Финансы",
+                "where": "div.tg-tag-input > span.tg-tag-input__tag > button.tg-tag-input__remove"
+              },
+              {
+                "size": "290x34.72",
+                "severity": "mobile-warn",
+                "label": "",
+                "where": "div.tg-combobox > div.tg-tag-input > input#demo-teams"
+              },
+              {
+                "size": "40x40",
+                "severity": "mobile-warn",
+                "label": "Удалить тег счета",
+                "where": "div.tg-tag-input > span.tg-tag-input__tag > button.tg-tag-input__remove"
+              },
+              {
+                "size": "40x40",
+                "severity": "mobile-warn",
+                "label": "Удалить тег октябрь",
+                "where": "div.tg-tag-input > span.tg-tag-input__tag > button.tg-tag-input__remove"
+              }
+            ]
+          },
+          "spacingGrid": {
+            "distinctValues": 21,
+            "off4Grid": [
+              {
+                "px": 1,
+                "uses": 246
+              },
+              {
+                "px": 2,
+                "uses": 186
+              },
+              {
+                "px": 3,
+                "uses": 47
+              },
+              {
+                "px": 13,
+                "uses": 34
+              },
+              {
+                "px": 5,
+                "uses": 16
+              },
+              {
+                "px": 9,
+                "uses": 5
+              },
+              {
+                "px": 45,
+                "uses": 2
+              },
+              {
+                "px": 53,
+                "uses": 2
+              }
+            ],
+            "off8Grid": [
+              {
+                "px": 12,
+                "uses": 2640
+              },
+              {
+                "px": 20,
+                "uses": 1178
+              },
+              {
+                "px": 4,
+                "uses": 714
+              },
+              {
+                "px": 28,
+                "uses": 2
+              },
+              {
+                "px": 36,
+                "uses": 2
+              }
+            ]
+          },
+          "misalignment": {
+            "count": 23,
+            "items": [
+              {
+                "edge": "left",
+                "offBy": "1px",
+                "line": 20,
+                "container": "table.palette-table",
+                "item": "div.palette-table-wrap > table.palette-table > caption.tg-sr-only — \"Четыре цвета и три градации каждого\""
+              },
+              {
+                "edge": "left",
+                "offBy": "1px",
+                "line": 42,
+                "container": "table.tg-table.tg-table--stack",
+                "item": "div.tg-table-wrap > table.tg-table.tg-table--stack > caption.tg-sr-only — \"Типы бейджей, классы и соответствующие п\""
+              },
+              {
+                "edge": "left",
+                "offBy": "1px",
+                "line": 46,
+                "container": "fieldset.tg-segmented.tg-segmented--vertical",
+                "item": "div.example-body.tg-row > fieldset.tg-segmented.tg-segmented--vertical > legend.tg-sr-only — \"Выравнивание\""
+              },
+              {
+                "edge": "left",
+                "offBy": "1px",
+                "line": 58,
+                "container": "div.example-body.tg-row",
+                "item": "td > div.example-body.tg-row > span#demo-async-status"
+              },
+              {
+                "edge": "left",
+                "offBy": "1px",
+                "line": 58,
+                "container": "div.example-body.tg-col",
+                "item": "td > div.example-body.tg-col > span#demo-copy-status"
+              },
+              {
+                "edge": "left",
+                "offBy": "1px",
+                "line": 41,
+                "container": "div.tg-field",
+                "item": "div.example-body.tg-col > div.tg-field > p#demo-otp-status"
+              },
+              {
+                "edge": "left",
+                "offBy": "1px",
+                "line": 41,
+                "container": "div.tg-field",
+                "item": "div.spec-grid > div.tg-field > p#demo-city-status"
+              },
+              {
+                "edge": "left",
+                "offBy": "1px",
+                "line": 41,
+                "container": "div.tg-field",
+                "item": "div.spec-grid > div.tg-field > p#demo-teams-status"
+              },
+              {
+                "edge": "left",
+                "offBy": "1px",
+                "line": 41,
+                "container": "div.tg-field.tag-demo",
+                "item": "div.example-body.tg-col > div.tg-field.tag-demo > p#demo-tags-status"
+              },
+              {
+                "edge": "left",
+                "offBy": "1px",
+                "line": 41,
+                "container": "div.tg-field.tag-demo",
+                "item": "div.example-body.tg-col > div.tg-field.tag-demo > p#demo-tags-suggest-status"
+              },
+              {
+                "edge": "left",
+                "offBy": "1px",
+                "line": 41,
+                "container": "div.tg-calendar",
+                "item": "div.example-body.tg-col > div.tg-calendar > p.tg-sr-only"
+              },
+              {
+                "edge": "left",
+                "offBy": "1px",
+                "line": 41,
+                "container": "div.tg-calendar.tg-calendar--range",
+                "item": "div.example-body.tg-col > div.tg-calendar.tg-calendar--range > p.tg-sr-only"
+              },
+              {
+                "edge": "left",
+                "offBy": "1px",
+                "line": 41,
+                "container": "div.example-body.tg-col",
+                "item": "div.example-panel > div.example-body.tg-col > p#demo-sort-status"
+              },
+              {
+                "edge": "left",
+                "offBy": "1px",
+                "line": 42,
+                "container": "table#demo-line-table",
+                "item": "div.tg-table-wrap > table#demo-line-table > caption.tg-sr-only — \"Выручка по месяцам, млн ₽\""
+              },
+              {
+                "edge": "left",
+                "offBy": "1px",
+                "line": 42,
+                "container": "table#demo-bar-table",
+                "item": "div.tg-table-wrap > table#demo-bar-table > caption.tg-sr-only — \"Заказы по дням недели\""
+              },
+              {
+                "edge": "left",
+                "offBy": "1px",
+                "line": 41,
+                "container": "section.tg-carousel",
+                "item": "div.example-body.tg-col > section.tg-carousel > p.tg-sr-only"
+              },
+              {
+                "edge": "left",
+                "offBy": "1px",
+                "line": 41,
+                "container": "section.tg-carousel.tg-carousel--peek",
+                "item": "div.spec-stack > section.tg-carousel.tg-carousel--peek > p.tg-sr-only"
+              },
+              {
+                "edge": "left",
+                "offBy": "1px",
+                "line": 41,
+                "container": "section#demo-g2",
+                "item": "div.example-body.tg-col > section#demo-g2 > p.tg-sr-only"
+              },
+              {
+                "edge": "left",
+                "offBy": "1px",
+                "line": 41,
+                "container": "section.tg-carousel",
+                "item": "div.example-body.tg-col > section.tg-carousel > p.tg-sr-only"
+              },
+              {
+                "edge": "left",
+                "offBy": "1px",
+                "line": 61,
+                "container": "li.tg-schedule__event",
+                "item": "ol.tg-schedule__row > li.tg-schedule__event > span.tg-sr-only — \", пересекается с другим событием\""
+              },
+              {
+                "edge": "left",
+                "offBy": "1px",
+                "line": 41,
+                "container": "div.example-body.tg-col",
+                "item": "div.example-panel > div.example-body.tg-col > span#demo-payments-status"
+              },
+              {
+                "edge": "left",
+                "offBy": "1px",
+                "line": 42,
+                "container": "table#demo-filter-table",
+                "item": "div.tg-table-wrap > table#demo-filter-table > caption.tg-sr-only — \"Счета с фильтрами\""
+              },
+              {
+                "edge": "left",
+                "offBy": "1px",
+                "line": 42,
+                "container": "div#demo-editor",
+                "item": "div.example-body.tg-col > div#demo-editor > p#demo-editor-status"
+              }
+            ]
+          },
+          "animation": {
+            "layoutTriggering": [],
+            "linearEasing": []
+          },
+          "cssAudit": {
+            "reducedMotionHandled": true,
+            "focusOutlineRemoved": true,
+            "focusVisiblePresent": true,
+            "focusRisk": false,
+            "rulesScanned": 2069
+          },
+          "consistency": {
+            "fontFamilies": 4,
+            "fontFamilyList": [
+              "system-ui",
+              "ui-monospace",
+              "monospace",
+              "Arial"
+            ],
+            "distinctFontSizes": 13,
+            "distinctTextColors": 5,
+            "distinctRadii": 25,
+            "distinctShadows": 9,
+            "note": "flag: >3 font families, >12 font sizes, >10 text colors, >6 radii, or >6 shadows suggests inconsistency"
+          },
+          "overflow": {
+            "horizontalOverflowPx": 0,
+            "culprits": []
+          },
+          "images": {
+            "upscaled": [
+              {
+                "displayed": 306,
+                "natural": 225,
+                "src": "http://127.0.0.1:4173/docs/composition-media.svg"
+              },
+              {
+                "displayed": 306,
+                "natural": 225,
+                "src": "http://127.0.0.1:4173/docs/composition-media.svg"
+              },
+              {
+                "displayed": 306,
+                "natural": 225,
+                "src": "http://127.0.0.1:4173/docs/composition-media.svg"
+              }
+            ],
+            "missingAlt": []
+          }
+        },
+        "errors": [],
+        "summary": {
+          "contrastFails": 8,
+          "tapTargetFails": 20,
+          "tapTargetMobileWarn": 121,
+          "offGridValues": 8,
+          "misalignments": 23,
+          "layoutAnimations": 0,
+          "focusRisk": false,
+          "reducedMotionHandled": true,
+          "horizontalOverflowPx": 0
+        }
+      }
+    },
+    {
+      "theme": "ios-dark",
+      "result": {
+        "viewport": {
+          "w": 390,
+          "h": 844,
+          "dpr": 1
+        },
+        "checks": {
+          "contrast": {
+            "checked": 1201,
+            "failCount": 8,
+            "worst": [
+              {
+                "ratio": 1,
+                "required": 4.5,
+                "fontPx": 16,
+                "weight": 400,
+                "color": "rgb(255, 255, 255)",
+                "where": "a.skip-link — \"К содержимому\""
+              },
+              {
+                "ratio": 1,
+                "required": 4.5,
+                "fontPx": 14,
+                "weight": 600,
+                "color": "rgb(255, 255, 255)",
+                "where": "header.site-header > a.brand > span — \"t-design-system\""
+              },
+              {
+                "ratio": 1,
+                "required": 3,
+                "fontPx": 33.15,
+                "weight": 600,
+                "color": "rgb(255, 255, 255)",
+                "where": "section#overview > div.hero-copy > h1 — \"Один языкдля интерфейсов.\""
+              },
+              {
+                "ratio": 1,
+                "required": 4.5,
+                "fontPx": 13.46,
+                "weight": 500,
+                "color": "rgb(255, 255, 255)",
+                "where": "div.hero-copy > div.hero-actions > a.tg-btn.tg-btn--primary — \"Смотреть семейства\""
+              },
+              {
+                "ratio": 1,
+                "required": 3,
+                "fontPx": 24,
+                "weight": 600,
+                "color": "rgb(255, 255, 255)",
+                "where": "div.section-heading > div > h2 — \"Цвета и токены тем\""
+              },
+              {
+                "ratio": 1,
+                "required": 3,
+                "fontPx": 32,
+                "weight": 400,
+                "color": "rgb(255, 255, 255)",
+                "where": "div.foundation-grid > div.foundation-card > div.type-specimen — \"Aa Бб 123\""
+              },
+              {
+                "ratio": 1,
+                "required": 4.5,
+                "fontPx": 17.05,
+                "weight": 600,
+                "color": "rgb(255, 255, 255)",
+                "where": "div.catalog-cluster > section#text > h3#text-basics — \"Текст и числовые значения\""
+              },
+              {
+                "ratio": 2.39,
+                "required": 4.5,
+                "fontPx": 16,
+                "weight": 400,
+                "color": "rgb(158, 158, 255)",
+                "where": "section#avatars > p > a — \"список выбора\""
+              }
+            ]
+          },
+          "tapTargets": {
+            "failCount": 20,
+            "warnCount": 121,
+            "items": [
+              {
+                "size": "143.16x28",
+                "severity": "mobile-warn",
+                "label": "t-design-system, начало",
+                "where": "header.site-header > a.brand — \"t·t-design-system\""
+              },
+              {
+                "size": "136.59x24",
+                "severity": "mobile-warn",
+                "label": "Условия отправки",
+                "where": "div.example-body.tg-col > div.tg-row > a.tg-link — \"Условия отправки\""
+              },
+              {
+                "size": "52.97x26",
+                "severity": "mobile-warn",
+                "label": "Открыть обычный",
+                "where": "div.example-body.tg-col > div.tg-row > button.tg-badge.tg-gap-1 — \"12\""
+              },
+              {
+                "size": "52.97x26",
+                "severity": "mobile-warn",
+                "label": "Открыть акцент",
+                "where": "div.example-body.tg-col > div.tg-row > button.tg-badge.tg-badge--primary — \"12\""
+              },
+              {
+                "size": "52.97x26",
+                "severity": "mobile-warn",
+                "label": "Открыть вторичный",
+                "where": "div.example-body.tg-col > div.tg-row > button.tg-badge.tg-badge--secondary — \"12\""
+              },
+              {
+                "size": "52.97x26",
+                "severity": "mobile-warn",
+                "label": "Открыть ошибка",
+                "where": "div.example-body.tg-col > div.tg-row > button.tg-badge.tg-badge--destructive — \"12\""
+              },
+              {
+                "size": "119.28x26",
+                "severity": "mobile-warn",
+                "label": "Все сообщения",
+                "where": "div.example-body.tg-col > div.tg-row > a.tg-badge.tg-badge--primary — \"Все сообщения\""
+              },
+              {
+                "size": "114.77x18",
+                "severity": "AA-fail",
+                "label": "список выбора",
+                "where": "section#avatars > p > a — \"список выбора\""
+              },
+              {
+                "size": "152.59x18",
+                "severity": "AA-fail",
+                "label": "карточки и профиль",
+                "where": "section#avatars > p > a — \"карточки и профиль\""
+              },
+              {
+                "size": "349.48x42",
+                "severity": "mobile-warn",
+                "label": "таблицы участников",
+                "where": "section#avatars > p > a — \"таблицы участников\""
+              },
+              {
+                "size": "176.44x18",
+                "severity": "AA-fail",
+                "label": "навигация приложения",
+                "where": "section#avatars > p > a — \"навигация приложения\""
+              },
+              {
+                "size": "246.88x18",
+                "severity": "AA-fail",
+                "label": "комментарии и ввод сообщения",
+                "where": "section#avatars > p > a — \"комментарии и ввод сообщения\""
+              },
+              {
+                "size": "24x24",
+                "severity": "mobile-warn",
+                "label": "orders",
+                "where": "fieldset.radio-group.tg-col > label.tg-choice > input.tg-check"
+              },
+              {
+                "size": "24x24",
+                "severity": "mobile-warn",
+                "label": "comments",
+                "where": "fieldset.radio-group.tg-col > label.tg-choice > input.tg-check"
+              },
+              {
+                "size": "24x24",
+                "severity": "mobile-warn",
+                "label": "system",
+                "where": "fieldset.radio-group.tg-col > label.tg-choice > input.tg-check"
+              },
+              {
+                "size": "24x24",
+                "severity": "mobile-warn",
+                "label": "personal",
+                "where": "fieldset.radio-group.tg-col > label.tg-choice > input.tg-radio"
+              },
+              {
+                "size": "24x24",
+                "severity": "mobile-warn",
+                "label": "team",
+                "where": "fieldset.radio-group.tg-col > label.tg-choice > input.tg-radio"
+              },
+              {
+                "size": "24x24",
+                "severity": "mobile-warn",
+                "label": "on",
+                "where": "div.example-body.tg-col > label.tg-choice > input.tg-check"
+              },
+              {
+                "size": "24x24",
+                "severity": "mobile-warn",
+                "label": "posts",
+                "where": "div.tg-choice-group.tg-choice-group--nested > label.tg-choice > input#demo-export-1"
+              },
+              {
+                "size": "24x24",
+                "severity": "mobile-warn",
+                "label": "members",
+                "where": "div.tg-choice-group.tg-choice-group--nested > label.tg-choice > input#demo-export-3"
+              },
+              {
+                "size": "24x24",
+                "severity": "mobile-warn",
+                "label": "starter",
+                "where": "div.choice-card-grid > label.tg-choice-card > input.tg-radio.tg-choice-card__indicator"
+              },
+              {
+                "size": "24x24",
+                "severity": "mobile-warn",
+                "label": "company",
+                "where": "div.choice-card-grid > label.tg-choice-card > input.tg-radio.tg-choice-card__indicator"
+              },
+              {
+                "size": "24x24",
+                "severity": "mobile-warn",
+                "label": "pdf",
+                "where": "div.choice-card-grid > label.tg-choice-card > input.tg-check.tg-choice-card__indicator"
+              },
+              {
+                "size": "24x24",
+                "severity": "mobile-warn",
+                "label": "xlsx",
+                "where": "div.choice-card-grid > label.tg-choice-card > input.tg-check.tg-choice-card__indicator"
+              },
+              {
+                "size": "24x24",
+                "severity": "mobile-warn",
+                "label": "csv",
+                "where": "div.choice-card-grid > label.tg-choice-card > input.tg-check.tg-choice-card__indicator"
+              },
+              {
+                "size": "40x40",
+                "severity": "mobile-warn",
+                "label": "Удалить Дизайн",
+                "where": "div.tg-tag-input > span.tg-tag-input__tag > button.tg-tag-input__remove"
+              },
+              {
+                "size": "40x40",
+                "severity": "mobile-warn",
+                "label": "Удалить Финансы",
+                "where": "div.tg-tag-input > span.tg-tag-input__tag > button.tg-tag-input__remove"
+              },
+              {
+                "size": "290x34.72",
+                "severity": "mobile-warn",
+                "label": "",
+                "where": "div.tg-combobox > div.tg-tag-input > input#demo-teams"
+              },
+              {
+                "size": "40x40",
+                "severity": "mobile-warn",
+                "label": "Удалить тег счета",
+                "where": "div.tg-tag-input > span.tg-tag-input__tag > button.tg-tag-input__remove"
+              },
+              {
+                "size": "40x40",
+                "severity": "mobile-warn",
+                "label": "Удалить тег октябрь",
+                "where": "div.tg-tag-input > span.tg-tag-input__tag > button.tg-tag-input__remove"
+              }
+            ]
+          },
+          "spacingGrid": {
+            "distinctValues": 21,
+            "off4Grid": [
+              {
+                "px": 1,
+                "uses": 246
+              },
+              {
+                "px": 2,
+                "uses": 186
+              },
+              {
+                "px": 3,
+                "uses": 47
+              },
+              {
+                "px": 13,
+                "uses": 34
+              },
+              {
+                "px": 5,
+                "uses": 16
+              },
+              {
+                "px": 9,
+                "uses": 5
+              },
+              {
+                "px": 45,
+                "uses": 2
+              },
+              {
+                "px": 53,
+                "uses": 2
+              }
+            ],
+            "off8Grid": [
+              {
+                "px": 12,
+                "uses": 2640
+              },
+              {
+                "px": 20,
+                "uses": 1178
+              },
+              {
+                "px": 4,
+                "uses": 714
+              },
+              {
+                "px": 28,
+                "uses": 2
+              },
+              {
+                "px": 36,
+                "uses": 2
+              }
+            ]
+          },
+          "misalignment": {
+            "count": 23,
+            "items": [
+              {
+                "edge": "left",
+                "offBy": "1px",
+                "line": 20,
+                "container": "table.palette-table",
+                "item": "div.palette-table-wrap > table.palette-table > caption.tg-sr-only — \"Четыре цвета и три градации каждого\""
+              },
+              {
+                "edge": "left",
+                "offBy": "1px",
+                "line": 42,
+                "container": "table.tg-table.tg-table--stack",
+                "item": "div.tg-table-wrap > table.tg-table.tg-table--stack > caption.tg-sr-only — \"Типы бейджей, классы и соответствующие п\""
+              },
+              {
+                "edge": "left",
+                "offBy": "1px",
+                "line": 46,
+                "container": "fieldset.tg-segmented.tg-segmented--vertical",
+                "item": "div.example-body.tg-row > fieldset.tg-segmented.tg-segmented--vertical > legend.tg-sr-only — \"Выравнивание\""
+              },
+              {
+                "edge": "left",
+                "offBy": "1px",
+                "line": 58,
+                "container": "div.example-body.tg-row",
+                "item": "td > div.example-body.tg-row > span#demo-async-status"
+              },
+              {
+                "edge": "left",
+                "offBy": "1px",
+                "line": 58,
+                "container": "div.example-body.tg-col",
+                "item": "td > div.example-body.tg-col > span#demo-copy-status"
+              },
+              {
+                "edge": "left",
+                "offBy": "1px",
+                "line": 41,
+                "container": "div.tg-field",
+                "item": "div.example-body.tg-col > div.tg-field > p#demo-otp-status"
+              },
+              {
+                "edge": "left",
+                "offBy": "1px",
+                "line": 41,
+                "container": "div.tg-field",
+                "item": "div.spec-grid > div.tg-field > p#demo-city-status"
+              },
+              {
+                "edge": "left",
+                "offBy": "1px",
+                "line": 41,
+                "container": "div.tg-field",
+                "item": "div.spec-grid > div.tg-field > p#demo-teams-status"
+              },
+              {
+                "edge": "left",
+                "offBy": "1px",
+                "line": 41,
+                "container": "div.tg-field.tag-demo",
+                "item": "div.example-body.tg-col > div.tg-field.tag-demo > p#demo-tags-status"
+              },
+              {
+                "edge": "left",
+                "offBy": "1px",
+                "line": 41,
+                "container": "div.tg-field.tag-demo",
+                "item": "div.example-body.tg-col > div.tg-field.tag-demo > p#demo-tags-suggest-status"
+              },
+              {
+                "edge": "left",
+                "offBy": "1px",
+                "line": 41,
+                "container": "div.tg-calendar",
+                "item": "div.example-body.tg-col > div.tg-calendar > p.tg-sr-only"
+              },
+              {
+                "edge": "left",
+                "offBy": "1px",
+                "line": 41,
+                "container": "div.tg-calendar.tg-calendar--range",
+                "item": "div.example-body.tg-col > div.tg-calendar.tg-calendar--range > p.tg-sr-only"
+              },
+              {
+                "edge": "left",
+                "offBy": "1px",
+                "line": 41,
+                "container": "div.example-body.tg-col",
+                "item": "div.example-panel > div.example-body.tg-col > p#demo-sort-status"
+              },
+              {
+                "edge": "left",
+                "offBy": "1px",
+                "line": 42,
+                "container": "table#demo-line-table",
+                "item": "div.tg-table-wrap > table#demo-line-table > caption.tg-sr-only — \"Выручка по месяцам, млн ₽\""
+              },
+              {
+                "edge": "left",
+                "offBy": "1px",
+                "line": 42,
+                "container": "table#demo-bar-table",
+                "item": "div.tg-table-wrap > table#demo-bar-table > caption.tg-sr-only — \"Заказы по дням недели\""
+              },
+              {
+                "edge": "left",
+                "offBy": "1px",
+                "line": 41,
+                "container": "section.tg-carousel",
+                "item": "div.example-body.tg-col > section.tg-carousel > p.tg-sr-only"
+              },
+              {
+                "edge": "left",
+                "offBy": "1px",
+                "line": 41,
+                "container": "section.tg-carousel.tg-carousel--peek",
+                "item": "div.spec-stack > section.tg-carousel.tg-carousel--peek > p.tg-sr-only"
+              },
+              {
+                "edge": "left",
+                "offBy": "1px",
+                "line": 41,
+                "container": "section#demo-g2",
+                "item": "div.example-body.tg-col > section#demo-g2 > p.tg-sr-only"
+              },
+              {
+                "edge": "left",
+                "offBy": "1px",
+                "line": 41,
+                "container": "section.tg-carousel",
+                "item": "div.example-body.tg-col > section.tg-carousel > p.tg-sr-only"
+              },
+              {
+                "edge": "left",
+                "offBy": "1px",
+                "line": 61,
+                "container": "li.tg-schedule__event",
+                "item": "ol.tg-schedule__row > li.tg-schedule__event > span.tg-sr-only — \", пересекается с другим событием\""
+              },
+              {
+                "edge": "left",
+                "offBy": "1px",
+                "line": 41,
+                "container": "div.example-body.tg-col",
+                "item": "div.example-panel > div.example-body.tg-col > span#demo-payments-status"
+              },
+              {
+                "edge": "left",
+                "offBy": "1px",
+                "line": 42,
+                "container": "table#demo-filter-table",
+                "item": "div.tg-table-wrap > table#demo-filter-table > caption.tg-sr-only — \"Счета с фильтрами\""
+              },
+              {
+                "edge": "left",
+                "offBy": "1px",
+                "line": 42,
+                "container": "div#demo-editor",
+                "item": "div.example-body.tg-col > div#demo-editor > p#demo-editor-status"
+              }
+            ]
+          },
+          "animation": {
+            "layoutTriggering": [],
+            "linearEasing": []
+          },
+          "cssAudit": {
+            "reducedMotionHandled": true,
+            "focusOutlineRemoved": true,
+            "focusVisiblePresent": true,
+            "focusRisk": false,
+            "rulesScanned": 2069
+          },
+          "consistency": {
+            "fontFamilies": 4,
+            "fontFamilyList": [
+              "system-ui",
+              "ui-monospace",
+              "monospace",
+              "Arial"
+            ],
+            "distinctFontSizes": 13,
+            "distinctTextColors": 5,
+            "distinctRadii": 25,
+            "distinctShadows": 9,
+            "note": "flag: >3 font families, >12 font sizes, >10 text colors, >6 radii, or >6 shadows suggests inconsistency"
+          },
+          "overflow": {
+            "horizontalOverflowPx": 0,
+            "culprits": []
+          },
+          "images": {
+            "upscaled": [
+              {
+                "displayed": 306,
+                "natural": 225,
+                "src": "http://127.0.0.1:4173/docs/composition-media.svg"
+              },
+              {
+                "displayed": 306,
+                "natural": 225,
+                "src": "http://127.0.0.1:4173/docs/composition-media.svg"
+              },
+              {
+                "displayed": 306,
+                "natural": 225,
+                "src": "http://127.0.0.1:4173/docs/composition-media.svg"
+              }
+            ],
+            "missingAlt": []
+          }
+        },
+        "errors": [],
+        "summary": {
+          "contrastFails": 8,
+          "tapTargetFails": 20,
+          "tapTargetMobileWarn": 121,
+          "offGridValues": 8,
+          "misalignments": 23,
+          "layoutAnimations": 0,
+          "focusRisk": false,
+          "reducedMotionHandled": true,
+          "horizontalOverflowPx": 0
+        }
+      }
+    }
+  ],
+  "errors": []
+}

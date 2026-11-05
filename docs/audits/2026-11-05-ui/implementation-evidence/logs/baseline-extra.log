@@ -1,0 +1,219 @@
+BASELINE components-wave-1.browser
+✓ M15 a key uses the mono family token
+✓ M15 a key is at least 1.5em wide
+✓ M15 a key never wraps
+✓ M15 a key has an even edge, no heavier bottom
+✓ M15 a combination draws each key, not the wrapper
+✓ M15 key light: contrast 17.30 ≥ 4.5
+✓ M15 key dark: contrast 11.06 ≥ 4.5
+✓ M15 key ios-dark: contrast 14.55 ≥ 4.5
+✓ M8 ring default size is 40px
+✓ M8 --lg ring is 64px
+✓ M8 --sm ring is 24px
+✓ M8 value draws the arc from --value
+✓ M8 changing the value updates arc and aria-valuenow
+✓ M8 indeterminate ring has no value and still animates under reduced motion (pulse)
+✓ M8 destructive ring uses the danger role
+✓ C11 timeline is an ordered list
+✓ C11 time sits above the text
+✓ C11 visible time digits are centred on their markers
+✓ C11 done marker is filled with the action role
+✓ C11 current marker is a ring
+✓ C11 done markers carry an icon (not colour alone)
+✓ C11 a done step draws an accent line to the next
+✓ C11 the line runs from the first marker centre to the second
+✓ C11 time light: contrast 7.75 ≥ 4.5
+✓ C11 time dark: contrast 9.22 ≥ 4.5
+✓ C11 time ios-dark: contrast 10.82 ≥ 4.5
+✓ C11 description light: contrast 7.75 ≥ 4.5
+✓ C11 description dark: contrast 9.22 ≥ 4.5
+✓ C11 description ios-dark: contrast 10.82 ≥ 4.5
+✓ M10 horizontal timeline is a row on wide screens
+✓ M10 horizontal timeline scrolls inside a focusable region
+✓ M10 event labels are centred beneath their markers
+✓ M10 the line runs through the marker centres
+✓ M10 a done step draws the accent line on the row too
+✓ M10 text keeps its distance from the marker
+✓ M10 horizontal timeline returns to a column on phones
+✓ M10 RTL: the road runs from the right
+✓ F28 marker is 32px
+✓ F28 current step is aria-current=step
+✓ F28 Next moves the current step and marks the previous done
+✓ F28 the counter follows
+✓ F28 phones hide labels of other steps but keep them for screen readers
+✓ F28 phones keep the current label visible
+✓ M9 vertical stepper is a column
+✓ M9 error step is marked by an icon and the danger text role
+✓ M9 error label light: contrast 5.68 ≥ 4.5
+✓ M9 error label dark: contrast 8.70 ≥ 4.5
+✓ M9 error label ios-dark: contrast 10.40 ≥ 4.5
+✓ M9 description light: contrast 7.75 ≥ 4.5
+✓ M9 description dark: contrast 9.22 ≥ 4.5
+✓ M9 description ios-dark: contrast 10.82 ≥ 4.5
+✓ B9 attached buttons share one border line
+✓ B9 inner corners are square, outer keep the control radius
+✓ no script errors
+54 wave 1 checks passed
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+AssertionError [ERR_ASSERTION]: B9 the focused button rises above its neighbours
+    at check (file:///private/tmp/tds-ui-audit-fixes/head-baseline/tests/helpers/catalog-page.mjs:24:61)
+    at file:///private/tmp/tds-ui-audit-fixes/head-baseline/tests/components-wave-1.browser.mjs:126:3
+    at runNextTicks (node:internal/process/task_queues:65:5)
+    at process.processImmediate (node:internal/timers:472:9) {
+  generatedMessage: false,
+  code: 'ERR_ASSERTION',
+  actual: false,
+  expected: true,
+  operator: '==',
+  diff: 'simple'
+}
+
+Node.js v26.0.0
+BASELINE components-wave-2.browser
+✓ F8 trigger looks like the native select
+✓ F8 ArrowDown opens the list
+✓ F8 focus stays on the trigger
+✓ F8 the selected option starts active
+✓ F8 ArrowDown moves the active option
+✓ F8 disabled options are skipped
+✓ F8 the keyboard-active option has a ring
+✓ F8 option rows keep the control height
+✓ F8 Enter chooses and closes
+✓ F8 the trigger shows the new value and the hidden input follows
+✓ F8 Escape closes without changing the value
+✓ F8 typing a letter jumps to the matching option
+✓ F8 pointer opening has no keyboard ring on an option
+✓ F8 the list opens next to the trigger (below, or above near the edge) and is at least as wide
+✓ F8 clicking an option chooses it
+✓ F8 selected option has a check mark
+✓ F8 selected option light: contrast 17.30 ≥ 4.5
+✓ F8 selected option dark: contrast 11.06 ≥ 4.5
+✓ F8 selected option ios-dark: contrast 14.55 ≥ 4.5
+✓ F8 option meta light: contrast 8.45 ≥ 4.5
+✓ F8 option meta dark: contrast 7.66 ≥ 4.5
+✓ F8 option meta ios-dark: contrast 9.06 ≥ 4.5
+✓ F9 scripts drop the datalist fallback
+✓ F9 typing opens a filtered list
+✓ F9 the count is announced
+✓ F9 ArrowDown sets aria-activedescendant
+✓ F9 Enter puts the value in the field and closes
+✓ F9 no results are said plainly
+✓ F9 Escape closes the list
+✓ F9 multiple: choosing adds a tag before the field
+✓ F9 multiple: the list is multiselectable
+✓ F9 multiple: Backspace in the empty field removes the last tag
+✓ F10 Enter adds a tag with a named remove button
+✓ F10 each tag is submitted as a hidden field
+✓ F10 duplicates are not added and the reason is announced
+✓ F10 ArrowLeft at the start moves to the last tag
+✓ F10 ArrowRight from the last tag returns to the field
+✓ F10 Backspace in the empty field removes the last tag
+✓ F10 remove mark is 24px with a 44px target
+✓ F10 the frame shows focus while typing
+✓ F10 tag light: contrast 21.00 ≥ 4.5
+✓ F10 tag dark: contrast 14.00 ≥ 4.5
+✓ F10 tag ios-dark: contrast 17.58 ≥ 4.5
+✓ F10 the limit stops new tags
+✓ F4 + steps the native value
+✓ F4 native arrow keys still work
+✓ F4 the native spinner is hidden
+✓ F4 step buttons are 44px
+✓ F4 at the minimum the − button is disabled
+✓ F4 --pill is a capsule
+✓ F5 one real field with one-time-code autofill
+✓ F5 cells are at least 44px tall
+✓ F5 cells mirror the typed digits
+✓ F5 the next cell is active
+✓ F5 the active cell shows the focus ring
+✓ F5 a full correct code is accepted and announced
+✓ F5 a wrong code shows the error state
+✓ F5 only digits are kept
+✓ F5 six cells fit a 320px screen
+✓ F14 clicking the card checks its native radio
+✓ F14 the checked card draws a 2px accent ring without a fill
+✓ F14 checking does not change the card size
+✓ F14 arrow keys move the radio choice
+✓ no script errors
+64 wave 2 checks passed
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+locator.evaluate: Timeout 45000ms exceeded.
+Call log:
+[2m  - waiting for locator('.example-body[data-spec~="F14"] .tg-choice-card:has(input:focus-visible)').first()[22m
+
+    at css (/private/tmp/tds-ui-audit-fixes/head-baseline/tests/helpers/catalog-page.mjs:25:85)
+    at /private/tmp/tds-ui-audit-fixes/head-baseline/tests/components-wave-2.browser.mjs:155:61 {
+  log: [
+    `  - waiting for locator('.example-body[data-spec~="F14"] .tg-choice-card:has(input:focus-visible)').first()`
+  ],
+  name: 'TimeoutError'
+}
+
+Node.js v26.0.0
+BASELINE components-wave-3.browser
+✓ N16 viewport snaps along x
+✓ N16 viewport scrolls natively (works without scripts)
+✓ N16 slides fill the viewport
+✓ N16 prev is disabled on the first slide
+✓ N16 next moves one slide and updates the dots
+✓ N16 the change is announced after a manual move
+✓ N16 a dot chooses its slide and next becomes disabled at the end
+✓ N16 Home on the viewport returns to the first slide
+✓ N16 slides are labelled groups
+✓ N16 caption light: contrast 8.13 ≥ 4.5
+✓ N16 caption dark: contrast 18.36 ≥ 4.5
+✓ N16 caption ios-dark: contrast 19.31 ≥ 4.5
+✓ G1 --peek leaves neighbours visible at the edges
+✓ G1 a thumbnail chooses its slide
+✓ G1 thumbnails are at least 44px
+✓ G1 the current thumbnail has the accent border
+✓ G1 --vertical snaps along y
+✓ G1 --vertical puts thumbnails at the side on wide screens
+✓ M22 the fade is a transparency mask, not a colour
+✓ M22 the area is focusable and named
+✓ M22 the block variant scrolls vertically
+✓ N3 vertical tabs are a column
+✓ N3 ArrowDown moves to the next tab and shows its panel
+✓ N3 End selects the last tab
+✓ N3 the selected tab rises like other tabs
+✓ N3 phones get a horizontal row from the same markup
+✓ N2 unselected labels are visually hidden but in the DOM
+✓ N2 the selected tab shows its label
+✓ N2 arrows move the selection and reveal the new label
+✓ N2 the panel follows the selected tab
+✓ N2 icon-only tabs stay 44px wide
+✓ N11 the current link sits on a tone step
+✓ N11 links are at least 40px tall
+✓ N11 nesting is a native details
+✓ N11 link light: contrast 8.45 ≥ 4.5
+✓ N11 link dark: contrast 7.66 ≥ 4.5
+✓ N11 link ios-dark: contrast 9.06 ≥ 4.5
+✓ N11 group label light: contrast 8.45 ≥ 4.5
+✓ N11 group label dark: contrast 7.66 ≥ 4.5
+✓ N11 group label ios-dark: contrast 9.06 ≥ 4.5
+✓ N11 collapsing leaves icons only
+✓ N11 collapsed links keep their names
+✓ N5 Enter opens the panel and marks the button expanded
+✓ no script errors
+44 wave 3 checks passed
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+AssertionError [ERR_ASSERTION]: N5 Tab walks into the panel links
+    at check (file:///private/tmp/tds-ui-audit-fixes/head-baseline/tests/helpers/catalog-page.mjs:24:61)
+    at file:///private/tmp/tds-ui-audit-fixes/head-baseline/tests/components-wave-3.browser.mjs:101:3 {
+  generatedMessage: false,
+  code: 'ERR_ASSERTION',
+  actual: false,
+  expected: true,
+  operator: '==',
+  diff: 'simple'
+}
+
+Node.js v26.0.0

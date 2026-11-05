@@ -1,0 +1,52 @@
+[
+  {
+    "file": "progress-stripes.browser",
+    "engine": "chromium",
+    "status": 1
+  },
+  {
+    "file": "button-spacing.browser",
+    "engine": "chromium",
+    "status": 1
+  },
+  {
+    "file": "baseline-compatibility.browser",
+    "engine": "chromium",
+    "status": 1
+  },
+  {
+    "file": "browser",
+    "engine": "chromium",
+    "status": 1
+  },
+  {
+    "file": "components-wave-0.browser",
+    "engine": "chromium",
+    "status": 1
+  },
+  {
+    "file": "progress-stripes.browser",
+    "engine": "webkit",
+    "status": 1
+  },
+  {
+    "file": "button-spacing.browser",
+    "engine": "webkit",
+    "status": 1
+  },
+  {
+    "file": "baseline-compatibility.browser",
+    "engine": "webkit",
+    "status": 1
+  },
+  {
+    "file": "browser",
+    "engine": "webkit",
+    "status": 1
+  },
+  {
+    "file": "components-wave-0.browser",
+    "engine": "webkit",
+    "status": 1
+  }
+]

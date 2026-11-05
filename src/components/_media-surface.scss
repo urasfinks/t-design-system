@@ -7,3 +7,12 @@
   clip-path: var(--#{$scope}-clip, border-box);
   mask-image: var(--#{$scope}-mask, linear-gradient(var(--mask-opaque), var(--mask-opaque)));
 }
+
+// A text-sized surface protects a media label even over an opaque white image.
+// Position, margin and font size remain with the component's geometry owner.
+@mixin caption {
+  padding: var(--space-1) var(--space-2);
+  border-radius: var(--radius-sm);
+  background: var(--overlay-bg);
+  color: var(--overlay-text);
+}

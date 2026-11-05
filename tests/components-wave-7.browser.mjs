@@ -65,13 +65,13 @@ try {
   check('F25 a wrong HEX is invalid', await hex.getAttribute('aria-invalid') === 'true');
   await hex.fill('#0A7A55');
   check('F25 a right HEX updates the swatch', await hex.getAttribute('aria-invalid') === 'false' && await page.locator(`${ex('F25')} .tg-color-field input[type="color"]`).inputValue() === '#0a7a55');
-  check('F25 the hue track shows the whole colour circle', (await css(`${ex('F25')} .tg-color-picker__hue`, 'background-image', '::-webkit-slider-runnable-track')).includes('rgb(255, 0, 0)') || (await css(`${ex('F25')} .tg-color-picker__hue`, '--range-track-bg')).includes('red'));
-  const area = page.locator(`${ex('F25')} .tg-color-picker__area input`).first();
+  check('F25 the hue track shows the whole colour circle', (await css(`${ex('F25')} .tg-color-picker:not([popover]) .tg-color-picker__hue`, 'background-image', '::-webkit-slider-runnable-track')).includes('rgb(255, 0, 0)') || (await css(`${ex('F25')} .tg-color-picker:not([popover]) .tg-color-picker__hue`, '--range-track-bg')).includes('red'));
+  const area = page.locator(`${ex('F25')} .tg-color-picker:not([popover]) .tg-color-picker__area input`).first();
   await area.focus();
   await page.keyboard.press('ArrowUp');
-  check('F25 the area works from the keyboard', (await page.locator(`${ex('F25')} [data-color-picker]`).evaluate(el => el.style.getPropertyValue('--picker-v'))) === '0.91');
-  await page.locator(`${ex('F25')} .tg-color-picker__swatches label`).nth(1).click();
-  check('F25 a swatch is a radio that moves the area', await page.locator(`${ex('F25')} .tg-color-picker__swatches input:checked`).count() === 1);
+  check('F25 the area works from the keyboard', (await page.locator(`${ex('F25')} [data-color-picker]:not([popover])`).evaluate(el => el.style.getPropertyValue('--picker-v'))) === '0.91');
+  await page.locator(`${ex('F25')} .tg-color-picker:not([popover]) .tg-color-picker__swatches label`).nth(1).click();
+  check('F25 a swatch is a radio that moves the area', await page.locator(`${ex('F25')} .tg-color-picker:not([popover]) .tg-color-picker__swatches input:checked`).count() === 1);
 
   // F26 — emoji
   const options = page.locator(`${ex('F26')} .tg-emoji-picker__option`);

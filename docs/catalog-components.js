@@ -129,6 +129,7 @@ export function initToastRegion({ root = document } = {}) {
     deleted: { icon: 'trash-2', title: 'Счёт удалён', text: 'Его можно вернуть в течение 10 секунд', action: 'Отменить' },
   };
   const timers = new Map();
+  const dismissing = new WeakSet();
   const layout = () => {
     const toasts = [...list.children].reverse(); // newest first
     let offset = 0;
@@ -152,11 +153,15 @@ export function initToastRegion({ root = document } = {}) {
       dismiss(toast);
     }, ms));
   };
-  const dismiss = toast => {
+  const dismiss = (toast, immediate = false) => {
+    if (!toast.isConnected || (dismissing.has(toast) && !immediate)) return;
+    dismissing.add(toast);
     clearTimeout(timers.get(toast)); timers.delete(toast);
     const hadFocus = toast.contains(document.activeElement);
     toast.classList.remove('tg-toast--show');
-    setTimeout(() => { toast.remove(); layout(); }, 200);
+    const remove = () => { timers.delete(toast); toast.remove(); layout(); };
+    if (immediate) remove();
+    else timers.set(toast, setTimeout(remove, 200));
     if (hadFocus) root.querySelector('[data-toast-demo]')?.focus({ preventScroll: true });
   };
   const icon = name => `<svg class="tg-icon" viewBox="0 0 24 24" aria-hidden="true"><use href="../dist/icons/${name}.svg#${name}"></use></svg>`;
@@ -170,11 +175,15 @@ export function initToastRegion({ root = document } = {}) {
         + `<button class="tg-icon-btn tg-icon-btn--ghost tg-toast__close" type="button" aria-label="Закрыть уведомление">${icon('x')}</button>`;
       list.append(toast);
       layout();
-      requestAnimationFrame(() => requestAnimationFrame(() => toast.classList.add('tg-toast--show')));
+      requestAnimationFrame(() => requestAnimationFrame(() => {
+        if (toast.isConnected && !dismissing.has(toast)) toast.classList.add('tg-toast--show');
+      }));
       toast.addEventListener('click', event => { if (event.target.closest('.tg-toast__close, .tg-toast__action')) dismiss(toast); });
       toast.addEventListener('keydown', event => { if (event.key === 'Escape') { event.stopPropagation(); dismiss(toast); } });
       schedule(toast, m.action ? 8000 : 5000);
-      while (list.children.length > 5) dismiss(list.firstElementChild);
+      // Capacity eviction must shrink the list synchronously. Animated dismissal
+      // here would keep the loop condition true and block the event loop forever.
+      while (list.children.length > 5) dismiss(list.firstElementChild, true);
     });
   }
   new ResizeObserver(layout).observe(list);
@@ -217,20 +226,12 @@ export function initProgressRings({ root = document } = {}) {
   range?.addEventListener('input', () => { ring.style.setProperty('--value', range.value); ring.setAttribute('aria-valuenow', range.value); });
 }
 
-// Card → dialog: a shared view-transition name makes the card grow into the dialog.
+// The dialog opens independently; its source card remains in place.
 export function initMorphDialogs({ root = document } = {}) {
   for (const button of root.querySelectorAll('[data-morph-open]')) {
     const dialog = root.getElementById(button.dataset.morphOpen);
-    const card = button.closest('.tg-card');
-    const swap = (from, to, run) => {
-      const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
-      if (!document.startViewTransition || reduced) { run(); return; }
-      from.style.viewTransitionName = 'tg-card-morph';
-      const transition = document.startViewTransition(() => { from.style.viewTransitionName = ''; run(); to.style.viewTransitionName = 'tg-card-morph'; });
-      transition.finished.finally(() => { to.style.viewTransitionName = ''; });
-    };
-    button.addEventListener('click', () => swap(card, dialog, () => dialog.showModal()));
-    dialog.querySelector('[data-dialog-close]')?.addEventListener('click', () => swap(dialog, card, () => dialog.close()));
+    button.addEventListener('click', () => { if (!dialog.open) dialog.showModal(); });
+    dialog.querySelector('[data-dialog-close]')?.addEventListener('click', () => dialog.close());
     dialog.addEventListener('close', () => button.focus({ preventScroll: true }));
   }
 }
@@ -696,7 +697,11 @@ export function initNavMenus({ root = document } = {}) {
   for (const nav of root.querySelectorAll('[data-nav-menu]')) {
     const triggers = [...nav.querySelectorAll('.tg-nav-menu__trigger')];
     const panel = trigger => root.getElementById(trigger.getAttribute('aria-controls'));
-    const set = (trigger, open, instant = false) => {
+    let hoverTimer = 0;
+    let hoverOpened = null;
+    const set = (trigger, open, instant = false, source = 'explicit') => {
+      clearTimeout(hoverTimer);
+      hoverOpened = open && source === 'hover' ? trigger : null;
       for (const t of triggers) {
         const on = t === trigger && open;
         t.setAttribute('aria-expanded', String(on));
@@ -704,13 +709,19 @@ export function initNavMenus({ root = document } = {}) {
         panel(t).toggleAttribute('data-instant', on && instant);
       }
     };
-    let hoverTimer = 0;
     for (const trigger of triggers) {
-      trigger.addEventListener('click', event => set(trigger, trigger.getAttribute('aria-expanded') !== 'true', event.detail === 0));
+      trigger.addEventListener('click', event => {
+        // Hover is a preview. The first pointer activation confirms it; only
+        // a later activation toggles closed. Keyboard activation stays a toggle.
+        const confirmHover = event.detail > 0 && hoverOpened === trigger;
+        set(trigger, confirmHover || trigger.getAttribute('aria-expanded') !== 'true', event.detail === 0);
+      });
       trigger.parentElement.addEventListener('pointerenter', event => {
         if (event.pointerType !== 'mouse' || !matchMedia('(hover: hover) and (pointer: fine) and (min-width: 48.01rem)').matches) return;
         clearTimeout(hoverTimer);
-        hoverTimer = setTimeout(() => set(trigger, true), 200);
+        hoverTimer = setTimeout(() => {
+          if (trigger.getAttribute('aria-expanded') !== 'true') set(trigger, true, false, 'hover');
+        }, 200);
       });
       trigger.parentElement.addEventListener('pointerleave', event => {
         if (event.pointerType !== 'mouse') return;
@@ -1498,19 +1509,61 @@ export function initWheels({ root = document } = {}) {
 export function initColorPickers({ root = document } = {}) {
   for (const field of root.querySelectorAll('[data-color-field]')) {
     const swatch = field.querySelector('input[type="color"]'), hex = field.querySelector('.tg-color-field__input');
-    swatch.addEventListener('input', () => { hex.value = swatch.value.toUpperCase(); hex.removeAttribute('aria-invalid'); });
+    const trigger = field.querySelector('[data-color-open]');
+    const paintSwatch = () => trigger?.style.setProperty('--swatch', swatch.value);
+    paintSwatch();
+    swatch.addEventListener('input', () => { hex.value = swatch.value.toUpperCase(); hex.removeAttribute('aria-invalid'); paintSwatch(); });
     hex.addEventListener('input', () => {
       const value = hex.value.startsWith('#') ? hex.value : `#${hex.value}`;
       const ok = /^#[0-9a-f]{6}$/i.test(value);
       hex.setAttribute('aria-invalid', String(!ok));
-      if (ok) swatch.value = value.toLowerCase();
+      if (ok) { swatch.value = value.toLowerCase(); paintSwatch(); }
     });
+    const popup = field.querySelector('.tg-color-picker[popover]');
+    if (popup && trigger) {
+      trigger.hidden = false;
+      trigger.disabled = swatch.disabled;
+      swatch.hidden = true;
+      trigger.addEventListener('click', event => {
+        event.preventDefault();
+        if (popup.matches(':popover-open')) { popup.hidePopover(); return; }
+        popup.dispatchEvent(new CustomEvent('tds-color-set', { detail: swatch.value }));
+        popup.toggleAttribute('data-instant', event.detail === 0);
+        // Safari does not focus buttons on pointer activation. Record the real
+        // opener before showPopover so native Escape also restores it after a
+        // pointer-selected preset has moved focus outside the sliders.
+        trigger.focus({ preventScroll: true });
+        showAnchored(trigger, popup, 'block-end');
+        popup.querySelector('input[type="range"]')?.focus({ preventScroll: true });
+      });
+      popup.addEventListener('toggle', event => trigger.setAttribute('aria-expanded', String(event.newState === 'open')));
+      popup.addEventListener('tds-color-change', event => {
+        swatch.value = event.detail;
+        swatch.dispatchEvent(new Event('input', { bubbles: true }));
+      });
+      const close = () => { popup.hidePopover(); trigger.focus({ preventScroll: true }); };
+      popup.querySelector('[data-color-close]')?.addEventListener('click', close);
+      // On macOS a pointer-selected radio may leave keyboard focus on the page.
+      // Escape still belongs to the open picker, before the native close watcher.
+      root.addEventListener('keydown', event => {
+        if (event.key === 'Escape' && popup.matches(':popover-open')) {
+          event.preventDefault(); event.stopPropagation(); close();
+        }
+      }, true);
+    }
   }
   for (const picker of root.querySelectorAll('[data-color-picker]')) {
     const area = picker.querySelector('.tg-color-picker__area');
     const [s, v] = area.querySelectorAll('input');
     const hue = picker.querySelector('.tg-color-picker__hue');
-    const sync = () => {
+    const syncPreset = hex => {
+      for (const radio of picker.querySelectorAll('.tg-color-picker__swatches input')) radio.checked = radio.value.toLowerCase() === hex.toLowerCase();
+    };
+    const publish = hex => {
+      syncPreset(hex);
+      picker.dispatchEvent(new CustomEvent('tds-color-change', { detail: hex, bubbles: true }));
+    };
+    const sync = (emit = true) => {
       picker.style.setProperty('--picker-hue', hue.value);
       picker.style.setProperty('--picker-s', s.value / 100);
       picker.style.setProperty('--picker-v', v.value / 100);
@@ -1518,8 +1571,15 @@ export function initColorPickers({ root = document } = {}) {
       v.setAttribute('aria-valuetext', `яркость ${v.value}%`);
       hue.setAttribute('aria-valuetext', `оттенок ${hue.value}°`);
       hue.style.setProperty('--range-progress', `${hue.value / 3.6}%`);
+      if (emit) {
+        const h = Number(hue.value) / 60, sat = Number(s.value) / 100, value = Number(v.value) / 100;
+        const chroma = value * sat, x = chroma * (1 - Math.abs(h % 2 - 1)), m = value - chroma;
+        const channels = [[chroma, x, 0], [x, chroma, 0], [0, chroma, x], [0, x, chroma], [x, 0, chroma], [chroma, 0, x]][Math.floor(h) % 6];
+        const hex = '#' + channels.map(channel => Math.round((channel + m) * 255).toString(16).padStart(2, '0')).join('');
+        publish(hex);
+      }
     };
-    for (const input of [s, v, hue]) input.addEventListener('input', sync);
+    for (const input of [s, v, hue]) input.addEventListener('input', () => sync());
     // Arrow keys on the area: ←/→ saturation, ↑/↓ brightness (focus sits on the first slider).
     s.addEventListener('keydown', event => { if (event.key === 'ArrowUp' || event.key === 'ArrowDown') { event.preventDefault(); v.value = Number(v.value) + (event.key === 'ArrowUp' ? 1 : -1); sync(); } });
     const drag = event => {
@@ -1529,16 +1589,20 @@ export function initColorPickers({ root = document } = {}) {
       sync();
     };
     area.addEventListener('pointerdown', event => { area.setPointerCapture(event.pointerId); drag(event); s.focus({ preventScroll: true }); area.addEventListener('pointermove', drag); });
-    area.addEventListener('pointerup', () => area.removeEventListener('pointermove', drag));
-    picker.querySelectorAll('.tg-color-picker__swatches input').forEach(input => input.addEventListener('change', () => {
-      const hexValue = input.value, r = parseInt(hexValue.slice(1, 3), 16) / 255, g = parseInt(hexValue.slice(3, 5), 16) / 255, b = parseInt(hexValue.slice(5, 7), 16) / 255;
+    const stopDrag = () => area.removeEventListener('pointermove', drag);
+    for (const type of ['pointerup', 'pointercancel', 'lostpointercapture']) area.addEventListener(type, stopDrag);
+    const setHex = (hexValue, emit = true) => {
+      const r = parseInt(hexValue.slice(1, 3), 16) / 255, g = parseInt(hexValue.slice(3, 5), 16) / 255, b = parseInt(hexValue.slice(5, 7), 16) / 255;
       const max = Math.max(r, g, b), min = Math.min(r, g, b), d = max - min;
       let h = 0;
       if (d) h = max === r ? ((g - b) / d) % 6 : max === g ? (b - r) / d + 2 : (r - g) / d + 4;
       hue.value = Math.round((h * 60 + 360) % 360); s.value = Math.round((max ? d / max : 0) * 100); v.value = Math.round(max * 100);
-      sync();
-    }));
-    sync();
+      sync(false);
+      if (emit) publish(hexValue.toLowerCase()); else syncPreset(hexValue);
+    };
+    picker.querySelectorAll('.tg-color-picker__swatches input').forEach(input => input.addEventListener('change', () => setHex(input.value)));
+    picker.addEventListener('tds-color-set', event => setHex(event.detail, false));
+    sync(false);
   }
 }
 

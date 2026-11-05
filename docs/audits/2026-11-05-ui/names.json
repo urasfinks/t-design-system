@@ -1,0 +1,25 @@
+[
+  {
+    "selector": ".brand",
+    "snapshot": "- link \"t-design-system, начало\":\n  - /url: \"#overview\"\n  - text: t · t-design-system"
+  },
+  {
+    "selector": "button.tg-badge",
+    "snapshot": "- button \"Открыть обычный\": \"12\""
+  },
+  {
+    "selector": "button[aria-label=\"Открыть профиль Анны\"]",
+    "snapshot": "- button \"Открыть профиль Анны\": АК"
+  },
+  {
+    "selector": "#demo-owner-trigger",
+    "snapshot": "- button \"Ответственный Михаил Смирнов\": Михаил Смирнов"
+  },
+  {
+    "selector": "a[aria-label=\"Счета, 12 новых\"]",
+    "snapshot": "- link \"Счета, 12 новых\":\n  - /url: \"#app-nav\"\n  - text: Счета 12"
+  },
+  {
+    "copyStatus": "HTML выделен. Нажмите Ctrl+C или ⌘C."
+  }
+]

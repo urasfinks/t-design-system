@@ -1,0 +1,319 @@
+
+> t-design-system@0.1.0 test:colors
+> npm run build && npm run check:colors && node scripts/test-colors.mjs
+
+
+> t-design-system@0.1.0 build
+> node scripts/build.mjs
+
+Built dist/t-design-system.css (269959 bytes)
+Built dist/t-design-system.min.css (218482 bytes)
+Built dist/telegram.css (1043 bytes)
+Built dist/telegram.min.css (961 bytes)
+Built dist/telegram.js (optional theme bridge)
+Built dist/effects.js (optional ripple and decorative effects)
+Built dist/ui.js (optional ripple entry)
+Built dist/icons/ (287 independent Feather SVG files, MIT)
+Built dist/icons.json (searchable Feather metadata)
+
+> t-design-system@0.1.0 check:colors
+> node scripts/audit-colors.mjs
+
+Color contract: 40 component files + 2 base/utility files; 805 role consumers; no local paint formulas or theme-specific role overrides.
+33 color-formula checks: panel, D surface, all control aliases, theme inversion and hover.
+✓ no script errors
+Switch panel/track relations: {"light":{"panel":[255,255,255],"track":[233,233,233],"ratio":1.2140881790274751,"lightnessStep":-0.065975},"dark":{"panel":[35,45,54],"track":[51,61,71],"ratio":1.2660894721487757,"lightnessStep":0.065975},"ios-dark":{"panel":[25,25,25],"track":[41,41,41],"ratio":1.2085132894457875,"lightnessStep":0.06597499999999998}}
+✓ no script errors
+210 hover checks passed: 22 control variants, 3 themes, native/ARIA/ancestor disabled, clear button and geometry.
+✓ light: select reserves space for its inset arrow
+✓ light: select arrow follows the explicit theme
+✓ light: error notice has no colored frame
+✓ light: error notice uses the primary text color
+✓ light: error icon contrast ≥ 3
+✓ light: .tg-notice__title contrast ≥ 4.5
+✓ light: .tg-notice__content .tg-text-muted contrast ≥ 4.5
+✓ light: .tg-text-muted contrast ≥ 4.5
+✓ light: .tg-help--error contrast ≥ 4.5
+✓ light: .tg-link contrast ≥ 4.5
+✓ light: .tg-btn--primary contrast ≥ 4.5
+✓ light: .tg-btn--destructive contrast ≥ 4.5
+✓ light: .tg-badge--primary contrast ≥ 4.5
+✓ light: .tg-badge--destructive contrast ≥ 4.5
+✓ light: .tg-avatar__initials contrast ≥ 4.5
+✓ light: placeholder contrast ≥ 4.5
+✓ light: search placeholder contrast ≥ 4.5
+✓ light: .tg-btn[disabled] uses shared disabled opacity
+✓ light: #disabled-input uses shared disabled opacity
+✓ light: #disabled-check uses shared disabled opacity
+✓ light: #disabled-search uses shared disabled opacity
+✓ light: #disabled-upload uses shared disabled opacity
+✓ light: idle switch has the shared action outline
+✓ light: increased contrast strengthens field boundaries
+✓ light: increased contrast .tg-input:not([disabled]) boundary ≥ 3
+✓ light: increased contrast .tg-input:not([disabled]) boundary against outer surface ≥ 3
+✓ light: increased contrast .tg-textarea boundary ≥ 3
+✓ light: increased contrast .tg-textarea boundary against outer surface ≥ 3
+✓ light: progress fill contrast ≥ 3
+✓ light: increased contrast switch boundary ≥ 3
+✓ light: focus uses the shared light accent ring without a second outline
+✓ light: invalid textarea keeps its error border
+✓ light: #18745b .tg-link contrast ≥ 4.5
+✓ light: #18745b .tg-btn--primary contrast ≥ 4.5
+✓ light: #18745b .tg-badge--primary contrast ≥ 4.5
+✓ light: #18745b progress contrast ≥ 3
+✓ light: #7151c7 .tg-link contrast ≥ 4.5
+✓ light: #7151c7 .tg-btn--primary contrast ≥ 4.5
+✓ light: #7151c7 .tg-badge--primary contrast ≥ 4.5
+✓ light: #7151c7 progress contrast ≥ 3
+✓ dark: select reserves space for its inset arrow
+✓ dark: select arrow follows the explicit theme
+✓ dark: error notice has no colored frame
+✓ dark: error notice uses the primary text color
+✓ dark: error icon contrast ≥ 3
+✓ dark: .tg-notice__title contrast ≥ 4.5
+✓ dark: .tg-notice__content .tg-text-muted contrast ≥ 4.5
+✓ dark: .tg-text-muted contrast ≥ 4.5
+✓ dark: .tg-help--error contrast ≥ 4.5
+✓ dark: .tg-link contrast ≥ 4.5
+✓ dark: .tg-btn--primary contrast ≥ 4.5
+✓ dark: .tg-btn--destructive contrast ≥ 4.5
+✓ dark: .tg-badge--primary contrast ≥ 4.5
+✓ dark: .tg-badge--destructive contrast ≥ 4.5
+✓ dark: .tg-avatar__initials contrast ≥ 4.5
+✓ dark: placeholder contrast ≥ 4.5
+✓ dark: search placeholder contrast ≥ 4.5
+✓ dark: .tg-btn[disabled] uses shared disabled opacity
+✓ dark: #disabled-input uses shared disabled opacity
+✓ dark: #disabled-check uses shared disabled opacity
+✓ dark: #disabled-search uses shared disabled opacity
+✓ dark: #disabled-upload uses shared disabled opacity
+✓ dark: idle switch has the shared action outline
+✓ dark: increased contrast strengthens field boundaries
+✓ dark: increased contrast .tg-input:not([disabled]) boundary ≥ 3
+✓ dark: increased contrast .tg-input:not([disabled]) boundary against outer surface ≥ 3
+✓ dark: increased contrast .tg-textarea boundary ≥ 3
+✓ dark: increased contrast .tg-textarea boundary against outer surface ≥ 3
+✓ dark: progress fill contrast ≥ 3
+✓ dark: increased contrast switch boundary ≥ 3
+✓ dark: focus uses the shared light accent ring without a second outline
+✓ dark: invalid textarea keeps its error border
+✓ dark: #18745b .tg-link contrast ≥ 4.5
+✓ dark: #18745b .tg-btn--primary contrast ≥ 4.5
+✓ dark: #18745b .tg-badge--primary contrast ≥ 4.5
+✓ dark: #18745b progress contrast ≥ 3
+✓ dark: #7151c7 .tg-link contrast ≥ 4.5
+✓ dark: #7151c7 .tg-btn--primary contrast ≥ 4.5
+✓ dark: #7151c7 .tg-badge--primary contrast ≥ 4.5
+✓ dark: #7151c7 progress contrast ≥ 3
+✓ ios-dark: select reserves space for its inset arrow
+✓ ios-dark: select arrow follows the explicit theme
+✓ ios-dark: error notice has no colored frame
+✓ ios-dark: error notice uses the primary text color
+✓ ios-dark: error icon contrast ≥ 3
+✓ ios-dark: .tg-notice__title contrast ≥ 4.5
+✓ ios-dark: .tg-notice__content .tg-text-muted contrast ≥ 4.5
+✓ ios-dark: .tg-text-muted contrast ≥ 4.5
+✓ ios-dark: .tg-help--error contrast ≥ 4.5
+✓ ios-dark: .tg-link contrast ≥ 4.5
+✓ ios-dark: .tg-btn--primary contrast ≥ 4.5
+✓ ios-dark: .tg-btn--destructive contrast ≥ 4.5
+✓ ios-dark: .tg-badge--primary contrast ≥ 4.5
+✓ ios-dark: .tg-badge--destructive contrast ≥ 4.5
+✓ ios-dark: .tg-avatar__initials contrast ≥ 4.5
+✓ ios-dark: placeholder contrast ≥ 4.5
+✓ ios-dark: search placeholder contrast ≥ 4.5
+✓ ios-dark: .tg-btn[disabled] uses shared disabled opacity
+✓ ios-dark: #disabled-input uses shared disabled opacity
+✓ ios-dark: #disabled-check uses shared disabled opacity
+✓ ios-dark: #disabled-search uses shared disabled opacity
+✓ ios-dark: #disabled-upload uses shared disabled opacity
+✓ ios-dark: idle switch has the shared action outline
+✓ ios-dark: increased contrast strengthens field boundaries
+✓ ios-dark: increased contrast .tg-input:not([disabled]) boundary ≥ 3
+✓ ios-dark: increased contrast .tg-input:not([disabled]) boundary against outer surface ≥ 3
+✓ ios-dark: increased contrast .tg-textarea boundary ≥ 3
+✓ ios-dark: increased contrast .tg-textarea boundary against outer surface ≥ 3
+✓ ios-dark: progress fill contrast ≥ 3
+✓ ios-dark: increased contrast switch boundary ≥ 3
+✓ ios-dark: focus uses the shared light accent ring without a second outline
+✓ ios-dark: invalid textarea keeps its error border
+✓ ios-dark: #18745b .tg-link contrast ≥ 4.5
+✓ ios-dark: #18745b .tg-btn--primary contrast ≥ 4.5
+✓ ios-dark: #18745b .tg-badge--primary contrast ≥ 4.5
+✓ ios-dark: #18745b progress contrast ≥ 3
+✓ ios-dark: #7151c7 .tg-link contrast ≥ 4.5
+✓ ios-dark: #7151c7 .tg-btn--primary contrast ≥ 4.5
+✓ ios-dark: #7151c7 .tg-badge--primary contrast ≥ 4.5
+✓ ios-dark: #7151c7 progress contrast ≥ 3
+✓ custom arrow preserves native selection
+✓ RTL select moves arrow away from its text start
+✓ multiple-select: listboxes have no dropdown arrow
+✓ list-select: listboxes have no dropdown arrow
+✓ forced colors restores the native select arrow
+✓ 16px: text, icon, chip, loading and size variants have one height
+✓ 32px: text, icon, chip, loading and size variants have one height
+✓ buttons, inputs and icon controls share geometry
+✓ row utilities retain a square icon target ≥44px
+✓ hidden content retains a physical scale
+✓ reduced motion disables all control transitions
+131 design-system checks passed.
+Palette: four original colors, 12 table samples, three themes and responsive layouts passed.
+Semantic borders: 451 checks — statuses and static avatars borderless; filters, linked badges, selectable avatars outlined; link rows interactive in three themes.
+Choice geometry: checkbox/radio are 24px and switch is 26px for optical balance, including 200% text scaling.
+Radio: idle backgrounds match input and native checked selection works in all three themes.
+Field focus: active backgrounds, accent/error rings and blur cleanup passed in all three themes.
+✓ no script errors
+Option rows, tabs, segments, switch knobs, avatar badges and color handles are flat; popup shadows remain in all three themes.
+No-hover disclosure stays flat; default hover, click, Space and visible keyboard focus work in three themes.
+Select arrow hover: 3 themes, enabled and disabled controls passed.
+Effects: geometry, keyboard, disabled, motion, animation cleanup, timer fallback, disposal and glass passed.
+✓ 2079 spec example checks passed in chromium for 107 done specs
+33 color-formula checks: panel, D surface, all control aliases, theme inversion and hover.
+✓ no script errors
+Switch panel/track relations: {"light":{"panel":[255,255,255],"track":[233,233,233],"ratio":1.2140881790274751,"lightnessStep":-0.065975},"dark":{"panel":[35,45,54],"track":[51,61,71],"ratio":1.2660894721487757,"lightnessStep":0.065975},"ios-dark":{"panel":[25,25,25],"track":[41,41,41],"ratio":1.2085132894457875,"lightnessStep":0.06597499999999998}}
+✓ no script errors
+210 hover checks passed: 22 control variants, 3 themes, native/ARIA/ancestor disabled, clear button and geometry.
+✓ light: select reserves space for its inset arrow
+✓ light: select arrow follows the explicit theme
+✓ light: error notice has no colored frame
+✓ light: error notice uses the primary text color
+✓ light: error icon contrast ≥ 3
+✓ light: .tg-notice__title contrast ≥ 4.5
+✓ light: .tg-notice__content .tg-text-muted contrast ≥ 4.5
+✓ light: .tg-text-muted contrast ≥ 4.5
+✓ light: .tg-help--error contrast ≥ 4.5
+✓ light: .tg-link contrast ≥ 4.5
+✓ light: .tg-btn--primary contrast ≥ 4.5
+✓ light: .tg-btn--destructive contrast ≥ 4.5
+✓ light: .tg-badge--primary contrast ≥ 4.5
+✓ light: .tg-badge--destructive contrast ≥ 4.5
+✓ light: .tg-avatar__initials contrast ≥ 4.5
+✓ light: placeholder contrast ≥ 4.5
+✓ light: search placeholder contrast ≥ 4.5
+✓ light: .tg-btn[disabled] uses shared disabled opacity
+✓ light: #disabled-input uses shared disabled opacity
+✓ light: #disabled-check uses shared disabled opacity
+✓ light: #disabled-search uses shared disabled opacity
+✓ light: #disabled-upload uses shared disabled opacity
+✓ light: idle switch has the shared action outline
+✓ light: increased contrast strengthens field boundaries
+✓ light: increased contrast .tg-input:not([disabled]) boundary ≥ 3
+✓ light: increased contrast .tg-input:not([disabled]) boundary against outer surface ≥ 3
+✓ light: increased contrast .tg-textarea boundary ≥ 3
+✓ light: increased contrast .tg-textarea boundary against outer surface ≥ 3
+✓ light: progress fill contrast ≥ 3
+✓ light: increased contrast switch boundary ≥ 3
+✓ light: focus uses the shared light accent ring without a second outline
+✓ light: invalid textarea keeps its error border
+✓ light: #18745b .tg-link contrast ≥ 4.5
+✓ light: #18745b .tg-btn--primary contrast ≥ 4.5
+✓ light: #18745b .tg-badge--primary contrast ≥ 4.5
+✓ light: #18745b progress contrast ≥ 3
+✓ light: #7151c7 .tg-link contrast ≥ 4.5
+✓ light: #7151c7 .tg-btn--primary contrast ≥ 4.5
+✓ light: #7151c7 .tg-badge--primary contrast ≥ 4.5
+✓ light: #7151c7 progress contrast ≥ 3
+✓ dark: select reserves space for its inset arrow
+✓ dark: select arrow follows the explicit theme
+✓ dark: error notice has no colored frame
+✓ dark: error notice uses the primary text color
+✓ dark: error icon contrast ≥ 3
+✓ dark: .tg-notice__title contrast ≥ 4.5
+✓ dark: .tg-notice__content .tg-text-muted contrast ≥ 4.5
+✓ dark: .tg-text-muted contrast ≥ 4.5
+✓ dark: .tg-help--error contrast ≥ 4.5
+✓ dark: .tg-link contrast ≥ 4.5
+✓ dark: .tg-btn--primary contrast ≥ 4.5
+✓ dark: .tg-btn--destructive contrast ≥ 4.5
+✓ dark: .tg-badge--primary contrast ≥ 4.5
+✓ dark: .tg-badge--destructive contrast ≥ 4.5
+✓ dark: .tg-avatar__initials contrast ≥ 4.5
+✓ dark: placeholder contrast ≥ 4.5
+✓ dark: search placeholder contrast ≥ 4.5
+✓ dark: .tg-btn[disabled] uses shared disabled opacity
+✓ dark: #disabled-input uses shared disabled opacity
+✓ dark: #disabled-check uses shared disabled opacity
+✓ dark: #disabled-search uses shared disabled opacity
+✓ dark: #disabled-upload uses shared disabled opacity
+✓ dark: idle switch has the shared action outline
+✓ dark: increased contrast strengthens field boundaries
+✓ dark: increased contrast .tg-input:not([disabled]) boundary ≥ 3
+✓ dark: increased contrast .tg-input:not([disabled]) boundary against outer surface ≥ 3
+✓ dark: increased contrast .tg-textarea boundary ≥ 3
+✓ dark: increased contrast .tg-textarea boundary against outer surface ≥ 3
+✓ dark: progress fill contrast ≥ 3
+✓ dark: increased contrast switch boundary ≥ 3
+✓ dark: focus uses the shared light accent ring without a second outline
+✓ dark: invalid textarea keeps its error border
+✓ dark: #18745b .tg-link contrast ≥ 4.5
+✓ dark: #18745b .tg-btn--primary contrast ≥ 4.5
+✓ dark: #18745b .tg-badge--primary contrast ≥ 4.5
+✓ dark: #18745b progress contrast ≥ 3
+✓ dark: #7151c7 .tg-link contrast ≥ 4.5
+✓ dark: #7151c7 .tg-btn--primary contrast ≥ 4.5
+✓ dark: #7151c7 .tg-badge--primary contrast ≥ 4.5
+✓ dark: #7151c7 progress contrast ≥ 3
+✓ ios-dark: select reserves space for its inset arrow
+✓ ios-dark: select arrow follows the explicit theme
+✓ ios-dark: error notice has no colored frame
+✓ ios-dark: error notice uses the primary text color
+✓ ios-dark: error icon contrast ≥ 3
+✓ ios-dark: .tg-notice__title contrast ≥ 4.5
+✓ ios-dark: .tg-notice__content .tg-text-muted contrast ≥ 4.5
+✓ ios-dark: .tg-text-muted contrast ≥ 4.5
+✓ ios-dark: .tg-help--error contrast ≥ 4.5
+✓ ios-dark: .tg-link contrast ≥ 4.5
+✓ ios-dark: .tg-btn--primary contrast ≥ 4.5
+✓ ios-dark: .tg-btn--destructive contrast ≥ 4.5
+✓ ios-dark: .tg-badge--primary contrast ≥ 4.5
+✓ ios-dark: .tg-badge--destructive contrast ≥ 4.5
+✓ ios-dark: .tg-avatar__initials contrast ≥ 4.5
+✓ ios-dark: placeholder contrast ≥ 4.5
+✓ ios-dark: search placeholder contrast ≥ 4.5
+✓ ios-dark: .tg-btn[disabled] uses shared disabled opacity
+✓ ios-dark: #disabled-input uses shared disabled opacity
+✓ ios-dark: #disabled-check uses shared disabled opacity
+✓ ios-dark: #disabled-search uses shared disabled opacity
+✓ ios-dark: #disabled-upload uses shared disabled opacity
+✓ ios-dark: idle switch has the shared action outline
+✓ ios-dark: increased contrast strengthens field boundaries
+✓ ios-dark: increased contrast .tg-input:not([disabled]) boundary ≥ 3
+✓ ios-dark: increased contrast .tg-input:not([disabled]) boundary against outer surface ≥ 3
+✓ ios-dark: increased contrast .tg-textarea boundary ≥ 3
+✓ ios-dark: increased contrast .tg-textarea boundary against outer surface ≥ 3
+✓ ios-dark: progress fill contrast ≥ 3
+✓ ios-dark: increased contrast switch boundary ≥ 3
+✓ ios-dark: focus uses the shared light accent ring without a second outline
+✓ ios-dark: invalid textarea keeps its error border
+✓ ios-dark: #18745b .tg-link contrast ≥ 4.5
+✓ ios-dark: #18745b .tg-btn--primary contrast ≥ 4.5
+✓ ios-dark: #18745b .tg-badge--primary contrast ≥ 4.5
+✓ ios-dark: #18745b progress contrast ≥ 3
+✓ ios-dark: #7151c7 .tg-link contrast ≥ 4.5
+✓ ios-dark: #7151c7 .tg-btn--primary contrast ≥ 4.5
+✓ ios-dark: #7151c7 .tg-badge--primary contrast ≥ 4.5
+✓ ios-dark: #7151c7 progress contrast ≥ 3
+✓ custom arrow preserves native selection
+✓ RTL select moves arrow away from its text start
+✓ multiple-select: listboxes have no dropdown arrow
+✓ list-select: listboxes have no dropdown arrow
+✓ forced colors restores the native select arrow
+✓ 16px: text, icon, chip, loading and size variants have one height
+✓ 32px: text, icon, chip, loading and size variants have one height
+✓ buttons, inputs and icon controls share geometry
+✓ row utilities retain a square icon target ≥44px
+✓ hidden content retains a physical scale
+✓ reduced motion disables all control transitions
+131 design-system checks passed.
+Palette: four original colors, 12 table samples, three themes and responsive layouts passed.
+Semantic borders: 451 checks — statuses and static avatars borderless; filters, linked badges, selectable avatars outlined; link rows interactive in three themes.
+Choice geometry: checkbox/radio are 24px and switch is 26px for optical balance, including 200% text scaling.
+Radio: idle backgrounds match input and native checked selection works in all three themes.
+Field focus: active backgrounds, accent/error rings and blur cleanup passed in all three themes.
+✓ no script errors
+Option rows, tabs, segments, switch knobs, avatar badges and color handles are flat; popup shadows remain in all three themes.
+No-hover disclosure stays flat; default hover, click, Space and visible keyboard focus work in three themes.
+Select arrow hover: 3 themes, enabled and disabled controls passed.
+Effects: geometry, keyboard, disabled, motion, animation cleanup, timer fallback, disposal and glass passed.
+✓ 2079 spec example checks passed in webkit for 107 done specs
+Color contract and all color-related browser suites passed in Chromium and WebKit.

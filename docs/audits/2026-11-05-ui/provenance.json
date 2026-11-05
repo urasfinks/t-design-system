@@ -1,0 +1,43 @@
+{
+  "date": "2026-11-05",
+  "scope": "TDS catalog",
+  "note": "Downloaded main-branch contents identified by SHA-256; no immutable upstream commit was resolved. Tools installed only under /tmp. Local audit adapters substitute Playwright for MCP transports.",
+  "tools": {
+    "playwright": "1.62.1",
+    "axe": "4.14.0",
+    "lighthouse": "13.6.0",
+    "impeccableSkill": "4.7.0"
+  },
+  "sources": [
+    {
+      "name": "impeccable",
+      "url": "https://github.com/pbakaus/impeccable",
+      "sha256": "88e9a46a91b6ddd1059f03f578bd0f9bbe6d212d6a395124379b9bb5c97c5cf2"
+    },
+    {
+      "name": "measured",
+      "url": "https://raw.githubusercontent.com/imYChaudhary22/ui-ux-audit/main/skills/ui-ux-audit/SKILL.md",
+      "sha256": "7999a32896cf5184473e0cad4598856da39ab8d0b6266f4df871611319d2652f"
+    },
+    {
+      "name": "heuristic",
+      "url": "https://raw.githubusercontent.com/EliaAlberti/ux-audit-skill/main/SKILL.md",
+      "sha256": "56f813a9fddef652272e74364b05005ac98286683985081102a54a2a548724f6"
+    },
+    {
+      "name": "pipeline",
+      "url": "https://raw.githubusercontent.com/brumley-agents/claude-ui-ux-audit-skill/main/SKILL.md",
+      "sha256": "f27e5a5b1d9975ed8012fdc2ef2f2d44c0c2c1a2b0783528ec7be2081de50ad4"
+    },
+    {
+      "name": "walkthrough",
+      "url": "https://raw.githubusercontent.com/Flagrare/agent-skills/main/plugins/flagrare/skills/ux-audit/SKILL.md",
+      "sha256": "1859fb5db5de3755e0034c18638b0219b7cd8e48781b830a083c13904be5daed"
+    },
+    {
+      "name": "measurement-engine",
+      "url": "https://raw.githubusercontent.com/imYChaudhary22/ui-ux-audit/main/skills/ui-ux-audit/audit.js",
+      "sha256": "a4be5a4a01ca79b0df5fa3f12d1b6990284b4287a86515e371f95eb4c446db5f"
+    }
+  ]
+}

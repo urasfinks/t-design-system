@@ -35,7 +35,7 @@
     scroll-snap-align: start;
     scroll-snap-stop: always;
 
-    > img, > picture > img, > video {
+    > img, > picture > img, > video, > figure > img {
       display: block;
       grid-area: 1 / 1;
       inline-size: 100%;
@@ -44,19 +44,19 @@
       object-fit: cover;
     }
     // A caption sits on the image over the overlay role, not on a blur.
-    > figcaption {
+    > figcaption, > figure > figcaption {
       grid-area: 1 / 1;
       align-self: end;
       justify-self: start;
       max-inline-size: calc(100% - var(--space-6));
       margin: var(--space-3);
-      padding: var(--space-1) var(--space-2);
-      border-radius: var(--radius-sm);
-      background: var(--overlay-bg);
-      color: var(--overlay-text);
+      @include media-surface.caption;
       font-size: var(--fs-sm);
     }
   }
+  // The named slide group owns layout; its native figure retains image/caption
+  // semantics without inserting another grid box. Legacy figure slides still work.
+  .tg-carousel__figure { display: contents; }
   .tg-carousel__controls {
     display: flex;
     align-items: center;
@@ -111,7 +111,7 @@
       flex-direction: column;
       block-size: var(--carousel-height, 20rem);
       @include track.scroller(block);
-      > .tg-carousel__slide { flex-basis: 100%; > img { aspect-ratio: auto; } }
+      > .tg-carousel__slide { flex-basis: 100%; > img, > figure > img { aspect-ratio: auto; } }
     }
     @media (min-width: 36rem) {
       grid-template-columns: minmax(0, 1fr) auto;
@@ -184,7 +184,12 @@
     text-align: start;
     cursor: pointer;
     &:focus-visible { outline: 2px solid var(--text-link); outline-offset: -3px; }
-    > span { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+    > span {
+      @include media-surface.caption;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
     &[aria-expanded='false'] > span { writing-mode: vertical-rl; rotate: 180deg; }
   }
   // The description sits on the overlay role like a carousel caption, so its contrast does
@@ -192,13 +197,10 @@
   .tg-image-accordion__panel {
     position: absolute;
     inset-inline-start: var(--space-3);
-    inset-block-end: calc(var(--space-3) + 1.75rem);
+    inset-block-end: calc(var(--space-3) + 2.25rem);
     max-inline-size: calc(100% - var(--space-6));
     margin: 0;
-    padding: var(--space-1) var(--space-2);
-    border-radius: var(--radius-sm);
-    background: var(--overlay-bg);
-    color: var(--overlay-text);
+    @include media-surface.caption;
     font-size: var(--fs-sm);
     pointer-events: none;
     animation: tg-caption-in var(--duration) var(--ease);
@@ -296,18 +298,22 @@
           background: none;
           --carousel-slide-clip: none;
           --carousel-slide-mask: none;
-          > img, > picture, > video {
+          > img, > picture, > video, > figure > img {
             border-radius: var(--radius-lg);
             @include media-surface.clip;
             animation: tg-carousel-coverflow linear both;
             animation-timeline: --tg-carousel-slide;
           }
           // The caption belongs to the centred slide; on the neighbours it fades out.
-          > figcaption { animation: tg-carousel-caption linear both; animation-timeline: --tg-carousel-slide; }
+          > figcaption, > figure > figcaption { animation: tg-carousel-caption linear both; animation-timeline: --tg-carousel-slide; }
         }
       }
-      .tg-carousel.tg-carousel--fan > .tg-carousel__viewport > .tg-carousel__slide > :is(img, picture, video) { transform-origin: 50% 160%; animation-name: tg-carousel-fan; }
-      .tg-carousel.tg-carousel--ring > .tg-carousel__viewport > .tg-carousel__slide > :is(img, picture, video) { animation-name: tg-carousel-ring; }
+      .tg-carousel.tg-carousel--fan > .tg-carousel__viewport > .tg-carousel__slide {
+        > :is(img, picture, video), > figure > :is(img, picture, video) { transform-origin: 50% 160%; animation-name: tg-carousel-fan; }
+      }
+      .tg-carousel.tg-carousel--ring > .tg-carousel__viewport > .tg-carousel__slide {
+        > :is(img, picture, video), > figure > :is(img, picture, video) { animation-name: tg-carousel-ring; }
+      }
     }
   }
   @keyframes tg-carousel-caption {
@@ -340,7 +346,7 @@
     padding-inline: 0;
     > .tg-carousel__slide {
       flex-basis: 100%;
-      > img, > picture > img, > video { block-size: auto; aspect-ratio: auto; max-block-size: var(--media-max-size); object-fit: contain; }
+      > img, > picture > img, > video, > figure > img { block-size: auto; aspect-ratio: auto; max-block-size: var(--media-max-size); object-fit: contain; }
     }
   }
 }

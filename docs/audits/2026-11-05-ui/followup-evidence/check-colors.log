@@ -1,0 +1,5 @@
+
+> t-design-system@0.1.0 check:colors
+> node scripts/audit-colors.mjs
+
+Color contract: 40 component files + 2 base/utility files; 805 role consumers; no local paint formulas or theme-specific role overrides.

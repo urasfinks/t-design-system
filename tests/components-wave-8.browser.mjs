@@ -66,7 +66,7 @@ try {
   await contrast(`${ex('C18')} .tg-effect-spotlight p`, 'C18 card text');
 
   // G2 — 3D carousels: the slide stays flat (it is the snap target); its picture turns.
-  const g2 = '#demo-g2 .tg-carousel__slide > img';
+  const g2 = '#demo-g2 .tg-carousel__slide img';
   const slide = '#demo-g2 .tg-carousel__slide';
   check('G2 pictures are driven by their slide\'s view timeline', (await css(g2, 'animation-timeline')).includes('--tg-carousel-slide') && await css(g2, 'animation-name') === 'tg-carousel-coverflow');
   check('G2 the slide itself is not transformed', ['none', ''].includes(await css(slide, 'transform')));
@@ -75,7 +75,7 @@ try {
   const flatness = i => page.locator(g2).nth(i).evaluate(el => el.getBoundingClientRect().width / el.offsetWidth);
   check('G2 the centred picture is flat', await flatness(0) > .97);
   check('G2 a neighbour picture is turned', await flatness(1) < .9);
-  check('G2 only the centred slide shows its caption', Number(await css('#demo-g2 .tg-carousel__slide:nth-child(1) > figcaption', 'opacity')) > .9 && Number(await css('#demo-g2 .tg-carousel__slide:nth-child(2) > figcaption', 'opacity')) < .1);
+  check('G2 only the centred slide shows its caption', Number(await css('#demo-g2 .tg-carousel__slide:nth-child(1) figcaption', 'opacity')) > .9 && Number(await css('#demo-g2 .tg-carousel__slide:nth-child(2) figcaption', 'opacity')) < .1);
   await page.locator(`${ex('G2')} input[value="fan"]`).check();
   check('G2 the variant switch swaps the timeline animation', await css(g2, 'animation-name') === 'tg-carousel-fan');
   await page.locator('#demo-g2 [data-carousel-next]').click();

@@ -1,0 +1,20 @@
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+AssertionError [ERR_ASSERTION]: The input did not match the regular expression /^inset\(0px 50% 0px 0px round/. Input:
+
+'inset(0px calc(100% - clamp(0%, 50%, 100%)) 0px 0px round 9999px)'
+
+    at file:///private/tmp/tds-ui-audit-fixes/head-baseline/tests/patterns.browser.mjs:114:12
+    at runNextTicks (node:internal/process/task_queues:65:5)
+    at process.processImmediate (node:internal/timers:472:9) {
+  generatedMessage: true,
+  code: 'ERR_ASSERTION',
+  actual: 'inset(0px calc(100% - clamp(0%, 50%, 100%)) 0px 0px round 9999px)',
+  expected: /^inset\(0px 50% 0px 0px round/,
+  operator: 'match',
+  diff: 'simple'
+}
+
+Node.js v26.0.0

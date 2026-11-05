@@ -1,7 +1,7 @@
 {
   "componentFiles": 40,
   "foundationFiles": 2,
-  "declarations": 802,
+  "declarations": 805,
   "consumers": [
     {
       "file": "base/_index.scss",
@@ -1389,30 +1389,6 @@
     },
     {
       "file": "components/_carousel.scss",
-      "property": "border-radius",
-      "roles": [
-        "--radius-sm"
-      ],
-      "value": "var(--radius-sm)"
-    },
-    {
-      "file": "components/_carousel.scss",
-      "property": "background",
-      "roles": [
-        "--overlay-bg"
-      ],
-      "value": "var(--overlay-bg)"
-    },
-    {
-      "file": "components/_carousel.scss",
-      "property": "color",
-      "roles": [
-        "--overlay-text"
-      ],
-      "value": "var(--overlay-text)"
-    },
-    {
-      "file": "components/_carousel.scss",
       "property": "color",
       "roles": [
         "--text-secondary"
@@ -1498,30 +1474,6 @@
         "--text-link"
       ],
       "value": "2px solid var(--text-link)"
-    },
-    {
-      "file": "components/_carousel.scss",
-      "property": "border-radius",
-      "roles": [
-        "--radius-sm"
-      ],
-      "value": "var(--radius-sm)"
-    },
-    {
-      "file": "components/_carousel.scss",
-      "property": "background",
-      "roles": [
-        "--overlay-bg"
-      ],
-      "value": "var(--overlay-bg)"
-    },
-    {
-      "file": "components/_carousel.scss",
-      "property": "color",
-      "roles": [
-        "--overlay-text"
-      ],
-      "value": "var(--overlay-text)"
     },
     {
       "file": "components/_carousel.scss",
@@ -2100,6 +2052,30 @@
         "--radius-xs"
       ],
       "value": "var(--radius-xs)"
+    },
+    {
+      "file": "components/_content.scss",
+      "property": "background",
+      "roles": [
+        "--background-muted"
+      ],
+      "value": "var(--background-muted)"
+    },
+    {
+      "file": "components/_content.scss",
+      "property": "color",
+      "roles": [
+        "--text-color"
+      ],
+      "value": "var(--text-color)"
+    },
+    {
+      "file": "components/_content.scss",
+      "property": "border-radius",
+      "roles": [
+        "--radius-inset"
+      ],
+      "value": "var(--radius-inset)"
     },
     {
       "file": "components/_content.scss",
@@ -3505,6 +3481,30 @@
       "value": "var(--text-danger)"
     },
     {
+      "file": "components/_media-surface.scss",
+      "property": "border-radius",
+      "roles": [
+        "--radius-sm"
+      ],
+      "value": "var(--radius-sm)"
+    },
+    {
+      "file": "components/_media-surface.scss",
+      "property": "background",
+      "roles": [
+        "--overlay-bg"
+      ],
+      "value": "var(--overlay-bg)"
+    },
+    {
+      "file": "components/_media-surface.scss",
+      "property": "color",
+      "roles": [
+        "--overlay-text"
+      ],
+      "value": "var(--overlay-text)"
+    },
+    {
       "file": "components/_media.scss",
       "property": "border",
       "roles": [
@@ -3586,27 +3586,11 @@
     },
     {
       "file": "components/_media.scss",
-      "property": "border-radius",
+      "property": "outline",
       "roles": [
-        "--radius-sm"
+        "--text-link"
       ],
-      "value": "var(--radius-sm)"
-    },
-    {
-      "file": "components/_media.scss",
-      "property": "background",
-      "roles": [
-        "--overlay-bg"
-      ],
-      "value": "var(--overlay-bg)"
-    },
-    {
-      "file": "components/_media.scss",
-      "property": "color",
-      "roles": [
-        "--overlay-text"
-      ],
-      "value": "var(--overlay-text)"
+      "value": "2px solid var(--text-link)"
     },
     {
       "file": "components/_media.scss",
@@ -3622,7 +3606,7 @@
       "roles": [
         "--overlay-text"
       ],
-      "value": "var(--overlay-text)"
+      "value": "linear-gradient(var(--overlay-text), var(--overlay-text)) center / 2px 100% no-repeat"
     },
     {
       "file": "components/_media.scss",
@@ -5371,6 +5355,38 @@
     },
     {
       "file": "components/_pickers.scss",
+      "property": "--control-idle-bg",
+      "roles": [
+        "--swatch"
+      ],
+      "value": "var(--swatch, transparent)"
+    },
+    {
+      "file": "components/_pickers.scss",
+      "property": "--control-hover-bg",
+      "roles": [
+        "--control-idle-bg"
+      ],
+      "value": "var(--control-idle-bg)"
+    },
+    {
+      "file": "components/_pickers.scss",
+      "property": "background",
+      "roles": [
+        "--control-idle-bg"
+      ],
+      "value": "var(--control-idle-bg)"
+    },
+    {
+      "file": "components/_pickers.scss",
+      "property": "border",
+      "roles": [
+        "--border-color"
+      ],
+      "value": "1px solid var(--border-color)"
+    },
+    {
+      "file": "components/_pickers.scss",
       "property": "border",
       "roles": [
         "--border"
@@ -6403,6 +6419,14 @@
         "--text-danger"
       ],
       "value": "var(--text-danger)"
+    },
+    {
+      "file": "utilities/_index.scss",
+      "property": "outline",
+      "roles": [
+        "--text-link"
+      ],
+      "value": "2px solid var(--text-link)"
     },
     {
       "file": "utilities/_index.scss",

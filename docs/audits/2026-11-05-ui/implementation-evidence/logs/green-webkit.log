@@ -1,0 +1,9 @@
+✓ search options have presentational list wrappers
+✓ badge labels include their visible count
+✓ image labels retain contrast over a white image in all themes
+✓ compact action slots retain the whole target when rows wrap and tokens change
+✓ overflow regions gain and release keyboard focus with actual overflow
+✓ carousel slides preserve native figures inside valid named groups
+✓ catalog loads the prebuilt compressed CSS
+✓ scroll region runtime handles content resize and cleanup
+✓ no script errors

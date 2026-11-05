@@ -71,7 +71,12 @@ test('shared engines own surfaces, rows, selection and steps; owners only includ
     assert.match(source, /@include option\.list/, `${name} uses the dropdown list`);
     assert.match(source, /@include option\.dropdown-row/, `${name} uses the dropdown row`);
     assert.match(source, /@include option\.chosen/, `${name} uses the chosen row`);
-    assert.doesNotMatch(source, /--control-paint-duration|@include floating\.surface/, `${name} does not repeat the dropdown look`);
+    const colorPicker = name === 'pickers' ? source.match(/  \.tg-color-picker \{[\s\S]*?\n  \}/)?.[0] : null;
+    if (name === 'pickers') {
+      assert.ok(colorPicker, 'color canvas owns a separate component');
+      assert.match(colorPicker, /&\[popover\][\s\S]*@include floating\.surface/, 'color canvas popover uses the shared floating surface');
+    }
+    assert.doesNotMatch(colorPicker ? source.replace(colorPicker, '') : source, /--control-paint-duration|@include floating\.surface/, `${name} does not repeat the dropdown look`);
   }
   const overlays = await read('src/components/_overlays.scss');
   assert.match(overlays, /\.tg-tooltip\[popover\] \{\s*@include floating\.popover/);

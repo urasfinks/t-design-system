@@ -22,6 +22,21 @@
 }
 
 @layer tds.components {
+  .tg-code-block {
+    contain: inline-size;
+    inline-size: 100%;
+    min-inline-size: 0;
+    max-inline-size: 100%;
+    overflow: auto;
+    margin: 0;
+    padding: var(--space-3);
+    border: 0;
+    border-radius: var(--radius-inset);
+    background: var(--background-muted);
+    color: var(--text-color);
+    font: var(--fs-xs) / 1.5 var(--font-family-mono);
+    tab-size: 2;
+  }
   // A key or a shortcut. Nested kbd elements are the keys of one combination.
   .tg-kbd {
     @include key;

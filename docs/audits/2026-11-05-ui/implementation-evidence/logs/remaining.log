@@ -1,0 +1,2183 @@
+RUN demo-page-scroll.browser
+Demo controls keep page position/URL; local widgets and catalog navigation remain functional.
+✓ no script errors
+RUN ripple-corners.browser
+Ripple: four rounded corners preserved during and after transition, DPR 1/2, shared and custom radius.
+RUN illustration-edges.browser
+Real landscape SVGs: no pale underlay at transformed corners, DPR 1 and 2.
+RUN rounded-media.browser
+Rounded media: no unshaded corner fringe at DPR 1 and 2, mobile and desktop.
+RUN floating-inheritance.browser
+Floating surface inheritance passes across three themes.
+RUN icon-sizing.browser
+Shared icon sizing passed: buttons, search clear, preview, tabbar and select, default and custom size.
+RUN select-arrow.browser
+Select arrow hover: 3 themes, enabled and disabled controls passed.
+RUN range.browser
+Range accent fill: initial value, custom bounds, keyboard, input, reset and dynamic controls passed.
+RUN button-spacing.browser
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+AssertionError [ERR_ASSERTION]: light/16px/48px/button: icon keeps left inset: {"left":3.984375,"right":3.984375,"top":10,"bottom":10.796875,"inlinePadding":16}
+    at file:///Users/sfinks/Documents/ChatGPT/t-design-system/tests/button-spacing.browser.mjs:31:18
+    at runNextTicks (node:internal/process/task_queues:65:5)
+    at process.processImmediate (node:internal/timers:472:9) {
+  generatedMessage: false,
+  code: 'ERR_ASSERTION',
+  actual: false,
+  expected: true,
+  operator: '==',
+  diff: 'simple'
+}
+
+Node.js v26.0.0
+RUN button-height.browser
+✓ 1440px light: controls keep the 48.0px minimum and labels may wrap
+✓ 1440px light: button text stays inside the button
+✓ 1440px dark: controls keep the 48.0px minimum and labels may wrap
+✓ 1440px dark: button text stays inside the button
+✓ 1440px ios-dark: controls keep the 48.0px minimum and labels may wrap
+✓ 1440px ios-dark: button text stays inside the button
+✓ 390px light: controls keep the 44.7px minimum and labels may wrap
+✓ 390px light: button text stays inside the button
+✓ 390px dark: controls keep the 44.7px minimum and labels may wrap
+✓ 390px dark: button text stays inside the button
+✓ 390px ios-dark: controls keep the 44.7px minimum and labels may wrap
+✓ 390px ios-dark: button text stays inside the button
+✓ 320px light: controls keep the 44.2px minimum and labels may wrap
+✓ 320px light: button text stays inside the button
+✓ 320px dark: controls keep the 44.2px minimum and labels may wrap
+✓ 320px dark: button text stays inside the button
+✓ 320px ios-dark: controls keep the 44.2px minimum and labels may wrap
+✓ 320px ios-dark: button text stays inside the button
+✓ no script errors
+19 button height checks passed
+RUN control-hover.browser
+210 hover checks passed: 22 control variants, 3 themes, native/ARIA/ancestor disabled, clear button and geometry.
+RUN default-feedback.browser
+Default feedback: regular/dynamic/icon/avatar buttons, keyboard, disabled, reduced motion, clipping, idempotence and cleanup passed.
+RUN component-polish.browser
+Component polish: centered composer at 100/200%, multiline, borderless search clear, unified order list; 320/390/1280px and three themes passed.
+RUN baseline-compatibility.browser
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+AssertionError [ERR_ASSERTION]: chromium/light/320/: 3576 differences: [{"index":1,"tag":"HEADER","id":"","text":"\n  t·t-design-system\n  \n    v0.1.0\n    Тема оформл","classes":"site-header","part":"style","property":"backgroundColor","before":"color(srgb 1 1 1)","after":"oklch(1 0.0000482797 23.7327)"},{"index":7,"tag":"SPAN","id":"","text":"v0.1.0","classes":"version","part":"style","property":"color","before":"color(srgb 0.3 0.3 0.3)","after":"color(srgb 0.300001 0.300003 0.300003)"},{"index":7,"tag":"SPAN","id":"","text":"v0.1.0","classes":"version","part":"style","property":"border","before":"0px none color(srgb 0.3 0.3 0.3)","after":"0px none color(srgb 0.300001 0.300003 0.300003)"},{"index":7,"tag":"SPAN","id":"","text":"v0.1.0","classes":"version","part":"style","property":"outline","before":"color(srgb 0.3 0.3 0.3) none 3px","after":"color(srgb 0.300001 0.300003 0.300003) none 3px"},{"index":7,"tag":"SPAN","id":"","text":"v0.1.0","classes":"version","part":"before","property":"color","before":"color(srgb 0.3 0.3 0.3)","after":"color(srgb 0.300001 0.300003 0.300003)"}]
+    at file:///Users/sfinks/Documents/ChatGPT/t-design-system/tests/baseline-compatibility.browser.mjs:121:18 {
+  generatedMessage: false,
+  code: 'ERR_ASSERTION',
+  actual: undefined,
+  expected: undefined,
+  operator: 'fail',
+  diff: 'simple'
+}
+
+Node.js v26.0.0
+RUN error-surface.browser
+Shared error surface: notice/summary computed parity, optional icon, title, native keyboard error links across themes passed.
+RUN catalog-clusters.browser
+chromium: 120 preserved panels, family ownership, nested navigation, HTML, 3 themes, 320/1440px passed
+RUN catalog-refresh.browser
+Refreshed catalog: native interaction, errors, transitions, responsive tables and themes passed.
+RUN catalog-search.browser
+Catalog search: grouped navigation, filtering, keyboard, focus, mobile, 200% text and no-JS fallback passed.
+RUN patterns.browser
+Patterns: 320/1440px, four themes, native details keyboard, search/reset, contained table, long content and reduced motion passed.
+RUN icon-browser.browser
+Icon browser: all icons, tags, selection, size, empty/reset and clipboard fallback passed.
+RUN bottom-panel.browser
+Bottom panel: keyboard, fixed positioning, scrolling, custom contents, controlled state, 320–1280px and three themes passed.
+RUN catalog-compositions.browser
+Catalog compositions pass: navigation, themes, demo interactions, escaping, responsive layouts and standalone page.
+RUN compositions.browser
+Composition checks passed at 320–1280px, keyboard inset, modal lock and all themes.
+RUN browser
+✓ four light source colors follow the documented palette
+✓ four desktopDark source colors follow the documented palette
+✓ four iosDark source colors follow the documented palette
+✓ light theme works without Telegram
+✓ controls have at least 44px touch target
+✓ utilities override component padding
+✓ system dark theme
+✓ explicit light overrides dark OS
+✓ explicit dark overrides light OS
+✓ dark mode selects iOS palette on iOS platform
+✓ automatic dark mode respects iOS platform
+✓ explicit light remains light on iOS
+✓ Telegram adapter fallback keeps dark palette
+✓ legacy project palette takes precedence over SDK colors
+✓ SDK colors do not replace source palette by default
+✓ native Telegram colors are opt-in
+✓ legacy Telegram variable is supported
+✓ application custom properties override framework
+✓ application CSS overrides layered component
+✓ disabled button ignores hover
+✓ keyboard focus is visible
+✓ reduced motion removes control transitions
+✓ progress defaults to a fully clipped value
+✓ hidden attribute beats component and utility display
+✓ standalone forms module styles disabled switches
+✓ component catalog is served
+✓ individual icon asset is served
+✓ visible catalog icons render from individual SVG files
+✓ button icons use shared 20px size and 2-unit round stroke
+✓ glass example has a neutral flat backdrop
+✓ HTTP server blocks encoded traversal
+✓ catalog theme control
+✓ catalog exposes iOS dark palette
+✓ light: catalog panels and inputs follow the source materials
+✓ light: example viewport uses the documented page background
+✓ light: real catalog loading text contrast ≥ 4.5
+✓ dark: catalog panels and inputs follow the source materials
+✓ dark: example viewport uses the documented page background
+✓ dark: real catalog loading text contrast ≥ 4.5
+✓ ios-dark: catalog panels and inputs follow the source materials
+✓ ios-dark: example viewport uses the documented page background
+✓ ios-dark: real catalog loading text contrast ≥ 4.5
+✓ primary link keeps button text color
+✓ local loading overlay stays below the sticky header
+✓ file control shows local filename and preview
+✓ clearing file resets the preview
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+locator.click: Error: strict mode violation: getByRole('switch', { name: 'Уведомления', exact: true }) resolved to 2 elements:
+    1) <button role="switch" class="tg-switch" aria-checked="false" aria-labelledby="notifications-label">…</button> aka getByRole('switch', { name: 'Уведомления' }).first()
+    2) <button type="button" role="switch" class="tg-switch" aria-checked="false" aria-labelledby="buttons-notifications-label">…</button> aka getByRole('switch', { name: 'Уведомления' }).nth(1)
+
+Call log:
+[2m  - waiting for getByRole('switch', { name: 'Уведомления', exact: true })[22m
+
+    at /Users/sfinks/Documents/ChatGPT/t-design-system/tests/browser.mjs:156:72 {
+  log: [
+    "  - waiting for getByRole('switch', { name: 'Уведомления', exact: true })"
+  ]
+}
+
+Node.js v26.0.0
+RUN audit.browser
+✓ light: body background formula
+✓ light: source panel surface
+✓ light: subtle RGBA border
+✓ light: flat cards reserve elevation for overlays
+✓ light: source input surface
+✓ light: secondary header transparency
+✓ light: white switch knob
+✓ dark: body background formula
+✓ dark: source panel surface
+✓ dark: subtle RGBA border
+✓ dark: flat cards reserve elevation for overlays
+✓ dark: source input surface
+✓ dark: secondary header transparency
+✓ dark: white switch knob
+✓ ios-dark: body background formula
+✓ ios-dark: source panel surface
+✓ ios-dark: subtle RGBA border
+✓ ios-dark: flat cards reserve elevation for overlays
+✓ ios-dark: source input surface
+✓ ios-dark: secondary header transparency
+✓ ios-dark: white switch knob
+✓ joined cards suppress joining border
+✓ divider preserves dashed source style
+✓ nested: checked knob stays within control
+✓ self-rtl: checked knob stays within control
+✓ RTL checked knob is at inline end
+✓ RTL toast centered inside viewport
+✓ unbroken toast content wraps
+✓ avatar retains press feedback
+✓ file upload is a styled control
+✓ iOS spacer consumes the integration height
+✓ progress stripes remain softly blurred and visible
+✓ native, plain and striped progress share one height
+✓ stripes stop under reduced motion
+✓ large spinner follows the semantic progress accent
+35 audit checks passed.
+RUN effects.browser
+Effects: geometry, keyboard, disabled, motion, animation cleanup, timer fallback, disposal and glass passed.
+RUN design-system.browser
+✓ light: select reserves space for its inset arrow
+✓ light: select arrow follows the explicit theme
+✓ light: error notice has no colored frame
+✓ light: error notice uses the primary text color
+✓ light: error icon contrast ≥ 3
+✓ light: .tg-notice__title contrast ≥ 4.5
+✓ light: .tg-notice__content .tg-text-muted contrast ≥ 4.5
+✓ light: .tg-text-muted contrast ≥ 4.5
+✓ light: .tg-help--error contrast ≥ 4.5
+✓ light: .tg-link contrast ≥ 4.5
+✓ light: .tg-btn--primary contrast ≥ 4.5
+✓ light: .tg-btn--destructive contrast ≥ 4.5
+✓ light: .tg-badge--primary contrast ≥ 4.5
+✓ light: .tg-badge--destructive contrast ≥ 4.5
+✓ light: .tg-avatar__initials contrast ≥ 4.5
+✓ light: placeholder contrast ≥ 4.5
+✓ light: search placeholder contrast ≥ 4.5
+✓ light: .tg-btn[disabled] uses shared disabled opacity
+✓ light: #disabled-input uses shared disabled opacity
+✓ light: #disabled-check uses shared disabled opacity
+✓ light: #disabled-search uses shared disabled opacity
+✓ light: #disabled-upload uses shared disabled opacity
+✓ light: idle switch has the shared action outline
+✓ light: increased contrast strengthens field boundaries
+✓ light: increased contrast .tg-input:not([disabled]) boundary ≥ 3
+✓ light: increased contrast .tg-input:not([disabled]) boundary against outer surface ≥ 3
+✓ light: increased contrast .tg-textarea boundary ≥ 3
+✓ light: increased contrast .tg-textarea boundary against outer surface ≥ 3
+✓ light: progress fill contrast ≥ 3
+✓ light: increased contrast switch boundary ≥ 3
+✓ light: focus uses the shared light accent ring without a second outline
+✓ light: invalid textarea keeps its error border
+✓ light: #18745b .tg-link contrast ≥ 4.5
+✓ light: #18745b .tg-btn--primary contrast ≥ 4.5
+✓ light: #18745b .tg-badge--primary contrast ≥ 4.5
+✓ light: #18745b progress contrast ≥ 3
+✓ light: #7151c7 .tg-link contrast ≥ 4.5
+✓ light: #7151c7 .tg-btn--primary contrast ≥ 4.5
+✓ light: #7151c7 .tg-badge--primary contrast ≥ 4.5
+✓ light: #7151c7 progress contrast ≥ 3
+✓ dark: select reserves space for its inset arrow
+✓ dark: select arrow follows the explicit theme
+✓ dark: error notice has no colored frame
+✓ dark: error notice uses the primary text color
+✓ dark: error icon contrast ≥ 3
+✓ dark: .tg-notice__title contrast ≥ 4.5
+✓ dark: .tg-notice__content .tg-text-muted contrast ≥ 4.5
+✓ dark: .tg-text-muted contrast ≥ 4.5
+✓ dark: .tg-help--error contrast ≥ 4.5
+✓ dark: .tg-link contrast ≥ 4.5
+✓ dark: .tg-btn--primary contrast ≥ 4.5
+✓ dark: .tg-btn--destructive contrast ≥ 4.5
+✓ dark: .tg-badge--primary contrast ≥ 4.5
+✓ dark: .tg-badge--destructive contrast ≥ 4.5
+✓ dark: .tg-avatar__initials contrast ≥ 4.5
+✓ dark: placeholder contrast ≥ 4.5
+✓ dark: search placeholder contrast ≥ 4.5
+✓ dark: .tg-btn[disabled] uses shared disabled opacity
+✓ dark: #disabled-input uses shared disabled opacity
+✓ dark: #disabled-check uses shared disabled opacity
+✓ dark: #disabled-search uses shared disabled opacity
+✓ dark: #disabled-upload uses shared disabled opacity
+✓ dark: idle switch has the shared action outline
+✓ dark: increased contrast strengthens field boundaries
+✓ dark: increased contrast .tg-input:not([disabled]) boundary ≥ 3
+✓ dark: increased contrast .tg-input:not([disabled]) boundary against outer surface ≥ 3
+✓ dark: increased contrast .tg-textarea boundary ≥ 3
+✓ dark: increased contrast .tg-textarea boundary against outer surface ≥ 3
+✓ dark: progress fill contrast ≥ 3
+✓ dark: increased contrast switch boundary ≥ 3
+✓ dark: focus uses the shared light accent ring without a second outline
+✓ dark: invalid textarea keeps its error border
+✓ dark: #18745b .tg-link contrast ≥ 4.5
+✓ dark: #18745b .tg-btn--primary contrast ≥ 4.5
+✓ dark: #18745b .tg-badge--primary contrast ≥ 4.5
+✓ dark: #18745b progress contrast ≥ 3
+✓ dark: #7151c7 .tg-link contrast ≥ 4.5
+✓ dark: #7151c7 .tg-btn--primary contrast ≥ 4.5
+✓ dark: #7151c7 .tg-badge--primary contrast ≥ 4.5
+✓ dark: #7151c7 progress contrast ≥ 3
+✓ ios-dark: select reserves space for its inset arrow
+✓ ios-dark: select arrow follows the explicit theme
+✓ ios-dark: error notice has no colored frame
+✓ ios-dark: error notice uses the primary text color
+✓ ios-dark: error icon contrast ≥ 3
+✓ ios-dark: .tg-notice__title contrast ≥ 4.5
+✓ ios-dark: .tg-notice__content .tg-text-muted contrast ≥ 4.5
+✓ ios-dark: .tg-text-muted contrast ≥ 4.5
+✓ ios-dark: .tg-help--error contrast ≥ 4.5
+✓ ios-dark: .tg-link contrast ≥ 4.5
+✓ ios-dark: .tg-btn--primary contrast ≥ 4.5
+✓ ios-dark: .tg-btn--destructive contrast ≥ 4.5
+✓ ios-dark: .tg-badge--primary contrast ≥ 4.5
+✓ ios-dark: .tg-badge--destructive contrast ≥ 4.5
+✓ ios-dark: .tg-avatar__initials contrast ≥ 4.5
+✓ ios-dark: placeholder contrast ≥ 4.5
+✓ ios-dark: search placeholder contrast ≥ 4.5
+✓ ios-dark: .tg-btn[disabled] uses shared disabled opacity
+✓ ios-dark: #disabled-input uses shared disabled opacity
+✓ ios-dark: #disabled-check uses shared disabled opacity
+✓ ios-dark: #disabled-search uses shared disabled opacity
+✓ ios-dark: #disabled-upload uses shared disabled opacity
+✓ ios-dark: idle switch has the shared action outline
+✓ ios-dark: increased contrast strengthens field boundaries
+✓ ios-dark: increased contrast .tg-input:not([disabled]) boundary ≥ 3
+✓ ios-dark: increased contrast .tg-input:not([disabled]) boundary against outer surface ≥ 3
+✓ ios-dark: increased contrast .tg-textarea boundary ≥ 3
+✓ ios-dark: increased contrast .tg-textarea boundary against outer surface ≥ 3
+✓ ios-dark: progress fill contrast ≥ 3
+✓ ios-dark: increased contrast switch boundary ≥ 3
+✓ ios-dark: focus uses the shared light accent ring without a second outline
+✓ ios-dark: invalid textarea keeps its error border
+✓ ios-dark: #18745b .tg-link contrast ≥ 4.5
+✓ ios-dark: #18745b .tg-btn--primary contrast ≥ 4.5
+✓ ios-dark: #18745b .tg-badge--primary contrast ≥ 4.5
+✓ ios-dark: #18745b progress contrast ≥ 3
+✓ ios-dark: #7151c7 .tg-link contrast ≥ 4.5
+✓ ios-dark: #7151c7 .tg-btn--primary contrast ≥ 4.5
+✓ ios-dark: #7151c7 .tg-badge--primary contrast ≥ 4.5
+✓ ios-dark: #7151c7 progress contrast ≥ 3
+✓ custom arrow preserves native selection
+✓ RTL select moves arrow away from its text start
+✓ multiple-select: listboxes have no dropdown arrow
+✓ list-select: listboxes have no dropdown arrow
+✓ forced colors restores the native select arrow
+✓ 16px: text, icon, chip, loading and size variants have one height
+✓ 32px: text, icon, chip, loading and size variants have one height
+✓ buttons, inputs and icon controls share geometry
+✓ row utilities retain a square icon target ≥44px
+✓ hidden content retains a physical scale
+✓ reduced motion disables all control transitions
+131 design-system checks passed.
+RUN palette.browser
+Palette: four original colors, 12 table samples, three themes and responsive layouts passed.
+RUN field-focus.browser
+Choice geometry: checkbox/radio are 24px and switch is 26px for optical balance, including 200% text scaling.
+Radio: idle backgrounds match input and native checked selection works in all three themes.
+Field focus: active backgrounds, accent/error rings and blur cleanup passed in all three themes.
+RUN badges.browser
+Badges: borderless and text contrast ≥ 4.5 in three themes and three accents.
+RUN avatar-stack.browser
+Avatar stack: wider separators, centered labels, RTL and 200% text passed in all themes.
+RUN avatar-ring.browser
+chromium: catalog surfaces, 3 ring modifiers, initials/image/counter, role propagation and custom inheritance passed in 3 themes
+RUN semantic-borders.browser
+Semantic borders: 449 checks — statuses and static avatars borderless; filters, linked badges, selectable avatars outlined; link rows interactive in three themes.
+RUN motion.browser
+Motion: press ≤300ms on transform, faster exits, shared curve, instant keyboard search, precise-pointer hover and gentle reduced motion passed.
+RUN workspace.browser
+✓ input group keeps the shared control height
+✓ input group owns the field radius
+✓ stat value uses the display token
+✓ stat values use tabular numerals
+✓ cards with zones become a column
+✓ accordion trigger draws an inline-end chevron mask
+✓ avatar group overlaps by a quarter of the avatar
+✓ underlined tab shows the accent rule
+✓ current site link sits on a tone step
+✓ current page in the pager uses the soft accent
+✓ the sticky header has its own background
+✓ light: .tg-stat__label text contrast 8.45 ≥ 4.5
+✓ light: .tg-stat__meta text contrast 8.45 ≥ 4.5
+✓ light: .tg-table__cell-meta text contrast 8.45 ≥ 4.5
+✓ light: .tg-site-nav__link:not([aria-current]) text contrast 7.75 ≥ 4.5
+✓ light: .tg-pager__link[aria-current="page"] text contrast 5.99 ≥ 4.5
+✓ light: .tg-choice__description text contrast 8.45 ≥ 4.5
+✓ light: .tg-requirements__item text contrast 8.45 ≥ 4.5
+✓ light: .tg-disclosure__meta text contrast 8.45 ≥ 4.5
+✓ light: .tg-badge--destructive text contrast 5.40 ≥ 4.5
+✓ light: .tg-message--user .tg-message__body p text contrast 17.30 ≥ 4.5
+✓ light: .tg-avatar-group__more text contrast 6.96 ≥ 4.5
+✓ dark: .tg-stat__label text contrast 7.66 ≥ 4.5
+✓ dark: .tg-stat__meta text contrast 7.66 ≥ 4.5
+✓ dark: .tg-table__cell-meta text contrast 7.66 ≥ 4.5
+✓ dark: .tg-site-nav__link:not([aria-current]) text contrast 9.22 ≥ 4.5
+✓ dark: .tg-pager__link[aria-current="page"] text contrast 6.84 ≥ 4.5
+✓ dark: .tg-choice__description text contrast 7.66 ≥ 4.5
+✓ dark: .tg-requirements__item text contrast 7.66 ≥ 4.5
+✓ dark: .tg-disclosure__meta text contrast 7.66 ≥ 4.5
+✓ dark: .tg-badge--destructive text contrast 5.81 ≥ 4.5
+✓ dark: .tg-message--user .tg-message__body p text contrast 11.06 ≥ 4.5
+✓ dark: .tg-avatar-group__more text contrast 6.05 ≥ 4.5
+✓ ios-dark: .tg-stat__label text contrast 9.06 ≥ 4.5
+✓ ios-dark: .tg-stat__meta text contrast 9.06 ≥ 4.5
+✓ ios-dark: .tg-table__cell-meta text contrast 9.06 ≥ 4.5
+✓ ios-dark: .tg-site-nav__link:not([aria-current]) text contrast 10.82 ≥ 4.5
+✓ ios-dark: .tg-pager__link[aria-current="page"] text contrast 7.91 ≥ 4.5
+✓ ios-dark: .tg-choice__description text contrast 9.06 ≥ 4.5
+✓ ios-dark: .tg-requirements__item text contrast 9.06 ≥ 4.5
+✓ ios-dark: .tg-disclosure__meta text contrast 9.06 ≥ 4.5
+✓ ios-dark: .tg-badge--destructive text contrast 6.18 ≥ 4.5
+✓ ios-dark: .tg-message--user .tg-message__body p text contrast 14.55 ≥ 4.5
+✓ ios-dark: .tg-avatar-group__more text contrast 7.50 ≥ 4.5
+✓ ArrowDown opens the menu
+✓ keyboard opening skips the entrance animation
+✓ trigger reports expanded
+✓ first item receives focus
+✓ menu rows keep a 44 px target (44)
+✓ focused row shows a visible ring
+✓ menu opens just below its trigger
+✓ menu stays inside the viewport
+✓ End moves to the last item
+✓ ArrowDown wraps to the first item
+✓ Escape closes the menu
+✓ Escape returns focus to the trigger
+✓ trigger reports collapsed
+✓ a pointer opening animates (no instant flag)
+✓ clicking outside closes the menu
+✓ checkbox item toggles the compact table
+✓ checked item shows its mark
+✓ unchecked radio hides its dot
+✓ destructive item text contrast 6.19 ≥ 4.5
+✓ row menu opens the side dialog
+✓ side dialog sits on the inline end at full height
+✓ dialog body scrolls inside the sheet
+✓ select all fills the bulk bar and enables its actions
+✓ choosing rows does not move the table
+✓ bulk bar counts the rows
+✓ selected rows take the soft accent
+✓ partial selection is indeterminate
+✓ clearing leaves the bar in place, empty, with actions unavailable
+✓ sorting marks the header
+✓ rows reorder by the sorted column
+✓ sorted header shows its arrow
+✓ search without results shows an empty state with a way out
+✓ ArrowRight selects the next tab and its panel
+✓ card media reaches the card edges
+✓ failed submit turns unmet rules into errors
+✓ unmet rule error contrast 6.19 ≥ 4.5
+✓ met rules flip to the check mark
+✓ saving sets aria-busy
+✓ button width stays put between states
+✓ only the active state label is visible
+✓ parent choice checks the nested group
+✓ nested choices start under the parent label
+✓ expand all opens every section
+✓ toggle reports pressed and fills
+✓ dismissing a notice moves focus to the page heading
+✓ assistant answer finishes streaming
+✓ user turns align to the inline end
+✓ code uses the mono token
+✓ reduced motion removes menu scale travel
+✓ light 320px: no horizontal scroll
+✓ light 390px: no horizontal scroll
+✓ light 1440px: no horizontal scroll
+✓ dark 320px: no horizontal scroll
+✓ dark 390px: no horizontal scroll
+✓ dark 1440px: no horizontal scroll
+✓ ios-dark 320px: no horizontal scroll
+✓ ios-dark 390px: no horizontal scroll
+✓ ios-dark 1440px: no horizontal scroll
+✓ narrow table stacks into cards
+✓ stacked cells name their columns
+✓ RTL moves the check column to the right
+✓ RTL flips the icon-end button order logically
+✓ no page errors
+107 workspace checks passed in chromium.
+RUN components-wave-0.browser
+✓ B15 keyboard focus shows the tooltip at once
+✓ B15 keyboard opening skips the entrance
+✓ B15 tooltip sits above its trigger by default
+✓ B15 tooltip is centred on its trigger
+✓ B15 tooltip uses the overlay surface and small type
+✓ B15 tooltip ignores the pointer
+✓ B15 button name comes from the tooltip label
+✓ B15 shortcut is the description
+✓ B15 tooltip has role tooltip
+✓ B15 light: tooltip text contrast 21.00 ≥ 4.5
+✓ B15 dark: tooltip text contrast 14.00 ≥ 4.5
+✓ B15 ios-dark: tooltip text contrast 17.58 ≥ 4.5
+✓ B15 Escape hides the tooltip
+✓ B15 Escape keeps focus on the trigger
+✓ B15 data-side=bottom places the tooltip below
+✓ B15 hover does not show the tooltip immediately
+✓ B15 hover shows the tooltip after the delay
+✓ B15 the next tooltip along the toolbar opens without delay
+✓ B15 leaving hides the tooltip
+✓ B15 measured fallback keeps the tooltip inside a 320px screen
+✓ B8 segments keep the control height
+✓ B8 segment radius is the inset radius
+✓ B8 trough matches the tabs trough
+✓ B8 checked segment rises like a selected tab
+✓ B8 arrow keys move the native radio choice
+✓ B8 the focused segment shows a ring
+✓ B8 the moved choice remains a flat selected segment
+✓ B8 a toggle segment flips aria-pressed
+✓ no script errors
+29 wave 0 checks passed
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+AssertionError [ERR_ASSERTION]: B8 pressed toggles share the risen look
+    at check (file:///Users/sfinks/Documents/ChatGPT/t-design-system/tests/helpers/catalog-page.mjs:23:61)
+    at file:///Users/sfinks/Documents/ChatGPT/t-design-system/tests/components-wave-0.browser.mjs:85:3 {
+  generatedMessage: false,
+  code: 'ERR_ASSERTION',
+  actual: false,
+  expected: true,
+  operator: '==',
+  diff: 'simple'
+}
+
+Node.js v26.0.0
+RUN components-wave-1.browser
+✓ M15 a key uses the mono family token
+✓ M15 a key is at least 1.5em wide
+✓ M15 a key never wraps
+✓ M15 a key has an even edge, no heavier bottom
+✓ M15 a combination draws each key, not the wrapper
+✓ M15 key light: contrast 17.30 ≥ 4.5
+✓ M15 key dark: contrast 11.06 ≥ 4.5
+✓ M15 key ios-dark: contrast 14.55 ≥ 4.5
+✓ M8 ring default size is 40px
+✓ M8 --lg ring is 64px
+✓ M8 --sm ring is 24px
+✓ M8 value draws the arc from --value
+✓ M8 changing the value updates arc and aria-valuenow
+✓ M8 indeterminate ring has no value and still animates under reduced motion (pulse)
+✓ M8 destructive ring uses the danger role
+✓ C11 timeline is an ordered list
+✓ C11 time sits above the text
+✓ C11 visible time digits are centred on their markers
+✓ C11 done marker is filled with the action role
+✓ C11 current marker is a ring
+✓ C11 done markers carry an icon (not colour alone)
+✓ C11 a done step draws an accent line to the next
+✓ C11 the line runs from the first marker centre to the second
+✓ C11 time light: contrast 7.75 ≥ 4.5
+✓ C11 time dark: contrast 9.22 ≥ 4.5
+✓ C11 time ios-dark: contrast 10.82 ≥ 4.5
+✓ C11 description light: contrast 7.75 ≥ 4.5
+✓ C11 description dark: contrast 9.22 ≥ 4.5
+✓ C11 description ios-dark: contrast 10.82 ≥ 4.5
+✓ M10 horizontal timeline is a row on wide screens
+✓ M10 horizontal timeline scrolls inside a focusable region
+✓ M10 event labels are centred beneath their markers
+✓ M10 the line runs through the marker centres
+✓ M10 a done step draws the accent line on the row too
+✓ M10 text keeps its distance from the marker
+✓ M10 horizontal timeline returns to a column on phones
+✓ M10 RTL: the road runs from the right
+✓ F28 marker is 32px
+✓ F28 current step is aria-current=step
+✓ F28 Next moves the current step and marks the previous done
+✓ F28 the counter follows
+✓ F28 phones hide labels of other steps but keep them for screen readers
+✓ F28 phones keep the current label visible
+✓ M9 vertical stepper is a column
+✓ M9 error step is marked by an icon and the danger text role
+✓ M9 error label light: contrast 5.68 ≥ 4.5
+✓ M9 error label dark: contrast 8.70 ≥ 4.5
+✓ M9 error label ios-dark: contrast 10.40 ≥ 4.5
+✓ M9 description light: contrast 7.75 ≥ 4.5
+✓ M9 description dark: contrast 9.22 ≥ 4.5
+✓ M9 description ios-dark: contrast 10.82 ≥ 4.5
+✓ B9 attached buttons share one border line
+✓ B9 inner corners are square, outer keep the control radius
+✓ B9 the focused button rises above its neighbours
+✓ B9 the split trigger has its own name
+✓ B9 the split trigger opens its menu
+✓ B9 Escape returns focus to the trigger
+✓ B9 a hairline divides filled parts
+✓ B9 attached group stacks on the narrowest screens
+✓ B9 RTL: the split menu sits at the inline start of the main action
+✓ B13 floating toolbar uses the overlay shadow
+✓ B13 floating toolbar keeps the control radius
+✓ B13 separator is a 1px rule
+✓ B13 arrows move focus inside the toolbar
+✓ B13 End jumps to the last action
+✓ B13 the toolbar is one Tab stop
+✓ B4 value is selectable text in a mono face
+✓ B4 action joins the frame at its end, one control height
+✓ B4 clicking copies or reports a failure
+✓ B4 the result is announced
+✓ B4 the action moves under the value at 320px
+✓ M3 the region exists before any toast
+✓ M3 four toasts are in the region
+✓ M3 the newest toast is in front
+✓ M3 the fourth toast back is hidden
+✓ M3 back toasts are scaled down
+✓ M3 hover expands the stack
+✓ M3 expanded back toasts show their text
+✓ M3 Escape closes the focused toast
+✓ B17 toast description light: contrast 8.45 ≥ 4.5
+✓ B17 toast description dark: contrast 7.66 ≥ 4.5
+✓ B17 toast description ios-dark: contrast 9.06 ≥ 4.5
+✓ B17 toast actions sit at the end of the row
+✓ S2 divider label is centred between two lines
+✓ S2 divider is a named separator
+✓ S2 divider label light: contrast 8.45 ≥ 4.5
+✓ S2 divider label dark: contrast 7.66 ≥ 4.5
+✓ S2 divider label ios-dark: contrast 9.06 ≥ 4.5
+✓ CT1 banner is an aside with a name
+✓ CT1 banner is at least the control height
+✓ CT1 the close button never covers the action
+✓ CT1 neutral banner light: contrast 17.30 ≥ 4.5
+✓ CT1 neutral banner dark: contrast 11.06 ≥ 4.5
+✓ CT1 neutral banner ios-dark: contrast 14.55 ≥ 4.5
+✓ CT1 accent banner light: contrast 18.16 ≥ 4.5
+✓ CT1 accent banner dark: contrast 11.60 ≥ 4.5
+✓ CT1 accent banner ios-dark: contrast 15.05 ≥ 4.5
+✓ CT1 dismissing hides the banner and keeps focus in the page
+✓ C2 overlay text sits on the image
+✓ C2 overlay text light: contrast 7.62 ≥ 4.5
+✓ C2 overlay text dark: contrast 19.82 ≥ 4.5
+✓ C2 overlay text ios-dark: contrast 21.00 ≥ 4.5
+✓ C2 video card keeps a poster and no autoplay
+✓ C2 overlay badge keeps its own width
+✓ C17 the card opens in place without scripts
+✓ C17 the shared name keeps one card open
+✓ C17 the card trigger draws the shared chevron
+✓ C17 the card opens its dialog
+✓ C17 closing returns focus to the card action
+✓ N1 --segmented names the default trough
+✓ F1 the required mark is decorative; required is on the control
+✓ F1 required mark light: contrast 6.19 ≥ 4.5
+✓ F1 required mark dark: contrast 7.23 ≥ 4.5
+✓ F1 required mark ios-dark: contrast 8.71 ≥ 4.5
+✓ M7 destructive bar uses the danger role
+✓ M19 spinner example is present
+✓ A1 composer shows its attachments list
+✓ B5 progress button draws a bar from --progress
+✓ D1 compact rows are denser than default rows
+✓ no script errors
+120 wave 1 checks passed
+RUN components-wave-2.browser
+✓ F8 trigger looks like the native select
+✓ F8 ArrowDown opens the list
+✓ F8 focus stays on the trigger
+✓ F8 the selected option starts active
+✓ F8 ArrowDown moves the active option
+✓ F8 disabled options are skipped
+✓ F8 the keyboard-active option has a ring
+✓ F8 option rows keep the control height
+✓ F8 Enter chooses and closes
+✓ F8 the trigger shows the new value and the hidden input follows
+✓ F8 Escape closes without changing the value
+✓ F8 typing a letter jumps to the matching option
+✓ F8 pointer opening has no keyboard ring on an option
+✓ F8 the list opens next to the trigger (below, or above near the edge) and is at least as wide
+✓ F8 clicking an option chooses it
+✓ F8 selected option has a check mark
+✓ F8 selected option light: contrast 17.30 ≥ 4.5
+✓ F8 selected option dark: contrast 11.06 ≥ 4.5
+✓ F8 selected option ios-dark: contrast 14.55 ≥ 4.5
+✓ F8 option meta light: contrast 8.45 ≥ 4.5
+✓ F8 option meta dark: contrast 7.66 ≥ 4.5
+✓ F8 option meta ios-dark: contrast 9.06 ≥ 4.5
+✓ F9 scripts drop the datalist fallback
+✓ F9 typing opens a filtered list
+✓ F9 the count is announced
+✓ F9 ArrowDown sets aria-activedescendant
+✓ F9 Enter puts the value in the field and closes
+✓ F9 no results are said plainly
+✓ F9 Escape closes the list
+✓ F9 multiple: choosing adds a tag before the field
+✓ F9 multiple: the list is multiselectable
+✓ F9 multiple: Backspace in the empty field removes the last tag
+✓ F10 Enter adds a tag with a named remove button
+✓ F10 each tag is submitted as a hidden field
+✓ F10 duplicates are not added and the reason is announced
+✓ F10 ArrowLeft at the start moves to the last tag
+✓ F10 ArrowRight from the last tag returns to the field
+✓ F10 Backspace in the empty field removes the last tag
+✓ F10 remove mark is 24px with a 44px target
+✓ F10 the frame shows focus while typing
+✓ F10 tag light: contrast 21.00 ≥ 4.5
+✓ F10 tag dark: contrast 14.00 ≥ 4.5
+✓ F10 tag ios-dark: contrast 17.58 ≥ 4.5
+✓ F10 the limit stops new tags
+✓ F4 + steps the native value
+✓ F4 native arrow keys still work
+✓ F4 the native spinner is hidden
+✓ F4 step buttons are 44px
+✓ F4 at the minimum the − button is disabled
+✓ F4 --pill is a capsule
+✓ F5 one real field with one-time-code autofill
+✓ F5 cells are at least 44px tall
+✓ F5 cells mirror the typed digits
+✓ F5 the next cell is active
+✓ F5 the active cell shows the focus ring
+✓ F5 a full correct code is accepted and announced
+✓ F5 a wrong code shows the error state
+✓ F5 only digits are kept
+✓ F5 six cells fit a 320px screen
+✓ F14 clicking the card checks its native radio
+✓ F14 the checked card draws a 2px accent ring without a fill
+✓ F14 checking does not change the card size
+✓ F14 arrow keys move the radio choice
+✓ F14 keyboard focus outlines the whole card
+✓ F14 the description is linked to the input
+✓ F14 description light: contrast 8.45 ≥ 4.5
+✓ F14 description dark: contrast 7.66 ≥ 4.5
+✓ F14 description ios-dark: contrast 9.06 ≥ 4.5
+✓ F14 cards stack in one column at 320px
+✓ F18 the output follows the slider
+✓ F18 the output sits on the label line
+✓ F18 dual: PageUp moves the low handle
+✓ F18 dual: handles never cross
+✓ F18 dual: money values have aria-valuetext
+✓ F18 dual: the fill follows --range-start/--range-end
+✓ F18 dual: thumbs take the pointer, the track does not
+✓ F19 each file is a row with a state
+✓ F19 uploading row has a native progress with text
+✓ F19 long file names truncate, not overflow
+✓ F19 error text light: contrast 6.19 ≥ 4.5
+✓ F19 error text dark: contrast 7.23 ≥ 4.5
+✓ F19 error text ios-dark: contrast 8.71 ≥ 4.5
+✓ F19 meta text light: contrast 8.45 ≥ 4.5
+✓ F19 meta text dark: contrast 7.66 ≥ 4.5
+✓ F19 meta text ios-dark: contrast 9.06 ≥ 4.5
+✓ C5 hover waits before showing
+✓ C5 hover shows the card after the pause
+✓ C5 moving onto the card keeps it open
+✓ C5 leaving hides the card after a delay
+✓ C5 focus shows the card at once
+✓ C5 Escape hides it
+✓ C5 the card is at most 20rem wide
+✓ D3 a status chip filters the rows
+✓ D3 the count is a status and follows the filter
+✓ D3 a reset appears with an active filter
+✓ D3 no results show an empty state with a way out
+✓ D3 resetting restores every row
+✓ D3 the columns menu hides a column
+✓ F6 has a catalog example
+✓ F7 has a catalog example
+✓ F13 has a catalog example
+✓ F16 has a catalog example
+✓ F17 has a catalog example
+✓ no script errors
+104 wave 2 checks passed
+RUN components-wave-3.browser
+✓ N16 viewport snaps along x
+✓ N16 viewport scrolls natively (works without scripts)
+✓ N16 slides fill the viewport
+✓ N16 prev is disabled on the first slide
+✓ N16 next moves one slide and updates the dots
+✓ N16 the change is announced after a manual move
+✓ N16 a dot chooses its slide and next becomes disabled at the end
+✓ N16 Home on the viewport returns to the first slide
+✓ N16 slides are labelled groups
+✓ N16 caption light: contrast 8.13 ≥ 4.5
+✓ N16 caption dark: contrast 18.36 ≥ 4.5
+✓ N16 caption ios-dark: contrast 19.31 ≥ 4.5
+✓ G1 --peek leaves neighbours visible at the edges
+✓ G1 a thumbnail chooses its slide
+✓ G1 thumbnails are at least 44px
+✓ G1 the current thumbnail has the accent border
+✓ G1 --vertical snaps along y
+✓ G1 --vertical puts thumbnails at the side on wide screens
+✓ M22 the fade is a transparency mask, not a colour
+✓ M22 the area is focusable and named
+✓ M22 the block variant scrolls vertically
+✓ N3 vertical tabs are a column
+✓ N3 ArrowDown moves to the next tab and shows its panel
+✓ N3 End selects the last tab
+✓ N3 the selected tab rises like other tabs
+✓ N3 phones get a horizontal row from the same markup
+✓ N2 unselected labels are visually hidden but in the DOM
+✓ N2 the selected tab shows its label
+✓ N2 arrows move the selection and reveal the new label
+✓ N2 the panel follows the selected tab
+✓ N2 icon-only tabs stay 44px wide
+✓ N11 the current link sits on a tone step
+✓ N11 links are at least 40px tall
+✓ N11 nesting is a native details
+✓ N11 link light: contrast 8.45 ≥ 4.5
+✓ N11 link dark: contrast 7.66 ≥ 4.5
+✓ N11 link ios-dark: contrast 9.06 ≥ 4.5
+✓ N11 group label light: contrast 8.45 ≥ 4.5
+✓ N11 group label dark: contrast 7.66 ≥ 4.5
+✓ N11 group label ios-dark: contrast 9.06 ≥ 4.5
+✓ N11 collapsing leaves icons only
+✓ N11 collapsed links keep their names
+✓ N5 Enter opens the panel and marks the button expanded
+✓ N5 Tab walks into the panel links
+✓ N5 Escape closes and returns focus to the button
+✓ N5 one panel open at a time
+✓ N5 a click outside closes the panel
+✓ N5 description light: contrast 8.45 ≥ 4.5
+✓ N5 description dark: contrast 7.66 ≥ 4.5
+✓ N5 description ios-dark: contrast 9.06 ≥ 4.5
+✓ N5 phones open panels in the flow
+✓ N8 arrows rove along the bar
+✓ N8 ArrowDown opens the menu on its first item
+✓ N8 with a menu open ArrowRight moves to the next menu
+✓ N8 Escape closes back to the bar item
+✓ N8 items look 36px and keep a 44px target
+✓ N13 the current link carries the accent rule
+✓ N13 nested links are indented
+✓ N13 following a link marks it current and focuses the heading
+✓ N13 link light: contrast 7.75 ≥ 4.5
+✓ N13 link dark: contrast 9.22 ≥ 4.5
+✓ N13 link ios-dark: contrast 10.82 ≥ 4.5
+✓ N10 Ctrl+K inside the example opens the palette at once
+✓ N10 the catalog search did not open as well
+✓ N10 an empty query shows recent commands
+✓ N10 typing filters commands and announces the count
+✓ N10 arrows move aria-activedescendant
+✓ N10 command rows keep the control height
+✓ N10 no results show an empty state
+✓ N10 Escape closes and returns focus to the opener
+✓ N10 phones get a full-screen palette
+✓ N6 has a catalog example
+✓ N14 has a catalog example
+✓ N16 RTL: next still moves forward
+✓ no script errors
+75 wave 3 checks passed
+RUN components-wave-4-5.browser
+✓ F20 the native date input keeps the field look
+✓ F20 ↑ raises the day spinbutton
+✓ F20 → moves to the month segment
+✓ F20 the month announces its name
+✓ F20 typing digits sets the day and moves on
+✓ F20 the field frame shows focus
+✓ F20 segments are named spinbuttons
+✓ F21 days are 44px
+✓ F21 today has a ring and aria-current=date
+✓ F21 one Tab stop in the grid
+✓ F21 → moves one day
+✓ F21 ↓ moves one week
+✓ F21 End goes to the end of the week
+✓ F21 PageDown goes to next month and updates the title
+✓ F21 Shift+PageUp goes back a year
+✓ F21 Enter selects the day and announces it in full
+✓ F21 the selected day is filled with the action role
+✓ F21 event days keep their marks and say them in the name
+✓ F21 outside day light: contrast 7.75 ≥ 4.5
+✓ F21 outside day dark: contrast 9.22 ≥ 4.5
+✓ F21 outside day ios-dark: contrast 10.82 ≥ 4.5
+✓ F21 weekday light: contrast 7.75 ≥ 4.5
+✓ F21 weekday dark: contrast 9.22 ≥ 4.5
+✓ F21 weekday ios-dark: contrast 10.82 ≥ 4.5
+✓ F21 RTL: ← moves to the next day
+✓ F22 the band between the ends is the soft accent
+✓ F22 the ends are filled
+✓ F22 the first click sets the start and asks for the end
+✓ F22 hovering previews the band
+✓ F22 the second click sets the end and the output follows
+✓ F22 start and end are named in the day labels
+✓ F22 a preset sets the range and is marked pressed
+✓ F22 Cancel restores the applied range
+✓ F22 day in range light: contrast 5.99 ≥ 4.5
+✓ F22 day in range dark: contrast 6.84 ≥ 4.5
+✓ F22 day in range ios-dark: contrast 7.91 ≥ 4.5
+✓ F22 phones put presets in a row above
+✓ D7 lines are 2px
+✓ D7 the second series is dashed, not only lighter
+✓ D7 the area is a light wash of the series
+✓ D7 a legend names both series
+✓ D7 ticks are clean numbers
+✓ D7 the SVG draws 1:1 so text keeps its size
+✓ D7 hover shows the crosshair and a tooltip with both values
+✓ D7 text in the tooltip uses text colours
+✓ D7 a table view carries the same numbers
+✓ D7 subtitle light: contrast 7.75 ≥ 4.5
+✓ D7 subtitle dark: contrast 9.22 ≥ 4.5
+✓ D7 subtitle ios-dark: contrast 10.82 ≥ 4.5
+✓ D8 bars are at most 24px thick
+✓ D8 only the highlighted bar is at full strength
+✓ D8 hovering a bar highlights it and shows its value
+✓ D8 a single series has no legend box
+✓ D9 three segments with a gap between them
+✓ D9 the third segment is textured, not only lighter
+✓ D9 the legend lists every value as text
+✓ D9 the centre shows the total
+✓ D9 legend light: contrast 7.75 ≥ 4.5
+✓ D9 legend dark: contrast 9.22 ≥ 4.5
+✓ D9 legend ios-dark: contrast 10.82 ≥ 4.5
+✓ D6 Space lifts the item and says where it is
+✓ D6 the lifted item floats on the overlay shadow
+✓ D6 ArrowDown moves it and announces the position
+✓ D6 Space drops it in the new place
+✓ D6 Escape puts it back
+✓ D6 handles take the control size (≥44px)
+✓ D6 dragging shows the drop line
+✓ D6 dropping reorders the list
+✓ M11 each event has its time as text
+✓ M11 events sit on the grid from --start/--end
+✓ M11 a conflict is named in words
+✓ M11 time light: contrast 7.31 ≥ 4.5
+✓ M11 time dark: contrast 6.35 ≥ 4.5
+✓ M11 time ios-dark: contrast 7.76 ≥ 4.5
+✓ M11 conflict title light: contrast 18.32 ≥ 4.5
+✓ M11 conflict title dark: contrast 12.63 ≥ 4.5
+✓ M11 conflict title ios-dark: contrast 15.78 ≥ 4.5
+✓ M11 phones get a plain list
+✓ C16 four columns on wide screens
+✓ C16 --span widens a tile
+✓ C16 two columns from 36rem
+✓ C16 one column on phones
+✓ D5 has a catalog example
+✓ C12 has a catalog example
+✓ no script errors
+85 wave 4–5 checks passed
+RUN components-wave-6.browser
+✓ A5 steps are a list with text and an icon for each state
+✓ A5 a running step shows a spinner
+✓ A5 tool results open in a native disclosure
+✓ A5 technical names are mono only inside code
+✓ A5 done label light: contrast 7.75 ≥ 4.5
+✓ A5 done label dark: contrast 9.22 ≥ 4.5
+✓ A5 done label ios-dark: contrast 10.82 ≥ 4.5
+✓ A5 error label light: contrast 5.68 ≥ 4.5
+✓ A5 error label dark: contrast 8.70 ≥ 4.5
+✓ A5 error label ios-dark: contrast 10.40 ≥ 4.5
+✓ A5 the finished step is announced once, the timer is not
+✓ A6 the approval is a named section with options and two actions
+✓ A6 consequence text light: contrast 8.45 ≥ 4.5
+✓ A6 consequence text dark: contrast 7.66 ≥ 4.5
+✓ A6 consequence text ios-dark: contrast 9.06 ≥ 4.5
+✓ A6 after the decision no controls remain
+✓ A6 the outcome is written as text
+✓ A6 focus moves to the composer
+✓ T1 the content is a multiline textbox with a name
+✓ T1 content keeps the reading measure
+✓ T1 headings inside use the system scale
+✓ T1 formatting buttons follow the selection
+✓ T1 Escape selects the whole block
+✓ T1 a selected block has the accent frame on the soft accent
+✓ T1 ArrowDown moves the block selection
+✓ T1 the formatting toolbar is one Tab stop with arrow keys
+✓ T1 status light: contrast 8.45 ≥ 4.5
+✓ T1 status dark: contrast 7.66 ≥ 4.5
+✓ T1 status ios-dark: contrast 9.06 ≥ 4.5
+✓ T1 quote light: contrast 8.45 ≥ 4.5
+✓ T1 quote dark: contrast 7.66 ≥ 4.5
+✓ T1 quote ios-dark: contrast 9.06 ≥ 4.5
+✓ T2 a selection shows the toolbar
+✓ T2 the toolbar does not cover the selected text
+✓ T2 the toolbar uses the floating surface
+✓ T2 Alt+F10 moves focus into the toolbar
+✓ TS1 the quote is a blockquote in a figure with a cite
+✓ TS1 the quote is upright, not italic
+✓ TS1 stars use the accent role and the score is text
+✓ TS1 author role light: contrast 6.96 ≥ 4.5
+✓ TS1 author role dark: contrast 6.05 ≥ 4.5
+✓ TS1 author role ios-dark: contrast 7.50 ≥ 4.5
+✓ TS1 the photo moves above the text on phones
+✓ PR2 the featured frame is 2px without changing the size
+✓ PR2 the price figure is large and the period quiet
+✓ PR2 included items get a check mask, excluded a dash with words
+✓ PR2 the current plan button is disabled
+✓ PR2 excluded item light: contrast 8.45 ≥ 4.5
+✓ PR2 excluded item dark: contrast 7.66 ≥ 4.5
+✓ PR2 excluded item ios-dark: contrast 9.06 ≥ 4.5
+✓ PR2 period light: contrast 8.45 ≥ 4.5
+✓ PR2 period dark: contrast 7.66 ≥ 4.5
+✓ PR2 period ios-dark: contrast 9.06 ≥ 4.5
+✓ B1 has a catalog example
+✓ B3 has a catalog example
+✓ B16 has a catalog example
+✓ no script errors
+57 wave 6 checks passed
+RUN components-wave-7.browser
+✓ B6 the hold button is a full-height destructive button
+✓ B6 the fill follows --hold-progress
+✓ B6 one Enter only asks for a second
+✓ B6 a second Enter within a second confirms
+✓ B6 the slide is a native named range
+✓ B6 the slide track is as tall as a control
+✓ B6 End completes the slide
+✓ B6 there is a path without the gesture
+✓ B6 slide label light: contrast 7.31 ≥ 4.5
+✓ B6 slide label dark: contrast 6.35 ≥ 4.5
+✓ B6 slide label ios-dark: contrast 7.76 ≥ 4.5
+✓ B12 the FAB is at least a control tall and pill-shaped
+✓ B12 the FAB floats with a shadow
+✓ B12 the menu opens with labelled items and focus moves in
+✓ B12 item "Новый счёт" is a full-height target
+✓ B12 item "Клиент" is a full-height target
+✓ B12 item "Скан документа" is a full-height target
+✓ B12 Escape closes and returns focus
+✓ F24 columns are named listboxes
+✓ F24 columns snap to the centre
+✓ F24 the edges fade with a mask
+✓ F24 ArrowDown steps the value
+✓ F24 options use tabular figures
+✓ F25 the field pairs a native colour input and a HEX field
+✓ F25 a wrong HEX is invalid
+✓ F25 a right HEX updates the swatch
+✓ F25 the hue track shows the whole colour circle
+✓ F25 the area works from the keyboard
+✓ F25 a swatch is a radio that moves the area
+✓ F26 cells are 44px targets with Russian names
+✓ F26 arrows move through the grid
+✓ F26 ArrowDown moves a row
+✓ F26 an empty search says so
+✓ F33 the waveform is a named native range over decorative bars
+✓ F33 played bars follow the position
+✓ F33 played bars take the accent
+✓ F33 arrows move the selection
+✓ F33 Shift+arrows resize it
+✓ F33 handles are small with a 44px hit area
+✓ C15 cards share one grid cell
+✓ C15 only the top card is in the accessibility tree
+✓ C15 a decision leaves three and announces it
+✓ C15 the decided card is removed
+✓ C21 player buttons are named 44px targets
+✓ C21 time uses tabular figures
+✓ C21 skip moves the position and the time text
+✓ C21 the compare border follows the range
+✓ C21 the two labels sit at opposite edges
+✓ C21 the compare change is not animated
+✓ G4 one panel is open at a time
+✓ G4 the open panel is the widest
+✓ G4 width is not animated
+✓ G4 panels stack on phones
+✓ TS4 the copy track is hidden and inert
+✓ TS4 reduced motion stops the movement
+✓ TS4 with reduced motion there is nothing to pause, so no button
+✓ TS4 with motion allowed the track runs
+✓ TS4 the pause button is a pressed toggle
+✓ TS4 pause stops it
+✓ RTL: the image accordion runs right to left
+✓ B6 at 320px has no horizontal overflow
+✓ B12 at 320px has no horizontal overflow
+✓ F24 at 320px has no horizontal overflow
+✓ F25 at 320px has no horizontal overflow
+✓ F26 at 320px has no horizontal overflow
+✓ F33 at 320px has no horizontal overflow
+✓ C15 at 320px has no horizontal overflow
+✓ C21 at 320px has no horizontal overflow
+✓ G4 at 320px has no horizontal overflow
+✓ TS4 at 320px has no horizontal overflow
+✓ B6 at 390px has no horizontal overflow
+✓ B12 at 390px has no horizontal overflow
+✓ F24 at 390px has no horizontal overflow
+✓ F25 at 390px has no horizontal overflow
+✓ F26 at 390px has no horizontal overflow
+✓ F33 at 390px has no horizontal overflow
+✓ C15 at 390px has no horizontal overflow
+✓ C21 at 390px has no horizontal overflow
+✓ G4 at 390px has no horizontal overflow
+✓ TS4 at 390px has no horizontal overflow
+✓ no script errors
+81 wave 7 checks passed
+RUN components-wave-8.browser
+✓ SH1 the layer is hidden from assistive tech and sits behind the content
+✓ SH1 the module runs the program on screen
+✓ SH1 the layer draws pixels in the accent
+✓ SH1 off screen the layer pauses
+✓ SH1 without the module the fill is the background role
+✓ SH1 text over the waveform section light: contrast 7.75 ≥ 4.5
+✓ SH1 text over the waveform section dark: contrast 9.22 ≥ 4.5
+✓ SH1 text over the waveform section ios-dark: contrast 10.82 ≥ 4.5
+✓ B19 a disabled button has no effect layer
+✓ B19 the sheen rests outside the button
+✓ B19 hover sweeps the sheen across
+✓ B19 the border beam draws only a frame
+✓ B19 the magnet pulls at most 4px towards the pointer
+✓ B19 leaving resets the magnet
+✓ C18 tilt leans towards the pointer at most 6°
+✓ C18 the spotlight follows the pointer
+✓ C18 the spotlight layer is under the text
+✓ C18 card text light: contrast 8.45 ≥ 4.5
+✓ C18 card text dark: contrast 7.66 ≥ 4.5
+✓ C18 card text ios-dark: contrast 9.06 ≥ 4.5
+✓ G2 pictures are driven by their slide's view timeline
+✓ G2 the slide itself is not transformed
+✓ G2 the first slide starts exactly in the centre
+✓ G2 the centred picture is flat
+✓ G2 a neighbour picture is turned
+✓ G2 only the centred slide shows its caption
+✓ G2 the variant switch swaps the timeline animation
+✓ G2 arrows work as in G1
+✓ G2 the next slide lands exactly in the centre
+✓ G2 focus order is the DOM order
+✓ G2 on phones it is the flat G1
+✓ SH4 the canvas covers the viewport only
+✓ SH4 a slide change plays the ripple
+✓ SH4 the accessible slide changes at once
+✓ SH4 the ripple ends within three durations
+✓ RTL: the 3D carousel turns the other way
+✓ reduced motion: the background layer is a still frame
+✓ reduced motion: the border beam stands still
+✓ reduced motion: the 3D carousel is flat
+✓ reduced motion: no ripple
+✓ SH1 at 320px has no horizontal overflow
+✓ B19 at 320px has no horizontal overflow
+✓ C18 at 320px has no horizontal overflow
+✓ G2 at 320px has no horizontal overflow
+✓ SH4 at 320px has no horizontal overflow
+✓ SH1 at 390px has no horizontal overflow
+✓ B19 at 390px has no horizontal overflow
+✓ C18 at 390px has no horizontal overflow
+✓ G2 at 390px has no horizontal overflow
+✓ SH4 at 390px has no horizontal overflow
+✓ no script errors
+51 wave 8 checks passed
+RUN spec-examples.browser
+✓ 2079 spec example checks passed in chromium for 107 done specs
+RUN demo-page-scroll.browser --webkit
+Demo controls keep page position/URL; local widgets and catalog navigation remain functional.
+✓ no script errors
+RUN ripple-corners.browser --webkit
+Ripple: four rounded corners preserved during and after transition, DPR 1/2, shared and custom radius.
+RUN illustration-edges.browser --webkit
+Real landscape SVGs: no pale underlay at transformed corners, DPR 1 and 2.
+RUN rounded-media.browser --webkit
+Rounded media: no unshaded corner fringe at DPR 1 and 2, mobile and desktop.
+RUN floating-inheritance.browser --webkit
+Floating surface inheritance passes across three themes.
+RUN icon-sizing.browser --webkit
+Shared icon sizing passed: buttons, search clear, preview, tabbar and select, default and custom size.
+RUN select-arrow.browser --webkit
+Select arrow hover: 3 themes, enabled and disabled controls passed.
+RUN range.browser --webkit
+Range accent fill: initial value, custom bounds, keyboard, input, reset and dynamic controls passed.
+RUN button-spacing.browser --webkit
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+AssertionError [ERR_ASSERTION]: light/16px/48px/button: icon keeps left inset: {"left":3.984375,"right":3.9850082397460938,"top":9.9765625,"bottom":9.9765625,"inlinePadding":16}
+    at file:///Users/sfinks/Documents/ChatGPT/t-design-system/tests/button-spacing.browser.mjs:31:18
+    at runNextTicks (node:internal/process/task_queues:65:5)
+    at process.processImmediate (node:internal/timers:472:9) {
+  generatedMessage: false,
+  code: 'ERR_ASSERTION',
+  actual: false,
+  expected: true,
+  operator: '==',
+  diff: 'simple'
+}
+
+Node.js v26.0.0
+RUN button-height.browser --webkit
+✓ 1440px light: controls keep the 48.0px minimum and labels may wrap
+✓ 1440px light: button text stays inside the button
+✓ 1440px dark: controls keep the 48.0px minimum and labels may wrap
+✓ 1440px dark: button text stays inside the button
+✓ 1440px ios-dark: controls keep the 48.0px minimum and labels may wrap
+✓ 1440px ios-dark: button text stays inside the button
+✓ 390px light: controls keep the 44.7px minimum and labels may wrap
+✓ 390px light: button text stays inside the button
+✓ 390px dark: controls keep the 44.7px minimum and labels may wrap
+✓ 390px dark: button text stays inside the button
+✓ 390px ios-dark: controls keep the 44.7px minimum and labels may wrap
+✓ 390px ios-dark: button text stays inside the button
+✓ 320px light: controls keep the 44.2px minimum and labels may wrap
+✓ 320px light: button text stays inside the button
+✓ 320px dark: controls keep the 44.2px minimum and labels may wrap
+✓ 320px dark: button text stays inside the button
+✓ 320px ios-dark: controls keep the 44.2px minimum and labels may wrap
+✓ 320px ios-dark: button text stays inside the button
+✓ no script errors
+19 button height checks passed
+RUN control-hover.browser --webkit
+210 hover checks passed: 22 control variants, 3 themes, native/ARIA/ancestor disabled, clear button and geometry.
+RUN default-feedback.browser --webkit
+Default feedback: regular/dynamic/icon/avatar buttons, keyboard, disabled, reduced motion, clipping, idempotence and cleanup passed.
+RUN component-polish.browser --webkit
+Component polish: centered composer at 100/200%, multiline, borderless search clear, unified order list; 320/390/1280px and three themes passed.
+RUN baseline-compatibility.browser --webkit
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+AssertionError [ERR_ASSERTION]: webkit/light/320/: 753 differences: [{"index":1,"tag":"HEADER","id":"","text":"\n  t·t-design-system\n  \n    v0.1.0\n    Тема оформл","classes":"site-header","part":"style","property":"backgroundColor","before":"color(srgb 1 1 1)","after":"oklch(1 0 0)"},{"index":9,"tag":"SELECT","id":"theme","text":"АвтоСветлаяТёмная · DesktopТёмная · iOS","classes":"tg-select theme-select","part":"style","property":"backgroundColor","before":"color(srgb 1 1 1)","after":"oklch(1 0 0)"},{"index":9,"tag":"SELECT","id":"theme","text":"АвтоСветлаяТёмная · DesktopТёмная · iOS","classes":"tg-select theme-select","part":"style","property":"backgroundImage","before":"url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-opacity='.65' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E\")","after":"url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-opacity='0.65' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E\")"},{"index":14,"tag":"NAV","id":"","text":"РазделОбзорЦвета и темыКомпоновкаКнопкиМеню действ","classes":"mobile-navigation","part":"style","property":"backgroundColor","before":"color(srgb 1 1 1)","after":"oklch(1 0 0)"},{"index":18,"tag":"SELECT","id":"section-select","text":"ОбзорЦвета и темыКомпоновкаКнопкиМеню действийИкон","classes":"tg-select","part":"style","property":"backgroundColor","before":"color(srgb 1 1 1)","after":"oklch(1 0 0)"}]
+    at file:///Users/sfinks/Documents/ChatGPT/t-design-system/tests/baseline-compatibility.browser.mjs:121:18 {
+  generatedMessage: false,
+  code: 'ERR_ASSERTION',
+  actual: undefined,
+  expected: undefined,
+  operator: 'fail',
+  diff: 'simple'
+}
+
+Node.js v26.0.0
+RUN error-surface.browser --webkit
+Shared error surface: notice/summary computed parity, optional icon, title, native keyboard error links across themes passed.
+RUN catalog-clusters.browser --webkit
+webkit: 120 preserved panels, family ownership, nested navigation, HTML, 3 themes, 320/1440px passed
+RUN catalog-refresh.browser --webkit
+Refreshed catalog: native interaction, errors, transitions, responsive tables and themes passed.
+RUN catalog-search.browser --webkit
+Catalog search: grouped navigation, filtering, keyboard, focus, mobile, 200% text and no-JS fallback passed.
+RUN patterns.browser --webkit
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+AssertionError [ERR_ASSERTION]: The input did not match the regular expression /^inset\(0px 50% 0px 0px round/. Input:
+
+'inset(0px calc(100% - clamp(0%, 50%, 100%)) 0px 0px round 9999px)'
+
+    at file:///Users/sfinks/Documents/ChatGPT/t-design-system/tests/patterns.browser.mjs:114:12
+    at runNextTicks (node:internal/process/task_queues:65:5)
+    at process.processImmediate (node:internal/timers:472:9) {
+  generatedMessage: true,
+  code: 'ERR_ASSERTION',
+  actual: 'inset(0px calc(100% - clamp(0%, 50%, 100%)) 0px 0px round 9999px)',
+  expected: /^inset\(0px 50% 0px 0px round/,
+  operator: 'match',
+  diff: 'simple'
+}
+
+Node.js v26.0.0
+RUN icon-browser.browser --webkit
+Icon browser: all icons, tags, selection, size, empty/reset and clipboard fallback passed.
+RUN bottom-panel.browser --webkit
+Bottom panel: keyboard, fixed positioning, scrolling, custom contents, controlled state, 320–1280px and three themes passed.
+RUN catalog-compositions.browser --webkit
+Catalog compositions pass: navigation, themes, demo interactions, escaping, responsive layouts and standalone page.
+RUN compositions.browser --webkit
+Composition checks passed at 320–1280px, keyboard inset, modal lock and all themes.
+RUN browser --webkit
+✓ four light source colors follow the documented palette
+✓ four desktopDark source colors follow the documented palette
+✓ four iosDark source colors follow the documented palette
+✓ light theme works without Telegram
+✓ controls have at least 44px touch target
+✓ utilities override component padding
+✓ system dark theme
+✓ explicit light overrides dark OS
+✓ explicit dark overrides light OS
+✓ dark mode selects iOS palette on iOS platform
+✓ automatic dark mode respects iOS platform
+✓ explicit light remains light on iOS
+✓ Telegram adapter fallback keeps dark palette
+✓ legacy project palette takes precedence over SDK colors
+✓ SDK colors do not replace source palette by default
+✓ native Telegram colors are opt-in
+✓ legacy Telegram variable is supported
+✓ application custom properties override framework
+✓ application CSS overrides layered component
+✓ disabled button ignores hover
+✓ keyboard focus is visible
+✓ reduced motion removes control transitions
+✓ progress defaults to a fully clipped value
+✓ hidden attribute beats component and utility display
+✓ standalone forms module styles disabled switches
+✓ component catalog is served
+✓ individual icon asset is served
+✓ visible catalog icons render from individual SVG files
+✓ button icons use shared 20px size and 2-unit round stroke
+✓ glass example has a neutral flat backdrop
+✓ HTTP server blocks encoded traversal
+✓ catalog theme control
+✓ catalog exposes iOS dark palette
+✓ light: catalog panels and inputs follow the source materials
+✓ light: example viewport uses the documented page background
+✓ light: real catalog loading text contrast ≥ 4.5
+✓ dark: catalog panels and inputs follow the source materials
+✓ dark: example viewport uses the documented page background
+✓ dark: real catalog loading text contrast ≥ 4.5
+✓ ios-dark: catalog panels and inputs follow the source materials
+✓ ios-dark: example viewport uses the documented page background
+✓ ios-dark: real catalog loading text contrast ≥ 4.5
+✓ primary link keeps button text color
+✓ local loading overlay stays below the sticky header
+✓ file control shows local filename and preview
+✓ clearing file resets the preview
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+locator.click: Error: strict mode violation: getByRole('switch', { name: 'Уведомления', exact: true }) resolved to 2 elements:
+    1) <button role="switch" class="tg-switch" aria-checked="false" aria-labelledby="notifications-label">…</button> aka getByRole('switch', { name: 'Уведомления' }).first()
+    2) <button type="button" role="switch" class="tg-switch" aria-checked="false" aria-labelledby="buttons-notifications-label">…</button> aka getByRole('switch', { name: 'Уведомления' }).nth(1)
+
+Call log:
+[2m  - waiting for getByRole('switch', { name: 'Уведомления', exact: true })[22m
+
+    at /Users/sfinks/Documents/ChatGPT/t-design-system/tests/browser.mjs:156:72 {
+  log: [
+    "  - waiting for getByRole('switch', { name: 'Уведомления', exact: true })"
+  ]
+}
+
+Node.js v26.0.0
+RUN audit.browser --webkit
+✓ light: body background formula
+✓ light: source panel surface
+✓ light: subtle RGBA border
+✓ light: flat cards reserve elevation for overlays
+✓ light: source input surface
+✓ light: secondary header transparency
+✓ light: white switch knob
+✓ dark: body background formula
+✓ dark: source panel surface
+✓ dark: subtle RGBA border
+✓ dark: flat cards reserve elevation for overlays
+✓ dark: source input surface
+✓ dark: secondary header transparency
+✓ dark: white switch knob
+✓ ios-dark: body background formula
+✓ ios-dark: source panel surface
+✓ ios-dark: subtle RGBA border
+✓ ios-dark: flat cards reserve elevation for overlays
+✓ ios-dark: source input surface
+✓ ios-dark: secondary header transparency
+✓ ios-dark: white switch knob
+✓ joined cards suppress joining border
+✓ divider preserves dashed source style
+✓ nested: checked knob stays within control
+✓ self-rtl: checked knob stays within control
+✓ RTL checked knob is at inline end
+✓ RTL toast centered inside viewport
+✓ unbroken toast content wraps
+✓ avatar retains press feedback
+✓ file upload is a styled control
+✓ iOS spacer consumes the integration height
+✓ progress stripes remain softly blurred and visible
+✓ native, plain and striped progress share one height
+✓ stripes stop under reduced motion
+✓ large spinner follows the semantic progress accent
+35 audit checks passed.
+RUN effects.browser --webkit
+Effects: geometry, keyboard, disabled, motion, animation cleanup, timer fallback, disposal and glass passed.
+RUN design-system.browser --webkit
+✓ light: select reserves space for its inset arrow
+✓ light: select arrow follows the explicit theme
+✓ light: error notice has no colored frame
+✓ light: error notice uses the primary text color
+✓ light: error icon contrast ≥ 3
+✓ light: .tg-notice__title contrast ≥ 4.5
+✓ light: .tg-notice__content .tg-text-muted contrast ≥ 4.5
+✓ light: .tg-text-muted contrast ≥ 4.5
+✓ light: .tg-help--error contrast ≥ 4.5
+✓ light: .tg-link contrast ≥ 4.5
+✓ light: .tg-btn--primary contrast ≥ 4.5
+✓ light: .tg-btn--destructive contrast ≥ 4.5
+✓ light: .tg-badge--primary contrast ≥ 4.5
+✓ light: .tg-badge--destructive contrast ≥ 4.5
+✓ light: .tg-avatar__initials contrast ≥ 4.5
+✓ light: placeholder contrast ≥ 4.5
+✓ light: search placeholder contrast ≥ 4.5
+✓ light: .tg-btn[disabled] uses shared disabled opacity
+✓ light: #disabled-input uses shared disabled opacity
+✓ light: #disabled-check uses shared disabled opacity
+✓ light: #disabled-search uses shared disabled opacity
+✓ light: #disabled-upload uses shared disabled opacity
+✓ light: idle switch has the shared action outline
+✓ light: increased contrast strengthens field boundaries
+✓ light: increased contrast .tg-input:not([disabled]) boundary ≥ 3
+✓ light: increased contrast .tg-input:not([disabled]) boundary against outer surface ≥ 3
+✓ light: increased contrast .tg-textarea boundary ≥ 3
+✓ light: increased contrast .tg-textarea boundary against outer surface ≥ 3
+✓ light: progress fill contrast ≥ 3
+✓ light: increased contrast switch boundary ≥ 3
+✓ light: focus uses the shared light accent ring without a second outline
+✓ light: invalid textarea keeps its error border
+✓ light: #18745b .tg-link contrast ≥ 4.5
+✓ light: #18745b .tg-btn--primary contrast ≥ 4.5
+✓ light: #18745b .tg-badge--primary contrast ≥ 4.5
+✓ light: #18745b progress contrast ≥ 3
+✓ light: #7151c7 .tg-link contrast ≥ 4.5
+✓ light: #7151c7 .tg-btn--primary contrast ≥ 4.5
+✓ light: #7151c7 .tg-badge--primary contrast ≥ 4.5
+✓ light: #7151c7 progress contrast ≥ 3
+✓ dark: select reserves space for its inset arrow
+✓ dark: select arrow follows the explicit theme
+✓ dark: error notice has no colored frame
+✓ dark: error notice uses the primary text color
+✓ dark: error icon contrast ≥ 3
+✓ dark: .tg-notice__title contrast ≥ 4.5
+✓ dark: .tg-notice__content .tg-text-muted contrast ≥ 4.5
+✓ dark: .tg-text-muted contrast ≥ 4.5
+✓ dark: .tg-help--error contrast ≥ 4.5
+✓ dark: .tg-link contrast ≥ 4.5
+✓ dark: .tg-btn--primary contrast ≥ 4.5
+✓ dark: .tg-btn--destructive contrast ≥ 4.5
+✓ dark: .tg-badge--primary contrast ≥ 4.5
+✓ dark: .tg-badge--destructive contrast ≥ 4.5
+✓ dark: .tg-avatar__initials contrast ≥ 4.5
+✓ dark: placeholder contrast ≥ 4.5
+✓ dark: search placeholder contrast ≥ 4.5
+✓ dark: .tg-btn[disabled] uses shared disabled opacity
+✓ dark: #disabled-input uses shared disabled opacity
+✓ dark: #disabled-check uses shared disabled opacity
+✓ dark: #disabled-search uses shared disabled opacity
+✓ dark: #disabled-upload uses shared disabled opacity
+✓ dark: idle switch has the shared action outline
+✓ dark: increased contrast strengthens field boundaries
+✓ dark: increased contrast .tg-input:not([disabled]) boundary ≥ 3
+✓ dark: increased contrast .tg-input:not([disabled]) boundary against outer surface ≥ 3
+✓ dark: increased contrast .tg-textarea boundary ≥ 3
+✓ dark: increased contrast .tg-textarea boundary against outer surface ≥ 3
+✓ dark: progress fill contrast ≥ 3
+✓ dark: increased contrast switch boundary ≥ 3
+✓ dark: focus uses the shared light accent ring without a second outline
+✓ dark: invalid textarea keeps its error border
+✓ dark: #18745b .tg-link contrast ≥ 4.5
+✓ dark: #18745b .tg-btn--primary contrast ≥ 4.5
+✓ dark: #18745b .tg-badge--primary contrast ≥ 4.5
+✓ dark: #18745b progress contrast ≥ 3
+✓ dark: #7151c7 .tg-link contrast ≥ 4.5
+✓ dark: #7151c7 .tg-btn--primary contrast ≥ 4.5
+✓ dark: #7151c7 .tg-badge--primary contrast ≥ 4.5
+✓ dark: #7151c7 progress contrast ≥ 3
+✓ ios-dark: select reserves space for its inset arrow
+✓ ios-dark: select arrow follows the explicit theme
+✓ ios-dark: error notice has no colored frame
+✓ ios-dark: error notice uses the primary text color
+✓ ios-dark: error icon contrast ≥ 3
+✓ ios-dark: .tg-notice__title contrast ≥ 4.5
+✓ ios-dark: .tg-notice__content .tg-text-muted contrast ≥ 4.5
+✓ ios-dark: .tg-text-muted contrast ≥ 4.5
+✓ ios-dark: .tg-help--error contrast ≥ 4.5
+✓ ios-dark: .tg-link contrast ≥ 4.5
+✓ ios-dark: .tg-btn--primary contrast ≥ 4.5
+✓ ios-dark: .tg-btn--destructive contrast ≥ 4.5
+✓ ios-dark: .tg-badge--primary contrast ≥ 4.5
+✓ ios-dark: .tg-badge--destructive contrast ≥ 4.5
+✓ ios-dark: .tg-avatar__initials contrast ≥ 4.5
+✓ ios-dark: placeholder contrast ≥ 4.5
+✓ ios-dark: search placeholder contrast ≥ 4.5
+✓ ios-dark: .tg-btn[disabled] uses shared disabled opacity
+✓ ios-dark: #disabled-input uses shared disabled opacity
+✓ ios-dark: #disabled-check uses shared disabled opacity
+✓ ios-dark: #disabled-search uses shared disabled opacity
+✓ ios-dark: #disabled-upload uses shared disabled opacity
+✓ ios-dark: idle switch has the shared action outline
+✓ ios-dark: increased contrast strengthens field boundaries
+✓ ios-dark: increased contrast .tg-input:not([disabled]) boundary ≥ 3
+✓ ios-dark: increased contrast .tg-input:not([disabled]) boundary against outer surface ≥ 3
+✓ ios-dark: increased contrast .tg-textarea boundary ≥ 3
+✓ ios-dark: increased contrast .tg-textarea boundary against outer surface ≥ 3
+✓ ios-dark: progress fill contrast ≥ 3
+✓ ios-dark: increased contrast switch boundary ≥ 3
+✓ ios-dark: focus uses the shared light accent ring without a second outline
+✓ ios-dark: invalid textarea keeps its error border
+✓ ios-dark: #18745b .tg-link contrast ≥ 4.5
+✓ ios-dark: #18745b .tg-btn--primary contrast ≥ 4.5
+✓ ios-dark: #18745b .tg-badge--primary contrast ≥ 4.5
+✓ ios-dark: #18745b progress contrast ≥ 3
+✓ ios-dark: #7151c7 .tg-link contrast ≥ 4.5
+✓ ios-dark: #7151c7 .tg-btn--primary contrast ≥ 4.5
+✓ ios-dark: #7151c7 .tg-badge--primary contrast ≥ 4.5
+✓ ios-dark: #7151c7 progress contrast ≥ 3
+✓ custom arrow preserves native selection
+✓ RTL select moves arrow away from its text start
+✓ multiple-select: listboxes have no dropdown arrow
+✓ list-select: listboxes have no dropdown arrow
+✓ forced colors restores the native select arrow
+✓ 16px: text, icon, chip, loading and size variants have one height
+✓ 32px: text, icon, chip, loading and size variants have one height
+✓ buttons, inputs and icon controls share geometry
+✓ row utilities retain a square icon target ≥44px
+✓ hidden content retains a physical scale
+✓ reduced motion disables all control transitions
+131 design-system checks passed.
+RUN palette.browser --webkit
+Palette: four original colors, 12 table samples, three themes and responsive layouts passed.
+RUN field-focus.browser --webkit
+Choice geometry: checkbox/radio are 24px and switch is 26px for optical balance, including 200% text scaling.
+Radio: idle backgrounds match input and native checked selection works in all three themes.
+Field focus: active backgrounds, accent/error rings and blur cleanup passed in all three themes.
+RUN badges.browser --webkit
+Badges: borderless and text contrast ≥ 4.5 in three themes and three accents.
+RUN avatar-stack.browser --webkit
+Avatar stack: wider separators, centered labels, RTL and 200% text passed in all themes.
+RUN avatar-ring.browser --webkit
+webkit: catalog surfaces, 3 ring modifiers, initials/image/counter, role propagation and custom inheritance passed in 3 themes
+RUN semantic-borders.browser --webkit
+Semantic borders: 449 checks — statuses and static avatars borderless; filters, linked badges, selectable avatars outlined; link rows interactive in three themes.
+RUN motion.browser --webkit
+Motion: press ≤300ms on transform, faster exits, shared curve, instant keyboard search, precise-pointer hover and gentle reduced motion passed.
+RUN workspace.browser --webkit
+✓ input group keeps the shared control height
+✓ input group owns the field radius
+✓ stat value uses the display token
+✓ stat values use tabular numerals
+✓ cards with zones become a column
+✓ accordion trigger draws an inline-end chevron mask
+✓ avatar group overlaps by a quarter of the avatar
+✓ underlined tab shows the accent rule
+✓ current site link sits on a tone step
+✓ current page in the pager uses the soft accent
+✓ the sticky header has its own background
+✓ light: .tg-stat__label text contrast 8.45 ≥ 4.5
+✓ light: .tg-stat__meta text contrast 8.45 ≥ 4.5
+✓ light: .tg-table__cell-meta text contrast 8.45 ≥ 4.5
+✓ light: .tg-site-nav__link:not([aria-current]) text contrast 7.75 ≥ 4.5
+✓ light: .tg-pager__link[aria-current="page"] text contrast 5.99 ≥ 4.5
+✓ light: .tg-choice__description text contrast 8.45 ≥ 4.5
+✓ light: .tg-requirements__item text contrast 8.45 ≥ 4.5
+✓ light: .tg-disclosure__meta text contrast 8.45 ≥ 4.5
+✓ light: .tg-badge--destructive text contrast 5.40 ≥ 4.5
+✓ light: .tg-message--user .tg-message__body p text contrast 17.30 ≥ 4.5
+✓ light: .tg-avatar-group__more text contrast 6.96 ≥ 4.5
+✓ dark: .tg-stat__label text contrast 7.66 ≥ 4.5
+✓ dark: .tg-stat__meta text contrast 7.66 ≥ 4.5
+✓ dark: .tg-table__cell-meta text contrast 7.66 ≥ 4.5
+✓ dark: .tg-site-nav__link:not([aria-current]) text contrast 9.22 ≥ 4.5
+✓ dark: .tg-pager__link[aria-current="page"] text contrast 6.84 ≥ 4.5
+✓ dark: .tg-choice__description text contrast 7.66 ≥ 4.5
+✓ dark: .tg-requirements__item text contrast 7.66 ≥ 4.5
+✓ dark: .tg-disclosure__meta text contrast 7.66 ≥ 4.5
+✓ dark: .tg-badge--destructive text contrast 5.81 ≥ 4.5
+✓ dark: .tg-message--user .tg-message__body p text contrast 11.06 ≥ 4.5
+✓ dark: .tg-avatar-group__more text contrast 6.05 ≥ 4.5
+✓ ios-dark: .tg-stat__label text contrast 9.06 ≥ 4.5
+✓ ios-dark: .tg-stat__meta text contrast 9.06 ≥ 4.5
+✓ ios-dark: .tg-table__cell-meta text contrast 9.06 ≥ 4.5
+✓ ios-dark: .tg-site-nav__link:not([aria-current]) text contrast 10.82 ≥ 4.5
+✓ ios-dark: .tg-pager__link[aria-current="page"] text contrast 7.91 ≥ 4.5
+✓ ios-dark: .tg-choice__description text contrast 9.06 ≥ 4.5
+✓ ios-dark: .tg-requirements__item text contrast 9.06 ≥ 4.5
+✓ ios-dark: .tg-disclosure__meta text contrast 9.06 ≥ 4.5
+✓ ios-dark: .tg-badge--destructive text contrast 6.18 ≥ 4.5
+✓ ios-dark: .tg-message--user .tg-message__body p text contrast 14.55 ≥ 4.5
+✓ ios-dark: .tg-avatar-group__more text contrast 7.50 ≥ 4.5
+✓ ArrowDown opens the menu
+✓ keyboard opening skips the entrance animation
+✓ trigger reports expanded
+✓ first item receives focus
+✓ menu rows keep a 44 px target (44)
+✓ focused row shows a visible ring
+✓ menu opens just below its trigger
+✓ menu stays inside the viewport
+✓ End moves to the last item
+✓ ArrowDown wraps to the first item
+✓ Escape closes the menu
+✓ Escape returns focus to the trigger
+✓ trigger reports collapsed
+✓ a pointer opening animates (no instant flag)
+✓ clicking outside closes the menu
+✓ checkbox item toggles the compact table
+✓ checked item shows its mark
+✓ unchecked radio hides its dot
+✓ destructive item text contrast 6.19 ≥ 4.5
+✓ row menu opens the side dialog
+✓ side dialog sits on the inline end at full height
+✓ dialog body scrolls inside the sheet
+✓ select all fills the bulk bar and enables its actions
+✓ choosing rows does not move the table
+✓ bulk bar counts the rows
+✓ selected rows take the soft accent
+✓ partial selection is indeterminate
+✓ clearing leaves the bar in place, empty, with actions unavailable
+✓ sorting marks the header
+✓ rows reorder by the sorted column
+✓ sorted header shows its arrow
+✓ search without results shows an empty state with a way out
+✓ ArrowRight selects the next tab and its panel
+✓ card media reaches the card edges
+✓ failed submit turns unmet rules into errors
+✓ unmet rule error contrast 6.19 ≥ 4.5
+✓ met rules flip to the check mark
+✓ saving sets aria-busy
+✓ button width stays put between states
+✓ only the active state label is visible
+✓ parent choice checks the nested group
+✓ nested choices start under the parent label
+✓ expand all opens every section
+✓ toggle reports pressed and fills
+✓ dismissing a notice moves focus to the page heading
+✓ assistant answer finishes streaming
+✓ user turns align to the inline end
+✓ code uses the mono token
+✓ reduced motion removes menu scale travel
+✓ light 320px: no horizontal scroll
+✓ light 390px: no horizontal scroll
+✓ light 1440px: no horizontal scroll
+✓ dark 320px: no horizontal scroll
+✓ dark 390px: no horizontal scroll
+✓ dark 1440px: no horizontal scroll
+✓ ios-dark 320px: no horizontal scroll
+✓ ios-dark 390px: no horizontal scroll
+✓ ios-dark 1440px: no horizontal scroll
+✓ narrow table stacks into cards
+✓ stacked cells name their columns
+✓ RTL moves the check column to the right
+✓ RTL flips the icon-end button order logically
+✓ no page errors
+107 workspace checks passed in webkit.
+RUN components-wave-0.browser --webkit
+✓ B15 keyboard focus shows the tooltip at once
+✓ B15 keyboard opening skips the entrance
+✓ B15 tooltip sits above its trigger by default
+✓ B15 tooltip is centred on its trigger
+✓ B15 tooltip uses the overlay surface and small type
+✓ B15 tooltip ignores the pointer
+✓ B15 button name comes from the tooltip label
+✓ B15 shortcut is the description
+✓ B15 tooltip has role tooltip
+✓ B15 light: tooltip text contrast 21.00 ≥ 4.5
+✓ B15 dark: tooltip text contrast 14.00 ≥ 4.5
+✓ B15 ios-dark: tooltip text contrast 17.58 ≥ 4.5
+✓ B15 Escape hides the tooltip
+✓ B15 Escape keeps focus on the trigger
+✓ B15 data-side=bottom places the tooltip below
+✓ B15 hover does not show the tooltip immediately
+✓ B15 hover shows the tooltip after the delay
+✓ B15 the next tooltip along the toolbar opens without delay
+✓ B15 leaving hides the tooltip
+✓ B15 measured fallback keeps the tooltip inside a 320px screen
+✓ B8 segments keep the control height
+✓ B8 segment radius is the inset radius
+✓ B8 trough matches the tabs trough
+✓ B8 checked segment rises like a selected tab
+✓ B8 arrow keys move the native radio choice
+✓ no script errors
+26 wave 0 checks passed
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+locator.evaluate: Timeout 45000ms exceeded.
+Call log:
+[2m  - waiting for locator('.example-body[data-spec~="B8"] fieldset.tg-segmented:not(.tg-segmented--vertical) .tg-segmented__item:has(input:focus-visible)').first()[22m
+
+    at css (/Users/sfinks/Documents/ChatGPT/t-design-system/tests/helpers/catalog-page.mjs:24:85)
+    at /Users/sfinks/Documents/ChatGPT/t-design-system/tests/components-wave-0.browser.mjs:80:55 {
+  log: [
+    `  - waiting for locator('.example-body[data-spec~="B8"] fieldset.tg-segmented:not(.tg-segmented--vertical) .tg-segmented__item:has(input:focus-visible)').first()`
+  ],
+  name: 'TimeoutError'
+}
+
+Node.js v26.0.0
+RUN components-wave-1.browser --webkit
+✓ M15 a key uses the mono family token
+✓ M15 a key is at least 1.5em wide
+✓ M15 a key never wraps
+✓ M15 a key has an even edge, no heavier bottom
+✓ M15 a combination draws each key, not the wrapper
+✓ M15 key light: contrast 17.30 ≥ 4.5
+✓ M15 key dark: contrast 11.06 ≥ 4.5
+✓ M15 key ios-dark: contrast 14.55 ≥ 4.5
+✓ M8 ring default size is 40px
+✓ M8 --lg ring is 64px
+✓ M8 --sm ring is 24px
+✓ M8 value draws the arc from --value
+✓ M8 changing the value updates arc and aria-valuenow
+✓ M8 indeterminate ring has no value and still animates under reduced motion (pulse)
+✓ M8 destructive ring uses the danger role
+✓ C11 timeline is an ordered list
+✓ C11 time sits above the text
+✓ C11 visible time digits are centred on their markers
+✓ C11 done marker is filled with the action role
+✓ C11 current marker is a ring
+✓ C11 done markers carry an icon (not colour alone)
+✓ C11 a done step draws an accent line to the next
+✓ C11 the line runs from the first marker centre to the second
+✓ C11 time light: contrast 7.75 ≥ 4.5
+✓ C11 time dark: contrast 9.22 ≥ 4.5
+✓ C11 time ios-dark: contrast 10.82 ≥ 4.5
+✓ C11 description light: contrast 7.75 ≥ 4.5
+✓ C11 description dark: contrast 9.22 ≥ 4.5
+✓ C11 description ios-dark: contrast 10.82 ≥ 4.5
+✓ M10 horizontal timeline is a row on wide screens
+✓ M10 horizontal timeline scrolls inside a focusable region
+✓ M10 event labels are centred beneath their markers
+✓ M10 the line runs through the marker centres
+✓ M10 a done step draws the accent line on the row too
+✓ M10 text keeps its distance from the marker
+✓ M10 horizontal timeline returns to a column on phones
+✓ M10 RTL: the road runs from the right
+✓ F28 marker is 32px
+✓ F28 current step is aria-current=step
+✓ F28 Next moves the current step and marks the previous done
+✓ F28 the counter follows
+✓ F28 phones hide labels of other steps but keep them for screen readers
+✓ F28 phones keep the current label visible
+✓ M9 vertical stepper is a column
+✓ M9 error step is marked by an icon and the danger text role
+✓ M9 error label light: contrast 5.68 ≥ 4.5
+✓ M9 error label dark: contrast 8.70 ≥ 4.5
+✓ M9 error label ios-dark: contrast 10.40 ≥ 4.5
+✓ M9 description light: contrast 7.75 ≥ 4.5
+✓ M9 description dark: contrast 9.22 ≥ 4.5
+✓ M9 description ios-dark: contrast 10.82 ≥ 4.5
+✓ B9 attached buttons share one border line
+✓ B9 inner corners are square, outer keep the control radius
+✓ no script errors
+54 wave 1 checks passed
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+AssertionError [ERR_ASSERTION]: B9 the focused button rises above its neighbours
+    at check (file:///Users/sfinks/Documents/ChatGPT/t-design-system/tests/helpers/catalog-page.mjs:23:61)
+    at file:///Users/sfinks/Documents/ChatGPT/t-design-system/tests/components-wave-1.browser.mjs:126:3
+    at runNextTicks (node:internal/process/task_queues:65:5)
+    at process.processImmediate (node:internal/timers:472:9) {
+  generatedMessage: false,
+  code: 'ERR_ASSERTION',
+  actual: false,
+  expected: true,
+  operator: '==',
+  diff: 'simple'
+}
+
+Node.js v26.0.0
+RUN components-wave-2.browser --webkit
+✓ F8 trigger looks like the native select
+✓ F8 ArrowDown opens the list
+✓ F8 focus stays on the trigger
+✓ F8 the selected option starts active
+✓ F8 ArrowDown moves the active option
+✓ F8 disabled options are skipped
+✓ F8 the keyboard-active option has a ring
+✓ F8 option rows keep the control height
+✓ F8 Enter chooses and closes
+✓ F8 the trigger shows the new value and the hidden input follows
+✓ F8 Escape closes without changing the value
+✓ F8 typing a letter jumps to the matching option
+✓ F8 pointer opening has no keyboard ring on an option
+✓ F8 the list opens next to the trigger (below, or above near the edge) and is at least as wide
+✓ F8 clicking an option chooses it
+✓ F8 selected option has a check mark
+✓ F8 selected option light: contrast 17.30 ≥ 4.5
+✓ F8 selected option dark: contrast 11.06 ≥ 4.5
+✓ F8 selected option ios-dark: contrast 14.55 ≥ 4.5
+✓ F8 option meta light: contrast 8.45 ≥ 4.5
+✓ F8 option meta dark: contrast 7.66 ≥ 4.5
+✓ F8 option meta ios-dark: contrast 9.06 ≥ 4.5
+✓ F9 scripts drop the datalist fallback
+✓ F9 typing opens a filtered list
+✓ F9 the count is announced
+✓ F9 ArrowDown sets aria-activedescendant
+✓ F9 Enter puts the value in the field and closes
+✓ F9 no results are said plainly
+✓ F9 Escape closes the list
+✓ F9 multiple: choosing adds a tag before the field
+✓ F9 multiple: the list is multiselectable
+✓ F9 multiple: Backspace in the empty field removes the last tag
+✓ F10 Enter adds a tag with a named remove button
+✓ F10 each tag is submitted as a hidden field
+✓ F10 duplicates are not added and the reason is announced
+✓ F10 ArrowLeft at the start moves to the last tag
+✓ F10 ArrowRight from the last tag returns to the field
+✓ F10 Backspace in the empty field removes the last tag
+✓ F10 remove mark is 24px with a 44px target
+✓ F10 the frame shows focus while typing
+✓ F10 tag light: contrast 21.00 ≥ 4.5
+✓ F10 tag dark: contrast 14.00 ≥ 4.5
+✓ F10 tag ios-dark: contrast 17.58 ≥ 4.5
+✓ F10 the limit stops new tags
+✓ F4 + steps the native value
+✓ F4 native arrow keys still work
+✓ F4 the native spinner is hidden
+✓ F4 step buttons are 44px
+✓ F4 at the minimum the − button is disabled
+✓ F4 --pill is a capsule
+✓ F5 one real field with one-time-code autofill
+✓ F5 cells are at least 44px tall
+✓ F5 cells mirror the typed digits
+✓ F5 the next cell is active
+✓ F5 the active cell shows the focus ring
+✓ F5 a full correct code is accepted and announced
+✓ F5 a wrong code shows the error state
+✓ F5 only digits are kept
+✓ F5 six cells fit a 320px screen
+✓ F14 clicking the card checks its native radio
+✓ F14 the checked card draws a 2px accent ring without a fill
+✓ F14 checking does not change the card size
+✓ F14 arrow keys move the radio choice
+✓ no script errors
+64 wave 2 checks passed
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+locator.evaluate: Timeout 45000ms exceeded.
+Call log:
+[2m  - waiting for locator('.example-body[data-spec~="F14"] .tg-choice-card:has(input:focus-visible)').first()[22m
+
+    at css (/Users/sfinks/Documents/ChatGPT/t-design-system/tests/helpers/catalog-page.mjs:24:85)
+    at /Users/sfinks/Documents/ChatGPT/t-design-system/tests/components-wave-2.browser.mjs:155:61 {
+  log: [
+    `  - waiting for locator('.example-body[data-spec~="F14"] .tg-choice-card:has(input:focus-visible)').first()`
+  ],
+  name: 'TimeoutError'
+}
+
+Node.js v26.0.0
+RUN components-wave-3.browser --webkit
+✓ N16 viewport snaps along x
+✓ N16 viewport scrolls natively (works without scripts)
+✓ N16 slides fill the viewport
+✓ N16 prev is disabled on the first slide
+✓ N16 next moves one slide and updates the dots
+✓ N16 the change is announced after a manual move
+✓ N16 a dot chooses its slide and next becomes disabled at the end
+✓ N16 Home on the viewport returns to the first slide
+✓ N16 slides are labelled groups
+✓ N16 caption light: contrast 8.13 ≥ 4.5
+✓ N16 caption dark: contrast 18.36 ≥ 4.5
+✓ N16 caption ios-dark: contrast 19.31 ≥ 4.5
+✓ G1 --peek leaves neighbours visible at the edges
+✓ G1 a thumbnail chooses its slide
+✓ G1 thumbnails are at least 44px
+✓ G1 the current thumbnail has the accent border
+✓ G1 --vertical snaps along y
+✓ G1 --vertical puts thumbnails at the side on wide screens
+✓ M22 the fade is a transparency mask, not a colour
+✓ M22 the area is focusable and named
+✓ M22 the block variant scrolls vertically
+✓ N3 vertical tabs are a column
+✓ N3 ArrowDown moves to the next tab and shows its panel
+✓ N3 End selects the last tab
+✓ N3 the selected tab rises like other tabs
+✓ N3 phones get a horizontal row from the same markup
+✓ N2 unselected labels are visually hidden but in the DOM
+✓ N2 the selected tab shows its label
+✓ N2 arrows move the selection and reveal the new label
+✓ N2 the panel follows the selected tab
+✓ N2 icon-only tabs stay 44px wide
+✓ N11 the current link sits on a tone step
+✓ N11 links are at least 40px tall
+✓ N11 nesting is a native details
+✓ N11 link light: contrast 8.45 ≥ 4.5
+✓ N11 link dark: contrast 7.66 ≥ 4.5
+✓ N11 link ios-dark: contrast 9.06 ≥ 4.5
+✓ N11 group label light: contrast 8.45 ≥ 4.5
+✓ N11 group label dark: contrast 7.66 ≥ 4.5
+✓ N11 group label ios-dark: contrast 9.06 ≥ 4.5
+✓ N11 collapsing leaves icons only
+✓ N11 collapsed links keep their names
+✓ N5 Enter opens the panel and marks the button expanded
+✓ no script errors
+44 wave 3 checks passed
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+AssertionError [ERR_ASSERTION]: N5 Tab walks into the panel links
+    at check (file:///Users/sfinks/Documents/ChatGPT/t-design-system/tests/helpers/catalog-page.mjs:23:61)
+    at file:///Users/sfinks/Documents/ChatGPT/t-design-system/tests/components-wave-3.browser.mjs:101:3 {
+  generatedMessage: false,
+  code: 'ERR_ASSERTION',
+  actual: false,
+  expected: true,
+  operator: '==',
+  diff: 'simple'
+}
+
+Node.js v26.0.0
+RUN components-wave-4-5.browser --webkit
+✓ F20 the native date input keeps the field look
+✓ F20 ↑ raises the day spinbutton
+✓ F20 → moves to the month segment
+✓ F20 the month announces its name
+✓ F20 typing digits sets the day and moves on
+✓ F20 the field frame shows focus
+✓ F20 segments are named spinbuttons
+✓ F21 days are 44px
+✓ F21 today has a ring and aria-current=date
+✓ F21 one Tab stop in the grid
+✓ F21 → moves one day
+✓ F21 ↓ moves one week
+✓ F21 End goes to the end of the week
+✓ F21 PageDown goes to next month and updates the title
+✓ F21 Shift+PageUp goes back a year
+✓ F21 Enter selects the day and announces it in full
+✓ F21 the selected day is filled with the action role
+✓ F21 event days keep their marks and say them in the name
+✓ F21 outside day light: contrast 7.75 ≥ 4.5
+✓ F21 outside day dark: contrast 9.22 ≥ 4.5
+✓ F21 outside day ios-dark: contrast 10.82 ≥ 4.5
+✓ F21 weekday light: contrast 7.75 ≥ 4.5
+✓ F21 weekday dark: contrast 9.22 ≥ 4.5
+✓ F21 weekday ios-dark: contrast 10.82 ≥ 4.5
+✓ F21 RTL: ← moves to the next day
+✓ F22 the band between the ends is the soft accent
+✓ F22 the ends are filled
+✓ F22 the first click sets the start and asks for the end
+✓ F22 hovering previews the band
+✓ F22 the second click sets the end and the output follows
+✓ F22 start and end are named in the day labels
+✓ F22 a preset sets the range and is marked pressed
+✓ F22 Cancel restores the applied range
+✓ F22 day in range light: contrast 5.99 ≥ 4.5
+✓ F22 day in range dark: contrast 6.84 ≥ 4.5
+✓ F22 day in range ios-dark: contrast 7.91 ≥ 4.5
+✓ F22 phones put presets in a row above
+✓ D7 lines are 2px
+✓ D7 the second series is dashed, not only lighter
+✓ D7 the area is a light wash of the series
+✓ D7 a legend names both series
+✓ D7 ticks are clean numbers
+✓ D7 the SVG draws 1:1 so text keeps its size
+✓ D7 hover shows the crosshair and a tooltip with both values
+✓ D7 text in the tooltip uses text colours
+✓ D7 a table view carries the same numbers
+✓ D7 subtitle light: contrast 7.75 ≥ 4.5
+✓ D7 subtitle dark: contrast 9.22 ≥ 4.5
+✓ D7 subtitle ios-dark: contrast 10.82 ≥ 4.5
+✓ D8 bars are at most 24px thick
+✓ D8 only the highlighted bar is at full strength
+✓ D8 hovering a bar highlights it and shows its value
+✓ D8 a single series has no legend box
+✓ D9 three segments with a gap between them
+✓ D9 the third segment is textured, not only lighter
+✓ D9 the legend lists every value as text
+✓ D9 the centre shows the total
+✓ D9 legend light: contrast 7.75 ≥ 4.5
+✓ D9 legend dark: contrast 9.22 ≥ 4.5
+✓ D9 legend ios-dark: contrast 10.82 ≥ 4.5
+✓ D6 Space lifts the item and says where it is
+✓ D6 the lifted item floats on the overlay shadow
+✓ D6 ArrowDown moves it and announces the position
+✓ D6 Space drops it in the new place
+✓ D6 Escape puts it back
+✓ D6 handles take the control size (≥44px)
+✓ D6 dragging shows the drop line
+✓ D6 dropping reorders the list
+✓ M11 each event has its time as text
+✓ M11 events sit on the grid from --start/--end
+✓ M11 a conflict is named in words
+✓ M11 time light: contrast 7.31 ≥ 4.5
+✓ M11 time dark: contrast 6.35 ≥ 4.5
+✓ M11 time ios-dark: contrast 7.76 ≥ 4.5
+✓ M11 conflict title light: contrast 18.32 ≥ 4.5
+✓ M11 conflict title dark: contrast 12.63 ≥ 4.5
+✓ M11 conflict title ios-dark: contrast 15.78 ≥ 4.5
+✓ M11 phones get a plain list
+✓ C16 four columns on wide screens
+✓ C16 --span widens a tile
+✓ C16 two columns from 36rem
+✓ C16 one column on phones
+✓ D5 has a catalog example
+✓ C12 has a catalog example
+✓ no script errors
+85 wave 4–5 checks passed
+RUN components-wave-6.browser --webkit
+✓ A5 steps are a list with text and an icon for each state
+✓ A5 a running step shows a spinner
+✓ A5 tool results open in a native disclosure
+✓ A5 technical names are mono only inside code
+✓ A5 done label light: contrast 7.75 ≥ 4.5
+✓ A5 done label dark: contrast 9.22 ≥ 4.5
+✓ A5 done label ios-dark: contrast 10.82 ≥ 4.5
+✓ A5 error label light: contrast 5.68 ≥ 4.5
+✓ A5 error label dark: contrast 8.70 ≥ 4.5
+✓ A5 error label ios-dark: contrast 10.40 ≥ 4.5
+✓ A5 the finished step is announced once, the timer is not
+✓ A6 the approval is a named section with options and two actions
+✓ A6 consequence text light: contrast 8.45 ≥ 4.5
+✓ A6 consequence text dark: contrast 7.66 ≥ 4.5
+✓ A6 consequence text ios-dark: contrast 9.06 ≥ 4.5
+✓ A6 after the decision no controls remain
+✓ A6 the outcome is written as text
+✓ A6 focus moves to the composer
+✓ T1 the content is a multiline textbox with a name
+✓ T1 content keeps the reading measure
+✓ T1 headings inside use the system scale
+✓ T1 formatting buttons follow the selection
+✓ T1 Escape selects the whole block
+✓ T1 a selected block has the accent frame on the soft accent
+✓ T1 ArrowDown moves the block selection
+✓ T1 the formatting toolbar is one Tab stop with arrow keys
+✓ T1 status light: contrast 8.45 ≥ 4.5
+✓ T1 status dark: contrast 7.66 ≥ 4.5
+✓ T1 status ios-dark: contrast 9.06 ≥ 4.5
+✓ T1 quote light: contrast 8.45 ≥ 4.5
+✓ T1 quote dark: contrast 7.66 ≥ 4.5
+✓ T1 quote ios-dark: contrast 9.06 ≥ 4.5
+✓ T2 a selection shows the toolbar
+✓ T2 the toolbar does not cover the selected text
+✓ T2 the toolbar uses the floating surface
+✓ T2 Alt+F10 moves focus into the toolbar
+✓ TS1 the quote is a blockquote in a figure with a cite
+✓ TS1 the quote is upright, not italic
+✓ TS1 stars use the accent role and the score is text
+✓ TS1 author role light: contrast 6.96 ≥ 4.5
+✓ TS1 author role dark: contrast 6.05 ≥ 4.5
+✓ TS1 author role ios-dark: contrast 7.50 ≥ 4.5
+✓ TS1 the photo moves above the text on phones
+✓ PR2 the featured frame is 2px without changing the size
+✓ PR2 the price figure is large and the period quiet
+✓ PR2 included items get a check mask, excluded a dash with words
+✓ PR2 the current plan button is disabled
+✓ PR2 excluded item light: contrast 8.45 ≥ 4.5
+✓ PR2 excluded item dark: contrast 7.66 ≥ 4.5
+✓ PR2 excluded item ios-dark: contrast 9.06 ≥ 4.5
+✓ PR2 period light: contrast 8.45 ≥ 4.5
+✓ PR2 period dark: contrast 7.66 ≥ 4.5
+✓ PR2 period ios-dark: contrast 9.06 ≥ 4.5
+✓ B1 has a catalog example
+✓ B3 has a catalog example
+✓ B16 has a catalog example
+✓ no script errors
+57 wave 6 checks passed
+RUN components-wave-7.browser --webkit
+✓ B6 the hold button is a full-height destructive button
+✓ B6 the fill follows --hold-progress
+✓ B6 one Enter only asks for a second
+✓ B6 a second Enter within a second confirms
+✓ B6 the slide is a native named range
+✓ B6 the slide track is as tall as a control
+✓ B6 End completes the slide
+✓ B6 there is a path without the gesture
+✓ B6 slide label light: contrast 7.31 ≥ 4.5
+✓ B6 slide label dark: contrast 6.35 ≥ 4.5
+✓ B6 slide label ios-dark: contrast 7.76 ≥ 4.5
+✓ B12 the FAB is at least a control tall and pill-shaped
+✓ B12 the FAB floats with a shadow
+✓ B12 the menu opens with labelled items and focus moves in
+✓ B12 item "Новый счёт" is a full-height target
+✓ B12 item "Клиент" is a full-height target
+✓ B12 item "Скан документа" is a full-height target
+✓ B12 Escape closes and returns focus
+✓ F24 columns are named listboxes
+✓ F24 columns snap to the centre
+✓ F24 the edges fade with a mask
+✓ F24 ArrowDown steps the value
+✓ F24 options use tabular figures
+✓ F25 the field pairs a native colour input and a HEX field
+✓ F25 a wrong HEX is invalid
+✓ F25 a right HEX updates the swatch
+✓ F25 the hue track shows the whole colour circle
+✓ F25 the area works from the keyboard
+✓ F25 a swatch is a radio that moves the area
+✓ F26 cells are 44px targets with Russian names
+✓ F26 arrows move through the grid
+✓ F26 ArrowDown moves a row
+✓ F26 an empty search says so
+✓ F33 the waveform is a named native range over decorative bars
+✓ F33 played bars follow the position
+✓ F33 played bars take the accent
+✓ F33 arrows move the selection
+✓ F33 Shift+arrows resize it
+✓ F33 handles are small with a 44px hit area
+✓ C15 cards share one grid cell
+✓ C15 only the top card is in the accessibility tree
+✓ C15 a decision leaves three and announces it
+✓ C15 the decided card is removed
+✓ C21 player buttons are named 44px targets
+✓ C21 time uses tabular figures
+✓ C21 skip moves the position and the time text
+✓ C21 the compare border follows the range
+✓ C21 the two labels sit at opposite edges
+✓ C21 the compare change is not animated
+✓ G4 one panel is open at a time
+✓ G4 the open panel is the widest
+✓ G4 width is not animated
+✓ G4 panels stack on phones
+✓ TS4 the copy track is hidden and inert
+✓ TS4 reduced motion stops the movement
+✓ TS4 with reduced motion there is nothing to pause, so no button
+✓ TS4 with motion allowed the track runs
+✓ TS4 the pause button is a pressed toggle
+✓ TS4 pause stops it
+✓ RTL: the image accordion runs right to left
+✓ B6 at 320px has no horizontal overflow
+✓ B12 at 320px has no horizontal overflow
+✓ F24 at 320px has no horizontal overflow
+✓ F25 at 320px has no horizontal overflow
+✓ F26 at 320px has no horizontal overflow
+✓ F33 at 320px has no horizontal overflow
+✓ C15 at 320px has no horizontal overflow
+✓ C21 at 320px has no horizontal overflow
+✓ G4 at 320px has no horizontal overflow
+✓ TS4 at 320px has no horizontal overflow
+✓ B6 at 390px has no horizontal overflow
+✓ B12 at 390px has no horizontal overflow
+✓ F24 at 390px has no horizontal overflow
+✓ F25 at 390px has no horizontal overflow
+✓ F26 at 390px has no horizontal overflow
+✓ F33 at 390px has no horizontal overflow
+✓ C15 at 390px has no horizontal overflow
+✓ C21 at 390px has no horizontal overflow
+✓ G4 at 390px has no horizontal overflow
+✓ TS4 at 390px has no horizontal overflow
+✓ no script errors
+81 wave 7 checks passed
+RUN components-wave-8.browser --webkit
+✓ SH1 the layer is hidden from assistive tech and sits behind the content
+✓ SH1 the module runs the program on screen
+✓ SH1 the layer draws pixels in the accent
+✓ SH1 off screen the layer pauses
+✓ SH1 without the module the fill is the background role
+✓ SH1 text over the waveform section light: contrast 7.75 ≥ 4.5
+✓ SH1 text over the waveform section dark: contrast 9.22 ≥ 4.5
+✓ SH1 text over the waveform section ios-dark: contrast 10.82 ≥ 4.5
+✓ B19 a disabled button has no effect layer
+✓ B19 the sheen rests outside the button
+✓ B19 hover sweeps the sheen across
+✓ B19 the border beam draws only a frame
+✓ B19 the magnet pulls at most 4px towards the pointer
+✓ B19 leaving resets the magnet
+✓ C18 tilt leans towards the pointer at most 6°
+✓ C18 the spotlight follows the pointer
+✓ C18 the spotlight layer is under the text
+✓ C18 card text light: contrast 8.45 ≥ 4.5
+✓ C18 card text dark: contrast 7.66 ≥ 4.5
+✓ C18 card text ios-dark: contrast 9.06 ≥ 4.5
+✓ G2 pictures are driven by their slide's view timeline
+✓ G2 the slide itself is not transformed
+✓ G2 the first slide starts exactly in the centre
+✓ G2 the centred picture is flat
+✓ G2 a neighbour picture is turned
+✓ G2 only the centred slide shows its caption
+✓ G2 the variant switch swaps the timeline animation
+✓ G2 arrows work as in G1
+✓ G2 the next slide lands exactly in the centre
+✓ G2 focus order is the DOM order
+✓ G2 on phones it is the flat G1
+✓ SH4 the canvas covers the viewport only
+✓ SH4 a slide change plays the ripple
+✓ SH4 the accessible slide changes at once
+✓ SH4 the ripple ends within three durations
+✓ RTL: the 3D carousel turns the other way
+✓ reduced motion: the background layer is a still frame
+✓ reduced motion: the border beam stands still
+✓ reduced motion: the 3D carousel is flat
+✓ reduced motion: no ripple
+✓ SH1 at 320px has no horizontal overflow
+✓ B19 at 320px has no horizontal overflow
+✓ C18 at 320px has no horizontal overflow
+✓ G2 at 320px has no horizontal overflow
+✓ SH4 at 320px has no horizontal overflow
+✓ SH1 at 390px has no horizontal overflow
+✓ B19 at 390px has no horizontal overflow
+✓ C18 at 390px has no horizontal overflow
+✓ G2 at 390px has no horizontal overflow
+✓ SH4 at 390px has no horizontal overflow
+✓ no script errors
+51 wave 8 checks passed
+RUN spec-examples.browser --webkit
+✓ 2079 spec example checks passed in webkit for 107 done specs
+RESULTS [
+  {
+    file: 'button-spacing.browser',
+    engine: 'chromium',
+    status: 1,
+    error: undefined
+  },
+  {
+    file: 'baseline-compatibility.browser',
+    engine: 'chromium',
+    status: 1,
+    error: undefined
+  },
+  { file: 'browser', engine: 'chromium', status: 1, error: undefined },
+  {
+    file: 'components-wave-0.browser',
+    engine: 'chromium',
+    status: 1,
+    error: undefined
+  },
+  {
+    file: 'button-spacing.browser',
+    engine: 'webkit',
+    status: 1,
+    error: undefined
+  },
+  {
+    file: 'baseline-compatibility.browser',
+    engine: 'webkit',
+    status: 1,
+    error: undefined
+  },
+  {
+    file: 'patterns.browser',
+    engine: 'webkit',
+    status: 1,
+    error: undefined
+  },
+  { file: 'browser', engine: 'webkit', status: 1, error: undefined },
+  {
+    file: 'components-wave-0.browser',
+    engine: 'webkit',
+    status: 1,
+    error: undefined
+  },
+  {
+    file: 'components-wave-1.browser',
+    engine: 'webkit',
+    status: 1,
+    error: undefined
+  },
+  {
+    file: 'components-wave-2.browser',
+    engine: 'webkit',
+    status: 1,
+    error: undefined
+  },
+  {
+    file: 'components-wave-3.browser',
+    engine: 'webkit',
+    status: 1,
+    error: undefined
+  }
+]

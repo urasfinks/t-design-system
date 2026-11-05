@@ -66,28 +66,40 @@
   .tg-compare__label {
     position: absolute;
     inset-block-start: var(--space-3);
-    padding: var(--space-1) var(--space-2);
-    border-radius: var(--radius-sm);
-    background: var(--overlay-bg);
-    color: var(--overlay-text);
+    @include media-surface.caption;
     font-size: var(--fs-xs);
     pointer-events: none;
     &:nth-child(1 of .tg-compare__label) { inset-inline-start: var(--space-3); }
     &:nth-last-child(1 of .tg-compare__label) { inset-inline-end: var(--space-3); }
   }
-  .tg-compare__handle {
+  // Clip only the expanded input's rectangular box. The parent media mask owns
+  // the single rounded image boundary, avoiding double-clipped bright fringes.
+  .tg-compare__control {
     position: absolute;
     inset: 0;
-    inline-size: 100%;
+    overflow: clip;
+    &:has(> .tg-compare__handle:focus-visible) { outline: 2px solid var(--text-link); outline-offset: -2px; }
+  }
+  .tg-compare__handle {
+    position: absolute;
+    inset-block: 0;
+    // Native range thumb centers travel across (track width − thumb width).
+    // Extend the input by one thumb, half outside each edge: its center then
+    // follows the same 0…100% coordinate as the image clip and visible grip.
+    inset-inline-start: calc(var(--control-h) / -2);
+    inset-inline-end: auto;
+    inline-size: calc(100% + var(--control-h));
     block-size: 100%;
     margin: 0;
+    padding: 0;
+    border: 0;
     appearance: none;
     background: none;
     cursor: ew-resize;
     &::-webkit-slider-runnable-track { block-size: 100%; background: none; }
     &::-webkit-slider-thumb { appearance: none; inline-size: var(--control-h); block-size: 100%; background: linear-gradient(var(--overlay-text), var(--overlay-text)) center / 2px 100% no-repeat; }
-    &::-moz-range-track { background: none; }
-    &::-moz-range-thumb { inline-size: 2px; block-size: 100%; border: 0; border-radius: 0; background: var(--overlay-text); }
+    &::-moz-range-track { block-size: 100%; background: none; }
+    &::-moz-range-thumb { inline-size: var(--control-h); block-size: 100%; border: 0; border-radius: 0; background: linear-gradient(var(--overlay-text), var(--overlay-text)) center / 2px 100% no-repeat; }
     &:focus-visible { outline: 2px solid var(--text-link); outline-offset: -2px; }
   }
   .tg-compare__grip {

@@ -1,25 +1,30 @@
 function disclosure(markup, { label = 'Посмотреть HTML', copy = false } = {}) {
   const details = document.createElement('details');
-  details.className = 'example-code tg-disclosure tg-card tg-card--disclosure';
+  details.className = 'example-code tg-disclosure tg-disclosure--compact tg-disclosure--embedded';
+  details.name = 'catalog-html';
   const summary = document.createElement('summary');
   summary.className = 'tg-disclosure__trigger';
   summary.textContent = label;
   const pre = document.createElement('pre');
-  pre.className = 'tg-card tg-no-border tg-no-radius-top';
+  pre.className = 'tg-code-block tg-scroll-region';
+  pre.tabIndex = 0;
+  // Code viewers are small named groups, not hundreds of page landmarks.
+  pre.setAttribute('role', 'group');
+  pre.setAttribute('aria-label', 'HTML примера');
   pre.translate = false;
   const code = document.createElement('code');
   code.textContent = markup;
   pre.append(code);
   const content = document.createElement('div');
-  content.className = 'tg-disclosure__content tg-p-0';
+  content.className = 'tg-disclosure__content tg-col';
   content.append(pre);
   details.append(summary, content);
   if (copy) {
     const actions = document.createElement('div');
-    actions.className = 'tg-row tg-p-4';
+    actions.className = 'tg-row';
     const button = document.createElement('button');
     button.type = 'button';
-    button.className = 'tg-btn tg-btn--secondary';
+    button.className = 'tg-btn tg-btn--secondary tg-btn--sm';
     button.textContent = 'Скопировать HTML';
     const status = document.createElement('span');
     status.setAttribute('role', 'status');
@@ -45,6 +50,13 @@ function disclosure(markup, { label = 'Посмотреть HTML', copy = false 
 }
 
 export function initDemoCode({ root = document } = {}) {
+  // Static source examples (including the full-screen composition) use the
+  // same renderer and copy action as generated per-variant HTML viewers.
+  for (const existing of root.querySelectorAll('details.example-code')) {
+    if (existing.matches('.tg-disclosure--embedded') && existing.querySelector('button')) continue;
+    const code = existing.querySelector('code');
+    if (code) existing.replaceWith(disclosure(code.textContent, { label: existing.querySelector('summary')?.textContent || 'Посмотреть HTML', copy: true }));
+  }
   for (const example of root.querySelectorAll('[data-example]')) {
     const panel = example.closest('.example-panel');
     if (panel.querySelector(':scope > details.example-code')) continue;

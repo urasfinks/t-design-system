@@ -1,4 +1,6 @@
 import { initRipple } from './effects.mjs';
+import { initScrollRegions } from './scroll-regions.mjs';
+export { initScrollRegions } from './scroll-regions.mjs';
 
 const registrations = new WeakMap();
 const handled = new WeakSet();
@@ -12,6 +14,7 @@ export function initUI(root = globalThis.document) {
   const view = doc?.defaultView;
   if (!view) return () => {};
   const stopLegacy = initRipple(root);
+  const stopScrollRegions = initScrollRegions(root);
   const ranges = 'input[type="range"].tg-range';
   const updateRange = el => {
     const min = Number(el.min || 0);
@@ -98,6 +101,7 @@ export function initUI(root = globalThis.document) {
     root.removeEventListener('reset', resetRanges);
     root.removeEventListener('click', click);
     stopLegacy();
+    stopScrollRegions();
     for (const node of active.keys()) remove(node);
     registrations.delete(root);
   };

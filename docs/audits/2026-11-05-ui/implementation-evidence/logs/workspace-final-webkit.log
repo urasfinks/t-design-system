@@ -1,0 +1,108 @@
+✓ input group keeps the shared control height
+✓ input group owns the field radius
+✓ stat value uses the display token
+✓ stat values use tabular numerals
+✓ cards with zones become a column
+✓ accordion trigger draws an inline-end chevron mask
+✓ avatar group overlaps by a quarter of the avatar
+✓ underlined tab shows the accent rule
+✓ current site link sits on a tone step
+✓ current page in the pager uses the soft accent
+✓ the sticky header has its own background
+✓ light: .tg-stat__label text contrast 8.45 ≥ 4.5
+✓ light: .tg-stat__meta text contrast 8.45 ≥ 4.5
+✓ light: .tg-table__cell-meta text contrast 8.45 ≥ 4.5
+✓ light: .tg-site-nav__link:not([aria-current]) text contrast 7.75 ≥ 4.5
+✓ light: .tg-pager__link[aria-current="page"] text contrast 5.99 ≥ 4.5
+✓ light: .tg-choice__description text contrast 8.45 ≥ 4.5
+✓ light: .tg-requirements__item text contrast 8.45 ≥ 4.5
+✓ light: .tg-disclosure__meta text contrast 8.45 ≥ 4.5
+✓ light: .tg-badge--destructive text contrast 5.40 ≥ 4.5
+✓ light: .tg-message--user .tg-message__body p text contrast 17.30 ≥ 4.5
+✓ light: .tg-avatar-group__more text contrast 6.96 ≥ 4.5
+✓ dark: .tg-stat__label text contrast 7.66 ≥ 4.5
+✓ dark: .tg-stat__meta text contrast 7.66 ≥ 4.5
+✓ dark: .tg-table__cell-meta text contrast 7.66 ≥ 4.5
+✓ dark: .tg-site-nav__link:not([aria-current]) text contrast 9.22 ≥ 4.5
+✓ dark: .tg-pager__link[aria-current="page"] text contrast 6.84 ≥ 4.5
+✓ dark: .tg-choice__description text contrast 7.66 ≥ 4.5
+✓ dark: .tg-requirements__item text contrast 7.66 ≥ 4.5
+✓ dark: .tg-disclosure__meta text contrast 7.66 ≥ 4.5
+✓ dark: .tg-badge--destructive text contrast 5.81 ≥ 4.5
+✓ dark: .tg-message--user .tg-message__body p text contrast 11.06 ≥ 4.5
+✓ dark: .tg-avatar-group__more text contrast 6.05 ≥ 4.5
+✓ ios-dark: .tg-stat__label text contrast 9.06 ≥ 4.5
+✓ ios-dark: .tg-stat__meta text contrast 9.06 ≥ 4.5
+✓ ios-dark: .tg-table__cell-meta text contrast 9.06 ≥ 4.5
+✓ ios-dark: .tg-site-nav__link:not([aria-current]) text contrast 10.82 ≥ 4.5
+✓ ios-dark: .tg-pager__link[aria-current="page"] text contrast 7.91 ≥ 4.5
+✓ ios-dark: .tg-choice__description text contrast 9.06 ≥ 4.5
+✓ ios-dark: .tg-requirements__item text contrast 9.06 ≥ 4.5
+✓ ios-dark: .tg-disclosure__meta text contrast 9.06 ≥ 4.5
+✓ ios-dark: .tg-badge--destructive text contrast 6.18 ≥ 4.5
+✓ ios-dark: .tg-message--user .tg-message__body p text contrast 14.55 ≥ 4.5
+✓ ios-dark: .tg-avatar-group__more text contrast 7.50 ≥ 4.5
+✓ ArrowDown opens the menu
+✓ keyboard opening skips the entrance animation
+✓ trigger reports expanded
+✓ first item receives focus
+✓ menu rows keep a 44 px target (44)
+✓ focused row shows a visible ring
+✓ menu opens just below its trigger
+✓ menu stays inside the viewport
+✓ End moves to the last item
+✓ ArrowDown wraps to the first item
+✓ Escape closes the menu
+✓ Escape returns focus to the trigger
+✓ trigger reports collapsed
+✓ a pointer opening animates (no instant flag)
+✓ clicking outside closes the menu
+✓ checkbox item toggles the compact table
+✓ checked item shows its mark
+✓ unchecked radio hides its dot
+✓ destructive item text contrast 6.19 ≥ 4.5
+✓ row menu opens the side dialog
+✓ side dialog sits on the inline end at full height
+✓ dialog body scrolls inside the sheet
+✓ select all fills the bulk bar and enables its actions
+✓ choosing rows does not move the table
+✓ bulk bar counts the rows
+✓ selected rows take the soft accent
+✓ partial selection is indeterminate
+✓ clearing leaves the bar in place, empty, with actions unavailable
+✓ sorting marks the header
+✓ rows reorder by the sorted column
+✓ sorted header shows its arrow
+✓ search without results shows an empty state with a way out
+✓ ArrowRight selects the next tab and its panel
+✓ card media reaches the card edges
+✓ failed submit turns unmet rules into errors
+✓ unmet rule error contrast 6.19 ≥ 4.5
+✓ met rules flip to the check mark
+✓ saving sets aria-busy
+✓ button width stays put between states
+✓ only the active state label is visible
+✓ parent choice checks the nested group
+✓ nested choices start under the parent label
+✓ expand all opens every section
+✓ toggle reports pressed and fills
+✓ dismissing a notice moves focus to the page heading
+✓ assistant answer finishes streaming
+✓ user turns align to the inline end
+✓ code uses the mono token
+✓ reduced motion removes menu scale travel
+✓ light 320px: no horizontal scroll
+✓ light 390px: no horizontal scroll
+✓ light 1440px: no horizontal scroll
+✓ dark 320px: no horizontal scroll
+✓ dark 390px: no horizontal scroll
+✓ dark 1440px: no horizontal scroll
+✓ ios-dark 320px: no horizontal scroll
+✓ ios-dark 390px: no horizontal scroll
+✓ ios-dark 1440px: no horizontal scroll
+✓ narrow table stacks into cards
+✓ stacked cells name their columns
+✓ RTL moves the check column to the right
+✓ RTL flips the icon-end button order logically
+✓ no page errors
+107 workspace checks passed in webkit.

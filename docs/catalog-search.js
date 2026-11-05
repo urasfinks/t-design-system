@@ -70,6 +70,7 @@ export function initCatalogSearch({ root = document, navigate } = {}) {
     results.replaceChildren();
     for (const [index, entry] of matches.entries()) {
       const item = document.createElement('li');
+      item.setAttribute('role', 'none');
       const option = document.createElement('a');
       const title = document.createElement('span');
       const meta = document.createElement('span');

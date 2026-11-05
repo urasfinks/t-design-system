@@ -1,0 +1,82 @@
+✓ B6 the hold button is a full-height destructive button
+✓ B6 the fill follows --hold-progress
+✓ B6 one Enter only asks for a second
+✓ B6 a second Enter within a second confirms
+✓ B6 the slide is a native named range
+✓ B6 the slide track is as tall as a control
+✓ B6 End completes the slide
+✓ B6 there is a path without the gesture
+✓ B6 slide label light: contrast 7.31 ≥ 4.5
+✓ B6 slide label dark: contrast 6.35 ≥ 4.5
+✓ B6 slide label ios-dark: contrast 7.76 ≥ 4.5
+✓ B12 the FAB is at least a control tall and pill-shaped
+✓ B12 the FAB floats with a shadow
+✓ B12 the menu opens with labelled items and focus moves in
+✓ B12 item "Новый счёт" is a full-height target
+✓ B12 item "Клиент" is a full-height target
+✓ B12 item "Скан документа" is a full-height target
+✓ B12 Escape closes and returns focus
+✓ F24 columns are named listboxes
+✓ F24 columns snap to the centre
+✓ F24 the edges fade with a mask
+✓ F24 ArrowDown steps the value
+✓ F24 options use tabular figures
+✓ F25 the field pairs a native colour input and a HEX field
+✓ F25 a wrong HEX is invalid
+✓ F25 a right HEX updates the swatch
+✓ F25 the hue track shows the whole colour circle
+✓ F25 the area works from the keyboard
+✓ F25 a swatch is a radio that moves the area
+✓ F26 cells are 44px targets with Russian names
+✓ F26 arrows move through the grid
+✓ F26 ArrowDown moves a row
+✓ F26 an empty search says so
+✓ F33 the waveform is a named native range over decorative bars
+✓ F33 played bars follow the position
+✓ F33 played bars take the accent
+✓ F33 arrows move the selection
+✓ F33 Shift+arrows resize it
+✓ F33 handles are small with a 44px hit area
+✓ C15 cards share one grid cell
+✓ C15 only the top card is in the accessibility tree
+✓ C15 a decision leaves three and announces it
+✓ C15 the decided card is removed
+✓ C21 player buttons are named 44px targets
+✓ C21 time uses tabular figures
+✓ C21 skip moves the position and the time text
+✓ C21 the compare border follows the range
+✓ C21 the two labels sit at opposite edges
+✓ C21 the compare change is not animated
+✓ G4 one panel is open at a time
+✓ G4 the open panel is the widest
+✓ G4 width is not animated
+✓ G4 panels stack on phones
+✓ TS4 the copy track is hidden and inert
+✓ TS4 reduced motion stops the movement
+✓ TS4 with reduced motion there is nothing to pause, so no button
+✓ TS4 with motion allowed the track runs
+✓ TS4 the pause button is a pressed toggle
+✓ TS4 pause stops it
+✓ RTL: the image accordion runs right to left
+✓ B6 at 320px has no horizontal overflow
+✓ B12 at 320px has no horizontal overflow
+✓ F24 at 320px has no horizontal overflow
+✓ F25 at 320px has no horizontal overflow
+✓ F26 at 320px has no horizontal overflow
+✓ F33 at 320px has no horizontal overflow
+✓ C15 at 320px has no horizontal overflow
+✓ C21 at 320px has no horizontal overflow
+✓ G4 at 320px has no horizontal overflow
+✓ TS4 at 320px has no horizontal overflow
+✓ B6 at 390px has no horizontal overflow
+✓ B12 at 390px has no horizontal overflow
+✓ F24 at 390px has no horizontal overflow
+✓ F25 at 390px has no horizontal overflow
+✓ F26 at 390px has no horizontal overflow
+✓ F33 at 390px has no horizontal overflow
+✓ C15 at 390px has no horizontal overflow
+✓ C21 at 390px has no horizontal overflow
+✓ G4 at 390px has no horizontal overflow
+✓ TS4 at 390px has no horizontal overflow
+✓ no script errors
+81 wave 7 checks passed

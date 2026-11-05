@@ -1,0 +1,39 @@
+✓ HTML viewers use public TDS disclosures
+✓ exact class owner leads search
+✓ canonical variants precede incidental uses
+✓ .tg-btn--primary: canonical variant leads search
+✓ .tg-avatar-group: canonical variant leads search
+✓ Meta+K never interrupts editing
+✓ Control+K never interrupts editing
+✓ button-badges: every variant has minimal HTML
+✓ buttons-overview: every variant has minimal HTML
+✓ avatars-overview: every variant has minimal HTML
+✓ inputs-overview: every variant has minimal HTML
+✓ minimal HTML excludes catalog structure
+✓ copy writes only the minimal example
+✓ copy announces success
+✓ clipboard refusal selects HTML for manual copy
+✓ full example remains
+✓ setup links README
+✓ setup explains JS
+✓ class names stay intact when they fit the column
+✓ 48px: delete targets never cover adjacent field or tag
+✓ 64px: delete targets never cover adjacent field or tag
+✓ light: compact actions expose 44px targets
+✓ dark: compact actions expose 44px targets
+✓ ios-dark: compact actions expose 44px targets
+✓ 48px: extended target receives hits outside visible #hit-test .tg-badge:not(:disabled)
+✓ click reaches the intended compact action
+✓ 48px: extended target receives hits outside visible #hit-test .tg-tag-input__remove
+✓ click reaches the intended compact action
+✓ disabled compact action stays disabled
+✓ 64px: extended target receives hits outside visible #hit-test .tg-badge:not(:disabled)
+✓ click reaches the intended compact action
+✓ 64px: extended target receives hits outside visible #hit-test .tg-tag-input__remove
+✓ click reaches the intended compact action
+✓ disabled compact action stays disabled
+✓ 320px: page stays within viewport
+✓ 390px: page stays within viewport
+✓ 768px: page stays within viewport
+✓ 1440px: page stays within viewport
+✓ no script errors

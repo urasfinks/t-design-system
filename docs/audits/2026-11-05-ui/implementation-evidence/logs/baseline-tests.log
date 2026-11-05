@@ -1,0 +1,322 @@
+BASELINE progress-stripes.browser
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+AssertionError [ERR_ASSERTION]: dark: moving stripes have visible contrast (17.02860000000001)
+    at file:///private/tmp/tds-ui-audit-fixes/head-baseline/tests/progress-stripes.browser.mjs:39:12 {
+  generatedMessage: false,
+  code: 'ERR_ASSERTION',
+  actual: false,
+  expected: true,
+  operator: '==',
+  diff: 'simple'
+}
+
+Node.js v26.0.0
+BASELINE button-spacing.browser
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+AssertionError [ERR_ASSERTION]: light/16px/48px/button: icon keeps left inset: {"left":3.984375,"right":3.984375,"top":10,"bottom":10.796875,"inlinePadding":16}
+    at file:///private/tmp/tds-ui-audit-fixes/head-baseline/tests/button-spacing.browser.mjs:31:18
+    at runNextTicks (node:internal/process/task_queues:65:5)
+    at process.processImmediate (node:internal/timers:472:9) {
+  generatedMessage: false,
+  code: 'ERR_ASSERTION',
+  actual: false,
+  expected: true,
+  operator: '==',
+  diff: 'simple'
+}
+
+Node.js v26.0.0
+BASELINE baseline-compatibility.browser
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+AssertionError [ERR_ASSERTION]: chromium/light/320/: 3576 differences: [{"index":1,"tag":"HEADER","id":"","text":"\n  t·t-design-system\n  \n    v0.1.0\n    Тема оформл","classes":"site-header","part":"style","property":"backgroundColor","before":"color(srgb 1 1 1)","after":"oklch(1 0.0000482797 23.7327)"},{"index":7,"tag":"SPAN","id":"","text":"v0.1.0","classes":"version","part":"style","property":"color","before":"color(srgb 0.3 0.3 0.3)","after":"color(srgb 0.300001 0.300003 0.300003)"},{"index":7,"tag":"SPAN","id":"","text":"v0.1.0","classes":"version","part":"style","property":"border","before":"0px none color(srgb 0.3 0.3 0.3)","after":"0px none color(srgb 0.300001 0.300003 0.300003)"},{"index":7,"tag":"SPAN","id":"","text":"v0.1.0","classes":"version","part":"style","property":"outline","before":"color(srgb 0.3 0.3 0.3) none 3px","after":"color(srgb 0.300001 0.300003 0.300003) none 3px"},{"index":7,"tag":"SPAN","id":"","text":"v0.1.0","classes":"version","part":"before","property":"color","before":"color(srgb 0.3 0.3 0.3)","after":"color(srgb 0.300001 0.300003 0.300003)"}]
+    at file:///private/tmp/tds-ui-audit-fixes/head-baseline/tests/baseline-compatibility.browser.mjs:121:18 {
+  generatedMessage: false,
+  code: 'ERR_ASSERTION',
+  actual: undefined,
+  expected: undefined,
+  operator: 'fail',
+  diff: 'simple'
+}
+
+Node.js v26.0.0
+BASELINE browser
+✓ four light source colors follow the documented palette
+✓ four desktopDark source colors follow the documented palette
+✓ four iosDark source colors follow the documented palette
+✓ light theme works without Telegram
+✓ controls have at least 44px touch target
+✓ utilities override component padding
+✓ system dark theme
+✓ explicit light overrides dark OS
+✓ explicit dark overrides light OS
+✓ dark mode selects iOS palette on iOS platform
+✓ automatic dark mode respects iOS platform
+✓ explicit light remains light on iOS
+✓ Telegram adapter fallback keeps dark palette
+✓ legacy project palette takes precedence over SDK colors
+✓ SDK colors do not replace source palette by default
+✓ native Telegram colors are opt-in
+✓ legacy Telegram variable is supported
+✓ application custom properties override framework
+✓ application CSS overrides layered component
+✓ disabled button ignores hover
+✓ keyboard focus is visible
+✓ reduced motion removes control transitions
+✓ progress defaults to a fully clipped value
+✓ hidden attribute beats component and utility display
+✓ standalone forms module styles disabled switches
+✓ component catalog is served
+✓ individual icon asset is served
+✓ visible catalog icons render from individual SVG files
+✓ button icons use shared 20px size and 2-unit round stroke
+✓ glass example has a neutral flat backdrop
+✓ HTTP server blocks encoded traversal
+✓ catalog theme control
+✓ catalog exposes iOS dark palette
+✓ light: catalog panels and inputs follow the source materials
+✓ light: example viewport uses the documented page background
+✓ light: real catalog loading text contrast ≥ 4.5
+✓ dark: catalog panels and inputs follow the source materials
+✓ dark: example viewport uses the documented page background
+✓ dark: real catalog loading text contrast ≥ 4.5
+✓ ios-dark: catalog panels and inputs follow the source materials
+✓ ios-dark: example viewport uses the documented page background
+✓ ios-dark: real catalog loading text contrast ≥ 4.5
+✓ primary link keeps button text color
+✓ local loading overlay stays below the sticky header
+✓ file control shows local filename and preview
+✓ clearing file resets the preview
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+locator.click: Error: strict mode violation: getByRole('switch', { name: 'Уведомления', exact: true }) resolved to 2 elements:
+    1) <button role="switch" class="tg-switch" aria-checked="false" aria-labelledby="notifications-label">…</button> aka getByRole('switch', { name: 'Уведомления' }).first()
+    2) <button type="button" role="switch" class="tg-switch" aria-checked="false" aria-labelledby="buttons-notifications-label">…</button> aka getByRole('switch', { name: 'Уведомления' }).nth(1)
+
+Call log:
+[2m  - waiting for getByRole('switch', { name: 'Уведомления', exact: true })[22m
+
+    at /private/tmp/tds-ui-audit-fixes/head-baseline/tests/browser.mjs:156:72 {
+  log: [
+    "  - waiting for getByRole('switch', { name: 'Уведомления', exact: true })"
+  ]
+}
+
+Node.js v26.0.0
+BASELINE components-wave-0.browser
+✓ B15 keyboard focus shows the tooltip at once
+✓ B15 keyboard opening skips the entrance
+✓ B15 tooltip sits above its trigger by default
+✓ B15 tooltip is centred on its trigger
+✓ B15 tooltip uses the overlay surface and small type
+✓ B15 tooltip ignores the pointer
+✓ B15 button name comes from the tooltip label
+✓ B15 shortcut is the description
+✓ B15 tooltip has role tooltip
+✓ B15 light: tooltip text contrast 21.00 ≥ 4.5
+✓ B15 dark: tooltip text contrast 14.00 ≥ 4.5
+✓ B15 ios-dark: tooltip text contrast 17.58 ≥ 4.5
+✓ B15 Escape hides the tooltip
+✓ B15 Escape keeps focus on the trigger
+✓ B15 data-side=bottom places the tooltip below
+✓ B15 hover does not show the tooltip immediately
+✓ B15 hover shows the tooltip after the delay
+✓ B15 the next tooltip along the toolbar opens without delay
+✓ B15 leaving hides the tooltip
+✓ B15 measured fallback keeps the tooltip inside a 320px screen
+✓ B8 segments keep the control height
+✓ B8 segment radius is the inset radius
+✓ B8 trough matches the tabs trough
+✓ B8 checked segment rises like a selected tab
+✓ B8 arrow keys move the native radio choice
+✓ B8 the focused segment shows a ring
+✓ B8 the moved choice remains a flat selected segment
+✓ B8 a toggle segment flips aria-pressed
+✓ no script errors
+29 wave 0 checks passed
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+AssertionError [ERR_ASSERTION]: B8 pressed toggles share the risen look
+    at check (file:///private/tmp/tds-ui-audit-fixes/head-baseline/tests/helpers/catalog-page.mjs:24:61)
+    at file:///private/tmp/tds-ui-audit-fixes/head-baseline/tests/components-wave-0.browser.mjs:85:3 {
+  generatedMessage: false,
+  code: 'ERR_ASSERTION',
+  actual: false,
+  expected: true,
+  operator: '==',
+  diff: 'simple'
+}
+
+Node.js v26.0.0
+BASELINE progress-stripes.browser --webkit
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+AssertionError [ERR_ASSERTION]: dark: moving stripes have visible contrast (15.888200000000012)
+    at file:///private/tmp/tds-ui-audit-fixes/head-baseline/tests/progress-stripes.browser.mjs:39:12 {
+  generatedMessage: false,
+  code: 'ERR_ASSERTION',
+  actual: false,
+  expected: true,
+  operator: '==',
+  diff: 'simple'
+}
+
+Node.js v26.0.0
+BASELINE button-spacing.browser --webkit
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+AssertionError [ERR_ASSERTION]: light/16px/48px/button: icon keeps left inset: {"left":3.984375,"right":3.9850082397460938,"top":9.9765625,"bottom":9.9765625,"inlinePadding":16}
+    at file:///private/tmp/tds-ui-audit-fixes/head-baseline/tests/button-spacing.browser.mjs:31:18
+    at runNextTicks (node:internal/process/task_queues:65:5)
+    at process.processImmediate (node:internal/timers:472:9) {
+  generatedMessage: false,
+  code: 'ERR_ASSERTION',
+  actual: false,
+  expected: true,
+  operator: '==',
+  diff: 'simple'
+}
+
+Node.js v26.0.0
+BASELINE baseline-compatibility.browser --webkit
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+AssertionError [ERR_ASSERTION]: webkit/light/320/: 753 differences: [{"index":1,"tag":"HEADER","id":"","text":"\n  t·t-design-system\n  \n    v0.1.0\n    Тема оформл","classes":"site-header","part":"style","property":"backgroundColor","before":"color(srgb 1 1 1)","after":"oklch(1 0 0)"},{"index":9,"tag":"SELECT","id":"theme","text":"АвтоСветлаяТёмная · DesktopТёмная · iOS","classes":"tg-select theme-select","part":"style","property":"backgroundColor","before":"color(srgb 1 1 1)","after":"oklch(1 0 0)"},{"index":9,"tag":"SELECT","id":"theme","text":"АвтоСветлаяТёмная · DesktopТёмная · iOS","classes":"tg-select theme-select","part":"style","property":"backgroundImage","before":"url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-opacity='.65' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E\")","after":"url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-opacity='0.65' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E\")"},{"index":14,"tag":"NAV","id":"","text":"РазделОбзорЦвета и темыКомпоновкаКнопкиМеню действ","classes":"mobile-navigation","part":"style","property":"backgroundColor","before":"color(srgb 1 1 1)","after":"oklch(1 0 0)"},{"index":18,"tag":"SELECT","id":"section-select","text":"ОбзорЦвета и темыКомпоновкаКнопкиМеню действийИкон","classes":"tg-select","part":"style","property":"backgroundColor","before":"color(srgb 1 1 1)","after":"oklch(1 0 0)"}]
+    at file:///private/tmp/tds-ui-audit-fixes/head-baseline/tests/baseline-compatibility.browser.mjs:121:18 {
+  generatedMessage: false,
+  code: 'ERR_ASSERTION',
+  actual: undefined,
+  expected: undefined,
+  operator: 'fail',
+  diff: 'simple'
+}
+
+Node.js v26.0.0
+BASELINE browser --webkit
+✓ four light source colors follow the documented palette
+✓ four desktopDark source colors follow the documented palette
+✓ four iosDark source colors follow the documented palette
+✓ light theme works without Telegram
+✓ controls have at least 44px touch target
+✓ utilities override component padding
+✓ system dark theme
+✓ explicit light overrides dark OS
+✓ explicit dark overrides light OS
+✓ dark mode selects iOS palette on iOS platform
+✓ automatic dark mode respects iOS platform
+✓ explicit light remains light on iOS
+✓ Telegram adapter fallback keeps dark palette
+✓ legacy project palette takes precedence over SDK colors
+✓ SDK colors do not replace source palette by default
+✓ native Telegram colors are opt-in
+✓ legacy Telegram variable is supported
+✓ application custom properties override framework
+✓ application CSS overrides layered component
+✓ disabled button ignores hover
+✓ keyboard focus is visible
+✓ reduced motion removes control transitions
+✓ progress defaults to a fully clipped value
+✓ hidden attribute beats component and utility display
+✓ standalone forms module styles disabled switches
+✓ component catalog is served
+✓ individual icon asset is served
+✓ visible catalog icons render from individual SVG files
+✓ button icons use shared 20px size and 2-unit round stroke
+✓ glass example has a neutral flat backdrop
+✓ HTTP server blocks encoded traversal
+✓ catalog theme control
+✓ catalog exposes iOS dark palette
+✓ light: catalog panels and inputs follow the source materials
+✓ light: example viewport uses the documented page background
+✓ light: real catalog loading text contrast ≥ 4.5
+✓ dark: catalog panels and inputs follow the source materials
+✓ dark: example viewport uses the documented page background
+✓ dark: real catalog loading text contrast ≥ 4.5
+✓ ios-dark: catalog panels and inputs follow the source materials
+✓ ios-dark: example viewport uses the documented page background
+✓ ios-dark: real catalog loading text contrast ≥ 4.5
+✓ primary link keeps button text color
+✓ local loading overlay stays below the sticky header
+✓ file control shows local filename and preview
+✓ clearing file resets the preview
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+locator.click: Error: strict mode violation: getByRole('switch', { name: 'Уведомления', exact: true }) resolved to 2 elements:
+    1) <button role="switch" class="tg-switch" aria-checked="false" aria-labelledby="notifications-label">…</button> aka getByRole('switch', { name: 'Уведомления' }).first()
+    2) <button type="button" role="switch" class="tg-switch" aria-checked="false" aria-labelledby="buttons-notifications-label">…</button> aka getByRole('switch', { name: 'Уведомления' }).nth(1)
+
+Call log:
+[2m  - waiting for getByRole('switch', { name: 'Уведомления', exact: true })[22m
+
+    at /private/tmp/tds-ui-audit-fixes/head-baseline/tests/browser.mjs:156:72 {
+  log: [
+    "  - waiting for getByRole('switch', { name: 'Уведомления', exact: true })"
+  ]
+}
+
+Node.js v26.0.0
+BASELINE components-wave-0.browser --webkit
+✓ B15 keyboard focus shows the tooltip at once
+✓ B15 keyboard opening skips the entrance
+✓ B15 tooltip sits above its trigger by default
+✓ B15 tooltip is centred on its trigger
+✓ B15 tooltip uses the overlay surface and small type
+✓ B15 tooltip ignores the pointer
+✓ B15 button name comes from the tooltip label
+✓ B15 shortcut is the description
+✓ B15 tooltip has role tooltip
+✓ B15 light: tooltip text contrast 21.00 ≥ 4.5
+✓ B15 dark: tooltip text contrast 14.00 ≥ 4.5
+✓ B15 ios-dark: tooltip text contrast 17.58 ≥ 4.5
+✓ B15 Escape hides the tooltip
+✓ B15 Escape keeps focus on the trigger
+✓ B15 data-side=bottom places the tooltip below
+✓ B15 hover does not show the tooltip immediately
+✓ B15 hover shows the tooltip after the delay
+✓ B15 the next tooltip along the toolbar opens without delay
+✓ B15 leaving hides the tooltip
+✓ B15 measured fallback keeps the tooltip inside a 320px screen
+✓ B8 segments keep the control height
+✓ B8 segment radius is the inset radius
+✓ B8 trough matches the tabs trough
+✓ B8 checked segment rises like a selected tab
+✓ B8 arrow keys move the native radio choice
+✓ no script errors
+26 wave 0 checks passed
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+locator.evaluate: Timeout 45000ms exceeded.
+Call log:
+[2m  - waiting for locator('.example-body[data-spec~="B8"] fieldset.tg-segmented:not(.tg-segmented--vertical) .tg-segmented__item:has(input:focus-visible)').first()[22m
+
+    at css (/private/tmp/tds-ui-audit-fixes/head-baseline/tests/helpers/catalog-page.mjs:25:85)
+    at /private/tmp/tds-ui-audit-fixes/head-baseline/tests/components-wave-0.browser.mjs:80:55 {
+  log: [
+    `  - waiting for locator('.example-body[data-spec~="B8"] fieldset.tg-segmented:not(.tg-segmented--vertical) .tg-segmented__item:has(input:focus-visible)').first()`
+  ],
+  name: 'TimeoutError'
+}
+
+Node.js v26.0.0

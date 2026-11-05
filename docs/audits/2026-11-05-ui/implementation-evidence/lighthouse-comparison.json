@@ -1,0 +1,203 @@
+{
+  "note": "Local Lighthouse mobile lab runs; parallel validation caused variable CPU load, so these are not controlled production benchmarks.",
+  "runs": [
+    {
+      "phase": "before",
+      "run": 1,
+      "fetchTime": "2026-11-05T18:08:40.361Z",
+      "performance": 0.71,
+      "metrics": {
+        "first-contentful-paint": 4694.248,
+        "largest-contentful-paint": 4694.248,
+        "total-blocking-time": 17.5,
+        "cumulative-layout-shift": 0.003009055346853783
+      },
+      "stylesheets": [
+        {
+          "url": "http://127.0.0.1:4173/dist/t-design-system.css",
+          "transferSize": 265004
+        },
+        {
+          "url": "http://127.0.0.1:4173/dist/t-design-system.css",
+          "transferSize": 265004
+        }
+      ]
+    },
+    {
+      "phase": "before",
+      "run": 2,
+      "fetchTime": "2026-11-05T18:08:53.813Z",
+      "performance": 0.71,
+      "metrics": {
+        "first-contentful-paint": 4694.204,
+        "largest-contentful-paint": 4694.204,
+        "total-blocking-time": 13,
+        "cumulative-layout-shift": 0.003009055346853783
+      },
+      "stylesheets": [
+        {
+          "url": "http://127.0.0.1:4173/dist/t-design-system.css",
+          "transferSize": 265004
+        },
+        {
+          "url": "http://127.0.0.1:4173/dist/t-design-system.css",
+          "transferSize": 265004
+        }
+      ]
+    },
+    {
+      "phase": "before",
+      "run": 3,
+      "fetchTime": "2026-11-05T18:09:07.503Z",
+      "performance": 0.72,
+      "metrics": {
+        "first-contentful-paint": 4651.842000000001,
+        "largest-contentful-paint": 4651.842000000001,
+        "total-blocking-time": 42,
+        "cumulative-layout-shift": 0.003009055346853783
+      },
+      "stylesheets": [
+        {
+          "url": "http://127.0.0.1:4173/dist/t-design-system.css",
+          "transferSize": 265004
+        },
+        {
+          "url": "http://127.0.0.1:4173/dist/t-design-system.css",
+          "transferSize": 265004
+        }
+      ]
+    },
+    {
+      "phase": "after",
+      "run": 1,
+      "fetchTime": "2026-11-05T18:25:44.684Z",
+      "performance": 0.75,
+      "metrics": {
+        "first-contentful-paint": 4245.916,
+        "largest-contentful-paint": 4245.916,
+        "total-blocking-time": 99.99999999999909,
+        "cumulative-layout-shift": 0.003009055346853783
+      },
+      "stylesheets": [
+        {
+          "url": "http://127.0.0.1:4173/dist/t-design-system.min.css",
+          "transferSize": 215417
+        },
+        {
+          "url": "http://127.0.0.1:4173/dist/t-design-system.css",
+          "transferSize": 266249
+        }
+      ]
+    },
+    {
+      "phase": "after",
+      "run": 2,
+      "fetchTime": "2026-11-05T18:25:58.308Z",
+      "performance": 0.73,
+      "metrics": {
+        "first-contentful-paint": 4394.721,
+        "largest-contentful-paint": 4394.721,
+        "total-blocking-time": 81.99999999999909,
+        "cumulative-layout-shift": 0.003009055346853783
+      },
+      "stylesheets": [
+        {
+          "url": "http://127.0.0.1:4173/dist/t-design-system.min.css",
+          "transferSize": 215417
+        },
+        {
+          "url": "http://127.0.0.1:4173/dist/t-design-system.css",
+          "transferSize": 266249
+        }
+      ]
+    },
+    {
+      "phase": "after",
+      "run": 3,
+      "fetchTime": "2026-11-05T18:26:11.844Z",
+      "performance": 0.73,
+      "metrics": {
+        "first-contentful-paint": 4393.648,
+        "largest-contentful-paint": 4393.648,
+        "total-blocking-time": 74.50000000000091,
+        "cumulative-layout-shift": 0.003009055346853783
+      },
+      "stylesheets": [
+        {
+          "url": "http://127.0.0.1:4173/dist/t-design-system.min.css",
+          "transferSize": 215417
+        },
+        {
+          "url": "http://127.0.0.1:4173/dist/t-design-system.css",
+          "transferSize": 266249
+        }
+      ]
+    },
+    {
+      "phase": "final",
+      "run": 1,
+      "fetchTime": "2026-11-05T18:28:22.259Z",
+      "performance": 0.65,
+      "metrics": {
+        "first-contentful-paint": 4393.494,
+        "largest-contentful-paint": 7018.4939999999915,
+        "total-blocking-time": 102.5,
+        "cumulative-layout-shift": 0.003009055346853783
+      },
+      "stylesheets": [
+        {
+          "url": "http://127.0.0.1:4173/dist/t-design-system.min.css",
+          "transferSize": 215417
+        },
+        {
+          "url": "http://127.0.0.1:4173/dist/t-design-system.min.css",
+          "transferSize": 215417
+        }
+      ]
+    },
+    {
+      "phase": "final",
+      "run": 2,
+      "fetchTime": "2026-11-05T18:28:36.447Z",
+      "performance": 0.72,
+      "metrics": {
+        "first-contentful-paint": 4544.13,
+        "largest-contentful-paint": 4544.13,
+        "total-blocking-time": 89.49999999999955,
+        "cumulative-layout-shift": 0.003009055346853783
+      },
+      "stylesheets": [
+        {
+          "url": "http://127.0.0.1:4173/dist/t-design-system.min.css",
+          "transferSize": 215417
+        },
+        {
+          "url": "http://127.0.0.1:4173/dist/t-design-system.min.css",
+          "transferSize": 215417
+        }
+      ]
+    },
+    {
+      "phase": "final",
+      "run": 3,
+      "fetchTime": "2026-11-05T18:28:49.879Z",
+      "performance": 0.73,
+      "metrics": {
+        "first-contentful-paint": 4393.765,
+        "largest-contentful-paint": 4393.765,
+        "total-blocking-time": 74.00000000000045,
+        "cumulative-layout-shift": 0.003009055346853783
+      },
+      "stylesheets": [
+        {
+          "url": "http://127.0.0.1:4173/dist/t-design-system.min.css",
+          "transferSize": 215417
+        },
+        {
+          "url": "http://127.0.0.1:4173/dist/t-design-system.min.css",
+          "transferSize": 215417
+        }
+      ]
+    }
+  ]
+}
