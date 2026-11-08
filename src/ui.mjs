@@ -15,6 +15,7 @@ export function initUI(root = globalThis.document) {
   if (!view) return () => {};
   const stopLegacy = initRipple(root);
   const stopScrollRegions = initScrollRegions(root);
+  const stopActionMenus = initActionMenus(root, doc, view);
   const ranges = 'input[type="range"].tg-range';
   const updateRange = el => {
     const min = Number(el.min || 0);
@@ -102,6 +103,7 @@ export function initUI(root = globalThis.document) {
     root.removeEventListener('click', click);
     stopLegacy();
     stopScrollRegions();
+    stopActionMenus();
     for (const node of active.keys()) remove(node);
     registrations.delete(root);
   };
@@ -169,5 +171,110 @@ export function positionMenu(menu, trigger) {
       if (!menu.getAttribute('style')?.trim()) menu.removeAttribute('style');
       positionedMenus.delete(menu);
     });
+  };
+}
+
+
+function initActionMenus(root, doc, view) {
+  const triggerSelector = 'button[data-tg-menu][popovertarget]';
+  const menuSelector = '.tg-menu[popover][role="menu"]';
+  const openMenus = new Map();
+  const items = menu => [...menu.querySelectorAll('[role="menuitem"], [role="menuitemcheckbox"], [role="menuitemradio"]')]
+    .filter(item => !item.matches(':disabled') && item.closest(menuSelector) === menu && item.getClientRects().length);
+  const focus = item => item?.focus({ preventScroll: true });
+  const stop = menu => {
+    const entry = openMenus.get(menu);
+    if (!entry) return;
+    openMenus.delete(menu);
+    entry.trigger.setAttribute('aria-expanded', 'false');
+    entry.positionCleanup();
+    if (!openMenus.size) observer.disconnect();
+  };
+  const observer = new view.MutationObserver(() => {
+    for (const [menu, { trigger }] of openMenus) {
+      if (!root.contains(menu) || !root.contains(trigger)) {
+        if (menu.matches(':popover-open')) menu.hidePopover();
+        stop(menu);
+      }
+    }
+  });
+  const open = (menu, trigger, last) => {
+    if (!menu.matches(':popover-open')) {
+      try { menu.showPopover({ source: trigger }); } catch { menu.showPopover(); }
+    }
+    if (!openMenus.has(menu)) {
+      if (!openMenus.size) observer.observe(root, { childList: true, subtree: true });
+      openMenus.set(menu, { trigger, positionCleanup: positionMenu(menu, trigger) });
+    }
+    if (!menu.matches(':popover-open')) { stop(menu); return; }
+    trigger.setAttribute('aria-expanded', 'true');
+    const entries = items(menu);
+    focus(last ? entries.at(-1) : entries[0]);
+  };
+  const close = menu => {
+    menu.hidePopover();
+    stop(menu);
+  };
+  const targetMenu = trigger => {
+    const menu = trigger?.popoverTargetElement ?? doc.getElementById(trigger?.getAttribute('popovertarget'));
+    return menu?.matches(menuSelector) && root.contains(menu) ? menu : undefined;
+  };
+  const activate = event => {
+    if (event.defaultPrevented) return;
+    const trigger = event.target?.closest?.(triggerSelector);
+    if (!trigger || !root.contains(trigger) || trigger.matches(':disabled, [aria-disabled="true"]')) return;
+    const menu = targetMenu(trigger);
+    if (!menu) return;
+    event.preventDefault();
+    if (event.type === 'click' && menu.matches(':popover-open')) close(menu);
+    else open(menu, trigger, event.key === 'ArrowUp');
+  };
+  const keydown = event => {
+    if (event.defaultPrevented) return;
+    const menu = event.target?.closest?.(menuSelector);
+    const entry = openMenus.get(menu);
+    if (!entry) {
+      if (event.key === 'ArrowDown' || event.key === 'ArrowUp') activate(event);
+      return;
+    }
+    if (event.key === 'Escape' || event.key === 'Tab') {
+      if (event.key === 'Escape') {
+        event.preventDefault();
+        event.stopPropagation();
+      }
+      close(menu);
+      focus(entry.trigger);
+      return;
+    }
+    const entries = items(menu);
+    if (!entries.length) return;
+    const current = entries.indexOf(doc.activeElement);
+    let next;
+    switch (event.key) {
+      case 'Home': next = entries[0]; break;
+      case 'End': next = entries.at(-1); break;
+      case 'ArrowDown': next = entries[(current + 1) % entries.length]; break;
+      case 'ArrowUp': next = entries[(Math.max(0, current) + entries.length - 1) % entries.length]; break;
+      default: return;
+    }
+    event.preventDefault();
+    focus(next);
+  };
+  const toggle = event => {
+    const menu = event.target;
+    if (openMenus.has(menu) && !menu.matches(':popover-open')) stop(menu);
+  };
+  root.addEventListener('click', activate);
+  root.addEventListener('keydown', keydown);
+  root.addEventListener('toggle', toggle, true);
+  return () => {
+    root.removeEventListener('click', activate);
+    root.removeEventListener('keydown', keydown);
+    root.removeEventListener('toggle', toggle, true);
+    for (const menu of openMenus.keys()) {
+      if (menu.matches(':popover-open')) menu.hidePopover();
+      stop(menu);
+    }
+    observer.disconnect();
   };
 }

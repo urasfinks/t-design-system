@@ -46,3 +46,38 @@ test('bridge without Telegram leaves standalone theme selection intact', async (
   assert.equal(typeof dispose, 'function');
   dispose();
 });
+
+test('background sync is automatic and macOS sends the latest palette after startup', async () => {
+  const { initTelegramTheme } = await loadBridge();
+  const { root, tg, listeners } = fixture({ scheme: 'light' });
+  const sent = [];
+  tg.setBackgroundColor = color => sent.push(color);
+  root.ownerDocument = { defaultView: {
+    getComputedStyle: element => ({
+      getPropertyValue: name => {
+        assert.equal(name, '--bg-body');
+        return element.dataset.theme === 'dark' ? '#151e27' : '#f5f5f5';
+      },
+    }),
+  } };
+
+  tg.platform = 'macos';
+  const stop = initTelegramTheme(tg, { root });
+  tg.colorScheme = 'dark';
+  listeners.get('themeChanged')();
+  assert.deepEqual(sent, []);
+  await new Promise(resolve => setTimeout(resolve, 250));
+  assert.deepEqual(sent, ['#151e27']);
+
+  tg.colorScheme = 'light';
+  listeners.get('themeChanged')();
+  stop();
+  await new Promise(resolve => setTimeout(resolve, 250));
+  assert.deepEqual(sent, ['#151e27']);
+  assert.equal(listeners.size, 0);
+
+  tg.platform = 'tdesktop';
+  const stopDesktop = initTelegramTheme(tg, { root });
+  assert.deepEqual(sent, ['#151e27', '#f5f5f5']);
+  stopDesktop();
+});

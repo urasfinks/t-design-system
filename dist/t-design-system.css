@@ -319,8 +319,11 @@
     letter-spacing: inherit;
     color: inherit;
   }
+  :where(.tg-comment[tabindex="-1"]):focus {
+    outline: none;
+  }
   :where(.tg-btn, .tg-icon-btn, .tg-tab, .tg-tabbar__item, .tg-switch, .tg-chip, .tg-avatar, .tg-check, .tg-radio, .tg-link, .tg-dot,
-  .tg-pager__link, .tg-site-nav__link, .tg-table__sort):focus-visible {
+  .tg-pager__link, .tg-site-nav__link, .tg-table__sort, .tg-comment[tabindex="-1"]):focus-visible {
     outline: 2px solid var(--text-link);
     outline-offset: 3px;
   }
