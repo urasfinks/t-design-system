@@ -323,7 +323,7 @@
     outline: none;
   }
   :where(.tg-btn, .tg-icon-btn, .tg-tab, .tg-tabbar__item, .tg-switch, .tg-chip, .tg-avatar, .tg-check, .tg-radio, .tg-link, .tg-dot,
-  .tg-pager__link, .tg-site-nav__link, .tg-table__sort, [tabindex="-1"]:not(:any-link, button, input, select, textarea, summary, iframe, audio, video, [role], [contenteditable])):focus-visible {
+  .tg-pager__link, .tg-site-nav__link, .tg-table__sort):focus-visible {
     outline: 2px solid var(--text-link);
     outline-offset: 3px;
   }

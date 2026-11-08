@@ -28,13 +28,14 @@ try {
         await target.evaluate(el => {
           document.querySelector('#jump').onclick = () => el.focus();
         });
-        if (await target.evaluate(el => el.tagName !== 'BUTTON')) {
+        const interactive = await target.evaluate(el => el.tagName === 'BUTTON');
+        if (!interactive) {
           await jump.click();
           assert.deepEqual(await focusState(target), { focused: true, visible: false, outline: 'none' }, theme);
         }
         await jump.focus();
         await focusPage.keyboard.press('Enter');
-        assert.deepEqual(await focusState(target), { focused: true, visible: true, outline: 'solid' }, theme);
+        assert.deepEqual(await focusState(target), { focused: true, visible: true, outline: interactive ? 'solid' : 'none' }, theme);
       }
     }
   } finally {
