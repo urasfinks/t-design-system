@@ -15,6 +15,12 @@
   box-shadow: var(--floating-shadow);
 }
 
+// Shared page scrim for dialogs and contextual actions.
+@mixin backdrop {
+  background: var(--overlay-bg);
+  backdrop-filter: blur(4px);
+}
+
 // A popover in the top layer: placed by the host or by CSS anchors, grows from its
 // trigger, leaves faster than it arrives, appears at once when opened from the keyboard.
 @mixin popover($origin-var: --tg-float-origin, $origin: top left, $origin-rtl: top right, $scale: .97) {

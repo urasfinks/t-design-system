@@ -1,7 +1,7 @@
 {
   "componentFiles": 40,
   "foundationFiles": 2,
-  "declarations": 805,
+  "declarations": 807,
   "consumers": [
     {
       "file": "base/_index.scss",
@@ -1871,6 +1871,22 @@
     },
     {
       "file": "components/_compositions.scss",
+      "property": "background",
+      "roles": [
+        "--background-panel"
+      ],
+      "value": "var(--background-panel)"
+    },
+    {
+      "file": "components/_compositions.scss",
+      "property": "border-radius",
+      "roles": [
+        "--radius"
+      ],
+      "value": "var(--radius)"
+    },
+    {
+      "file": "components/_compositions.scss",
       "property": "border-inline-start",
       "roles": [
         "--border"
@@ -2881,14 +2897,6 @@
     },
     {
       "file": "components/_feedback.scss",
-      "property": "background",
-      "roles": [
-        "--overlay-bg"
-      ],
-      "value": "var(--overlay-bg)"
-    },
-    {
-      "file": "components/_feedback.scss",
       "property": "border-block-start",
       "roles": [
         "--border"
@@ -3046,6 +3054,14 @@
         "--floating-shadow"
       ],
       "value": "var(--floating-shadow)"
+    },
+    {
+      "file": "components/_floating.scss",
+      "property": "background",
+      "roles": [
+        "--overlay-bg"
+      ],
+      "value": "var(--overlay-bg)"
     },
     {
       "file": "components/_floating.scss",

@@ -2619,6 +2619,7 @@
   @media (max-width: 36rem) {
     dialog.tg-modal--sheet {
       inline-size: 100%;
+      max-inline-size: 100%;
       max-block-size: 90dvh;
       margin: auto 0 0;
       border-end-start-radius: 0;
@@ -3490,6 +3491,30 @@
   .tg-comment__actions > .tg-btn--ghost.tg-btn--sm:first-child {
     margin-inline-start: calc(-1 * (var(--space-3) + 1px));
   }
+  body:has(.tg-comment--focus-menu .tg-menu:popover-open)::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: var(--z-overlay);
+    background: var(--overlay-bg);
+    backdrop-filter: blur(4px);
+  }
+  .tg-comment--focus-menu:has(.tg-menu:popover-open) {
+    position: relative;
+    z-index: calc(var(--z-overlay) + 1);
+    pointer-events: none;
+  }
+  .tg-comment--focus-menu:has(.tg-menu:popover-open)::before {
+    content: "";
+    position: absolute;
+    inset: calc(-1 * var(--space-2));
+    z-index: -1;
+    background: var(--background-panel);
+    border-radius: var(--radius);
+  }
+  .tg-comment--focus-menu:has(.tg-menu:popover-open) .tg-menu:popover-open {
+    pointer-events: auto;
+  }
   .tg-thread {
     margin-inline-start: calc(var(--icon-avatar) + var(--space-3));
     padding-inline-start: var(--space-4);
@@ -3543,7 +3568,7 @@
       grid-row: 1;
       align-self: center;
     }
-    .tg-comment__text, .tg-comment__actions, .tg-comment__recipient {
+    .tg-comment__text, .tg-comment__actions, .tg-comment__recipient, .tg-comment__section {
       grid-column: 1/-1;
     }
     .tg-thread {

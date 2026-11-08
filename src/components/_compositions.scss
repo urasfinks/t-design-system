@@ -189,6 +189,31 @@
     &__actions > .tg-btn--ghost:first-child { margin-inline-start: calc(-1 * (var(--space-4) + 1px)); }
     &__actions > .tg-btn--ghost.tg-btn--sm:first-child { margin-inline-start: calc(-1 * (var(--space-3) + 1px)); }
   }
+  // The menu is in the top layer; its originating comment sits above the page scrim.
+  body:has(.tg-comment--focus-menu .tg-menu:popover-open)::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    z-index: var(--z-overlay);
+    @include floating.backdrop;
+  }
+  .tg-comment--focus-menu:has(.tg-menu:popover-open) {
+    position: relative;
+    z-index: calc(var(--z-overlay) + 1);
+    pointer-events: none;
+
+    &::before {
+      content: '';
+      position: absolute;
+      inset: calc(-1 * var(--space-2));
+      z-index: -1;
+      background: var(--background-panel);
+      border-radius: var(--radius);
+    }
+
+    .tg-menu:popover-open { pointer-events: auto; }
+  }
+
   .tg-thread {
     margin-inline-start: calc(var(--icon-avatar) + var(--space-3));
     padding-inline-start: var(--space-4);
@@ -215,7 +240,7 @@
       gap: var(--space-1) var(--space-3);
       &__body { display: contents; }
       &__meta { grid-column: 2; grid-row: 1; align-self: center; }
-      &__text, &__actions, &__recipient { grid-column: 1 / -1; }
+      &__text, &__actions, &__recipient, &__section { grid-column: 1 / -1; }
     }
     .tg-thread { margin-inline-start: var(--space-3); padding-inline-start: var(--space-2); }
   }

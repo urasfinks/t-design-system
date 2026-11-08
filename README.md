@@ -674,10 +674,13 @@ existing palette, typography and geometry tokens; consumers do not need CSS.
   use `tg-grow` and `tg-truncate` for its excerpt.
 - `tg-comment` contains the avatar and `tg-comment__body`. The body contains
   `tg-comment__meta`, `tg-comment__recipient`, `tg-comment__text` and
-  `tg-comment__actions`. On mobile the avatar stays beside metadata and content
-  spans the full width. `tg-thread` indents replies with a separator. Use standard
+  `tg-comment__actions`. Use `tg-comment__section` on a direct child of the body
+  for additional content such as a voting panel. On mobile the avatar stays
+  beside metadata and these content slots span the full width. `tg-thread` indents replies with a separator. Use standard
   row/spacing/text utilities within those slots. Do not add `tg-row` to the comment
   root or composer form/input: those compositions already provide their layout.
+- Add `tg-comment--focus-menu` when a comment contains a native `tg-menu` popover.
+  While that menu is open, the comment stays above the shared blurred page backdrop.
 - `tg-toolbar` is a wrapping row with spaced ends; `tg-toolbar--responsive` stretches
   items on mobile. `tg-toolbar--compact` uses the smallest spacing.
   `tg-tabs--responsive` makes tabs full-width on mobile; use on `tg-tabs`.
