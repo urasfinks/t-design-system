@@ -3,12 +3,20 @@
  * application's light/desktopDark/iosDark palettes. Returns an unsubscribe function.
  */
 export function initTelegramTheme(tg, {
+  autoReady = true,
   root = globalThis.document?.documentElement,
   userAgent = globalThis.navigator?.userAgent ?? '',
 } = {}) {
   if (!tg) return () => {};
   if (!root) throw new TypeError('initTelegramTheme requires a document root');
+  const document = root.ownerDocument;
+  const view = document?.defaultView;
   let backgroundTimer;
+  let backgroundFrame;
+  function afterLoad() {
+    // WebKit may apply the stylesheet on the next render after load.
+    backgroundFrame = view.requestAnimationFrame(syncBackground);
+  }
   function applyBackground() {
     const color = root.ownerDocument?.defaultView?.getComputedStyle(root)
       .getPropertyValue('--bg-body').trim();
@@ -24,6 +32,10 @@ export function initTelegramTheme(tg, {
       : 'light';
     root.style.setProperty('--tg-ios-h', hasTheme && isIOS ? '0.8rem' : '0rem');
 
+    syncBackground();
+  }
+
+  function syncBackground() {
     if (typeof tg.setBackgroundColor !== 'function') return;
     if (tg.platform === 'macos') {
       // Wait for the native theme refresh after ready(); the SDK skips duplicates.
@@ -34,10 +46,16 @@ export function initTelegramTheme(tg, {
     }
   }
   tg.onEvent?.('themeChanged', apply);
-  tg.ready?.();
+  if (autoReady) tg.ready?.();
   apply();
+  if (view?.requestAnimationFrame && typeof tg.setBackgroundColor === 'function') {
+    if (document.readyState === 'complete') afterLoad();
+    else view.addEventListener('load', afterLoad, { once: true });
+  }
   return () => {
     clearTimeout(backgroundTimer);
+    view?.removeEventListener?.('load', afterLoad);
+    if (backgroundFrame !== undefined) view.cancelAnimationFrame(backgroundFrame);
     tg.offEvent?.('themeChanged', apply);
   };
 }
