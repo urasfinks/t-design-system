@@ -56,7 +56,7 @@ test('background sync is automatic and macOS sends the latest palette after star
     getComputedStyle: element => ({
       getPropertyValue: name => {
         assert.equal(name, '--bg-body');
-        return element.dataset.theme === 'dark' ? '#151e27' : '#f5f5f5';
+        return element.dataset.theme === 'dark' ? '#131720' : '#f5f5f5';
       },
     }),
   } };
@@ -67,17 +67,17 @@ test('background sync is automatic and macOS sends the latest palette after star
   listeners.get('themeChanged')();
   assert.deepEqual(sent, []);
   await new Promise(resolve => setTimeout(resolve, 250));
-  assert.deepEqual(sent, ['#151e27']);
+  assert.deepEqual(sent, ['#131720']);
 
   tg.colorScheme = 'light';
   listeners.get('themeChanged')();
   stop();
   await new Promise(resolve => setTimeout(resolve, 250));
-  assert.deepEqual(sent, ['#151e27']);
+  assert.deepEqual(sent, ['#131720']);
   assert.equal(listeners.size, 0);
 
   tg.platform = 'tdesktop';
   const stopDesktop = initTelegramTheme(tg, { root });
-  assert.deepEqual(sent, ['#151e27', '#f5f5f5']);
+  assert.deepEqual(sent, ['#131720', '#f5f5f5']);
   stopDesktop();
 });

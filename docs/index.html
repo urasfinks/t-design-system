@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="color-scheme" content="light dark">
   <meta name="theme-color" content="#f5f5f5" media="(prefers-color-scheme: light)">
-  <meta name="theme-color" content="#151e27" media="(prefers-color-scheme: dark)">
+  <meta name="theme-color" content="#131720" media="(prefers-color-scheme: dark)">
   <meta name="description" content="t-design-system — CSS-фреймворк для веба и Telegram Mini Apps. Компоненты, темы и примеры.">
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%232369cb'/%3E%3Ctext x='23' y='47' fill='white' font-family='sans-serif' font-size='48' font-weight='600'%3Et%3C/text%3E%3C/svg%3E">
   <script src="theme-init.js"></script>
@@ -429,17 +429,17 @@
 
 <div class="feature-strip"><div><strong>Токены</strong><span>Вся система в переменных</span></div><div><strong>Компоненты</strong><span>Готовые блоки и состояния</span></div><div><strong>Каскад</strong><span>Понятный порядок слоёв</span></div></div>
 
-<section id="tokens" class="catalog-section" data-search-keywords="токены цвета темы типографика отступы радиусы --background-main --background-panel --background-muted --accent-main --accent-strong --accent-soft --text-main --text-secondary --danger-main --danger-strong --danger-soft" data-catalog-title="Цвета и темы" data-catalog-group="Основы">
+<section id="tokens" class="catalog-section" data-search-keywords="токены цвета темы типографика отступы радиусы --background-main --background-panel --background-muted --accent-main --accent-strong --accent-soft --text-main --text-secondary --text-link --danger-main --danger-strong --danger-soft" data-catalog-title="Цвета и темы" data-catalog-group="Основы">
   <div class="section-heading"><div><h2>Цвета и токены тем</h2><p>Семантические цвета, шаг отступов 4 px и адаптивные размеры.</p></div><code translate="no" class="class-tag">--background-main · --accent-main</code></div>
   <label class="accent-control">Акцент<select class="tg-select" name="accent" aria-label="Акцентный цвет"><option value="blue">Исходный</option><option value="green">Зелёный</option><option value="violet">Фиолетовый</option></select></label>
   <div class="palette-table-wrap">
     <table class="palette-table">
-      <caption class="tg-sr-only">Четыре цвета и их градации: три у фона, акцента и ошибки, две у текста</caption>
+      <caption class="tg-sr-only">Четыре цвета и их градации: по три у фона, акцента, текста и ошибки</caption>
       <thead><tr><th scope="col">Цвет</th><th scope="col">Исходный</th><th scope="col">Градация 2</th><th scope="col">Градация 3</th></tr></thead>
       <tbody>
         <tr data-search-tokens="--background-main --background-panel --background-muted"><th scope="row">Фон</th><td><div class="palette-swatch" style="background:var(--background-main)" aria-hidden="true"></div><code translate="no">--background-<wbr>main</code></td><td><div class="palette-swatch" style="background:var(--background-panel)" aria-hidden="true"></div><code translate="no">--background-<wbr>panel</code></td><td><div class="palette-swatch" style="background:var(--background-muted)" aria-hidden="true"></div><code translate="no">--background-<wbr>muted</code></td></tr>
         <tr data-search-tokens="--accent-main --accent-strong --accent-soft"><th scope="row">Акцент</th><td><div class="palette-swatch" style="background:var(--accent-main)" aria-hidden="true"></div><code translate="no">--accent-<wbr>main</code></td><td><div class="palette-swatch" style="background:var(--accent-strong)" aria-hidden="true"></div><code translate="no">--accent-<wbr>strong</code></td><td><div class="palette-swatch" style="background:var(--accent-soft)" aria-hidden="true"></div><code translate="no">--accent-<wbr>soft</code></td></tr>
-        <tr data-search-tokens="--text-main --text-secondary"><th scope="row">Текст</th><td><div class="palette-swatch" style="background:var(--text-main)" aria-hidden="true"></div><code translate="no">--text-<wbr>main</code></td><td><div class="palette-swatch" style="background:var(--text-secondary)" aria-hidden="true"></div><code translate="no">--text-<wbr>secondary</code></td><td><span class="tg-text-muted" aria-label="Третьей градации нет">—</span></td></tr>
+        <tr data-search-tokens="--text-main --text-secondary --text-link"><th scope="row">Текст</th><td><div class="palette-swatch" style="background:var(--text-main)" aria-hidden="true"></div><code translate="no">--text-<wbr>main</code></td><td><div class="palette-swatch" style="background:var(--text-secondary)" aria-hidden="true"></div><code translate="no">--text-<wbr>secondary</code></td><td><div class="palette-swatch" style="background:var(--text-link)" aria-hidden="true"></div><code translate="no">--text-<wbr>link</code></td></tr>
         <tr data-search-tokens="--danger-main --danger-strong --danger-soft"><th scope="row">Ошибка</th><td><div class="palette-swatch" style="background:var(--danger-main)" aria-hidden="true"></div><code translate="no">--danger-<wbr>main</code></td><td><div class="palette-swatch" style="background:var(--danger-strong)" aria-hidden="true"></div><code translate="no">--danger-<wbr>strong</code></td><td><div class="palette-swatch" style="background:var(--danger-soft)" aria-hidden="true"></div><code translate="no">--danger-<wbr>soft</code></td></tr>
       </tbody>
     </table>
@@ -451,6 +451,7 @@
 <tr><td>Нейтральные контролы и switch</td><td>L панели + i × .065975</td></tr>
 <tr><td>Наведение</td><td>L фона контрола + i × .023861</td></tr>
 <tr><td>Текст и семантические заливки</td><td>Общие смеси исходного цвета с поверхностью или чёрным/белым</td></tr>
+<tr><td>Цветной текст и ссылки</td><td>OKLCH: L и тон акцента, C = min(C акцента, .14)</td></tr>
 <tr><td>Границы и эффекты</td><td>Общая роль исходного цвета с заданной прозрачностью</td></tr>
 </tbody></table></div>
 <p class="tg-help">i = −1 в светлой теме и +1 в обеих тёмных. Все шаги светлоты ограничены диапазоном [0, 1]; цветность и тон сохраняются до отображения в цветовом охвате.</p>

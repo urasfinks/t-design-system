@@ -12,7 +12,7 @@ for (const file of files) {
   const source = clean(await readFile(`src/${file}`, 'utf8'));
   assert.doesNotMatch(source, /#[\da-f]{3,8}\b|\b(?:rgb|rgba|hsl|hsla|oklch|oklab|color-mix|light-dark)\s*\(/i, `${file}: color literals or local calculations are prohibited`);
   assert.doesNotMatch(source, /(?<![-\w])(?:black|white)(?![-\w])/i, `${file}: use the neutral/mask roles`);
-  assert.doesNotMatch(source, /--(?:color-inversion|surface-lightness-step|panel-lightness-rise|panel-lightness-floor|control-hover-brightness|semantic-readable-dark-weight|background-(?:main|raised|panel|muted(?:-derived)?)|(?:accent|danger)-(?:main|soft|strong|readable)|text-(?:main|secondary|muted)|field-bg)\s*:/, `${file}: global roles and coefficients belong to tokens`);
+  assert.doesNotMatch(source, /--(?:color-inversion|surface-lightness-step|panel-lightness-rise|panel-lightness-floor|control-hover-brightness|text-chroma-ceiling|semantic-readable-dark-weight|background-(?:main|raised|panel|muted(?:-derived)?)|(?:accent|danger)-(?:main|soft|strong|readable)|text-(?:main|secondary|muted|link)|field-bg)\s*:/, `${file}: global roles and coefficients belong to tokens`);
   for (const parameter of source.matchAll(/--control-hover-lightness-step:\s*([^;]+);/g)) assert.equal(parameter[1].trim(), '0', `${file}: only documented no-hover may opt out with zero`);
   for (const match of source.matchAll(/color\.([\w-]+)\(/g)) {
     const allowed = file === 'components/_control-states.scss' && match[1] === 'tone'

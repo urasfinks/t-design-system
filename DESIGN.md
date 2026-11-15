@@ -17,7 +17,7 @@ The signature is the system itself: live components, clear examples, readable co
 - Cards use 16 px corners. Buttons and fields share 12 px corners; inset controls
   use 8 px. Pills are reserved for chips, badges and switches.
 - Four input colors define each theme. Each family exposes three shared roles;
-  components consume these twelve palette values. Desktop Dark uses source background #151e27; panel and muted colors follow
+  components consume these twelve palette values. Desktop Dark uses source background #131720; panel and muted colors follow
   the same formulas as the other themes.
 - Field borders are quiet at rest. Switches use their own filled track without
   an idle outline. Focus and invalid states remain distinct. Under

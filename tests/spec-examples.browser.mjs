@@ -51,11 +51,11 @@ function audit() {
     const text = [...el.childNodes].map(node => node.nodeType === 3 ? node.textContent : (node.getAttribute?.('aria-hidden') === 'true' ? '' : node.matches?.('img') ? node.alt : node.textContent)).join('').trim();
     return Boolean(text);
   };
-  // Coloured text is the accent or danger source colour itself (docs/color-system.md, MIX):
-  // these families have no separate text shade. In the shipped themes such text floors at
+  // Coloured text is the accent under the chroma ceiling (docs/color-system.md, CALM), the
+  // accent source or the danger source. In the shipped themes such text floors at
   // 3:1; with a custom accent its contrast belongs to the palette's owner (§5).
   const role = name => { const probe = document.createElement('span'); probe.style.color = `var(${name})`; document.body.append(probe); const color = getComputedStyle(probe).color; probe.remove(); return color; };
-  const accentText = role('--accent-main'), dangerText = role('--danger-main');
+  const accentText = [role('--text-link'), role('--accent-main')], dangerText = role('--danger-main');
   const customAccent = document.documentElement.style.getPropertyValue('--button-color') !== '';
   const result = [];
   for (const body of document.querySelectorAll('.example-body[data-spec]')) {
@@ -68,7 +68,7 @@ function audit() {
       if (ownText && !el.matches('input, textarea, select, option, progress, svg, svg *')) {
         const ratio = ratioOf(el);
         const color = getComputedStyle(el).color;
-        const floor = color === accentText ? (customAccent ? 0 : 3) : color === dangerText ? 3 : 4.5;
+        const floor = accentText.includes(color) ? (customAccent ? 0 : 3) : color === dangerText ? 3 : 4.5;
         if (ratio !== null && ratio < floor) low.push(`${el.tagName.toLowerCase()}.${[...el.classList].join('.')} "${el.textContent.trim().slice(0, 24)}" ${ratio.toFixed(2)}`);
       }
       if (el.matches('button, a[href], input:not([type=hidden]), select, textarea, [role=button], [role=tab], [role=menuitem], [role=menuitemcheckbox], [role=menuitemradio], [role=option], [role=checkbox], [role=radio], [role=switch], [role=slider], [role=spinbutton], [role=combobox], [role=gridcell][tabindex]') && !named(el)) {

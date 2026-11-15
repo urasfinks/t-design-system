@@ -92,6 +92,7 @@
     --surface-lightness-step: .065975;
     --control-hover-lightness-step: .023861;
     --control-hover-brightness: 1;
+    --text-chroma-ceiling: .14;
     --border-color: #{color.alpha(var(--text-color), .08)};
     --border-subtle-color: #{color.alpha(var(--text-color), .04)};
     --border: 1px solid var(--border-color);
@@ -127,8 +128,8 @@
     --hint-color: var(--text-secondary);
     --subtitle-text-color: var(--text-secondary);
     --section-header-text-color: var(--text-secondary);
-    --accent-text-color: var(--accent-main);
-    --link-color: var(--accent-main);
+    --accent-text-color: var(--text-link);
+    --link-color: var(--text-link);
     --button-text-color: var(--color-white);
     --highlight-bg-color: var(--background-panel);
     --highlight-ficus-color: var(--background-muted);
@@ -143,8 +144,9 @@
     --button-color-transparent: var(--accent-strong);
     --destructive-text-color-transparent: var(--danger-strong);
     --section-bg-color-transparent: var(--background-panel);
-    // Coloured text is the source colour itself: there is no separate text shade of the accent.
-    --text-link: var(--accent-main);
+    // Coloured text is the accent under the shared chroma ceiling: same lightness and hue,
+    // calmer than the fill and the edge. An accent below the ceiling is used as is.
+    --text-link: #{color.calm(var(--accent-main))};
     // A measured value is a fill, not text: the accent itself on the muted track, the same
     // pair as a switch that is on and a range. The danger variant is the danger source.
     --progress-color: var(--accent-main);

@@ -7,6 +7,8 @@ import { compileString } from 'sass';
 const css = await readFile('dist/t-design-system.css', 'utf8');
 const adapter = await readFile('dist/telegram.css', 'utf8');
 const palettes = JSON.parse(await readFile('tests/fixtures/source-palettes.json', 'utf8'));
+// Source colours that TDS tunes away from the original application palette (README, «Темы и токены»).
+const tuned = { desktopDark: { bg_color: '#131720', button_color: '#3e88f7' } };
 const useWebkit = process.argv.includes('--webkit');
 const browser = await (useWebkit ? webkit : chromium).launch();
 const page = await browser.newPage({ viewport: { width: 1440, height: 1000 } });
@@ -53,19 +55,19 @@ try {
   for (const [name, mode] of [['light', 'light'], ['desktopDark', 'dark'], ['iosDark', 'ios-dark']]) {
     await page.evaluate(theme => { document.documentElement.dataset.theme = theme; }, mode);
     const actual = await page.evaluate(keys => Object.fromEntries(keys.map(key => [key, getComputedStyle(document.documentElement).getPropertyValue(`--${key.replaceAll('_', '-')}`).trim().toLowerCase()])), ['bg_color', 'button_color', 'text_color', 'destructive_text_color']);
-    check(`four ${name} source colors follow the documented palette`, Object.entries(actual).every(([key, value]) => value === (name === 'desktopDark' && key === 'bg_color' ? '#151e27' : palettes[name][key])));
+    check(`four ${name} source colors follow the documented palette`, Object.entries(actual).every(([key, value]) => value === (tuned[name]?.[key] ?? palettes[name][key])));
   }
   await page.evaluate(() => { delete document.documentElement.dataset.theme; });
   check('light theme works without Telegram', await style('body', 'background-color') === await bodyColor('#f5f5f5'));
   check('controls have at least 44px touch target', Number.parseFloat(await style('#button', 'min-height')) >= 44);
   check('utilities override component padding', await style('#card', 'padding') === '0px');
   await page.emulateMedia({ colorScheme: 'dark' });
-  check('system dark theme', await style('body', 'background-color') === await bodyColor('#151e27'));
+  check('system dark theme', await style('body', 'background-color') === await bodyColor(tuned.desktopDark.bg_color));
   await page.evaluate(() => document.documentElement.dataset.theme = 'light');
   check('explicit light overrides dark OS', await style('body', 'background-color') === await bodyColor('#f5f5f5'));
   await page.emulateMedia({ colorScheme: 'light' });
   await page.evaluate(() => document.documentElement.dataset.theme = 'dark');
-  check('explicit dark overrides light OS', await style('body', 'background-color') === await bodyColor('#151e27'));
+  check('explicit dark overrides light OS', await style('body', 'background-color') === await bodyColor(tuned.desktopDark.bg_color));
   await page.evaluate(() => document.documentElement.dataset.platform = 'ios');
   check('dark mode selects iOS palette on iOS platform', await style('body', 'background-color') === await bodyColor('#000000'));
   await page.evaluate(() => { delete document.documentElement.dataset.theme; });
@@ -76,14 +78,14 @@ try {
   await page.evaluate(() => { delete document.documentElement.dataset.platform; document.documentElement.dataset.theme = 'dark'; });
   await page.emulateMedia({ colorScheme: 'light' });
   await page.addStyleTag({ content: adapter });
-  check('Telegram adapter fallback keeps dark palette', await style('body', 'background-color') === await bodyColor('#151e27'));
+  check('Telegram adapter fallback keeps dark palette', await style('body', 'background-color') === await bodyColor(tuned.desktopDark.bg_color));
   await page.evaluate(() => {
     document.documentElement.style.setProperty('--tg-button-color', '#115522');
     document.documentElement.style.setProperty('--tg-theme-button-color', '#2244aa');
   });
   check('legacy project palette takes precedence over SDK colors', await style('#button', 'background-color') === await actionColor('#115522'));
   await page.evaluate(() => document.documentElement.style.removeProperty('--tg-button-color'));
-  check('SDK colors do not replace source palette by default', await style('#button', 'background-color') === await actionColor('#2ea6ff'));
+  check('SDK colors do not replace source palette by default', await style('#button', 'background-color') === await actionColor(tuned.desktopDark.button_color));
   await page.evaluate(() => document.documentElement.dataset.telegramTheme = 'native');
   check('native Telegram colors are opt-in', await style('#button', 'background-color') === await actionColor('#2244aa'));
   await page.evaluate(() => document.documentElement.style.setProperty('--tg-button-color', '#115522'));

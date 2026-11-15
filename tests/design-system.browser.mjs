@@ -76,16 +76,21 @@ try {
       const value = await page.evaluate(measureContrast, { selector });
       check(`${theme}: ${selector} contrast ≥ 4.5`, value.ratio >= 4.5, value);
     }
-    // Coloured text is the source colour itself (docs/color-system.md, MIX): the accent and
-    // danger families have no separate text shade. The role is asserted; the measured
-    // contrast of the shipped themes is recorded in the contract and floors at 3:1.
-    for (const [selector, role] of [['.tg-link', '--accent-main'], ['.tg-help--error', '--danger-main']]) {
+    // Coloured text is the accent under the shared chroma ceiling (docs/color-system.md, CALM);
+    // error text is the danger source itself. The role is asserted; the measured contrast
+    // of the shipped themes is recorded in the contract and floors at 3:1.
+    const calm = await page.evaluate(() => {
+      const resolve = value => { const probe = document.createElement('span'); probe.style.color = value; document.body.append(probe); const color = getComputedStyle(probe).color; probe.remove(); return color; };
+      return { role: resolve('var(--text-link)'), formula: resolve('oklch(from var(--accent-main) l min(c, .14) h)') };
+    });
+    check(`${theme}: coloured text is CALM(A, .14)`, calm.role === calm.formula, calm);
+    for (const [selector, role] of [['.tg-link', '--text-link'], ['.tg-help--error', '--danger-main']]) {
       const colors = await page.evaluate(([selector, role]) => {
         const probe = document.createElement('span'); probe.style.color = `var(${role})`; document.body.append(probe);
         const expected = getComputedStyle(probe).color; probe.remove();
         return { actual: getComputedStyle(document.querySelector(selector)).color, expected };
       }, [selector, role]);
-      check(`${theme}: ${selector} is the ${role} source colour`, colors.actual === colors.expected, colors);
+      check(`${theme}: ${selector} is the ${role} role`, colors.actual === colors.expected, colors);
       const value = await page.evaluate(measureContrast, { selector });
       check(`${theme}: ${selector} contrast ≥ 3`, value.ratio >= 3, value);
     }

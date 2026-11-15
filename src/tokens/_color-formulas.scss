@@ -16,6 +16,12 @@
   @return string.unquote('color-mix(in srgb, #{$foreground} #{$weight}, #{$background})');
 }
 
+// Coloured text keeps the lightness and hue of its source and never exceeds the shared
+// chroma ceiling: a saturated accent stays a fill and an edge, its text is calmer.
+@function calm($origin, $ceiling: var(--text-chroma-ceiling)) {
+  @return string.unquote('oklch(from #{$origin} l min(c, #{$ceiling}) h)');
+}
+
 @function alpha($origin, $opacity) {
   @return string.unquote('rgb(from #{$origin} r g b / #{$opacity})');
 }
