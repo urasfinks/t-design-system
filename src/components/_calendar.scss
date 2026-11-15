@@ -148,7 +148,7 @@
     td:first-child:has(> .tg-calendar__day--in-range) { border-start-start-radius: var(--radius-inset); border-end-start-radius: var(--radius-inset); }
     td:last-child:has(> .tg-calendar__day--in-range) { border-start-end-radius: var(--radius-inset); border-end-end-radius: var(--radius-inset); }
     // Days on the band keep its tint and darken on hover like any control.
-    .tg-calendar__day--in-range { --control-hover-bg: var(--accent-soft); --control-hover-filter: initial; color: var(--accent-readable); }
+    .tg-calendar__day--in-range { --control-hover-bg: var(--accent-soft); --control-hover-filter: initial; color: var(--text-link); }
     .tg-calendar__day--in-range.tg-calendar__day--outside { color: var(--text-secondary); }
     .tg-calendar__day:is(.tg-calendar__day--range-start, .tg-calendar__day--range-end) {
       --control-idle-bg: var(--action-bg);

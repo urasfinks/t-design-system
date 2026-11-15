@@ -9,8 +9,8 @@ const ex = id => `.example-body[data-spec~="${id}"]`;
 const contrast = async (selector, label) => {
   for (const name of ['light', 'dark', 'ios-dark']) {
     await theme(name);
-    const { ratio } = await page.evaluate(measureContrast, { selector });
-    check(`${label} ${name}: contrast ${ratio.toFixed(2)} ≥ 4.5`, ratio >= 4.5);
+    const { ratio, floor } = await page.evaluate(measureContrast, { selector });
+    check(`${label} ${name}: contrast ${ratio.toFixed(2)} ≥ ${floor}`, ratio >= floor);
   }
   await theme(null);
 };

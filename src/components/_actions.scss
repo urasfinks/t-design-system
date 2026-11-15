@@ -3,7 +3,8 @@
 // Gesture-backed actions and the floating action button. Every gesture has a plain
 // button or keyboard path; motion is transform/opacity only.
 @layer tds.components {
-  // Hold to confirm: the fill grows with --hold-progress (0…1) set by the host.
+  // Hold to confirm: the fill grows with --hold-progress (0…1) set by the host. It is the
+  // press wave held in place, so it takes the wave's strength and no shade of its own.
   .tg-hold-btn {
     position: relative;
     isolation: isolate;
@@ -14,14 +15,14 @@
       inset: 0;
       z-index: -1;
       background: currentColor;
-      opacity: .18;
+      opacity: .25;
       transform: scaleX(var(--hold-progress, 0));
       transform-origin: left center;
     }
     &:dir(rtl)::before { transform-origin: right center; }
     &[data-state='holding']::before { transition: none; }
     &:not([data-state='holding'])::before { transition: transform var(--duration-fast) var(--ease); }
-    &[data-state='confirmed']::before { transform: scaleX(1); opacity: .28; }
+    &[data-state='confirmed']::before { transform: scaleX(1); }
   }
 
   // Slide to confirm: a native range with a large thumb; reaching the end confirms.

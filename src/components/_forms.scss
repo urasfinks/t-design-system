@@ -458,13 +458,12 @@
         inline-size: 1rem;
         block-size: 1rem;
         margin-block-start: calc((1lh - 1rem) / 2);
-        border: 2px solid currentColor;
+        border: 2px solid var(--control-border-color);
         border-radius: 50%;
-        opacity: .6;
       }
 
       &[data-met='true'] {
-        color: var(--accent-readable);
+        color: var(--text-link);
         &::before {
           border: 0;
           border-radius: 0;

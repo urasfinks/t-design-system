@@ -81,7 +81,9 @@
     --progress-stripe-speed: .8s;
     --progress-stripe-size: 1.5rem;
     --progress-stripe-blur: 2px;
-    --progress-stripe-color: #{color.alpha(var(--color-white), .32)};
+    // A light detail on a saturated fill: progress stripes, the hairline between joined actions.
+    --on-fill-detail-color: #{color.alpha(var(--color-white), .32)};
+    --progress-stripe-color: var(--on-fill-detail-color);
     --safe-area-bottom: env(safe-area-inset-bottom, 0px);
     --ios-h: 0px;
     // All coefficients are shared by themes. See docs/color-system.md.
@@ -99,18 +101,14 @@
     --background-panel: var(--background-raised);
     --background-muted-derived: #{color.tone(var(--background-panel), var(--surface-lightness-step))};
     --background-muted: var(--background-muted-derived);
-    --semantic-readable-dark-weight: 55%;
     --text-main: var(--text-color);
     --text-secondary: #{color.mix(var(--text-main), 70%, var(--background-panel))};
-    --text-muted: #{color.mix(var(--text-main), 55%, var(--background-panel))};
     --accent-main: var(--button-color);
     --accent-strong: #{color.mix(var(--accent-main), 72%, var(--color-black))};
     --accent-soft: #{color.mix(var(--accent-main), 12%, var(--surface-bg))};
-    --accent-readable: light-dark(#{color.mix(var(--accent-main), 72%, var(--color-black))}, #{color.mix(var(--accent-main), var(--semantic-readable-dark-weight), var(--color-white))});
     --danger-main: var(--destructive-text-color);
     --danger-strong: #{color.mix(var(--danger-main), 72%, var(--color-black))};
     --danger-soft: #{color.mix(var(--danger-main), 10%, var(--surface-bg))};
-    --danger-readable: light-dark(#{color.mix(var(--danger-main), 72%, var(--color-black))}, #{color.mix(var(--danger-main), var(--semantic-readable-dark-weight), var(--color-white))});
     --badge-primary-bg: light-dark(var(--accent-soft), var(--accent-strong));
     --badge-primary-text: light-dark(var(--accent-strong), var(--text-main));
     --badge-danger-bg: light-dark(var(--danger-soft), var(--danger-strong));
@@ -120,12 +118,13 @@
     --border-active: 1px solid var(--accent-main);
     --focus: 0 0 0 .25rem var(--accent-soft);
     // Compatibility names are aliases, never additional shades.
+    --text-muted: var(--text-secondary);
     --section-bg-color: var(--background-panel);
     --secondary-bg-color: var(--background-muted);
     --header-bg-color: var(--background-muted);
     --bottom-bar-bg-color: var(--background-muted);
     --section-separator-color: var(--border-color);
-    --hint-color: var(--text-muted);
+    --hint-color: var(--text-secondary);
     --subtitle-text-color: var(--text-secondary);
     --section-header-text-color: var(--text-secondary);
     --accent-text-color: var(--accent-main);
@@ -144,7 +143,8 @@
     --button-color-transparent: var(--accent-strong);
     --destructive-text-color-transparent: var(--danger-strong);
     --section-bg-color-transparent: var(--background-panel);
-    --text-link: var(--accent-readable);
+    // Coloured text is the source colour itself: there is no separate text shade of the accent.
+    --text-link: var(--accent-main);
     // A measured value is a fill, not text: the accent itself on the muted track, the same
     // pair as a switch that is on and a range. The danger variant is the danger source.
     --progress-color: var(--accent-main);
@@ -153,7 +153,7 @@
     // A value painted under text (progress row): the soft-accent weight taken on the track
     // it covers, so the fill differs from the track in the same direction in every theme.
     --progress-soft-color: #{color.mix(var(--accent-main), 12%, var(--progress-track-color))};
-    --text-danger: var(--danger-readable);
+    --text-danger: var(--danger-main);
     --action-bg: var(--accent-strong);
     --action-hover-bg: var(--accent-strong);
     --action-danger-bg: var(--danger-strong);

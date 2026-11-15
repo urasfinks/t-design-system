@@ -139,8 +139,8 @@
     min-inline-size: 1px;
     block-size: 100%;
     border-radius: 1px;
-    // Opaque: the quiet text tone for what is still to play, the accent for what was played.
-    background: var(--text-muted);
+    // Opaque: the secondary text tone for what is still to play, the accent for what was played.
+    background: var(--text-secondary);
     transform: scaleY(var(--level, .5));
     &[data-played] { background: var(--accent-main); }
   }

@@ -311,8 +311,13 @@ macOS и гостевые страницы, которые сервер отда
 | --- | --- | --- | --- |
 | Фон | `--background-main` | `--background-panel` | `--background-muted` |
 | Акцент | `--accent-main` | `--accent-strong` | `--accent-soft` |
-| Текст | `--text-main` | `--text-secondary` | `--text-muted` |
+| Текст | `--text-main` | `--text-secondary` | — |
 | Ошибка | `--danger-main` | `--danger-strong` | `--danger-soft` |
+
+У текста две градации; `--text-muted` — имя совместимости для `--text-secondary`.
+Ссылки, цветные иконки и текст ошибок — сами `--accent-main` и `--danger-main`:
+отдельных «читаемых» оттенков нет. В графиках первая серия — акцент, остальные —
+`--text-secondary`.
 
 Все производные цвета вычисляются общими операторами в
 `src/tokens/_color-formulas.scss`. Темы задают только четыре исходных цвета

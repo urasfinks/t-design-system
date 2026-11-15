@@ -125,15 +125,14 @@
       border-color: var(--group-border-color);
     }
     // Filled parts (primary on primary) have no visible outline to share, so they are
-    // divided by a hairline of the text colour on the fill.
+    // divided by the light on-fill detail hairline.
     > :is(.tg-btn--primary, .tg-icon-btn--primary, .tg-btn--destructive) + :is(.tg-btn--primary, .tg-icon-btn--primary, .tg-btn--destructive)::before {
       content: '';
       position: absolute;
       inset-block: 25%;
       inset-inline-start: 0;
       inline-size: 1px;
-      background: currentColor;
-      opacity: .32;
+      background: var(--on-fill-detail-color);
     }
   }
   .tg-split-btn {

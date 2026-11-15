@@ -9,8 +9,8 @@ const ex = id => `.example-body[data-spec~="${id}"]`;
 const contrast = async (selector, label) => {
   for (const name of ['light', 'dark', 'ios-dark']) {
     await theme(name);
-    const { ratio } = await page.evaluate(measureContrast, { selector });
-    check(`${label} ${name}: contrast ${ratio.toFixed(2)} ≥ 4.5`, ratio >= 4.5);
+    const { ratio, floor } = await page.evaluate(measureContrast, { selector });
+    check(`${label} ${name}: contrast ${ratio.toFixed(2)} ≥ ${floor}`, ratio >= floor);
   }
   await theme(null);
 };
@@ -91,7 +91,16 @@ try {
   await page.waitForFunction(selector => getComputedStyle(document.querySelector(selector)).strokeWidth === '2px', `${line} .tg-chart__line`);
   check('D7 lines are 2px', await page.locator(`${line} .tg-chart__line`).first().evaluate(el => getComputedStyle(el).strokeWidth) === '2px');
   check('D7 the second series is dashed, not only lighter', (await page.locator(`${line} .tg-chart__line[data-series="2"]`).evaluate(el => getComputedStyle(el).strokeDasharray)) !== 'none');
-  check('D7 the area is a light wash of the series', Number(await page.locator(`${line} .tg-chart__area`).evaluate(el => getComputedStyle(el).fillOpacity)) <= .15);
+  // Series are two palette roles and nothing between them: no opacity steps.
+  const role = name => page.evaluate(name => { const probe = document.createElementNS('http://www.w3.org/2000/svg', 'rect'); probe.style.fill = `var(${name})`; document.querySelector('.tg-chart svg').append(probe); const color = getComputedStyle(probe).fill; probe.remove(); return color; }, name);
+  const paint = (selector, property) => page.locator(selector).first().evaluate((el, property) => { const style = getComputedStyle(el); return { color: style[property], opacity: Number(style[property + 'Opacity']) * Number(style.opacity) }; }, property);
+  const accentRole = await role('--accent-main'), neutralRole = await role('--text-secondary'), softRole = await role('--accent-soft');
+  const firstLine = await paint(`${line} .tg-chart__line[data-series="1"]`, 'stroke'), secondLine = await paint(`${line} .tg-chart__line[data-series="2"]`, 'stroke');
+  check('D7 the first series is the accent at full strength', firstLine.color === accentRole && firstLine.opacity === 1, JSON.stringify(firstLine));
+  check('D7 the second series is the neutral text tone at full strength', secondLine.color === neutralRole && secondLine.opacity === 1, JSON.stringify(secondLine));
+  const area = await paint(`${line} .tg-chart__area`, 'fill');
+  check('D7 the area is the opaque soft accent', area.color === softRole && area.opacity === 1, JSON.stringify(area));
+  check('D7 the area lies under the grid', await page.locator(`${line} svg`).evaluate(svg => Boolean(svg.querySelector('.tg-chart__area').compareDocumentPosition(svg.querySelector('.tg-chart__grid')) & Node.DOCUMENT_POSITION_FOLLOWING)));
   check('D7 a legend names both series', await page.locator(`${line} .tg-chart__legend-item`).count() === 2);
   check('D7 ticks are clean numbers', (await page.locator(`${line} .tg-chart__tick`).allTextContents()).slice(0, 4).join(',') === '0,2,4,6');
   check('D7 the SVG draws 1:1 so text keeps its size', Math.abs((await box(`${line} svg`)).width - Number(await page.locator(`${line} svg`).getAttribute('width'))) < 1);
@@ -110,7 +119,10 @@ try {
   const bars = `${ex('D8')} .tg-chart`;
   const barBox = await box(`${bars} .tg-chart__bar`);
   check('D8 bars are at most 24px thick', barBox.width <= 24.5);
-  check('D8 only the highlighted bar is at full strength', await page.locator(`${bars} .tg-chart__bar[data-active]`).count() === 1 && Number(await page.locator(`${bars} .tg-chart__bar:not([data-active])`).first().evaluate(el => getComputedStyle(el).fillOpacity)) < .5);
+  await page.mouse.move(0, 0);
+  await page.waitForTimeout(200);
+  const activeBar = await paint(`${bars} .tg-chart__bar[data-active]`, 'fill'), restBar = await paint(`${bars} .tg-chart__bar:not([data-active])`, 'fill');
+  check('D8 only the highlighted bar is the accent; the rest are the neutral tone, both opaque', await page.locator(`${bars} .tg-chart__bar[data-active]`).count() === 1 && activeBar.color === accentRole && restBar.color === neutralRole && activeBar.opacity === 1 && restBar.opacity === 1, JSON.stringify({ activeBar, restBar }));
   await page.locator(`${bars} .tg-chart__plot`).scrollIntoViewIfNeeded();
   const b0 = await box(`${bars} .tg-chart__bar[data-index="0"]`);
   await page.mouse.move(b0.left + b0.width / 2, b0.top + 5);
@@ -123,6 +135,8 @@ try {
   const donut = `${ex('D9')} .tg-chart`;
   check('D9 three segments with a gap between them', await page.locator(`${donut} .tg-chart__segment`).count() === 3);
   check('D9 the third segment is textured, not only lighter', await page.locator(`${donut} .tg-chart__segment[data-texture]`).count() === 1);
+  const firstSegment = await paint(`${donut} .tg-chart__segment[data-series="1"]`, 'stroke'), secondSegment = await paint(`${donut} .tg-chart__segment[data-series="2"]`, 'stroke');
+  check('D9 segments are the accent and the neutral tone, both opaque', firstSegment.color === accentRole && secondSegment.color === neutralRole && firstSegment.opacity === 1 && secondSegment.opacity === 1, JSON.stringify({ firstSegment, secondSegment }));
   check('D9 the legend lists every value as text', (await page.locator(`${donut} .tg-chart__legend`).textContent()).replace(/\s+/g, '').includes('Наличные15%'));
   check('D9 the centre shows the total', (await page.locator(`${donut} .tg-chart__center strong`).textContent()) === '1 284');
   await contrast(`${donut} .tg-chart__legend-item > span:first-child`, 'D9 legend');

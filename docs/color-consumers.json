@@ -1,7 +1,7 @@
 {
   "componentFiles": 40,
   "foundationFiles": 2,
-  "declarations": 814,
+  "declarations": 818,
   "consumers": [
     {
       "file": "base/_index.scss",
@@ -18,6 +18,14 @@
         "--text-color"
       ],
       "value": "var(--text-color)"
+    },
+    {
+      "file": "base/_index.scss",
+      "property": "color",
+      "roles": [
+        "--text-link"
+      ],
+      "value": "var(--text-link)"
     },
     {
       "file": "base/_index.scss",
@@ -997,6 +1005,14 @@
     },
     {
       "file": "components/_buttons.scss",
+      "property": "background",
+      "roles": [
+        "--on-fill-detail-color"
+      ],
+      "value": "var(--on-fill-detail-color)"
+    },
+    {
+      "file": "components/_buttons.scss",
       "property": "border-start-start-radius",
       "roles": [
         "--radius-control"
@@ -1303,9 +1319,9 @@
       "file": "components/_calendar.scss",
       "property": "color",
       "roles": [
-        "--accent-readable"
+        "--text-link"
       ],
-      "value": "var(--accent-readable)"
+      "value": "var(--text-link)"
     },
     {
       "file": "components/_calendar.scss",
@@ -1569,9 +1585,9 @@
       "file": "components/_charts.scss",
       "property": "fill",
       "roles": [
-        "--series"
+        "--accent-soft"
       ],
-      "value": "var(--series)"
+      "value": "var(--accent-soft)"
     },
     {
       "file": "components/_charts.scss",
@@ -1609,9 +1625,9 @@
       "file": "components/_charts.scss",
       "property": "stroke",
       "roles": [
-        "--text-secondary"
+        "--control-border-color"
       ],
-      "value": "var(--text-secondary)"
+      "value": "var(--control-border-color)"
     },
     {
       "file": "components/_charts.scss",
@@ -1695,6 +1711,14 @@
     },
     {
       "file": "components/_charts.scss",
+      "property": "fill",
+      "roles": [
+        "--series-rest"
+      ],
+      "value": "var(--series-rest)"
+    },
+    {
+      "file": "components/_charts.scss",
       "property": "stroke",
       "roles": [
         "--series"
@@ -1705,9 +1729,9 @@
       "file": "components/_charts.scss",
       "property": "color",
       "roles": [
-        "--series"
+        "--series-rest"
       ],
-      "value": "var(--series)"
+      "value": "var(--series-rest)"
     },
     {
       "file": "components/_charts.scss",
@@ -2609,10 +2633,9 @@
       "property": "background",
       "roles": [
         "--effect-angle",
-        "--accent-main",
-        "--accent-readable"
+        "--accent-main"
       ],
-      "value": "conic-gradient(from var(--effect-angle), transparent 0 52%, var(--accent-main) 82%, var(--accent-readable) 90%, transparent 97%)"
+      "value": "conic-gradient(from var(--effect-angle), transparent 0 52%, var(--accent-main) 82%, var(--accent-main) 90%, transparent 97%)"
     },
     {
       "file": "components/_effects.scss",
@@ -3530,11 +3553,19 @@
     },
     {
       "file": "components/_forms.scss",
+      "property": "border",
+      "roles": [
+        "--control-border-color"
+      ],
+      "value": "2px solid var(--control-border-color)"
+    },
+    {
+      "file": "components/_forms.scss",
       "property": "color",
       "roles": [
-        "--accent-readable"
+        "--text-link"
       ],
-      "value": "var(--accent-readable)"
+      "value": "var(--text-link)"
     },
     {
       "file": "components/_forms.scss",
@@ -3716,9 +3747,9 @@
       "file": "components/_media.scss",
       "property": "background",
       "roles": [
-        "--text-muted"
+        "--text-secondary"
       ],
-      "value": "var(--text-muted)"
+      "value": "var(--text-secondary)"
     },
     {
       "file": "components/_media.scss",

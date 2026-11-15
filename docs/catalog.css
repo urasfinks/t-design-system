@@ -22,7 +22,6 @@ p { text-wrap: pretty; }
 }
 .brand { display: inline-flex; align-items: center; gap: var(--space-3); color: var(--text-color); font-size: 1rem; font-weight: 600; letter-spacing: -.025em; text-decoration: none; }
 .brand-mark { display: inline-flex; align-items: center; justify-content: center; width: 2rem; height: 2rem; border-radius: var(--radius-sm); background: var(--action-bg); color: var(--button-text-color); font-size: 1.75rem; font-weight: 600; letter-spacing: -.03em; padding-bottom: .125rem; }
-.brand-mark > span { opacity: .7; }
 .brand-mark.small { width: 1.75rem; height: 1.75rem; font-size: 1.5rem; }
 .header-tools { display: flex; align-items: center; gap: var(--space-6); }
 .version { font-size: var(--catalog-caption); color: var(--text-secondary); }
@@ -368,5 +367,5 @@ dialog.catalog-search.is-instant[open] { animation: none; }
 .effect-stage { position: relative; isolation: isolate; align-items: flex-start; min-block-size: 15rem; padding: var(--space-6); border: var(--border); border-radius: var(--radius-lg); overflow: clip; }
 .effect-stage--accent { --effect-layer-bg: var(--accent-soft); }
 .effect-stage__title { margin: 0; max-inline-size: 18ch; font-size: var(--fs-display); line-height: 1.15; text-wrap: balance; }
-.effect-card__icon { display: inline-grid; place-items: center; inline-size: 2.5rem; block-size: 2.5rem; border-radius: var(--radius-inset); background: var(--accent-soft); color: var(--accent-readable); }
+.effect-card__icon { display: inline-grid; place-items: center; inline-size: 2.5rem; block-size: 2.5rem; border-radius: var(--radius-inset); background: var(--accent-soft); color: var(--text-link); }
 [data-carousel-variant] { align-self: flex-start; }

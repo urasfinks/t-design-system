@@ -43,8 +43,8 @@ try {
   for (const theme of ['light', 'dark', 'ios-dark']) {
     await page.evaluate(theme => { document.documentElement.dataset.theme = theme; }, theme);
     for (const selector of pairs) {
-      const { ratio } = await page.evaluate(measureContrast, { selector });
-      check(`${theme}: ${selector} text contrast ${ratio.toFixed(2)} ≥ 4.5`, ratio >= 4.5);
+      const { ratio, floor } = await page.evaluate(measureContrast, { selector });
+      check(`${theme}: ${selector} text contrast ${ratio.toFixed(2)} ≥ ${floor}`, ratio >= floor);
     }
   }
   await page.evaluate(() => { delete document.documentElement.dataset.theme; });
@@ -87,7 +87,7 @@ try {
   await page.keyboard.press('Escape');
   await page.locator('[data-invoice="INV-1037"]').click();
   const destructive = await page.evaluate(measureContrast, { selector: '#ws-row-menu .tg-menu__item--destructive' });
-  check(`destructive item text contrast ${destructive.ratio.toFixed(2)} ≥ 4.5`, destructive.ratio >= 4.5);
+  check(`destructive item text contrast ${destructive.ratio.toFixed(2)} ≥ ${destructive.floor}`, destructive.ratio >= destructive.floor);
   await page.locator('#ws-row-menu [data-action="open"]').click();
   check('row menu opens the side dialog', await page.locator('#ws-invoice').evaluate(el => el.open));
   const side = await page.locator('#ws-invoice').boundingBox();
@@ -128,7 +128,7 @@ try {
   await page.locator('#ws-save').click();
   check('failed submit turns unmet rules into errors', await page.locator('#ws-rules').evaluate(el => el.classList.contains('tg-requirements--invalid')));
   const unmet = await page.evaluate(measureContrast, { selector: '.tg-requirements--invalid .tg-requirements__item' });
-  check(`unmet rule error contrast ${unmet.ratio.toFixed(2)} ≥ 4.5`, unmet.ratio >= 4.5);
+  check(`unmet rule error contrast ${unmet.ratio.toFixed(2)} ≥ ${unmet.floor}`, unmet.ratio >= unmet.floor);
   await page.locator('#ws-password').fill('Северный2026');
   check('met rules flip to the check mark', (await page.locator('[data-met="true"]').count()) === 3);
   const idleWidth = (await page.locator('#ws-save').boundingBox()).width;

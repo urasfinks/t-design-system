@@ -1138,7 +1138,7 @@ export function initCharts({ root = document } = {}) {
         offset += len;
         return s;
       }).join('');
-      plot.insertAdjacentHTML('afterbegin', `<svg viewBox="0 0 100 100" aria-hidden="true"><defs><pattern id="tg-chart-hatch" class="tg-chart__hatch" width="4" height="4" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><rect width="4" height="4" fill="currentColor" fill-opacity=".18"/><line x1="0" y1="0" x2="0" y2="4" stroke="currentColor" stroke-width="2"/></pattern></defs>${segs}</svg>`);
+      plot.insertAdjacentHTML('afterbegin', `<svg viewBox="0 0 100 100" aria-hidden="true"><defs><pattern id="tg-chart-hatch" class="tg-chart__hatch" width="4" height="4" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><line x1="0" y1="0" x2="0" y2="4" stroke="currentColor" stroke-width="2"/></pattern></defs>${segs}</svg>`);
       plot.append(tooltip);
       plot.addEventListener('pointermove', event => {
         const seg = event.target.closest('.tg-chart__segment');
@@ -1168,12 +1168,13 @@ export function initCharts({ root = document } = {}) {
     y = v => P.t + (H - P.t - P.b) * (1 - v / niceMax);
     const ticks = Array.from({ length: Math.round(niceMax / step) + 1 }, (_, i) => +(i * step).toFixed(6));
     let svg = `<svg viewBox="0 0 ${W} ${H}" width="${W}" height="${H}" aria-hidden="true">`;
-    svg += ticks.map(t => `<line class="tg-chart__${t === 0 ? 'baseline' : 'grid'}" x1="${P.l}" x2="${W - P.r}" y1="${y(t)}" y2="${y(t)}"/><text class="tg-chart__tick" x="${P.l - 8}" y="${y(t) + 4}" text-anchor="end">${fmt(+t.toFixed(1))}</text>`).join('');
     band = (W - P.l - P.r) / labels.length;
     xMid = i => P.l + band * (i + .5);
+    const pts = s => s.map((v, i) => `${xMid(i)},${y(v)}`).join(' ');
+    // The area is an opaque soft-accent surface: it goes under the grid and the baseline.
+    if (kind === 'line') svg += `<polygon class="tg-chart__area" points="${xMid(0)},${y(0)} ${pts(series[0])} ${xMid(labels.length - 1)},${y(0)}"/>`;
+    svg += ticks.map(t => `<line class="tg-chart__${t === 0 ? 'baseline' : 'grid'}" x1="${P.l}" x2="${W - P.r}" y1="${y(t)}" y2="${y(t)}"/><text class="tg-chart__tick" x="${P.l - 8}" y="${y(t) + 4}" text-anchor="end">${fmt(+t.toFixed(1))}</text>`).join('');
     if (kind === 'line') {
-      const pts = s => s.map((v, i) => `${xMid(i)},${y(v)}`).join(' ');
-      svg += `<polygon class="tg-chart__area" points="${xMid(0)},${y(0)} ${pts(series[0])} ${xMid(labels.length - 1)},${y(0)}"/>`;
       series.slice().reverse().forEach((s, ri) => { const si = series.length - ri; svg += `<polyline class="tg-chart__line" data-series="${si}" points="${pts(s)}"/>`; });
       const last = labels.length - 1;
       svg += `<circle class="tg-chart__point" cx="${xMid(last)}" cy="${y(series[0][last])}" r="4"/>`;

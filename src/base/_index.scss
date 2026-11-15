@@ -13,6 +13,9 @@
     -webkit-font-smoothing: antialiased;
     -webkit-tap-highlight-color: transparent;
   }
+  // Every link takes the link role, visited or not: the browser's own blue and purple are
+  // not palette colours. Declared before the controls below, whose colour stays inherited.
+  :where(a:any-link) { color: var(--text-link); }
   :where(.tg-btn, .tg-icon-btn, .tg-input, .tg-select, .tg-textarea, .tg-tab,
     .tg-tabbar__item, .tg-switch, .tg-chip, .tg-avatar, .tg-dot, .tg-menu__item,
     .tg-pager__link, .tg-site-nav__link, .tg-table__sort, .tg-input-group__control,

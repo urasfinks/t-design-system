@@ -263,7 +263,7 @@
   .tg-effect-border-beam::before {
     z-index: 0;
     padding: 2px;
-    background: conic-gradient(from var(--effect-angle), transparent 0 52%, var(--accent-main) 82%, var(--accent-readable) 90%, transparent 97%);
+    background: conic-gradient(from var(--effect-angle), transparent 0 52%, var(--accent-main) 82%, var(--accent-main) 90%, transparent 97%);
     mask: linear-gradient(var(--mask-opaque) 0 0) content-box exclude, linear-gradient(var(--mask-opaque) 0 0);
     opacity: var(--effect-intensity);
   }

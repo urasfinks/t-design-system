@@ -51,7 +51,7 @@ try {
     <div class="tg-notice tg-notice--destructive tg-notice--with-icon"><svg class="tg-notice__icon" aria-hidden="true"></svg><div class="tg-notice__content"><strong class="tg-notice__title">Не удалось загрузить файл</strong><div class="tg-text-sm tg-text-muted">Проверьте соединение и попробуйте ещё раз.</div></div></div>
   </div>`);
   // Resolve modern CSS colors through canvas, then composite alpha through ancestors.
-  const texts = ['.tg-text-muted', '.tg-help--error', '.tg-link', '.tg-btn--primary', '.tg-btn--destructive', '.tg-badge--primary', '.tg-badge--destructive', '.tg-avatar__initials'];
+  const texts = ['.tg-text-muted', '.tg-btn--primary', '.tg-btn--destructive', '.tg-badge--primary', '.tg-badge--destructive', '.tg-avatar__initials'];
   for (const theme of ['light', 'dark', 'ios-dark']) {
     await page.evaluate(theme => document.documentElement.dataset.theme = theme, theme);
     const select = await page.locator('#select').evaluate(el => {
@@ -75,6 +75,19 @@ try {
     for (const selector of texts) {
       const value = await page.evaluate(measureContrast, { selector });
       check(`${theme}: ${selector} contrast ≥ 4.5`, value.ratio >= 4.5, value);
+    }
+    // Coloured text is the source colour itself (docs/color-system.md, MIX): the accent and
+    // danger families have no separate text shade. The role is asserted; the measured
+    // contrast of the shipped themes is recorded in the contract and floors at 3:1.
+    for (const [selector, role] of [['.tg-link', '--accent-main'], ['.tg-help--error', '--danger-main']]) {
+      const colors = await page.evaluate(([selector, role]) => {
+        const probe = document.createElement('span'); probe.style.color = `var(${role})`; document.body.append(probe);
+        const expected = getComputedStyle(probe).color; probe.remove();
+        return { actual: getComputedStyle(document.querySelector(selector)).color, expected };
+      }, [selector, role]);
+      check(`${theme}: ${selector} is the ${role} source colour`, colors.actual === colors.expected, colors);
+      const value = await page.evaluate(measureContrast, { selector });
+      check(`${theme}: ${selector} contrast ≥ 3`, value.ratio >= 3, value);
     }
     const placeholder = await page.evaluate(measureContrast, { selector: '.tg-input', pseudo: '::placeholder' });
     check(`${theme}: placeholder contrast ≥ 4.5`, placeholder.ratio >= 4.5, placeholder);
@@ -140,7 +153,9 @@ try {
       await page.evaluate(color => {
         for (const role of ['--button-color', '--link-color', '--accent-text-color']) document.documentElement.style.setProperty(role, color);
       }, accent);
-      for (const selector of ['.tg-link', '.tg-btn--primary', '.tg-badge--primary']) {
+      // Fills carry their own contrast with any accent; a link is the accent itself, so a
+      // custom palette's link contrast is measured by its owner (docs/color-system.md §5).
+      for (const selector of ['.tg-btn--primary', '.tg-badge--primary']) {
         const value = await page.evaluate(measureContrast, { selector });
         check(`${theme}: ${accent} ${selector} contrast ≥ 4.5`, value.ratio >= 4.5, value);
       }

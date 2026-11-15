@@ -12,7 +12,7 @@ try {
   const catalog = await readFile('docs/catalog.css', 'utf8');
   await page.setContent(`<style>${css}\n${catalog}</style>${table}`);
   assert.equal(await page.locator('.palette-table tbody tr').count(), 4);
-  assert.equal(await page.locator('.palette-swatch').count(), 12);
+  assert.equal(await page.locator('.palette-swatch').count(), 11);
   for (const theme of ['light', 'dark', 'ios-dark']) {
     await page.evaluate(theme => document.documentElement.dataset.theme = theme, theme);
     const colors = await page.evaluate(theme => {
@@ -60,7 +60,7 @@ try {
         wordBreak: getComputedStyle(el).wordBreak,
         fits: el.getBoundingClientRect().width <= el.parentElement.getBoundingClientRect().width + 1 && el.scrollWidth <= el.clientWidth + 1,
       })));
-      assert.equal(new Set(tokens.map(token => token.text)).size, 12);
+      assert.equal(new Set(tokens.map(token => token.text)).size, 11);
       assert.ok(tokens.every(token => token.fits), `${theme}/${width}: token names fit their cells`);
       if (width <= 390) {
         assert.ok(tokens.every(token => token.wrap !== 'anywhere' && token.wordBreak !== 'break-all'), `${theme}/${width}: full tokens do not break into arbitrary fragments`);
@@ -75,5 +75,5 @@ try {
     assert.ok(await page.locator('[style="background:var(--accent-strong)"]').evaluate(el => getComputedStyle(el).backgroundColor !== 'rgba(0, 0, 0, 0)'));
     await page.locator('body').evaluate(el => el.style.removeProperty('--accent-main'));
   }
-  console.log('Palette: four original colors, 12 table samples, three themes and responsive layouts passed.');
+  console.log('Palette: four original colors, 11 table samples, three themes and responsive layouts passed.');
 } finally { await browser.close(); }
