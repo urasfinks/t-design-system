@@ -5,7 +5,7 @@ const browser=await (process.argv.includes('--webkit')?webkit:chromium).launch()
 try {
   const css=await readFile('dist/t-design-system.css','utf8');
   const page=await browser.newPage({viewport:{width:500,height:300},reducedMotion:'no-preference'});
-  await page.setContent(`<style>${css}body{padding:20px}.tg-progress{width:400px;margin-bottom:16px}</style><progress class="tg-progress" max="100" value="42"></progress><div class="tg-progress"><span class="tg-progress__bar" style="--progress:42%"></span></div>${[25,75].map(v=>`<div class="tg-progress tg-progress--striped" id="p${v}"><span class="tg-progress__bar" style="--progress:${v}%"></span></div>`).join('')}<span class="tg-spinner tg-spinner--lg"></span><span class="tg-progress-ring"></span>`);
+  await page.setContent(`<style>${css}body{padding:20px}.tg-progress{width:400px;margin-bottom:16px}</style><progress class="tg-progress" max="100" value="42"></progress><div class="tg-progress"><span class="tg-progress__bar" style="--progress:42%"></span></div>${[25,75].map(v=>`<div class="tg-progress tg-progress--striped" id="p${v}"><span class="tg-progress__bar" style="--progress:${v}%"></span></div>`).join('')}<span class="tg-spinner"></span><span class="tg-progress-ring"></span>`);
   const phase=async time=>page.evaluate(async time=>{
     const animations=document.getAnimations().filter(a=>a.animationName==='tg-stripes');
     for(const a of animations)a.pause();
@@ -26,9 +26,10 @@ try {
     const colors=await page.evaluate(()=>{
       const probe=document.createElement('span');probe.style.color='var(--progress-color)';document.body.append(probe);
       const expected=getComputedStyle(probe).color;probe.remove();
-      return {expected,actual:[getComputedStyle(document.querySelector('.tg-progress__bar')).backgroundColor,getComputedStyle(document.querySelector('.tg-spinner')).borderTopColor,getComputedStyle(document.querySelector('.tg-progress-ring')).color]};
+      return {expected,actual:[getComputedStyle(document.querySelector('.tg-progress__bar')).backgroundColor,getComputedStyle(document.querySelector('.tg-progress-ring')).color]};
     });
-    assert.ok(colors.actual.every(color=>color===colors.expected),`${theme}: bar, spinner and ring use the shared progress role: ${JSON.stringify(colors)}`);
+    assert.ok(colors.actual.every(color=>color===colors.expected),`${theme}: bar and ring use the shared progress role: ${JSON.stringify(colors)}`);
+    assert.equal(await page.locator('.tg-spinner').evaluate(el => getComputedStyle(el).borderTopColor === getComputedStyle(el).color), true, 'base spinner inherits text color');
     await page.evaluate(()=>{
       getComputedStyle(document.querySelector('#p25 .tg-progress__bar')).clipPath;
       for(const a of document.getAnimations())if('transitionProperty' in a)a.finish();

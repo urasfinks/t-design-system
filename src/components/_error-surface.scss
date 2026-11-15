@@ -25,7 +25,6 @@
   min-inline-size: 0;
   > :not(:first-child) {
     margin-block-start: var(--space-1);
-    font-size: var(--fs-sm);
     color: var(--text-secondary);
   }
 }
@@ -33,8 +32,6 @@
 @mixin title {
   display: block;
   margin: 0;
-  font-size: inherit;
-  font-weight: var(--fw-semibold);
   line-height: inherit;
   color: inherit;
 }

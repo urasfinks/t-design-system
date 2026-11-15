@@ -24,7 +24,6 @@
     gap: var(--space-2) var(--space-3);
     padding: var(--space-2) var(--space-3) var(--space-2) var(--space-4);
     border-block-end: 1px solid var(--border-subtle-color);
-    font-size: var(--fs-sm);
     > .tg-breadcrumbs { flex: 1 1 auto; min-inline-size: 0; }
   }
   .tg-editor__toolbar {
@@ -53,7 +52,6 @@
     min-block-size: 12rem;
     padding: var(--space-6) var(--space-8);
     color: var(--text-color);
-    font-size: max(1rem, var(--fs));
     line-height: 1.6;
     outline: none;
     caret-color: var(--text-link);
@@ -61,14 +59,12 @@
     &:focus-visible { box-shadow: none; }
     &[contenteditable='false'] { caret-color: transparent; }
     > * { margin: 0; }
-    h2 { font-size: var(--fs-display); line-height: 1.2; letter-spacing: -.01em; }
-    h3 { font-size: var(--fs-lg); line-height: 1.3; }
-    h4 { font-size: var(--fs); }
-    :is(h2, h3, h4) { font-weight: var(--fw-semibold); }
+    h2 { line-height: 1.2; letter-spacing: -.01em; }
+    h3 { line-height: 1.3; }
     :is(ul, ol) { padding-inline-start: var(--space-6); }
     li + li { margin-block-start: var(--space-1); }
-    code { padding: .1em .3em; border-radius: var(--radius-xs); background: var(--background-muted); font-family: var(--font-family-mono); font-size: .9em; }
-    pre { padding: var(--space-3) var(--space-4); border-radius: var(--radius); background: var(--background-muted); overflow-x: auto; font-size: var(--fs-sm); }
+    code { padding: .1em .3em; border-radius: var(--radius-xs); background: var(--background-muted); font-family: var(--font-family-mono); }
+    pre { padding: var(--space-3) var(--space-4); border-radius: var(--radius); background: var(--background-muted); overflow-x: auto; }
     pre code { padding: 0; background: none; }
     blockquote { padding-inline-start: var(--space-4); border-inline-start: 3px solid var(--border-color); color: var(--text-secondary); }
     a { color: var(--text-link); text-underline-offset: .2em; }

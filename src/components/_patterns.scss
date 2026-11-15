@@ -46,7 +46,7 @@
     padding: var(--space-8) var(--space-4);
     text-align: center;
     overflow-wrap: anywhere;
-    &__title { margin: 0; font-size: var(--fs-lg); font-weight: var(--fw-semibold); }
+    &__title { margin: 0; }
     &__description { max-inline-size: var(--layout-reading-width); margin: 0; color: var(--text-secondary); }
     &__icon { color: var(--text-secondary); }
     &__action { margin-block-start: var(--space-2); }
@@ -69,16 +69,12 @@
       --disclosure-inner-end: max(0px, calc(var(--disclosure-radius-end, var(--radius)) - 1px));
       min-block-size: var(--control-h);
       padding: var(--disclosure-trigger-padding, var(--disclosure-default-padding, var(--space-3) var(--space-4)));
-      font-size: var(--disclosure-trigger-font-size, inherit);
       border-radius: var(--disclosure-inner-start) var(--disclosure-inner-start) var(--disclosure-inner-end) var(--disclosure-inner-end);
-      font-weight: var(--fw-medium);
       cursor: pointer;
       overflow-wrap: anywhere;
     }
-    &__trigger--regular { font-weight: var(--fw-regular); }
     &--compact {
       --disclosure-trigger-padding: var(--space-2) var(--space-3);
-      --disclosure-trigger-font-size: var(--fs-sm);
     }
     // A section within an existing bordered surface owns only its separator.
     &--embedded {
@@ -129,16 +125,15 @@
     text-align: start;
     caption { padding: var(--space-3) var(--space-4); text-align: start; color: var(--text-secondary); }
     :is(th, td) { padding: var(--space-3) var(--space-4); text-align: start; border-block-end: var(--border); vertical-align: top; }
-    th { font-weight: var(--fw-semibold); }
     thead th { background: var(--background-main); }
     :is(thead, tbody, tfoot):last-child > tr:last-child > :is(th, td) { border-block-end: 0; }
-    tfoot :is(th, td) { border-block-start: var(--border); font-weight: var(--fw-semibold); }
+    tfoot :is(th, td) { border-block-start: var(--border); }
   }
 
   // Table density and parts. Rows stay rows: keyboard users move with Tab, not arrows.
   .tg-table {
     &--compact :is(th, td) { padding: var(--space-2) var(--space-3); }
-    &--caption-bottom caption { caption-side: bottom; font-size: var(--fs-sm); }
+    &--caption-bottom caption { caption-side: bottom; }
     thead th[aria-sort] { padding-block: var(--space-1); }
     // Rows with pictures, checkboxes or sort buttons centre their cells on one line.
     &:has(.tg-table__cell-main, .tg-table__select, .tg-table__sort) :is(th, td) { vertical-align: middle; }
@@ -152,7 +147,7 @@
     > .tg-avatar { --icon-avatar: var(--icon-btn-prep); padding: 0; border-width: 0; }
     > :last-child { display: grid; min-inline-size: 0; }
   }
-  .tg-table__cell-meta { font-size: var(--fs-sm); color: var(--text-secondary); }
+  .tg-table__cell-meta { color: var(--text-secondary); }
 
   // Row selection: the checkbox column is narrow, a chosen row takes the soft accent.
   .tg-table .tg-table__select {
@@ -175,7 +170,6 @@
     border: 0;
     border-radius: var(--radius-inset);
     background: var(--control-idle-bg, transparent);
-    font-weight: inherit;
     text-align: start;
     cursor: pointer;
     --control-hover-filter: none;
@@ -204,8 +198,8 @@
     padding: var(--space-2) var(--space-2) var(--space-2) var(--space-4);
     border-radius: var(--radius-control);
     background: var(--background-muted);
-    > [role='status'] { margin-inline-end: auto; font-weight: var(--fw-medium); font-variant-numeric: tabular-nums; }
-    &[data-empty] > [role='status'] { color: var(--text-secondary); font-weight: var(--fw-regular); }
+    > [role='status'] { margin-inline-end: auto; font-variant-numeric: tabular-nums; }
+    &[data-empty] > [role='status'] { color: var(--text-secondary); }
   }
 
   // Narrow tables become one card per row; each cell names its column.
@@ -225,7 +219,7 @@
       & tbody tr { padding-block: var(--space-2); border-block-end: var(--border); }
       & tbody tr:last-child { border-block-end: 0; }
       & tbody :is(th, td) { display: grid; grid-template-columns: minmax(5rem, 30%) minmax(0, 1fr); gap: var(--space-3); justify-items: start; padding-block: var(--space-1); border: 0; text-align: start; }
-      & tbody :is(th, td)[data-label]::before { content: attr(data-label); color: var(--text-secondary); font-weight: var(--fw-regular); }
+      & tbody :is(th, td)[data-label]::before { content: attr(data-label); color: var(--text-secondary); }
       & tfoot { display: block; }
       & tfoot tr { display: flex; justify-content: space-between; padding: var(--space-3) var(--space-4); border-block-start: var(--border); }
       & tfoot :is(th, td) { padding: 0; border: 0; }
@@ -256,8 +250,6 @@
   .tg-accordion__controls { display: flex; flex-wrap: wrap; justify-content: flex-end; gap: var(--space-2); }
   .tg-disclosure__meta {
     margin-inline-start: auto;
-    font-size: var(--fs-sm);
-    font-weight: var(--fw-regular);
     color: var(--text-secondary);
     white-space: nowrap;
   }
@@ -292,7 +284,7 @@
     padding: var(--space-4);
     border: var(--border);
     border-radius: var(--radius);
-    legend { padding-inline: var(--space-2); font-weight: var(--fw-semibold); overflow-wrap: anywhere; max-inline-size: 100%; }
+    legend { padding-inline: var(--space-2); overflow-wrap: anywhere; max-inline-size: 100%; }
   }
 
   .tg-error-summary {
@@ -301,7 +293,7 @@
     &__icon { @include error-surface.icon; color: var(--text-danger); }
     &__content { @include error-surface.content; }
     &__title { @include error-surface.title; }
-    ul { margin: 0; padding: 0; list-style: none; font-size: var(--fs-sm); color: var(--text-secondary); }
+    ul { margin: 0; padding: 0; list-style: none; color: var(--text-secondary); }
     > ul { margin-block-start: var(--space-1); }
     a { color: inherit; text-underline-offset: .2em; }
   }
@@ -381,7 +373,7 @@
     > .tg-table-toolbar__filters { display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-2); }
     > .tg-table-toolbar__end { display: flex; align-items: center; gap: var(--space-2); margin-inline-start: auto; }
   }
-  .tg-table-toolbar__count { color: var(--text-secondary); font-size: var(--fs-sm); font-variant-numeric: tabular-nums; white-space: nowrap; }
+  .tg-table-toolbar__count { color: var(--text-secondary); font-variant-numeric: tabular-nums; white-space: nowrap; }
 
   // Sortable list: rows with a 44px handle. The lifted row floats on the overlay shadow,
   // a 2px accent line marks where it will land. Keyboard: Space lifts, arrows move,

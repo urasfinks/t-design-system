@@ -18,16 +18,22 @@ try {
       const L = color => Number(resolve(`oklch(from ${color} l c h)`).match(/oklch\(\s*([\d.]+)/)[1]);
       const token = name => resolve(`var(--${name})`);
       const panel = token('background-panel'), muted = token('background-muted'), base = token('background-main');
+      const axes = color => resolve(`oklab(from ${color} l a b)`).match(/oklab\(([^)]+)\)/)[1].split(/\s+/).slice(1, 3).map(Number);
+      const chromaticAxes = [base, panel, muted].map(axes);
       const inversion = Number(getComputedStyle(document.documentElement).getPropertyValue('--color-inversion'));
       const consumers = ['.tg-input', '.tg-search', '.tg-input-group', '.tg-btn--secondary', '.tg-tabs', '.tg-menu__item'].map(selector => ({ selector, rgba: rgb(getComputedStyle(document.querySelector('#color-system-test ' + selector)).backgroundColor) }));
       consumers.push({ selector: '.tg-switch::before', rgba: rgb(getComputedStyle(document.querySelector('#color-system-test .tg-switch'), '::before').backgroundColor) });
-      return { inversion, panelL: L(panel), baseL: L(base), mutedStep: L(muted) - L(panel), expectedMuted: rgb(muted), consumers };
+      return { inversion, chromaticAxes, panelL: L(panel), baseL: L(base), mutedStep: L(muted) - L(panel), expectedMuted: rgb(muted), consumers };
     });
     assert.equal(sample.inversion, name === 'light' ? -1 : 1);
     assert.ok(Math.abs(sample.panelL - Math.min(1, Math.max(.215, sample.baseL + .06))) < .00001, `${name}: shared panel formula`);
     assert.ok(Math.abs(sample.mutedStep - sample.inversion * .065975) < .00001, `${name}: signed D surface step`);
+    const [baseAxes, panelAxes, mutedAxes] = sample.chromaticAxes;
+    for (const axes of [panelAxes, mutedAxes]) {
+      assert.ok(axes.every((axis, i) => Math.abs(axis - baseAxes[i]) < .00001), `${name}: panels preserve both chromatic axes`);
+    }
     for (const consumer of sample.consumers) assert.deepEqual(consumer.rgba, sample.expectedMuted, `${name}: ${consumer.selector} inherits the same surface`);
-    checks += 3 + sample.consumers.length;
+    checks += 5 + sample.consumers.length;
     const button = page.locator('#color-system-test .tg-btn--secondary');
     await page.mouse.move(0, 0);
     const idle = await button.evaluate(el => getComputedStyle(el).backgroundColor);

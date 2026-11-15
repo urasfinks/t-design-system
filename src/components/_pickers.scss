@@ -27,7 +27,6 @@
     background-size: var(--icon-size) var(--icon-size);
     background-position: right var(--space-3) center;
     color: var(--text-color);
-    font-size: max(1rem, var(--fs));
     line-height: 1.5;
     text-align: start;
     cursor: pointer;
@@ -38,7 +37,7 @@
     --control-hover-filter: none;
     &:dir(rtl) { background-position: left var(--space-3) center; }
     > .tg-icon, > .tg-avatar { flex: 0 0 auto; }
-    > .tg-avatar { --icon-avatar: 1.75rem; margin-block: calc(var(--space-1) * -1); padding: 0; border-width: 0; font-size: var(--fs-xs); }
+    > .tg-avatar { --icon-avatar: 1.75rem; margin-block: calc(var(--space-1) * -1); padding: 0; border-width: 0; }
     > :not(.tg-icon, .tg-avatar) { min-inline-size: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
     // While its list is open the trigger keeps the hovered and focused look, like a field in focus.
     &:focus-visible, &[aria-expanded='true'] {
@@ -63,13 +62,11 @@
     overflow-y: auto;
     overscroll-behavior: contain;
     @include option.list;
-    font-size: var(--fs);
     line-height: 1.4;
 
     &:empty::after, > .tg-listbox__empty {
       padding: var(--space-3);
       color: var(--text-secondary);
-      font-size: var(--fs-sm);
       text-align: center;
     }
     &:empty::after { content: attr(data-empty); }
@@ -106,7 +103,7 @@
     &[aria-disabled='true'] { opacity: var(--disabled-opacity); cursor: not-allowed; background: none; }
   }
   .tg-listbox__text { display: grid; flex: 1 1 auto; min-inline-size: 0; }
-  .tg-listbox__option-meta { @include option.meta; font-weight: var(--fw-regular); }
+  .tg-listbox__option-meta { @include option.meta; }
   .tg-listbox__group { @include option.group-label; }
 
   // Combobox: a text field that filters a listbox. Selected values of a multiple
@@ -153,8 +150,6 @@
     background: var(--surface-bg);
     --ring-bg: var(--surface-bg);
     color: var(--text-color);
-    font-size: var(--fs-sm);
-    font-weight: var(--fw-medium);
     overflow-wrap: anywhere;
     &[data-invalid] { background: var(--danger-soft); color: var(--text-danger); }
     &:focus-within { outline: 2px solid var(--text-link); outline-offset: 1px; }
@@ -243,7 +238,6 @@
     background: transparent;
     color: transparent;
     caret-color: transparent;
-    font-size: max(1rem, var(--fs));
     letter-spacing: 2em;
     outline: none;
     opacity: 0;
@@ -260,14 +254,12 @@
     block-size: calc(var(--otp-cell) + var(--space-2));
     @include field-surface.frame;
     color: var(--text-color);
-    font-size: var(--fs-lg);
-    font-weight: var(--fw-semibold);
     font-variant-numeric: tabular-nums;
     transition: border-color var(--duration-fast) var(--ease), box-shadow var(--duration-fast) var(--ease);
 
     // Placeholder and caret share the cell's one grid area, so neither pushes the other.
     &::before, &::after { grid-area: 1 / 1; }
-    &:empty::before { content: attr(data-placeholder); color: var(--text-secondary); font-weight: var(--fw-regular); }
+    &:empty::before { content: attr(data-placeholder); color: var(--text-secondary); }
     // The active cell shows the caret of the hidden field.
     .tg-otp:focus-within &[data-active] { border-color: var(--accent-main); box-shadow: var(--focus); }
     .tg-otp:focus-within &[data-active]:empty::before { visibility: hidden; }
@@ -329,8 +321,8 @@
     > .tg-icon { inline-size: 1.5rem; block-size: 1.5rem; }
     > img { display: block; inline-size: 100%; block-size: auto; aspect-ratio: 16 / 9; object-fit: cover; }
   }
-  .tg-choice-card__title { font-weight: var(--fw-semibold); }
-  .tg-choice-card__description { color: var(--text-secondary); font-size: var(--fs-sm); }
+  .tg-choice-card__title { overflow-wrap: anywhere; }
+  .tg-choice-card__description { color: var(--text-secondary); }
   .tg-choice-card__indicator {
     grid-row: 1;
     grid-column: 2;
@@ -353,8 +345,6 @@
   }
   .tg-range-field__output {
     color: var(--text-color);
-    font-size: var(--fs-sm);
-    font-weight: var(--fw-medium);
     font-variant-numeric: tabular-nums;
   }
   .tg-range-field__marks {
@@ -362,7 +352,6 @@
     justify-content: space-between;
     margin-block-start: calc(var(--space-2) * -1);
     color: var(--text-secondary);
-    font-size: var(--fs-xs);
     font-variant-numeric: tabular-nums;
   }
   // Two native ranges on one track; the fill between them follows --range-start/--range-end (0…100%).
@@ -437,11 +426,10 @@
     block-size: var(--wheel-item);
     padding-inline: var(--space-2);
     color: var(--text-secondary);
-    font-size: var(--fs-lg);
     font-variant-numeric: tabular-nums;
     scroll-snap-align: center;
     cursor: pointer;
-    &[aria-selected='true'] { color: var(--text-color); font-weight: var(--fw-semibold); }
+    &[aria-selected='true'] { color: var(--text-color); }
     &[aria-disabled='true'] { opacity: var(--disabled-opacity); }
   }
 
@@ -574,7 +562,7 @@
     --ring-bg: var(--surface-bg);
   }
   .tg-emoji-picker__search { position: sticky; inset-block-start: 0; }
-  .tg-emoji-picker__group { margin: var(--space-1) var(--space-1) 0; color: var(--text-secondary); font-size: var(--fs-xs); font-weight: var(--fw-semibold); }
+  .tg-emoji-picker__group { margin: var(--space-1) var(--space-1) 0; color: var(--text-secondary); }
   .tg-emoji-picker__grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(2.75rem, 1fr));
@@ -591,7 +579,6 @@
     border: 0;
     border-radius: var(--radius-inset);
     background: var(--control-idle-bg, transparent);
-    font-size: 1.375rem;
     line-height: 1;
     cursor: pointer;
     &:focus-visible { outline: 2px solid var(--text-link); outline-offset: -2px; }

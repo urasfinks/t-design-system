@@ -30,13 +30,8 @@
       --control-idle-bg: var(--action-danger-bg);
       --control-color: var(--button-text-color);
     }
-    &--sm { padding-inline: var(--space-3); font-size: var(--fs-sm); }
-    &--lg { padding-inline: var(--space-6); }
     &-box { inline-size: var(--control-h); padding-inline: var(--space-2); }
 
-    @for $i from 1 through 3 {
-      &-s#{$i} { padding-inline: var(--space-#{$i}); }
-    }
   }
 
   .tg-icon-btn {
@@ -57,8 +52,6 @@
     block-size: auto;
     min-block-size: calc(var(--control-h) * 2);
     padding: var(--space-3);
-    font-size: var(--fs-sm);
-    font-weight: var(--fw-regular);
   }
   // A pressed toggle and a pressed stacked option share one selected look.
   :is(.tg-btn--stacked, .tg-toggle)[aria-pressed='true'] { @include selected.soft; }
@@ -73,8 +66,6 @@
   // Two lines inside one control height: tighter leading for both.
   .tg-btn:has(.tg-btn__subtext) { padding-block: var(--space-1); line-height: 1.15; }
   .tg-btn__subtext {
-    font-size: var(--fs-xs);
-    font-weight: var(--fw-regular);
     line-height: 1.2;
   }
   .tg-btn:has(.tg-btn__subtext) {
@@ -86,7 +77,6 @@
   .tg-chip {
     padding-inline: var(--space-3);
     border-radius: var(--radius-pill);
-    font-size: var(--fs-sm);
     // A filter toggles with aria-pressed; a choice in a group may use role=checkbox.
     &:is([aria-pressed='true'], [aria-checked='true']) { @include selected.filled; }
   }

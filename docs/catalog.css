@@ -47,9 +47,16 @@ p { text-wrap: pretty; }
   letter-spacing: .02em;
 }
 .nav-link { display: flex; align-items: center; gap: var(--space-2); padding: var(--space-2) var(--space-3); min-height: 2.75rem; border-radius: var(--radius-xs); text-decoration: none; font-size: var(--catalog-body); color: var(--text-secondary); }
-.catalog-nav-family > details { padding-inline-start: var(--space-3); }
-.catalog-nav-family > details > summary { min-block-size: var(--control-h); padding: var(--space-2) var(--space-3); color: var(--text-secondary); font-size: var(--catalog-caption); cursor: pointer; }
-.catalog-nav-family > details .nav-link { font-size: var(--catalog-caption); }
+.catalog-nav-toggle { display: flex; align-items: center; gap: var(--space-2); min-block-size: var(--control-h); padding: var(--space-2) var(--space-3); border-radius: var(--radius-xs); color: var(--text-secondary); cursor: pointer; list-style: none; }
+.catalog-nav-toggle::-webkit-details-marker { display: none; }
+.catalog-nav-toggle::marker { content: ''; }
+.catalog-nav-toggle > span { min-inline-size: 0; overflow-wrap: anywhere; }
+.catalog-nav-chevron { flex: none; transition: transform var(--duration) var(--ease); }
+.catalog-nav-family > details[open] > .catalog-nav-toggle > .catalog-nav-chevron { transform: rotate(90deg); }
+.catalog-nav-children { margin-inline-start: var(--space-5); padding-inline-start: var(--space-3); border-inline-start: var(--border); }
+.catalog-nav-toggle.is-active { color: var(--text-color); background: var(--surface-muted); }
+@media (hover: hover) and (pointer: fine) { .catalog-nav-toggle:hover { color: var(--text-color); background: var(--surface-muted); } }
+@media (prefers-reduced-motion: reduce) { .catalog-nav-chevron { transition: none; } }
 .nav-link.is-active { color: var(--text-color); background: var(--surface-muted); font-weight: 600; }
 .sidebar-note { border-top: var(--border); margin-top: auto; padding: var(--space-6) var(--space-3) 0; font-size: var(--catalog-caption); line-height: 1.8; color: var(--text-secondary); }
 .status-dot { display: inline-block; width: .375rem; height: .375rem; border-radius: 50%; background: var(--text-link); margin-right: var(--space-2); vertical-align: middle; }

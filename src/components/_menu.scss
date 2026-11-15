@@ -15,7 +15,6 @@
     overscroll-behavior: contain;
     padding: var(--space-1);
     @include option.list;
-    font-size: var(--fs);
     line-height: 1.4;
     overflow-wrap: anywhere;
   }
@@ -91,7 +90,6 @@
     margin-inline-start: auto;
     padding-inline-start: var(--space-4);
     font: inherit;
-    font-size: var(--fs-sm);
     font-variant-numeric: tabular-nums;
     color: var(--text-secondary);
   }

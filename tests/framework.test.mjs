@@ -4,11 +4,11 @@ import { readFile, access } from 'node:fs/promises';
 import * as sass from 'sass';
 
 const css = async () => readFile(new URL('../dist/t-design-system.css', import.meta.url), 'utf8');
-test('original classes remain available except the explicitly removed zero-padding button', async () => {
+test('original classes remain available except explicitly removed size modifiers', async () => {
   const original = JSON.parse(await readFile(new URL('fixtures/source-tg-classes.json', import.meta.url), 'utf8'));
   const current = new Set([...(await css()).matchAll(/\.(tg-[\w-]+)/g)].map(match => match[1]));
   assert.equal(current.has('tg-btn-s0'), false, 'zero-padding button utility was intentionally removed');
-  assert.deepEqual(original.filter(name => name !== 'tg-btn-s0' && !current.has(name)), []);
+  assert.deepEqual(original.filter(name => !/^tg-(?:btn|tabs)-s[0-3]$/.test(name) && !/^tg-.*--(?:xs|sm|md|lg|xl|xxl)$/.test(name) && !current.has(name)), []);
 });
 test('main stylesheet declares a predictable cascade without specificity escapes', async () => {
   const text = await css();
@@ -47,4 +47,12 @@ test('all component colors use canonical roles and operators', async () => {
   assert.match(source, /color\.tone\(var\(--background-panel\), var\(--surface-lightness-step\)\)/);
   assert.match(source, /--switch-track-color: var\(--background-muted\)/);
   assert.doesNotMatch(source, /srgb-linear|surface-muted-contrast/);
+});
+
+test('component size modifiers are removed while typography remains public', async () => {
+  const text = await css();
+  assert.doesNotMatch(text, /\.tg-[\w-]+--(?:xs|sm|md|lg|xl|xxl)\b|\.tg-(?:btn|tabs)-s[0-3]\b/);
+  for (const name of ['tg-text-xs', 'tg-text-sm', 'tg-text-base', 'tg-text-lg', 'tg-text-display', 'tg-fw-regular', 'tg-fw-medium', 'tg-fw-semibold', 'tg-fw-bold']) {
+    assert.ok(text.includes('.' + name), name);
+  }
 });

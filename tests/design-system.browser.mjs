@@ -31,9 +31,9 @@ try {
     <select class="tg-select" id="list-select" size="3" aria-label="Список ролей"><option>Дизайнер</option></select>
     <button class="tg-btn tg-btn--primary">Продолжить</button>
     <div id="button-heights" class="tg-row">
-      <button class="tg-btn tg-btn--sm">Компактная</button>
+      <button class="tg-btn">Компактная</button>
       <button class="tg-btn">Обычная</button>
-      <button class="tg-btn tg-btn--lg">Крупная</button>
+      <button class="tg-btn">Крупная</button>
       <button class="tg-icon-btn" aria-label="Добавить">+</button>
       <button class="tg-btn tg-btn--pill">Капсула</button>
       <button class="tg-chip" aria-checked="true">Чип</button>

@@ -1,11 +1,11 @@
-# Аудит переноса из ai-splitter-ng
+# Аудит переноса из исходного интерфейса
 
 > Исторический отчёт от 22 октября 2026 года. Формулы, цвета и числа проверок
 > ниже относятся к соответствующим этапам ревью. Текущий контракт описан в
 > [README](../README.md#темы-и-токены) и [DESIGN.md](../DESIGN.md).
 > После этих этапов изменились палитра, границы контролов, бейджи и аватары.
 
-22 октября 2026 года. Источник: проект `ai-splitter-ng`.
+22 октября 2026 года. Источник: первоначальный интерфейс приложения.
 Проверены глобальный `styles.scss`, `main.ts`, все стили компонентов, шаблоны и
 связанные UI-обработчики. Исходный проект не изменяется.
 
@@ -46,7 +46,7 @@
 | `add-image`, `add-image-2`, контекстный `icon` | `tg-upload`, `tg-upload--dashed`, `tg-upload__icon` |
 | `thumb`, `actions`, `progress-text` из upload-компонента | `tg-upload__preview`, `tg-upload__actions`, `tg-upload__status` |
 | `progress`, `progress__bar` из progress-компонента | `tg-progress tg-progress--striped`, `tg-progress__bar` |
-| `spinner` | `tg-spinner tg-spinner--lg` |
+| `spinner` | `tg-spinner` |
 | `overlay`, `overlay-2` | `tg-overlay`, `tg-overlay--absolute` |
 | `no-select`, `no-events` | `tg-no-select`, `tg-no-events` |
 | `dot`, `active` в индикаторах слайдера | `tg-pagination`, `tg-dot[aria-current="page"]` |

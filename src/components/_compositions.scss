@@ -117,16 +117,15 @@
       > :last-child { margin-block-end: 0; }
       :is(p, ul, ol, pre, blockquote, table) { margin-block: 0 var(--space-3); }
       :is(ul, ol) { padding-inline-start: var(--space-6); }
-      code { padding: .1em .35em; border-radius: var(--radius-xs); background: var(--background-muted); font-family: var(--font-family-mono); font-size: .875em; }
+      code { padding: .1em .35em; border-radius: var(--radius-xs); background: var(--background-muted); font-family: var(--font-family-mono); }
       pre {
         overflow-x: auto;
         padding: var(--space-3) var(--space-4);
         border-radius: var(--radius-control);
         background: var(--background-muted);
         font-family: var(--font-family-mono);
-        font-size: var(--fs-sm);
         line-height: 1.5;
-        > code { padding: 0; background: none; font-size: inherit; }
+        > code { padding: 0; background: none; }
       }
     }
     &--user {
@@ -140,7 +139,7 @@
         background: var(--background-muted);
       }
     }
-    &__meta { font-size: var(--fs-xs); color: var(--text-secondary); }
+    &__meta { color: var(--text-secondary); }
     &__actions {
       display: flex;
       flex-wrap: wrap;
@@ -187,7 +186,6 @@
     // Optical alignment: a leading ghost action's label sits on the text's edge;
     // its padding and hover fill extend into the gutter instead.
     &__actions > .tg-btn--ghost:first-child { margin-inline-start: calc(-1 * (var(--space-4) + 1px)); }
-    &__actions > .tg-btn--ghost.tg-btn--sm:first-child { margin-inline-start: calc(-1 * (var(--space-3) + 1px)); }
   }
   // The menu is in the top layer; its originating comment sits above the page scrim.
   body:has(.tg-comment--focus-menu .tg-menu:popover-open)::before {
@@ -272,7 +270,6 @@
     column-gap: var(--space-2);
     min-block-size: 2rem;
     color: var(--text-secondary);
-    font-size: var(--fs-sm);
     > details { grid-column: 2 / -1; }
     &[data-state='done'] .tg-agent-step__icon { color: var(--text-link); }
     &[data-state='error'] { color: var(--text-danger); .tg-agent-step__icon { color: var(--text-danger); } }
@@ -287,8 +284,8 @@
     > .tg-spinner { inline-size: .875rem; block-size: .875rem; }
   }
   .tg-agent-step__label { min-inline-size: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-  .tg-agent-step__label code { font-family: var(--font-family-mono); font-size: .9em; }
-  .tg-agent-step__time { font-variant-numeric: tabular-nums; font-size: var(--fs-xs); }
+  .tg-agent-step__label code { font-family: var(--font-family-mono); }
+  .tg-agent-step__time { font-variant-numeric: tabular-nums; }
   .tg-agent-step__detail {
     margin-block: var(--space-1) var(--space-2);
     > summary {
@@ -322,20 +319,18 @@
     background: var(--surface-bg);
     --ring-bg: var(--surface-bg);
     &[data-state='danger'] { border-color: var(--danger-main); }
-    &[data-state='decided'] { padding-block: var(--space-3); color: var(--text-secondary); font-size: var(--fs-sm); }
+    &[data-state='decided'] { padding-block: var(--space-3); color: var(--text-secondary); }
   }
   .tg-approval__title {
     display: flex;
     align-items: center;
     gap: var(--space-2);
     margin: 0;
-    font-size: var(--fs);
-    font-weight: var(--fw-semibold);
     > .tg-icon { flex: 0 0 auto; color: var(--text-link); }
     .tg-approval[data-state='danger'] & > .tg-icon { color: var(--text-danger); }
   }
-  .tg-approval__description { margin: 0; color: var(--text-secondary); font-size: var(--fs-sm); }
-  .tg-approval__options { display: grid; gap: var(--space-2); margin: 0; padding: 0; border: 0; min-inline-size: 0; > legend { padding: 0; margin-block-end: var(--space-1); font-size: var(--fs-sm); font-weight: var(--fw-medium); } }
+  .tg-approval__description { margin: 0; color: var(--text-secondary); }
+  .tg-approval__options { display: grid; gap: var(--space-2); margin: 0; padding: 0; border: 0; min-inline-size: 0; > legend { padding: 0; margin-block-end: var(--space-1); } }
   .tg-approval__actions {
     display: flex;
     flex-wrap: wrap;

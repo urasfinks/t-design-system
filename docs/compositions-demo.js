@@ -78,7 +78,7 @@ form.addEventListener('submit', event => {
   item.className = 'tg-list-item';
   const article = document.createElement('article');
   article.className = 'tg-comment';
-  article.innerHTML = '<span class="tg-avatar" aria-hidden="true"><span class="tg-avatar__initials">В</span></span><div class="tg-comment__body"><header class="tg-comment__meta"><span class="tg-list-item__title">Вы</span></header><p class="tg-comment__text tg-mt-2 tg-mb-0"></p></div>';
+  article.innerHTML = '<span class="tg-avatar" aria-hidden="true"><span class="tg-avatar__initials tg-text-lg tg-fw-semibold">В</span></span><div class="tg-comment__body"><header class="tg-comment__meta"><span class="tg-list-item__title tg-fw-semibold">Вы</span></header><p class="tg-comment__text tg-mt-2 tg-mb-0"></p></div>';
   article.querySelector('p').textContent = text;
   item.append(article);
   const isReply = !preview.hidden;

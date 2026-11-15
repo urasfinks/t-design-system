@@ -29,12 +29,12 @@ try {
   // M8 — progress ring
   const ring = `${ex('M8')} #demo-ring`;
   check('M8 ring default size is 40px', Math.round((await box(ring)).width) === 40);
-  check('M8 --lg ring is 64px', Math.round((await box(`${ex('M8')} .tg-progress-ring--lg`)).width) === 64);
-  check('M8 --sm ring is 24px', Math.round((await box(`${ex('M8')} .tg-progress-ring--sm`)).width) === 24);
+  check('M8 labelled ring uses the base 40px size', Math.round((await box(`${ex('M8')} .tg-progress-ring[aria-valuenow="75"]`)).width) === 40);
+  check('M8 indeterminate ring uses the base 40px size', Math.round((await box(`${ex('M8')} .tg-progress-ring:not([aria-valuenow])`)).width) === 40);
   check('M8 value draws the arc from --value', (await css(`${ring} .tg-progress-ring__value`, 'stroke-dasharray')).match(/^(calc\()?40/));
   await page.locator('#demo-ring-range').fill('80');
   check('M8 changing the value updates arc and aria-valuenow', (await css(`${ring} .tg-progress-ring__value`, 'stroke-dasharray')).match(/^(calc\()?80/) && await page.locator(ring).getAttribute('aria-valuenow') === '80');
-  check('M8 indeterminate ring has no value and still animates under reduced motion (pulse)', await page.locator(`${ex('M8')} .tg-progress-ring--sm`).getAttribute('aria-valuenow') === null && (await css(`${ex('M8')} .tg-progress-ring--sm > svg`, 'animation-name')) === 'tg-ring-pulse');
+  check('M8 indeterminate ring has no value and still animates under reduced motion (pulse)', await page.locator(`${ex('M8')} .tg-progress-ring:not([aria-valuenow])`).getAttribute('aria-valuenow') === null && (await css(`${ex('M8')} .tg-progress-ring:not([aria-valuenow]) > svg`, 'animation-name')) === 'tg-ring-pulse');
   check('M8 destructive ring uses the danger role', await css(`${ex('M8')} .tg-progress-ring--destructive`, 'color') === await page.evaluate(() => { const p = document.createElement('i'); p.style.color = 'var(--progress-danger-color)'; document.body.append(p); const c = getComputedStyle(p).color; p.remove(); return c; }));
 
   // C11 / M10 — timeline
@@ -123,6 +123,8 @@ try {
   check('B9 inner corners are square, outer keep the control radius', await css(`${att} > :nth-child(1)`, 'border-top-right-radius') === '0px' && await css(`${att} > :nth-child(1)`, 'border-top-left-radius') === `${await length('var(--radius-control)')}px`);
   await page.locator(`${att} > :nth-child(2)`).focus();
   await page.keyboard.press('Shift+Tab'); await page.keyboard.press('Tab');
+  // WebKit on macOS may skip buttons in native Tab navigation. Test the focus-visible paint on its intended target.
+  await page.locator(`${att} > :nth-child(2)`).focus();
   check('B9 the focused button rises above its neighbours', await css(`${att} > :nth-child(2)`, 'z-index') === '1');
   const split = page.locator('#demo-split-trigger');
   check('B9 the split trigger has its own name', await split.getAttribute('aria-label') === 'Другие форматы экспорта');

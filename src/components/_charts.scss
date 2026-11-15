@@ -26,9 +26,8 @@
     gap: var(--space-1) var(--space-4);
     > * { margin: 0; }
   }
-  .tg-chart__title { font-size: var(--fs); font-weight: var(--fw-semibold); }
-  .tg-chart__value { font-size: var(--fs-display); font-weight: var(--fw-semibold); line-height: 1.1; letter-spacing: -.02em; }
-  .tg-chart__subtitle { color: var(--text-secondary); font-size: var(--fs-sm); }
+  .tg-chart__value { line-height: 1.1; letter-spacing: -.02em; }
+  .tg-chart__subtitle { color: var(--text-secondary); }
 
   .tg-chart__plot {
     position: relative;
@@ -40,7 +39,7 @@
   .tg-chart :is([data-series='2'], [data-series='3']) { --series: var(--series-rest); }
   .tg-chart__grid { stroke: var(--chart-grid); stroke-width: 1; shape-rendering: crispEdges; }
   .tg-chart__baseline { stroke: var(--border-color); stroke-width: 1; shape-rendering: crispEdges; }
-  .tg-chart__tick { fill: var(--text-secondary); font-size: .6875rem; font-variant-numeric: tabular-nums; }
+  .tg-chart__tick { fill: var(--text-secondary); font-variant-numeric: tabular-nums; }
   .tg-chart__line {
     fill: none;
     stroke: var(--series);
@@ -59,7 +58,7 @@
     stroke-width: 2;
     paint-order: stroke;
   }
-  .tg-chart__label { fill: var(--text-color); font-size: .75rem; font-weight: var(--fw-medium); font-variant-numeric: tabular-nums; }
+  .tg-chart__label { fill: var(--text-color); font-variant-numeric: tabular-nums; }
   .tg-chart__label--muted { fill: var(--text-secondary); }
   .tg-chart__crosshair { stroke: var(--control-border-color); stroke-width: 1; opacity: 0; pointer-events: none; }
   .tg-chart__plot[data-hover] .tg-chart__crosshair { opacity: 1; }
@@ -75,7 +74,6 @@
     margin: 0;
     padding: 0;
     color: var(--text-secondary);
-    font-size: var(--fs-sm);
     list-style: none;
   }
   .tg-chart__legend-item {
@@ -94,7 +92,7 @@
     &[data-shape='diamond']::before { border-radius: 1px; transform: rotate(45deg) scale(.85); }
     &[data-shape='line']::before { inline-size: 14px; block-size: 2px; border-radius: 1px; }
     &[data-shape='dash']::before { inline-size: 14px; block-size: 2px; background: repeating-linear-gradient(to right, var(--series) 0 5px, transparent 5px 8px); }
-    > .tg-num, > strong { color: var(--text-color); font-weight: var(--fw-medium); font-variant-numeric: tabular-nums; }
+    > .tg-num, > strong { color: var(--text-color); font-variant-numeric: tabular-nums; }
   }
 
   // Tooltip: the floating surface, placed by the host through --tooltip-x/--tooltip-y.
@@ -108,16 +106,14 @@
     min-inline-size: 8rem;
     padding: var(--space-2) var(--space-3);
     @include floating.surface(var(--radius-sm));
-    font-size: var(--fs-sm);
     pointer-events: none;
     translate: -50% calc(-100% - var(--space-3));
     opacity: 0;
     transition: opacity var(--duration-fast) var(--ease);
     &:dir(rtl) { translate: 50% calc(-100% - var(--space-3)); }
     .tg-chart__plot[data-hover] > & { opacity: 1; }
-    > strong { font-weight: var(--fw-semibold); }
     > span { display: flex; align-items: center; justify-content: space-between; gap: var(--space-4); color: var(--text-secondary); font-variant-numeric: tabular-nums; }
-    > span > b { color: var(--text-color); font-weight: var(--fw-medium); }
+    > span > b { color: var(--text-color); }
   }
 
   // The table view: the same numbers as text, closed by default.
@@ -126,7 +122,6 @@
       @include disclosure-indicator.trigger(inline-flex, currentColor);
       min-block-size: var(--control-h);
       color: var(--text-link);
-      font-size: var(--fs-sm);
       cursor: pointer;
       &:focus-visible { outline: 2px solid var(--text-link); outline-offset: 2px; border-radius: var(--radius-xs); }
     }
@@ -159,8 +154,8 @@
     place-content: center;
     text-align: center;
     pointer-events: none;
-    > strong { font-size: var(--fs-lg); font-weight: var(--fw-semibold); line-height: 1.15; }
-    > span { color: var(--text-secondary); font-size: var(--fs-xs); }
+    > strong { line-height: 1.15; }
+    > span { color: var(--text-secondary); }
   }
   .tg-chart--donut .tg-chart__legend { flex-direction: column; align-self: center; }
   .tg-chart--donut .tg-chart__legend-item { justify-content: space-between; > :first-child { margin-inline-end: auto; } }

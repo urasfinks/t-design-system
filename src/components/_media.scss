@@ -28,8 +28,8 @@
   .tg-player__meta {
     display: grid;
     min-inline-size: 0;
-    > strong { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-weight: var(--fw-semibold); }
-    > span { color: var(--text-secondary); font-size: var(--fs-sm); }
+    > strong { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+    > span { color: var(--text-secondary); }
   }
   .tg-player__progress {
     grid-column: 1 / -1;
@@ -38,7 +38,6 @@
     align-items: center;
     gap: var(--space-3);
     color: var(--text-secondary);
-    font-size: var(--fs-xs);
     font-variant-numeric: tabular-nums;
   }
   .tg-player__controls {
@@ -67,7 +66,6 @@
     position: absolute;
     inset-block-start: var(--space-3);
     @include media-surface.caption;
-    font-size: var(--fs-xs);
     pointer-events: none;
     &:nth-child(1 of .tg-compare__label) { inset-inline-start: var(--space-3); }
     &:nth-last-child(1 of .tg-compare__label) { inset-inline-end: var(--space-3); }

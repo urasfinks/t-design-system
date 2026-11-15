@@ -13,7 +13,6 @@
     max-inline-size: min(16rem, calc(100vw - var(--space-4)));
     padding: var(--space-1) var(--space-2);
     @include floating.surface(var(--radius-sm));
-    font-size: var(--fs-sm);
     line-height: 1.35;
     overflow-wrap: anywhere;
     pointer-events: none;
@@ -65,9 +64,8 @@
     gap: .125rem;
     min-inline-size: 0;
     > * { margin: 0; }
-    > :not(.tg-toast__title) { color: var(--text-secondary); font-size: var(--fs-sm); }
+    > :not(.tg-toast__title) { color: var(--text-secondary); }
   }
-  .tg-toast__title { font-weight: var(--fw-semibold); }
   .tg-toast__action { flex: 0 0 auto; }
   .tg-toast__close { flex: 0 0 auto; margin-block: calc(var(--space-2) * -1); }
 
@@ -147,7 +145,6 @@
     padding-inline-end: calc(var(--control-h) + var(--space-2));
     background: var(--background-muted);
     color: var(--text-color);
-    font-size: var(--fs-sm);
 
     &--accent { background: var(--accent-soft); }
     &--sticky { position: sticky; inset-block-start: 0; z-index: calc(var(--z-sticky) + 1); }
@@ -163,7 +160,7 @@
     > p { flex: 1 1 10rem; margin: 0; min-inline-size: 0; }
   }
   .tg-banner--accent .tg-banner__content > .tg-icon { color: var(--text-link); }
-  .tg-banner__action { flex: 0 0 auto; font-weight: var(--fw-medium); }
+  .tg-banner__action { flex: 0 0 auto; }
   .tg-banner__dismiss {
     position: absolute;
     inset-block-start: 50%;
@@ -178,7 +175,6 @@
     inline-size: min(20rem, calc(100vw - var(--space-4)));
     padding: var(--space-4);
     @include floating.surface(var(--radius-lg));
-    font-size: var(--fs-sm);
     line-height: 1.45;
     overflow-wrap: anywhere;
     > * { margin: 0; }
@@ -225,7 +221,6 @@
     background: transparent;
     color: var(--text-color);
     font: inherit;
-    font-size: max(1rem, var(--fs));
     &:focus { outline: none; }
     &::placeholder { color: var(--text-secondary); opacity: 1; }
     &::-webkit-search-cancel-button { display: none; }
@@ -256,7 +251,6 @@
     margin-inline-start: auto;
     font: inherit;
     color: var(--text-secondary);
-    font-size: var(--fs-xs);
     font-variant-numeric: tabular-nums;
   }
   .tg-command__footer {

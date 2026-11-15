@@ -14,8 +14,6 @@
     background: var(--background-muted);
     color: var(--text-color);
     font-family: var(--font-family-mono);
-    font-size: var(--fs-xs);
-    font-weight: var(--fw-medium);
     line-height: 1.3;
     white-space: nowrap;
     vertical-align: .1em;
@@ -34,7 +32,8 @@
     border-radius: var(--radius-inset);
     background: var(--background-muted);
     color: var(--text-color);
-    font: var(--fs-xs) / 1.5 var(--font-family-mono);
+    font-family: var(--font-family-mono);
+    line-height: 1.5;
     tab-size: 2;
   }
   // A key or a shortcut. Nested kbd elements are the keys of one combination.
@@ -55,9 +54,9 @@
     margin: 0;
     color: var(--text-color);
   }
-  .tg-price__value { font-size: var(--fs-display); font-weight: var(--fw-semibold); line-height: 1.1; letter-spacing: -.02em; }
-  .tg-price__period { color: var(--text-secondary); font-size: var(--fs-sm); }
-  .tg-price__old { color: var(--text-secondary); font-size: var(--fs-sm); text-decoration: line-through; }
+  .tg-price__value { line-height: 1.1; letter-spacing: -.02em; }
+  .tg-price__period { color: var(--text-secondary); }
+  .tg-price__old { color: var(--text-secondary); text-decoration: line-through; }
 
   // Feature list: a check for included, a dash for not included (said in words too).
   .tg-feature-list {
@@ -65,7 +64,6 @@
     gap: var(--space-2);
     margin: 0;
     padding: 0;
-    font-size: var(--fs-sm);
     list-style: none;
   }
   .tg-feature-list__item {
@@ -117,7 +115,6 @@
     position: relative;
     margin: 0;
     color: var(--text-color);
-    font-size: var(--fs-lg);
     line-height: 1.5;
     > p { margin: 0; }
     > p + p { margin-block-start: var(--space-2); }
@@ -126,11 +123,10 @@
     display: flex;
     align-items: center;
     gap: var(--space-3);
-    font-size: var(--fs-sm);
     font-style: normal;
     > .tg-avatar { --icon-avatar: 2.5rem; padding: 0; border-width: 0; }
     > span:not(.tg-avatar) { display: grid; min-inline-size: 0; }
-    cite { color: var(--text-color); font-style: normal; font-weight: var(--fw-semibold); }
+    cite { color: var(--text-color); font-style: normal; }
     span > span { color: var(--text-secondary); }
   }
   .tg-testimonial__rating {
@@ -139,7 +135,6 @@
     gap: 2px;
     margin: 0;
     color: var(--text-secondary);
-    font-size: var(--fs-sm);
     > span:not(.tg-testimonial__stars, .tg-sr-only) { margin-inline-start: var(--space-2); }
   }
   // Stars: --rating (0…5, fractions allowed) fills the accent across five star masks.

@@ -170,8 +170,8 @@ export function initToastRegion({ root = document } = {}) {
       const m = messages[button.dataset.toastDemo];
       const toast = document.createElement('div');
       toast.className = 'tg-toast';
-      toast.innerHTML = `${icon(m.icon)}<div class="tg-toast__body"><strong class="tg-toast__title">${m.title}</strong><span>${m.text}</span></div>`
-        + (m.action ? `<button class="tg-btn tg-btn--ghost tg-btn--sm tg-toast__action" type="button">${m.action}</button>` : '')
+      toast.innerHTML = `${icon(m.icon)}<div class="tg-toast__body"><strong class="tg-toast__title tg-fw-semibold">${m.title}</strong><span>${m.text}</span></div>`
+        + (m.action ? `<button class="tg-btn tg-btn--ghost tg-toast__action tg-text-sm tg-fw-medium" type="button">${m.action}</button>` : '')
         + `<button class="tg-icon-btn tg-icon-btn--ghost tg-toast__close" type="button" aria-label="Закрыть уведомление">${icon('x')}</button>`;
       list.append(toast);
       layout();
@@ -344,7 +344,7 @@ export function initComboboxes({ root = document } = {}) {
         createIndex = items.length;
         items.push(draft);
       }
-      list.innerHTML = items.map((value, index) => `<li class="tg-listbox__option" role="option" id="${list.id}-${index}" aria-selected="${multiple ? chosen().includes(value) : value === input.value}">${escapeHTML(index === createIndex ? `Добавить „${value}“` : value)}</li>`).join('');
+      list.innerHTML = items.map((value, index) => `<li class="tg-listbox__option tg-fw-medium" role="option" id="${list.id}-${index}" aria-selected="${multiple ? chosen().includes(value) : value === input.value}">${escapeHTML(index === createIndex ? `Добавить „${value}“` : value)}</li>`).join('');
       active = -1;
       input.removeAttribute('aria-activedescendant');
       announce(status, items.length ? `Найдено: ${items.length}` : 'Ничего не найдено');
@@ -363,7 +363,7 @@ export function initComboboxes({ root = document } = {}) {
       if (allowCustom && chosen().some(chosenValue => normalize(chosenValue) === normalize(value))) return;
       if (chosen().includes(value)) { tagBox.querySelector(`[data-value="${CSS.escape(value)}"] .tg-tag-input__remove`)?.click(); return; }
       const tag = document.createElement('span');
-      tag.className = 'tg-tag-input__tag'; tag.dataset.value = value;
+      tag.className = 'tg-tag-input__tag tg-text-sm'; tag.dataset.value = value;
       tag.innerHTML = `${escapeHTML(value)}<button class="tg-tag-input__remove" type="button" aria-label="Удалить ${escapeHTML(value)}">${icon('x')}</button>`;
       if (box.dataset.name) {
         const hidden = document.createElement('input');
@@ -427,7 +427,7 @@ export function initTagInputs({ root = document } = {}) {
         if (values().includes(value)) { announce(status, `Тег «${value}» уже есть`); continue; }
         if (tags().length >= limit) { announce(status, `Не больше ${limit} тегов`); break; }
         const tag = document.createElement('span');
-        tag.className = 'tg-tag-input__tag';
+        tag.className = 'tg-tag-input__tag tg-text-sm';
         tag.innerHTML = `${escapeHTML(value)}<button class="tg-tag-input__remove" type="button" aria-label="Удалить тег ${escapeHTML(value)}">${icon('x')}</button><input type="hidden" name="tags[]" value="${escapeHTML(value)}">`;
         field.before(tag);
         announce(status, `Добавлен тег «${value}»`);
@@ -861,7 +861,7 @@ export function initCommandPalette({ root = document } = {}) {
     shown = query ? commands.filter(c => c.label.toLocaleLowerCase('ru').includes(query)) : commands.filter(c => c.group === 'Недавние');
     const groups = [...new Set(shown.map(c => c.group))];
     list.innerHTML = shown.length ? groups.map((group, g) => `<div class="tg-command__group" role="group" aria-labelledby="demo-command-g${g}"><div class="tg-command__group-label" id="demo-command-g${g}">${group}</div>${shown.filter(c => c.group === group).map(c => `<div class="tg-command__item" role="option" id="demo-command-${commands.indexOf(c)}" aria-selected="false">${icon(c.icon)}<span class="tg-command__text">${c.label}</span>${c.key ? `<kbd class="tg-command__shortcut">${c.key}</kbd>` : ''}</div>`).join('')}</div>`).join('')
-      : '<div class="tg-empty"><p class="tg-empty__title">Ничего не найдено</p><p class="tg-empty__description">Попробуйте другое слово.</p></div>';
+      : '<div class="tg-empty"><p class="tg-empty__title">Ничего не найдено</p><p class="tg-empty__description tg-text-sm">Попробуйте другое слово.</p></div>';
     shown = [...list.querySelectorAll('[role="option"]')];
     setActive(0);
     announce(status, shown.length ? `Команд: ${shown.length}` : 'Ничего не найдено');
@@ -925,13 +925,13 @@ function renderMonth(table, year, month, decorate) {
       const date = addDays(start, w * 7 + i);
       const button = document.createElement('button');
       button.type = 'button';
-      button.className = 'tg-calendar__day';
+      button.className = 'tg-calendar__day tg-text-sm';
       button.dataset.date = iso(date);
       button.textContent = date.getDate();
       button.tabIndex = -1;
       button.setAttribute('aria-pressed', 'false');
       if (date.getMonth() !== month) button.classList.add('tg-calendar__day--outside');
-      if (iso(date) === iso(TODAY)) { button.classList.add('tg-calendar__day--today'); button.setAttribute('aria-current', 'date'); }
+      if (iso(date) === iso(TODAY)) { button.classList.add('tg-calendar__day--today', 'tg-fw-semibold'); button.setAttribute('aria-current', 'date'); }
       button.setAttribute('aria-label', longDate(date));
       decorate?.(button, date);
       row.insertCell().append(button);
@@ -1173,12 +1173,12 @@ export function initCharts({ root = document } = {}) {
     const pts = s => s.map((v, i) => `${xMid(i)},${y(v)}`).join(' ');
     // The area is an opaque soft-accent surface: it goes under the grid and the baseline.
     if (kind === 'line') svg += `<polygon class="tg-chart__area" points="${xMid(0)},${y(0)} ${pts(series[0])} ${xMid(labels.length - 1)},${y(0)}"/>`;
-    svg += ticks.map(t => `<line class="tg-chart__${t === 0 ? 'baseline' : 'grid'}" x1="${P.l}" x2="${W - P.r}" y1="${y(t)}" y2="${y(t)}"/><text class="tg-chart__tick" x="${P.l - 8}" y="${y(t) + 4}" text-anchor="end">${fmt(+t.toFixed(1))}</text>`).join('');
+    svg += ticks.map(t => `<line class="tg-chart__${t === 0 ? 'baseline' : 'grid'}" x1="${P.l}" x2="${W - P.r}" y1="${y(t)}" y2="${y(t)}"/><text class="tg-chart__tick tg-text-xs" x="${P.l - 8}" y="${y(t) + 4}" text-anchor="end">${fmt(+t.toFixed(1))}</text>`).join('');
     if (kind === 'line') {
       series.slice().reverse().forEach((s, ri) => { const si = series.length - ri; svg += `<polyline class="tg-chart__line" data-series="${si}" points="${pts(s)}"/>`; });
       const last = labels.length - 1;
       svg += `<circle class="tg-chart__point" cx="${xMid(last)}" cy="${y(series[0][last])}" r="4"/>`;
-      svg += `<text class="tg-chart__label" x="${xMid(last) - 8}" y="${y(series[0][last]) - 10}" text-anchor="end">${fmt(series[0][last])}</text>`;
+      svg += `<text class="tg-chart__label tg-text-xs tg-fw-medium" x="${xMid(last) - 8}" y="${y(series[0][last]) - 10}" text-anchor="end">${fmt(series[0][last])}</text>`;
       svg += `<line class="tg-chart__crosshair" x1="0" x2="0" y1="${P.t}" y2="${H - P.b}"/>`;
       svg += series.map((_, si) => `<circle class="tg-chart__point tg-chart__hover-point" data-series="${si + 1}" r="4" cx="-20" cy="-20"/>`).join('');
     } else {
@@ -1188,9 +1188,9 @@ export function initCharts({ root = document } = {}) {
         svg += `<path class="tg-chart__bar" data-index="${i}"${String(i) === figure.dataset.highlight ? ' data-active' : ''} d="M${x},${y(0)} V${top + r} Q${x},${top} ${x + r},${top} H${x + bw - r} Q${x + bw},${top} ${x + bw},${top + r} V${y(0)} Z"/>`;
       });
       const hi = Number(figure.dataset.highlight);
-      if (!Number.isNaN(hi)) svg += `<text class="tg-chart__label" x="${xMid(hi)}" y="${y(series[0][hi]) - 8}" text-anchor="middle">${series[0][hi]}</text>`;
+      if (!Number.isNaN(hi)) svg += `<text class="tg-chart__label tg-text-xs tg-fw-medium" x="${xMid(hi)}" y="${y(series[0][hi]) - 8}" text-anchor="middle">${series[0][hi]}</text>`;
     }
-    svg += labels.map((l, i) => `<text class="tg-chart__tick" x="${xMid(i)}" y="${H - 8}" text-anchor="middle">${l}</text>`).join('');
+    svg += labels.map((l, i) => `<text class="tg-chart__tick tg-text-xs" x="${xMid(i)}" y="${H - 8}" text-anchor="middle">${l}</text>`).join('');
     svg += `<rect class="tg-chart__hit" x="${P.l}" y="0" width="${W - P.l - P.r}" height="${H}"/></svg>`;
     plot.insertAdjacentHTML('afterbegin', svg);
     svgEl = plot.querySelector('svg');

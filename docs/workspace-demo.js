@@ -257,7 +257,7 @@ function stopStream(done = false) {
   node.removeAttribute('aria-busy');
   if (!done) {
     const meta = document.createElement('p');
-    meta.className = 'tg-message__meta tg-mt-0 tg-mb-0';
+    meta.className = 'tg-message__meta tg-mt-0 tg-mb-0 tg-text-xs';
     meta.textContent = 'Ответ остановлен';
     node.append(meta);
   }

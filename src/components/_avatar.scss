@@ -62,17 +62,12 @@
       // must not show through each other.
       background: var(--surface-muted);
       color: var(--avatar-initials-color);
-      font-size: calc(var(--icon-avatar) / 3.5);
-      font-weight: var(--fw-semibold);
       text-transform: uppercase;
     }
 
     &--outlined {
       border-color: var(--border-color);
 
-      & > .tg-avatar__initials {
-        font-weight: 400;
-      }
 
       &[aria-checked='true'] {
         border-color: var(--avatar-selection-ring-color, var(--control-border-color));
@@ -84,7 +79,6 @@
       align-items: center;
       justify-content: center;
       border: 2px dashed var(--border-color);
-      font-weight: var(--fw-semibold);
     }
 
     &-undefined[aria-checked='true'], &-initials[aria-checked='true'] {
@@ -132,8 +126,6 @@
   .tg-avatar-group__more {
     background: var(--background-muted);
     color: var(--text-secondary);
-    font-size: var(--fs-xs);
-    font-weight: var(--fw-semibold);
     font-variant-numeric: tabular-nums;
     box-shadow: 0 0 0 2px var(--avatar-group-ring, var(--ring-bg));
   }
@@ -159,8 +151,6 @@
     border-radius: var(--radius-pill);
     background: var(--control-idle-bg);
     color: var(--text-color);
-    font-size: var(--fs-xs);
-    font-weight: var(--fw-regular);
     line-height: 1.25;
     font-variant-numeric: tabular-nums;
     vertical-align: middle;
@@ -203,7 +193,6 @@
     @include hit-target.compact;
     border: var(--border-action);
     min-inline-size: var(--control-h);
-    font-size: var(--fs-sm);
     text-decoration: none;
     cursor: pointer;
     &:focus-visible { outline: 2px solid var(--text-link); outline-offset: 3px; }

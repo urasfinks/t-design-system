@@ -11,7 +11,9 @@ The signature is the system itself: live components, clear examples, readable co
 
 - Use the platform system font; body text starts at 16 px. Secondary UI text is
   14 px, metadata and code at least 12 px. Headings use moderate weight and
-  tracking no tighter than −0.03 em.
+  tracking no tighter than −0.03 em. Components inherit font size and weight.
+  Catalog examples choose typography explicitly in their markup with
+  `tg-text-*` and `tg-fw-*` utilities.
 - Spacing follows the existing 4 px scale. Related controls share a 12 px gap;
   panels use 24 px padding; sections get 64 px separation on desktop.
 - Cards use 16 px corners. Buttons and fields share 12 px corners; inset controls
@@ -176,7 +178,7 @@ and CSS/API compatibility, followed by a reconciliation pass.
 
 ## Reference and icon direction
 
-The user supplied a dark receipt-list reference from ai-splitter-ng. Use its quiet
+The user supplied a dark receipt-list reference from the original interface. Use its quiet
 surface hierarchy, compact rows, soft separators and restrained accent as evidence,
 not as a pixel-perfect target or a claim that the original is ideal. Preserve the
 improvements to feedback, form states and accessibility already accepted.
@@ -211,7 +213,7 @@ The base badge is borderless too; only a badge that is a link or button
 badge children retain a surface-separation border without a cast shadow. Quantity overlays use the secondary badge.
 `tg-avatar--outlined` keeps the filled initials circle and a single neutral outer
 2px ring across the existing padding gap, matching the source reference. Direct
-initials use font-weight 400 in this variant. Selection
+initials inherit the surrounding font weight in this variant. Selection
 strengthens this outer ring
 (`--avatar-selection-ring-color`, defaulting to `--control-border-color`). Keyboard
 focus remains separate. The default avatar still supports accent selection.
@@ -266,3 +268,11 @@ accent roles and the overlay text role as a neutral highlight, sit behind conten
 contrast does not change, animate only transform, opacity or a registered angle, stay still
 on touch screens and with reduced motion, and switch off for disabled or busy hosts. Without
 `effects.js` every host looks like the plain component.
+
+## Catalog navigation tree
+
+Families with children use a native details/summary row with a left chevron.
+Each nested branch adds a logical indentation and a quiet vertical border.
+The title toggles the branch; “Обзор раздела” inside it links to the family's
+section. Every subsection retains its anchor, and deep links open all ancestors.
+The mobile select remains available. No extra “Варианты” disclosure row is used.

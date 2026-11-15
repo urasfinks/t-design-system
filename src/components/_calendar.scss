@@ -21,7 +21,6 @@
     padding: var(--space-1) var(--space-3);
     @include field-surface.frame;
     color: var(--text-color);
-    font-size: max(1rem, var(--fs));
     font-variant-numeric: tabular-nums;
     transition: box-shadow var(--duration) var(--ease), border-color var(--duration) var(--ease);
     &:focus-within { border-color: var(--accent-main); box-shadow: var(--focus); }
@@ -58,7 +57,7 @@
     align-items: center;
     justify-content: space-between;
     gap: var(--space-2);
-    > .tg-header__title, > h2, > h3 { flex: 1 1 auto; margin: 0; font-size: var(--fs); font-weight: var(--fw-semibold); text-align: center; text-transform: capitalize; }
+    > .tg-header__title, > h2, > h3 { flex: 1 1 auto; margin: 0; text-align: center; text-transform: capitalize; }
     > .tg-icon-btn:dir(rtl) > .tg-icon { transform: scaleX(-1); }
   }
   .tg-calendar__grid {
@@ -69,8 +68,6 @@
       inline-size: var(--calendar-day);
       padding: 0 0 var(--space-1);
       color: var(--text-secondary);
-      font-size: var(--fs-xs);
-      font-weight: var(--fw-medium);
       text-align: center;
     }
     td { padding: 1px 0; text-align: center; }
@@ -88,17 +85,15 @@
     background: var(--control-idle-bg, transparent);
     color: inherit;
     font: inherit;
-    font-size: var(--fs-sm);
     font-variant-numeric: tabular-nums;
     cursor: pointer;
     &:focus-visible { outline: 2px solid var(--text-link); outline-offset: -2px; z-index: 1; }
     &--outside { color: var(--text-secondary); }
-    &--today { box-shadow: inset 0 0 0 1.5px var(--accent-main); font-weight: var(--fw-semibold); }
+    &--today { box-shadow: inset 0 0 0 1.5px var(--accent-main); }
     &:is([aria-pressed='true'], [aria-selected='true']) {
       --control-idle-bg: var(--action-bg);
       --control-hover-bg: var(--action-bg);
       color: var(--button-text-color);
-      font-weight: var(--fw-semibold);
     }
     &[aria-disabled='true'] { opacity: var(--disabled-opacity); cursor: not-allowed; }
   }
@@ -128,7 +123,6 @@
     margin: 0;
     padding: 0;
     color: var(--text-secondary);
-    font-size: var(--fs-xs);
     list-style: none;
     > li { display: inline-flex; align-items: center; gap: var(--space-1); }
   }
@@ -155,7 +149,6 @@
       --control-hover-bg: var(--action-bg);
       --control-hover-filter: initial;
       color: var(--button-text-color);
-      font-weight: var(--fw-semibold);
     }
     // While choosing the end, the hovered span previews the band.
     td:has(> .tg-calendar__day[data-preview]) { background: var(--accent-soft); }

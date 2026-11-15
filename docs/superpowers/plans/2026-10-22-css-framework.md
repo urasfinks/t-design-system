@@ -8,7 +8,7 @@
 
 ## Global constraints
 
-- Work in this repository; source ai-splitter-ng remains untouched.
+- Work in this repository; the original interface remains untouched.
 - Retain public tg-* component names and core size tokens.
 - No runtime dependencies or production JavaScript.
 - Deliver expanded/minified main CSS and Telegram adapter, SCSS exports and docs.

@@ -3,10 +3,10 @@ function disclosure(markup, { label = 'Посмотреть HTML', copy = false 
   details.className = 'example-code tg-disclosure tg-disclosure--compact tg-disclosure--embedded';
   details.name = 'catalog-html';
   const summary = document.createElement('summary');
-  summary.className = 'tg-disclosure__trigger';
+  summary.className = 'tg-disclosure__trigger tg-text-sm tg-fw-medium';
   summary.textContent = label;
   const pre = document.createElement('pre');
-  pre.className = 'tg-code-block tg-scroll-region';
+  pre.className = 'tg-code-block tg-scroll-region tg-text-xs';
   pre.tabIndex = 0;
   // Code viewers are small named groups, not hundreds of page landmarks.
   pre.setAttribute('role', 'group');
@@ -24,7 +24,7 @@ function disclosure(markup, { label = 'Посмотреть HTML', copy = false 
     actions.className = 'tg-row';
     const button = document.createElement('button');
     button.type = 'button';
-    button.className = 'tg-btn tg-btn--secondary tg-btn--sm';
+    button.className = 'tg-btn tg-btn--secondary tg-text-sm tg-fw-medium';
     button.textContent = 'Скопировать HTML';
     const status = document.createElement('span');
     status.setAttribute('role', 'status');

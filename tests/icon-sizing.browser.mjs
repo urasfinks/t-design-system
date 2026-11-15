@@ -6,7 +6,7 @@ try {
  const page=await browser.newPage();
  const css=await readFile('dist/t-design-system.css','utf8');
  const catalog=await readFile('docs/catalog.css','utf8');
- await page.setContent(`<style>${css}${catalog}</style><button class="tg-btn tg-btn--sm"><svg viewBox="0 0 24 24"></svg></button><button class="tg-icon-btn tg-search__clear"><svg class="tg-icon"></svg></button><div class="preview-icon"><svg class="tg-icon"></svg></div><div class="demo-tabbar"><svg class="tg-icon"></svg></div><select class="tg-select"><option>Role</option></select>`);
+ await page.setContent(`<style>${css}${catalog}</style><button class="tg-btn"><svg viewBox="0 0 24 24"></svg></button><button class="tg-icon-btn tg-search__clear"><svg class="tg-icon"></svg></button><div class="preview-icon"><svg class="tg-icon"></svg></div><div class="demo-tabbar"><svg class="tg-icon"></svg></div><select class="tg-select"><option>Role</option></select>`);
  for(const size of [20,28]) {
   await page.evaluate(size=>document.documentElement.style.setProperty('--icon-size',`${size}px`),size);
   for(const svg of await page.locator('svg').all()) {

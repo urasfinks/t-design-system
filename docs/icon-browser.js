@@ -8,13 +8,13 @@ export async function initIconBrowser(scope = document) {
   root.dataset.initialized = 'true';
   const focusOptions = { preventScroll: !!root.closest('.example-body') };
   const get = id => root.querySelector(`#icon-${id}`);
-  const search = get('search'), size = get('size'), grid = get('grid'), count = get('count');
+  const search = get('search'), grid = get('grid'), count = get('count');
   const markup = get('markup'), status = get('copy-status');
   let icons, selected = 'home', activeName = 'home';
-  const iconClass = () => `tg-icon${size.value === '16' ? ' tg-icon--sm' : size.value === '24' ? ' tg-icon--lg' : ''}`;
+  const iconClass = () => 'tg-icon';
   const assetBase = root.dataset.iconBase || '../dist/icons/';
   const updateMarkup = () => {
-    markup.textContent = `<svg class="${iconClass()}" viewBox="0 0 24 24" width="${size.value}" height="${size.value}" aria-hidden="true"><use href="${assetBase}${selected}.svg#${selected}"></use></svg>`;
+    markup.textContent = `<svg class="${iconClass()}" viewBox="0 0 24 24" aria-hidden="true"><use href="${assetBase}${selected}.svg#${selected}"></use></svg>`;
     status.textContent = '';
   };
   const render = () => {
@@ -31,7 +31,6 @@ export async function initIconBrowser(scope = document) {
       const svg = document.createElementNS(svgNS, 'svg');
       svg.setAttribute('class', iconClass()); svg.setAttribute('aria-hidden', 'true');
       svg.setAttribute('viewBox', '0 0 24 24');
-      svg.setAttribute('width', size.value); svg.setAttribute('height', size.value);
       const use = document.createElementNS(svgNS, 'use');
       use.setAttribute('href', `${assetBase}${icon.name}.svg#${icon.name}`);
       svg.append(use);
@@ -79,7 +78,6 @@ export async function initIconBrowser(scope = document) {
     buttons[next].focus(focusOptions);
   });
   search.addEventListener('input', render);
-  size.addEventListener('change', () => { render(); updateMarkup(); });
   get('reset').addEventListener('click', () => { search.value = ''; render(); search.focus(focusOptions); });
   get('copy').addEventListener('click', async () => {
     try {

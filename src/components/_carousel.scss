@@ -51,7 +51,6 @@
       max-inline-size: calc(100% - var(--space-6));
       margin: var(--space-3);
       @include media-surface.caption;
-      font-size: var(--fs-sm);
     }
   }
   // The named slide group owns layout; its native figure retains image/caption
@@ -70,7 +69,7 @@
     .tg-carousel__controls { flex-wrap: wrap; }
     .tg-carousel__controls > .tg-pagination { order: -1; flex: 1 0 100%; flex-wrap: nowrap; }
   }
-  .tg-carousel__count { min-inline-size: 4ch; color: var(--text-secondary); font-size: var(--fs-sm); font-variant-numeric: tabular-nums; text-align: center; }
+  .tg-carousel__count { min-inline-size: 4ch; color: var(--text-secondary); font-variant-numeric: tabular-nums; text-align: center; }
 
   // Peek: neighbours show at the edges, the current slide snaps to the centre.
   .tg-carousel--peek {
@@ -180,7 +179,6 @@
     background: linear-gradient(to top, var(--overlay-bg), transparent 55%);
     color: var(--overlay-text);
     font: inherit;
-    font-weight: var(--fw-semibold);
     text-align: start;
     cursor: pointer;
     &:focus-visible { outline: 2px solid var(--text-link); outline-offset: -3px; }
@@ -201,7 +199,6 @@
     max-inline-size: calc(100% - var(--space-6));
     margin: 0;
     @include media-surface.caption;
-    font-size: var(--fs-sm);
     pointer-events: none;
     animation: tg-caption-in var(--duration) var(--ease);
   }

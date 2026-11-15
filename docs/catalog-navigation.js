@@ -16,14 +16,17 @@ export function initCatalogNavigation({ root = document } = {}) {
   }
 
   function setActive(id) {
+    for (const toggle of root.querySelectorAll('[data-nav-target]')) {
+      toggle.classList.toggle('is-active', toggle.dataset.navTarget === id);
+    }
     if ([...sectionSelect.options].some(option => option.value === id)) sectionSelect.value = id;
     for (const link of links) {
       const active = link.hash === `#${id}`;
       link.classList.toggle('is-active', active);
       if (active) {
         link.setAttribute('aria-current', 'location');
-        const family = link.closest('details');
-        if (family) family.open = true;
+        let family = link.closest('details');
+        while (family) { family.open = true; family = family.parentElement.closest('details'); }
       } else link.removeAttribute('aria-current');
     }
   }

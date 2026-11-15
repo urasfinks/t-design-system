@@ -44,7 +44,6 @@
 
     &__title {
       display: block;
-      font-weight: var(--fw-semibold);
     }
 
     &__content > :not(:first-child) {
@@ -187,12 +186,6 @@
     animation: tg-spin .8s linear infinite;
     vertical-align: middle;
 
-    &--lg {
-      inline-size: 4rem;
-      block-size: 4rem;
-      border: 6px solid var(--spinner-track-color);
-      border-block-start-color: var(--spinner-color);
-    }
   }
 
   @keyframes tg-spin {

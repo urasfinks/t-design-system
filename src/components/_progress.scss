@@ -25,8 +25,6 @@
     }
     &:dir(rtl) > svg { transform: rotate(-90deg) scaleY(-1); }
 
-    &--sm { --ring-size: 1.5rem; --ring-stroke: 4; }
-    &--lg { --ring-size: 4rem; --ring-stroke: 2.5; }
     &--destructive { --progress-color: var(--progress-danger-color); }
   }
   .tg-progress-ring__track, .tg-progress-ring__value {
@@ -43,9 +41,8 @@
   .tg-progress-ring__label {
     grid-area: 1 / 1;
     color: var(--text-color);
-    font-size: calc(var(--ring-size) * .28);
-    font-weight: var(--fw-semibold);
     font-variant-numeric: tabular-nums;
+    white-space: nowrap;
     line-height: 1;
   }
   // Indeterminate: no aria-valuenow, a quarter arc turns.
@@ -78,7 +75,7 @@
     padding-block-end: var(--space-6);
 
     > :not(.tg-timeline__marker) { grid-column: 2; margin: 0; min-inline-size: 0; }
-    > :is(h3, h4, strong) { font-size: var(--fs); font-weight: var(--fw-semibold); line-height: 1.35; }
+    > :is(h3, h4, strong) { line-height: 1.35; }
     > p { color: var(--text-secondary); }
     > .tg-badge { justify-self: start; margin-block-start: var(--space-1); }
 
@@ -96,7 +93,6 @@
   .tg-timeline__time {
     order: -1;
     color: var(--text-secondary);
-    font-size: var(--fs-sm);
     font-variant-numeric: tabular-nums;
   }
   // Centre the visible digits on the marker, not a stretched line box.
@@ -155,8 +151,6 @@
     gap: var(--space-2);
     min-inline-size: 0;
     color: var(--text-secondary);
-    font-size: var(--fs-sm);
-    font-weight: var(--fw-medium);
 
     &:not(:last-child)::after {
       content: '';
@@ -179,7 +173,6 @@
   }
   .tg-stepper__description {
     color: var(--text-secondary);
-    font-weight: var(--fw-regular);
   }
   @media (max-width: 36rem) {
     .tg-stepper:not(.tg-stepper--vertical) .tg-stepper__step:not([aria-current='step'], [data-state='current']) .tg-stepper__label {
@@ -204,7 +197,7 @@
       padding-block-end: var(--space-5);
 
       // The label starts at the marker's top edge; the line runs through the marker centres.
-      > .tg-stepper__label { font-size: var(--fs); @include steps.text-at-marker-top; }
+      > .tg-stepper__label { @include steps.text-at-marker-top; }
       &[data-state='done'] { --step-line-color: var(--accent-main); }
       &:last-child { padding-block-end: 0; }
       &:not(:last-child)::after {
@@ -214,7 +207,6 @@
         border-radius: 1px;
       }
     }
-    .tg-stepper__description { font-size: var(--fs-sm); }
   }
 
   // Schedule: events on a time grid. Each event is a list item with its full time as
@@ -238,7 +230,6 @@
     padding: 0;
     border-inline-end: 1px solid var(--border-subtle-color);
     color: var(--text-secondary);
-    font-size: var(--fs-xs);
     font-variant-numeric: tabular-nums;
     list-style: none;
     > li { grid-row: span 4; padding: 0 var(--space-2); text-align: end; translate: 0 -.5em; }
@@ -269,10 +260,9 @@
     border-radius: var(--radius-xs);
     background: var(--accent-soft);
     color: var(--text-color);
-    font-size: var(--fs-xs);
     line-height: 1.35;
     overflow: hidden;
-    > strong { font-size: var(--fs-sm); font-weight: var(--fw-semibold); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+    > strong { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
     > time { color: var(--text-secondary); font-variant-numeric: tabular-nums; }
     &[data-conflict] { border-inline-start-color: var(--danger-main); background: var(--danger-soft); }
     &:is(a, button) { cursor: pointer; text-decoration: none; }

@@ -54,8 +54,6 @@
     grid-area: 1 / 1;
     padding-inline: var(--control-h);
     color: var(--text-secondary);
-    font-size: var(--fs-sm);
-    font-weight: var(--fw-medium);
     text-align: center;
     pointer-events: none;
     opacity: calc(1 - var(--slide-progress, 0) * 1.6);
@@ -128,7 +126,6 @@
     color: var(--text-color);
     box-shadow: var(--shadow-overlay);
     font: inherit;
-    font-weight: var(--fw-medium);
     cursor: pointer;
     > .tg-icon { color: var(--text-link); }
     &:focus-visible { outline: 2px solid var(--text-link); outline-offset: 2px; }

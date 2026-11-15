@@ -58,7 +58,6 @@
     &__status {
       margin: var(--space-2) 0 0;
       color: var(--text-secondary);
-      font-size: var(--fs-xs);
       text-align: end;
       overflow-wrap: anywhere;
     }
@@ -93,8 +92,8 @@
   .tg-upload__name {
     display: grid;
     min-inline-size: 0;
-    > :first-child { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-weight: var(--fw-medium); }
-    > :not(:first-child) { color: var(--text-secondary); font-size: var(--fs-sm); font-variant-numeric: tabular-nums; }
+    > :first-child { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+    > :not(:first-child) { color: var(--text-secondary); font-variant-numeric: tabular-nums; }
   }
   .tg-upload__item[data-state='error'] .tg-upload__name > :not(:first-child) { color: var(--text-danger); }
   @media (pointer: coarse) {

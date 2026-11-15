@@ -1,7 +1,7 @@
 # Palette correction
 
 The compact-palette attempt was rejected after visual review. The replacement
-uses ai-splitter-ng/src/styles.scss and src/main.ts as its source of truth.
+uses the original styles.scss and src/main.ts as its source of truth.
 
 - [x] Restore source page/panel/input/header relationships in all three themes.
 - [x] Restore saturated action fills with light text.

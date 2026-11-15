@@ -2,14 +2,16 @@
 
 // Canonical color operators. Components consume roles; only the shared state engine
 // may call tone with a local control background. No operators emit selectors.
+// Keep the chromatic axes in OKLab for lightness-only operations. Keeping a/b
+// is equivalent to keeping C/h in OKLCH and avoids losing the hue in WebKit.
 @function tone($origin, $step, $direction: var(--color-inversion)) {
-  @return string.unquote('oklch(from #{$origin} clamp(0, calc(l + #{$direction} * #{$step}), 1) c h)');
+  @return string.unquote('oklab(from #{$origin} clamp(0, calc(l + #{$direction} * #{$step}), 1) a b)');
 }
 
 // Elevation always raises lightness: it is a spatial role, not an inverted state.
 // The floor prevents the raised surface from collapsing into black in iOS Dark.
 @function panel($origin) {
-  @return string.unquote('oklch(from #{$origin} clamp(var(--panel-lightness-floor), calc(l + var(--panel-lightness-rise)), 1) c h)');
+  @return string.unquote('oklab(from #{$origin} clamp(var(--panel-lightness-floor), calc(l + var(--panel-lightness-rise)), 1) a b)');
 }
 
 @function mix($foreground, $weight, $background) {

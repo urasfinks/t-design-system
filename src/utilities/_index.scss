@@ -45,8 +45,15 @@
   .tg-text { color: var(--text-color); }
   .tg-text-accent { color: var(--text-link); }
   .tg-text-destructive { color: var(--text-danger); }
+  .tg-text-xs { font-size: var(--fs-xs); }
   .tg-text-sm { font-size: var(--fs-sm); }
-  .tg-fw-regular { font-weight: var(--fw-regular); }
+  .tg-text-base { font-size: var(--fs); }
+  .tg-text-lg { font-size: var(--fs-lg); }
+  .tg-text-display { font-size: var(--fs-display); }
+  .tg-fw-regular, .tg-disclosure__trigger--regular { font-weight: var(--fw-regular); }
+  .tg-fw-medium { font-weight: var(--fw-medium); }
+  .tg-fw-semibold { font-weight: var(--fw-semibold); }
+  .tg-fw-bold { font-weight: var(--fw-bold); }
   .tg-text-center { text-align: center; }
   .tg-card-shadow { box-shadow: var(--shadow-soft); }
   .tg-card-shadow-none { box-shadow: none; }

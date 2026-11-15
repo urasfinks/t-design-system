@@ -11,20 +11,15 @@
     min-inline-size: 0;
   }
 
-  .tg-label {
-    font-size: var(--fs-sm);
-    font-weight: var(--fw-medium);
-  }
   // The visual mark of a required field; `required` on the control is what is announced.
   .tg-label__required {
     margin-inline-start: .125em;
     color: var(--text-danger);
-    font-weight: var(--fw-semibold);
   }
 
+  .tg-label { overflow-wrap: anywhere; }
   .tg-help {
     margin: 0;
-    font-size: var(--fs-sm);
     color: var(--text-secondary);
 
     &--error {
@@ -41,7 +36,6 @@
     border-radius: var(--radius-control);
     background-color: var(--field-bg);
     color: var(--text-color);
-    font-size: max(1rem, var(--fs));
     line-height: 1.5;
     transition: box-shadow var(--duration) var(--ease), border-color var(--duration) var(--ease), background-color var(--duration) var(--ease);
 
@@ -301,7 +295,6 @@
   .tg-choice__description {
     display: block;
     margin-block-start: var(--space-1);
-    font-size: var(--fs-sm);
     color: var(--text-secondary);
   }
 
@@ -361,7 +354,6 @@
       border-radius: 0;
       background: var(--select-arrow) no-repeat right var(--space-2) center / 1rem 1rem;
       color: var(--text-color);
-      font-size: max(1rem, var(--fs));
       // The group's frame shows focus (field-surface); the part draws no ring of its own.
       &:focus { outline: none; box-shadow: none; }
       cursor: pointer;
@@ -404,7 +396,6 @@
     overflow: hidden;
     color: var(--text-color);
     font-family: var(--font-family-mono);
-    font-size: var(--fs-sm);
     text-overflow: ellipsis;
     white-space: nowrap;
     user-select: all;
@@ -443,7 +434,6 @@
     margin: 0;
     padding: 0;
     list-style: none;
-    font-size: var(--fs-sm);
     color: var(--text-secondary);
 
     &__item {

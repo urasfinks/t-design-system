@@ -25,7 +25,7 @@ try {
   <div class="tg-progress tg-progress--striped"><span class="tg-progress__bar" style="--progress:50%"></span></div>
   <progress id="native-progress" class="tg-progress" max="100" value="50">50%</progress>
   <div id="plain-progress" class="tg-progress"><span style="--progress:50%" class="tg-progress__bar"></span></div>
-  <span class="tg-spinner tg-spinner--lg"></span>
+  <span class="tg-spinner"></span>
   <div class="tg-ios-spacer"></div>
   <div class="tg-toast tg-toast--show" dir="rtl">Сохранено</div>
   <div id="reference"></div>`);
@@ -69,9 +69,9 @@ try {
   const progressHeights = await page.locator('.tg-progress').evaluateAll(elements => elements.map(el => el.getBoundingClientRect().height));
   check('native, plain and striped progress share one height', new Set(progressHeights).size === 1 && progressHeights[0] > 0, progressHeights);
   check('stripes stop under reduced motion',stripe.animation==='none',stripe);
-  check('large spinner follows the semantic progress accent', await page.locator('.tg-spinner--lg').evaluate(el => {
+  check('spinner inherits the surrounding text color', await page.locator('.tg-spinner').evaluate(el => {
     const probe = document.createElement('span');
-    probe.style.color = 'var(--progress-color)'; el.append(probe);
+    probe.style.color = 'inherit'; el.append(probe);
     const matches = getComputedStyle(el).borderTopColor === getComputedStyle(probe).color;
     probe.remove(); return matches;
   }));

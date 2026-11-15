@@ -13,6 +13,11 @@
     -webkit-font-smoothing: antialiased;
     -webkit-tap-highlight-color: transparent;
   }
+  // Semantic elements inherit the text scale. Set size and weight explicitly in markup.
+  :where(h1, h2, h3, h4, h5, h6, b, strong, small, sub, sup, th, button, input, select, textarea, kbd) {
+    font-size: inherit;
+    font-weight: inherit;
+  }
   // Every link takes the link role, visited or not: the browser's own blue and purple are
   // not palette colours. Declared before the controls below, whose colour stays inherited.
   :where(a:any-link) { color: var(--text-link); }
