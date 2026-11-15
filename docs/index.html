@@ -157,6 +157,7 @@
   <optgroup label="Состояния и обратная связь">
     <option value="progress">Прогресс и этапы</option>
     <option value="progress-linear">Прогресс и этапы / Линейный прогресс и ожидание</option>
+    <option value="progress-row">Прогресс и этапы / Прогресс фоном строки</option>
     <option value="progress-ring">Прогресс и этапы / Кольцевой прогресс</option>
     <option value="progress-timeline">Прогресс и этапы / Хронология</option>
     <option value="progress-steps">Прогресс и этапы / Шаги процесса</option>
@@ -353,6 +354,7 @@
   <div class="nav-group" role="group" aria-labelledby="nav-group-6"><span class="nav-group-label" id="nav-group-6">Состояния и обратная связь</span>
     <div class="catalog-nav-family"><a href="#progress" class="nav-link"><span>Прогресс и этапы</span></a><details><summary>Варианты</summary>
       <a href="#progress-linear" class="nav-link"><span>Линейный прогресс и ожидание</span></a>
+      <a href="#progress-row" class="nav-link"><span>Прогресс фоном строки</span></a>
       <a href="#progress-ring" class="nav-link"><span>Кольцевой прогресс</span></a>
       <a href="#progress-timeline" class="nav-link"><span>Хронология</span></a>
       <a href="#progress-steps" class="nav-link"><span>Шаги процесса</span></a>
@@ -1429,6 +1431,19 @@
   <div class="tg-col tg-gap-2"><div class="tg-row tg-justify-between tg-text-sm"><span>Хранилище</span><span class="tg-num">10,4 из 10 ГБ</span></div><div class="tg-progress tg-progress--destructive" role="progressbar" aria-label="Хранилище заполнено" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"><span class="tg-progress__bar" style="--progress:100%"></span></div><p class="tg-help tg-help--error">Место закончилось: новые файлы не загрузятся.</p></div>
 </div>
   <p class="example-rule">Прогресс показывает известную долю, подпись дублирует значение. Полосы обозначают идущую обработку. Если длительность неизвестна, используйте spinner.</p></div>
+<h3 id="progress-row" class="catalog-subheading" data-catalog-title="Прогресс фоном строки" data-catalog-parent="progress" data-catalog-group="Состояния и обратная связь"><span>Прогресс фоном строки</span> <code translate="no" class="class-tag">.tg-progress-row</code></h3>
+<div class="example-panel"><div class="example-body tg-col" data-example>
+  <div class="tg-progress-row" data-selected>
+    <progress class="tg-progress-row__fill" max="100" value="64" aria-label="Да, для большинства"></progress>
+    <span>Да, для большинства <span aria-hidden="true">✓</span><span class="tg-sr-only"> · Ваш ответ</span></span>
+    <span class="tg-num">64%</span>
+  </div>
+  <div class="tg-progress-row">
+    <progress class="tg-progress-row__fill" max="100" value="36" aria-label="Только для отдельных покупок"></progress>
+    <span>Только для отдельных покупок</span>
+    <span class="tg-num">36%</span>
+  </div>
+</div><p class="example-rule">Когда долю нужно показать прямо за подписью, поместите нативный progress в строку и продублируйте значение текстом. Для выбранного ответа добавьте отметку и атрибут data-selected.</p></div>
 <h3 id="progress-ring" class="catalog-subheading" data-catalog-title="Кольцевой прогресс" data-catalog-parent="progress" data-catalog-group="Состояния и обратная связь">Кольцевой прогресс</h3>
 <div data-catalog-example="progress:0" class="example-panel"><div class="example-body tg-col" data-ui data-example data-spec="M8">
 <div class="tg-row ring-row">

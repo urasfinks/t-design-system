@@ -1,7 +1,7 @@
 {
   "componentFiles": 40,
   "foundationFiles": 2,
-  "declarations": 807,
+  "declarations": 814,
   "consumers": [
     {
       "file": "base/_index.scss",
@@ -855,9 +855,9 @@
       "file": "components/_button-feedback.scss",
       "property": "background",
       "roles": [
-        "--accent-main"
+        "--progress-color"
       ],
-      "value": "var(--accent-main)"
+      "value": "var(--progress-color)"
     },
     {
       "file": "components/_button-surface.scss",
@@ -2787,6 +2787,62 @@
       "file": "components/_feedback.scss",
       "property": "border-radius",
       "roles": [
+        "--radius-control"
+      ],
+      "value": "var(--radius-control)"
+    },
+    {
+      "file": "components/_feedback.scss",
+      "property": "color",
+      "roles": [
+        "--text-color"
+      ],
+      "value": "var(--text-color)"
+    },
+    {
+      "file": "components/_feedback.scss",
+      "property": "background",
+      "roles": [
+        "--progress-track-color"
+      ],
+      "value": "var(--progress-track-color)"
+    },
+    {
+      "file": "components/_feedback.scss",
+      "property": "background",
+      "roles": [
+        "--progress-track-color"
+      ],
+      "value": "var(--progress-track-color)"
+    },
+    {
+      "file": "components/_feedback.scss",
+      "property": "background",
+      "roles": [
+        "--progress-soft-color"
+      ],
+      "value": "var(--progress-soft-color)"
+    },
+    {
+      "file": "components/_feedback.scss",
+      "property": "background",
+      "roles": [
+        "--progress-soft-color"
+      ],
+      "value": "var(--progress-soft-color)"
+    },
+    {
+      "file": "components/_feedback.scss",
+      "property": "outline",
+      "roles": [
+        "--accent-main"
+      ],
+      "value": "1px solid var(--accent-main)"
+    },
+    {
+      "file": "components/_feedback.scss",
+      "property": "border-radius",
+      "roles": [
         "--radius-pill"
       ],
       "value": "var(--radius-pill)"
@@ -2867,9 +2923,9 @@
       "file": "components/_feedback.scss",
       "property": "--progress-color",
       "roles": [
-        "--danger-main"
+        "--progress-danger-color"
       ],
-      "value": "var(--danger-main)"
+      "value": "var(--progress-danger-color)"
     },
     {
       "file": "components/_feedback.scss",
@@ -5574,9 +5630,9 @@
       "file": "components/_progress.scss",
       "property": "--progress-color",
       "roles": [
-        "--danger-main"
+        "--progress-danger-color"
       ],
-      "value": "var(--danger-main)"
+      "value": "var(--progress-danger-color)"
     },
     {
       "file": "components/_progress.scss",

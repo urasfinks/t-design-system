@@ -81,7 +81,7 @@
     --progress-stripe-speed: .8s;
     --progress-stripe-size: 1.5rem;
     --progress-stripe-blur: 2px;
-    --progress-stripe-color: rgb(255 255 255 / .32);
+    --progress-stripe-color: #{color.alpha(var(--color-white), .32)};
     --safe-area-bottom: env(safe-area-inset-bottom, 0px);
     --ios-h: 0px;
     // All coefficients are shared by themes. See docs/color-system.md.
@@ -145,8 +145,14 @@
     --destructive-text-color-transparent: var(--danger-strong);
     --section-bg-color-transparent: var(--background-panel);
     --text-link: var(--accent-readable);
-    --progress-color: var(--accent-readable);
+    // A measured value is a fill, not text: the accent itself on the muted track, the same
+    // pair as a switch that is on and a range. The danger variant is the danger source.
+    --progress-color: var(--accent-main);
+    --progress-danger-color: var(--danger-main);
     --progress-track-color: var(--background-muted);
+    // A value painted under text (progress row): the soft-accent weight taken on the track
+    // it covers, so the fill differs from the track in the same direction in every theme.
+    --progress-soft-color: #{color.mix(var(--accent-main), 12%, var(--progress-track-color))};
     --text-danger: var(--danger-readable);
     --action-bg: var(--accent-strong);
     --action-hover-bg: var(--accent-strong);

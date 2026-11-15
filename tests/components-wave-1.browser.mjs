@@ -35,7 +35,7 @@ try {
   await page.locator('#demo-ring-range').fill('80');
   check('M8 changing the value updates arc and aria-valuenow', (await css(`${ring} .tg-progress-ring__value`, 'stroke-dasharray')).match(/^(calc\()?80/) && await page.locator(ring).getAttribute('aria-valuenow') === '80');
   check('M8 indeterminate ring has no value and still animates under reduced motion (pulse)', await page.locator(`${ex('M8')} .tg-progress-ring--sm`).getAttribute('aria-valuenow') === null && (await css(`${ex('M8')} .tg-progress-ring--sm > svg`, 'animation-name')) === 'tg-ring-pulse');
-  check('M8 destructive ring uses the danger role', await css(`${ex('M8')} .tg-progress-ring--destructive`, 'color') === await page.evaluate(() => { const p = document.createElement('i'); p.style.color = 'var(--danger-main)'; document.body.append(p); const c = getComputedStyle(p).color; p.remove(); return c; }));
+  check('M8 destructive ring uses the danger role', await css(`${ex('M8')} .tg-progress-ring--destructive`, 'color') === await page.evaluate(() => { const p = document.createElement('i'); p.style.color = 'var(--progress-danger-color)'; document.body.append(p); const c = getComputedStyle(p).color; p.remove(); return c; }));
 
   // C11 / M10 — timeline
   const tl = `${ex('C11')} .tg-timeline:not(.tg-timeline--horizontal)`;

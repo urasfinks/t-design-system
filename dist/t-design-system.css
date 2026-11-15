@@ -73,7 +73,7 @@
     --progress-stripe-speed: .8s;
     --progress-stripe-size: 1.5rem;
     --progress-stripe-blur: 2px;
-    --progress-stripe-color: rgb(255 255 255 / .32);
+    --progress-stripe-color: rgb(from var(--color-white) r g b / 0.32);
     --safe-area-bottom: env(safe-area-inset-bottom, 0px);
     --ios-h: 0px;
     --panel-lightness-rise: .06;
@@ -135,8 +135,10 @@
     --destructive-text-color-transparent: var(--danger-strong);
     --section-bg-color-transparent: var(--background-panel);
     --text-link: var(--accent-readable);
-    --progress-color: var(--accent-readable);
+    --progress-color: var(--accent-main);
+    --progress-danger-color: var(--danger-main);
     --progress-track-color: var(--background-muted);
+    --progress-soft-color: color-mix(in srgb, var(--accent-main) 12%, var(--progress-track-color));
     --text-danger: var(--danger-readable);
     --action-bg: var(--accent-strong);
     --action-hover-bg: var(--accent-strong);
@@ -2382,6 +2384,45 @@
     margin-block: calc(var(--space-2) * -1);
     margin-inline-end: calc(var(--space-2) * -1);
   }
+  .tg-progress-row {
+    position: relative;
+    isolation: isolate;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    align-items: center;
+    gap: var(--space-2);
+    min-block-size: var(--control-h);
+    padding: var(--space-2) var(--space-3);
+    border-radius: var(--radius-control);
+    color: var(--text-color);
+    overflow-wrap: anywhere;
+  }
+  .tg-progress-row__fill {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    inline-size: 100%;
+    block-size: 100%;
+    appearance: none;
+    border: 0;
+    border-radius: inherit;
+    overflow: hidden;
+    background: var(--progress-track-color);
+    pointer-events: none;
+  }
+  .tg-progress-row__fill::-webkit-progress-bar {
+    background: var(--progress-track-color);
+  }
+  .tg-progress-row__fill::-webkit-progress-value {
+    background: var(--progress-soft-color);
+  }
+  .tg-progress-row__fill::-moz-progress-bar {
+    background: var(--progress-soft-color);
+  }
+  .tg-progress-row[data-selected] {
+    outline: 1px solid var(--accent-main);
+    outline-offset: -1px;
+  }
   .tg-progress {
     display: block;
     inline-size: 100%;
@@ -2418,7 +2459,7 @@
     clip-path: inset(0 0 0 calc(100% - clamp(0%, var(--progress, 0%), 100%)) round var(--radius-pill));
   }
   .tg-progress--destructive {
-    --progress-color: var(--danger-main);
+    --progress-color: var(--progress-danger-color);
   }
   .tg-progress--striped .tg-progress__bar {
     position: relative;
@@ -4730,7 +4771,7 @@
     inset-inline: 0;
     inset-block-end: 0;
     block-size: 3px;
-    background: var(--accent-main);
+    background: var(--progress-color);
     transform: scaleX(clamp(0, var(--progress, 0), 1));
     transform-origin: left center;
     transition: transform var(--progress-duration) var(--ease);
@@ -5483,7 +5524,7 @@
     --ring-stroke: 2.5;
   }
   .tg-progress-ring--destructive {
-    --progress-color: var(--danger-main);
+    --progress-color: var(--progress-danger-color);
   }
   .tg-progress-ring__track, .tg-progress-ring__value {
     fill: none;

@@ -27,7 +27,7 @@
 
     &--sm { --ring-size: 1.5rem; --ring-stroke: 4; }
     &--lg { --ring-size: 4rem; --ring-stroke: 2.5; }
-    &--destructive { --progress-color: var(--danger-main); }
+    &--destructive { --progress-color: var(--progress-danger-color); }
   }
   .tg-progress-ring__track, .tg-progress-ring__value {
     fill: none;
