@@ -20,7 +20,12 @@ export function initTelegramTheme(tg, {
   function applyBackground() {
     const color = root.ownerDocument?.defaultView?.getComputedStyle(root)
       .getPropertyValue('--bg-body').trim();
-    if (/^#[0-9a-f]{6}$/i.test(color ?? '')) tg.setBackgroundColor(color);
+    if (!/^#[0-9a-f]{6}$/i.test(color ?? '')) return;
+    tg.setBackgroundColor(color);
+    if (root.dataset.platform === 'ios') {
+      // Telegram uses its native header color for the upper overscroll surface.
+      tg.setHeaderColor?.(tg.isVersionAtLeast?.('6.9') === false ? 'bg_color' : color);
+    }
   }
 
   function apply() {

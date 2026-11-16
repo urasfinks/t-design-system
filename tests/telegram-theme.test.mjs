@@ -81,3 +81,42 @@ test('background sync is automatic and macOS sends the latest palette after star
   assert.deepEqual(sent, ['#131720', '#f5f5f5']);
   stopDesktop();
 });
+
+test('iOS sends the page background to both native surfaces on launch and theme changes', async () => {
+  const { initTelegramTheme } = await loadBridge();
+  const { root, tg, listeners } = fixture({ platform: 'ios' });
+  const headers = [];
+  const backgrounds = [];
+  root.ownerDocument = { defaultView: {
+    getComputedStyle: element => ({
+      getPropertyValue: () => element.dataset.theme === 'ios-dark' ? '#000000' : '#ffffff',
+    }),
+  } };
+  tg.setHeaderColor = color => headers.push(color);
+  tg.setBackgroundColor = color => backgrounds.push(color);
+  tg.isVersionAtLeast = () => true;
+  const stop = initTelegramTheme(tg, { root });
+  tg.colorScheme = 'light';
+  listeners.get('themeChanged')();
+  assert.deepEqual(headers, ['#000000', '#ffffff']);
+  assert.deepEqual(backgrounds, headers);
+  stop();
+});
+
+test('the native header stays untouched on desktop and older iOS SDKs use a supported color key', async () => {
+  const { initTelegramTheme } = await loadBridge();
+  const { root, tg, listeners } = fixture();
+  const headers = [];
+  root.ownerDocument = { defaultView: {
+    getComputedStyle: () => ({ getPropertyValue: () => '#000000' }),
+  } };
+  tg.setHeaderColor = color => headers.push(color);
+  tg.setBackgroundColor = () => {};
+  tg.isVersionAtLeast = () => false;
+  const stop = initTelegramTheme(tg, { root });
+  assert.deepEqual(headers, []);
+  tg.platform = 'ios';
+  listeners.get('themeChanged')();
+  assert.deepEqual(headers, ['bg_color']);
+  stop();
+});
