@@ -3445,6 +3445,20 @@
   .tg-comment__actions > .tg-btn--ghost:first-child {
     margin-inline-start: calc(-1 * (var(--space-4) + 1px));
   }
+  .tg-comment__actions:has(> .tg-comment__action-grid) {
+    container: tg-comment-actions/inline-size;
+  }
+  .tg-comment__action-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(var(--control-h), 1fr));
+    place-items: center;
+    gap: var(--space-2);
+  }
+  @container tg-comment-actions (min-width: 30rem) {
+    .tg-comment__action-grid {
+      grid-template-columns: repeat(4, minmax(var(--control-h), 1fr));
+    }
+  }
   body:has(.tg-comment--focus-menu .tg-menu:popover-open)::before {
     content: "";
     position: fixed;

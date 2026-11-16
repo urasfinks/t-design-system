@@ -843,6 +843,11 @@ existing palette, typography and geometry tokens; consumers do not need CSS.
   beside metadata and these content slots span the full width. `tg-thread` indents replies with a separator. Use standard
   row/spacing/text utilities within those slots. Do not add `tg-row` to the comment
   root or composer form/input: those compositions already provide their layout.
+- For reactions, replies and attachments, place a `tg-comment__action-grid`
+  directly inside `tg-comment__actions`, with the buttons as its children.
+  The buttons are centered in equal cells: two columns by default, four when
+  the action group is at least 30rem wide. Keep timestamps and status messages
+  outside the grid. See [the live example](docs/index.html#scene-discussion).
 - Add `tg-comment--focus-menu` when a comment contains a native `tg-menu` popover.
   While that menu is open, the comment stays above the shared blurred page backdrop.
 - `tg-toolbar` is a wrapping row with spaced ends; `tg-toolbar--responsive` stretches

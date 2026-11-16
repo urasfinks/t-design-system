@@ -34,14 +34,6 @@ try {
     }
     await page.evaluate(() => document.documentElement.style.removeProperty('font-size'));
     await page.locator('#demo-message').fill('');
-    // Ghost actions under a comment align their labels with the comment text, not their padding box.
-    const comment = await page.evaluate(() => {
-      const root = document.querySelector('.tg-comment');
-      const text = root.querySelector('.tg-comment__text').getBoundingClientRect().left;
-      const range = document.createRange(); range.selectNodeContents(root.querySelector('.tg-comment__actions .tg-btn'));
-      return { text, label: range.getBoundingClientRect().left };
-    });
-    assert.ok(Math.abs(comment.label - comment.text) <= 1, `${width}px: first comment action label aligns with the text: ${JSON.stringify(comment)}`);
     // Reply quote and caption belong to the field: they share its start edge, after the avatar.
     await page.locator('#demo-reply').click();
     const edges = await page.evaluate(() => {

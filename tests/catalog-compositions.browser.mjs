@@ -28,6 +28,10 @@ try {
   await frame.locator('.tg-composer').waitFor();
   await page.getByLabel('Тема оформления', { exact: true }).selectOption('dark');
   await frame.locator('html[data-theme="dark"]').waitFor();
+  const like = frame.getByRole('button', { name: 'Нравится' });
+  await like.click();
+  assert.equal(await like.getAttribute('aria-pressed'), 'true');
+  assert.equal(await like.textContent(), '13');
   await frame.getByRole('button', { name: 'Показать ответы' }).click();
   await frame.locator('#demo-replies').waitFor();
   await frame.getByRole('button', { name: 'Ответить Анне' }).click();
@@ -36,10 +40,15 @@ try {
   await frame.getByRole('button', { name: 'Отправить сообщение' }).click();
   await frame.getByText('<b>Обычный текст</b>', { exact: true }).waitFor();
   assert.equal(await frame.locator('#demo-messages b').count(), 0, 'message stays text');
-  await frame.getByRole('button', { name: 'Открыть медиа' }).click();
+  await frame.getByRole('button', { name: 'Изображения · 1', exact: true }).click();
   await frame.locator('dialog[open]').waitFor();
   assert.equal(await frame.locator('body').evaluate(el => getComputedStyle(el).overflow), 'hidden');
-  await frame.getByRole('button', { name: 'Закрыть медиа' }).click();
+  await frame.getByRole('button', { name: 'Закрыть медиа' }).press('Enter');
+  await frame.locator('dialog[open]').waitFor({ state: 'detached' });
+  await frame.getByRole('button', { name: 'Открыть медиа' }).click();
+  await frame.locator('dialog[open]').waitFor();
+  await frame.getByRole('button', { name: 'Закрыть медиа' }).press('Enter');
+  await frame.locator('dialog[open]').waitFor({ state: 'detached' });
   await mkdir('artifacts/catalog-compositions', { recursive: true });
   for (const width of [320, 390, 1280]) {
     await page.setViewportSize({ width, height: 1000 });
@@ -51,6 +60,16 @@ try {
   await page.goto('http://127.0.0.1:4177/docs/compositions.html');
   await page.getByLabel('Тема примера').selectOption('ios-dark');
   assert.equal(await page.locator('html').getAttribute('data-theme'), 'ios-dark');
+  const grid = page.locator('.tg-comment__action-grid');
+  const engine = process.argv.includes('--webkit') ? 'webkit' : 'chromium';
+  for (const theme of ['light', 'dark', 'ios-dark']) {
+    await page.getByLabel('Тема примера').selectOption(theme);
+    for (const [width, columns] of [[320, 2], [1280, 4]]) {
+      await page.setViewportSize({ width, height: 900 });
+      assert.equal(await grid.evaluate(el => getComputedStyle(el).gridTemplateColumns.split(' ').length), columns);
+      await page.locator('.tg-comment').first().screenshot({ path: `artifacts/catalog-compositions/actions-${engine}-${theme}-${width}.png` });
+    }
+  }
   const source = await readFile('docs/compositions.html', 'utf8');
   assert.doesNotMatch(source, /<style\b|\sstyle=|catalog\.css/);
   assert.deepEqual(errors, []);

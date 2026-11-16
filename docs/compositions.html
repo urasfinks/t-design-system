@@ -33,7 +33,14 @@
             <div class="tg-comment__body">
               <header class="tg-comment__meta tg-row tg-gap-2"><span class="tg-list-item__title tg-fw-semibold">Анна</span><span class="tg-text-sm tg-text-muted">сейчас</span></header>
               <p class="tg-comment__text tg-mt-2 tg-mb-2" id="demo-original">На телефоне текст занимает всю ширину, а имя остаётся рядом с аватаром. Ответьте на этот комментарий, чтобы увидеть цитату в панели ввода.</p>
-              <div class="tg-comment__actions tg-row tg-gap-1"><button class="tg-btn tg-btn--ghost tg-text-sm tg-fw-medium" id="demo-reply" aria-label="Ответить Анне">Ответить</button><button class="tg-btn tg-btn--ghost tg-text-sm tg-fw-medium" id="demo-toggle-replies" aria-controls="demo-replies" aria-expanded="false">Показать ответы</button></div>
+              <div class="tg-comment__actions">
+                <div class="tg-comment__action-grid" role="group" aria-label="Действия с комментарием">
+                  <button type="button" class="tg-btn tg-btn--ghost tg-text-sm tg-fw-medium" id="demo-comment-like" aria-pressed="false" aria-label="Нравится"><svg class="tg-icon" viewBox="0 0 24 24" aria-hidden="true"><use href="../dist/icons/thumbs-up.svg#thumbs-up"></use></svg><span>12</span></button>
+                  <button class="tg-btn tg-btn--ghost tg-text-sm tg-fw-medium" id="demo-reply" aria-label="Ответить Анне">Ответить</button>
+                  <button type="button" class="tg-btn tg-btn--ghost tg-text-sm tg-fw-medium" id="demo-comment-media" title="Изображения" aria-label="Изображения · 1"><svg class="tg-icon" viewBox="0 0 24 24" aria-hidden="true"><use href="../dist/icons/image.svg#image"></use></svg><span>1</span></button>
+                  <button class="tg-btn tg-btn--ghost tg-text-sm tg-fw-medium" id="demo-toggle-replies" aria-controls="demo-replies" aria-expanded="false">Показать ответы</button>
+                </div>
+              </div>
             </div>
           </article>
           <div class="tg-thread tg-mt-3" id="demo-replies" hidden>

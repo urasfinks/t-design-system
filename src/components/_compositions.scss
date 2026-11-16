@@ -186,6 +186,17 @@
     // Optical alignment: a leading ghost action's label sits on the text's edge;
     // its padding and hover fill extend into the gutter instead.
     &__actions > .tg-btn--ghost:first-child { margin-inline-start: calc(-1 * (var(--space-4) + 1px)); }
+    &__actions:has(> .tg-comment__action-grid) { container: tg-comment-actions / inline-size; }
+    &__action-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(var(--control-h), 1fr));
+      place-items: center;
+      gap: var(--space-2);
+    }
+  }
+  // Four cells can each accommodate a typical comment action at this width.
+  @container tg-comment-actions (min-width: 30rem) {
+    .tg-comment__action-grid { grid-template-columns: repeat(4, minmax(var(--control-h), 1fr)); }
   }
   // The menu is in the top layer; its originating comment sits above the page scrim.
   body:has(.tg-comment--focus-menu .tg-menu:popover-open)::before {

@@ -100,6 +100,15 @@ input.addEventListener('keydown', event => {
   if (event.key === 'Enter' && (event.ctrlKey || event.metaKey)) { event.preventDefault(); form.requestSubmit(); }
 });
 const dialog = document.querySelector('#demo-media');
-document.querySelector('#demo-open-media').addEventListener('click', () => dialog.showModal());
+for (const trigger of document.querySelectorAll('#demo-open-media, #demo-comment-media')) {
+  trigger.addEventListener('click', () => dialog.showModal());
+}
+const like = document.querySelector('#demo-comment-like');
+like.addEventListener('click', () => {
+  const pressed = like.getAttribute('aria-pressed') !== 'true';
+  like.setAttribute('aria-pressed', String(pressed));
+  const count = like.querySelector('span');
+  count.textContent = Number(count.textContent) + (pressed ? 1 : -1);
+});
 document.querySelector('#demo-close-media').addEventListener('click', () => dialog.close());
 dialog.addEventListener('click', event => { if (event.target === dialog) dialog.close(); });
