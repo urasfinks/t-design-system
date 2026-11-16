@@ -1387,3 +1387,13 @@ Escape и возврат фокуса показывает `initColorPickers` в
 отступами. Не добавляйте к нему `tg-mt-0`: эта утилита возвращает пустое место
 над изображением. Диалог подробностей открывается отдельно, сохраняя исходную
 карточку на месте.
+
+## Document gesture policies
+
+Apply `tg-page--no-horizontal-bounce` to `html` to suppress horizontal viewport
+overscroll without clipping content or disabling vertical scrolling and nested
+horizontal tracks. Apply `tg-page--fixed-scale` to `html` only when an embedded
+app explicitly requires fixed scale: native panning remains available, pinch and
+double-tap zoom are disabled through touch-action. WebKit gesture events and
+viewport metadata may also need handling by the host app. These opt-in policies
+do not alter ordinary TDS documents. Native WebView gestures remain host-controlled.

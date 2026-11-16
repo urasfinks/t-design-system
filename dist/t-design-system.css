@@ -306,6 +306,12 @@
   }
 }
 @layer tds.base {
+  :where(html.tg-page--no-horizontal-bounce) {
+    overscroll-behavior-x: none;
+  }
+  :where(html.tg-page--fixed-scale) {
+    touch-action: pan-x pan-y;
+  }
   :where(body) {
     background: var(--bg-body);
     color: var(--text-color);

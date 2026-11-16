@@ -6,6 +6,10 @@
   :where(body) { margin: 0; }
 }
 @layer tds.base {
+  // Opt-in document policies; nested tracks keep their native scrolling.
+  :where(html.tg-page--no-horizontal-bounce) { overscroll-behavior-x: none; }
+  :where(html.tg-page--fixed-scale) { touch-action: pan-x pan-y; }
+
   :where(body) {
     background: var(--bg-body);
     color: var(--text-color);
