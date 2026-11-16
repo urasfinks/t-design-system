@@ -1,0 +1,296 @@
+
+@layer tds.components {
+  .tg-chart {
+    --series: var(--accent-main);
+    --series-rest: var(--text-secondary);
+    --chart-grid: var(--border-subtle-color);
+    --chart-surface: var(--surface-bg);
+    display: grid;
+    gap: var(--space-3);
+    min-inline-size: 0;
+    margin: 0;
+    color: var(--text-color);
+  }
+  .tg-chart__header {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: var(--space-1) var(--space-4);
+  }
+  .tg-chart__header > * {
+    margin: 0;
+  }
+  .tg-chart__value {
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+  }
+  .tg-chart__subtitle {
+    color: var(--text-secondary);
+  }
+  .tg-chart__plot {
+    position: relative;
+    min-inline-size: 0;
+  }
+  .tg-chart__plot > svg {
+    display: block;
+    max-inline-size: 100%;
+    block-size: auto;
+    overflow: visible;
+  }
+  .tg-chart__plot {
+    touch-action: pan-y;
+  }
+  .tg-chart :is([data-series="2"], [data-series="3"]) {
+    --series: var(--series-rest);
+  }
+  .tg-chart__grid {
+    stroke: var(--chart-grid);
+    stroke-width: 1;
+    shape-rendering: crispEdges;
+  }
+  .tg-chart__baseline {
+    stroke: var(--border-color);
+    stroke-width: 1;
+    shape-rendering: crispEdges;
+  }
+  .tg-chart__tick {
+    fill: var(--text-secondary);
+    font-variant-numeric: tabular-nums;
+  }
+  .tg-chart__line {
+    fill: none;
+    stroke: var(--series);
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    vector-effect: non-scaling-stroke;
+  }
+  .tg-chart__line[data-series="2"] {
+    stroke-dasharray: 6 4;
+  }
+  .tg-chart__line[data-series="3"] {
+    stroke-dasharray: 2 4;
+  }
+  .tg-chart__area {
+    fill: var(--accent-soft);
+    stroke: none;
+  }
+  .tg-chart__point {
+    fill: var(--series);
+    stroke: var(--chart-surface);
+    stroke-width: 2;
+    paint-order: stroke;
+  }
+  .tg-chart__label {
+    fill: var(--text-color);
+    font-variant-numeric: tabular-nums;
+  }
+  .tg-chart__label--muted {
+    fill: var(--text-secondary);
+  }
+  .tg-chart__crosshair {
+    stroke: var(--control-border-color);
+    stroke-width: 1;
+    opacity: 0;
+    pointer-events: none;
+  }
+  .tg-chart__plot[data-hover] .tg-chart__crosshair {
+    opacity: 1;
+  }
+  .tg-chart__hover-point {
+    opacity: 0;
+    pointer-events: none;
+  }
+  .tg-chart__plot[data-hover] .tg-chart__hover-point {
+    opacity: 1;
+  }
+  .tg-chart__hit {
+    fill: transparent;
+    cursor: crosshair;
+  }
+  .tg-chart__legend {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-1) var(--space-4);
+    margin: 0;
+    padding: 0;
+    color: var(--text-secondary);
+    list-style: none;
+  }
+  .tg-chart__legend-item {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+  }
+  .tg-chart__legend-item::before {
+    content: "";
+    flex: 0 0 auto;
+    inline-size: 8px;
+    block-size: 8px;
+    border-radius: 50%;
+    background: var(--series);
+  }
+  .tg-chart__legend-item[data-shape=square]::before {
+    border-radius: 2px;
+  }
+  .tg-chart__legend-item[data-shape=diamond]::before {
+    border-radius: 1px;
+    transform: rotate(45deg) scale(0.85);
+  }
+  .tg-chart__legend-item[data-shape=line]::before {
+    inline-size: 14px;
+    block-size: 2px;
+    border-radius: 1px;
+  }
+  .tg-chart__legend-item[data-shape=dash]::before {
+    inline-size: 14px;
+    block-size: 2px;
+    background: repeating-linear-gradient(to right, var(--series) 0 5px, transparent 5px 8px);
+  }
+  .tg-chart__legend-item > .tg-num, .tg-chart__legend-item > strong {
+    color: var(--text-color);
+    font-variant-numeric: tabular-nums;
+  }
+  .tg-chart__tooltip {
+    position: absolute;
+    inset-block-start: var(--tooltip-y, 0);
+    inset-inline-start: var(--tooltip-x, 0);
+    z-index: 2;
+    display: grid;
+    gap: var(--space-1);
+    min-inline-size: 8rem;
+    padding: var(--space-2) var(--space-3);
+    border: var(--floating-border);
+    border-radius: var(--radius-sm);
+    background: var(--floating-bg);
+    --ring-bg: var(--floating-bg);
+    color: var(--floating-color);
+    box-shadow: var(--floating-shadow);
+    pointer-events: none;
+    translate: -50% calc(-100% - var(--space-3));
+    opacity: 0;
+    transition: opacity var(--duration-fast) var(--ease);
+  }
+  .tg-chart__tooltip:dir(rtl) {
+    translate: 50% calc(-100% - var(--space-3));
+  }
+  .tg-chart__plot[data-hover] > .tg-chart__tooltip {
+    opacity: 1;
+  }
+  .tg-chart__tooltip > span {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-4);
+    color: var(--text-secondary);
+    font-variant-numeric: tabular-nums;
+  }
+  .tg-chart__tooltip > span > b {
+    color: var(--text-color);
+  }
+  .tg-chart__data > summary {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-3);
+    list-style: none;
+  }
+  .tg-chart__data > summary::marker {
+    content: "";
+  }
+  .tg-chart__data > summary::-webkit-details-marker {
+    display: none;
+  }
+  .tg-chart__data > summary::after {
+    content: "";
+    flex: 0 0 auto;
+    inline-size: var(--icon-size);
+    block-size: var(--icon-size);
+    margin-inline-start: auto;
+    background: currentColor;
+    mask: var(--icon-mask-chevron-down) center/contain no-repeat;
+    transition: transform var(--duration) var(--ease);
+  }
+  .tg-chart__data > summary:is(details[open] > summary)::after {
+    transform: rotate(180deg);
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .tg-chart__data > summary::after {
+      transition: none;
+    }
+  }
+  .tg-chart__data > summary {
+    min-block-size: var(--control-h);
+    color: var(--text-link);
+    cursor: pointer;
+  }
+  .tg-chart__data > summary:focus-visible {
+    outline: 2px solid var(--text-link);
+    outline-offset: 2px;
+    border-radius: var(--radius-xs);
+  }
+  .tg-chart__data > .tg-table-wrap {
+    margin-block-start: var(--space-2);
+  }
+  .tg-chart__bar {
+    fill: var(--series);
+    transition: fill var(--duration-fast) var(--ease);
+  }
+  .tg-chart--bar .tg-chart__plot:has(.tg-chart__bar[data-active]) .tg-chart__bar:not([data-active]) {
+    fill: var(--series-rest);
+  }
+  .tg-chart--donut .tg-chart__plot {
+    inline-size: min(100%, 14rem);
+    justify-self: center;
+  }
+  .tg-chart__segment {
+    fill: none;
+    stroke: var(--series);
+    transition: stroke-width var(--duration-fast) var(--ease);
+  }
+  .tg-chart__segment[data-texture] {
+    stroke: url(#tg-chart-hatch);
+  }
+  .tg-chart__segment[data-active] {
+    stroke-width: 19;
+  }
+  .tg-chart__hatch {
+    color: var(--series-rest);
+  }
+  .tg-chart__center {
+    position: absolute;
+    inset: 0;
+    display: grid;
+    place-content: center;
+    text-align: center;
+    pointer-events: none;
+  }
+  .tg-chart__center > strong {
+    line-height: 1.15;
+  }
+  .tg-chart__center > span {
+    color: var(--text-secondary);
+  }
+  .tg-chart--donut .tg-chart__legend {
+    flex-direction: column;
+    align-self: center;
+  }
+  .tg-chart--donut .tg-chart__legend-item {
+    justify-content: space-between;
+  }
+  .tg-chart--donut .tg-chart__legend-item > :first-child {
+    margin-inline-end: auto;
+  }
+  .tg-chart__legend-item[data-texture]::before {
+    background: repeating-linear-gradient(45deg, var(--series) 0 1.5px, transparent 1.5px 3.5px);
+    box-shadow: inset 0 0 0 1px var(--series);
+  }
+  @media (forced-colors: active) {
+    .tg-chart__line, .tg-chart__segment {
+      stroke: CanvasText;
+    }
+    .tg-chart__bar, .tg-chart__point, .tg-chart__area {
+      fill: CanvasText;
+    }
+  }
+}

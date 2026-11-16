@@ -1,0 +1,183 @@
+
+@layer tds.components {
+  .tg-editor {
+    display: grid;
+    grid-template-rows: auto auto minmax(0, 1fr) auto;
+    min-inline-size: 0;
+    border: var(--border);
+    border-radius: var(--radius-lg);
+    background: var(--surface-bg);
+    --ring-bg: var(--surface-bg);
+    overflow: clip;
+    transition: border-color var(--duration) var(--ease), box-shadow var(--duration) var(--ease);
+  }
+  .tg-editor:has(.tg-editor__content:focus) {
+    border-color: var(--accent-main);
+    box-shadow: var(--focus);
+  }
+  .tg-editor__bar {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--space-2) var(--space-3);
+    padding: var(--space-2) var(--space-3) var(--space-2) var(--space-4);
+    border-block-end: 1px solid var(--border-subtle-color);
+  }
+  .tg-editor__bar > .tg-breadcrumbs {
+    flex: 1 1 auto;
+    min-inline-size: 0;
+  }
+  .tg-editor__toolbar {
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: center;
+    gap: var(--space-1);
+    padding: var(--space-1) var(--space-2);
+    border-block-end: 1px solid var(--border-subtle-color);
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+  .tg-editor__toolbar > * {
+    flex: 0 0 auto;
+  }
+  @media (max-width: 36rem) {
+    .tg-editor__toolbar {
+      position: sticky;
+      inset-block-end: var(--tg-keyboard-inset, 0px);
+      order: 9;
+      border-block: 1px solid var(--border-subtle-color) 0;
+    }
+  }
+  .tg-editor__content {
+    display: grid;
+    gap: var(--space-3);
+    align-content: start;
+    max-inline-size: calc(var(--layout-reading-width) + var(--space-8) * 2);
+    min-block-size: 12rem;
+    padding: var(--space-6) var(--space-8);
+    color: var(--text-color);
+    line-height: 1.6;
+    outline: none;
+    caret-color: var(--text-link);
+  }
+  .tg-editor__content:focus-visible {
+    box-shadow: none;
+  }
+  .tg-editor__content[contenteditable=false] {
+    caret-color: transparent;
+  }
+  .tg-editor__content > * {
+    margin: 0;
+  }
+  .tg-editor__content h2 {
+    line-height: 1.2;
+    letter-spacing: -0.01em;
+  }
+  .tg-editor__content h3 {
+    line-height: 1.3;
+  }
+  .tg-editor__content :is(ul, ol) {
+    padding-inline-start: var(--space-6);
+  }
+  .tg-editor__content li + li {
+    margin-block-start: var(--space-1);
+  }
+  .tg-editor__content code {
+    padding: 0.1em 0.3em;
+    border-radius: var(--radius-xs);
+    background: var(--background-muted);
+    font-family: var(--font-family-mono);
+  }
+  .tg-editor__content pre {
+    padding: var(--space-3) var(--space-4);
+    border-radius: var(--radius);
+    background: var(--background-muted);
+    overflow-x: auto;
+  }
+  .tg-editor__content pre code {
+    padding: 0;
+    background: none;
+  }
+  .tg-editor__content blockquote {
+    padding-inline-start: var(--space-4);
+    border-inline-start: 3px solid var(--border-color);
+    color: var(--text-secondary);
+  }
+  .tg-editor__content a {
+    color: var(--text-link);
+    text-underline-offset: 0.2em;
+  }
+  .tg-editor__content ::selection {
+    background: var(--accent-soft);
+  }
+  @media (max-width: 36rem) {
+    .tg-editor__content {
+      padding: var(--space-4);
+    }
+  }
+  .tg-editor__block {
+    margin-inline: calc(var(--space-2) * -1);
+    padding: var(--space-1) var(--space-2);
+    border-radius: var(--radius-inset);
+    box-shadow: inset 0 0 0 1px transparent;
+    transition: background-color var(--duration-fast) var(--ease), box-shadow var(--duration-fast) var(--ease);
+  }
+  .tg-editor__block:is([aria-selected=true], [data-selected]) {
+    background: var(--accent-soft);
+    box-shadow: inset 0 0 0 2px var(--accent-main);
+  }
+  .tg-editor__status {
+    display: flex;
+    flex: 0 0 auto;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--space-2) var(--space-4);
+    padding: var(--space-2) var(--space-4);
+    border-block-start: var(--border-transparent);
+    color: var(--text-secondary);
+  }
+  .tg-editor__status > [data-state=error] {
+    color: var(--text-danger);
+  }
+  .tg-selection-toolbar {
+    position: absolute;
+    inset-block-start: var(--anchor-y, 0);
+    inset-inline-start: var(--anchor-x, 0);
+    z-index: var(--z-overlay);
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-1);
+    padding: var(--space-1);
+    border: var(--floating-border);
+    border-radius: var(--radius-control);
+    background: var(--floating-bg);
+    --ring-bg: var(--floating-bg);
+    color: var(--floating-color);
+    box-shadow: var(--floating-shadow);
+    translate: -50% calc(-100% - var(--space-2));
+    transform-origin: bottom center;
+    animation: tg-selection-in var(--duration-fast) var(--ease);
+  }
+  .tg-selection-toolbar:dir(rtl) {
+    translate: 50% calc(-100% - var(--space-2));
+  }
+  .tg-selection-toolbar[data-placement=below] {
+    translate: -50% var(--space-2);
+    transform-origin: top center;
+  }
+  .tg-selection-toolbar[data-instant] {
+    animation: none;
+  }
+  .tg-selection-toolbar > .tg-toolbar__separator {
+    margin-block: var(--space-1);
+  }
+  .tg-selection-toolbar > .tg-badge {
+    margin-inline: var(--space-1);
+  }
+  @keyframes tg-selection-in {
+    from {
+      opacity: 0;
+      transform: scale(0.96);
+    }
+  }
+}

@@ -1,0 +1,334 @@
+
+@layer tds.components {
+  .tg-tabs {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    max-inline-size: 100%;
+    padding: var(--space-1);
+    border: var(--border);
+    border-radius: var(--radius-control);
+    background: var(--secondary-bg-color);
+    overflow-x: auto;
+    scrollbar-width: thin;
+  }
+  .tg-tab {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-2);
+    flex: 1 0 auto;
+    min-block-size: var(--control-h);
+    padding: var(--space-2) var(--space-4);
+    border: 0;
+    border-radius: var(--radius-inset);
+    background: var(--control-idle-bg);
+    color: var(--text-secondary);
+    cursor: pointer;
+  }
+  .tg-tab[aria-selected=true] {
+    --control-idle-bg: var(--section-bg-color);
+    --control-hover-bg: var(--control-idle-bg);
+    color: var(--text-color);
+  }
+  @media (hover: hover) and (pointer: fine) {
+    .tg-tab:where(:not(:disabled, [aria-disabled=true], [aria-selected=true], [disabled] *, [aria-disabled=true] *, [inert], [inert] *)):hover {
+      color: var(--text-color);
+    }
+  }
+  .tg-tab:focus-visible {
+    outline-offset: -3px;
+  }
+  .tg-segmented {
+    display: inline-flex;
+    flex-wrap: nowrap;
+    align-items: stretch;
+    gap: var(--option-gap);
+    min-inline-size: 0;
+    max-inline-size: 100%;
+    margin: 0;
+    padding: var(--space-1);
+    border: var(--border);
+    border-radius: var(--radius-control);
+    background: var(--secondary-bg-color);
+    overflow-x: auto;
+    scrollbar-width: thin;
+  }
+  .tg-segmented--vertical {
+    flex-direction: column;
+    inline-size: max-content;
+    max-inline-size: 100%;
+    overflow: visible;
+  }
+  .tg-segmented--vertical > .tg-segmented__item {
+    justify-content: flex-start;
+  }
+  .tg-segmented__item {
+    position: relative;
+    display: inline-flex;
+    flex: 1 0 auto;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-2);
+    min-block-size: var(--control-h);
+    padding: var(--space-2) var(--space-4);
+    border: 0;
+    border-radius: var(--radius-inset);
+    background: var(--control-idle-bg);
+    color: var(--text-secondary);
+    cursor: pointer;
+    padding-inline: var(--space-3);
+    white-space: nowrap;
+  }
+  .tg-segmented__item > .tg-icon {
+    flex: 0 0 auto;
+  }
+  .tg-segmented__item > input {
+    position: absolute;
+    inset: 0;
+    margin: 0;
+    border-radius: inherit;
+    opacity: 0;
+    cursor: inherit;
+    appearance: none;
+  }
+  .tg-segmented__item:is([aria-pressed=true], :has(> input:checked)) {
+    --control-idle-bg: var(--section-bg-color);
+    --control-hover-bg: var(--control-idle-bg);
+    color: var(--text-color);
+  }
+  @media (hover: hover) and (pointer: fine) {
+    .tg-segmented__item:where(:not(:disabled, [aria-disabled=true], [aria-pressed=true], :has(> input:checked), [disabled] *, [aria-disabled=true] *, [inert], [inert] *)):hover {
+      color: var(--text-color);
+    }
+  }
+  .tg-segmented__item:focus-visible, .tg-segmented__item:has(> input:focus-visible) {
+    outline: 2px solid var(--text-link);
+    outline-offset: -3px;
+  }
+  .tg-segmented__item:has(> input:disabled) {
+    opacity: var(--disabled-opacity);
+    cursor: not-allowed;
+  }
+  .tg-tabs--segmented {
+    padding: var(--space-1);
+    border: var(--border);
+    border-radius: var(--radius-control);
+    background: var(--secondary-bg-color);
+  }
+  .tg-tabs--vertical {
+    flex-direction: column;
+    align-items: stretch;
+    inline-size: max-content;
+    max-inline-size: 100%;
+    overflow: visible;
+  }
+  .tg-tabs--vertical > .tg-tab {
+    display: flex;
+    flex: 0 0 auto;
+    align-items: center;
+    justify-content: flex-start;
+    gap: var(--space-2);
+    text-align: start;
+  }
+  .tg-tabs--vertical > .tg-tab > .tg-badge {
+    margin-inline-start: auto;
+  }
+  @media (max-width: 36rem) {
+    .tg-tabs--vertical {
+      flex-direction: row;
+      inline-size: auto;
+      overflow-x: auto;
+    }
+    .tg-tabs--vertical > .tg-tab {
+      flex: 1 0 auto;
+      justify-content: center;
+    }
+  }
+  .tg-tab__label {
+    min-inline-size: 0;
+  }
+  .tg-tabs--collapsed-labels > .tg-tab {
+    position: relative;
+    display: inline-flex;
+    flex: 0 0 auto;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-2);
+    min-inline-size: var(--control-h);
+    padding-inline: var(--space-3);
+  }
+  .tg-tabs--collapsed-labels > .tg-tab > .tg-icon {
+    flex: 0 0 auto;
+  }
+  .tg-tabs--collapsed-labels > .tg-tab:not([aria-selected=true]) > .tg-tab__label {
+    position: absolute;
+    inline-size: 1px;
+    block-size: 1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+  }
+  .tg-tabs--collapsed-labels > .tg-tab[aria-selected=true] > .tg-tab__label {
+    animation: tg-label-in var(--duration) var(--ease);
+  }
+  @keyframes tg-label-in {
+    from {
+      opacity: 0;
+    }
+  }
+  .tg-tabs--underline {
+    gap: var(--space-5);
+    padding: 0;
+    border: 0;
+    border-block-end: var(--border);
+    border-radius: 0;
+    background: transparent;
+  }
+  .tg-tabs--underline > .tg-tab {
+    --control-hover-bg: transparent;
+    --control-hover-filter: none;
+    flex: 0 0 auto;
+    padding-inline: 0;
+    border-radius: 0;
+    box-shadow: inset 0 -2px 0 transparent;
+  }
+  .tg-tabs--underline > .tg-tab[aria-selected=true] {
+    --control-idle-bg: transparent;
+    box-shadow: inset 0 -2px 0 var(--accent-main);
+  }
+  .tg-site-nav {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--space-1);
+    min-inline-size: 0;
+  }
+  .tg-site-nav__link {
+    display: inline-flex;
+    align-items: center;
+    min-block-size: var(--control-h);
+    padding-inline: var(--space-3);
+    border-radius: var(--radius-control);
+    background: var(--control-idle-bg, transparent);
+    color: var(--text-secondary);
+    text-decoration: none;
+    white-space: nowrap;
+    --control-hover-filter: none;
+  }
+  .tg-site-nav__link[aria-current=page] {
+    --control-idle-bg: var(--surface-muted);
+    color: var(--text-color);
+  }
+  @media (hover: hover) and (pointer: fine) {
+    .tg-site-nav__link:hover {
+      color: var(--text-color);
+    }
+  }
+  .tg-pager {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--space-1);
+    min-inline-size: 0;
+  }
+  .tg-pager__link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-1);
+    min-inline-size: var(--control-h);
+    min-block-size: var(--control-h);
+    padding-inline: var(--space-3);
+    border: 0;
+    border-radius: var(--radius-control);
+    background: var(--control-idle-bg, transparent);
+    color: var(--text-color);
+    font-variant-numeric: tabular-nums;
+    text-decoration: none;
+    cursor: pointer;
+    --control-hover-filter: none;
+  }
+  .tg-pager__link[aria-current=page] {
+    --control-idle-bg: var(--accent-soft);
+    --control-hover-bg: var(--accent-soft);
+    color: var(--text-link);
+  }
+  .tg-pager__link:is(a:not([href]), [aria-disabled=true]) {
+    opacity: var(--disabled-opacity);
+    cursor: not-allowed;
+  }
+  .tg-pager__ellipsis {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-inline-size: var(--space-6);
+    color: var(--text-secondary);
+  }
+  .tg-pager__info {
+    margin-inline: var(--space-2);
+    color: var(--text-secondary);
+    font-variant-numeric: tabular-nums;
+  }
+  .tg-tabbar {
+    position: sticky;
+    inset-block-end: 0;
+    z-index: var(--z-sticky);
+    display: flex;
+    gap: var(--space-2);
+    padding: var(--space-2) var(--space-3) calc(var(--space-2) + var(--safe-area-bottom));
+    border-block-start: var(--border);
+    background: var(--bottom-bar-bg-color);
+  }
+  .tg-tabbar__item {
+    flex: 1;
+    display: grid;
+    place-items: center;
+    gap: var(--space-1);
+    min-inline-size: 0;
+    min-block-size: var(--control-h);
+    padding: var(--space-2);
+    border: 0;
+    border-radius: var(--radius-sm);
+    background: var(--control-idle-bg);
+    color: var(--text-secondary);
+    text-decoration: none;
+    text-align: center;
+    overflow-wrap: anywhere;
+    cursor: pointer;
+  }
+  .tg-tabbar__item[aria-current=page] {
+    color: var(--text-link);
+    --control-idle-bg: var(--secondary-bg-color);
+    --control-hover-bg: var(--control-idle-bg);
+  }
+  .tg-pagination {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-1);
+  }
+  .tg-dot {
+    display: grid;
+    place-items: center;
+    min-inline-size: var(--control-h);
+    min-block-size: var(--control-h);
+    padding: var(--space-2);
+    border: 0;
+    border-radius: 50%;
+    background: transparent;
+    color: var(--text-link);
+    cursor: pointer;
+  }
+  .tg-dot::after {
+    content: "";
+    inline-size: 0.625rem;
+    block-size: 0.625rem;
+    border-radius: 50%;
+    background: var(--section-separator-color);
+  }
+  .tg-dot:is([aria-current=true], [aria-current=page])::after {
+    background: var(--text-link);
+  }
+}

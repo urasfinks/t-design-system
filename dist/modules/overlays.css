@@ -1,0 +1,465 @@
+
+@layer tds.components {
+  .tg-tooltip {
+    --tg-float-origin: bottom center;
+    max-inline-size: min(16rem, 100vw - var(--space-4));
+    padding: var(--space-1) var(--space-2);
+    border: var(--floating-border);
+    border-radius: var(--radius-sm);
+    background: var(--floating-bg);
+    --ring-bg: var(--floating-bg);
+    color: var(--floating-color);
+    box-shadow: var(--floating-shadow);
+    line-height: 1.35;
+    overflow-wrap: anywhere;
+    pointer-events: none;
+  }
+  .tg-tooltip[data-side=bottom] {
+    --tg-float-origin: top center;
+  }
+  .tg-tooltip[data-side=inline-start] {
+    --tg-float-origin: right center;
+  }
+  .tg-tooltip[data-side=inline-end] {
+    --tg-float-origin: left center;
+  }
+  .tg-tooltip:dir(rtl)[data-side=inline-start] {
+    --tg-float-origin: left center;
+  }
+  .tg-tooltip:dir(rtl)[data-side=inline-end] {
+    --tg-float-origin: right center;
+  }
+  .tg-tooltip > kbd, .tg-tooltip > .tg-kbd {
+    min-inline-size: 0;
+    margin-inline-start: var(--space-2);
+    padding: 0;
+    border: 0;
+    background: none;
+    color: inherit;
+    opacity: 0.72;
+    font: inherit;
+    font-variant-numeric: tabular-nums;
+  }
+  .tg-tooltip[popover] {
+    position: fixed;
+    inset: auto;
+    inset-block-start: var(--tg-anchor-block, auto);
+    inset-inline-start: var(--tg-anchor-inline, auto);
+    margin: 0;
+    transform-origin: var(--tg-float-origin, bottom center);
+    opacity: 0;
+    transform: scale(0.96);
+    transition: opacity var(--duration-fade-out) var(--ease), transform var(--duration-fast) var(--ease), overlay var(--duration-fade-out) allow-discrete, display var(--duration-fade-out) allow-discrete;
+  }
+  .tg-tooltip[popover]:dir(rtl) {
+    transform-origin: var(--tg-float-origin, bottom center);
+  }
+  .tg-tooltip[popover]:popover-open {
+    opacity: 1;
+    transform: none;
+    transition: opacity var(--duration-fade-in) var(--ease), transform var(--duration) var(--ease), overlay var(--duration-fade-in) allow-discrete, display var(--duration-fade-in) allow-discrete;
+  }
+  @starting-style {
+    .tg-tooltip[popover]:popover-open {
+      opacity: 0;
+      transform: scale(0.96);
+    }
+  }
+  .tg-tooltip[popover]:not(:popover-open) {
+    display: none;
+  }
+  .tg-tooltip[popover][data-instant] {
+    transition: none;
+  }
+  .tg-tooltip[popover]:popover-open {
+    transition: opacity var(--duration-fast) var(--ease), transform var(--duration-fast) var(--ease), overlay var(--duration-fast) allow-discrete, display var(--duration-fast) allow-discrete;
+  }
+  @supports (position-area: block-end) {
+    .tg-tooltip[popover]:not([data-positioned]) {
+      position-area: block-start;
+      position-try-fallbacks: flip-block, flip-inline;
+      margin: var(--space-2);
+    }
+    .tg-tooltip[popover][data-side=bottom]:not([data-positioned]) {
+      position-area: block-end;
+    }
+    .tg-tooltip[popover][data-side=inline-start]:not([data-positioned]) {
+      position-area: inline-start;
+    }
+    .tg-tooltip[popover][data-side=inline-end]:not([data-positioned]) {
+      position-area: inline-end;
+    }
+  }
+  @media (forced-colors: active) {
+    .tg-tooltip {
+      border: 1px solid CanvasText;
+    }
+  }
+  .tg-toast:has(> :is(.tg-toast__title, .tg-toast__action, .tg-toast__close, .tg-toast__body)) {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2) var(--space-3);
+    padding-block: var(--space-3);
+    padding-inline: var(--space-4) var(--space-2);
+  }
+  .tg-toast:has(> :is(.tg-toast__title, .tg-toast__action, .tg-toast__close, .tg-toast__body)) > .tg-icon {
+    flex: 0 0 auto;
+    color: var(--text-secondary);
+  }
+  .tg-toast__body {
+    display: grid;
+    flex: 1 1 auto;
+    gap: 0.125rem;
+    min-inline-size: 0;
+  }
+  .tg-toast__body > * {
+    margin: 0;
+  }
+  .tg-toast__body > :not(.tg-toast__title) {
+    color: var(--text-secondary);
+  }
+  .tg-toast__action {
+    flex: 0 0 auto;
+  }
+  .tg-toast__close {
+    flex: 0 0 auto;
+    margin-block: calc(var(--space-2) * -1);
+  }
+  .tg-toast-region {
+    position: fixed;
+    inset-inline: var(--space-4);
+    inset-block-end: calc(var(--space-5) + var(--safe-area-bottom) + var(--tg-composer-height, 0px));
+    z-index: var(--z-toast);
+    inline-size: min(26rem, 100% - var(--space-8));
+    margin-inline: auto;
+    pointer-events: none;
+  }
+  .tg-toast-region[data-placement=top] {
+    inset-block: calc(var(--space-4) + env(safe-area-inset-top, 0px)) auto;
+  }
+  .tg-toast-region > [role=status], .tg-toast-region > [role=log] {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+  }
+  .tg-toast-region .tg-toast {
+    position: relative;
+    inset: auto;
+    inline-size: 100%;
+    max-inline-size: none;
+    margin: 0;
+  }
+  .tg-toast-region .tg-toast--show {
+    pointer-events: auto;
+  }
+  .tg-toast-region[data-stacked] > [role=status], .tg-toast-region[data-stacked] > [role=log] {
+    position: relative;
+    display: block;
+    block-size: var(--toast-stack-height, auto);
+    transition: block-size var(--duration) var(--ease);
+  }
+  .tg-toast-region[data-stacked] .tg-toast {
+    position: absolute;
+    inset-inline: 0;
+    inset-block-end: 0;
+    z-index: calc(10 - var(--toast-index, 0));
+    transform-origin: bottom center;
+    transform: translateY(calc(var(--toast-index, 0) * -0.625rem)) scale(calc(1 - var(--toast-index, 0) * 0.05));
+    transition: opacity var(--duration-fade-in) var(--ease), transform var(--duration) var(--ease), visibility 0s;
+  }
+  .tg-toast-region[data-stacked] .tg-toast > * {
+    transition: opacity var(--duration-fast) var(--ease);
+  }
+  .tg-toast-region[data-stacked] .tg-toast:not([data-front]) > * {
+    opacity: var(--toast-content-opacity, 0);
+  }
+  .tg-toast-region[data-stacked] .tg-toast[data-overflow] {
+    opacity: 0;
+    visibility: hidden;
+  }
+  .tg-toast-region[data-stacked] .tg-toast:not(.tg-toast--show) {
+    opacity: 0;
+    transform: translateY(100%);
+    transition: opacity var(--duration-fade-out) var(--ease), transform var(--duration-fast) var(--ease), visibility 0s linear var(--duration-fade-out);
+  }
+  .tg-toast-region[data-stacked][data-placement=top] .tg-toast {
+    inset-block: 0 auto;
+    transform-origin: top center;
+    transform: translateY(calc(var(--toast-index, 0) * 0.625rem)) scale(calc(1 - var(--toast-index, 0) * 0.05));
+  }
+  .tg-toast-region[data-stacked]:is(:hover, :focus-within, [data-expanded]) {
+    pointer-events: auto;
+  }
+  .tg-toast-region[data-stacked]:is(:hover, :focus-within, [data-expanded]) > [role=status], .tg-toast-region[data-stacked]:is(:hover, :focus-within, [data-expanded]) > [role=log] {
+    block-size: var(--toast-stack-expanded, auto);
+  }
+  .tg-toast-region[data-stacked]:is(:hover, :focus-within, [data-expanded]) .tg-toast {
+    --toast-content-opacity: 1;
+    transform: translateY(calc(var(--toast-offset, 0px) * -1));
+  }
+  .tg-toast-region[data-stacked]:is(:hover, :focus-within, [data-expanded]) .tg-toast[data-overflow] {
+    opacity: 1;
+    visibility: visible;
+  }
+  .tg-toast-region[data-stacked]:is(:hover, :focus-within, [data-expanded])[data-placement=top] .tg-toast {
+    transform: translateY(var(--toast-offset, 0px));
+  }
+  @media (max-width: 36rem) {
+    .tg-toast-region {
+      inset-inline: var(--space-3);
+      inline-size: auto;
+    }
+  }
+  .tg-banner {
+    position: relative;
+    padding-inline-end: calc(var(--control-h) + var(--space-2));
+    background: var(--background-muted);
+    color: var(--text-color);
+  }
+  .tg-banner--accent {
+    background: var(--accent-soft);
+  }
+  .tg-banner--sticky {
+    position: sticky;
+    inset-block-start: 0;
+    z-index: calc(var(--z-sticky) + 1);
+  }
+  .tg-banner__content {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--space-1) var(--space-3);
+    min-block-size: var(--control-h);
+    padding-block: var(--space-2);
+  }
+  .tg-banner__content > .tg-icon {
+    flex: 0 0 auto;
+    color: var(--text-secondary);
+  }
+  .tg-banner__content > p {
+    flex: 1 1 10rem;
+    margin: 0;
+    min-inline-size: 0;
+  }
+  .tg-banner--accent .tg-banner__content > .tg-icon {
+    color: var(--text-link);
+  }
+  .tg-banner__action {
+    flex: 0 0 auto;
+  }
+  .tg-banner__dismiss {
+    position: absolute;
+    inset-block-start: 50%;
+    inset-inline-end: var(--space-2);
+    translate: 0 -50%;
+  }
+  .tg-hover-card {
+    --tg-float-origin: top center;
+    inline-size: min(20rem, 100vw - var(--space-4));
+    padding: var(--space-4);
+    border: var(--floating-border);
+    border-radius: var(--radius-lg);
+    background: var(--floating-bg);
+    --ring-bg: var(--floating-bg);
+    color: var(--floating-color);
+    box-shadow: var(--floating-shadow);
+    line-height: 1.45;
+    overflow-wrap: anywhere;
+  }
+  .tg-hover-card > * {
+    margin: 0;
+  }
+  .tg-hover-card > * + * {
+    margin-block-start: var(--space-2);
+  }
+  .tg-hover-card[popover] {
+    position: fixed;
+    inset: auto;
+    inset-block-start: var(--tg-anchor-block, auto);
+    inset-inline-start: var(--tg-anchor-inline, auto);
+    margin: 0;
+    transform-origin: var(--tg-float-origin, top center);
+    opacity: 0;
+    transform: scale(0.97);
+    transition: opacity var(--duration-fade-out) var(--ease), transform var(--duration-fast) var(--ease), overlay var(--duration-fade-out) allow-discrete, display var(--duration-fade-out) allow-discrete;
+  }
+  .tg-hover-card[popover]:dir(rtl) {
+    transform-origin: var(--tg-float-origin, top center);
+  }
+  .tg-hover-card[popover]:popover-open {
+    opacity: 1;
+    transform: none;
+    transition: opacity var(--duration-fade-in) var(--ease), transform var(--duration) var(--ease), overlay var(--duration-fade-in) allow-discrete, display var(--duration-fade-in) allow-discrete;
+  }
+  @starting-style {
+    .tg-hover-card[popover]:popover-open {
+      opacity: 0;
+      transform: scale(0.97);
+    }
+  }
+  .tg-hover-card[popover]:not(:popover-open) {
+    display: none;
+  }
+  .tg-hover-card[popover][data-instant] {
+    transition: none;
+  }
+  @supports (position-area: block-end) {
+    .tg-hover-card[popover]:not([data-positioned]) {
+      position-area: block-end;
+      position-try-fallbacks: flip-block, flip-inline;
+      margin: var(--space-2);
+    }
+  }
+  .tg-hover-card__trigger {
+    text-decoration-style: dotted;
+    text-underline-offset: 0.25em;
+  }
+  @media (hover: none) {
+    .tg-hover-card[popover] {
+      display: none;
+    }
+  }
+  dialog.tg-command {
+    inline-size: min(40rem, 100% - var(--space-8));
+    max-block-size: min(32rem, 100dvh - 20vh - var(--space-4));
+    margin-block: 20vh auto;
+    padding: 0;
+    overflow: hidden;
+  }
+  dialog.tg-command[open] {
+    display: flex;
+    flex-direction: column;
+  }
+  dialog.tg-command[data-instant][open] {
+    animation: none;
+  }
+  .tg-command__search {
+    display: flex;
+    flex: 0 0 auto;
+    align-items: center;
+    gap: var(--space-3);
+    padding-inline: var(--space-4);
+    border-block-end: var(--border);
+  }
+  .tg-command__search > .tg-icon {
+    flex: 0 0 auto;
+    color: var(--text-secondary);
+  }
+  .tg-command__input {
+    flex: 1 1 auto;
+    min-inline-size: 0;
+    min-block-size: calc(var(--control-h) + var(--space-2));
+    border: 0;
+    background: transparent;
+    color: var(--text-color);
+    font: inherit;
+  }
+  .tg-command__input:focus {
+    outline: none;
+  }
+  .tg-command__input::placeholder {
+    color: var(--text-secondary);
+    opacity: 1;
+  }
+  .tg-command__input::-webkit-search-cancel-button {
+    display: none;
+  }
+  .tg-command__list {
+    display: grid;
+    align-content: start;
+    gap: var(--option-gap);
+    flex: 1 1 auto;
+    min-block-size: 0;
+    padding: var(--space-2);
+    overflow-y: auto;
+    overscroll-behavior: contain;
+  }
+  .tg-command__list > .tg-empty {
+    padding-block: var(--space-6);
+  }
+  .tg-command__group {
+    display: grid;
+    align-content: start;
+    gap: var(--option-gap);
+  }
+  .tg-command__group + .tg-command__group {
+    margin-block-start: var(--space-2);
+  }
+  .tg-command__group-label {
+    padding: var(--space-2) var(--space-3) var(--space-1);
+    color: var(--text-secondary);
+    line-height: 1.4;
+    letter-spacing: 0.02em;
+  }
+  .tg-command__item {
+    --control-hover-filter: none;
+    --control-paint-duration: 0s;
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    inline-size: 100%;
+    min-block-size: var(--control-h);
+    padding: var(--space-2) var(--space-3);
+    border: 0;
+    border-radius: var(--radius-inset);
+    background: var(--control-idle-bg, transparent);
+    color: inherit;
+    font: inherit;
+    text-align: start;
+    text-decoration: none;
+    cursor: pointer;
+  }
+  .tg-command__item > .tg-icon {
+    color: var(--text-secondary);
+  }
+  .tg-command__item[data-active] {
+    background: var(--control-hover-bg);
+  }
+  .tg-command__item {
+    -webkit-user-select: none;
+    user-select: none;
+  }
+  .tg-command__item[aria-selected=true] {
+    background: var(--control-hover-bg);
+  }
+  .tg-command__item > .tg-command__text {
+    display: grid;
+    flex: 1 1 auto;
+    min-inline-size: 0;
+  }
+  .tg-command__meta {
+    color: var(--text-secondary);
+  }
+  .tg-command__shortcut {
+    flex: 0 0 auto;
+    margin-inline-start: auto;
+    font: inherit;
+    color: var(--text-secondary);
+    font-variant-numeric: tabular-nums;
+  }
+  .tg-command__footer {
+    display: flex;
+    flex: 0 0 auto;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--space-2) var(--space-4);
+    padding: var(--space-2) var(--space-4);
+    border-block-start: var(--border-transparent);
+    color: var(--text-secondary);
+  }
+  .tg-command__footer > span {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-1);
+  }
+  @media (max-width: 36rem) {
+    dialog.tg-command {
+      inline-size: 100%;
+      max-inline-size: none;
+      block-size: 100dvh;
+      max-block-size: none;
+      margin: 0;
+      border-radius: 0;
+    }
+  }
+}

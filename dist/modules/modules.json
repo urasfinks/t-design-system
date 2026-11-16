@@ -1,0 +1,221 @@
+{
+  "version": 1,
+  "modules": [
+    {
+      "name": "core",
+      "file": "modules/core.css",
+      "dependencies": [],
+      "bytes": 21272
+    },
+    {
+      "name": "icons",
+      "file": "modules/icons.css",
+      "dependencies": [
+        "core"
+      ],
+      "bytes": 322
+    },
+    {
+      "name": "buttons",
+      "file": "modules/buttons.css",
+      "dependencies": [
+        "core"
+      ],
+      "bytes": 5971
+    },
+    {
+      "name": "menu",
+      "file": "modules/menu.css",
+      "dependencies": [
+        "core"
+      ],
+      "bytes": 5993
+    },
+    {
+      "name": "forms",
+      "file": "modules/forms.css",
+      "dependencies": [
+        "core"
+      ],
+      "bytes": 15504
+    },
+    {
+      "name": "upload",
+      "file": "modules/upload.css",
+      "dependencies": [
+        "core"
+      ],
+      "bytes": 2846
+    },
+    {
+      "name": "surfaces",
+      "file": "modules/surfaces.css",
+      "dependencies": [
+        "core"
+      ],
+      "bytes": 7349
+    },
+    {
+      "name": "navigation",
+      "file": "modules/navigation.css",
+      "dependencies": [
+        "core",
+        "buttons"
+      ],
+      "bytes": 8969
+    },
+    {
+      "name": "avatar",
+      "file": "modules/avatar.css",
+      "dependencies": [
+        "core"
+      ],
+      "bytes": 5358
+    },
+    {
+      "name": "feedback",
+      "file": "modules/feedback.css",
+      "dependencies": [
+        "core"
+      ],
+      "bytes": 10135
+    },
+    {
+      "name": "effects",
+      "file": "modules/effects.css",
+      "dependencies": [
+        "core"
+      ],
+      "bytes": 9318
+    },
+    {
+      "name": "utilities",
+      "file": "modules/utilities.css",
+      "dependencies": [
+        "core"
+      ],
+      "bytes": 5069
+    },
+    {
+      "name": "compositions",
+      "file": "modules/compositions.css",
+      "dependencies": [
+        "core"
+      ],
+      "bytes": 15073
+    },
+    {
+      "name": "bottom-panel",
+      "file": "modules/bottom-panel.css",
+      "dependencies": [
+        "core"
+      ],
+      "bytes": 3242
+    },
+    {
+      "name": "patterns",
+      "file": "modules/patterns.css",
+      "dependencies": [
+        "core"
+      ],
+      "bytes": 19861
+    },
+    {
+      "name": "button-feedback",
+      "file": "modules/button-feedback.css",
+      "dependencies": [
+        "core",
+        "effects"
+      ],
+      "bytes": 2421
+    },
+    {
+      "name": "overlays",
+      "file": "modules/overlays.css",
+      "dependencies": [
+        "core"
+      ],
+      "bytes": 13838
+    },
+    {
+      "name": "content",
+      "file": "modules/content.css",
+      "dependencies": [
+        "core"
+      ],
+      "bytes": 5863
+    },
+    {
+      "name": "progress",
+      "file": "modules/progress.css",
+      "dependencies": [
+        "core"
+      ],
+      "bytes": 12770
+    },
+    {
+      "name": "pickers",
+      "file": "modules/pickers.css",
+      "dependencies": [
+        "core"
+      ],
+      "bytes": 29895
+    },
+    {
+      "name": "carousel",
+      "file": "modules/carousel.css",
+      "dependencies": [
+        "core"
+      ],
+      "bytes": 18844
+    },
+    {
+      "name": "app-nav",
+      "file": "modules/app-nav.css",
+      "dependencies": [
+        "core"
+      ],
+      "bytes": 10611
+    },
+    {
+      "name": "calendar",
+      "file": "modules/calendar.css",
+      "dependencies": [
+        "core"
+      ],
+      "bytes": 7932
+    },
+    {
+      "name": "charts",
+      "file": "modules/charts.css",
+      "dependencies": [
+        "core"
+      ],
+      "bytes": 7441
+    },
+    {
+      "name": "editor",
+      "file": "modules/editor.css",
+      "dependencies": [
+        "core"
+      ],
+      "bytes": 5129
+    },
+    {
+      "name": "actions",
+      "file": "modules/actions.css",
+      "dependencies": [
+        "core"
+      ],
+      "bytes": 5491
+    },
+    {
+      "name": "media",
+      "file": "modules/media.css",
+      "dependencies": [
+        "core"
+      ],
+      "bytes": 7194
+    }
+  ]
+}

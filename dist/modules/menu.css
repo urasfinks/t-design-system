@@ -1,0 +1,196 @@
+
+@layer tds.components {
+  .tg-menu {
+    --menu-item-h: 2.75rem;
+    display: grid;
+    align-content: start;
+    gap: var(--option-gap);
+    min-inline-size: min(12rem, var(--tg-menu-available-inline, 100vw));
+    max-inline-size: min(22rem, 100vw - var(--space-8), var(--tg-menu-available-inline, 100vw));
+    max-block-size: min(28rem, 100dvh - var(--space-8), var(--tg-menu-available-block, 100dvh));
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    padding: var(--space-1);
+    border: var(--floating-border);
+    border-radius: var(--radius-control);
+    background: var(--floating-bg);
+    --ring-bg: var(--floating-bg);
+    color: var(--floating-color);
+    box-shadow: var(--floating-shadow);
+    line-height: 1.4;
+    overflow-wrap: anywhere;
+  }
+  .tg-menu [role=group] {
+    display: grid;
+    align-content: start;
+    gap: var(--option-gap);
+  }
+  .tg-menu[popover] {
+    position: fixed;
+    inset: auto;
+    inset-block-start: var(--tg-anchor-block, auto);
+    inset-inline-start: var(--tg-anchor-inline, auto);
+    margin: 0;
+    transform-origin: var(--tg-menu-origin, top left);
+    opacity: 0;
+    transform: scale(0.97);
+    transition: opacity var(--duration-fade-out) var(--ease), transform var(--duration-fast) var(--ease), overlay var(--duration-fade-out) allow-discrete, display var(--duration-fade-out) allow-discrete;
+  }
+  .tg-menu[popover]:dir(rtl) {
+    transform-origin: var(--tg-menu-origin, top right);
+  }
+  .tg-menu[popover]:popover-open {
+    opacity: 1;
+    transform: none;
+    transition: opacity var(--duration-fade-in) var(--ease), transform var(--duration) var(--ease), overlay var(--duration-fade-in) allow-discrete, display var(--duration-fade-in) allow-discrete;
+  }
+  @starting-style {
+    .tg-menu[popover]:popover-open {
+      opacity: 0;
+      transform: scale(0.97);
+    }
+  }
+  .tg-menu[popover]:not(:popover-open) {
+    display: none;
+  }
+  .tg-menu[popover][data-instant] {
+    transition: none;
+  }
+  @supports (position-area: block-end) {
+    .tg-menu[popover]:not([data-positioned]) {
+      position-area: block-end span-inline-end;
+      position-try-fallbacks: flip-block, flip-inline, flip-block flip-inline;
+      margin-block: var(--space-1);
+    }
+  }
+  .tg-menu__item {
+    --control-hover-filter: none;
+    --control-paint-duration: 0s;
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    inline-size: 100%;
+    min-block-size: var(--menu-item-h);
+    padding: var(--space-2) var(--space-3);
+    border: 0;
+    border-radius: var(--radius-inset);
+    background: var(--control-idle-bg, transparent);
+    color: inherit;
+    font: inherit;
+    text-align: start;
+    text-decoration: none;
+    cursor: pointer;
+  }
+  .tg-menu__item > .tg-icon {
+    color: var(--text-secondary);
+  }
+  .tg-menu__item[data-active] {
+    background: var(--control-hover-bg);
+  }
+  .tg-menu__item:focus {
+    outline: none;
+  }
+  .tg-menu__item:focus-visible {
+    background: var(--control-hover-bg);
+    outline: 2px solid var(--text-link);
+    outline-offset: -2px;
+  }
+  .tg-menu__item--destructive {
+    --control-hover-bg: var(--danger-soft);
+    color: var(--text-danger);
+  }
+  .tg-menu__item--destructive > .tg-icon {
+    color: inherit;
+  }
+  .tg-menu__item:is([role=menuitemcheckbox], [role=menuitemradio]) {
+    position: relative;
+    padding-inline-start: calc(var(--space-3) + 1rem + var(--space-3));
+  }
+  .tg-menu__item:is([role=menuitemcheckbox], [role=menuitemradio])::before {
+    content: "";
+    inline-size: 1rem;
+    block-size: 1rem;
+    background: currentColor;
+    mask: var(--icon-mask-check) center/contain no-repeat;
+    position: absolute;
+    inset-inline-start: var(--space-3);
+    opacity: 0;
+  }
+  .tg-menu__item:is([role=menuitemcheckbox], [role=menuitemradio])[aria-checked=true] {
+    --control-idle-bg: var(--surface-muted);
+    --control-hover-bg: var(--control-idle-bg);
+    color: var(--text-color);
+  }
+  .tg-menu__item:is([role=menuitemcheckbox], [role=menuitemradio])[aria-checked=true]::before {
+    opacity: 1;
+  }
+  .tg-menu__item[role=menuitemradio]::before {
+    inset-inline-start: calc(var(--space-3) + 0.3125rem);
+    inline-size: 0.375rem;
+    block-size: 0.375rem;
+    border-radius: 50%;
+    mask: none;
+  }
+  .tg-menu__item[aria-haspopup=menu]::after {
+    content: "";
+    flex: 0 0 auto;
+    inline-size: 1rem;
+    block-size: 1rem;
+    margin-inline-start: auto;
+    background: var(--text-secondary);
+    mask: var(--icon-mask-chevron-right) center/contain no-repeat;
+  }
+  .tg-menu__item[aria-haspopup=menu]:dir(rtl)::after {
+    transform: scaleX(-1);
+  }
+  .tg-menu__text {
+    display: grid;
+    flex: 1 1 auto;
+    min-inline-size: 0;
+  }
+  .tg-menu__item-meta {
+    color: var(--text-secondary);
+  }
+  .tg-menu__label {
+    padding: var(--space-2) var(--space-3) var(--space-1);
+    color: var(--text-secondary);
+    line-height: 1.4;
+    letter-spacing: 0.02em;
+  }
+  .tg-menu__separator {
+    block-size: 1px;
+    margin: var(--space-1) calc(var(--space-1) * -1);
+    background: var(--border-color);
+  }
+  .tg-menu__shortcut {
+    flex: 0 0 auto;
+    margin-inline-start: auto;
+    padding-inline-start: var(--space-4);
+    font: inherit;
+    font-variant-numeric: tabular-nums;
+    color: var(--text-secondary);
+  }
+  .tg-menu__item--destructive .tg-menu__item-meta, .tg-menu__item--destructive .tg-menu__shortcut {
+    color: inherit;
+  }
+  @media (max-width: 36rem) and (pointer: coarse) {
+    .tg-menu[popover]:not([data-positioned]), .tg-menu[popover][data-positioned] {
+      --tg-menu-origin: bottom center;
+      position-area: none;
+      inset: auto 0 0;
+      inline-size: auto;
+      max-inline-size: none;
+      margin: var(--space-2);
+      margin-block-end: calc(var(--space-2) + var(--safe-area-bottom));
+      border-radius: var(--radius-lg);
+    }
+  }
+  @media (forced-colors: active) {
+    .tg-menu__item:focus-visible {
+      outline-color: Highlight;
+    }
+    .tg-menu__separator {
+      background: CanvasText;
+    }
+  }
+}

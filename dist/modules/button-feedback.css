@@ -1,0 +1,75 @@
+
+@layer tds.components {
+  :where(.tg-feedback-host) {
+    position: relative;
+  }
+  .tg-feedback-host {
+    isolation: isolate;
+  }
+  .tg-feedback-layer {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    overflow: clip;
+    border-radius: inherit;
+    pointer-events: none;
+    opacity: 0.25;
+  }
+  .tg-feedback-layer > .tg-ripple__wave {
+    background: var(--ripple-color, currentColor);
+    animation: tg-ripple-wave var(--ripple-duration, 300ms) ease-out forwards;
+  }
+  .tg-feedback-layer > .tg-ripple__ring {
+    box-shadow: inset 0 0 0 var(--ring-width, 1px) var(--ripple-border-color, var(--ripple-color, currentColor));
+    animation: tg-ripple-ring var(--ring-duration, 300ms) ease-out forwards;
+  }
+  .tg-feedback-layer > .tg-ripple__wash {
+    background: var(--ripple-hover-color, var(--ripple-color, currentColor));
+    animation: tg-ripple-wash var(--wash-duration, 300ms) ease-out forwards;
+  }
+  :is(.tg-btn, .tg-icon-btn)[aria-busy=true] {
+    cursor: progress;
+  }
+  .tg-btn__states {
+    display: inline-grid;
+  }
+  .tg-btn__states > * {
+    grid-area: 1/1;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-2);
+    visibility: hidden;
+    opacity: 0;
+    filter: blur(2px);
+    transition: opacity var(--duration-fade-out) var(--ease), filter var(--duration-fade-out) var(--ease), visibility 0s linear var(--duration-fade-out);
+  }
+  .tg-btn:not([data-state]) .tg-btn__states > [data-state=idle],
+  .tg-btn[data-state=idle] .tg-btn__states > [data-state=idle],
+  .tg-btn[data-state=busy] .tg-btn__states > [data-state=busy],
+  .tg-btn[data-state=success] .tg-btn__states > [data-state=success],
+  .tg-btn[data-state=error] .tg-btn__states > [data-state=error] {
+    visibility: visible;
+    opacity: 1;
+    filter: none;
+    transition: opacity var(--duration-fade-in) var(--ease), filter var(--duration-fade-in) var(--ease), visibility 0s;
+  }
+  .tg-btn:has(> .tg-btn__progress) {
+    position: relative;
+    overflow: clip;
+  }
+  .tg-btn__progress {
+    position: absolute;
+    inset-inline: 0;
+    inset-block-end: 0;
+    block-size: 3px;
+    background: var(--progress-color);
+    transform: scaleX(clamp(0, var(--progress, 0), 1));
+    transform-origin: left center;
+    transition: transform var(--progress-duration) var(--ease);
+    pointer-events: none;
+  }
+  .tg-btn__progress:dir(rtl) {
+    transform-origin: right center;
+  }
+}

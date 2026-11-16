@@ -1,3 +1,4 @@
+import { buildModules } from './build-modules.mjs';
 import { buildCatalogNavigation } from './build-catalog-navigation.mjs';
 import { compileAsync } from 'sass';
 import feather from 'feather-icons';
@@ -13,6 +14,8 @@ for (const [input, name] of [['index', 't-design-system'], ['telegram', 'telegra
     console.log(`Built dist/${file} (${Buffer.byteLength(result.css)} bytes)`);
   }
 }
+
+await buildModules(root);
 
 await copyFile(new URL('src/telegram.mjs', root), new URL('dist/telegram.js', root));
 console.log('Built dist/telegram.js (optional theme bridge)');

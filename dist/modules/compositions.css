@@ -1,0 +1,586 @@
+
+@layer tds.components {
+  .tg-page-shell {
+    display: block;
+  }
+  .tg-page-header {
+    padding-block-start: max(env(safe-area-inset-top, 0px), var(--tg-content-safe-area-inset-top, 0px));
+    border-block-end: var(--border);
+  }
+  .tg-page-header--sticky {
+    position: sticky;
+    inset-block-start: 0;
+    z-index: var(--z-sticky);
+    background: var(--background-main);
+  }
+  .tg-page-content {
+    --tg-container-padding-end: calc(var(--tg-composer-height, var(--composer-reserved-size)) + var(--space-6));
+  }
+  .tg-brand {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-3);
+    text-decoration: none;
+    white-space: nowrap;
+  }
+  .tg-toolbar {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-3);
+  }
+  .tg-toolbar--compact {
+    gap: var(--space-1);
+  }
+  .tg-toolbar--floating {
+    display: inline-flex;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    max-inline-size: 100%;
+    padding: var(--space-1);
+    border: var(--floating-border);
+    border-radius: var(--radius-control);
+    background: var(--floating-bg);
+    --ring-bg: var(--floating-bg);
+    color: var(--floating-color);
+    box-shadow: var(--floating-shadow);
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+  .tg-toolbar--floating > :is(.tg-btn, .tg-icon-btn) {
+    flex: 0 0 auto;
+  }
+  .tg-toolbar__separator {
+    flex: 0 0 auto;
+    align-self: stretch;
+    inline-size: 1px;
+    margin: var(--space-2) var(--space-1);
+    background: var(--border-subtle-color);
+  }
+  .tg-source-link {
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: center;
+    gap: var(--space-3);
+    color: var(--text-color);
+    text-decoration: none;
+  }
+  .tg-composer {
+    position: fixed;
+    z-index: var(--z-sticky);
+    inset-inline: 0;
+    inset-block-end: var(--tg-keyboard-inset, 0px);
+    background: var(--section-bg-color);
+    --ring-bg: var(--section-bg-color);
+    border-block-start: var(--border);
+    padding-block-end: var(--safe-area-bottom);
+  }
+  .tg-composer__form, .tg-composer__input {
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: flex-end;
+    gap: var(--space-3);
+  }
+  .tg-composer__input {
+    flex: 1 1 0%;
+    min-inline-size: 0;
+  }
+  .tg-composer__form > .tg-avatar-size {
+    --icon-avatar: var(--control-h);
+  }
+  .tg-composer__form > .tg-avatar-size > .tg-avatar {
+    padding: 0;
+    border-width: 0;
+  }
+  .tg-composer__textarea {
+    flex: 1 1 0%;
+    min-block-size: var(--control-h);
+    resize: none;
+    max-block-size: var(--composer-input-max-size);
+    padding-block: max(0px, (var(--control-h) - 1lh - 2px) / 2);
+  }
+  .tg-composer__textarea:placeholder-shown {
+    white-space: pre;
+  }
+  .tg-composer__caption {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-3);
+  }
+  .tg-composer__inner:has(> .tg-composer__form > .tg-avatar-size) > :is(.tg-reply-preview, .tg-composer__caption) {
+    margin-inline-start: calc(var(--control-h) + var(--space-3));
+  }
+  .tg-composer__attachments {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2);
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+  .tg-composer__attachments:empty {
+    display: none;
+  }
+  .tg-composer__toolbar {
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: center;
+    gap: var(--space-1);
+    min-inline-size: 0;
+  }
+  .tg-composer__form:has(> .tg-composer__toolbar) {
+    flex-wrap: wrap;
+  }
+  .tg-composer__form:has(> .tg-composer__toolbar) > :is(.tg-composer__input, .tg-composer__toolbar, .tg-composer__attachments) {
+    flex: 1 0 100%;
+  }
+  .tg-chat {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+    min-inline-size: 0;
+  }
+  .tg-chat__log {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-5);
+    min-inline-size: 0;
+    overflow-wrap: anywhere;
+  }
+  .tg-message {
+    display: grid;
+    gap: var(--space-2);
+    min-inline-size: 0;
+    max-inline-size: 100%;
+    scroll-margin-block-end: calc(var(--tg-composer-height, var(--composer-reserved-size)) + var(--space-6));
+  }
+  .tg-message__body {
+    min-inline-size: 0;
+    line-height: 1.6;
+  }
+  .tg-message__body > :first-child {
+    margin-block-start: 0;
+  }
+  .tg-message__body > :last-child {
+    margin-block-end: 0;
+  }
+  .tg-message__body :is(p, ul, ol, pre, blockquote, table) {
+    margin-block: 0 var(--space-3);
+  }
+  .tg-message__body :is(ul, ol) {
+    padding-inline-start: var(--space-6);
+  }
+  .tg-message__body code {
+    padding: 0.1em 0.35em;
+    border-radius: var(--radius-xs);
+    background: var(--background-muted);
+    font-family: var(--font-family-mono);
+  }
+  .tg-message__body pre {
+    overflow-x: auto;
+    padding: var(--space-3) var(--space-4);
+    border-radius: var(--radius-control);
+    background: var(--background-muted);
+    font-family: var(--font-family-mono);
+    line-height: 1.5;
+  }
+  .tg-message__body pre > code {
+    padding: 0;
+    background: none;
+  }
+  .tg-message--user {
+    align-self: flex-end;
+    justify-self: end;
+    max-inline-size: min(85%, 36rem);
+  }
+  .tg-message--user > .tg-message__body {
+    padding: var(--space-2) var(--space-4);
+    border-radius: var(--radius-lg);
+    border-end-end-radius: var(--radius-xs);
+    background: var(--background-muted);
+  }
+  .tg-message__meta {
+    color: var(--text-secondary);
+  }
+  .tg-message__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-1);
+    margin-inline-start: calc(var(--space-2) * -1);
+  }
+  .tg-message[data-state=streaming] > .tg-message__body > :last-child::after {
+    content: "";
+    display: inline-block;
+    inline-size: 0.5em;
+    block-size: 1.1em;
+    margin-inline-start: 0.125em;
+    vertical-align: text-bottom;
+    border-radius: 1px;
+    background: currentColor;
+    animation: tg-caret 1s steps(2, jump-none) infinite;
+  }
+  .tg-message[data-state=error] > .tg-message__body {
+    color: var(--text-secondary);
+  }
+  @keyframes tg-caret {
+    50% {
+      opacity: 0;
+    }
+  }
+  @media (hover: hover) and (pointer: fine) {
+    .tg-message--assistant:not(:last-child) > .tg-message__actions {
+      opacity: 0;
+      transition: opacity var(--duration) var(--ease);
+    }
+    .tg-message--assistant:is(:hover, :focus-within) > .tg-message__actions {
+      opacity: 1;
+    }
+  }
+  .tg-reply-preview {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    flex-wrap: nowrap;
+    border-inline-start: var(--border-active);
+    padding-inline-start: var(--space-3);
+  }
+  .tg-reply-preview > * {
+    min-inline-size: 0;
+  }
+  .tg-comment {
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: flex-start;
+    gap: var(--space-3);
+    scroll-margin-block: var(--space-6) calc(var(--tg-composer-height, var(--composer-reserved-size)) + var(--space-6));
+  }
+  .tg-comment__body {
+    flex: 1 1 0%;
+    min-inline-size: 0;
+  }
+  .tg-comment__text {
+    white-space: pre-wrap;
+    overflow-wrap: anywhere;
+  }
+  .tg-comment__actions > .tg-btn--ghost:first-child {
+    margin-inline-start: calc(-1 * (var(--space-4) + 1px));
+  }
+  .tg-comment__actions:has(> .tg-comment__action-grid) {
+    container: tg-comment-actions/inline-size;
+  }
+  .tg-comment__action-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(var(--control-h), 1fr));
+    place-items: center;
+    gap: var(--space-2);
+  }
+  @container tg-comment-actions (min-width: 30rem) {
+    .tg-comment__action-grid {
+      grid-template-columns: repeat(4, minmax(var(--control-h), 1fr));
+    }
+  }
+  body:has(.tg-comment--focus-menu .tg-menu:popover-open)::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: var(--z-overlay);
+    background: var(--overlay-bg);
+    backdrop-filter: blur(4px);
+  }
+  .tg-comment--focus-menu:has(.tg-menu:popover-open) {
+    position: relative;
+    z-index: calc(var(--z-overlay) + 1);
+    pointer-events: none;
+  }
+  .tg-comment--focus-menu:has(.tg-menu:popover-open)::before {
+    content: "";
+    position: absolute;
+    inset: calc(-1 * var(--space-2));
+    z-index: -1;
+    background: var(--background-panel);
+    border-radius: var(--radius);
+  }
+  .tg-comment--focus-menu:has(.tg-menu:popover-open) .tg-menu:popover-open {
+    pointer-events: auto;
+  }
+  .tg-thread {
+    margin-inline-start: calc(var(--icon-avatar) + var(--space-3));
+    padding-inline-start: var(--space-4);
+    border-inline-start: var(--border);
+  }
+  .tg-media {
+    margin-inline: 0;
+  }
+  .tg-media > img {
+    display: block;
+    inline-size: 100%;
+    block-size: auto;
+    max-block-size: var(--media-max-size);
+    object-fit: contain;
+  }
+  @media (min-width: 48rem) {
+    .tg-page-content {
+      --tg-container-padding-start: var(--space-8);
+    }
+  }
+  @media (max-width: 36rem) {
+    .tg-composer__inner {
+      --tg-container-padding-start: var(--space-3);
+      --tg-container-padding-end: var(--space-3);
+    }
+    .tg-composer__caption, .tg-composer__form > .tg-avatar-size {
+      display: none;
+    }
+    .tg-composer__inner:has(> .tg-composer__form > .tg-avatar-size) > .tg-reply-preview {
+      margin-inline-start: 0;
+    }
+    .tg-toolbar--responsive {
+      align-items: stretch;
+    }
+    .tg-tabs--responsive {
+      inline-size: 100%;
+    }
+    .tg-tabs--responsive .tg-tab {
+      justify-content: center;
+    }
+    .tg-comment {
+      display: grid;
+      grid-template-columns: var(--icon-avatar) minmax(0, 1fr);
+      gap: var(--space-1) var(--space-3);
+    }
+    .tg-comment__body {
+      display: contents;
+    }
+    .tg-comment__meta {
+      grid-column: 2;
+      grid-row: 1;
+      align-self: center;
+    }
+    .tg-comment__text, .tg-comment__actions, .tg-comment__recipient, .tg-comment__section {
+      grid-column: 1/-1;
+    }
+    .tg-thread {
+      margin-inline-start: var(--space-3);
+      padding-inline-start: var(--space-2);
+    }
+  }
+}
+@layer tds.base {
+  :where(html:has(.tg-composer)) {
+    scroll-padding-bottom: calc(var(--tg-composer-height, var(--composer-reserved-size)) + var(--space-6));
+  }
+  :where(body:has(dialog.tg-modal[open])) {
+    overflow: hidden;
+  }
+}
+@layer tds.utilities {
+  .tg-container.tg-container--reading {
+    max-inline-size: var(--layout-reading-width);
+  }
+  .tg-block {
+    display: block;
+  }
+  .tg-contents {
+    display: contents;
+  }
+  .tg-nowrap {
+    flex-wrap: nowrap;
+  }
+  .tg-text-nowrap {
+    white-space: nowrap;
+  }
+  .tg-truncate {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+  .tg-ms-auto {
+    margin-inline-start: auto;
+  }
+  .tg-justify-center {
+    justify-content: center;
+  }
+  .tg-align-center {
+    align-items: center;
+  }
+  .tg-justify-between {
+    justify-content: space-between;
+  }
+  @media (max-width: 36rem) {
+    .tg-hide-mobile {
+      display: none;
+    }
+  }
+  .tg-agent-steps {
+    display: grid;
+    gap: var(--space-1);
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+  .tg-agent-step {
+    display: grid;
+    grid-template-columns: 1.25rem minmax(0, 1fr) auto;
+    align-items: center;
+    column-gap: var(--space-2);
+    min-block-size: 2rem;
+    color: var(--text-secondary);
+  }
+  .tg-agent-step > details {
+    grid-column: 2/-1;
+  }
+  .tg-agent-step[data-state=done] .tg-agent-step__icon {
+    color: var(--text-link);
+  }
+  .tg-agent-step[data-state=error] {
+    color: var(--text-danger);
+  }
+  .tg-agent-step[data-state=error] .tg-agent-step__icon {
+    color: var(--text-danger);
+  }
+  .tg-agent-step[data-state=running] .tg-agent-step__label {
+    color: var(--text-color);
+  }
+  .tg-agent-step__icon {
+    display: grid;
+    place-items: center;
+    inline-size: 1.25rem;
+    block-size: 1.25rem;
+  }
+  .tg-agent-step__icon > .tg-icon {
+    inline-size: 1rem;
+    block-size: 1rem;
+  }
+  .tg-agent-step__icon > .tg-spinner {
+    inline-size: 0.875rem;
+    block-size: 0.875rem;
+  }
+  .tg-agent-step__label {
+    min-inline-size: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  .tg-agent-step__label code {
+    font-family: var(--font-family-mono);
+  }
+  .tg-agent-step__time {
+    font-variant-numeric: tabular-nums;
+  }
+  .tg-agent-step__detail {
+    margin-block: var(--space-1) var(--space-2);
+  }
+  .tg-agent-step__detail > summary {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-3);
+    list-style: none;
+  }
+  .tg-agent-step__detail > summary::marker {
+    content: "";
+  }
+  .tg-agent-step__detail > summary::-webkit-details-marker {
+    display: none;
+  }
+  .tg-agent-step__detail > summary::after {
+    content: "";
+    flex: 0 0 auto;
+    inline-size: var(--icon-size);
+    block-size: var(--icon-size);
+    margin-inline-start: auto;
+    background: currentColor;
+    mask: var(--icon-mask-chevron-down) center/contain no-repeat;
+    transition: transform var(--duration) var(--ease);
+  }
+  .tg-agent-step__detail > summary:is(details[open] > summary)::after {
+    transform: rotate(180deg);
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .tg-agent-step__detail > summary::after {
+      transition: none;
+    }
+  }
+  .tg-agent-step__detail > summary {
+    min-block-size: 2rem;
+    color: var(--text-link);
+    cursor: pointer;
+  }
+  .tg-agent-step__detail > summary:focus-visible {
+    outline: 2px solid var(--text-link);
+    outline-offset: 2px;
+    border-radius: var(--radius-xs);
+  }
+  .tg-agent-step__detail > ul, .tg-agent-step__detail > ol {
+    display: grid;
+    gap: var(--space-1);
+    margin: var(--space-1) 0 0;
+    padding: var(--space-2) var(--space-3);
+    border-inline-start: 2px solid var(--border-subtle-color);
+    list-style: none;
+    color: var(--text-color);
+  }
+  .tg-agent-step__detail a {
+    color: var(--text-link);
+    text-underline-offset: 0.2em;
+  }
+  .tg-approval {
+    display: grid;
+    gap: var(--space-3);
+    max-inline-size: var(--layout-reading-width);
+    padding: var(--space-4);
+    border: var(--border);
+    border-radius: var(--radius-lg);
+    background: var(--surface-bg);
+    --ring-bg: var(--surface-bg);
+  }
+  .tg-approval[data-state=danger] {
+    border-color: var(--danger-main);
+  }
+  .tg-approval[data-state=decided] {
+    padding-block: var(--space-3);
+    color: var(--text-secondary);
+  }
+  .tg-approval__title {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    margin: 0;
+  }
+  .tg-approval__title > .tg-icon {
+    flex: 0 0 auto;
+    color: var(--text-link);
+  }
+  .tg-approval[data-state=danger] .tg-approval__title > .tg-icon {
+    color: var(--text-danger);
+  }
+  .tg-approval__description {
+    margin: 0;
+    color: var(--text-secondary);
+  }
+  .tg-approval__options {
+    display: grid;
+    gap: var(--space-2);
+    margin: 0;
+    padding: 0;
+    border: 0;
+    min-inline-size: 0;
+  }
+  .tg-approval__options > legend {
+    padding: 0;
+    margin-block-end: var(--space-1);
+  }
+  .tg-approval__actions {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    gap: var(--space-2);
+  }
+  @media (max-width: 36rem) {
+    .tg-approval__actions > .tg-btn {
+      flex: 1 1 100%;
+    }
+  }
+}

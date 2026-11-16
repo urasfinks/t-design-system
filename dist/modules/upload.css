@@ -1,0 +1,115 @@
+
+@layer tds.components {
+  .tg-upload {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-3);
+    position: relative;
+    min-inline-size: 0;
+    min-block-size: 6rem;
+    padding: var(--space-4);
+    border: var(--border);
+    border-radius: var(--radius);
+    background: var(--secondary-bg-color);
+    color: var(--text-color);
+    text-align: center;
+    overflow-wrap: anywhere;
+    cursor: pointer;
+  }
+  .tg-upload--dashed {
+    border: 0.2rem dashed var(--section-separator-color);
+    border-radius: var(--radius-lg);
+  }
+  .tg-upload:focus-within {
+    outline: 2px solid var(--text-link);
+    outline-offset: 3px;
+  }
+  .tg-upload--disabled, .tg-upload[aria-disabled=true] {
+    opacity: var(--disabled-opacity);
+    cursor: not-allowed;
+  }
+  .tg-upload__icon {
+    inline-size: 2rem;
+    block-size: 2rem;
+    flex-shrink: 0;
+  }
+  .tg-upload__preview {
+    display: block;
+    inline-size: 10rem;
+    max-inline-size: 100%;
+    block-size: 10rem;
+    object-fit: cover;
+    border-radius: var(--radius);
+  }
+  .tg-upload__actions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--space-2);
+    margin-block-start: var(--space-2);
+  }
+  .tg-upload__status {
+    margin: var(--space-2) 0 0;
+    color: var(--text-secondary);
+    text-align: end;
+    overflow-wrap: anywhere;
+  }
+  .tg-upload__list {
+    display: grid;
+    gap: 0;
+    margin: 0;
+    padding: 0;
+    border: var(--border);
+    border-radius: var(--radius-lg);
+    background: var(--surface-bg);
+    --ring-bg: var(--surface-bg);
+    list-style: none;
+    overflow: clip;
+  }
+  .tg-upload__item {
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr) auto;
+    align-items: center;
+    gap: var(--space-1) var(--space-3);
+    min-block-size: var(--control-h);
+    padding: var(--space-3) var(--space-2) var(--space-3) var(--space-4);
+  }
+  .tg-upload__item + .tg-upload__item {
+    border-block-start: var(--border);
+  }
+  .tg-upload__item > .tg-icon {
+    color: var(--text-secondary);
+  }
+  .tg-upload__item > .tg-progress, .tg-upload__item > progress {
+    grid-column: 2/-1;
+    block-size: 0.375rem;
+  }
+  .tg-upload__item[data-state=error] > .tg-icon {
+    color: var(--text-danger);
+  }
+  .tg-upload__item[data-state=done] > .tg-icon {
+    color: var(--text-link);
+  }
+  .tg-upload__name {
+    display: grid;
+    min-inline-size: 0;
+  }
+  .tg-upload__name > :first-child {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  .tg-upload__name > :not(:first-child) {
+    color: var(--text-secondary);
+    font-variant-numeric: tabular-nums;
+  }
+  .tg-upload__item[data-state=error] .tg-upload__name > :not(:first-child) {
+    color: var(--text-danger);
+  }
+  @media (pointer: coarse) {
+    .tg-upload__drag-hint {
+      display: none;
+    }
+  }
+}

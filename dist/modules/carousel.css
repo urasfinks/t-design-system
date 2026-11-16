@@ -1,0 +1,611 @@
+
+@property --fade-start {
+  syntax: "<length>";
+  inherits: false;
+  initial-value: 0px;
+}
+@property --fade-end {
+  syntax: "<length>";
+  inherits: false;
+  initial-value: 0px;
+}
+@layer tds.components {
+  .tg-carousel {
+    --carousel-ratio: 16 / 9;
+    --carousel-gap: var(--space-3);
+    position: relative;
+    display: grid;
+    gap: var(--space-3);
+    min-inline-size: 0;
+  }
+  .tg-carousel__viewport {
+    display: flex;
+    gap: var(--carousel-gap);
+    min-inline-size: 0;
+    overscroll-behavior-inline: contain;
+    scrollbar-width: none;
+  }
+  .tg-carousel__viewport::-webkit-scrollbar {
+    display: none;
+  }
+  .tg-carousel__viewport {
+    overflow-x: auto;
+    overflow-y: hidden;
+    scroll-snap-type: x mandatory;
+  }
+  @media (prefers-reduced-motion: no-preference) {
+    .tg-carousel__viewport {
+      scroll-behavior: smooth;
+    }
+  }
+  .tg-carousel__viewport:focus-visible {
+    outline: 2px solid var(--text-link);
+    outline-offset: 3px;
+  }
+  .tg-carousel__slide {
+    position: relative;
+    display: grid;
+    flex: 0 0 100%;
+    min-inline-size: 0;
+    margin: 0;
+    border-radius: var(--radius-lg);
+    background: var(--background-muted);
+    clip-path: var(--carousel-slide-clip, border-box);
+    mask-image: var(--carousel-slide-mask, linear-gradient(var(--mask-opaque), var(--mask-opaque)));
+    scroll-snap-align: start;
+    scroll-snap-stop: always;
+  }
+  .tg-carousel__slide > img, .tg-carousel__slide > picture > img, .tg-carousel__slide > video, .tg-carousel__slide > figure > img {
+    display: block;
+    grid-area: 1/1;
+    inline-size: 100%;
+    block-size: 100%;
+    aspect-ratio: var(--carousel-ratio);
+    object-fit: cover;
+  }
+  .tg-carousel__slide > figcaption, .tg-carousel__slide > figure > figcaption {
+    grid-area: 1/1;
+    align-self: end;
+    justify-self: start;
+    max-inline-size: calc(100% - var(--space-6));
+    margin: var(--space-3);
+    padding: var(--space-1) var(--space-2);
+    border-radius: var(--radius-sm);
+    background: var(--overlay-bg);
+    color: var(--overlay-text);
+  }
+  .tg-carousel__figure {
+    display: contents;
+  }
+  .tg-carousel__controls {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-3);
+  }
+  .tg-carousel__controls > .tg-pagination {
+    margin: 0;
+  }
+  .tg-carousel {
+    container: tg-carousel/inline-size;
+  }
+  @container tg-carousel (max-width: 24rem) {
+    .tg-carousel__controls {
+      flex-wrap: wrap;
+    }
+    .tg-carousel__controls > .tg-pagination {
+      order: -1;
+      flex: 1 0 100%;
+      flex-wrap: nowrap;
+    }
+  }
+  .tg-carousel__count {
+    min-inline-size: 4ch;
+    color: var(--text-secondary);
+    font-variant-numeric: tabular-nums;
+    text-align: center;
+  }
+  .tg-carousel--peek > .tg-carousel__viewport {
+    padding-inline: var(--space-8);
+    scroll-padding-inline: var(--space-8);
+  }
+  .tg-carousel--peek > .tg-carousel__viewport > .tg-carousel__slide {
+    flex-basis: calc(100% - var(--space-4));
+    scroll-snap-align: center;
+  }
+  .tg-carousel__thumbs {
+    display: flex;
+    gap: var(--space-2);
+    min-inline-size: 0;
+    padding: 3px;
+    overscroll-behavior-inline: contain;
+    scrollbar-width: none;
+  }
+  .tg-carousel__thumbs::-webkit-scrollbar {
+    display: none;
+  }
+  .tg-carousel__thumbs {
+    overflow-x: auto;
+    overflow-y: hidden;
+    scroll-snap-type: x proximity;
+  }
+  @media (prefers-reduced-motion: no-preference) {
+    .tg-carousel__thumbs {
+      scroll-behavior: smooth;
+    }
+  }
+  .tg-carousel__thumbs > button {
+    flex: 0 0 auto;
+    inline-size: 3.5rem;
+    block-size: 3.5rem;
+    padding: 0;
+    border: 2px solid transparent;
+    border-radius: var(--radius-inset);
+    background: var(--background-muted);
+    clip-path: var(--media-clip, border-box);
+    mask-image: var(--media-mask, linear-gradient(var(--mask-opaque), var(--mask-opaque)));
+    opacity: 0.72;
+    cursor: pointer;
+    transition: opacity var(--duration) var(--ease), border-color var(--duration) var(--ease);
+  }
+  .tg-carousel__thumbs > button > img {
+    display: block;
+    inline-size: 100%;
+    block-size: 100%;
+    object-fit: cover;
+  }
+  .tg-carousel__thumbs > button[aria-current=true] {
+    border-color: var(--accent-main);
+    opacity: 1;
+  }
+  .tg-carousel__thumbs > button:focus-visible {
+    outline: 2px solid var(--text-link);
+    outline-offset: -4px;
+  }
+  @media (hover: hover) and (pointer: fine) {
+    .tg-carousel__thumbs > button:hover {
+      opacity: 1;
+    }
+  }
+  .tg-carousel--vertical > .tg-carousel__viewport {
+    flex-direction: column;
+    block-size: var(--carousel-height, 20rem);
+    overscroll-behavior-block: contain;
+    scrollbar-width: none;
+  }
+  .tg-carousel--vertical > .tg-carousel__viewport::-webkit-scrollbar {
+    display: none;
+  }
+  .tg-carousel--vertical > .tg-carousel__viewport {
+    overflow-x: hidden;
+    overflow-y: auto;
+    scroll-snap-type: y mandatory;
+  }
+  @media (prefers-reduced-motion: no-preference) {
+    .tg-carousel--vertical > .tg-carousel__viewport {
+      scroll-behavior: smooth;
+    }
+  }
+  .tg-carousel--vertical > .tg-carousel__viewport > .tg-carousel__slide {
+    flex-basis: 100%;
+  }
+  .tg-carousel--vertical > .tg-carousel__viewport > .tg-carousel__slide > img, .tg-carousel--vertical > .tg-carousel__viewport > .tg-carousel__slide > figure > img {
+    aspect-ratio: auto;
+  }
+  @media (min-width: 36rem) {
+    .tg-carousel--vertical {
+      grid-template-columns: minmax(0, 1fr) auto;
+    }
+    .tg-carousel--vertical > .tg-carousel__thumbs {
+      flex-direction: column;
+      max-block-size: var(--carousel-height, 20rem);
+      overscroll-behavior-block: contain;
+      scrollbar-width: none;
+    }
+    .tg-carousel--vertical > .tg-carousel__thumbs::-webkit-scrollbar {
+      display: none;
+    }
+    .tg-carousel--vertical > .tg-carousel__thumbs {
+      overflow-x: hidden;
+      overflow-y: auto;
+      scroll-snap-type: y proximity;
+    }
+  }
+  @media (min-width: 36rem) and (prefers-reduced-motion: no-preference) {
+    .tg-carousel--vertical > .tg-carousel__thumbs {
+      scroll-behavior: smooth;
+    }
+  }
+}
+@layer tds.components {
+  .tg-card-stack {
+    display: grid;
+    gap: var(--space-4);
+    justify-items: center;
+    min-inline-size: 0;
+  }
+  .tg-card-stack__deck {
+    display: grid;
+    inline-size: min(100%, 22rem);
+    padding-block-start: var(--space-4);
+  }
+  .tg-card-stack__item {
+    grid-area: 1/1;
+    inline-size: 100%;
+    transform-origin: top center;
+    transform: translateY(calc(var(--depth, 0) * -0.625rem)) scale(calc(1 - var(--depth, 0) * 0.05));
+    z-index: calc(10 - var(--depth, 0));
+    transition: transform var(--duration) var(--ease), opacity var(--duration) var(--ease);
+  }
+  .tg-card-stack__item[data-depth="3"], .tg-card-stack__item[data-depth="4"] {
+    opacity: 0;
+  }
+  .tg-card-stack__item:not([data-depth="0"]) {
+    box-shadow: var(--shadow-control);
+  }
+  .tg-card-stack__item[data-leaving] {
+    opacity: 0;
+    transform: translateX(var(--leave-x, 110%)) rotate(var(--leave-r, 6deg));
+  }
+  .tg-card-stack__controls {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: var(--space-2);
+  }
+  .tg-image-accordion {
+    display: flex;
+    gap: var(--space-2);
+    block-size: var(--image-accordion-height, 20rem);
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+  .tg-image-accordion__item {
+    position: relative;
+    flex: 1 1 0;
+    min-inline-size: var(--control-h);
+    border-radius: var(--radius-lg);
+    clip-path: var(--media-clip, border-box);
+    mask-image: var(--media-mask, linear-gradient(var(--mask-opaque), var(--mask-opaque)));
+    background: var(--background-muted);
+  }
+  .tg-image-accordion__item:has(> [aria-expanded=true]) {
+    flex-grow: 4;
+  }
+  .tg-image-accordion__item > img {
+    position: absolute;
+    inset: 0;
+    inline-size: 100%;
+    block-size: 100%;
+    object-fit: cover;
+    transition: transform var(--duration) var(--ease);
+  }
+  @media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
+    .tg-image-accordion__item:has(> .tg-image-accordion__trigger:hover) > img {
+      transform: scale(1.04);
+    }
+  }
+  .tg-image-accordion__trigger {
+    --control-hover-filter: none;
+    --control-hover-bg: transparent;
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: flex-end;
+    padding: var(--space-3);
+    border: 0;
+    border-radius: 0;
+    background: linear-gradient(to top, var(--overlay-bg), transparent 55%);
+    color: var(--overlay-text);
+    font: inherit;
+    text-align: start;
+    cursor: pointer;
+  }
+  .tg-image-accordion__trigger:focus-visible {
+    outline: 2px solid var(--text-link);
+    outline-offset: -3px;
+  }
+  .tg-image-accordion__trigger > span {
+    padding: var(--space-1) var(--space-2);
+    border-radius: var(--radius-sm);
+    background: var(--overlay-bg);
+    color: var(--overlay-text);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  .tg-image-accordion__trigger[aria-expanded=false] > span {
+    writing-mode: vertical-rl;
+    rotate: 180deg;
+  }
+  .tg-image-accordion__panel {
+    position: absolute;
+    inset-inline-start: var(--space-3);
+    inset-block-end: calc(var(--space-3) + 2.25rem);
+    max-inline-size: calc(100% - var(--space-6));
+    margin: 0;
+    padding: var(--space-1) var(--space-2);
+    border-radius: var(--radius-sm);
+    background: var(--overlay-bg);
+    color: var(--overlay-text);
+    pointer-events: none;
+    animation: tg-caption-in var(--duration) var(--ease);
+  }
+  @keyframes tg-caption-in {
+    from {
+      opacity: 0;
+    }
+  }
+  @media (max-width: 36rem) {
+    .tg-image-accordion {
+      flex-direction: column;
+      block-size: auto;
+    }
+    .tg-image-accordion__item {
+      flex: none;
+      block-size: 4rem;
+    }
+    .tg-image-accordion__item:has(> [aria-expanded=true]) {
+      block-size: 14rem;
+    }
+    .tg-image-accordion__trigger[aria-expanded=false] > span {
+      writing-mode: horizontal-tb;
+      rotate: none;
+    }
+  }
+  .tg-marquee {
+    --marquee-duration: 40s;
+    --marquee-gap: var(--space-4);
+    position: relative;
+    display: grid;
+    gap: var(--space-3);
+    min-inline-size: 0;
+  }
+  .tg-marquee__viewport {
+    display: flex;
+    gap: var(--marquee-gap);
+    overflow: hidden;
+    mask-image: linear-gradient(to right, transparent, var(--mask-opaque) var(--space-8), var(--mask-opaque) calc(100% - var(--space-8)), transparent);
+  }
+  .tg-marquee__track {
+    display: flex;
+    flex: 0 0 auto;
+    gap: var(--marquee-gap);
+    min-inline-size: 100%;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    animation: tg-marquee var(--marquee-duration) linear infinite;
+  }
+  .tg-marquee__track > * {
+    flex: 0 0 auto;
+    inline-size: min(20rem, 80vw);
+  }
+  @keyframes tg-marquee {
+    to {
+      transform: translateX(calc(-100% - var(--marquee-gap)));
+    }
+  }
+  .tg-marquee:dir(rtl) .tg-marquee__track {
+    animation-direction: reverse;
+  }
+  .tg-marquee:is(:hover, :focus-within, [data-paused]) .tg-marquee__track {
+    animation-play-state: paused;
+  }
+  .tg-marquee__pause {
+    justify-self: end;
+  }
+  .tg-marquee--vertical > .tg-marquee__viewport {
+    flex-direction: column;
+    block-size: var(--marquee-height, 22rem);
+    mask-image: linear-gradient(to bottom, transparent, var(--mask-opaque) var(--space-8), var(--mask-opaque) calc(100% - var(--space-8)), transparent);
+  }
+  .tg-marquee--vertical .tg-marquee__track {
+    flex-direction: column;
+    min-inline-size: 0;
+    min-block-size: 100%;
+    animation-name: tg-marquee-y;
+  }
+  .tg-marquee--vertical .tg-marquee__track > * {
+    inline-size: auto;
+  }
+  @keyframes tg-marquee-y {
+    to {
+      transform: translateY(calc(-100% - var(--marquee-gap)));
+    }
+  }
+  @media (prefers-reduced-motion: reduce), (max-width: 36rem) {
+    .tg-marquee__viewport {
+      overflow-x: auto;
+      scroll-snap-type: x proximity;
+      mask-image: none;
+      scrollbar-width: thin;
+    }
+    .tg-marquee__track {
+      animation: none;
+    }
+    .tg-marquee__track > * {
+      scroll-snap-align: start;
+    }
+    .tg-marquee__track[aria-hidden=true] {
+      display: none;
+    }
+    .tg-marquee__pause {
+      display: none;
+    }
+    .tg-marquee--vertical > .tg-marquee__viewport {
+      overflow-y: auto;
+      overflow-x: hidden;
+    }
+  }
+}
+@layer tds.utilities {
+  .tg-scroll-fade {
+    --fade-size: var(--space-8);
+    --fade-start: var(--fade-size);
+    --fade-end: var(--fade-size);
+    mask-image: linear-gradient(to right, transparent, var(--mask-opaque) var(--fade-start, var(--fade-size)), var(--mask-opaque) calc(100% - var(--fade-end, var(--fade-size))), transparent);
+    overflow-x: auto;
+  }
+  .tg-scroll-fade:focus-visible {
+    outline: 2px solid var(--text-link);
+    outline-offset: 2px;
+  }
+  .tg-scroll-fade--block {
+    mask-image: linear-gradient(to bottom, transparent, var(--mask-opaque) var(--fade-start, var(--fade-size)), var(--mask-opaque) calc(100% - var(--fade-end, var(--fade-size))), transparent);
+    overflow-x: visible;
+    overflow-y: auto;
+  }
+  @supports (animation-timeline: scroll()) {
+    .tg-scroll-fade {
+      animation: tg-scroll-fade-x linear both;
+      animation-timeline: scroll(self inline);
+    }
+    .tg-scroll-fade--block {
+      animation-name: tg-scroll-fade-y;
+      animation-timeline: scroll(self block);
+    }
+    @keyframes tg-scroll-fade-x {
+      0% {
+        --fade-start: 0px;
+        --fade-end: var(--fade-size);
+      }
+      8% {
+        --fade-start: var(--fade-size);
+      }
+      92% {
+        --fade-end: var(--fade-size);
+      }
+      100% {
+        --fade-start: var(--fade-size);
+        --fade-end: 0px;
+      }
+    }
+    @keyframes tg-scroll-fade-y {
+      0% {
+        --fade-start: 0px;
+        --fade-end: var(--fade-size);
+      }
+      8% {
+        --fade-start: var(--fade-size);
+      }
+      92% {
+        --fade-end: var(--fade-size);
+      }
+      100% {
+        --fade-start: var(--fade-size);
+        --fade-end: 0px;
+      }
+    }
+  }
+  .tg-carousel:is(.tg-carousel--coverflow, .tg-carousel--fan, .tg-carousel--ring) {
+    --carousel-flow: 1;
+  }
+  .tg-carousel:is(.tg-carousel--coverflow, .tg-carousel--fan, .tg-carousel--ring):dir(rtl) {
+    --carousel-flow: -1;
+  }
+  @supports (animation-timeline: view()) {
+    @media (prefers-reduced-motion: no-preference) and (min-width: 36rem) {
+      .tg-carousel:is(.tg-carousel--coverflow, .tg-carousel--fan, .tg-carousel--ring) > .tg-carousel__viewport {
+        padding: var(--space-4) var(--carousel-side-space, 30%);
+      }
+      .tg-carousel:is(.tg-carousel--coverflow, .tg-carousel--fan, .tg-carousel--ring) > .tg-carousel__viewport > .tg-carousel__slide {
+        flex-basis: 100%;
+        scroll-snap-align: center;
+        view-timeline: --tg-carousel-slide inline;
+        background: none;
+        --carousel-slide-clip: none;
+        --carousel-slide-mask: none;
+      }
+      .tg-carousel:is(.tg-carousel--coverflow, .tg-carousel--fan, .tg-carousel--ring) > .tg-carousel__viewport > .tg-carousel__slide > img, .tg-carousel:is(.tg-carousel--coverflow, .tg-carousel--fan, .tg-carousel--ring) > .tg-carousel__viewport > .tg-carousel__slide > picture, .tg-carousel:is(.tg-carousel--coverflow, .tg-carousel--fan, .tg-carousel--ring) > .tg-carousel__viewport > .tg-carousel__slide > video, .tg-carousel:is(.tg-carousel--coverflow, .tg-carousel--fan, .tg-carousel--ring) > .tg-carousel__viewport > .tg-carousel__slide > figure > img {
+        border-radius: var(--radius-lg);
+        clip-path: var(--media-clip, border-box);
+        mask-image: var(--media-mask, linear-gradient(var(--mask-opaque), var(--mask-opaque)));
+        animation: tg-carousel-coverflow linear both;
+        animation-timeline: --tg-carousel-slide;
+      }
+      .tg-carousel:is(.tg-carousel--coverflow, .tg-carousel--fan, .tg-carousel--ring) > .tg-carousel__viewport > .tg-carousel__slide > figcaption, .tg-carousel:is(.tg-carousel--coverflow, .tg-carousel--fan, .tg-carousel--ring) > .tg-carousel__viewport > .tg-carousel__slide > figure > figcaption {
+        animation: tg-carousel-caption linear both;
+        animation-timeline: --tg-carousel-slide;
+      }
+      .tg-carousel.tg-carousel--fan > .tg-carousel__viewport > .tg-carousel__slide > :is(img, picture, video), .tg-carousel.tg-carousel--fan > .tg-carousel__viewport > .tg-carousel__slide > figure > :is(img, picture, video) {
+        transform-origin: 50% 160%;
+        animation-name: tg-carousel-fan;
+      }
+      .tg-carousel.tg-carousel--ring > .tg-carousel__viewport > .tg-carousel__slide > :is(img, picture, video), .tg-carousel.tg-carousel--ring > .tg-carousel__viewport > .tg-carousel__slide > figure > :is(img, picture, video) {
+        animation-name: tg-carousel-ring;
+      }
+    }
+  }
+  @keyframes tg-carousel-caption {
+    0%, 38% {
+      opacity: 0;
+    }
+    50% {
+      opacity: 1;
+    }
+    62%, 100% {
+      opacity: 0;
+    }
+  }
+  @keyframes tg-carousel-coverflow {
+    from {
+      transform: perspective(60rem) translateZ(-6rem) rotateY(calc(40deg * var(--carousel-flow)));
+      opacity: 0.6;
+    }
+    50% {
+      transform: perspective(60rem) translateZ(0) rotateY(0deg);
+      opacity: 1;
+    }
+    to {
+      transform: perspective(60rem) translateZ(-6rem) rotateY(calc(-40deg * var(--carousel-flow)));
+      opacity: 0.6;
+    }
+  }
+  @keyframes tg-carousel-fan {
+    from {
+      transform: rotate(calc(9deg * var(--carousel-flow))) scale(0.9);
+      opacity: 0.6;
+    }
+    50% {
+      transform: none;
+      opacity: 1;
+    }
+    to {
+      transform: rotate(calc(-9deg * var(--carousel-flow))) scale(0.9);
+      opacity: 0.6;
+    }
+  }
+  @keyframes tg-carousel-ring {
+    from {
+      transform: perspective(60rem) translateZ(-14rem) rotateY(calc(55deg * var(--carousel-flow)));
+      opacity: 0.45;
+    }
+    50% {
+      transform: perspective(60rem) translateZ(0) rotateY(0deg);
+      opacity: 1;
+    }
+    to {
+      transform: perspective(60rem) translateZ(-14rem) rotateY(calc(-55deg * var(--carousel-flow)));
+      opacity: 0.45;
+    }
+  }
+}
+@layer tds.components {
+  .tg-carousel--fullwidth {
+    --carousel-side-space: 0px;
+  }
+  .tg-carousel.tg-carousel--fullwidth > .tg-carousel__viewport {
+    padding-inline: 0;
+  }
+  .tg-carousel.tg-carousel--fullwidth > .tg-carousel__viewport > .tg-carousel__slide {
+    flex-basis: 100%;
+  }
+  .tg-carousel.tg-carousel--fullwidth > .tg-carousel__viewport > .tg-carousel__slide > img, .tg-carousel.tg-carousel--fullwidth > .tg-carousel__viewport > .tg-carousel__slide > picture > img, .tg-carousel.tg-carousel--fullwidth > .tg-carousel__viewport > .tg-carousel__slide > video, .tg-carousel.tg-carousel--fullwidth > .tg-carousel__viewport > .tg-carousel__slide > figure > img {
+    block-size: auto;
+    aspect-ratio: auto;
+    max-block-size: var(--media-max-size);
+    object-fit: contain;
+  }
+}

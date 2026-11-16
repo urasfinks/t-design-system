@@ -22,7 +22,9 @@
     "./effects/js": "./dist/effects.js",
     "./ui/js": "./dist/ui.js",
     "./icons.json": "./dist/icons.json",
-    "./icons/*": "./dist/icons/*.svg"
+    "./icons/*": "./dist/icons/*.svg",
+    "./css/modules/*": "./dist/modules/*.css",
+    "./css/modules": "./dist/modules/modules.json"
   },
   "files": [
     "dist",
