@@ -260,6 +260,11 @@
     color: var(--text-color);
     box-shadow: none;
     overflow: hidden;
+    -webkit-user-select: none;
+    user-select: none;
+  }
+  dialog.tg-modal.tg-image-viewer:focus {
+    outline: none;
   }
   dialog.tg-modal.tg-image-viewer[open] {
     display: grid;
@@ -274,7 +279,6 @@
   .tg-image-viewer__stage {
     overflow: hidden;
     touch-action: none;
-    user-select: none;
   }
   .tg-image-viewer__stage > img:not([hidden]) {
     display: block;

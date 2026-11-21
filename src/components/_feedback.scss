@@ -282,6 +282,11 @@
     color: var(--text-color);
     box-shadow: none;
     overflow: hidden;
+    -webkit-user-select: none;
+    user-select: none;
+
+    &:focus { outline: none; }
+
 
     &[open] {
       display: grid;
@@ -299,7 +304,6 @@
   .tg-image-viewer__stage {
     overflow: hidden;
     touch-action: none;
-    user-select: none;
 
     > img:not([hidden]) {
       display: block;
