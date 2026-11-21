@@ -90,7 +90,7 @@
   .tg-menu__item:focus {
     outline: none;
   }
-  .tg-menu__item:focus-visible {
+  .tg-menu__item:focus-visible:not(:where([data-tg-suppress-focus-ring] *)) {
     background: var(--control-hover-bg);
     outline: 2px solid var(--text-link);
     outline-offset: -2px;
@@ -186,7 +186,7 @@
     }
   }
   @media (forced-colors: active) {
-    .tg-menu__item:focus-visible {
+    .tg-menu__item:focus-visible:not(:where([data-tg-suppress-focus-ring] *)) {
       outline-color: Highlight;
     }
     .tg-menu__separator {

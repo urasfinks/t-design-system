@@ -185,7 +185,7 @@
     text-decoration: none;
     cursor: pointer;
   }
-  :is(button, a[href]).tg-badge:focus-visible {
+  :is(button, a[href]).tg-badge:focus-visible:not(:where([data-tg-suppress-focus-ring] *)) {
     outline: 2px solid var(--text-link);
     outline-offset: 3px;
   }

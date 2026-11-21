@@ -41,6 +41,58 @@ try {
   } finally {
     await focusPage.close();
   }
+  for (const hasTouch of [false, true]) {
+    const page = await browser.newPage({ hasTouch });
+    try {
+      await page.setContent(`<style>${css}</style>
+        <input class="tg-input" id="field">
+        <button class="tg-btn" id="open" onclick="dialog.showModal()">Открыть</button>
+        <dialog id="dialog" class="tg-modal">
+          <button class="tg-icon-btn" id="close" onclick="dialog.close()">Закрыть</button>
+          <button class="tg-btn tg-btn--ghost tg-media" id="photo"><img alt="Фотография"></button>
+          <a class="tg-link" href="#field" id="link">Ссылка</a>
+        </dialog>`);
+      const ui = await readFile(new URL('../dist/ui.js', import.meta.url), 'utf8');
+      const effects = await readFile(new URL('../dist/effects.js', import.meta.url), 'utf8');
+      await page.evaluate(async ({ ui, effects }) => {
+        const effectUrl = URL.createObjectURL(new Blob([effects], { type: 'text/javascript' }));
+        const uiUrl = URL.createObjectURL(new Blob([ui.replace('./effects.js', effectUrl)], { type: 'text/javascript' }));
+        try { await import(uiUrl); } finally {
+          URL.revokeObjectURL(uiUrl);
+          URL.revokeObjectURL(effectUrl);
+        }
+      }, { ui, effects });
+      const outline = selector => page.locator(selector).evaluate(el => getComputedStyle(el).outlineStyle);
+      await page.evaluate(() => document.querySelector('dialog').showModal());
+      assert.equal(await page.evaluate(() => document.activeElement.id), 'close');
+      assert.equal(await outline('#close'), 'none', 'dialog opened on startup');
+      await page.evaluate(() => document.querySelector('dialog').close());
+      for (const theme of ['light', 'dark', 'ios-dark']) {
+        await page.evaluate(theme => { document.documentElement.dataset.theme = theme; }, theme);
+        await page.locator('#field').focus();
+        const open = page.locator('#open');
+        if (hasTouch) await open.tap(); else await open.click();
+        assert.equal(await page.evaluate(() => document.activeElement.id), 'close');
+        assert.equal(await outline('#close'), 'none', `${theme}: pointer-opened dialog`);
+        for (const id of ['photo', 'link']) {
+          await page.locator(`#${id}`).focus();
+          assert.equal(await outline(`#${id}`), 'none', `${theme}: pointer focus transfer to ${id}`);
+        }
+        await page.locator('#close').focus();
+        // Option+Tab reaches links and buttons in WebKit on macOS.
+        await page.keyboard.press(engine === webkit ? 'Alt+Tab' : 'Tab');
+        assert.equal(await page.evaluate(() => document.activeElement.id), 'photo', theme);
+        assert.equal(await outline('#photo'), 'solid', `${theme}: keyboard photo focus`);
+        await page.keyboard.press(engine === webkit ? 'Alt+Tab' : 'Tab');
+        assert.equal(await outline('#link'), 'solid', `${theme}: keyboard link focus`);
+        await page.evaluate(() => document.querySelector('dialog').close());
+        await open.focus();
+        await page.keyboard.press('Enter');
+        assert.equal(await outline('#close'), 'solid', `${theme}: keyboard-opened dialog`);
+        await page.evaluate(() => document.querySelector('dialog').close());
+      }
+    } finally { await page.close(); }
+  }
   console.log('Static pointer and keyboard focus passed in all three themes.');
 } finally {
   await browser.close();

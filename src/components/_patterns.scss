@@ -1,3 +1,4 @@
+@use '../base/focus';
 @use '../base';
 @use 'error-surface';
 @use 'field-surface';
@@ -350,7 +351,7 @@
     &:disabled { cursor: not-allowed; opacity: var(--disabled-opacity, .5); }
   }
 
-  :is(.tg-disclosure__trigger, .tg-table-wrap, .tg-breadcrumbs a, .tg-error-summary, .tg-error-summary a, .tg-range):focus-visible {
+  :is(.tg-disclosure__trigger, .tg-table-wrap, .tg-breadcrumbs a, .tg-error-summary, .tg-error-summary a, .tg-range)#{focus.$visible} {
     outline: 2px solid var(--text-link);
     outline-offset: 3px;
   }
@@ -434,7 +435,7 @@
     color: var(--text-secondary);
     cursor: grab;
     touch-action: none;
-    &:focus-visible { outline: 2px solid var(--text-link); outline-offset: -2px; }
+    &#{focus.$visible} { outline: 2px solid var(--text-link); outline-offset: -2px; }
     &[aria-pressed='true'] { cursor: grabbing; color: var(--text-link); }
   }
   @media (prefers-reduced-motion: reduce) {

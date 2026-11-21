@@ -1,3 +1,4 @@
+@use '../base/focus';
 @use 'buttons';
 @use 'selected';
 @layer tds.components {
@@ -76,7 +77,7 @@
     }
     &:is([aria-pressed='true'], :has(> input:checked)) { @include selected.segment-current; }
     @include selected.segment-hover("[aria-pressed='true'], :has(> input:checked)");
-    &:focus-visible, &:has(> input:focus-visible) { outline: 2px solid var(--text-link); outline-offset: -3px; }
+    &#{focus.$visible}, &:has(> input#{focus.$visible}) { outline: 2px solid var(--text-link); outline-offset: -3px; }
     &:has(> input:disabled) { opacity: var(--disabled-opacity); cursor: not-allowed; }
   }
 

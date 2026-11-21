@@ -1,3 +1,4 @@
+@use '../base/focus';
 @use 'media-surface';
 @use '../base';
 @use 'track';
@@ -21,7 +22,7 @@
     gap: var(--carousel-gap);
     min-inline-size: 0;
     @include track.scroller(inline);
-    &:focus-visible { outline: 2px solid var(--text-link); outline-offset: 3px; }
+    &#{focus.$visible} { outline: 2px solid var(--text-link); outline-offset: 3px; }
   }
   .tg-carousel__slide {
     position: relative;
@@ -100,7 +101,7 @@
       transition: opacity var(--duration) var(--ease), border-color var(--duration) var(--ease);
       > img { display: block; inline-size: 100%; block-size: 100%; object-fit: cover; }
       &[aria-current='true'] { border-color: var(--accent-main); opacity: 1; }
-      &:focus-visible { outline: 2px solid var(--text-link); outline-offset: -4px; }
+      &#{focus.$visible} { outline: 2px solid var(--text-link); outline-offset: -4px; }
     }
     @media (hover: hover) and (pointer: fine) { > button:hover { opacity: 1; } }
   }
@@ -181,7 +182,7 @@
     font: inherit;
     text-align: start;
     cursor: pointer;
-    &:focus-visible { outline: 2px solid var(--text-link); outline-offset: -3px; }
+    &#{focus.$visible} { outline: 2px solid var(--text-link); outline-offset: -3px; }
     > span {
       @include media-surface.caption;
       overflow: hidden;
@@ -263,7 +264,7 @@
     --fade-end: var(--fade-size);
     @include track.fade-mask(inline, var(--fade-size));
     overflow-x: auto;
-    &:focus-visible { outline: 2px solid var(--text-link); outline-offset: 2px; }
+    &#{focus.$visible} { outline: 2px solid var(--text-link); outline-offset: 2px; }
   }
   .tg-scroll-fade--block { @include track.fade-mask(block, var(--fade-size)); overflow-x: visible; overflow-y: auto; }
   @supports (animation-timeline: scroll()) {

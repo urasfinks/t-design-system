@@ -38,7 +38,7 @@
       scroll-behavior: smooth;
     }
   }
-  .tg-carousel__viewport:focus-visible {
+  .tg-carousel__viewport:focus-visible:not(:where([data-tg-suppress-focus-ring] *)) {
     outline: 2px solid var(--text-link);
     outline-offset: 3px;
   }
@@ -158,7 +158,7 @@
     border-color: var(--accent-main);
     opacity: 1;
   }
-  .tg-carousel__thumbs > button:focus-visible {
+  .tg-carousel__thumbs > button:focus-visible:not(:where([data-tg-suppress-focus-ring] *)) {
     outline: 2px solid var(--text-link);
     outline-offset: -4px;
   }
@@ -302,7 +302,7 @@
     text-align: start;
     cursor: pointer;
   }
-  .tg-image-accordion__trigger:focus-visible {
+  .tg-image-accordion__trigger:focus-visible:not(:where([data-tg-suppress-focus-ring] *)) {
     outline: 2px solid var(--text-link);
     outline-offset: -3px;
   }
@@ -448,7 +448,7 @@
     mask-image: linear-gradient(to right, transparent, var(--mask-opaque) var(--fade-start, var(--fade-size)), var(--mask-opaque) calc(100% - var(--fade-end, var(--fade-size))), transparent);
     overflow-x: auto;
   }
-  .tg-scroll-fade:focus-visible {
+  .tg-scroll-fade:focus-visible:not(:where([data-tg-suppress-focus-ring] *)) {
     outline: 2px solid var(--text-link);
     outline-offset: 2px;
   }

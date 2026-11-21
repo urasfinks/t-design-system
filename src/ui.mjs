@@ -15,6 +15,7 @@ export function initUI(root = globalThis.document) {
   const doc = root.nodeType === 9 ? root : root.ownerDocument;
   const view = doc?.defaultView;
   if (!view) return () => {};
+  const stopFocusMode = root === doc ? trackFocusMode(doc) : () => {};
   const stopLegacy = initRipple(root);
   const stopScrollRegions = initScrollRegions(root);
   const stopActionMenus = initActionMenus(root, doc, view);
@@ -103,6 +104,7 @@ export function initUI(root = globalThis.document) {
     root.removeEventListener('change', rangeInput);
     root.removeEventListener('reset', resetRanges);
     root.removeEventListener('click', click);
+    stopFocusMode();
     stopLegacy();
     stopScrollRegions();
     stopActionMenus();
@@ -111,6 +113,41 @@ export function initUI(root = globalThis.document) {
   };
   registrations.set(root, cleanup);
   return cleanup;
+}
+
+function trackFocusMode(doc) {
+  const attribute = 'data-tg-suppress-focus-ring';
+  let hasInput = false;
+  const hideRing = () => doc.documentElement?.setAttribute(attribute, '');
+  const showRing = () => doc.documentElement?.removeAttribute(attribute);
+  const pointer = () => {
+    hasInput = true;
+    hideRing();
+  };
+  const keyboard = event => {
+    if (['Alt', 'Control', 'Meta', 'Shift'].includes(event.key)) return;
+    hasInput = true;
+    showRing();
+  };
+  const virtualClick = event => {
+    if (!event.isTrusted || event.detail !== 0) return;
+    hasInput = true;
+    showRing();
+  };
+  const initialDialogFocus = event => {
+    if (!hasInput && event.target?.closest?.('dialog:modal')) hideRing();
+  };
+  doc.addEventListener('pointerdown', pointer, true);
+  doc.addEventListener('keydown', keyboard, true);
+  doc.addEventListener('click', virtualClick, true);
+  doc.addEventListener('focusin', initialDialogFocus);
+  return () => {
+    doc.removeEventListener('pointerdown', pointer, true);
+    doc.removeEventListener('keydown', keyboard, true);
+    doc.removeEventListener('click', virtualClick, true);
+    doc.removeEventListener('focusin', initialDialogFocus);
+    showRing();
+  };
 }
 
 if (globalThis.document?.addEventListener) initUI(globalThis.document);

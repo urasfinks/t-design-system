@@ -29,7 +29,7 @@
     min-inline-size: var(--control-h);
     min-block-size: var(--control-h);
   }
-  .tg-scroll-region:focus-visible {
+  .tg-scroll-region:focus-visible:not(:where([data-tg-suppress-focus-ring] *)) {
     outline: 2px solid var(--text-link);
     outline-offset: -2px;
   }

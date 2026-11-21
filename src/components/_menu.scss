@@ -1,3 +1,4 @@
+@use '../base/focus';
 @use '../base';
 @use 'floating';
 @use 'option';
@@ -30,7 +31,7 @@
 
     // Keyboard focus moves through items: the row lights up and keeps a ring.
     &:focus { outline: none; }
-    &:focus-visible { @include option.active; }
+    &#{focus.$visible} { @include option.active; }
 
     &--destructive {
       --control-hover-bg: var(--danger-soft);
@@ -98,7 +99,7 @@
   @include floating.sheet('.tg-menu[popover]', --tg-menu-origin);
 
   @media (forced-colors: active) {
-    .tg-menu__item:focus-visible { outline-color: Highlight; }
+    .tg-menu__item#{focus.$visible} { outline-color: Highlight; }
     .tg-menu__separator { background: CanvasText; }
   }
 }

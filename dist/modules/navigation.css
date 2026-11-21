@@ -102,7 +102,7 @@
       color: var(--text-color);
     }
   }
-  .tg-segmented__item:focus-visible, .tg-segmented__item:has(> input:focus-visible) {
+  .tg-segmented__item:focus-visible:not(:where([data-tg-suppress-focus-ring] *)), .tg-segmented__item:has(> input:focus-visible:not(:where([data-tg-suppress-focus-ring] *))) {
     outline: 2px solid var(--text-link);
     outline-offset: -3px;
   }

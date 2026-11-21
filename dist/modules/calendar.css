@@ -122,7 +122,7 @@
     font-variant-numeric: tabular-nums;
     cursor: pointer;
   }
-  .tg-calendar__day:focus-visible {
+  .tg-calendar__day:focus-visible:not(:where([data-tg-suppress-focus-ring] *)) {
     outline: 2px solid var(--text-link);
     outline-offset: -2px;
     z-index: 1;

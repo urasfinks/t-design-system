@@ -52,7 +52,7 @@
   .tg-bottom-panel__trigger::-webkit-details-marker {
     display: none;
   }
-  .tg-bottom-panel__trigger:focus-visible {
+  .tg-bottom-panel__trigger:focus-visible:not(:where([data-tg-suppress-focus-ring] *)) {
     outline: 2px solid var(--text-link);
     outline-offset: -4px;
   }

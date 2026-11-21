@@ -508,7 +508,7 @@
     color: var(--text-link);
     cursor: pointer;
   }
-  .tg-agent-step__detail > summary:focus-visible {
+  .tg-agent-step__detail > summary:focus-visible:not(:where([data-tg-suppress-focus-ring] *)) {
     outline: 2px solid var(--text-link);
     outline-offset: 2px;
     border-radius: var(--radius-xs);

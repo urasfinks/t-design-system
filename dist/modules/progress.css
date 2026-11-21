@@ -409,7 +409,7 @@
     cursor: pointer;
     text-decoration: none;
   }
-  .tg-schedule__event:focus-visible {
+  .tg-schedule__event:focus-visible:not(:where([data-tg-suppress-focus-ring] *)) {
     outline: 2px solid var(--text-link);
     outline-offset: 1px;
   }

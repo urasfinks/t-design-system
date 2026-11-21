@@ -1,3 +1,4 @@
+@use '../base/focus';
 @use 'disclosure-indicator';
 @use '../base';
 @use 'floating';
@@ -123,7 +124,7 @@
       min-block-size: var(--control-h);
       color: var(--text-link);
       cursor: pointer;
-      &:focus-visible { outline: 2px solid var(--text-link); outline-offset: 2px; border-radius: var(--radius-xs); }
+      &#{focus.$visible} { outline: 2px solid var(--text-link); outline-offset: 2px; border-radius: var(--radius-xs); }
     }
     > .tg-table-wrap { margin-block-start: var(--space-2); }
   }

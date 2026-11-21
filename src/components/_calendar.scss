@@ -1,3 +1,4 @@
+@use '../base/focus';
 @use '../base';
 @use 'field-surface';
 
@@ -87,7 +88,7 @@
     font: inherit;
     font-variant-numeric: tabular-nums;
     cursor: pointer;
-    &:focus-visible { outline: 2px solid var(--text-link); outline-offset: -2px; z-index: 1; }
+    &#{focus.$visible} { outline: 2px solid var(--text-link); outline-offset: -2px; z-index: 1; }
     &--outside { color: var(--text-secondary); }
     &--today { box-shadow: inset 0 0 0 1.5px var(--accent-main); }
     &:is([aria-pressed='true'], [aria-selected='true']) {

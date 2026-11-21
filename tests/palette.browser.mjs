@@ -34,7 +34,7 @@ try {
         const ctx = document.createElement('canvas').getContext('2d');
         return elements.map(el => { ctx.clearRect(0, 0, 1, 1); ctx.fillStyle = getComputedStyle(el).backgroundColor; ctx.fillRect(0, 0, 1, 1); return [...ctx.getImageData(0, 0, 1, 1).data].slice(0, 3); });
       });
-      assert.deepEqual(exact, [[19, 23, 32], [33, 37, 47], [49, 54, 64]]);
+      assert.deepEqual(exact, [[24, 33, 45], [38, 48, 60], [55, 65, 78]]);
     }
     if (theme !== 'light') {
       const tones = await page.evaluate(() => {

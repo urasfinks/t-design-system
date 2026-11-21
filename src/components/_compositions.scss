@@ -1,3 +1,4 @@
+@use '../base/focus';
 @use 'disclosure-indicator';
 @use '../base';
 @use 'floating';
@@ -304,7 +305,7 @@
       min-block-size: 2rem;
       color: var(--text-link);
       cursor: pointer;
-      &:focus-visible { outline: 2px solid var(--text-link); outline-offset: 2px; border-radius: var(--radius-xs); }
+      &#{focus.$visible} { outline: 2px solid var(--text-link); outline-offset: 2px; border-radius: var(--radius-xs); }
     }
     > ul, > ol {
       display: grid;

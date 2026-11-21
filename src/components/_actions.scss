@@ -1,3 +1,4 @@
+@use '../base/focus';
 @use '../base';
 
 // Gesture-backed actions and the floating action button. Every gesture has a plain
@@ -79,8 +80,8 @@
     &::-moz-range-track { block-size: var(--control-h); background: transparent; }
     &::-moz-range-thumb { inline-size: var(--control-h); block-size: var(--control-h); border: 0; border-radius: 50%; background: var(--icon-chevron-right-on-action) center / 1.25rem no-repeat, var(--action-bg); }
     &:focus-visible { outline: none; }
-    &:focus-visible::-webkit-slider-thumb { outline: 2px solid var(--text-link); outline-offset: 3px; }
-    &:focus-visible::-moz-range-thumb { outline: 2px solid var(--text-link); outline-offset: 3px; }
+    &#{focus.$visible}::-webkit-slider-thumb { outline: 2px solid var(--text-link); outline-offset: 3px; }
+    &#{focus.$visible}::-moz-range-thumb { outline: 2px solid var(--text-link); outline-offset: 3px; }
   }
   @media (max-width: 36rem) { .tg-slide-confirm { inline-size: 100%; } }
 
@@ -128,7 +129,7 @@
     font: inherit;
     cursor: pointer;
     > .tg-icon { color: var(--text-link); }
-    &:focus-visible { outline: 2px solid var(--text-link); outline-offset: 2px; }
+    &#{focus.$visible} { outline: 2px solid var(--text-link); outline-offset: 2px; }
   }
   // Items rise in sequence when the menu opens; reduced motion shows them at once.
   .tg-fab-menu:not([hidden]) .tg-fab-menu__item {

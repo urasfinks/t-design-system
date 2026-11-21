@@ -125,7 +125,7 @@
       border-color: var(--panel-hover-border-color);
     }
   }
-  .tg-card--link:has(.tg-card__link:focus-visible) {
+  .tg-card--link:has(.tg-card__link:focus-visible:not(:where([data-tg-suppress-focus-ring] *))) {
     outline: 2px solid var(--text-link);
     outline-offset: 3px;
   }
@@ -222,7 +222,7 @@
     text-decoration: none;
     cursor: pointer;
   }
-  :where(a[href], button).tg-list-item:focus-visible {
+  :where(a[href], button).tg-list-item:focus-visible:not(:where([data-tg-suppress-focus-ring] *)) {
     outline: 2px solid var(--text-link);
     outline-offset: -2px;
   }

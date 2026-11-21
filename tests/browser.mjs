@@ -8,7 +8,10 @@ const css = await readFile('dist/t-design-system.css', 'utf8');
 const adapter = await readFile('dist/telegram.css', 'utf8');
 const palettes = JSON.parse(await readFile('tests/fixtures/source-palettes.json', 'utf8'));
 // Source colours that TDS tunes away from the original application palette (README, «Темы и токены»).
-const tuned = { desktopDark: { bg_color: '#131720', button_color: '#3e88f7' } };
+const tuned = {
+  desktopDark: { bg_color: '#18212d', button_color: '#2fa6ff' },
+  iosDark: { button_color: '#2fa6ff' },
+};
 const useWebkit = process.argv.includes('--webkit');
 const browser = await (useWebkit ? webkit : chromium).launch();
 const page = await browser.newPage({ viewport: { width: 1440, height: 1000 } });

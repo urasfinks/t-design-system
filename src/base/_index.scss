@@ -1,3 +1,4 @@
+@use 'focus';
 @use '../themes';
 @use '../components/control-states';
 @layer tds.reset {
@@ -38,10 +39,15 @@
   $static-focus-target: '[tabindex="-1"]:not(:any-link, button, input, select, textarea, summary, iframe, audio, video, [role], [contenteditable])';
   :where(#{$static-focus-target}):focus { outline: none; }
   :where(.tg-btn, .tg-icon-btn, .tg-tab, .tg-tabbar__item, .tg-switch, .tg-chip, .tg-avatar, .tg-check, .tg-radio, .tg-link, .tg-dot,
-    .tg-pager__link, .tg-site-nav__link, .tg-table__sort):focus-visible {
+    .tg-pager__link, .tg-site-nav__link, .tg-table__sort)#{focus.$visible} {
     outline: 2px solid var(--text-link);
     outline-offset: 3px;
   }
+  // Suppress the user-agent outline on pointer-focused native actions. Editing
+  // controls keep their field focus because the caret and active field matter on touch.
+  :where([data-tg-suppress-focus-ring]) :where(button, a:any-link, summary,
+    input:is([type='button'], [type='submit'], [type='reset'], [type='checkbox'], [type='radio'], [type='range']),
+    [tabindex]:not(input, textarea, select, [contenteditable])):focus { outline: none; }
   :where(input, textarea) { caret-color: var(--text-link); }
   .tg-link { color: var(--text-link); text-underline-offset: .2em; }
   button:where([class*='tg-']) { -webkit-user-select: none; user-select: none; }

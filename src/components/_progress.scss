@@ -1,3 +1,4 @@
+@use '../base/focus';
 @use '../base';
 @use 'steps';
 
@@ -266,7 +267,7 @@
     > time { color: var(--text-secondary); font-variant-numeric: tabular-nums; }
     &[data-conflict] { border-inline-start-color: var(--danger-main); background: var(--danger-soft); }
     &:is(a, button) { cursor: pointer; text-decoration: none; }
-    &:focus-visible { outline: 2px solid var(--text-link); outline-offset: 1px; }
+    &#{focus.$visible} { outline: 2px solid var(--text-link); outline-offset: 1px; }
   }
   .tg-schedule__now {
     position: absolute;

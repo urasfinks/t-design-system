@@ -280,7 +280,7 @@
     background: var(--danger-soft);
     color: var(--text-danger);
   }
-  .tg-tag-input__tag:focus-within {
+  .tg-tag-input__tag:has(:focus-visible:not(:where([data-tg-suppress-focus-ring] *))) {
     outline: 2px solid var(--text-link);
     outline-offset: 1px;
   }
@@ -543,7 +543,7 @@
     border-color: var(--accent-main);
     box-shadow: 0 0 0 1px var(--accent-main);
   }
-  .tg-choice-card:has(input:focus-visible) {
+  .tg-choice-card:has(input:focus-visible:not(:where([data-tg-suppress-focus-ring] *))) {
     outline: 2px solid var(--text-link);
     outline-offset: 3px;
   }
@@ -689,7 +689,7 @@
   .tg-wheel__column::-webkit-scrollbar {
     display: none;
   }
-  .tg-wheel__column:focus-visible {
+  .tg-wheel__column:focus-visible:not(:where([data-tg-suppress-focus-ring] *)) {
     outline: 2px solid var(--text-link);
     outline-offset: -2px;
     border-radius: var(--radius-inset);
@@ -769,7 +769,7 @@
     border: 1px solid var(--border-color);
     border-radius: var(--radius-inset);
   }
-  .tg-color-field__swatch:focus-visible {
+  .tg-color-field__swatch:focus-visible:not(:where([data-tg-suppress-focus-ring] *)) {
     outline: 2px solid var(--text-link);
     outline-offset: 2px;
   }
@@ -901,7 +901,7 @@
     touch-action: none;
     cursor: crosshair;
   }
-  .tg-color-picker__area:focus-within {
+  .tg-color-picker__area:is(:focus-visible:not(:where([data-tg-suppress-focus-ring] *))), .tg-color-picker__area:has(:focus-visible:not(:where([data-tg-suppress-focus-ring] *))) {
     outline: 2px solid var(--text-link);
     outline-offset: 2px;
   }
@@ -958,7 +958,7 @@
   .tg-color-picker__swatches > label:has(:checked) {
     box-shadow: 0 0 0 2px var(--surface-bg), 0 0 0 4px var(--accent-main);
   }
-  .tg-color-picker__swatches > label:has(:focus-visible) {
+  .tg-color-picker__swatches > label:has(:focus-visible:not(:where([data-tg-suppress-focus-ring] *))) {
     outline: 2px solid var(--text-link);
     outline-offset: 4px;
   }
@@ -999,7 +999,7 @@
     line-height: 1;
     cursor: pointer;
   }
-  .tg-emoji-picker__option:focus-visible {
+  .tg-emoji-picker__option:focus-visible:not(:where([data-tg-suppress-focus-ring] *)) {
     outline: 2px solid var(--text-link);
     outline-offset: -2px;
   }

@@ -106,7 +106,7 @@
     inset: 0;
     overflow: clip;
   }
-  .tg-compare__control:has(> .tg-compare__handle:focus-visible) {
+  .tg-compare__control:has(> .tg-compare__handle:focus-visible:not(:where([data-tg-suppress-focus-ring] *))) {
     outline: 2px solid var(--text-link);
     outline-offset: -2px;
   }
@@ -145,7 +145,7 @@
     border-radius: 0;
     background: linear-gradient(var(--overlay-text), var(--overlay-text)) center/2px 100% no-repeat;
   }
-  .tg-compare__handle:focus-visible {
+  .tg-compare__handle:focus-visible:not(:where([data-tg-suppress-focus-ring] *)) {
     outline: 2px solid var(--text-link);
     outline-offset: -2px;
   }
@@ -220,7 +220,7 @@
     border-radius: 0;
     background: var(--text-color);
   }
-  .tg-waveform__progress:focus-visible {
+  .tg-waveform__progress:focus-visible:not(:where([data-tg-suppress-focus-ring] *)) {
     outline: 2px solid var(--text-link);
     outline-offset: 2px;
     border-radius: var(--radius-xs);
@@ -236,7 +236,7 @@
     cursor: move;
     touch-action: none;
   }
-  .tg-selection-box:focus-visible {
+  .tg-selection-box:focus-visible:not(:where([data-tg-suppress-focus-ring] *)) {
     outline: 2px solid var(--text-link);
     outline-offset: 3px;
   }

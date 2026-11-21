@@ -91,7 +91,7 @@
     --control-hover-bg: var(--background-muted);
     color: var(--text-color);
   }
-  .tg-sidebar__link:focus-visible {
+  .tg-sidebar__link:focus-visible:not(:where([data-tg-suppress-focus-ring] *)) {
     outline: 2px solid var(--text-link);
     outline-offset: -2px;
   }
@@ -179,7 +179,7 @@
     text-decoration: none;
     cursor: pointer;
   }
-  .tg-nav-menu__trigger:focus-visible, a.tg-nav-menu__top:focus-visible {
+  .tg-nav-menu__trigger:focus-visible:not(:where([data-tg-suppress-focus-ring] *)), a.tg-nav-menu__top:focus-visible:not(:where([data-tg-suppress-focus-ring] *)) {
     outline: 2px solid var(--text-link);
     outline-offset: -2px;
   }
@@ -273,7 +273,7 @@
     margin-block-start: 0.125rem;
     color: var(--text-link);
   }
-  .tg-nav-menu__link:focus-visible {
+  .tg-nav-menu__link:focus-visible:not(:where([data-tg-suppress-focus-ring] *)) {
     outline: 2px solid var(--text-link);
     outline-offset: -2px;
   }
@@ -341,7 +341,7 @@
     --control-idle-bg: var(--background-muted);
     --control-hover-bg: var(--background-muted);
   }
-  .tg-menubar__item:focus-visible {
+  .tg-menubar__item:focus-visible:not(:where([data-tg-suppress-focus-ring] *)) {
     outline: 2px solid var(--text-link);
     outline-offset: -2px;
   }
@@ -384,7 +384,7 @@
   .tg-toc__link--nested {
     padding-inline-start: calc(var(--space-3) + var(--space-4));
   }
-  .tg-toc__link:focus-visible {
+  .tg-toc__link:focus-visible:not(:where([data-tg-suppress-focus-ring] *)) {
     outline: 2px solid var(--text-link);
     outline-offset: -2px;
     border-radius: var(--radius-xs);

@@ -1,3 +1,4 @@
+@use '../base/focus';
 @use '../base';
 @use 'floating';
 @use 'option';
@@ -49,7 +50,7 @@
     > .tg-icon { flex: 0 0 auto; color: inherit; }
     > .tg-badge { margin-inline-start: auto; }
     &[aria-current='page'] { --control-idle-bg: var(--background-muted); --control-hover-bg: var(--background-muted); color: var(--text-color); }
-    &:focus-visible { outline: 2px solid var(--text-link); outline-offset: -2px; }
+    &#{focus.$visible} { outline: 2px solid var(--text-link); outline-offset: -2px; }
   }
   // A group that nests links: the summary is a row with a chevron at the end.
   summary.tg-sidebar__link {
@@ -118,7 +119,7 @@
     color: var(--text-color);
     text-decoration: none;
     cursor: pointer;
-    &:focus-visible { outline: 2px solid var(--text-link); outline-offset: -2px; }
+    &#{focus.$visible} { outline: 2px solid var(--text-link); outline-offset: -2px; }
   }
   .tg-nav-menu__trigger {
     &::after {
@@ -156,7 +157,7 @@
     @include option.dropdown-row;
     align-items: flex-start;
     > .tg-icon { margin-block-start: .125rem; color: var(--text-link); }
-    &:focus-visible { outline: 2px solid var(--text-link); outline-offset: -2px; }
+    &#{focus.$visible} { outline: 2px solid var(--text-link); outline-offset: -2px; }
     &[aria-current='page'] { @include option.chosen; }
   }
   .tg-nav-menu__text { display: grid; gap: .125rem; min-inline-size: 0; }
@@ -201,7 +202,7 @@
     cursor: pointer;
     &::before { content: ''; position: absolute; inset: calc((2.25rem - var(--control-h)) / 2) 0; }
     &[aria-expanded='true'] { --control-idle-bg: var(--background-muted); --control-hover-bg: var(--background-muted); }
-    &:focus-visible { outline: 2px solid var(--text-link); outline-offset: -2px; }
+    &#{focus.$visible} { outline: 2px solid var(--text-link); outline-offset: -2px; }
   }
 
   // Table of contents: anchors along a quiet rule; the current section takes the accent.
@@ -226,7 +227,7 @@
     @media (hover: hover) and (pointer: fine) { &:hover { color: var(--text-color); } }
     &:is([aria-current='location'], [aria-current='true']) { border-inline-start-color: var(--accent-main); color: var(--text-color); }
     &--nested { padding-inline-start: calc(var(--space-3) + var(--space-4)); }
-    &:focus-visible { outline: 2px solid var(--text-link); outline-offset: -2px; border-radius: var(--radius-xs); }
+    &#{focus.$visible} { outline: 2px solid var(--text-link); outline-offset: -2px; border-radius: var(--radius-xs); }
     @media (pointer: coarse) { padding-block: var(--space-2); }
   }
 }

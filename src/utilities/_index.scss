@@ -1,3 +1,4 @@
+@use '../base/focus';
 @use '../base';
 // Intrinsic content may shrink; component minimum touch targets take precedence.
 @layer tds.base {
@@ -15,7 +16,7 @@
     min-inline-size: var(--control-h);
     min-block-size: var(--control-h);
   }
-  .tg-scroll-region:focus-visible { outline: 2px solid var(--text-link); outline-offset: -2px; }
+  .tg-scroll-region#{focus.$visible} { outline: 2px solid var(--text-link); outline-offset: -2px; }
   .tg-row-valign-top { align-items: flex-start; }
   .tg-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 18rem), 1fr)); gap: var(--space-4); }
   // Bento: 1 column on phones, 2 from 36rem, 4 from 64rem. Tiles read --span and

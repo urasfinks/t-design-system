@@ -224,7 +224,7 @@
     color: var(--text-link);
     cursor: pointer;
   }
-  .tg-chart__data > summary:focus-visible {
+  .tg-chart__data > summary:focus-visible:not(:where([data-tg-suppress-focus-ring] *)) {
     outline: 2px solid var(--text-link);
     outline-offset: 2px;
     border-radius: var(--radius-xs);
