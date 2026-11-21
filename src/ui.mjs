@@ -2,6 +2,8 @@ import { initRipple } from './effects.mjs';
 import { initScrollRegions } from './scroll-regions.mjs';
 export { initScrollRegions } from './scroll-regions.mjs';
 
+export { initImageViewer } from './image-viewer.mjs';
+
 const registrations = new WeakMap();
 const handled = new WeakSet();
 const controls = 'button, .tg-btn, .tg-icon-btn, .tg-chip, .tg-tab, .tg-tabbar__item, .tg-dot, a.tg-badge[href], .tg-disclosure__trigger, .tg-bottom-panel__header, .tg-bottom-panel__trigger';

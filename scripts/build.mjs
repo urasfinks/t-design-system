@@ -23,6 +23,8 @@ console.log('Built dist/telegram.js (optional theme bridge)');
 await copyFile(new URL('src/effects.mjs', root), new URL('dist/effects.js', root));
 console.log('Built dist/effects.js (optional ripple and decorative effects)');
 
+const imageViewer = await readFile(new URL('src/image-viewer.mjs', root), 'utf8');
+
 const ui = await readFile(new URL('src/ui.mjs', root), 'utf8');
 // Keep the documented two-file ui.js/effects.js distribution: the optional
 // scroll helper has its own source owner but ships inside the ui entry.
@@ -30,8 +32,9 @@ const scrollRegions = await readFile(new URL('src/scroll-regions.mjs', root), 'u
 const uiBody = ui
   .replace("import { initScrollRegions } from './scroll-regions.mjs';\n", '')
   .replace("export { initScrollRegions } from './scroll-regions.mjs';\n", '')
+  .replace("export { initImageViewer } from './image-viewer.mjs';\n", '')
   .replaceAll("'./effects.mjs'", "'./effects.js'");
-await writeFile(new URL('dist/ui.js', root), `${scrollRegions}\n${uiBody}`);
+await writeFile(new URL('dist/ui.js', root), `${scrollRegions}\n${imageViewer}\n${uiBody}`);
 console.log('Built dist/ui.js (optional ripple entry)');
 
 // Ship independent SVG assets from the pinned upstream package, never a sprite.

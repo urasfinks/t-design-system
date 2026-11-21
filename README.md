@@ -1432,3 +1432,15 @@ app explicitly requires fixed scale: native panning remains available, pinch and
 double-tap zoom are disabled through touch-action. WebKit gesture events and
 viewport metadata may also need handling by the host app. These opt-in policies
 do not alter ordinary TDS documents. Native WebView gestures remain host-controlled.
+
+### Просмотрщик изображений
+
+Нативный `dialog.tg-modal.tg-image-viewer` содержит шапку, область
+`.tg-image-viewer__stage` с одним `img` и панель действий, например с
+кнопками `.tg-btn`. Фон использует основной цвет темы с непрозрачностью 97%.
+
+`initImageViewer(stage, image, onSwipe, onScale)` из `t-design-system/ui/js`
+подключает масштабирование двумя пальцами и двойным нажатием, перетаскивание
+увеличенного снимка и горизонтальный свайп на исходном масштабе. Колбэк
+получает шаг `-1` или `1`, а необязательный `onScale` получает текущий масштаб. При смене фото вызовите `reset()`. Для кнопок
+масштаба используйте `zoomBy(factor)`, для очистки — `destroy()`.

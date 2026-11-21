@@ -165,6 +165,7 @@
     --surface-muted: var(--secondary-bg-color);
     --control-hover-surface: var(--surface-bg);
     --overlay-bg: rgb(from var(--color-black) r g b / 0.66);
+    --media-viewer-bg: rgb(from var(--background-main) r g b / 0.97);
     --overlay-text: var(--color-white);
     --shadow-control: 0 1px 3px rgb(from var(--color-black) r g b / 0.12);
     --shadow-overlay: 0 .75rem 3rem rgb(from var(--color-black) r g b / 0.2);
@@ -2474,6 +2475,45 @@
   }
   dialog.tg-modal[open] {
     animation: tg-pop var(--duration) var(--ease);
+  }
+  dialog.tg-modal.tg-image-viewer {
+    position: fixed;
+    inset: 0;
+    margin: auto;
+    box-sizing: border-box;
+    inline-size: 100%;
+    max-inline-size: none;
+    block-size: 100dvh;
+    max-block-size: none;
+    padding: max(var(--space-3), env(safe-area-inset-top)) max(var(--space-3), env(safe-area-inset-right)) max(var(--space-3), env(safe-area-inset-bottom)) max(var(--space-3), env(safe-area-inset-left));
+    border: 0;
+    border-radius: 0;
+    background: transparent;
+    color: var(--text-color);
+    box-shadow: none;
+    overflow: hidden;
+  }
+  dialog.tg-modal.tg-image-viewer[open] {
+    display: grid;
+    grid-template-rows: auto minmax(0, 1fr) auto;
+    gap: var(--space-2);
+    animation: none;
+  }
+  dialog.tg-modal.tg-image-viewer::backdrop {
+    background: var(--media-viewer-bg);
+    backdrop-filter: none;
+  }
+  .tg-image-viewer__stage {
+    overflow: hidden;
+    touch-action: none;
+    user-select: none;
+  }
+  .tg-image-viewer__stage > img:not([hidden]) {
+    display: block;
+    inline-size: 100%;
+    block-size: 100%;
+    object-fit: contain;
+    pointer-events: none;
   }
   .tg-modal__sheet {
     padding: var(--space-5);

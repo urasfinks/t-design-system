@@ -5,7 +5,7 @@
       "name": "core",
       "file": "modules/core.css",
       "dependencies": [],
-      "bytes": 21272
+      "bytes": 21342
     },
     {
       "name": "icons",
@@ -78,7 +78,7 @@
       "dependencies": [
         "core"
       ],
-      "bytes": 10135
+      "bytes": 11247
     },
     {
       "name": "effects",

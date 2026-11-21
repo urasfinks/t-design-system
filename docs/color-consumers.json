@@ -1,7 +1,7 @@
 {
   "componentFiles": 40,
   "foundationFiles": 2,
-  "declarations": 816,
+  "declarations": 818,
   "consumers": [
     {
       "file": "base/_index.scss",
@@ -2957,6 +2957,22 @@
         "--progress-stripe-color"
       ],
       "value": "linear-gradient(45deg, var(--progress-stripe-color) 25%, transparent 25%, transparent 50%,\n          var(--progress-stripe-color) 50%, var(--progress-stripe-color) 75%, transparent 75%)"
+    },
+    {
+      "file": "components/_feedback.scss",
+      "property": "color",
+      "roles": [
+        "--text-color"
+      ],
+      "value": "var(--text-color)"
+    },
+    {
+      "file": "components/_feedback.scss",
+      "property": "background",
+      "roles": [
+        "--media-viewer-bg"
+      ],
+      "value": "var(--media-viewer-bg)"
     },
     {
       "file": "components/_feedback.scss",

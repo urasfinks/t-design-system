@@ -195,6 +195,7 @@
     --surface-muted: var(--secondary-bg-color);
     --control-hover-surface: var(--surface-bg);
     --overlay-bg: #{color.alpha(var(--color-black), .66)};
+    --media-viewer-bg: #{color.alpha(var(--background-main), .97)};
     --overlay-text: var(--color-white);
     --shadow-control: 0 1px 3px #{color.alpha(var(--color-black), .12)};
     --shadow-overlay: 0 .75rem 3rem #{color.alpha(var(--color-black), .2)};
