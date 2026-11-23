@@ -14,6 +14,9 @@
     --card-padding: var(--space-4);
     padding: var(--card-padding);
   }
+  a.tg-card {
+    text-decoration: none;
+  }
   .tg-card:has(> :is(.tg-card__media, .tg-card__body, .tg-card__footer)) {
     display: flex;
     flex-direction: column;

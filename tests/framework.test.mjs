@@ -15,6 +15,17 @@ test('main stylesheet declares a predictable cascade without specificity escapes
   assert.match(text, /@layer tds\.reset, tds\.tokens, tds\.themes, tds\.base, tds\.components, tds\.utilities/);
   assert.doesNotMatch(text, /!important|:host|\.cdk-|#btn-/);
 });
+test('card links render without underlines', async () => {
+  assert.match(await css(), /a\.tg-card\s*\{\s*text-decoration:\s*none;/);
+});
+test('image viewer close icon uses the overlay text role', async () => {
+  assert.match(await css(), /\.tg-image-viewer \.tg-image-viewer__close\s*\{\s*--control-color: var\(--overlay-text\)/);
+});
+test('long image viewer captions can wrap on narrow screens', async () => {
+  const stylesheet = await css();
+  assert.match(stylesheet, /\.tg-image-viewer__caption\s*\{[^}]*color: var\(--overlay-text\)/);
+  assert.match(stylesheet, /\.tg-image-viewer__caption\s*\{[^}]*overflow-wrap: anywhere/);
+});
 test('all referenced core custom properties have defaults', async () => {
   const text = await css();
   const defined = new Set([...text.matchAll(/(--[\w-]+)\s*:/g)].map(m => m[1]));

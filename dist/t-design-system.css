@@ -1447,6 +1447,9 @@
     --card-padding: var(--space-4);
     padding: var(--card-padding);
   }
+  a.tg-card {
+    text-decoration: none;
+  }
   .tg-card:has(> :is(.tg-card__media, .tg-card__body, .tg-card__footer)) {
     display: flex;
     flex-direction: column;
@@ -2517,6 +2520,16 @@
   }
   dialog.tg-modal.tg-image-viewer > footer[data-loading] {
     visibility: hidden;
+  }
+  .tg-image-viewer .tg-image-viewer__close {
+    --control-color: var(--overlay-text);
+    flex: 0 0 auto;
+    margin-inline-start: auto;
+  }
+  .tg-image-viewer__caption {
+    color: var(--overlay-text);
+    min-inline-size: 0;
+    overflow-wrap: anywhere;
   }
   .tg-image-viewer__stage {
     overflow: hidden;

@@ -1,7 +1,7 @@
 {
   "componentFiles": 40,
-  "foundationFiles": 2,
-  "declarations": 817,
+  "foundationFiles": 3,
+  "declarations": 819,
   "consumers": [
     {
       "file": "base/_index.scss",
@@ -2965,6 +2965,22 @@
         "--text-color"
       ],
       "value": "var(--text-color)"
+    },
+    {
+      "file": "components/_feedback.scss",
+      "property": "--control-color",
+      "roles": [
+        "--overlay-text"
+      ],
+      "value": "var(--overlay-text)"
+    },
+    {
+      "file": "components/_feedback.scss",
+      "property": "color",
+      "roles": [
+        "--overlay-text"
+      ],
+      "value": "var(--overlay-text)"
     },
     {
       "file": "components/_feedback.scss",

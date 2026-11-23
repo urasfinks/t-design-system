@@ -18,6 +18,8 @@
     padding: var(--card-padding);
   }
 
+  a.tg-card { text-decoration: none; }
+
   // Card zones. A card with zones is a column: media meets the edges, the footer
   // settles at the bottom so cards in a grid align their actions.
   .tg-card:has(> :is(.tg-card__media, .tg-card__body, .tg-card__footer)) {
