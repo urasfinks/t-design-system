@@ -334,7 +334,7 @@
     letter-spacing: inherit;
     color: inherit;
   }
-  :where([tabindex="-1"]:not(:any-link, button, input, select, textarea, summary, iframe, audio, video, [role], [contenteditable])):focus {
+  :where(dialog, [tabindex="-1"]:not(:any-link, button, input, select, textarea, summary, iframe, audio, video, [role], [contenteditable])):focus {
     outline: none;
   }
   :where(.tg-btn, .tg-icon-btn, .tg-tab, .tg-tabbar__item, .tg-switch, .tg-chip, .tg-avatar, .tg-check, .tg-radio, .tg-link, .tg-dot,

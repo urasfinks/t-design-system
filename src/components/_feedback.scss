@@ -286,8 +286,6 @@
     -webkit-user-select: none;
     user-select: none;
 
-    &:focus { outline: none; }
-
     &[open] {
       display: grid;
       grid-template-rows: auto minmax(0, 1fr) auto;

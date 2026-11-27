@@ -51,6 +51,12 @@ try {
           <button class="tg-icon-btn" id="close" onclick="dialog.close()">Закрыть</button>
           <button class="tg-btn tg-btn--ghost tg-media" id="photo"><img alt="Фотография"></button>
           <a class="tg-link" href="#field" id="link">Ссылка</a>
+        </dialog>
+        <dialog id="nested-parent" class="tg-modal">
+          <button class="tg-btn" id="nested-open" onclick="document.querySelector('#nested-child').showModal()">Открыть раздел</button>
+        </dialog>
+        <dialog id="nested-child" class="tg-modal">
+          <button class="tg-icon-btn" id="nested-close" onclick="document.querySelector('#nested-child').close()">Закрыть раздел</button>
         </dialog>`);
       const ui = await readFile(new URL('../dist/ui.js', import.meta.url), 'utf8');
       const effects = await readFile(new URL('../dist/effects.js', import.meta.url), 'utf8');
@@ -90,6 +96,20 @@ try {
         await page.keyboard.press('Enter');
         assert.equal(await outline('#close'), 'solid', `${theme}: keyboard-opened dialog`);
         await page.evaluate(() => document.querySelector('dialog').close());
+        await page.evaluate(() => {
+          const parent = document.querySelector('#nested-parent');
+          parent.showModal();
+          parent.focus();
+        });
+        assert.equal(await page.evaluate(() => document.activeElement.id), 'nested-parent', theme);
+        assert.equal(await outline('#nested-parent'), 'none', `${theme}: a dialog surface never draws a focus ring`);
+        const nestedOpen = page.locator('#nested-open');
+        if (hasTouch) await nestedOpen.tap(); else await nestedOpen.click();
+        const nestedClose = page.locator('#nested-close');
+        if (hasTouch) await nestedClose.tap(); else await nestedClose.click();
+        assert.equal(await outline('#nested-parent'), 'none', `${theme}: no ring on the restored parent`);
+        assert.equal(await outline('#nested-open'), 'none', `${theme}: no ring on the pointer-focused opener`);
+        await page.evaluate(() => document.querySelector('#nested-parent').close());
       }
     } finally { await page.close(); }
   }

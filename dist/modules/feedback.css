@@ -263,9 +263,6 @@
     -webkit-user-select: none;
     user-select: none;
   }
-  dialog.tg-modal.tg-image-viewer:focus {
-    outline: none;
-  }
   dialog.tg-modal.tg-image-viewer[open] {
     display: grid;
     grid-template-rows: auto minmax(0, 1fr) auto;

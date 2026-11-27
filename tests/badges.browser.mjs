@@ -8,8 +8,23 @@ try {
   const page = await browser.newPage();
   const css = await readFile('dist/t-design-system.css', 'utf8');
   await page.setContent(`<style>${css}</style><div class="tg-card"><span class="tg-badge tg-badge--primary">Активен</span><span class="tg-badge tg-badge--secondary">Черновик</span><span class="tg-badge tg-badge--destructive">Ошибка</span></div><button class="tg-switch" role="switch" aria-checked="false"><span class="tg-switch__knob"></span></button><span class="tg-badge"><svg class="tg-icon"></svg>Иконка</span><button class="tg-badge"><svg class="tg-icon"></svg>Действие</button><a href="#" class="tg-badge">Ссылка</a>`);
+  const badgeAction = page.locator('button.tg-badge');
+  await badgeAction.evaluate(el => {
+    el.innerHTML = '<span class="tg-row tg-nowrap tg-gap-1"><svg class="tg-icon"></svg>12</span><span class="tg-toolbar__separator"></span><span class="tg-row tg-nowrap tg-gap-1"><svg class="tg-icon"></svg>34</span>';
+  });
+  const iconSizes = () => badgeAction.locator('.tg-icon').evaluateAll(icons => icons.map(icon => {
+    const rect = icon.getBoundingClientRect();
+    const style = getComputedStyle(icon);
+    return [rect.width, rect.height, style.minInlineSize, style.maxInlineSize,
+      style.minBlockSize, style.maxBlockSize, style.animationName, style.transitionProperty, style.scale];
+  }));
   for (const theme of ['light', 'dark', 'ios-dark']) {
     await page.evaluate(theme => document.documentElement.dataset.theme = theme, theme);
+    await page.mouse.move(0, 0);
+    const resting = await iconSizes();
+    assert.deepEqual(resting, Array.from({ length: 2 }, () => [16, 16, '16px', '16px', '16px', '16px', 'none', 'none', 'none']));
+    await badgeAction.hover();
+    assert.deepEqual(await iconSizes(), resting, theme + ': hover keeps both icon sizes');
     for (const size of [24, 30]) {
       await page.evaluate(size => document.documentElement.style.setProperty('--choice-size', size + 'px'), size);
       const geometry = await page.evaluate(() => ({

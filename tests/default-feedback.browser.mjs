@@ -33,6 +33,9 @@ try {
     assert.equal(await page.locator('#dynamic-feedback .tg-ripple__wave, #dynamic-feedback .tg-feedback-layer').count(), 0, `${classes}: no pointer ripple`);
   }
   assert.equal(await page.locator('#dynamic-feedback').evaluate(el => getComputedStyle(el).borderTopColor), 'rgba(0, 0, 0, 0)', 'a ghost icon button draws no outline');
+  await page.locator('#dynamic-feedback').evaluate(el => { el.className = 'tg-badge tg-badge--secondary'; });
+  await page.locator('#dynamic-feedback').click();
+  assert.equal(await page.locator('#dynamic-feedback .tg-feedback-layer').count(), 0, 'badge buttons have no default ripple');
   await page.locator('#interactive-avatar').click();
   assert.equal(await page.locator('#interactive-avatar .tg-feedback-layer').count(), 1);
   assert.notEqual(await page.locator('#interactive-avatar').evaluate(el => getComputedStyle(el).overflow), 'hidden', 'badge and focus are not clipped');

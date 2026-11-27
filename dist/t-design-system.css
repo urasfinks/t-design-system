@@ -335,7 +335,7 @@
     letter-spacing: inherit;
     color: inherit;
   }
-  :where([tabindex="-1"]:not(:any-link, button, input, select, textarea, summary, iframe, audio, video, [role], [contenteditable])):focus {
+  :where(dialog, [tabindex="-1"]:not(:any-link, button, input, select, textarea, summary, iframe, audio, video, [role], [contenteditable])):focus {
     outline: none;
   }
   :where(.tg-btn, .tg-icon-btn, .tg-tab, .tg-tabbar__item, .tg-switch, .tg-chip, .tg-avatar, .tg-check, .tg-radio, .tg-link, .tg-dot,
@@ -2200,6 +2200,10 @@
   }
   .tg-badge .tg-icon {
     --icon-size: var(--space-4);
+    min-inline-size: var(--icon-size);
+    max-inline-size: var(--icon-size);
+    min-block-size: var(--icon-size);
+    max-block-size: var(--icon-size);
   }
   .tg-badge:has(> .tg-badge__dot) {
     gap: var(--space-1);
@@ -2227,6 +2231,17 @@
     inline-size: max(100%, var(--control-h));
     block-size: max(100%, var(--control-h));
     transform: translate(-50%, -50%);
+  }
+  :is(button, a[href]).tg-badge {
+    appearance: none;
+    transition: none;
+    animation: none;
+  }
+  :is(button, a[href]).tg-badge .tg-icon {
+    transition: none;
+    animation: none;
+    transform: none;
+    scale: none;
   }
   :is(button, a[href]).tg-badge {
     border: var(--border-action);
@@ -2502,9 +2517,6 @@
     overflow: hidden;
     -webkit-user-select: none;
     user-select: none;
-  }
-  dialog.tg-modal.tg-image-viewer:focus {
-    outline: none;
   }
   dialog.tg-modal.tg-image-viewer[open] {
     display: grid;

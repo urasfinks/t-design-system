@@ -174,7 +174,13 @@
   }
   // Badge icons stay compact: the default 20px icon plus padding and border
   // would otherwise make an interactive badge taller than a text badge.
-  .tg-badge .tg-icon { --icon-size: var(--space-4); }
+  .tg-badge .tg-icon {
+    --icon-size: var(--space-4);
+    min-inline-size: var(--icon-size);
+    max-inline-size: var(--icon-size);
+    min-block-size: var(--icon-size);
+    max-block-size: var(--icon-size);
+  }
   // A status dot repeats the badge text colour; the word still carries the meaning.
   .tg-badge:has(> .tg-badge__dot) { gap: var(--space-1); }
   .tg-badge__dot {
@@ -192,6 +198,15 @@
   :where(a[href], button, summary) .tg-badge { border: var(--border-action); }
   :is(button, a[href]).tg-badge {
     @include hit-target.compact;
+    appearance: none;
+    transition: none;
+    animation: none;
+    .tg-icon {
+      transition: none;
+      animation: none;
+      transform: none;
+      scale: none;
+    }
     border: var(--border-action);
     min-inline-size: var(--control-h);
     text-decoration: none;
